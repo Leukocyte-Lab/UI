@@ -1,0 +1,17 @@
+.behavior {
+  &.clickable {
+    cursor: pointer;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  &.draggable {
+    cursor: move;
+  }
+
+  &.loading {
+    cursor: wait;
+  }
+}
