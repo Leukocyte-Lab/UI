@@ -18,12 +18,18 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@iconify/vue": "^4.1.1",
+    "@vueuse/core": "^10.1.2",
     "gradient2svg": "^0.0.4",
     "lodash-es": "^4.17.21",
+    "offline": "link:@iconify/vue/offline",
+    "sass": "^1.62.1",
     "uuid": "^9.0.0",
-    "vue": "^3.3.2"
+    "vue": "^3.3.2",
+    "vue-router": "^4.2.0"
   },
   "devDependencies": {
+    "@etchteam/storybook-addon-css-variables-theme": "^1.5.1",
     "@rushstack/eslint-patch": "^1.2.0",
     "@storybook/addon-essentials": "^7.0.12",
     "@storybook/addon-interactions": "^7.0.12",
