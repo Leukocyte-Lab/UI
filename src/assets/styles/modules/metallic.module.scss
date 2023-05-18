@@ -1,0 +1,84 @@
+%metallic {
+  &-box {
+    border-radius: var(--box-border-radius);
+    box-shadow: var(--box-box-shadow);
+    color: var(--box-text-color);
+
+    &:not(.disabled) {
+      &:hover,
+      &:focus-visible {
+        color: var(--box-text-color-hover, var(--box-text-color));
+      }
+
+      &.clicked {
+        color: var(--box-text-color-click, var(--box-text-color));
+      }
+    }
+
+    &.disabled {
+      color: var(--box-text-color-disabled, var(--box-text-color));
+    }
+  }
+}
+
+@mixin box($has-stroke: false) {
+  @extend %metallic-box;
+
+  @if $has-stroke {
+    background-image: var(--box-fill-gradient), var(--box-border-gradient);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border: var(--box-border-width) solid transparent;
+
+    &:not(.disabled) {
+      &:hover,
+      &:focus-visible {
+        background-image: var(--box-fill-gradient-hover, var(--box-fill-gradient)),
+          var(--box-border-gradient-hover, var(--box-border-gradient));
+      }
+
+      &.clicked {
+        background-image: var(--box-fill-gradient-clicked, var(--box-fill-gradient)),
+          var(--box-border-gradient-clicked, var(--box-border-gradient));
+      }
+    }
+
+    &.disabled {
+      background-image: var(--box-fill-gradient-disabled, var(--box-fill-gradient)),
+          var(--box-border-gradient-disabled, var(--box-border-gradient));
+    }
+  } @else {
+    background-color: var(--box-fill); // fallback for `--box-fill-gradient` not present
+    background-image: var(--box-fill-gradient); // fallback for `--box-fill` not present
+
+    &:not(.disabled) {
+      &:hover,
+      &:focus-visible {
+        background-color: var(
+          --box-fill-hover
+        ); // fallback for `--box-fill-gradient-hover` not present
+        background-image: var(
+          --box-fill-gradient-hover
+        ); // fallback for `--box-fill-hover` not present
+      }
+
+      &.clicked {
+        background-color: var(
+          --box-fill-click
+        ); // fallback for `--box-fill-gradient-click` not present
+        background-image: var(
+          --box-fill-gradient-click
+        ); // fallback for `--box-fill-click` not present
+      }
+    }
+
+    &.disabled {
+      background-color: var(
+        --box-fill-disabled
+      ); // fallback for `--box-fill-gradient-disabled` not present
+      background-image: var(
+        --box-fill-gradient-disabled
+      ); // fallback for `--box-fill-disabled` not present
+    }
+  }
+}
