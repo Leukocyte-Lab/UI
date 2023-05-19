@@ -3,7 +3,7 @@ import { Icon } from '@iconify/vue/offline';
 
 import BaseLink from '@/components/base/BaseLink.vue';
 
-import { signal } from '@/shared/libs/signal';
+import { useClickSignal } from '@/shared/libs/click';
 
 namespace ButtonBox {
   export type BaseProps = {
@@ -27,23 +27,7 @@ const props = withDefaults(defineProps<ButtonBox.Props>(), {
   level: 'primary'
 });
 
-const clicked = signal(false);
-
-let clickDebounceTimer: ReturnType<typeof setTimeout> | undefined = undefined;
-
-const onClick = (event: MouseEvent) => {
-  if (props.disabled || clicked()) {
-    event.preventDefault();
-    event.stopPropagation();
-  } else {
-    clicked.set(true);
-    clearTimeout(clickDebounceTimer);
-
-    clickDebounceTimer = setTimeout(() => {
-      clicked.set(false);
-    }, 300);
-  }
-};
+const { clicked, onClick } = useClickSignal();
 </script>
 
 <template>
