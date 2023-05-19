@@ -9,6 +9,9 @@ export const useClickSignal = (callback?: EventCallback<MouseEvent>, debounce: n
   const onClick = (event: MouseEvent) => {
     if (!clicked()) {
       callback?.call({}, event);
+    } else {
+      event.preventDefault();
+      event.stopPropagation();
     }
 
     clicked.set(true);
