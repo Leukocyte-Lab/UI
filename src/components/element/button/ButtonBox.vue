@@ -83,7 +83,7 @@ const { clicked, onClick } = useClickSignal();
       --box-box-shadow: var(--agh-ref-effects-shadow-200);
     }
 
-    &:not(.rect.secondary) {
+    &:not(.rounded.secondary, .rect.secondary) {
       @include metallic.box;
 
       &.rounded,
@@ -191,6 +191,7 @@ const { clicked, onClick } = useClickSignal();
       }
     }
 
+    &.rounded,
     &.rect {
       &.secondary {
         --box-fill-gradient: var(--agh-ref-color-white-gradient-500);
