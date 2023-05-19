@@ -37,14 +37,6 @@ export default {
       defaultValue: 'primary'
     },
     onClick: { action: 'clicked' }
-  },
-  args: {
-    label: 'Button',
-    link: 'https://ui.argushack.com',
-    icon: 'fa6-solid:arrow-right',
-    variant: 'rounded',
-    level: 'primary',
-    disabled: false
   }
 } satisfies Meta<typeof ButtonBox>;
 
@@ -57,6 +49,14 @@ const Template: StoryFn<typeof ButtonBox> = (args) => ({
 });
 
 export const DefaultRoundedButtonBox = Template.bind({});
+DefaultRoundedButtonBox.args = {
+  label: 'Button',
+  link: 'https://ui.argushack.com',
+  icon: 'fa6-solid:arrow-right',
+  variant: 'rounded',
+  level: 'primary',
+  disabled: false
+};
 
 export const PrimaryRoundedButtonBox = Template.bind({});
 PrimaryRoundedButtonBox.args = {
