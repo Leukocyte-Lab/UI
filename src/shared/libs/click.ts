@@ -1,6 +1,6 @@
 import type { EventCallback } from '@/shared/types/callback';
 
-import { signal } from './signal';
+import { signal } from '@/shared/libs/signal';
 
 export const useClickSignal = (callback?: EventCallback<MouseEvent>, debounce: number = 300) => {
   const clicked = signal(false);
