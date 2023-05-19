@@ -106,6 +106,7 @@ declare const _default: {
     };
 };
 export default _default;
+export declare const DefaultRoundedButtonBox: any;
 export declare const PrimaryRoundedButtonBox: any;
 export declare const SecondaryRoundedButtonBox: any;
 export declare const PrimaryRectButtonBox: any;
