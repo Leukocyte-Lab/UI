@@ -32,6 +32,21 @@
     "vue": "^3.3.2",
     "vue-router": "^4.2.0"
   },
+  "exports": {
+    "./shared": {
+      "import": "./dist/ui.shared.es.js",
+      "require": "./dist/ui.shared.cjs.js",
+      "type": "./dist/shared.d.ts"
+    },
+    "./component": {
+      "import": "./dist/ui.component.es.js",
+      "require": "./dist/ui.component.cjs.js",
+      "type": "./dist/component.d.ts"
+    }
+  },
+  "files": [
+    "dist/*"
+  ],
   "devDependencies": {
     "@etchteam/storybook-addon-css-variables-theme": "^1.5.1",
     "@rushstack/eslint-patch": "^1.2.0",
