@@ -27,7 +27,7 @@ export default {
     variant: {
       control: 'select',
       description: 'Button variant (optional)',
-      options: ['rounded', 'square', 'circle', 'rect', 'file'],
+      options: ['rounded', 'square', 'circle', 'rect'],
       defaultValue: 'rounded'
     },
     level: {
@@ -56,18 +56,22 @@ const Template: StoryFn<typeof ButtonBox> = (args) => ({
   template: '<ButtonBox v-bind="args" />'
 });
 
+export const DefaultRoundedButtonBox = Template.bind({});
+
 export const PrimaryRoundedButtonBox = Template.bind({});
 PrimaryRoundedButtonBox.args = {
   label: 'View Docs',
   level: 'primary',
-  variant: 'rounded'
+  variant: 'rounded',
+  icon: ''
 };
 
 export const SecondaryRoundedButtonBox = Template.bind({});
 SecondaryRoundedButtonBox.args = {
   label: 'View Docs',
   level: 'secondary',
-  variant: 'rounded'
+  variant: 'rounded',
+  icon: ''
 };
 
 export const PrimaryRectButtonBox = Template.bind({});
