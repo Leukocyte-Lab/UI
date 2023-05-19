@@ -1,0 +1,19 @@
+[
+  {
+    "id": "019d7bcf3080e2aa04537c0b2ae5e2a55bae6ced",
+    "name": "Metallic-Dark",
+    "selectedTokenSets": {
+      "agh": "enabled"
+    },
+    "$figmaStyleReferences": {}
+  },
+  {
+    "id": "4c67ffcfed873a1dd6ce1e322d74952ab0d4b568",
+    "name": "Metallic-Bright",
+    "selectedTokenSets": {
+      "agh": "enabled",
+      "testset": "enabled"
+    },
+    "$figmaStyleReferences": {}
+  }
+]

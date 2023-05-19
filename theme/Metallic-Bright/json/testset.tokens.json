@@ -1,0 +1,16 @@
+{
+  "sys": {
+    "color": {
+      "test": {
+        "value": "{ref.color.grayscale.300}",
+        "type": "color"
+      },
+      "test2": {
+        "100": {
+          "value": "{ref.color.grayscale.1000}",
+          "type": "color"
+        }
+      }
+    }
+  }
+}
