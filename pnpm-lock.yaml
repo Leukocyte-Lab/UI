@@ -13,6 +13,15 @@ dependencies:
   '@iconify/vue':
     specifier: ^4.1.1
     version: 4.1.1(vue@3.3.2)
+  '@tsconfig/node18':
+    specifier: ^2.0.1
+    version: 2.0.1
+  '@vitejs/plugin-vue':
+    specifier: ^4.2.3
+    version: 4.2.3(vite@4.3.7)(vue@3.3.2)
+  '@vue/tsconfig':
+    specifier: ^0.4.0
+    version: 0.4.0
   '@vueuse/core':
     specifier: ^10.1.2
     version: 10.1.2(vue@3.3.2)
@@ -28,9 +37,15 @@ dependencies:
   sass:
     specifier: ^1.62.1
     version: 1.62.1
+  typescript:
+    specifier: ~5.0.4
+    version: 5.0.4
   uuid:
     specifier: ^9.0.0
     version: 9.0.0
+  vite:
+    specifier: ^4.3.7
+    version: 4.3.7(@types/node@18.16.12)(sass@1.62.1)
   vite-plugin-dts:
     specifier: ^2.3.0
     version: 2.3.0(@types/node@18.16.12)(vite@4.3.7)
@@ -69,9 +84,6 @@ devDependencies:
   '@storybook/vue3-vite':
     specifier: ^7.0.12
     version: 7.0.12(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)(vite@4.3.7)(vue@3.3.2)
-  '@tsconfig/node18':
-    specifier: ^2.0.1
-    version: 2.0.1
   '@types/jsdom':
     specifier: ^21.1.1
     version: 21.1.1
@@ -84,9 +96,6 @@ devDependencies:
   '@types/uuid':
     specifier: ^9.0.1
     version: 9.0.1
-  '@vitejs/plugin-vue':
-    specifier: ^4.2.3
-    version: 4.2.3(vite@4.3.7)(vue@3.3.2)
   '@vue/eslint-config-prettier':
     specifier: ^7.1.0
     version: 7.1.0(eslint@8.40.0)(prettier@2.8.8)
@@ -96,9 +105,6 @@ devDependencies:
   '@vue/test-utils':
     specifier: ^2.3.2
     version: 2.3.2(vue@3.3.2)
-  '@vue/tsconfig':
-    specifier: ^0.4.0
-    version: 0.4.0
   eslint:
     specifier: ^8.40.0
     version: 8.40.0
@@ -135,12 +141,6 @@ devDependencies:
   stylelint-scss:
     specifier: ^5.0.0
     version: 5.0.0(stylelint@15.6.2)
-  typescript:
-    specifier: ~5.0.4
-    version: 5.0.4
-  vite:
-    specifier: ^4.3.7
-    version: 4.3.7(@types/node@18.16.12)(sass@1.62.1)
   vitest:
     specifier: ^0.31.0
     version: 0.31.0(jsdom@22.0.0)(sass@1.62.1)
@@ -2934,7 +2934,7 @@ packages:
 
   /@tsconfig/node18@2.0.1:
     resolution: {integrity: sha512-UqdfvuJK0SArA2CxhKWwwAWfnVSXiYe63bVpMutc27vpngCntGUZQETO24pEJ46zU6XM+7SpqYoMgcO3bM11Ew==}
-    dev: true
+    dev: false
 
   /@types/argparse@1.0.38:
     resolution: {integrity: sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==}
@@ -3348,7 +3348,6 @@ packages:
     dependencies:
       vite: 4.3.7(@types/node@18.16.12)(sass@1.62.1)
       vue: 3.3.2
-    dev: true
 
   /@vitest/expect@0.31.0:
     resolution: {integrity: sha512-Jlm8ZTyp6vMY9iz9Ny9a0BHnCG4fqBa8neCF6Pk/c/6vkUk49Ls6UBlgGAU82QnzzoaUs9E/mUhq/eq9uMOv/g==}
@@ -3558,7 +3557,7 @@ packages:
 
   /@vue/tsconfig@0.4.0:
     resolution: {integrity: sha512-CPuIReonid9+zOG/CGTT05FXrPYATEqoDGNrEaqS4hwcw5BUNM2FguC0mOwJD4Jr16UpRVl9N0pY3P+srIbqmg==}
-    dev: true
+    dev: false
 
   /@vueuse/core@10.1.2(vue@3.3.2):
     resolution: {integrity: sha512-roNn8WuerI56A5uiTyF/TEYX0Y+VKlhZAF94unUfdhbDUI+NfwQMn4FUnUscIRUhv3344qvAghopU4bzLPNFlA==}
@@ -8705,7 +8704,6 @@ packages:
     resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
     engines: {node: '>=12.20'}
     hasBin: true
-    dev: true
 
   /ufo@1.1.2:
     resolution: {integrity: sha512-TrY6DsjTQQgyS3E3dBaOXf0TpPD8u9FVrVYmKVegJuFw51n/YB9XPt+U6ydzFG5ZIN7+DIjPbNmXoBj9esYhgQ==}
