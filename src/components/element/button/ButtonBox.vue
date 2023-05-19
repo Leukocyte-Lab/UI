@@ -99,7 +99,7 @@ const { clicked, onClick } = useClickSignal((event: MouseEvent) => {
         --box-fill-gradient: var(--agh-ref-color-blue-gradient-500);
         --box-fill-gradient-hover: var(--agh-ref-color-blue-gradient-200);
         --box-fill-gradient-click: var(--agh-ref-color-blue-gradient-700);
-        --box-fill-disabled: var(--agh-ref-color-blue-300-opacity);
+        --box-fill-disabled: color-mix(in srgb, var(--agh-ref-color-blue-300) calc(100% * var(--agh-ref-opacity-100)), white);
         --box-text-color: var(--agh-ref-color-grayscale-100);
         --box-text-color-disabled: var(--agh-ref-color-blue-600);
         --button-text-shadow: var(--agh-ref-effects-shadow-200);
