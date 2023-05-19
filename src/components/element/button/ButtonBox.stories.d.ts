@@ -96,14 +96,6 @@ declare const _default: {
             action: string;
         };
     };
-    args: {
-        label: string;
-        link: string;
-        icon: string;
-        variant: string;
-        level: string;
-        disabled: false;
-    };
 };
 export default _default;
 export declare const DefaultRoundedButtonBox: any;
