@@ -189,10 +189,7 @@ const { clicked, onClick } = useClickSignal();
         justify-content: center;
         align-items: center;
       }
-    }
 
-    &.rounded,
-    &.rect {
       &.secondary {
         --box-fill-gradient: var(--agh-ref-color-white-gradient-500);
         --box-border-gradient: var(--agh-ref-color-border-white-500);
