@@ -1,14 +1,39 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
+import { resolve } from 'node:path';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import Vue from '@vitejs/plugin-vue';
+import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    Vue(),
+    dts({
+      insertTypesEntry: true
+    })
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  build: {
+    lib: {
+      // Could also be a dictionary or array of multiple entry points
+      entry: {
+        shared: resolve(__dirname, 'src/shared/index.ts'),
+        component: resolve(__dirname, 'src/components/index.ts')
+      },
+      name: 'UI',
+      // the proper extensions will be added
+      fileName: (format, entry) => `ui.${entry}.${format}.js`,
+      formats: ['es', 'cjs']
+    },
+    rollupOptions: {
+      // Vue is provided by the parent project, don't compile Vue source-code inside our library.
+      external: ['vue'],
+      output: { globals: { vue: 'Vue' }, inlineDynamicImports: false, format: 'esm' }
+    }
   }
-})
+});

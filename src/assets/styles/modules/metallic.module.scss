@@ -57,6 +57,7 @@
         background-color: var(
           --box-fill-hover
         ); // fallback for `--box-fill-gradient-hover` not present
+
         background-image: var(
           --box-fill-gradient-hover
         ); // fallback for `--box-fill-hover` not present
@@ -66,6 +67,7 @@
         background-color: var(
           --box-fill-click
         ); // fallback for `--box-fill-gradient-click` not present
+
         background-image: var(
           --box-fill-gradient-click
         ); // fallback for `--box-fill-click` not present
@@ -76,6 +78,7 @@
       background-color: var(
         --box-fill-disabled
       ); // fallback for `--box-fill-gradient-disabled` not present
+
       background-image: var(
         --box-fill-gradient-disabled
       ); // fallback for `--box-fill-disabled` not present
