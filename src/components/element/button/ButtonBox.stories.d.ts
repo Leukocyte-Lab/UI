@@ -67,11 +67,11 @@ declare const _default: {
             control: string;
             description: string;
         };
-        icon: {
+        link: {
             control: string;
             description: string;
         };
-        link: {
+        icon: {
             control: string;
             description: string;
         };
@@ -95,6 +95,14 @@ declare const _default: {
         onClick: {
             action: string;
         };
+    };
+    args: {
+        label: string;
+        link: string;
+        icon: string;
+        variant: string;
+        level: string;
+        disabled: false;
     };
 };
 export default _default;
