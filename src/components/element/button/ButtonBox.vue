@@ -27,7 +27,12 @@ const props = withDefaults(defineProps<ButtonBox.Props>(), {
   level: 'primary'
 });
 
-const { clicked, onClick } = useClickSignal();
+const { clicked, onClick } = useClickSignal((event: MouseEvent) => {
+  if (props.disabled) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+});
 </script>
 
 <template>
