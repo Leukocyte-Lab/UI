@@ -39,9 +39,18 @@ const Template: StoryFn<typeof ButtonBox> = (args) => ({
   template: '<ButtonBox v-bind="args" />'
 });
 
-export const RoundedButtonBox = Template.bind({});
-RoundedButtonBox.args = {
-  label: 'View Docs'
+export const PrimaryRoundedButtonBox = Template.bind({});
+PrimaryRoundedButtonBox.args = {
+  label: 'View Docs',
+  level: 'primary',
+  variant: 'rounded'
+};
+
+export const SecondaryRoundedButtonBox = Template.bind({});
+SecondaryRoundedButtonBox.args = {
+  label: 'View Docs',
+  level: 'secondary',
+  variant: 'rounded'
 };
 
 export const PrimaryRectButtonBox = Template.bind({});
