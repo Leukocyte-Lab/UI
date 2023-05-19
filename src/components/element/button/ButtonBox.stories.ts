@@ -7,9 +7,18 @@ export default {
   component: ButtonBox,
   tags: ['autodocs'],
   argTypes: {
-    label: { control: 'text', description: 'Button label (optional)' },
-    icon: { control: 'text', description: 'Button icon (optional)' },
-    link: { control: 'text', description: 'Button link (optional)' },
+    label: {
+      control: 'text',
+      description: 'Button label (optional)'
+    },
+    link: {
+      control: 'text',
+      description: 'Button link (optional)'
+    },
+    icon: {
+      control: 'text',
+      description: 'Button icon (optional)'
+    },
     disabled: {
       control: 'boolean',
       description: 'Button disabled (optional)',
@@ -28,6 +37,14 @@ export default {
       defaultValue: 'primary'
     },
     onClick: { action: 'clicked' }
+  },
+  args: {
+    label: 'Button',
+    link: 'https://ui.argushack.com',
+    icon: 'fa6-solid:arrow-right',
+    variant: 'rounded',
+    level: 'primary',
+    disabled: false
   }
 } satisfies Meta<typeof ButtonBox>;
 
