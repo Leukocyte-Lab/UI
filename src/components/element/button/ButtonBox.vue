@@ -75,6 +75,7 @@ const { clicked, onClick } = useClickSignal();
     height: fit-content;
     vertical-align: middle;
     outline: none;
+    text-decoration: none;
 
     &.rounded,
     &.square,
