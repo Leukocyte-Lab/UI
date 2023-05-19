@@ -15,7 +15,7 @@
     "lint:eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint:stylelint": "stylelint 'src/**/*.{css,scss,sass,vue}' --fix",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build:storybook": "storybook build && cp -r theme/ storybook-static/theme"
   },
   "dependencies": {
     "@iconify-json/fa6-brands": "^1.1.11",
