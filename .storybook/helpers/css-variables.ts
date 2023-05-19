@@ -5,13 +5,13 @@ export const cssVariables = (url: string) => {
 
     use: async function () {
       if (!this.styleTag?.innerHTML) {
-        this.styleTag = document.createElement('style');
+        this.styleTag = document.createElement('link');
         this.styleTag.setAttribute('id', 'theme-variables');
         this.styleTag.setAttribute('type', 'text/css');
-        this.innerStyles = (await import(/* @vite-ignore */ `../${url}`)).default;
-        this.styleTag.innerHTML = this.innerStyles;
+        this.styleTag.setAttribute('rel', 'stylesheet');
+        this.styleTag.setAttribute('href', url);
 
-        document.documentElement.appendChild(this.styleTag);
+        document.head.appendChild(this.styleTag);
         return;
       }
 
