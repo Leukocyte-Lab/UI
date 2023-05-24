@@ -80,11 +80,11 @@ const { clicked, onClick } = useClickSignal();
 
     @each $color in $colors {
       &.color-#{$color} {
-        $fill: var(--agh-ref-color-grayscale-100) !default;
-        $fill-hover: var(--agh-ref-color-grayscale-200) !default;
-        $fill-gradient: var(--agh-ref-color-white-gradient-500) !default;
-        $fill-gradient-hover: var(--agh-ref-color-white-gradient-700) !default;
-        $border-gradient: var(--agh-ref-color-border-white-500) !default;
+        $fill: var(--agh-ref-color-grayscale-100);
+        $fill-hover: var(--agh-ref-color-grayscale-200);
+        $fill-gradient: var(--agh-ref-color-white-gradient-500);
+        $fill-gradient-hover: var(--agh-ref-color-white-gradient-700);
+        $border-gradient: var(--agh-ref-color-border-white-500);
 
         @if $color != 'default' {
           $fill: var(--agh-ref-color-#{$color}-500);
