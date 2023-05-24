@@ -134,7 +134,7 @@ const { clicked, onClick } = useClickSignal();
       }
     }
 
-    $strokeSets: (
+    $stroke-sets: (
         'class': 'bold',
         'weight': var(--agh-ref-border-width-200)
       ),
@@ -147,7 +147,7 @@ const { clicked, onClick } = useClickSignal();
         'weight': var(--agh-ref-border-width-50)
       );
 
-    @each $strokeSet in $strokeSets {
+    @each $strokeSet in $stroke-sets {
       &.stroke-#{map.get($strokeSet, 'class')} {
         --box-border-width: #{map.get($strokeSet, 'weight')};
       }
