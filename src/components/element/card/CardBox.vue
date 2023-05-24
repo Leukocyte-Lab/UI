@@ -12,6 +12,7 @@ namespace CardBox {
     strokeWeight?: StrokeWeight;
     purpose?: Purpose;
     radius?: string;
+    clickable?: boolean;
   };
 
   export type Variant = 'metallic' | 'flat' | 'dash';
@@ -26,6 +27,7 @@ const props = withDefaults(defineProps<CardBox.Props>(), {
   variant: 'metallic',
   color: 'default',
   hasStroke: true,
+  clickable: false,
   strokeWeight: 'normal',
   purpose: 'box',
   radius: 'var(--agh-ref-border-radius-300)'
@@ -46,7 +48,7 @@ const { clicked, onClick } = useClickSignal();
       $style[`stroke-${props.strokeWeight}`],
       $style[`purpose-${props.purpose}`],
       {
-        [$style['clickable']]: props.link,
+        [$style['clickable']]: props.link || props.clickable,
         [$style['has-stroke']]: props.hasStroke,
         [$style['clicked']]: clicked()
       }

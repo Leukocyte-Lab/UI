@@ -44,6 +44,11 @@ export default {
       description: 'Card radius (optional)',
       defaultValue: 'var(--agh-ref-border-radius-300)'
     },
+    clickable: {
+      control: 'boolean',
+      description: 'Is card clickable (optional)',
+      defaultValue: false
+    },
     onClick: { action: 'clicked' }
   }
 } satisfies Meta<typeof CardBox>;
@@ -67,6 +72,7 @@ DefaultCardBox.args = {
   purpose: 'box',
   color: 'default',
   hasStroke: true,
+  clickable: false,
   strokeWeight: 'normal',
   radius: 'var(--agh-ref-border-radius-300)'
 };
