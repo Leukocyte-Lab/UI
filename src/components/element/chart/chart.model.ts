@@ -1,3 +1,4 @@
+import type { MustHas } from '@/shared';
 import type { ObjectLike } from '@/shared/types/object';
 import type { Vector } from '@/shared/types/vector';
 
@@ -19,7 +20,7 @@ export namespace Chart {
     selector?: string;
     options?: Options;
     sort?: 'asc' | 'desc';
-    metrics?: Payload[];
+    metrics?: MustHas<Payload, 'normalized'>[];
   };
   export type Options = {
     offset: Vector<'x' | 'y'>;
@@ -33,7 +34,7 @@ export namespace Chart {
   export type Plot = Record<string, DataType>;
   export type NormalizedPlot = {
     data: Record<string, DataType>;
-  } & Record<'x' | 'y', Payload>;
+  } & Record<'x' | 'y', MustHas<Payload, 'normalized'>>;
   export type Datasets = {
     series: Plot[];
     label?: string;

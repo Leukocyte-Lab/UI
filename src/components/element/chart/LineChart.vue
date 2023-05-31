@@ -47,8 +47,7 @@ const axisPath = computedEager(() =>
           .map(
             (metric) => `
               M ${
-                (metric.normalized ?? 0) * (width.value - props.options.offset.x) +
-                props.options.offset.x
+                metric.normalized * (width.value - props.options.offset.x) + props.options.offset.x
               } 0
               V ${height.value - props.options.offset.y}
             `
@@ -62,7 +61,7 @@ const axisPath = computedEager(() =>
           .map(
             (metric) => `
               M ${props.options.offset.x} ${
-              (1 - (metric.normalized ?? 0)) * (height.value - props.options.offset.y)
+              (1 - metric.normalized) * (height.value - props.options.offset.y)
             }
               H ${width.value}
             `
@@ -83,43 +82,39 @@ const plotPolyPaths = computedEager(() =>
               .map((plot, index) =>
                 index === 0
                   ? `M ${
-                      (plot.x.normalized ?? 0) * (width.value - props.options.offset.x) +
+                      plot.x.normalized * (width.value - props.options.offset.x) +
                       props.options.offset.x
-                    } ${(1 - (plot.y.normalized ?? 0)) * (height.value - props.options.offset.y)}`
+                    } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)}`
                   : props.options.curve === 'smooth'
                   ? index === 1
                     ? `C ${
-                        (dataset.series[index - 1].x.normalized ?? 0) *
+                        dataset.series[index - 1].x.normalized *
                           (width.value - props.options.offset.x) +
                         props.options.offset.x +
                         (width.value / dataset.series.length) * props.options.radius
                       } ${
-                        (1 - (dataset.series[index - 1].y.normalized ?? 0)) *
+                        (1 - dataset.series[index - 1].y.normalized) *
                         (height.value - props.options.offset.y)
                       } ${
-                        (plot.x.normalized ?? 0) * (width.value - props.options.offset.x) +
+                        plot.x.normalized * (width.value - props.options.offset.x) +
                         props.options.offset.x -
                         (width.value / dataset.series.length) * props.options.radius
-                      } ${
-                        (1 - (plot.y.normalized ?? 0)) * (height.value - props.options.offset.y)
-                      } ${
-                        (plot.x.normalized ?? 0) * (width.value - props.options.offset.x) +
+                      } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)} ${
+                        plot.x.normalized * (width.value - props.options.offset.x) +
                         props.options.offset.x
-                      } ${(1 - (plot.y.normalized ?? 0)) * (height.value - props.options.offset.y)}`
+                      } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)}`
                     : `S ${
-                        (plot.x.normalized ?? 0) * (width.value - props.options.offset.x) +
+                        plot.x.normalized * (width.value - props.options.offset.x) +
                         props.options.offset.x -
                         (width.value / dataset.series.length) * props.options.radius
-                      } ${
-                        (1 - (plot.y.normalized ?? 0)) * (height.value - props.options.offset.y)
-                      } ${
-                        (plot.x.normalized ?? 0) * (width.value - props.options.offset.x) +
+                      } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)} ${
+                        plot.x.normalized * (width.value - props.options.offset.x) +
                         props.options.offset.x
-                      } ${(1 - (plot.y.normalized ?? 0)) * (height.value - props.options.offset.y)}`
+                      } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)}`
                   : `L ${
-                      (plot.x.normalized ?? 0) * (width.value - props.options.offset.x) +
+                      plot.x.normalized * (width.value - props.options.offset.x) +
                       props.options.offset.x
-                    } ${(1 - (plot.y.normalized ?? 0)) * (height.value - props.options.offset.y)}`
+                    } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)}`
               )
               .join('\n')}`
       }))
@@ -140,7 +135,7 @@ const plotPolyPaths = computedEager(() =>
             <template v-if="axises.x && axises.x.metrics">
               <template v-for="(metric, index) in axises.x.metrics" :key="`axis-x--${index}`">
                 <text
-                  :x="metric.normalized! * (width - props.options.offset.x) + props.options.offset.x"
+                  :x="metric.normalized * (width - props.options.offset.x) + props.options.offset.x"
                   :y="height - props.options.offset.y + 20"
                   :class="[$style['chart-axis'], $style['label']]"
                   :text-anchor="
@@ -155,7 +150,7 @@ const plotPolyPaths = computedEager(() =>
               <template v-for="(metric, index) in axises.y.metrics" :key="`axis-y--${index}`">
                 <text
                   :x="props.options.offset.x - 10"
-                  :y="(1 - metric.normalized!) * (height - props.options.offset.y) + 5"
+                  :y="(1 - metric.normalized) * (height - props.options.offset.y) + 5"
                   :class="[$style['chart-axis'], $style['label']]"
                   text-anchor="end"
                 >
@@ -178,20 +173,37 @@ const plotPolyPaths = computedEager(() =>
             >
               <g :class="$style['chart-area']">
                 <circle
-                  :class="[$style['behavior'], $style['chart-area'], $style['point'], $style['plot'], $style['clickable']]"
-                  :cx="plot.x.normalized! * (width - props.options.offset.x) + props.options.offset.x"
-                  :cy="(1 - plot.y.normalized!) * (height - props.options.offset.y)"
+                  :class="[
+                    $style['behavior'],
+                    $style['chart-area'],
+                    $style['point'],
+                    $style['plot'],
+                    $style['clickable']
+                  ]"
+                  :cx="
+                    plot.x.normalized * (width - props.options.offset.x) + props.options.offset.x
+                  "
+                  :cy="(1 - plot.y.normalized) * (height - props.options.offset.y)"
                   r="50"
                 />
                 <circle
                   :class="[$style['chart-area'], $style['point'], $style['plot']]"
-                  :cx="plot.x.normalized! * (width - props.options.offset.x) + props.options.offset.x"
-                  :cy="(1 - plot.y.normalized!) * (height - props.options.offset.y)"
+                  :cx="
+                    plot.x.normalized * (width - props.options.offset.x) + props.options.offset.x
+                  "
+                  :cy="(1 - plot.y.normalized) * (height - props.options.offset.y)"
                   r="5"
                 />
                 <foreignObject
-                  :x="plot.x.normalized! * (width - props.options.offset.x) + props.options.offset.x - 140"
-                  :y="(1 - plot.y.normalized!) * (height - props.options.offset.y) - (plot.y.normalized! >= 0.5 ? 0 : 220)"
+                  :x="
+                    plot.x.normalized * (width - props.options.offset.x) +
+                    props.options.offset.x -
+                    140
+                  "
+                  :y="
+                    (1 - plot.y.normalized) * (height - props.options.offset.y) -
+                    (plot.y.normalized >= 0.5 ? 0 : 220)
+                  "
                   height="220"
                   width="280"
                   :class="[$style['chart-area'], $style['legend-container']]"
