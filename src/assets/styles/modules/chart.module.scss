@@ -17,12 +17,13 @@
       stroke: var(--chart-axis-stroke-fill);
       stroke-width: var(--chart-axis-stroke-width);
 
-      &.line {
-        // stroke: theme.$chart-axis-stroke-color;
+      &.radar {
+        opacity: 0.3;
       }
     }
 
     &.label {
+      box-sizing: border-box;
       fill: var(--chart-axis-label-fill);
       position: relative;
       height: 100%;
@@ -32,6 +33,35 @@
       display: flex;
       font-size: 14px;
       line-height: 1.2;
+      align-items: center;
+
+      &.font-align {
+        &--center {
+          text-align: center;
+        }
+
+        &--right {
+          text-align: right;
+        }
+
+        &--left {
+          text-align: left;
+        }
+      }
+
+      &.box-align {
+        &--center {
+          justify-content: center;
+        }
+
+        &--left {
+          justify-content: flex-start;
+        }
+
+        &--right {
+          justify-content: flex-end;
+        }
+      }
 
       &.radar {
         padding: 0 0.5em;
@@ -62,19 +92,14 @@
     }
 
     &.bg {
-      // fill: theme.$chart-area-fill-color;
-      opacity: 0.8;
-      filter: url('#chart-area-bg-filter');
+      fill: var(--chart-bg-fill);
 
       &.round {
-        filter: url('#chart-area-bg-round') url('#chart-area-bg-filter');
+        filter: url('#chart-area-bg-round');
       }
     }
 
     &.plot {
-      .round {
-      }
-
       &.point {
         &:not(.clickable) {
           fill: var(--chart-area-plot-stroke-fill);
@@ -94,6 +119,15 @@
         stroke: var(--chart-area-plot-stroke-fill);
         stroke-width: var(--chart-area-plot-stroke-width);
         filter: none;
+      }
+
+      &.radar {
+        fill: var(--chart-area-plot-fill);
+        opacity: 0.3;
+
+        .round {
+          filter: url('#chart-area-plot-round');
+        }
       }
     }
 
