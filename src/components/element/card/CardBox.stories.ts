@@ -48,8 +48,7 @@ export default {
       control: 'boolean',
       description: 'Is card clickable (optional)',
       defaultValue: false
-    },
-    onClick: { action: 'clicked' }
+    }
   }
 } satisfies Meta<typeof CardBox>;
 
