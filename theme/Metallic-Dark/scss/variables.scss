@@ -1,13 +1,16 @@
 
 /**
  * Do not edit directly
- * Generated on Fri, 19 May 2023 06:20:20 GMT
+ * Generated on Fri, 02 Jun 2023 03:44:16 GMT
  */
 
 $agh-ref-typeface-family-sans-serif: Lato, Noto Sans CJK TC, Sans-serif !default;
 $agh-ref-typeface-family-serif: Noto Serif CJK TC !default;
 $agh-ref-typeface-family-mono: Fira Code !default;
 $agh-ref-typeface-family-deco: Orbitron !default;
+$agh-ref-typeface-family-icon-default: Font Awesome 6 Pro !default;
+$agh-ref-typeface-family-icon-custom: Font Awesome Kit 925fc120a4 !default;
+$agh-ref-typeface-family-icon-brands: Font Awesome 6 Brands !default;
 $agh-ref-typeface-size-75: 14px !default;
 $agh-ref-typeface-size-100: 16px !default;
 $agh-ref-typeface-size-200: 18px !default;
@@ -59,20 +62,26 @@ $agh-ref-effects-reflect-light-900: -61px -79px 40px rgba(255,255,255,0.07), -34
 $agh-ref-effects-inner-shadow-100: inset 4px 4px 2px rgba(0,0,0,0.03), inset 2px 2px 2px rgba(0,0,0,0.1), inset 1px 1px 1px rgba(0,0,0,0.17), inset 0 0 1px rgba(0,0,0,0.2) !default;
 $agh-ref-effects-inner-shadow-200: inset 8px 10px 5px rgba(0,0,0,0.02), inset 5px 6px 4px rgba(0,0,0,0.06), inset 2px 3px 3px rgba(0,0,0,0.11), inset 1px 1px 2px rgba(0,0,0,0.12) !default;
 $agh-ref-effects-inner-shadow-700: inset 51px 48px 28px rgba(0,0,0,0.02), inset 29px 27px 24px rgba(0,0,0,0.08), inset 13px 12px 17px rgba(0,0,0,0.14), inset 3px 3px 10px rgba(0,0,0,0.16) !default;
-$agh-ref-effects-spread-200: 0 0 0 3 rgba(0, 79, 199, 0.2) !default;
-$agh-ref-color-purple-100: hsl(257 90.3% 92.7%) !default;
-$agh-ref-color-purple-200: hsl(257 90.3% 85.5%) !default;
-$agh-ref-color-purple-300: hsl(257 90.3% 78.2%) !default;
-$agh-ref-color-purple-400: hsl(257 90.3% 71%) !default;
-$agh-ref-color-purple-500: #7E4FF6 !default;
-$agh-ref-color-purple-600: hsl(257 90.3% 51%) !default;
-$agh-ref-color-purple-700: hsl(257 90.3% 38.2%) !default;
-$agh-ref-color-purple-800: hsl(257 90.3% 25.5%) !default;
-$agh-ref-color-purple-900: hsl(257 90.3% 12.7%) !default;
+$agh-ref-effects-solid-blue: 0 0 0 3 rgba(0, 79, 199, 0.2) !default;
+$agh-ref-effects-solid-cyan: 0 0 0 3 rgba(53, 188, 204, 0.2) !default;
+$agh-ref-effects-solid-red: 0 0 0 3 rgba(219, 89, 82, 0.2) !default;
+$agh-ref-effects-solid-orange: 0 0 0 3 rgba(251, 157, 46, 0.2) !default;
+$agh-ref-effects-solid-green: 0 0 0 3 rgba(106, 187, 159, 0.2) !default;
+$agh-ref-effects-solid-purple: 0 0 0 3 rgba(121, 81, 207, 0.2) !default;
+$agh-ref-color-purple-100: hsl(259 56.8% 91.3%) !default;
+$agh-ref-color-purple-200: hsl(259 56.8% 82.6%) !default;
+$agh-ref-color-purple-300: hsl(259 56.8% 73.9%) !default;
+$agh-ref-color-purple-400: hsl(259 56.8% 65.2%) !default;
+$agh-ref-color-purple-500: #7951CF !default;
+$agh-ref-color-purple-600: hsl(259 56.8% 45.2%) !default;
+$agh-ref-color-purple-700: hsl(259 56.8% 33.9%) !default;
+$agh-ref-color-purple-800: hsl(259 56.8% 22.6%) !default;
+$agh-ref-color-purple-900: hsl(259 56.8% 11.3%) !default;
+$agh-ref-color-purple-gradient-100: linear-gradient(to bottom right, #F3EEFF 5.3%, #DCCBFF 94.7%) !default; // linear-gradient(143deg, #F3EEFF 5.3%, #DCCBFF 94.7%)
 $agh-ref-color-purple-gradient-200: linear-gradient(to bottom right, #E1D3FF 5.3%, #AB82FF 94.7%) !default; // linear-gradient(143deg, #E1D3FF 5.3%, #AB82FF 94.7%)
 $agh-ref-color-purple-gradient-500: linear-gradient(to bottom right, rgba(199,176,249,1) 0%, rgba(130,69,255,1) 100%) !default; // linear-gradient(143deg, rgba(199,176,249,1) 0%, rgba(130,69,255,1) 100%)
 $agh-ref-color-purple-gradient-700: linear-gradient(to bottom right, #9361FF 10.03%, #3B0B9C 89.97%) !default; // linear-gradient(143deg, #9361FF 10.03%, #3B0B9C 89.97%)
-$agh-ref-color-purple-base: #7E4FF6 !default;
+$agh-ref-color-purple-base: #7951CF !default;
 $agh-ref-color-green-100: hsl(159 37.3% 91.5%) !default;
 $agh-ref-color-green-200: hsl(159 37.3% 83%) !default;
 $agh-ref-color-green-300: hsl(159 37.3% 74.5%) !default;
@@ -82,36 +91,39 @@ $agh-ref-color-green-600: hsl(159 37.3% 46%) !default;
 $agh-ref-color-green-700: hsl(159 37.3% 34.5%) !default;
 $agh-ref-color-green-800: hsl(159 37.3% 23%) !default;
 $agh-ref-color-green-900: hsl(159 37.3% 11.5%) !default;
-$agh-ref-color-green-base: #6abb9f !default;
+$agh-ref-color-green-gradient-100: linear-gradient(to bottom right, #EFFFFB 10.03%, #C2DCD5 89.97%) !default; // linear-gradient(143deg, #EFFFFB 10.03%, #C2DCD5 89.97%)
 $agh-ref-color-green-gradient-200: linear-gradient(to bottom right, #D1FFF4 5.3%, #4DC8A8 94.7%) !default; // linear-gradient(143deg, #D1FFF4 5.3%, #4DC8A8 94.7%)
 $agh-ref-color-green-gradient-500: linear-gradient(to bottom right, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%) !default; // linear-gradient(143deg, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%)
 $agh-ref-color-green-gradient-700: linear-gradient(to bottom right, #52CDB0 10.03%, #007A5B 87.89%) !default; // linear-gradient(143deg, #52CDB0 10.03%, #007A5B 87.89%)
-$agh-ref-color-orange-100: hsl(25.3 100% 91.5%) !default;
-$agh-ref-color-orange-200: hsl(25.3 100% 83.1%) !default;
-$agh-ref-color-orange-300: hsl(25.3 100% 74.6%) !default;
-$agh-ref-color-orange-400: hsl(25.3 100% 66.1%) !default;
-$agh-ref-color-orange-500: #FF8227 !default;
-$agh-ref-color-orange-600: hsl(25.3 100% 46.1%) !default;
-$agh-ref-color-orange-700: hsl(25.3 100% 34.6%) !default;
-$agh-ref-color-orange-800: hsl(25.3 100% 23.1%) !default;
-$agh-ref-color-orange-900: hsl(25.3 100% 11.5%) !default;
+$agh-ref-color-green-base: #6abb9f !default;
+$agh-ref-color-orange-100: hsl(32.5 96.2% 91.6%) !default;
+$agh-ref-color-orange-200: hsl(32.5 96.2% 83.3%) !default;
+$agh-ref-color-orange-300: hsl(32.5 96.2% 74.9%) !default;
+$agh-ref-color-orange-400: hsl(32.5 96.2% 66.6%) !default;
+$agh-ref-color-orange-500: #FB9D2E !default;
+$agh-ref-color-orange-600: hsl(32.5 96.2% 46.6%) !default;
+$agh-ref-color-orange-700: hsl(32.5 96.2% 34.9%) !default;
+$agh-ref-color-orange-800: hsl(32.5 96.2% 23.3%) !default;
+$agh-ref-color-orange-900: hsl(32.5 96.2% 11.6%) !default;
+$agh-ref-color-orange-gradient-100: linear-gradient(to bottom right, #FFF1E6 14.26%, #FFDDC4 85.74%) !default; // linear-gradient(143deg, #FFF1E6 14.26%, #FFDDC4 85.74%)
 $agh-ref-color-orange-gradient-200: linear-gradient(to bottom right, #FFE3CB 10.03%, #F59752 89.97%) !default; // linear-gradient(143deg, #FFE3CB 10.03%, #F59752 89.97%)
 $agh-ref-color-orange-gradient-500: linear-gradient(to bottom right, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%) !default; // linear-gradient(143deg, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%)
 $agh-ref-color-orange-gradient-700: linear-gradient(to bottom right, #F4BC87 10.03%, #F36701 89.97%) !default; // linear-gradient(143deg, #F4BC87 10.03%, #F36701 89.97%)
-$agh-ref-color-orange-base: #FF8227 !default;
-$agh-ref-color-blue-100: hsl(216 100% 87.8%) !default;
-$agh-ref-color-blue-200: hsl(216 100% 75.6%) !default;
-$agh-ref-color-blue-300: hsl(216 100% 63.4%) !default;
-$agh-ref-color-blue-400: hsl(216 100% 51.2%) !default;
-$agh-ref-color-blue-500: #004FC7 !default;
-$agh-ref-color-blue-600: hsl(216 100% 31.2%) !default;
-$agh-ref-color-blue-700: hsl(216 100% 23.4%) !default;
-$agh-ref-color-blue-800: hsl(216 100% 15.6%) !default;
-$agh-ref-color-blue-900: hsl(216 100% 7.8%) !default;
+$agh-ref-color-orange-base: #FB9D2E !default;
+$agh-ref-color-blue-100: hsl(212 69.6% 88.8%) !default;
+$agh-ref-color-blue-200: hsl(212 69.6% 77.6%) !default;
+$agh-ref-color-blue-300: hsl(212 69.6% 66.4%) !default;
+$agh-ref-color-blue-400: hsl(212 69.6% 55.1%) !default;
+$agh-ref-color-blue-500: #226ABE !default;
+$agh-ref-color-blue-600: hsl(212 69.6% 35.1%) !default;
+$agh-ref-color-blue-700: hsl(212 69.6% 26.4%) !default;
+$agh-ref-color-blue-800: hsl(212 69.6% 17.6%) !default;
+$agh-ref-color-blue-900: hsl(212 69.6% 8.78%) !default;
+$agh-ref-color-blue-gradient-100: linear-gradient(to bottom right, #DFEAFF 14.26%, #BAD4FC 85.74%) !default; // linear-gradient(143deg, #DFEAFF 14.26%, #BAD4FC 85.74%)
 $agh-ref-color-blue-gradient-200: linear-gradient(to bottom right, #B1CCFF 10.03%, #0061F3 89.97%) !default; // linear-gradient(143deg, #B1CCFF 10.03%, #0061F3 89.97%)
 $agh-ref-color-blue-gradient-500: linear-gradient(to bottom right, #92B7FF 10.03%, #004FC7 89.97%) !default; // linear-gradient(143deg, #92B7FF 10.03%, #004FC7 89.97%)
 $agh-ref-color-blue-gradient-700: linear-gradient(to bottom right, #84AEFF 10.03%, #02337D 89.97%) !default; // linear-gradient(143deg, #84AEFF 10.03%, #02337D 89.97%)
-$agh-ref-color-blue-base: #004FC7 !default;
+$agh-ref-color-blue-base: #226ABE !default;
 $agh-ref-color-red-100: hsl(3.07 65.6% 91.8%) !default;
 $agh-ref-color-red-200: hsl(3.07 65.6% 83.6%) !default;
 $agh-ref-color-red-300: hsl(3.07 65.6% 75.4%) !default;
@@ -121,13 +133,16 @@ $agh-ref-color-red-600: hsl(3.07 65.6% 47.2%) !default;
 $agh-ref-color-red-700: hsl(3.07 65.6% 35.4%) !default;
 $agh-ref-color-red-800: hsl(3.07 65.6% 23.6%) !default;
 $agh-ref-color-red-900: hsl(3.07 65.6% 11.8%) !default;
-$agh-ref-color-red-gradient-500: linear-gradient(to bottom right, #FF9191 5.3%, #DC1615 94.7%) !default; // linear-gradient(143deg, #FF9191 5.3%, #DC1615 94.7%)
+$agh-ref-color-red-gradient-100: linear-gradient(to bottom right, #FFE9E9 10.03%, #FFB3B3 89.97%) !default; // linear-gradient(143deg, #FFE9E9 10.03%, #FFB3B3 89.97%)
 $agh-ref-color-red-gradient-200: linear-gradient(to bottom right, #FFD0D0 10.03%, #E66665 89.97%) !default; // linear-gradient(143deg, #FFD0D0 10.03%, #E66665 89.97%)
+$agh-ref-color-red-gradient-500: linear-gradient(to bottom right, #FF9191 5.3%, #DC1615 94.7%) !default; // linear-gradient(143deg, #FF9191 5.3%, #DC1615 94.7%)
 $agh-ref-color-red-gradient-700: linear-gradient(to bottom right, #DC3E3E 14.26%, #850100 85.74%) !default; // linear-gradient(143deg, #DC3E3E 14.26%, #850100 85.74%)
 $agh-ref-color-red-base: #DB5952 !default;
 $agh-ref-color-grayscale-100: #ffffff !default;
 $agh-ref-color-grayscale-120: hsl(0 0% 98%) !default;
+$agh-ref-color-grayscale-150: hsl(0 0% 95%) !default;
 $agh-ref-color-grayscale-200: hsl(0 0% 90%) !default;
+$agh-ref-color-grayscale-250: hsl(0 0% 85%) !default;
 $agh-ref-color-grayscale-300: hsl(0 0% 80%) !default;
 $agh-ref-color-grayscale-400: hsl(0 0% 70%) !default;
 $agh-ref-color-grayscale-500: hsl(0 0% 60%) !default;
@@ -146,30 +161,37 @@ $agh-ref-color-cyan-600: hsl(186 59.7% 40.3%) !default;
 $agh-ref-color-cyan-700: hsl(186 59.7% 30.2%) !default;
 $agh-ref-color-cyan-800: hsl(186 59.7% 20.2%) !default;
 $agh-ref-color-cyan-900: hsl(186 59.7% 10.1%) !default;
+$agh-ref-color-cyan-gradient-100: linear-gradient(to bottom right, #E8FDFF 14.26%, #B1DCE1 85.74%) !default; // linear-gradient(143deg, #E8FDFF 14.26%, #B1DCE1 85.74%)
 $agh-ref-color-cyan-gradient-200: linear-gradient(to bottom right, #D7FBFF 14.26%, #39C7D8 85.74%) !default; // linear-gradient(143deg, #D7FBFF 14.26%, #39C7D8 85.74%)
 $agh-ref-color-cyan-gradient-500: linear-gradient(to bottom right, #CEF0F4 10.03%, #35BCCC 89.97%) !default; // linear-gradient(143deg, #CEF0F4 10.03%, #35BCCC 89.97%)
 $agh-ref-color-cyan-gradient-700: linear-gradient(to bottom right, #9DDEE6 10.03%, #1EA0AF 81.95%) !default; // linear-gradient(143deg, #9DDEE6 10.03%, #1EA0AF 81.95%)
 $agh-ref-color-cyan-base: #35BCCC !default;
 $agh-ref-color-white-gradient-500: linear-gradient(to bottom right, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%) !default; // linear-gradient(143deg, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%)
-$agh-ref-color-border-white-500: linear-gradient(to top right, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) !default; // linear-gradient(223.97deg, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%)
-$agh-ref-color-border-purple-200: linear-gradient(to top right, hsl(257 90.3% 78.2%) 3.47%, hsl(257 90.3% 78.2%) 22.37%, hsl(257 90.3% 85.5%) 32.07%, hsl(257 90.3% 71%) 44.1%, hsl(257 90.3% 85.5%) 51.44%) !default; // linear-gradient(223.94deg, hsl(257 90.3% 78.2%) 3.47%, hsl(257 90.3% 78.2%) 22.37%, hsl(257 90.3% 85.5%) 32.07%, hsl(257 90.3% 71%) 44.1%, hsl(257 90.3% 85.5%) 51.44%)
-$agh-ref-color-border-purple-500: linear-gradient(to top right, #7E4FF6 2.63%, hsl(257 90.3% 71%) 21.87%, hsl(257 90.3% 78.2%) 31.74%, #7E4FF6 43.99%, hsl(257 90.3% 78.2%) 51.47%) !default; // linear-gradient(223.94deg, #7E4FF6 2.63%, hsl(257 90.3% 71%) 21.87%, hsl(257 90.3% 78.2%) 31.74%, #7E4FF6 43.99%, hsl(257 90.3% 78.2%) 51.47%)
-$agh-ref-color-border-purple-700: linear-gradient(to top right, hsl(257 90.3% 25.5%) 2.63%, hsl(257 90.3% 38.2%) 21.87%, hsl(257 90.3% 71%) 31.74%, hsl(257 90.3% 25.5%) 43.99%, hsl(257 90.3% 78.2%) 51.47%) !default; // linear-gradient(223.94deg, hsl(257 90.3% 25.5%) 2.63%, hsl(257 90.3% 38.2%) 21.87%, hsl(257 90.3% 71%) 31.74%, hsl(257 90.3% 25.5%) 43.99%, hsl(257 90.3% 78.2%) 51.47%)
-$agh-ref-color-border-green-200: linear-gradient(to top right, #6abb9f 5.11%, hsl(159 37.3% 74.5%) 23.34%, hsl(159 37.3% 74.5%) 32.7%, #6abb9f 44.31%, hsl(159 37.3% 74.5%) 51.38%) !default; // linear-gradient(223.94deg, #6abb9f 5.11%, hsl(159 37.3% 74.5%) 23.34%, hsl(159 37.3% 74.5%) 32.7%, #6abb9f 44.31%, hsl(159 37.3% 74.5%) 51.38%)
-$agh-ref-color-border-green-500: linear-gradient(to top right, hsl(159 37.3% 34.5%) 4.3%, #6abb9f 22.86%, #6abb9f 32.39%, hsl(159 37.3% 34.5%) 44.21%, #6abb9f 51.41%) !default; // linear-gradient(223.94deg, hsl(159 37.3% 34.5%) 4.3%, #6abb9f 22.86%, #6abb9f 32.39%, hsl(159 37.3% 34.5%) 44.21%, #6abb9f 51.41%)
-$agh-ref-color-border-green-700: linear-gradient(to top right, hsl(159 37.3% 23%) 5.11%, hsl(159 37.3% 34.5%) 23.34%, hsl(159 37.3% 46%) 32.7%, hsl(159 37.3% 23%) 44.31%, hsl(159 37.3% 46%) 51.38%) !default; // linear-gradient(223.94deg, hsl(159 37.3% 23%) 5.11%, hsl(159 37.3% 34.5%) 23.34%, hsl(159 37.3% 46%) 32.7%, hsl(159 37.3% 23%) 44.31%, hsl(159 37.3% 46%) 51.38%)
-$agh-ref-color-border-orange-200: linear-gradient(to top right, hsl(25.3 100% 66.1%) 5.91%, hsl(25.3 100% 74.6%) 23.82%, hsl(25.3 100% 83.1%) 33.01%, hsl(25.3 100% 66.1%) 44.41%, hsl(25.3 100% 83.1%) 51.36%) !default; // linear-gradient(223.94deg, hsl(25.3 100% 66.1%) 5.91%, hsl(25.3 100% 74.6%) 23.82%, hsl(25.3 100% 83.1%) 33.01%, hsl(25.3 100% 66.1%) 44.41%, hsl(25.3 100% 83.1%) 51.36%)
-$agh-ref-color-border-orange-500: linear-gradient(to top right, #FF8227 5.11%, #FF8227 23.34%, hsl(25.3 100% 74.6%) 32.7%, #FF8227 44.31%, hsl(25.3 100% 74.6%) 51.38%) !default; // linear-gradient(223.94deg, #FF8227 5.11%, #FF8227 23.34%, hsl(25.3 100% 74.6%) 32.7%, #FF8227 44.31%, hsl(25.3 100% 74.6%) 51.38%)
-$agh-ref-color-border-orange-700: linear-gradient(to top right, hsl(25.3 100% 34.6%) 5.91%, hsl(25.3 100% 46.1%) 23.82%, hsl(25.3 100% 66.1%) 33.01%, hsl(25.3 100% 34.6%) 44.41%, #FF8227 51.36%) !default; // linear-gradient(223.94deg, hsl(25.3 100% 34.6%) 5.91%, hsl(25.3 100% 46.1%) 23.82%, hsl(25.3 100% 66.1%) 33.01%, hsl(25.3 100% 34.6%) 44.41%, #FF8227 51.36%)
-$agh-ref-color-border-blue-200: linear-gradient(to top right, hsl(216 100% 51.2%) 6.7%, hsl(216 100% 63.4%) 24.29%, hsl(216 100% 75.6%) 33.31%, hsl(216 100% 51.2%) 44.51%, hsl(216 100% 87.8%) 51.34%) !default; // linear-gradient(223.94deg, hsl(216 100% 51.2%) 6.7%, hsl(216 100% 63.4%) 24.29%, hsl(216 100% 75.6%) 33.31%, hsl(216 100% 51.2%) 44.51%, hsl(216 100% 87.8%) 51.34%)
-$agh-ref-color-border-blue-500: linear-gradient(to top right, #004FC7 5.91%, hsl(216 100% 51.2%) 23.82%, hsl(216 100% 63.4%) 33.01%, hsl(216 100% 31.2%) 44.41%, hsl(216 100% 75.6%) 51.36%) !default; // linear-gradient(223.94deg, #004FC7 5.91%, hsl(216 100% 51.2%) 23.82%, hsl(216 100% 63.4%) 33.01%, hsl(216 100% 31.2%) 44.41%, hsl(216 100% 75.6%) 51.36%)
-$agh-ref-color-border-blue-700: linear-gradient(to top right, hsl(216 100% 23.4%) 6.7%, #004FC7 24.29%, hsl(216 100% 51.2%) 33.31%, hsl(216 100% 23.4%) 44.51%, hsl(216 100% 63.4%) 51.34%) !default; // linear-gradient(223.94deg, hsl(216 100% 23.4%) 6.7%, #004FC7 24.29%, hsl(216 100% 51.2%) 33.31%, hsl(216 100% 23.4%) 44.51%, hsl(216 100% 63.4%) 51.34%)
-$agh-ref-color-border-red-200: linear-gradient(to top right, hsl(3.07 65.6% 67.2%) 5.91%, hsl(3.07 65.6% 75.4%) 23.82%, hsl(3.07 65.6% 75.4%)  33.01%, hsl(3.07 65.6% 67.2%) 44.41%, hsl(3.07 65.6% 83.6%)  51.36%) !default; // linear-gradient(223.94deg, hsl(3.07 65.6% 67.2%) 5.91%, hsl(3.07 65.6% 75.4%) 23.82%, hsl(3.07 65.6% 75.4%)  33.01%, hsl(3.07 65.6% 67.2%) 44.41%, hsl(3.07 65.6% 83.6%)  51.36%)
-$agh-ref-color-border-red-500: linear-gradient(to top right, #DB5952 5.11%, hsl(3.07 65.6% 67.2%) 23.34%, hsl(3.07 65.6% 75.4%) 32.7%, #DB5952 44.31%, hsl(3.07 65.6% 67.2%) 51.38%) !default; // linear-gradient(223.94deg, #DB5952 5.11%, hsl(3.07 65.6% 67.2%) 23.34%, hsl(3.07 65.6% 75.4%) 32.7%, #DB5952 44.31%, hsl(3.07 65.6% 67.2%) 51.38%)
-$agh-ref-color-border-red-700: linear-gradient(to top right, hsl(3.07 65.6% 35.4%) 7.47%, hsl(3.07 65.6% 47.2%) 24.75%, #DB5952 33.61%, hsl(3.07 65.6% 35.4%) 44.61%, hsl(3.07 65.6% 47.2%) 51.32%) !default; // linear-gradient(223.94deg, hsl(3.07 65.6% 35.4%) 7.47%, hsl(3.07 65.6% 47.2%) 24.75%, #DB5952 33.61%, hsl(3.07 65.6% 35.4%) 44.61%, hsl(3.07 65.6% 47.2%) 51.32%)
-$agh-ref-color-border-cyan-200: linear-gradient(to top right, hsl(186 59.7% 60.3%) 6.7%, hsl(186 59.7% 70.2%) 24.29%, hsl(186 59.7% 80.2%) 33.31%, hsl(186 59.7% 60.3%) 44.51%, hsl(186 59.7% 80.2%) 51.34%) !default; // linear-gradient(223.94deg, hsl(186 59.7% 60.3%) 6.7%, hsl(186 59.7% 70.2%) 24.29%, hsl(186 59.7% 80.2%) 33.31%, hsl(186 59.7% 60.3%) 44.51%, hsl(186 59.7% 80.2%) 51.34%)
-$agh-ref-color-border-cyan-500: linear-gradient(to top right, #35BCCC 1.77%, hsl(186 59.7% 60.3%) 21.36%, hsl(186 59.7% 70.2%) 31.41%, #35BCCC 43.88%, hsl(186 59.7% 70.2%) 51.5%) !default; // linear-gradient(223.94deg, #35BCCC 1.77%, hsl(186 59.7% 60.3%) 21.36%, hsl(186 59.7% 70.2%) 31.41%, #35BCCC 43.88%, hsl(186 59.7% 70.2%) 51.5%)
-$agh-ref-color-border-cyan-700: linear-gradient(to top right, hsl(186 59.7% 40.3%) 1.77%, #35BCCC 21.36%, hsl(186 59.7% 60.3%) 31.41%, hsl(186 59.7% 40.3%) 43.88%, hsl(186 59.7% 70.2%) 51.5%) !default; // linear-gradient(223.94deg, hsl(186 59.7% 40.3%) 1.77%, #35BCCC 21.36%, hsl(186 59.7% 60.3%) 31.41%, hsl(186 59.7% 40.3%) 43.88%, hsl(186 59.7% 70.2%) 51.5%)
+$agh-ref-color-border-white-500: linear-gradient(to bottom left, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) !default; // linear-gradient(223.97deg, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%)
+$agh-ref-color-border-purple-100: linear-gradient(to bottom left, hsl(259 56.8% 73.9%) 4.3%, hsl(259 56.8% 73.9%) 22.86%, hsl(259 56.8% 82.6%) 32.39%, hsl(259 56.8% 73.9%) 44.21%, hsl(259 56.8% 91.3%) 51.41%) !default; // linear-gradient(223.94deg, hsl(259 56.8% 73.9%) 4.3%, hsl(259 56.8% 73.9%) 22.86%, hsl(259 56.8% 82.6%) 32.39%, hsl(259 56.8% 73.9%) 44.21%, hsl(259 56.8% 91.3%) 51.41%)
+$agh-ref-color-border-purple-200: linear-gradient(to bottom left, hsl(259 56.8% 73.9%) 3.47%, hsl(259 56.8% 73.9%) 22.37%, hsl(259 56.8% 82.6%) 32.07%, hsl(259 56.8% 65.2%) 44.1%, hsl(259 56.8% 82.6%) 51.44%) !default; // linear-gradient(223.94deg, hsl(259 56.8% 73.9%) 3.47%, hsl(259 56.8% 73.9%) 22.37%, hsl(259 56.8% 82.6%) 32.07%, hsl(259 56.8% 65.2%) 44.1%, hsl(259 56.8% 82.6%) 51.44%)
+$agh-ref-color-border-purple-500: linear-gradient(to bottom left, #7951CF 2.63%, hsl(259 56.8% 65.2%) 21.87%, hsl(259 56.8% 73.9%) 31.74%, #7951CF 43.99%, hsl(259 56.8% 73.9%) 51.47%) !default; // linear-gradient(223.94deg, #7951CF 2.63%, hsl(259 56.8% 65.2%) 21.87%, hsl(259 56.8% 73.9%) 31.74%, #7951CF 43.99%, hsl(259 56.8% 73.9%) 51.47%)
+$agh-ref-color-border-purple-700: linear-gradient(to bottom left, hsl(259 56.8% 22.6%) 2.63%, hsl(259 56.8% 33.9%) 21.87%, hsl(259 56.8% 65.2%) 31.74%, hsl(259 56.8% 22.6%) 43.99%, hsl(259 56.8% 73.9%) 51.47%) !default; // linear-gradient(223.94deg, hsl(259 56.8% 22.6%) 2.63%, hsl(259 56.8% 33.9%) 21.87%, hsl(259 56.8% 65.2%) 31.74%, hsl(259 56.8% 22.6%) 43.99%, hsl(259 56.8% 73.9%) 51.47%)
+$agh-ref-color-border-green-100: linear-gradient(to bottom left, hsl(159 37.3% 74.5%) 4.3%, hsl(159 37.3% 74.5%) 22.86%, hsl(159 37.3% 83%) 32.39%, hsl(159 37.3% 74.5%) 44.21%, hsl(159 37.3% 91.5%) 51.41%) !default; // linear-gradient(223.94deg, hsl(159 37.3% 74.5%) 4.3%, hsl(159 37.3% 74.5%) 22.86%, hsl(159 37.3% 83%) 32.39%, hsl(159 37.3% 74.5%) 44.21%, hsl(159 37.3% 91.5%) 51.41%)
+$agh-ref-color-border-green-200: linear-gradient(to bottom left, #6abb9f 5.11%, hsl(159 37.3% 74.5%) 23.34%, hsl(159 37.3% 74.5%) 32.7%, #6abb9f 44.31%, hsl(159 37.3% 74.5%) 51.38%) !default; // linear-gradient(223.94deg, #6abb9f 5.11%, hsl(159 37.3% 74.5%) 23.34%, hsl(159 37.3% 74.5%) 32.7%, #6abb9f 44.31%, hsl(159 37.3% 74.5%) 51.38%)
+$agh-ref-color-border-green-500: linear-gradient(to bottom left, hsl(159 37.3% 34.5%) 4.3%, #6abb9f 22.86%, #6abb9f 32.39%, hsl(159 37.3% 34.5%) 44.21%, #6abb9f 51.41%) !default; // linear-gradient(223.94deg, hsl(159 37.3% 34.5%) 4.3%, #6abb9f 22.86%, #6abb9f 32.39%, hsl(159 37.3% 34.5%) 44.21%, #6abb9f 51.41%)
+$agh-ref-color-border-green-700: linear-gradient(to bottom left, hsl(159 37.3% 23%) 5.11%, hsl(159 37.3% 34.5%) 23.34%, hsl(159 37.3% 46%) 32.7%, hsl(159 37.3% 23%) 44.31%, hsl(159 37.3% 46%) 51.38%) !default; // linear-gradient(223.94deg, hsl(159 37.3% 23%) 5.11%, hsl(159 37.3% 34.5%) 23.34%, hsl(159 37.3% 46%) 32.7%, hsl(159 37.3% 23%) 44.31%, hsl(159 37.3% 46%) 51.38%)
+$agh-ref-color-border-orange-100: linear-gradient(to bottom left, hsl(32.5 96.2% 74.9%) 4.3%, hsl(32.5 96.2% 74.9%) 22.86%, hsl(32.5 96.2% 83.3%) 32.39%, hsl(32.5 96.2% 74.9%) 44.21%, hsl(32.5 96.2% 91.6%) 51.41%) !default; // linear-gradient(223.94deg, hsl(32.5 96.2% 74.9%) 4.3%, hsl(32.5 96.2% 74.9%) 22.86%, hsl(32.5 96.2% 83.3%) 32.39%, hsl(32.5 96.2% 74.9%) 44.21%, hsl(32.5 96.2% 91.6%) 51.41%)
+$agh-ref-color-border-orange-200: linear-gradient(to bottom left, hsl(32.5 96.2% 66.6%) 5.91%, hsl(32.5 96.2% 74.9%) 23.82%, hsl(32.5 96.2% 83.3%) 33.01%, hsl(32.5 96.2% 66.6%) 44.41%, hsl(32.5 96.2% 83.3%) 51.36%) !default; // linear-gradient(223.94deg, hsl(32.5 96.2% 66.6%) 5.91%, hsl(32.5 96.2% 74.9%) 23.82%, hsl(32.5 96.2% 83.3%) 33.01%, hsl(32.5 96.2% 66.6%) 44.41%, hsl(32.5 96.2% 83.3%) 51.36%)
+$agh-ref-color-border-orange-500: linear-gradient(to bottom left, #FB9D2E 5.11%, #FB9D2E 23.34%, hsl(32.5 96.2% 74.9%) 32.7%, #FB9D2E 44.31%, hsl(32.5 96.2% 74.9%) 51.38%) !default; // linear-gradient(223.94deg, #FB9D2E 5.11%, #FB9D2E 23.34%, hsl(32.5 96.2% 74.9%) 32.7%, #FB9D2E 44.31%, hsl(32.5 96.2% 74.9%) 51.38%)
+$agh-ref-color-border-orange-700: linear-gradient(to bottom left, hsl(32.5 96.2% 46.6%) 6.7%, hsl(32.5 96.2% 46.6%) 24.29%, hsl(32.5 96.2% 66.6%) 33.31%, hsl(32.5 96.2% 46.6%) 44.51%, #FB9D2E 51.34%) !default; // linear-gradient(223.94deg, hsl(32.5 96.2% 46.6%) 6.7%, hsl(32.5 96.2% 46.6%) 24.29%, hsl(32.5 96.2% 66.6%) 33.31%, hsl(32.5 96.2% 46.6%) 44.51%, #FB9D2E 51.34%)
+$agh-ref-color-border-blue-100: linear-gradient(to bottom left, hsl(212 69.6% 66.4%) 4.3%, hsl(212 69.6% 66.4%) 22.86%, hsl(212 69.6% 77.6%) 32.39%, hsl(212 69.6% 66.4%) 44.21%, hsl(212 69.6% 88.8%) 51.41%) !default; // linear-gradient(223.94deg, hsl(212 69.6% 66.4%) 4.3%, hsl(212 69.6% 66.4%) 22.86%, hsl(212 69.6% 77.6%) 32.39%, hsl(212 69.6% 66.4%) 44.21%, hsl(212 69.6% 88.8%) 51.41%)
+$agh-ref-color-border-blue-200: linear-gradient(to bottom left, hsl(212 69.6% 55.1%) 8.23%, hsl(212 69.6% 66.4%) 25.2%, hsl(212 69.6% 66.4%) 33.9%, hsl(212 69.6% 55.1%) 44.71%, hsl(212 69.6% 77.6%) 51.3%) !default; // linear-gradient(223.94deg, hsl(212 69.6% 55.1%) 8.23%, hsl(212 69.6% 66.4%) 25.2%, hsl(212 69.6% 66.4%) 33.9%, hsl(212 69.6% 55.1%) 44.71%, hsl(212 69.6% 77.6%) 51.3%)
+$agh-ref-color-border-blue-500: linear-gradient(to bottom left, #226ABE 6.7%, hsl(212 69.6% 55.1%) 24.29%, hsl(212 69.6% 55.1%) 33.31%, #226ABE 44.51%, hsl(212 69.6% 66.4%) 51.34%) !default; // linear-gradient(223.94deg, #226ABE 6.7%, hsl(212 69.6% 55.1%) 24.29%, hsl(212 69.6% 55.1%) 33.31%, #226ABE 44.51%, hsl(212 69.6% 66.4%) 51.34%)
+$agh-ref-color-border-blue-700: linear-gradient(to bottom left, hsl(212 69.6% 35.1%) 7.47%, #226ABE 24.75%, hsl(212 69.6% 55.1%) 33.61%, hsl(212 69.6% 35.1%) 44.61%, hsl(212 69.6% 55.1%) 51.32%) !default; // linear-gradient(223.94deg, hsl(212 69.6% 35.1%) 7.47%, #226ABE 24.75%, hsl(212 69.6% 55.1%) 33.61%, hsl(212 69.6% 35.1%) 44.61%, hsl(212 69.6% 55.1%) 51.32%)
+$agh-ref-color-border-red-100: linear-gradient(to bottom left, hsl(3.07 65.6% 75.4%) 4.3%, hsl(3.07 65.6% 75.4%) 22.86%, hsl(3.07 65.6% 83.6%) 32.39%, hsl(3.07 65.6% 75.4%) 44.21%, hsl(3.07 65.6% 91.8%) 51.41%) !default; // linear-gradient(223.94deg, hsl(3.07 65.6% 75.4%) 4.3%, hsl(3.07 65.6% 75.4%) 22.86%, hsl(3.07 65.6% 83.6%) 32.39%, hsl(3.07 65.6% 75.4%) 44.21%, hsl(3.07 65.6% 91.8%) 51.41%)
+$agh-ref-color-border-red-200: linear-gradient(to bottom left, hsl(3.07 65.6% 67.2%) 5.91%, hsl(3.07 65.6% 75.4%) 23.82%, hsl(3.07 65.6% 75.4%) 33.01%, hsl(3.07 65.6% 67.2%) 44.41%, hsl(3.07 65.6% 83.6%) 51.36%) !default; // linear-gradient(223.94deg, hsl(3.07 65.6% 67.2%) 5.91%, hsl(3.07 65.6% 75.4%) 23.82%, hsl(3.07 65.6% 75.4%) 33.01%, hsl(3.07 65.6% 67.2%) 44.41%, hsl(3.07 65.6% 83.6%) 51.36%)
+$agh-ref-color-border-red-500: linear-gradient(to bottom left, #DB5952 5.11%, hsl(3.07 65.6% 67.2%) 23.34%, hsl(3.07 65.6% 75.4%) 32.7%, #DB5952 44.31%, hsl(3.07 65.6% 67.2%) 51.38%) !default; // linear-gradient(223.94deg, #DB5952 5.11%, hsl(3.07 65.6% 67.2%) 23.34%, hsl(3.07 65.6% 75.4%) 32.7%, #DB5952 44.31%, hsl(3.07 65.6% 67.2%) 51.38%)
+$agh-ref-color-border-red-700: linear-gradient(to bottom left, hsl(3.07 65.6% 35.4%) 7.47%, hsl(3.07 65.6% 47.2%) 24.75%, #DB5952 33.61%, hsl(3.07 65.6% 35.4%) 44.61%, hsl(3.07 65.6% 47.2%) 51.32%) !default; // linear-gradient(223.94deg, hsl(3.07 65.6% 35.4%) 7.47%, hsl(3.07 65.6% 47.2%) 24.75%, #DB5952 33.61%, hsl(3.07 65.6% 35.4%) 44.61%, hsl(3.07 65.6% 47.2%) 51.32%)
+$agh-ref-color-border-cyan-100: linear-gradient(to bottom left, hsl(186 59.7% 70.2%) 4.3%, hsl(186 59.7% 70.2%) 22.86%, hsl(186 59.7% 80.2%) 32.39%, hsl(186 59.7% 70.2%) 44.21%, hsl(186 59.7% 90.1%) 51.41%) !default; // linear-gradient(223.94deg, hsl(186 59.7% 70.2%) 4.3%, hsl(186 59.7% 70.2%) 22.86%, hsl(186 59.7% 80.2%) 32.39%, hsl(186 59.7% 70.2%) 44.21%, hsl(186 59.7% 90.1%) 51.41%)
+$agh-ref-color-border-cyan-200: linear-gradient(to bottom left, hsl(186 59.7% 60.3%) 6.7%, hsl(186 59.7% 70.2%) 24.29%, hsl(186 59.7% 80.2%) 33.31%, hsl(186 59.7% 60.3%) 44.51%, hsl(186 59.7% 80.2%) 51.34%) !default; // linear-gradient(223.94deg, hsl(186 59.7% 60.3%) 6.7%, hsl(186 59.7% 70.2%) 24.29%, hsl(186 59.7% 80.2%) 33.31%, hsl(186 59.7% 60.3%) 44.51%, hsl(186 59.7% 80.2%) 51.34%)
+$agh-ref-color-border-cyan-500: linear-gradient(to bottom left, #35BCCC 1.77%, hsl(186 59.7% 60.3%) 21.36%, hsl(186 59.7% 70.2%) 31.41%, #35BCCC 43.88%, hsl(186 59.7% 70.2%) 51.5%) !default; // linear-gradient(223.94deg, #35BCCC 1.77%, hsl(186 59.7% 60.3%) 21.36%, hsl(186 59.7% 70.2%) 31.41%, #35BCCC 43.88%, hsl(186 59.7% 70.2%) 51.5%)
+$agh-ref-color-border-cyan-700: linear-gradient(to bottom left, hsl(186 59.7% 40.3%) 1.77%, #35BCCC 21.36%, hsl(186 59.7% 60.3%) 31.41%, hsl(186 59.7% 40.3%) 43.88%, hsl(186 59.7% 70.2%) 51.5%) !default; // linear-gradient(223.94deg, hsl(186 59.7% 40.3%) 1.77%, #35BCCC 21.36%, hsl(186 59.7% 60.3%) 31.41%, hsl(186 59.7% 40.3%) 43.88%, hsl(186 59.7% 70.2%) 51.5%)
 $agh-ref-border-width-50: 1px !default;
 $agh-ref-border-width-100: 2px !default;
 $agh-ref-border-width-200: 4px !default;
@@ -193,8 +215,9 @@ $agh-ref-opacity-600: 0.6 !default;
 $agh-ref-opacity-700: 0.7 !default;
 $agh-ref-opacity-800: 0.8 !default;
 $agh-ref-opacity-900: 0.9 !default;
-$agh-ref-spacing-50: 2px !default;
-$agh-ref-spacing-75: 4px !default;
+$agh-ref-spacing-25: 2px !default;
+$agh-ref-spacing-50: 4px !default;
+$agh-ref-spacing-75: 6px !default;
 $agh-ref-spacing-100: 8px !default;
 $agh-ref-spacing-200: 12px !default;
 $agh-ref-spacing-300: 16px !default;
@@ -207,30 +230,150 @@ $agh-ref-spacing-900: 56px !default;
 $agh-ref-spacing-1000: 64px !default;
 $agh-ref-spacing-1100: 112px !default;
 $agh-ref-spacing-base: 8px !default;
-$agh-sys-type-headline-large: 900 121.5px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-headline-medium: 700 97.2px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-headline-small: 700 81px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-hl-lage: 700 64.8px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-hl-medium: 700 54px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-hl-small: 900 40.5px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-title-large: 900 64.8px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-title-medium: 900 54px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-title-small: 700 43.2px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-label-xlarge: 700 36px/110% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-label-medium: 700 22px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-label-small: 500 18px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-content-large: 400 18px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-content-medium: 400 16px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
-$agh-sys-type-content-small: 400 14px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-ref-icon-size-100: 16px !default;
+$agh-ref-icon-size-200: 20px !default;
+$agh-ref-icon-size-300: 24px !default;
+$agh-ref-icon-size-400: 28px !default;
+$agh-ref-icon-size-500: 32px !default;
+$agh-ref-icon-size-600: 36px !default;
+$agh-ref-icon-size-700: 40px !default;
+$agh-ref-icon-size-800: 52px !default;
+$agh-ref-icon-size-900: 64px !default;
+$agh-ref-icon-size-950: 72px !default;
+$agh-ref-icon-size-1000: 80px !default;
+$agh-ref-icon-size-1100: 96px !default;
+$agh-ref-icon-size-1500: 180px !default;
+$agh-sys-typeface-headline-large: 900 81px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-headline-medium: 900 54px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-headline-small: 900 43.2px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-title-container-default-large: 700 36px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-title-container-default-medium: 700 30px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-title-container-default-small: 500 22px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-title-container-hl-large: 900 54px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-title-container-hl-medium: 900 43.2px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-title-container-hl-small: 900 30px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-title-pop-up-large: 700 43.2px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-title-pop-up-medium: 700 36px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-title-pop-up-small: 700 30px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-label-hl-huge: 900 36px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-label-hl-xlarge: 700 30px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-label-hl-large: 700 22px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-label-hl-medium: 700 18px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-label-hl-small: 700 14px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-label-default-huge: 500 26px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-label-default-xlarge: 500 22px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-label-default-large: 500 18px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-label-default-medium: 500 16px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-label-default-small: 500 14px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-number-default-huge: 700 54px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-number-default-xlarge: 700 43.2px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-number-default-large: 700 30px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-number-default-medium: 700 22px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-number-default-small: 500 14px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-number-hl-xlarge: 900 54px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-number-hl-large: 900 43.2px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-number-hl-medium: 700 36px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-number-hl-small: 900 22px/120% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-number-timeline-time: 700 26px/120% Fira Code !default;
+$agh-sys-typeface-number-timeline-date: 700 16px/120% Fira Code !default;
+$agh-sys-typeface-menu-version: 700 22px/120% Orbitron !default;
+$agh-sys-typeface-content-default-xlarge: 400 22px/140% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-content-default-large: 400 18px/140% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-content-default-medium: 400 16px/140% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-content-default-small: 400 14px/140% Lato, Noto Sans CJK TC, Sans-serif !default;
+$agh-sys-typeface-content-code-xlarge: 400 22px/140% Fira Code !default;
+$agh-sys-typeface-content-code-large: 400 18px/140% Fira Code !default;
+$agh-sys-typeface-content-code-medium: 400 16px/140% Fira Code !default;
+$agh-sys-typeface-content-code-small: 400 14px/140% Fira Code !default;
 $agh-sys-effects-shadow-gadget: 8px 14px 10px rgba(0,0,0,0.05), 4px 6px 7px rgba(0,0,0,0.09), 1px 2px 4px rgba(0,0,0,0.1) !default;
 $agh-sys-effects-shadow-chart: 8px 14px 10px rgba(0,0,0,0.05), 4px 6px 7px rgba(0,0,0,0.09), 1px 2px 4px rgba(0,0,0,0.1) !default;
 $agh-sys-effects-shadow-card: 8px 14px 10px rgba(0,0,0,0.05), 4px 6px 7px rgba(0,0,0,0.09), 1px 2px 4px rgba(0,0,0,0.1) !default;
 $agh-sys-effects-shadow-container: 21px 27px 20px rgba(0,0,0,0.05), 9px 12px 15px rgba(0,0,0,0.09), 2px 3px 8px rgba(0,0,0,0.1) !default;
+$agh-sys-effects-shadow-pop-up: 21px 27px 20px rgba(0,0,0,0.05), 9px 12px 15px rgba(0,0,0,0.09), 2px 3px 8px rgba(0,0,0,0.1) !default;
+$agh-sys-effects-shadow-tiny-gadget: 6px 6px 3px rgba(0,0,0,0.01), 3px 4px 3px rgba(0,0,0,0.05), 1px 2px 2px rgba(0,0,0,0.08), 0 0 1px rgba(0,0,0,0.09) !default;
 $agh-sys-effects-shadow-highlight: 22px 38px 26px rgba(0,0,0,0.08), 10px 17px 20px rgba(0,0,0,0.13), 2px 4px 11px rgba(0,0,0,0.15) !default;
 $agh-sys-effects-inner-shadow-data-area: inset 8px 10px 5px rgba(0,0,0,0.02), inset 5px 6px 4px rgba(0,0,0,0.06), inset 2px 3px 3px rgba(0,0,0,0.11), inset 1px 1px 2px rgba(0,0,0,0.12) !default;
 $agh-sys-effects-inner-shadow-text-area: inset 8px 10px 5px rgba(0,0,0,0.02), inset 5px 6px 4px rgba(0,0,0,0.06), inset 2px 3px 3px rgba(0,0,0,0.11), inset 1px 1px 2px rgba(0,0,0,0.12) !default;
 $agh-sys-effects-inner-shadow-deco: inset 8px 10px 5px rgba(0,0,0,0.02), inset 5px 6px 4px rgba(0,0,0,0.06), inset 2px 3px 3px rgba(0,0,0,0.11), inset 1px 1px 2px rgba(0,0,0,0.12) !default;
 $agh-sys-effects-inner-shadow-deco-text: inset 4px 4px 2px rgba(0,0,0,0.03), inset 2px 2px 2px rgba(0,0,0,0.1), inset 1px 1px 1px rgba(0,0,0,0.17), inset 0 0 1px rgba(0,0,0,0.2) !default;
+$agh-sys-effects-inner-shadow-button-large: inset 8px 10px 5px rgba(0,0,0,0.02), inset 5px 6px 4px rgba(0,0,0,0.06), inset 2px 3px 3px rgba(0,0,0,0.11), inset 1px 1px 2px rgba(0,0,0,0.12) !default;
+$agh-sys-effects-inner-shadow-button-small: inset 4px 4px 2px rgba(0,0,0,0.03), inset 2px 2px 2px rgba(0,0,0,0.1), inset 1px 1px 1px rgba(0,0,0,0.17), inset 0 0 1px rgba(0,0,0,0.2) !default;
+$agh-sys-border-container-large: 4px solid linear-gradient(to bottom left, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) !default;
+$agh-sys-border-container-small: 2px solid linear-gradient(to bottom left, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) !default;
+$agh-sys-border-pop-up-large: 4px solid linear-gradient(to bottom left, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) !default;
+$agh-sys-border-pop-up-small: 2px solid linear-gradient(to bottom left, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) !default;
+$agh-sys-border-gadget-search: 1px solid #226ABE !default;
+$agh-sys-border-gadget-textfield: 1px solid #226ABE !default;
+$agh-sys-border-gadget-list: 1px solid linear-gradient(to bottom right, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%) !default;
+$agh-sys-border-gadget-flow-default: 1px solid linear-gradient(to bottom left, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) !default;
+$agh-sys-border-gadget-flow-highlight: 1px solid linear-gradient(to bottom left, #35BCCC 1.77%, hsl(186 59.7% 60.3%) 21.36%, hsl(186 59.7% 70.2%) 31.41%, #35BCCC 43.88%, hsl(186 59.7% 70.2%) 51.5%) !default;
+$agh-sys-border-card-warning-enabled: 1px solid linear-gradient(to bottom left, #FB9D2E 5.11%, #FB9D2E 23.34%, hsl(32.5 96.2% 74.9%) 32.7%, #FB9D2E 44.31%, hsl(32.5 96.2% 74.9%) 51.38%) !default;
+$agh-sys-border-card-warning-hover: 1px solid linear-gradient(to bottom left, hsl(32.5 96.2% 66.6%) 5.91%, hsl(32.5 96.2% 74.9%) 23.82%, hsl(32.5 96.2% 83.3%) 33.01%, hsl(32.5 96.2% 66.6%) 44.41%, hsl(32.5 96.2% 83.3%) 51.36%) !default;
+$agh-sys-border-card-warning-click: 1px solid linear-gradient(to bottom left, hsl(32.5 96.2% 46.6%) 6.7%, hsl(32.5 96.2% 46.6%) 24.29%, hsl(32.5 96.2% 66.6%) 33.31%, hsl(32.5 96.2% 46.6%) 44.51%, #FB9D2E 51.34%) !default;
+$agh-sys-border-card-default-enabled: 1px solid linear-gradient(to bottom left, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) !default;
+$agh-sys-border-card-positive-enabled: 1px solid linear-gradient(to bottom left, hsl(159 37.3% 34.5%) 4.3%, #6abb9f 22.86%, #6abb9f 32.39%, hsl(159 37.3% 34.5%) 44.21%, #6abb9f 51.41%) !default;
+$agh-sys-border-card-positive-hover: 1px solid linear-gradient(to bottom left, #6abb9f 5.11%, hsl(159 37.3% 74.5%) 23.34%, hsl(159 37.3% 74.5%) 32.7%, #6abb9f 44.31%, hsl(159 37.3% 74.5%) 51.38%) !default;
+$agh-sys-border-card-positive-click: 1px solid linear-gradient(to bottom left, hsl(159 37.3% 23%) 5.11%, hsl(159 37.3% 34.5%) 23.34%, hsl(159 37.3% 46%) 32.7%, hsl(159 37.3% 23%) 44.31%, hsl(159 37.3% 46%) 51.38%) !default;
+$agh-sys-border-card-primary-enabled: 1px solid linear-gradient(to bottom left, #226ABE 6.7%, hsl(212 69.6% 55.1%) 24.29%, hsl(212 69.6% 55.1%) 33.31%, #226ABE 44.51%, hsl(212 69.6% 66.4%) 51.34%) !default;
+$agh-sys-border-card-primary-hover: 1px solid linear-gradient(to bottom left, hsl(212 69.6% 55.1%) 8.23%, hsl(212 69.6% 66.4%) 25.2%, hsl(212 69.6% 66.4%) 33.9%, hsl(212 69.6% 55.1%) 44.71%, hsl(212 69.6% 77.6%) 51.3%) !default;
+$agh-sys-border-card-primary-click: 1px solid linear-gradient(to bottom left, hsl(212 69.6% 35.1%) 7.47%, #226ABE 24.75%, hsl(212 69.6% 55.1%) 33.61%, hsl(212 69.6% 35.1%) 44.61%, hsl(212 69.6% 55.1%) 51.32%) !default;
+$agh-sys-border-card-secondary-enabled: 1px solid linear-gradient(to bottom left, #35BCCC 1.77%, hsl(186 59.7% 60.3%) 21.36%, hsl(186 59.7% 70.2%) 31.41%, #35BCCC 43.88%, hsl(186 59.7% 70.2%) 51.5%) !default;
+$agh-sys-border-card-secondary-hover: 1px solid linear-gradient(to bottom left, hsl(186 59.7% 60.3%) 6.7%, hsl(186 59.7% 70.2%) 24.29%, hsl(186 59.7% 80.2%) 33.31%, hsl(186 59.7% 60.3%) 44.51%, hsl(186 59.7% 80.2%) 51.34%) !default;
+$agh-sys-border-card-secondary-click: 1px solid linear-gradient(to bottom left, hsl(186 59.7% 40.3%) 1.77%, #35BCCC 21.36%, hsl(186 59.7% 60.3%) 31.41%, hsl(186 59.7% 40.3%) 43.88%, hsl(186 59.7% 70.2%) 51.5%) !default;
+$agh-sys-border-card-negative-enabled: 1px solid linear-gradient(to bottom left, #DB5952 5.11%, hsl(3.07 65.6% 67.2%) 23.34%, hsl(3.07 65.6% 75.4%) 32.7%, #DB5952 44.31%, hsl(3.07 65.6% 67.2%) 51.38%) !default;
+$agh-sys-border-card-negative-hover: 1px solid linear-gradient(to bottom left, hsl(3.07 65.6% 67.2%) 5.91%, hsl(3.07 65.6% 75.4%) 23.82%, hsl(3.07 65.6% 75.4%) 33.01%, hsl(3.07 65.6% 67.2%) 44.41%, hsl(3.07 65.6% 83.6%) 51.36%) !default;
+$agh-sys-border-card-negative-click: 1px solid linear-gradient(to bottom left, hsl(3.07 65.6% 35.4%) 7.47%, hsl(3.07 65.6% 47.2%) 24.75%, #DB5952 33.61%, hsl(3.07 65.6% 35.4%) 44.61%, hsl(3.07 65.6% 47.2%) 51.32%) !default;
+$agh-sys-border-button-primary-enabled: 1px solid linear-gradient(to bottom left, #226ABE 6.7%, hsl(212 69.6% 55.1%) 24.29%, hsl(212 69.6% 55.1%) 33.31%, #226ABE 44.51%, hsl(212 69.6% 66.4%) 51.34%) !default;
+$agh-sys-border-button-primary-hover: 1px solid linear-gradient(to bottom left, hsl(212 69.6% 55.1%) 8.23%, hsl(212 69.6% 66.4%) 25.2%, hsl(212 69.6% 66.4%) 33.9%, hsl(212 69.6% 55.1%) 44.71%, hsl(212 69.6% 77.6%) 51.3%) !default;
+$agh-sys-border-button-secondary-enabled: 2px solid linear-gradient(to bottom left, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) !default;
+$agh-sys-container-body-width-large: 1200px !default;
+$agh-sys-container-body-width-small: 472px !default;
+$agh-sys-container-body-width-full: 1712px !default;
+$agh-sys-container-button-width-large: 424px !default;
+$agh-sys-container-resource-container-width-full: 1712px !default;
+$agh-sys-container-resource-container-height-medium: 324px !default;
+$agh-sys-popup-width-large: 1200px !default;
+$agh-sys-popup-width-small: 550px !default;
+$agh-sys-popup-button-width-large: 486px !default;
+$agh-sys-card-vertical-card-width: 252px !default;
+$agh-sys-card-vertical-card-height: 323px !default;
+$agh-sys-card-list-card-width: 400px !default;
+$agh-sys-card-vm-card-width-large: 280px !default;
+$agh-sys-card-vm-card-width-small: 176px !default;
+$agh-sys-button-square-width-small: 40px !default;
+$agh-sys-button-square-width-medium: 48px !default;
+$agh-sys-button-square-width-large: 56px !default;
+$agh-sys-button-square-height-small: 40px !default;
+$agh-sys-button-square-height-medium: 48px !default;
+$agh-sys-button-square-height-large: 56px !default;
+$agh-sys-button-back-width-small: 28px !default;
+$agh-sys-button-back-height-small: 32px !default;
+$agh-sys-button-plus-button-width-small: 72px !default;
+$agh-sys-button-plus-button-width-large: 140px !default;
+$agh-sys-button-plus-button-height-small: 72px !default;
+$agh-sys-button-plus-button-height-large: 140px !default;
+$agh-sys-button-play-width-default: 130px !default;
+$agh-sys-button-play-height-default: 90px !default;
+$agh-sys-list-schedule-list-width-medium: 1105px !default;
+$agh-sys-list-card-list-width-medium: 400px !default;
+$agh-sys-list-upload-list-width-medium: 1120px !default;
+$agh-sys-list-playbooklist-width-small: 611px !default;
+$agh-sys-menubar-width-default: 96px !default;
+$agh-sys-menubar-height-default: 982px !default;
+$agh-sys-gaget-searchbar-width-small: 333px !default;
+$agh-sys-gaget-searchbar-height-small: 28px !default;
+$agh-sys-gaget-kill-chain-card-width-small: 40px !default;
+$agh-sys-gaget-kill-chain-card-width-large: 156px !default;
+$agh-sys-gaget-kill-chain-card-height-small: 44px !default;
+$agh-sys-gaget-kill-chain-card-height-large: 173px !default;
+$agh-sys-gaget-progress-circle-width-medium: 144px !default;
+$agh-sys-gaget-progress-circle-width-small: 36px !default;
+$agh-sys-gaget-progress-circle-height-medium: 144px !default;
+$agh-sys-gaget-progress-circle-height-small: 36px !default;
+$agh-sys-gaget-progress-bar-width-small: 362px !default;
+$agh-sys-gaget-progress-bar-width-large: 740px !default;
+$agh-sys-gaget-progress-bar-height-small: 16px !default;
+$agh-sys-gaget-progress-bar-height-large: 28px !default;
 
 $tokens: (
   '0': (
@@ -264,7 +407,12 @@ $tokens: (
         'sans-serif': $agh-ref-typeface-family-sans-serif,
         'serif': $agh-ref-typeface-family-serif,
         'mono': $agh-ref-typeface-family-mono,
-        'deco': $agh-ref-typeface-family-deco
+        'deco': $agh-ref-typeface-family-deco,
+        'icon': (
+          'default': $agh-ref-typeface-family-icon-default,
+          'custom': $agh-ref-typeface-family-icon-custom,
+          'brands': $agh-ref-typeface-family-icon-brands
+        )
       ),
       'size': (
         '75': $agh-ref-typeface-size-75,
@@ -339,8 +487,13 @@ $tokens: (
         '200': $agh-ref-effects-inner-shadow-200,
         '700': $agh-ref-effects-inner-shadow-700
       ),
-      'spread': (
-        '200': $agh-ref-effects-spread-200
+      'solid': (
+        'blue': $agh-ref-effects-solid-blue,
+        'cyan': $agh-ref-effects-solid-cyan,
+        'red': $agh-ref-effects-solid-red,
+        'orange': $agh-ref-effects-solid-orange,
+        'green': $agh-ref-effects-solid-green,
+        'purple': $agh-ref-effects-solid-purple
       )
     ),
     'color': (
@@ -354,6 +507,7 @@ $tokens: (
         '700': $agh-ref-color-purple-700,
         '800': $agh-ref-color-purple-800,
         '900': $agh-ref-color-purple-900,
+        'gradient-100': $agh-ref-color-purple-gradient-100,
         'gradient-200': $agh-ref-color-purple-gradient-200,
         'gradient-500': $agh-ref-color-purple-gradient-500,
         'gradient-700': $agh-ref-color-purple-gradient-700,
@@ -369,10 +523,11 @@ $tokens: (
         '700': $agh-ref-color-green-700,
         '800': $agh-ref-color-green-800,
         '900': $agh-ref-color-green-900,
-        'base': $agh-ref-color-green-base,
+        'gradient-100': $agh-ref-color-green-gradient-100,
         'gradient-200': $agh-ref-color-green-gradient-200,
         'gradient-500': $agh-ref-color-green-gradient-500,
-        'gradient-700': $agh-ref-color-green-gradient-700
+        'gradient-700': $agh-ref-color-green-gradient-700,
+        'base': $agh-ref-color-green-base
       ),
       'orange': (
         '100': $agh-ref-color-orange-100,
@@ -384,6 +539,7 @@ $tokens: (
         '700': $agh-ref-color-orange-700,
         '800': $agh-ref-color-orange-800,
         '900': $agh-ref-color-orange-900,
+        'gradient-100': $agh-ref-color-orange-gradient-100,
         'gradient-200': $agh-ref-color-orange-gradient-200,
         'gradient-500': $agh-ref-color-orange-gradient-500,
         'gradient-700': $agh-ref-color-orange-gradient-700,
@@ -399,6 +555,7 @@ $tokens: (
         '700': $agh-ref-color-blue-700,
         '800': $agh-ref-color-blue-800,
         '900': $agh-ref-color-blue-900,
+        'gradient-100': $agh-ref-color-blue-gradient-100,
         'gradient-200': $agh-ref-color-blue-gradient-200,
         'gradient-500': $agh-ref-color-blue-gradient-500,
         'gradient-700': $agh-ref-color-blue-gradient-700,
@@ -414,15 +571,18 @@ $tokens: (
         '700': $agh-ref-color-red-700,
         '800': $agh-ref-color-red-800,
         '900': $agh-ref-color-red-900,
-        'gradient-500': $agh-ref-color-red-gradient-500,
+        'gradient-100': $agh-ref-color-red-gradient-100,
         'gradient-200': $agh-ref-color-red-gradient-200,
+        'gradient-500': $agh-ref-color-red-gradient-500,
         'gradient-700': $agh-ref-color-red-gradient-700,
         'base': $agh-ref-color-red-base
       ),
       'grayscale': (
         '100': $agh-ref-color-grayscale-100,
         '120': $agh-ref-color-grayscale-120,
+        '150': $agh-ref-color-grayscale-150,
         '200': $agh-ref-color-grayscale-200,
+        '250': $agh-ref-color-grayscale-250,
         '300': $agh-ref-color-grayscale-300,
         '400': $agh-ref-color-grayscale-400,
         '500': $agh-ref-color-grayscale-500,
@@ -443,6 +603,7 @@ $tokens: (
         '700': $agh-ref-color-cyan-700,
         '800': $agh-ref-color-cyan-800,
         '900': $agh-ref-color-cyan-900,
+        'gradient-100': $agh-ref-color-cyan-gradient-100,
         'gradient-200': $agh-ref-color-cyan-gradient-200,
         'gradient-500': $agh-ref-color-cyan-gradient-500,
         'gradient-700': $agh-ref-color-cyan-gradient-700,
@@ -456,31 +617,37 @@ $tokens: (
           '500': $agh-ref-color-border-white-500
         ),
         'purple': (
+          '100': $agh-ref-color-border-purple-100,
           '200': $agh-ref-color-border-purple-200,
           '500': $agh-ref-color-border-purple-500,
           '700': $agh-ref-color-border-purple-700
         ),
         'green': (
+          '100': $agh-ref-color-border-green-100,
           '200': $agh-ref-color-border-green-200,
           '500': $agh-ref-color-border-green-500,
           '700': $agh-ref-color-border-green-700
         ),
         'orange': (
+          '100': $agh-ref-color-border-orange-100,
           '200': $agh-ref-color-border-orange-200,
           '500': $agh-ref-color-border-orange-500,
           '700': $agh-ref-color-border-orange-700
         ),
         'blue': (
+          '100': $agh-ref-color-border-blue-100,
           '200': $agh-ref-color-border-blue-200,
           '500': $agh-ref-color-border-blue-500,
           '700': $agh-ref-color-border-blue-700
         ),
         'red': (
+          '100': $agh-ref-color-border-red-100,
           '200': $agh-ref-color-border-red-200,
           '500': $agh-ref-color-border-red-500,
           '700': $agh-ref-color-border-red-700
         ),
         'cyan': (
+          '100': $agh-ref-color-border-cyan-100,
           '200': $agh-ref-color-border-cyan-200,
           '500': $agh-ref-color-border-cyan-500,
           '700': $agh-ref-color-border-cyan-700
@@ -519,6 +686,7 @@ $tokens: (
       '900': $agh-ref-opacity-900
     ),
     'spacing': (
+      '25': $agh-ref-spacing-25,
       '50': $agh-ref-spacing-50,
       '75': $agh-ref-spacing-75,
       '100': $agh-ref-spacing-100,
@@ -533,34 +701,102 @@ $tokens: (
       '1000': $agh-ref-spacing-1000,
       '1100': $agh-ref-spacing-1100,
       'base': $agh-ref-spacing-base
+    ),
+    'icon': (
+      'size': (
+        '100': $agh-ref-icon-size-100,
+        '200': $agh-ref-icon-size-200,
+        '300': $agh-ref-icon-size-300,
+        '400': $agh-ref-icon-size-400,
+        '500': $agh-ref-icon-size-500,
+        '600': $agh-ref-icon-size-600,
+        '700': $agh-ref-icon-size-700,
+        '800': $agh-ref-icon-size-800,
+        '900': $agh-ref-icon-size-900,
+        '950': $agh-ref-icon-size-950,
+        '1000': $agh-ref-icon-size-1000,
+        '1100': $agh-ref-icon-size-1100,
+        '1500': $agh-ref-icon-size-1500
+      )
     )
   ),
   'sys': (
-    'type': (
+    'typeface': (
       'headline': (
-        'large': $agh-sys-type-headline-large,
-        'medium': $agh-sys-type-headline-medium,
-        'small': $agh-sys-type-headline-small
-      ),
-      'hl': (
-        'lage': $agh-sys-type-hl-lage,
-        'medium': $agh-sys-type-hl-medium,
-        'small': $agh-sys-type-hl-small
+        'large': $agh-sys-typeface-headline-large,
+        'medium': $agh-sys-typeface-headline-medium,
+        'small': $agh-sys-typeface-headline-small
       ),
       'title': (
-        'large': $agh-sys-type-title-large,
-        'medium': $agh-sys-type-title-medium,
-        'small': $agh-sys-type-title-small
+        'container': (
+          'default': (
+            'large': $agh-sys-typeface-title-container-default-large,
+            'medium': $agh-sys-typeface-title-container-default-medium,
+            'small': $agh-sys-typeface-title-container-default-small
+          ),
+          'hl': (
+            'large': $agh-sys-typeface-title-container-hl-large,
+            'medium': $agh-sys-typeface-title-container-hl-medium,
+            'small': $agh-sys-typeface-title-container-hl-small
+          )
+        ),
+        'pop-up': (
+          'large': $agh-sys-typeface-title-pop-up-large,
+          'medium': $agh-sys-typeface-title-pop-up-medium,
+          'small': $agh-sys-typeface-title-pop-up-small
+        )
       ),
       'label': (
-        'xlarge': $agh-sys-type-label-xlarge,
-        'medium': $agh-sys-type-label-medium,
-        'small': $agh-sys-type-label-small
+        'hl': (
+          'huge': $agh-sys-typeface-label-hl-huge,
+          'xlarge': $agh-sys-typeface-label-hl-xlarge,
+          'large': $agh-sys-typeface-label-hl-large,
+          'medium': $agh-sys-typeface-label-hl-medium,
+          'small': $agh-sys-typeface-label-hl-small
+        ),
+        'default': (
+          'huge': $agh-sys-typeface-label-default-huge,
+          'xlarge': $agh-sys-typeface-label-default-xlarge,
+          'large': $agh-sys-typeface-label-default-large,
+          'medium': $agh-sys-typeface-label-default-medium,
+          'small': $agh-sys-typeface-label-default-small
+        )
+      ),
+      'number': (
+        'default': (
+          'huge': $agh-sys-typeface-number-default-huge,
+          'xlarge': $agh-sys-typeface-number-default-xlarge,
+          'large': $agh-sys-typeface-number-default-large,
+          'medium': $agh-sys-typeface-number-default-medium,
+          'small': $agh-sys-typeface-number-default-small
+        ),
+        'hl': (
+          'xlarge': $agh-sys-typeface-number-hl-xlarge,
+          'large': $agh-sys-typeface-number-hl-large,
+          'medium': $agh-sys-typeface-number-hl-medium,
+          'small': $agh-sys-typeface-number-hl-small
+        ),
+        'timeline': (
+          'time': $agh-sys-typeface-number-timeline-time,
+          'date': $agh-sys-typeface-number-timeline-date
+        )
+      ),
+      'menu': (
+        'version': $agh-sys-typeface-menu-version
       ),
       'content': (
-        'large': $agh-sys-type-content-large,
-        'medium': $agh-sys-type-content-medium,
-        'small': $agh-sys-type-content-small
+        'default': (
+          'xlarge': $agh-sys-typeface-content-default-xlarge,
+          'large': $agh-sys-typeface-content-default-large,
+          'medium': $agh-sys-typeface-content-default-medium,
+          'small': $agh-sys-typeface-content-default-small
+        ),
+        'code': (
+          'xlarge': $agh-sys-typeface-content-code-xlarge,
+          'large': $agh-sys-typeface-content-code-large,
+          'medium': $agh-sys-typeface-content-code-medium,
+          'small': $agh-sys-typeface-content-code-small
+        )
       )
     ),
     'effects': (
@@ -569,13 +805,235 @@ $tokens: (
         'chart': $agh-sys-effects-shadow-chart,
         'card': $agh-sys-effects-shadow-card,
         'container': $agh-sys-effects-shadow-container,
+        'pop-up': $agh-sys-effects-shadow-pop-up,
+        'tiny-gadget': $agh-sys-effects-shadow-tiny-gadget,
         'highlight': $agh-sys-effects-shadow-highlight
       ),
       'inner-shadow': (
         'data-area': $agh-sys-effects-inner-shadow-data-area,
         'text-area': $agh-sys-effects-inner-shadow-text-area,
         'deco': $agh-sys-effects-inner-shadow-deco,
-        'deco-text': $agh-sys-effects-inner-shadow-deco-text
+        'deco-text': $agh-sys-effects-inner-shadow-deco-text,
+        'button': (
+          'large': $agh-sys-effects-inner-shadow-button-large,
+          'small': $agh-sys-effects-inner-shadow-button-small
+        )
+      )
+    ),
+    'border': (
+      'container': (
+        'large': $agh-sys-border-container-large,
+        'small': $agh-sys-border-container-small
+      ),
+      'pop-up': (
+        'large': $agh-sys-border-pop-up-large,
+        'small': $agh-sys-border-pop-up-small
+      ),
+      'gadget': (
+        'search': $agh-sys-border-gadget-search,
+        'textfield': $agh-sys-border-gadget-textfield,
+        'list': $agh-sys-border-gadget-list,
+        'flow': (
+          'default': $agh-sys-border-gadget-flow-default,
+          'highlight': $agh-sys-border-gadget-flow-highlight
+        )
+      ),
+      'card': (
+        'warning': (
+          'enabled': $agh-sys-border-card-warning-enabled,
+          'hover': $agh-sys-border-card-warning-hover,
+          'click': $agh-sys-border-card-warning-click
+        ),
+        'default': (
+          'enabled': $agh-sys-border-card-default-enabled
+        ),
+        'positive': (
+          'enabled': $agh-sys-border-card-positive-enabled,
+          'hover': $agh-sys-border-card-positive-hover,
+          'click': $agh-sys-border-card-positive-click
+        ),
+        'primary': (
+          'enabled': $agh-sys-border-card-primary-enabled,
+          'hover': $agh-sys-border-card-primary-hover,
+          'click': $agh-sys-border-card-primary-click
+        ),
+        'secondary': (
+          'enabled': $agh-sys-border-card-secondary-enabled,
+          'hover': $agh-sys-border-card-secondary-hover,
+          'click': $agh-sys-border-card-secondary-click
+        ),
+        'negative': (
+          'enabled': $agh-sys-border-card-negative-enabled,
+          'hover': $agh-sys-border-card-negative-hover,
+          'click': $agh-sys-border-card-negative-click
+        )
+      ),
+      'button': (
+        'primary': (
+          'enabled': $agh-sys-border-button-primary-enabled,
+          'hover': $agh-sys-border-button-primary-hover
+        ),
+        'secondary': (
+          'enabled': $agh-sys-border-button-secondary-enabled
+        )
+      )
+    ),
+    'container': (
+      'body': (
+        'width': (
+          'large': $agh-sys-container-body-width-large,
+          'small': $agh-sys-container-body-width-small,
+          'full': $agh-sys-container-body-width-full
+        )
+      ),
+      'button': (
+        'width': (
+          'large': $agh-sys-container-button-width-large
+        )
+      ),
+      'resource-container': (
+        'width': (
+          'full': $agh-sys-container-resource-container-width-full
+        ),
+        'height': (
+          'medium': $agh-sys-container-resource-container-height-medium
+        )
+      )
+    ),
+    'popup': (
+      'width': (
+        'large': $agh-sys-popup-width-large,
+        'small': $agh-sys-popup-width-small
+      ),
+      'button': (
+        'width': (
+          'large': $agh-sys-popup-button-width-large
+        )
+      )
+    ),
+    'card': (
+      'vertical-card': (
+        'width': $agh-sys-card-vertical-card-width,
+        'height': $agh-sys-card-vertical-card-height
+      ),
+      'list-card': (
+        'width': $agh-sys-card-list-card-width
+      ),
+      'vm-card': (
+        'width': (
+          'large': $agh-sys-card-vm-card-width-large,
+          'small': $agh-sys-card-vm-card-width-small
+        )
+      )
+    ),
+    'button': (
+      'square': (
+        'width': (
+          'small': $agh-sys-button-square-width-small,
+          'medium': $agh-sys-button-square-width-medium,
+          'large': $agh-sys-button-square-width-large
+        ),
+        'height': (
+          'small': $agh-sys-button-square-height-small,
+          'medium': $agh-sys-button-square-height-medium,
+          'large': $agh-sys-button-square-height-large
+        )
+      ),
+      'back': (
+        'width': (
+          'small': $agh-sys-button-back-width-small
+        ),
+        'height': (
+          'small': $agh-sys-button-back-height-small
+        )
+      ),
+      'plus-button': (
+        'width': (
+          'small': $agh-sys-button-plus-button-width-small,
+          'large': $agh-sys-button-plus-button-width-large
+        ),
+        'height': (
+          'small': $agh-sys-button-plus-button-height-small,
+          'large': $agh-sys-button-plus-button-height-large
+        )
+      ),
+      'play': (
+        'width': (
+          'default': $agh-sys-button-play-width-default
+        ),
+        'height': (
+          'default': $agh-sys-button-play-height-default
+        )
+      )
+    ),
+    'list': (
+      'schedule-list': (
+        'width': (
+          'medium': $agh-sys-list-schedule-list-width-medium
+        )
+      ),
+      'card-list': (
+        'width': (
+          'medium': $agh-sys-list-card-list-width-medium
+        )
+      ),
+      'upload-list': (
+        'width': (
+          'medium': $agh-sys-list-upload-list-width-medium
+        )
+      ),
+      'playbooklist': (
+        'width': (
+          'small': $agh-sys-list-playbooklist-width-small
+        )
+      )
+    ),
+    'menubar': (
+      'width': (
+        'default': $agh-sys-menubar-width-default
+      ),
+      'height': (
+        'default': $agh-sys-menubar-height-default
+      )
+    ),
+    'gaget': (
+      'searchbar': (
+        'width': (
+          'small': $agh-sys-gaget-searchbar-width-small
+        ),
+        'height': (
+          'small': $agh-sys-gaget-searchbar-height-small
+        )
+      ),
+      'kill-chain-card': (
+        'width': (
+          'small': $agh-sys-gaget-kill-chain-card-width-small,
+          'large': $agh-sys-gaget-kill-chain-card-width-large
+        ),
+        'height': (
+          'small': $agh-sys-gaget-kill-chain-card-height-small,
+          'large': $agh-sys-gaget-kill-chain-card-height-large
+        )
+      ),
+      'progress-circle': (
+        'width': (
+          'medium': $agh-sys-gaget-progress-circle-width-medium,
+          'small': $agh-sys-gaget-progress-circle-width-small
+        ),
+        'height': (
+          'medium': $agh-sys-gaget-progress-circle-height-medium,
+          'small': $agh-sys-gaget-progress-circle-height-small
+        )
+      ),
+      'progress-bar': (
+        'width': (
+          'small': $agh-sys-gaget-progress-bar-width-small,
+          'large': $agh-sys-gaget-progress-bar-width-large
+        ),
+        'height': (
+          'small': $agh-sys-gaget-progress-bar-height-small,
+          'large': $agh-sys-gaget-progress-bar-height-large
+        )
       )
     )
   )
