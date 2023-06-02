@@ -5,10 +5,7 @@ import type { Meta, StoryFn } from '@storybook/vue3';
 export default {
   title: 'Components / Chart / LineChart',
   component: LineChart,
-  tags: ['autodocs'],
-  argTypes: {
-    onClick: { action: 'clicked' }
-  }
+  tags: ['autodocs']
 } satisfies Meta<typeof LineChart>;
 
 const Template: StoryFn<typeof LineChart> = (args) => ({

@@ -52,7 +52,7 @@ export const useChart = ({
     series.map((plot) => ({
       data: plot,
       ...(fromPairs(
-        toPairs(axises).map(([axisKey, axis]) => {
+        (toPairs(axises).filter(([, axis]) => !isEmpty(axis)) as [string, Chart.Axis][]).map(([axisKey, axis]) => {
           const picked = axis.selector ? selector(plot, axis.selector) : null;
 
           const parsed = axis.accessor ? parser(plot, axis.accessor) : picked;
@@ -91,7 +91,7 @@ export const useChart = ({
     const series = datasets.flatMap((dataset) => dataset.series);
 
     const axises = fromPairs(
-      toPairs(axisesConfig).map(([axisKey, axis]) => {
+      (toPairs(axisesConfig).filter(([, axis]) => !isEmpty(axis)) as [string, Chart.Axis][]).map(([axisKey, axis]) => {
         const plotSets = uniq(map(series, `${axisKey}.${ axis.type === 'string' ? 'value' : 'normalized'}`));
         const axisMin = Number(axis.min === 'auto' ? min(plotSets) : axis.min ?? 0);
         const axisMax = Number(

@@ -5,10 +5,7 @@ import type { Meta, StoryFn } from '@storybook/vue3';
 export default {
   title: 'Components / Chart / RadarChart',
   component: RadarChart,
-  tags: ['autodocs'],
-  argTypes: {
-    onClick: { action: 'clicked' }
-  }
+  tags: ['autodocs']
 } satisfies Meta<typeof RadarChart>;
 
 const Template: StoryFn<typeof RadarChart> = (args) => ({
