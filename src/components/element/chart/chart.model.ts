@@ -1,4 +1,5 @@
 import type { MustHas } from '@/shared';
+import type { Char } from '@/shared/types/char';
 import type { ObjectLike } from '@/shared/types/object';
 import type { Vector } from '@/shared/types/vector';
 
@@ -22,19 +23,21 @@ export namespace Chart {
     sort?: 'asc' | 'desc';
     metrics?: MustHas<Payload, 'normalized'>[];
   };
+  export type AxisName = Char;
   export type Options = {
     offset: Vector<'x' | 'y'>;
     title?: string;
     curve?: 'smooth' | 'straight';
     round?: boolean;
-    radius: number;
+    radius?: number;
     grid?: 'x' | 'y' | 'xy';
     color?: string;
   };
   export type Plot = Record<string, DataType>;
   export type NormalizedPlot = {
     data: Record<string, DataType>;
-  } & Record<'x' | 'y', MustHas<Payload, 'normalized'>>;
+  } & Record<'x' | 'y', MustHas<Payload, 'normalized'>> &
+    Partial<Record<AxisName, MustHas<Payload, 'normalized'>>>;
   export type Datasets = {
     series: Plot[];
     label?: string;
@@ -45,7 +48,7 @@ export namespace Chart {
     series: NormalizedPlot[];
   };
   export type Props = {
-    axises: Record<'x' | 'y', Axis>;
+    axises: Record<'x' | 'y', Axis> & Partial<Record<AxisName, Axis>>;
     datasets: ObjectLike[] | ObjectLike;
     options?: Options;
   };
