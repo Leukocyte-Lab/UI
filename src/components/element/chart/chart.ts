@@ -4,6 +4,7 @@ import { computedEager } from '@vueuse/core';
 
 import type { MaybeRef } from 'vue';
 
+import { Math$ } from '@/shared';
 import { parser } from '@/shared/libs/parser';
 import { selector } from '@/shared/libs/selector';
 
@@ -91,7 +92,7 @@ export const useChart = ({
 
     const axises = fromPairs(
       toPairs(axisesConfig).map(([axisKey, axis]) => {
-        const plotSets = uniq(map(series, `${axisKey}.value`));
+        const plotSets = uniq(map(series, `${axisKey}.${ axis.type === 'string' ? 'value' : 'normalized'}`));
         const axisMin = Number(axis.min === 'auto' ? min(plotSets) : axis.min ?? 0);
         const axisMax = Number(
           axis.max === 'auto'
@@ -111,10 +112,10 @@ export const useChart = ({
                     normalized: index / (axisMax - axisMin),
                     value
                   }))
-                : Array(Math.ceil((axisMax - axisMin) / (axis.step ?? 1)) + 1)
+                : Array(Math$.clamp(Math$.ceil((axisMax - axisMin) / (axis.step ?? 1)) + 1, 0, Infinity))
                     .fill(0)
                     .map((_, index) => ({
-                      normalized: index / Math.ceil((axisMax - axisMin) / (axis.step ?? 1)),
+                      normalized: index / Math$.ceil((axisMax - axisMin) / (axis.step ?? 1)),
                       value: axisMin + (axis.step ?? 1) * index
                     }))
           } as Chart.Axis
