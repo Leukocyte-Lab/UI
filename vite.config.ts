@@ -1,15 +1,15 @@
 import { fileURLToPath, URL } from 'node:url';
 import { resolve } from 'node:path';
 
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import Vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     Vue(),
-    dts({
+    loadEnv(mode, process.cwd()).VITE_STORYBOOK ? null : dts({
       insertTypesEntry: true
     })
   ],
@@ -36,4 +36,4 @@ export default defineConfig({
       output: { globals: { vue: 'Vue' }, inlineDynamicImports: false, format: 'esm' }
     }
   }
-});
+}));
