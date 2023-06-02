@@ -91,14 +91,14 @@ const plotPolyPaths = computedEager(() =>
                         dataset.series[index - 1].x.normalized *
                           (width.value - props.options.offset.x) +
                         props.options.offset.x +
-                        (width.value / dataset.series.length) * props.options.radius
+                        (width.value / dataset.series.length) * props.options.radius!
                       } ${
                         (1 - dataset.series[index - 1].y.normalized) *
                         (height.value - props.options.offset.y)
                       } ${
                         plot.x.normalized * (width.value - props.options.offset.x) +
                         props.options.offset.x -
-                        (width.value / dataset.series.length) * props.options.radius
+                        (width.value / dataset.series.length) * props.options.radius!
                       } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)} ${
                         plot.x.normalized * (width.value - props.options.offset.x) +
                         props.options.offset.x
@@ -106,7 +106,7 @@ const plotPolyPaths = computedEager(() =>
                     : `S ${
                         plot.x.normalized * (width.value - props.options.offset.x) +
                         props.options.offset.x -
-                        (width.value / dataset.series.length) * props.options.radius
+                        (width.value / dataset.series.length) * props.options.radius!
                       } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)} ${
                         plot.x.normalized * (width.value - props.options.offset.x) +
                         props.options.offset.x
@@ -219,14 +219,16 @@ const plotPolyPaths = computedEager(() =>
                       <hr />
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
-                      <div :class="[$style['chart-area'], $style['legend-group']]">
-                        <label :class="[$style['chart-area'], $style['legend-label']]">{{
-                          axis.label
-                        }}</label>
-                        <p :class="[$style['chart-area'], $style['legend-value']]">
-                          {{ plot[axisKey].value }}
-                        </p>
-                      </div>
+                      <template v-if="axis && plot[axisKey]">
+                        <div :class="[$style['chart-area'], $style['legend-group']]">
+                          <label :class="[$style['chart-area'], $style['legend-label']]">{{
+                            axis.label
+                          }}</label>
+                          <p :class="[$style['chart-area'], $style['legend-value']]">
+                            {{ plot[axisKey]!.value }}
+                          </p>
+                        </div>
+                      </template>
                     </template>
                   </CardBox>
                 </foreignObject>

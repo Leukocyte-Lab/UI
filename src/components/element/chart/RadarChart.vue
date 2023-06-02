@@ -281,10 +281,10 @@ onUpdated(() => {
                       <hr />
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
-                      <template v-if="!/(x|y)/.test(axisKey)">
+                      <template v-if="!/(x|y)/.test(axisKey) && axis && plot[axisKey]">
                         <div :class="[$style['chart-area'], $style['legend-group'], $style['radar']]">
                           <p :class="[$style['chart-area'], $style['legend-value']]">
-                            {{ plot[axisKey].value }}
+                            {{ plot[axisKey]!.value }}
                           </p>
                           <label :class="[$style['chart-area'], $style['legend-label']]">{{
                             axis.label
