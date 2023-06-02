@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onUpdated, ref } from 'vue';
 import { computedEager, useElementSize } from '@vueuse/core';
+import { delay } from 'lodash-es';
 
 import Math$ from '@/shared/libs/math';
 
@@ -14,7 +15,6 @@ import CardBox from '@/components/element/card/CardBox.vue';
 
 import type { Chart } from './chart.model';
 import type { Vector } from '@/shared/types/vector';
-import { delay } from 'lodash-es';
 
 const props = withDefaults(defineProps<Chart.Props>(), {
   options: () => ({
@@ -110,7 +110,7 @@ const computeBgFill = () => {
         bgFill.set(
           globalThis.getComputedStyle(wrapperRef$.value!).getPropertyValue('--chart-bg-fill-svg')
         ),
-      10
+      30
     );
   }
 };
@@ -222,6 +222,82 @@ onUpdated(() => {
             </g>
           </template>
         </g>
+        <template v-for="dataset in datasets" :key="dataset.label">
+          <g :class="[$style['chart-area-label']]">
+            <template v-for="(plot, index) in dataset.series" :key="`plot-${index}`">
+              <g :class="$style['chart-area']">
+                <circle
+                  :class="[
+                    $style['behavior'],
+                    $style['chart-area'],
+                    $style['point'],
+                    $style['plot'],
+                    $style['clickable']
+                  ]"
+                  :cx="
+                    center.x +
+                    radius * plot.y.normalized * Math$.cos(Math$.rad(plot.x.normalized * 360 - 90))
+                  "
+                  :cy="
+                    center.y +
+                    radius * plot.y.normalized * Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
+                  "
+                  r="10"
+                />
+                <circle
+                  :class="[$style['chart-area'], $style['radar'], $style['point'], $style['plot']]"
+                  :cx="
+                    center.x +
+                    radius * plot.y.normalized * Math$.cos(Math$.rad(plot.x.normalized * 360 - 90))
+                  "
+                  :cy="
+                    center.y +
+                    radius * plot.y.normalized * Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
+                  "
+                  r="5"
+                />
+                <foreignObject
+                  :x="
+                    center.x +
+                    radius * plot.y.normalized * Math$.cos(Math$.rad(plot.x.normalized * 360 - 90)) - 130
+                  "
+                  :y="
+                    center.y +
+                    radius * plot.y.normalized * Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
+                  "
+                  height="200"
+                  width="260"
+                  :class="[$style['chart-area'], $style['legend-container']]"
+                >
+                  <CardBox
+                    :class="[$style['chart-area'], $style['legend-wrapper']]"
+                    :radius="'var(--agh-ref-border-radius-500)'"
+                  >
+                    <template v-if="props.options.title">
+                      <h1 :class="[$style['chart-area'], $style['legend-title'], $style['radar']]">
+                        <span>{{ plot.x.value }}</span>
+                        <span :class="$style['legend-value']">{{ plot.y.value }}</span>
+                      </h1>
+                      <hr />
+                    </template>
+                    <template v-for="(axis, axisKey) in axises" :key="axisKey">
+                      <template v-if="!/(x|y)/.test(axisKey)">
+                        <div :class="[$style['chart-area'], $style['legend-group'], $style['radar']]">
+                          <p :class="[$style['chart-area'], $style['legend-value']]">
+                            {{ plot[axisKey].value }}
+                          </p>
+                          <label :class="[$style['chart-area'], $style['legend-label']]">{{
+                            axis.label
+                          }}</label>
+                        </div>
+                      </template>
+                    </template>
+                  </CardBox>
+                </foreignObject>
+              </g>
+            </template>
+          </g>
+        </template>
       </template>
     </BasePoly>
   </div>
@@ -236,10 +312,10 @@ onUpdated(() => {
     --chart-bg-fill-svg: var(--agh-ref-color-cyan-gradient-500-svg);
     --chart-bg-fill: url(#agh-ref-color-cyan-gradient-500);
     --chart-axis-label-fill: var(--agh-ref-color-grayscale-500);
-    --chart-axis-stroke-fill: var(--agh-ref-color-cyan-500);
+    --chart-axis-stroke-fill: var(--agh-ref-color-grayscale-100);
     --chart-axis-stroke-width: var(--agh-ref-border-width-50);
     --chart-area-plot-fill: var(--agh-ref-color-grayscale-100);
-    --chart-area-plot-stroke-fill: var(--agh-ref-color-cyan-500);
+    --chart-area-plot-stroke-fill: var(--agh-ref-color-cyan-600);
     --chart-area-plot-stroke-width: var(--agh-ref-border-width-100);
     --chart-area-plot-stroke-fill-effect: var(--agh-ref-effects-solid-cyan-filter);
   }
