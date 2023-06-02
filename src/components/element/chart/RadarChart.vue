@@ -310,7 +310,7 @@ onUpdated(() => {
 .chart {
   &-container {
     --chart-bg-fill-svg: var(--agh-ref-color-cyan-gradient-500-svg);
-    --chart-bg-fill: url(#agh-ref-color-cyan-gradient-500);
+    --chart-bg-fill: url("#agh-ref-color-cyan-gradient-500");
     --chart-axis-label-fill: var(--agh-ref-color-grayscale-500);
     --chart-axis-stroke-fill: var(--agh-ref-color-grayscale-100);
     --chart-axis-stroke-width: var(--agh-ref-border-width-50);
