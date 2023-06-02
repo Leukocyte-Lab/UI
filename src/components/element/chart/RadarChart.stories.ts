@@ -27,31 +27,45 @@ DefaultRadarChart.args = {
       series: [
         {
           name: 'Reconnaissance',
-          value: 3
+          techniques: 3,
+          total: 10,
+          value: 30
         },
         {
           name: 'Weaponization',
-          value: 8
+          techniques: 8,
+          total: 12,
+          value: 96
         },
         {
           name: 'Delivery',
-          value: 6
+          techniques: 6,
+          total: 10,
+          value: 60
         },
         {
           name: 'Exploitation',
-          value: 7
+          techniques: 7,
+          total: 15,
+          value: 70
         },
         {
           name: 'Installation',
-          value: 7
+          techniques: 7,
+          total: 14,
+          value: 70
         },
         {
           name: 'Command & Control',
-          value: 6
+          techniques: 6,
+          total: 10,
+          value: 60
         },
         {
           name: 'Actions on Objectives',
-          value: 5
+          techniques: 5,
+          total: 10,
+          value: 50
         }
       ]
     },
@@ -60,31 +74,45 @@ DefaultRadarChart.args = {
       series: [
         {
           name: 'Reconnaissance',
-          value: 1
+          techniques: 1,
+          total: 10,
+          value: 10
         },
         {
           name: 'Weaponization',
-          value: 4
+          techniques: 4,
+          total: 12,
+          value: 32
         },
         {
           name: 'Delivery',
-          value: 5
+          techniques: 5,
+          total: 10,
+          value: 50
         },
         {
           name: 'Exploitation',
-          value: 6
+          techniques: 6,
+          total: 15,
+          value: 60
         },
         {
           name: 'Installation',
-          value: 7
+          techniques: 7,
+          total: 14,
+          value: 70
         },
         {
           name: 'Command & Control',
-          value: 4
+          techniques: 4,
+          total: 10,
+          value: 40
         },
         {
           name: 'Actions on Objectives',
-          value: 1
+          techniques: 1,
+          total: 10,
+          value: 10
         }
       ]
     }
@@ -98,13 +126,20 @@ DefaultRadarChart.args = {
     },
     y: {
       label: 'Count',
-      accessor: '{{ $.value | number }}',
+      accessor: '{{ $.value | number }}%',
       selector: '$.value',
       type: 'number',
-      max: 10
+      max: 'auto'
+    },
+    z: {
+      label: 'Techniques',
+      accessor: '{{ $.techniques }}',
+      selector: '$.techniques',
+      type: 'string'
     }
   },
   options: {
+    title: '{{ $.name }}',
     round: true,
     offset: {
       x: 5,

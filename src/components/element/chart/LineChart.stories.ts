@@ -80,7 +80,7 @@ DefaultLineChart.args = {
     },
     y: {
       label: 'Detection Rate',
-      accessor: '{{ $.detection.rate }}%',
+      accessor: '{{ $.detection.rate | number }}%',
       selector: '$.detection.rate',
       type: 'number',
       max: 100,
