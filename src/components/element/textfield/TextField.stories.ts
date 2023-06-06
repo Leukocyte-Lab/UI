@@ -81,6 +81,10 @@ export default {
       options: ['none', 'text', 'decimal', 'numeric', 'tel', 'search', 'email', 'url'],
       defaultValue: 'text'
     },
+    invalidMessage: {
+      control: 'object',
+      description: 'TextField invalid message (optional)'
+    },
     "onUpdate:modelValue": { action: 'update' }
   }
 } satisfies Meta<typeof TextField>;
