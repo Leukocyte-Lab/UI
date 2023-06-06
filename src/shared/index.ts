@@ -2,7 +2,7 @@
 import { useFallback } from './common/fallback';
 
 // libs
-import { useClickSignal } from './libs/click';
+import { useEventDebounceSignal } from './libs/event';
 import { signal, computed } from './libs/signal';
 import Math$ from './libs/math';
 import String$ from './libs/string';
@@ -31,7 +31,7 @@ export {
   useFallback,
 
   // libs
-  useClickSignal,
+  useEventDebounceSignal,
   signal,
   computed,
   Math$,
