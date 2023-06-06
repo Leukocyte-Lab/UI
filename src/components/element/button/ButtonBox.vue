@@ -3,7 +3,7 @@ import { Icon } from '@iconify/vue/offline';
 
 import BaseLink from '@/components/base/BaseLink.vue';
 
-import { useClickSignal } from '@/shared/libs/click';
+import { useEventDebounceSignal } from '@/shared/libs/event';
 
 namespace ButtonBox {
   export type BaseProps = {
@@ -31,7 +31,7 @@ const emits = defineEmits<{
   (e: 'click', event: MouseEvent): void;
 }>();
 
-const { clicked, onClick } = useClickSignal((event: MouseEvent) => {
+const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
   if (props.disabled) {
     event.preventDefault();
     event.stopPropagation();
@@ -52,12 +52,12 @@ const { clicked, onClick } = useClickSignal((event: MouseEvent) => {
       $style[props.level],
       props.disabled ? [$style['disabled']] : [$style['clickable']],
       {
-        [$style['clicked']]: clicked()
+        [$style['clicked']]: triggered()
       }
     ]"
     :aria-disabled="props.disabled"
     :aria-label="props.label"
-    @click="onClick"
+    @click="onTrigger"
     v-bind="props.disabled ? { disabled: '' } : {}"
     role="button"
     tabindex="0"
