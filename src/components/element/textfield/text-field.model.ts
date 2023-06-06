@@ -22,6 +22,6 @@ export namespace TextField {
     spellcheck?: boolean;
     tabindex?: number;
     inputmode?: InputMode;
-    invalidMessage?: InvalidMessage;
+    invalidMessage?: Partial<InvalidMessage>;
   }
 }
