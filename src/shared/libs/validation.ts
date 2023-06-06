@@ -5,9 +5,14 @@ export type InvalidMessage = Record<keyof Exclude<ValidityStateFlags, 'valid'>, 
 export const promoteInvalidMessage = (
   validity: ValidityState,
   invalidMessage?: Partial<InvalidMessage>
-): string | null =>
-  invalidMessage
-    ? (
-        toPairs(omit(validity, 'valid')) as [keyof Exclude<ValidityStateFlags, 'valid'>, boolean][]
-      ).find(([key, value]) => value && invalidMessage[key])?.[0] ?? null
-    : null;
+): string | null => {
+  if (invalidMessage) {
+    const targetKey = (
+      toPairs(omit(validity, 'valid')) as [keyof Exclude<ValidityStateFlags, 'valid'>, boolean][]
+    ).find(([key, value]) => value && invalidMessage[key])?.[0];
+
+    return targetKey ? invalidMessage[targetKey] ?? null : null;
+  }
+
+  return null;
+};
