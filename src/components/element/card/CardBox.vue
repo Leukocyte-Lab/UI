@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BaseLink from '@/components/base/BaseLink.vue';
 
-import { useClickSignal } from '@/shared/libs/click';
 import { useEventDebounceSignal } from '@/shared/libs/event';
 
 namespace CardBox {
