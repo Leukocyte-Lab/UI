@@ -10,7 +10,21 @@ export default {
     type: {
       control: 'select',
       description: 'TextField type (optional)',
-      options: ['text', 'password', 'email', 'number', 'tel', 'url', 'search', 'date', 'time', 'datetime-local', 'month', 'week', 'color'],
+      options: [
+        'text',
+        'password',
+        'email',
+        'number',
+        'tel',
+        'url',
+        'search',
+        'date',
+        'time',
+        'datetime-local',
+        'month',
+        'week',
+        'color'
+      ],
       defaultValue: 'text'
     },
     value: {
@@ -85,7 +99,7 @@ export default {
       control: 'object',
       description: 'TextField invalid message (optional)'
     },
-    "onUpdate:modelValue": { action: 'update' }
+    'onUpdate:modelValue': { action: 'update' }
   }
 } satisfies Meta<typeof TextField>;
 
@@ -119,4 +133,15 @@ InvalidTextField.args = {
   value: '256.256.256.256',
   pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
   required: true
+};
+
+export const InvalidWithCustomErrorMessageTextField = Template.bind({});
+InvalidWithCustomErrorMessageTextField.args = {
+  value: '256.256.256.256',
+  pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
+  required: true,
+  invalidMessage: {
+    patternMismatch: 'Invalid IP Address',
+    valueMissing: 'IP Address is required'
+  }
 };
