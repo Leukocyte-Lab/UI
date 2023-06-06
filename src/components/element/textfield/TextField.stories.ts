@@ -95,11 +95,24 @@ const Template: StoryFn<typeof TextField> = (args) => ({
 
 export const DefaultTextField = Template.bind({});
 DefaultTextField.args = {
-  required: true,
   placeholder: 'Placeholder',
-  value: '',
+  value: 'Default Value',
   label: 'Label',
+  required: false,
   disabled: false,
   readonly: false,
   type: 'text'
+};
+
+export const DisabledTextField = Template.bind({});
+DisabledTextField.args = {
+  value: 'Default Value',
+  disabled: true
+};
+
+export const InvalidTextField = Template.bind({});
+InvalidTextField.args = {
+  value: '256.256.256.256',
+  pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
+  required: true
 };
