@@ -1,6 +1,6 @@
 import { omit, toPairs } from 'lodash-es';
 
-export type InvalidMessage = Record<keyof Exclude<ValidityStateFlags, 'valid'>, 'string'>;
+export type InvalidMessage = Record<keyof Exclude<ValidityStateFlags, 'valid'>, string>;
 
 export const promoteInvalidMessage = (
   validity: ValidityState,
