@@ -5,17 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly -p tsconfig.app.json --composite false --outDir dist",
     "build:check": "run-p lint type-check",
     "build:prod": "run-p build",
+    "build:storybook": "VITE_STORYBOOK=true storybook build && cp -r theme/ storybook-static/theme",
     "preview": "vite preview",
     "test:unit": "vitest",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "run-p lint:eslint lint:stylelint",
     "lint:eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint:stylelint": "stylelint 'src/**/*.{css,scss,sass,vue}' --fix",
-    "storybook": "storybook dev -p 6006",
-    "build:storybook": "VITE_STORYBOOK=true storybook build && cp -r theme/ storybook-static/theme"
+    "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
     "@iconify-json/fa6-brands": "^1.1.11",
@@ -43,12 +43,12 @@
     "./shared": {
       "import": "./dist/ui.shared.es.js",
       "require": "./dist/ui.shared.cjs.js",
-      "type": "./dist/shared.d.ts"
+      "type": "./dist/shared/index.d.ts"
     },
     "./component": {
       "import": "./dist/ui.component.es.js",
       "require": "./dist/ui.component.cjs.js",
-      "type": "./dist/component.d.ts"
+      "type": "./dist/components/index.d.ts"
     }
   },
   "files": [

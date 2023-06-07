@@ -1,17 +1,13 @@
 import { fileURLToPath, URL } from 'node:url';
 import { resolve } from 'node:path';
 
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
-import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [
-    Vue(),
-    loadEnv(mode, process.cwd()).VITE_STORYBOOK ? null : dts({
-      insertTypesEntry: true
-    })
+    Vue()
   ],
   resolve: {
     alias: {
@@ -30,6 +26,9 @@ export default defineConfig(({ mode }) => ({
       fileName: (format, entry) => `ui.${entry}.${format}.js`,
       formats: ['es', 'cjs']
     },
+    minify: true,
+    emptyOutDir: true,
+    sourcemap: true,
     rollupOptions: {
       // Vue is provided by the parent project, don't compile Vue source-code inside our library.
       external: ['vue'],
