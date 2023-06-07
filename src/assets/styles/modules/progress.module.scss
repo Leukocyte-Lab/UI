@@ -1,0 +1,36 @@
+.progress {
+  &-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    svg {
+      display: block;
+      overflow: visible;
+      background-clip: content-box, padding-box;
+    }
+  }
+
+  &-groove {
+    fill: var(--progress-groove-fill);
+    filter: var(--progress-filter);
+  }
+
+  &-value {
+    stroke: var(--progress-value-fill);
+    stroke-linecap: round;
+    transition: stroke 0.3s ease;
+  }
+
+  &-content-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+    color: var(--progress-content-fill);
+    font: var(--agh-sys-typeface-label-hl-xlarge);
+  }
+}
