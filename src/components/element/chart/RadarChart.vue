@@ -13,7 +13,7 @@ import BasePoly from '@/components/base/BasePoly.vue';
 import RoundEffect from '@/components/effect/RoundEffect.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
 
-import type { Chart } from './chart.model';
+import type { Chart } from '@/components/element/chart/chart.model';
 import type { Vector } from '@/shared/types/vector';
 
 const props = withDefaults(defineProps<Chart.Props>(), {

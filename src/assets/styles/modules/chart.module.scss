@@ -248,7 +248,7 @@
           place-items: center;
           gap: var(--agh-ref-spacing-100);
 
-          &:before {
+          &::before {
             content: '';
             position: relative;
             height: var(--agh-ref-spacing-200);

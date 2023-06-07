@@ -104,9 +104,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: 📦 Install Dependencies
-        run: |
-          pnpm fetch --prod
-          pnpm install -r --offline --prod
+        run: pnpm install
 
       - name: 🔧 Run Build
         run: pnpm run build:prod

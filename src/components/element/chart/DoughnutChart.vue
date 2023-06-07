@@ -9,7 +9,7 @@ import { useChart } from './chart';
 import BasePoly from '@/components/base/BasePoly.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
 
-import type { Chart } from './chart.model';
+import type { Chart } from '@/components/element/chart/chart.model';
 import type { Vector } from '@/shared/types/vector';
 
 const props = withDefaults(defineProps<Chart.Props>(), {
