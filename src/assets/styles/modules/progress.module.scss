@@ -11,15 +11,34 @@
     }
   }
 
+  &-groove,
+  &-value {
+    height: 100%;
+    border-radius: var(--agh-ref-border-radius-900);
+  }
+
   &-groove {
+    width: 100%;
+    background: var(--progress-groove-fill);
     fill: var(--progress-groove-fill);
+    box-shadow: var(--progress-shadow);
     filter: var(--progress-filter);
+    overflow: hidden;
+
+    &.concave {
+      padding: var(--agh-ref-spacing-75);
+      border: var(--agh-ref-border-width-50) solid var(--agh-ref-color-grayscale-300);
+    }
   }
 
   &-value {
+    background: var(--progress-value-fill);
     stroke: var(--progress-value-fill);
     stroke-linecap: round;
-    transition: stroke 0.3s ease;
+    will-change: width, stroke-dasharray, stroke-dashoffset;
+    transition: width 0.3s ease-in-out, stroke-dasharray 1s ease-in-out,
+      stroke-dashoffset 1s ease-in-out;
+    min-width: 5%;
   }
 
   &-content-wrapper {
