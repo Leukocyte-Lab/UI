@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BaseLink from '@/components/base/BaseLink.vue';
 
-import { useClickSignal } from '@/shared/libs/click';
+import { useEventDebounceSignal } from '@/shared/libs/event';
 
 namespace CardBox {
   export type BaseProps = {
@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<CardBox.Props>(), {
   radius: 'var(--agh-ref-border-radius-300)'
 });
 
-const { clicked, onClick } = useClickSignal();
+const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>();
 </script>
 
 <template>
@@ -50,10 +50,10 @@ const { clicked, onClick } = useClickSignal();
       {
         [$style['clickable']]: props.link || props.clickable,
         [$style['has-stroke']]: props.hasStroke,
-        [$style['clicked']]: clicked()
+        [$style['clicked']]: triggered()
       }
     ]"
-    @click="onClick"
+    @click="onTrigger"
   >
     <!-- @slot Use this default card slot -->
     <slot />
