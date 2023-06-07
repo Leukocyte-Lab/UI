@@ -76,10 +76,10 @@ onUpdated(() => {
         </mask>
       </template>
       <template #path>
-        <g :class="[$style['progress-groove'], $style[props.variant]]">
+        <g :class="$style['progress-groove']">
           <use href="#progress-groove-outer" mask="url(#progress-groove-mask)" />
         </g>
-        <g :class="[$style['progress-value'], $style[props.variant]]">
+        <g :class="$style['progress-value']">
           <circle
             :cx="center.x"
             :cy="center.y"
