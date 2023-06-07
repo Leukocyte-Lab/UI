@@ -62,7 +62,7 @@ export const useChart = ({
             {
               normalized: Number(
                 axis.type === 'number'
-                  ? Number(picked)
+                  ? parseFloat(String(picked))
                   : axis.type === 'date'
                   ? new Date(Number(picked))
                   : picked
