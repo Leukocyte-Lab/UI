@@ -1,0 +1,55 @@
+.progress {
+  &-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    svg {
+      display: block;
+      overflow: visible;
+      background-clip: content-box, padding-box;
+    }
+  }
+
+  &-groove,
+  &-value {
+    height: 100%;
+    border-radius: var(--agh-ref-border-radius-900);
+  }
+
+  &-groove {
+    width: 100%;
+    background: var(--progress-groove-fill);
+    fill: var(--progress-groove-fill);
+    box-shadow: var(--progress-shadow);
+    filter: var(--progress-filter);
+    overflow: hidden;
+
+    &.concave {
+      padding: var(--agh-ref-spacing-75);
+      border: var(--agh-ref-border-width-50) solid var(--agh-ref-color-grayscale-300);
+    }
+  }
+
+  &-value {
+    background: var(--progress-value-fill);
+    stroke: var(--progress-value-fill);
+    stroke-linecap: round;
+    will-change: width, stroke-dasharray, stroke-dashoffset;
+    transition: width 0.3s ease-in-out, stroke-dasharray 1s ease-in-out,
+      stroke-dashoffset 1s ease-in-out;
+    min-width: 5%;
+  }
+
+  &-content-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+    color: var(--progress-content-fill);
+    font: var(--agh-sys-typeface-label-hl-xlarge);
+  }
+}
