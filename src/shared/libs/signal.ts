@@ -2,7 +2,14 @@ import { shallowRef, triggerRef, computed as _computed } from 'vue';
 
 import type { ComputedGetter } from 'vue';
 
-export const signal = <T extends any>(initialValue: T) => {
+export type Signal<T> = {
+  (): T;
+  set: (value: T) => void;
+  update: (updater: (value: T) => T) => void;
+  mutate: (mutator: (value: T) => void) => void;
+}
+
+export const signal = <T extends any>(initialValue: T): Signal<T> => {
   const $ref = shallowRef<T>(initialValue);
   const state = () => $ref.value;
 
