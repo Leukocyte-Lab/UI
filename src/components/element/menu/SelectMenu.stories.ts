@@ -167,6 +167,46 @@ GroupWithSubtitleMultiSelectMenu.args = {
   groupBy: 'category'
 };
 
+export const GroupOverflowWithSubtitleMultiSelectMenu = Template.bind({});
+GroupOverflowWithSubtitleMultiSelectMenu.args = {
+  ...MultiWithSubtitleSelectMenu.args,
+  options: [
+    ...MultiWithSubtitleSelectMenu.args.options!,
+    {
+      name: 'APT-41',
+      description: 'APT-41 is a threat group that has been attributed to the Chinese government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'APT-42',
+      description: 'APT-42 is a threat group that has been attributed to the Chinese government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'APT-43',
+      description: 'APT-43 is a threat group that has been attributed to the Chinese government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'APT-44',
+      description: 'APT-44 is a threat group that has been attributed to the Chinese government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'APT-45',
+      description: 'APT-45 is a threat group that has been attributed to the Chinese government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    }
+  ],
+  multiple: true,
+  groupBy: 'category'
+};
+
 export const IconWithSubtitleSelectMenu = Template.bind({});
 IconWithSubtitleSelectMenu.args = {
   options: [
