@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import { computedEager } from '@vueuse/core';
-import { flatMap, fromPairs, groupBy, map, omit, toPairs } from 'lodash-es';
+import { delay, flatMap, fromPairs, groupBy, map, omit, toPairs } from 'lodash-es';
 import { Icon } from '@iconify/vue/offline';
 
 import { signal } from '@/shared/libs/signal';
@@ -46,6 +47,8 @@ const emits = defineEmits<{
   (e: 'update:modelValue', options: ObjectLike[]): void;
 }>();
 
+const wrapperRef$ = ref<HTMLElement>();
+
 const groups = computedEager(() =>
   fromPairs(
     toPairs(groupBy(props.options, props.groupBy ?? '')).map(([group, options]) => [
@@ -64,6 +67,18 @@ const groups = computedEager(() =>
     ])
   )
 );
+
+const overflowed = signal(false);
+
+const computeOverflowed = () => {
+  if (wrapperRef$.value) {
+    delay(() => {
+      const { scrollHeight, clientHeight } = wrapperRef$.value!;
+      console.log(scrollHeight, clientHeight);
+      overflowed.set(scrollHeight > clientHeight + 1);
+    }, 30);
+  }
+};
 
 const onSelect = (option: Signal<ObjectLike>) => {
   option.update((option) => ({
@@ -92,6 +107,10 @@ const clickSelection = () => {
     emits('update:modelValue', {});
   }
 };
+
+onMounted(() => {
+  computeOverflowed();
+});
 </script>
 
 <template>
@@ -99,7 +118,7 @@ const clickSelection = () => {
     :class="[
       $style['menu-container'],
       {
-        [$style['group']]: props.groupBy
+        [$style['classify']]: props.groupBy
       }
     ]"
     :radius="'var(--agh-ref-border-radius-500)'"
@@ -118,62 +137,80 @@ const clickSelection = () => {
         </template>
       </header>
     </template>
-    <template v-for="(options, group) in groups" :key="group">
-      <div :class="$style['menu-wrapper']">
-        <template v-if="group">
-          <label :class="$style['menu-group-label']" name="">{{ group }}</label>
-        </template>
-        <template v-for="(option, index) in options" :key="`option-${index}`">
-          <div
-            :class="[
-              $style['menu-option'],
-              $style['behavior'],
-              $style['clickable'],
-              {
-                [$style['selected']]: option().selected,
-                [$style['multiple']]: props.multiple
-              }
-            ]"
-            @click="onSelect(option)"
-          >
-            <template v-if="props.multiple">
-              <Icon
-                :class="$style['menu-option-icon']"
-                :icon="option().selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
-              />
-            </template>
-            <template v-if="props.fields.icon">
-              <Icon
-                :class="$style['menu-option-icon']"
-                :icon="selector(option(), props.fields.icon)"
-              />
-            </template>
-            <div :class="$style['menu-option-group']">
-              <template v-if="!props.fields.title">
-                <p :class="$style['menu-field']">
-                  {{ selector(option(), props.fields.key) }}
-                </p>
+    <div
+      ref="wrapperRef$"
+      :class="[
+        $style['menu-wrapper'],
+        {
+          [$style['overflowed']]: overflowed()
+        }
+      ]"
+    >
+      <template v-for="(options, group) in groups" :key="group">
+        <div
+          :class="[
+            $style['menu-group'],
+            {
+              [$style['classify']]: props.groupBy
+            }
+          ]"
+        >
+          <template v-if="group">
+            <label :class="$style['menu-group-label']" name="">{{ group }}</label>
+          </template>
+          <template v-for="(option, index) in options" :key="`option-${index}`">
+            <div
+              :class="[
+                $style['menu-option'],
+                $style['behavior'],
+                $style['clickable'],
+                {
+                  [$style['selected']]: option().selected,
+                  [$style['multiple']]: props.multiple
+                }
+              ]"
+              @click="onSelect(option)"
+            >
+              <template v-if="props.multiple">
+                <Icon
+                  :class="$style['menu-option-icon']"
+                  :icon="option().selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
+                />
               </template>
-              <template
-                v-for="field in omit(props.fields, ['key', 'icon'])"
-                :key="`option-field-${field}`"
-              >
-                <template v-if="field">
+              <template v-if="props.fields.icon">
+                <Icon
+                  :class="$style['menu-option-icon']"
+                  :icon="selector(option(), props.fields.icon)"
+                />
+              </template>
+              <div :class="$style['menu-option-group']">
+                <template v-if="!props.fields.title">
                   <p :class="$style['menu-field']">
-                    {{ parser(option(), field) }}
+                    {{ selector(option(), props.fields.key) }}
                   </p>
                 </template>
-              </template>
+                <template
+                  v-for="field in omit(props.fields, ['key', 'icon'])"
+                  :key="`option-field-${field}`"
+                >
+                  <template v-if="field">
+                    <p :class="$style['menu-field']">
+                      {{ parser(option(), field) }}
+                    </p>
+                  </template>
+                </template>
+              </div>
             </div>
-          </div>
-        </template>
-      </div>
-    </template>
+          </template>
+        </div>
+      </template>
+    </div>
   </CardBox>
 </template>
 
 <style module scoped lang="scss">
 @use '@/assets/styles/modules/behavior.module' as behavior;
+@use '@/assets/styles/modules/scrollbar.module' as scrollbar;
 
 .menu {
   &-container {
@@ -184,16 +221,24 @@ const clickSelection = () => {
     width: var(--agh-sys-gadget-searchbar-width-small);
     height: fit-content;
     max-height: calc(var(--agh-sys-gadget-searchbar-width-small) * 2);
-    padding: var(--agh-ref-spacing-100);
+    padding: 0 var(--agh-ref-spacing-100);
     box-shadow: var(--agh-sys-effects-shadow-pop-up);
     overflow: hidden;
 
-    &.group {
-      padding: var(--agh-ref-spacing-300);
+    > :first-child {
+      margin-top: var(--agh-ref-spacing-100);
+    }
+
+    &.classify {
+      padding: 0 var(--agh-ref-spacing-300);
 
       > .menu-header {
         margin-bottom: var(--agh-ref-spacing-400);
         padding: 0;
+      }
+
+      > :first-child {
+        margin-top: var(--agh-ref-spacing-300);
       }
     }
   }
@@ -216,23 +261,16 @@ const clickSelection = () => {
   }
 
   &-wrapper {
+    @include scrollbar.use($offset: var(--agh-ref-spacing-300));
+
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: var(--agh-ref-spacing-50);
+    overflow-y: auto;
 
-    &::before {
-      content: '';
-      background-color: var(--agh-ref-color-grayscale-400);
-      margin: var(--agh-ref-spacing-400) 0;
-      height: var(--agh-ref-border-width-50);
-      width: 100%;
-    }
-
-    &:first-of-type {
-      &::before {
-        display: none;
-      }
+    &.overflowed {
+      border-right: var(--agh-ref-border-width-200) solid transparent;
+      padding-right: var(--agh-ref-spacing-400);
     }
   }
 
@@ -290,6 +328,33 @@ const clickSelection = () => {
   }
 
   &-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--agh-ref-spacing-50);
+
+    &::before {
+      content: '';
+      background-color: var(--agh-ref-color-grayscale-400);
+      margin: var(--agh-ref-spacing-400) 0;
+      height: var(--agh-ref-border-width-50);
+      width: 100%;
+    }
+
+    &:first-of-type {
+      &::before {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: var(--agh-ref-spacing-100);
+
+      &.classify {
+        margin-bottom: var(--agh-ref-spacing-300);
+      }
+    }
+
     &-label {
       margin-bottom: var(--agh-ref-spacing-100);
       color: var(--agh-ref-color-grayscale-600);
