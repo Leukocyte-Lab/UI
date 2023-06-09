@@ -220,7 +220,7 @@ const clickSelection = () => {
     flex-direction: column;
     gap: var(--agh-ref-spacing-50);
 
-    &:before {
+    &::before {
       content: '';
       background-color: var(--agh-ref-color-grayscale-400);
       margin: var(--agh-ref-spacing-400) 0;
@@ -229,7 +229,7 @@ const clickSelection = () => {
     }
 
     &:first-of-type {
-      &:before {
+      &::before {
         display: none;
       }
     }
