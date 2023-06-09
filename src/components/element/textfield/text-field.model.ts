@@ -23,5 +23,7 @@ export namespace TextField {
     tabindex?: number;
     inputmode?: InputMode;
     invalidMessage?: Partial<InvalidMessage>;
+    icon?: string;
+    iconAlign?: 'left' | 'right';
   }
 }
