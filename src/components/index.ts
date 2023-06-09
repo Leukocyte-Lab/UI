@@ -14,6 +14,16 @@ import DoughnutChart from '@/components/element/chart/DoughnutChart.vue';
 import LineChart from '@/components/element/chart/LineChart.vue';
 import RadarChart from '@/components/element/chart/RadarChart.vue';
 
+// menu
+import SelectMenu from '@/components/element/menu/SelectMenu.vue';
+
+// progress
+import ProgressBar from '@/components/element/progress/ProgressBar.vue';
+import ProgressCircle from '@/components/element/progress/ProgressCircle.vue';
+
+// searchbar
+import SearchBar from '@/components/element/search-bar/SearchBar.vue';
+
 // textfield
 import TextField from '@/components/element/textfield/TextField.vue';
 
@@ -34,6 +44,16 @@ export {
   LineChart,
   RadarChart,
 
+  // menu
+  SelectMenu,
+
+  // progress
+  ProgressBar,
+  ProgressCircle,
+
+  // searchbar
+  SearchBar,
+
   // textfield
   TextField
-}
+};
