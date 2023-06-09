@@ -17,6 +17,7 @@ namespace SelectMenu {
     key: string;
     title?: string;
     content?: string;
+    icon?: string;
   };
   export type Props = {
     options: ObjectLike<any>[];
@@ -110,13 +111,22 @@ const onSelect = (option: Signal<ObjectLike>) => {
                 :icon="option().selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
               />
             </template>
+            <template v-if="props.fields.icon">
+              <Icon
+                :class="$style['menu-option-icon']"
+                :icon="selector(option(), props.fields.icon)"
+              />
+            </template>
             <div :class="$style['menu-option-group']">
               <template v-if="!props.fields.title">
                 <p :class="$style['menu-field']">
                   {{ selector(option(), props.fields.key) }}
                 </p>
               </template>
-              <template v-for="field in omit(props.fields, 'key')" :key="`option-field-${field}`">
+              <template
+                v-for="field in omit(props.fields, ['key', 'icon'])"
+                :key="`option-field-${field}`"
+              >
                 <template v-if="field">
                   <p :class="$style['menu-field']">
                     {{ parser(option(), field) }}
