@@ -7,6 +7,7 @@ import { signal } from '@/shared/libs/signal';
 import { parser } from '@/shared/libs/parser';
 import { selector } from '@/shared/libs/selector';
 
+import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
 
 import type { Signal } from '@/shared/libs/signal';
@@ -189,6 +190,27 @@ const clickSelection = () => {
 
     &.group {
       padding: var(--agh-ref-spacing-300);
+
+      > .menu-header {
+        padding: 0;
+      }
+    }
+  }
+
+  &-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--agh-ref-spacing-400);
+    padding: var(--agh-ref-spacing-100);
+
+    > .title {
+      font: var(--agh-sys-typeface-label-hl-large);
+    }
+
+    > .button {
+      font: var(--agh-sys-typeface-label-hl-medium);
     }
   }
 
