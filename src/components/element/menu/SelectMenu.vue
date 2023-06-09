@@ -11,36 +11,13 @@ import { selector } from '@/shared/libs/selector';
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
 
+import type { SelectMenu } from '@/components/element/menu/SelectMenu.model';
 import type { Signal } from '@/shared/libs/signal';
 import type { ObjectLike } from '@/shared/types/object';
 
-namespace SelectMenu {
-  export type Fields = {
-    key: string;
-    title?: string;
-    content?: string;
-    icon?: string;
-  };
-  export type Props = {
-    options: ObjectLike<any>[];
-    fields: Fields;
-    value?: ObjectLike<any> | ObjectLike<any>[];
-    groupBy?: string;
-    label?: string;
-    multiple?: boolean;
-  };
-}
-
-const props = withDefaults(
-  defineProps<
-    SelectMenu.Props & {
-      modelValue?: SelectMenu.Props['value'];
-    }
-  >(),
-  {
-    multiple: false
-  }
-);
+const props = withDefaults(defineProps<SelectMenu.Props>(), {
+  multiple: false
+});
 
 const emits = defineEmits<{
   (e: 'update:modelValue', option: ObjectLike): void;
@@ -58,9 +35,9 @@ const groups = computedEager(() =>
           ...option,
           selected: Boolean(
             props.multiple
-              ? map(props.value, props.fields.key).includes(selector(option, props.fields.key))
+              ? map(props.modelValue, props.fields.key).includes(selector(option, props.fields.key))
               : selector(option, props.fields.key) ===
-                  selector(props.value as ObjectLike<any>, props.fields.key)
+                  selector(props.modelValue as ObjectLike<any>, props.fields.key)
           )
         })
       )
@@ -74,7 +51,6 @@ const computeOverflowed = () => {
   if (wrapperRef$.value) {
     delay(() => {
       const { scrollHeight, clientHeight } = wrapperRef$.value!;
-      console.log(scrollHeight, clientHeight);
       overflowed.set(scrollHeight > clientHeight + 1);
     }, 30);
   }

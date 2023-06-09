@@ -27,9 +27,9 @@ export default {
       ],
       defaultValue: 'text'
     },
-    value: {
+    modelValue: {
       control: 'text',
-      description: 'TextField value'
+      description: 'TextField value, use by `v-model`.'
     },
     label: {
       control: 'text',
@@ -108,13 +108,13 @@ const Template: StoryFn<typeof TextField> = (args) => ({
   setup() {
     return { args };
   },
-  template: '<TextField v-model="args.value" v-bind="args" />'
+  template: '<TextField v-model="args.modelValue" v-bind="args" />'
 });
 
 export const DefaultTextField = Template.bind({});
 DefaultTextField.args = {
   placeholder: 'Placeholder',
-  value: 'Default Value',
+  modelValue: 'Default Value',
   label: 'Label',
   required: false,
   disabled: false,
@@ -124,24 +124,47 @@ DefaultTextField.args = {
 
 export const DisabledTextField = Template.bind({});
 DisabledTextField.args = {
-  value: 'Default Value',
+  modelValue: 'Default Value',
   disabled: true
 };
 
 export const InvalidTextField = Template.bind({});
 InvalidTextField.args = {
-  value: '256.256.256.256',
+  modelValue: '256.256.256.256',
   pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
   required: true
 };
 
 export const InvalidWithCustomErrorMessageTextField = Template.bind({});
 InvalidWithCustomErrorMessageTextField.args = {
-  value: '256.256.256.256',
+  modelValue: '256.256.256.256',
   pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
   required: true,
   invalidMessage: {
     patternMismatch: 'Invalid IP Address',
     valueMissing: 'IP Address is required'
   }
+};
+
+export const SearchTextField = Template.bind({});
+SearchTextField.args = {
+  type: 'search',
+};
+
+export const DisabledSearchTextField = Template.bind({});
+DisabledSearchTextField.args = {
+  ...SearchTextField.args,
+  disabled: true
+};
+
+export const FindTextField = Template.bind({});
+FindTextField.args = {
+  type: 'search',
+  iconAlign: 'left'
+};
+
+export const DisabledFindTextField = Template.bind({});
+DisabledFindTextField.args = {
+  ...FindTextField.args,
+  disabled: true
 };

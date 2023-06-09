@@ -5,7 +5,7 @@ export namespace TextField {
   export type Type = 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search' | 'date' | 'time' | 'datetime-local' | 'month' | 'week' | 'color';
 
   export type Props = {
-    value?: string;
+    modelValue?: string;
     label?: string;
     placeholder?: string;
     disabled?: boolean;
@@ -23,5 +23,7 @@ export namespace TextField {
     tabindex?: number;
     inputmode?: InputMode;
     invalidMessage?: Partial<InvalidMessage>;
+    icon?: string;
+    iconAlign?: 'left' | 'right';
   }
 }

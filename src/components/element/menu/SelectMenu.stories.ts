@@ -11,13 +11,16 @@ export default {
       control: 'object',
       description: 'Data to be displayed in the menu.'
     },
-    value: {
-      control: 'object',
-      description: 'The value of the selected option.'
+    modelValue: {
+      control: 'text',
+      description: 'SelectMenu value, use by `v-model`.'
     },
     multiple: {
       control: 'boolean',
       description: 'Whether the menu allows multiple selections.'
+    },
+    'onUpdate:modelValue': {
+      action: 'selected'
     }
   }
 } satisfies Meta<typeof SelectMenu>;
@@ -27,7 +30,7 @@ const Template: StoryFn<typeof SelectMenu> = (args) => ({
   setup() {
     return { args };
   },
-  template: '<SelectMenu v-model="args.value" v-bind="args" />'
+  template: '<SelectMenu v-model="args.modelValue" v-bind="args" />'
 });
 
 export const DefaultSelectMenu = Template.bind({});
@@ -77,7 +80,7 @@ DefaultSelectMenu.args = {
 export const SingleSelectMenu = Template.bind({});
 SingleSelectMenu.args = {
   ...DefaultSelectMenu.args,
-  value: {
+  modelValue: {
     name: 'APT-40',
     description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
     category: 'APT Group Simulation Data',
@@ -88,7 +91,7 @@ SingleSelectMenu.args = {
 export const SingleWithSubtitleSelectMenu = Template.bind({});
 SingleWithSubtitleSelectMenu.args = {
   ...DefaultSelectMenu.args,
-  value: {
+  modelValue: {
     name: 'APT-40',
     description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
     category: 'APT Group Simulation Data',
@@ -116,7 +119,7 @@ GroupWithSubtitleSingleSelectMenu.args = {
 export const MultiSelectMenu = Template.bind({});
 MultiSelectMenu.args = {
   ...DefaultSelectMenu.args,
-  value: [
+  modelValue: [
     {
       name: 'APT-40',
       description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
@@ -134,7 +137,7 @@ MultiSelectMenu.args = {
 export const MultiWithSubtitleSelectMenu = Template.bind({});
 MultiWithSubtitleSelectMenu.args = {
   ...MultiSelectMenu.args,
-  value: [
+  modelValue: [
     {
       name: 'APT-40',
       description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
