@@ -127,12 +127,13 @@ MultiSelectMenu.args = {
       name: 'Apache Techniques'
     }
   ],
+  label: 'Playbook',
   multiple: true
 };
 
 export const MultiWithSubtitleSelectMenu = Template.bind({});
 MultiWithSubtitleSelectMenu.args = {
-  ...DefaultSelectMenu.args,
+  ...MultiSelectMenu.args,
   value: [
     {
       name: 'APT-40',
