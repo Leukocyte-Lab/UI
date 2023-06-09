@@ -83,6 +83,14 @@ const onSelect = (option: Signal<ObjectLike>) => {
     emits('update:modelValue', option());
   }
 };
+
+const clickSelection = () => {
+  if (props.multiple) {
+    emits('update:modelValue', []);
+  } else {
+    emits('update:modelValue', {});
+  }
+};
 </script>
 
 <template>
@@ -95,6 +103,20 @@ const onSelect = (option: Signal<ObjectLike>) => {
     ]"
     :radius="'var(--agh-ref-border-radius-500)'"
   >
+    <template v-if="props.label || props.multiple">
+      <header :class="$style['menu-header']">
+        <h1 :class="$style['title']">{{ props.label }}</h1>
+        <template v-if="props.multiple">
+          <ButtonBox
+            :class="$style['button']"
+            :label="'Clear Selection'"
+            :icon="'fa6-solid:eraser'"
+            :variant="'text'"
+            @click="clickSelection()"
+          />
+        </template>
+      </header>
+    </template>
     <template v-for="(options, group) in groups" :key="group">
       <div :class="$style['menu-wrapper']">
         <template v-if="group">
