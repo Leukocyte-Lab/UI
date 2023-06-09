@@ -1,7 +1,7 @@
 
 /**
  * Do not edit directly
- * Generated on Fri, 02 Jun 2023 03:44:17 GMT
+ * Generated on Thu, 08 Jun 2023 14:50:06 GMT
  */
 
 $agh-ref-typeface-family-sans-serif: Lato, Noto Sans CJK TC, Sans-serif !default;
@@ -48,6 +48,10 @@ $agh-ref-typeface-pgspace-base: 3 !default;
 $agh-ref-typeface-letterspace-none: 0 !default;
 $agh-ref-typeface-textcase-none: none !default;
 $agh-ref-typeface-textdeco-none: none !default;
+$agh-ref-typeface-icon-type-solid: Solid !default;
+$agh-ref-typeface-icon-type-regular: 400 !default;
+$agh-ref-typeface-icon-type-light: 300 !default;
+$agh-ref-typeface-icon-type-thin: 100 !default;
 $agh-ref-effects-shadow-100: 6px 6px 3px rgba(0,0,0,0.01), 3px 4px 3px rgba(0,0,0,0.05), 1px 2px 2px rgba(0,0,0,0.08), 0 0 1px rgba(0,0,0,0.09) !default;
 $agh-ref-effects-shadow-200: 8px 14px 10px rgba(0,0,0,0.05), 4px 6px 7px rgba(0,0,0,0.09), 1px 2px 4px rgba(0,0,0,0.1) !default;
 $agh-ref-effects-shadow-300: 21px 27px 20px rgba(0,0,0,0.05), 9px 12px 15px rgba(0,0,0,0.09), 2px 3px 8px rgba(0,0,0,0.1) !default;
@@ -62,12 +66,12 @@ $agh-ref-effects-reflect-light-900: -61px -79px 40px rgba(255,255,255,0.07), -34
 $agh-ref-effects-inner-shadow-100: inset 4px 4px 2px rgba(0,0,0,0.03), inset 2px 2px 2px rgba(0,0,0,0.1), inset 1px 1px 1px rgba(0,0,0,0.17), inset 0 0 1px rgba(0,0,0,0.2) !default;
 $agh-ref-effects-inner-shadow-200: inset 8px 10px 5px rgba(0,0,0,0.02), inset 5px 6px 4px rgba(0,0,0,0.06), inset 2px 3px 3px rgba(0,0,0,0.11), inset 1px 1px 2px rgba(0,0,0,0.12) !default;
 $agh-ref-effects-inner-shadow-700: inset 51px 48px 28px rgba(0,0,0,0.02), inset 29px 27px 24px rgba(0,0,0,0.08), inset 13px 12px 17px rgba(0,0,0,0.14), inset 3px 3px 10px rgba(0,0,0,0.16) !default;
-$agh-ref-effects-solid-blue: 0 0 0 3 rgba(0, 79, 199, 0.2) !default;
-$agh-ref-effects-solid-cyan: 0 0 0 3 rgba(53, 188, 204, 0.2) !default;
-$agh-ref-effects-solid-red: 0 0 0 3 rgba(219, 89, 82, 0.2) !default;
-$agh-ref-effects-solid-orange: 0 0 0 3 rgba(251, 157, 46, 0.2) !default;
-$agh-ref-effects-solid-green: 0 0 0 3 rgba(106, 187, 159, 0.2) !default;
-$agh-ref-effects-solid-purple: 0 0 0 3 rgba(121, 81, 207, 0.2) !default;
+$agh-ref-effects-solid-blue: 0 0 0 3px rgba(0, 79, 199, 0.2) !default;
+$agh-ref-effects-solid-cyan: 0 0 0 3px rgba(53, 188, 204, 0.2) !default;
+$agh-ref-effects-solid-red: 0 0 0 3px rgba(219, 89, 82, 0.2) !default;
+$agh-ref-effects-solid-orange: 0 0 0 3px rgba(251, 157, 46, 0.2) !default;
+$agh-ref-effects-solid-green: 0 0 0 3px rgba(106, 187, 159, 0.2) !default;
+$agh-ref-effects-solid-purple: 0 0 0 3px rgba(121, 81, 207, 0.2) !default;
 $agh-ref-color-purple-100: hsl(259 56.8% 91.3%) !default;
 $agh-ref-color-purple-200: hsl(259 56.8% 82.6%) !default;
 $agh-ref-color-purple-300: hsl(259 56.8% 73.9%) !default;
@@ -94,6 +98,7 @@ $agh-ref-color-green-900: hsl(159 37.3% 11.5%) !default;
 $agh-ref-color-green-gradient-100: linear-gradient(to bottom right, #EFFFFB 10.03%, #C2DCD5 89.97%) !default; // linear-gradient(143deg, #EFFFFB 10.03%, #C2DCD5 89.97%)
 $agh-ref-color-green-gradient-200: linear-gradient(to bottom right, #D1FFF4 5.3%, #4DC8A8 94.7%) !default; // linear-gradient(143deg, #D1FFF4 5.3%, #4DC8A8 94.7%)
 $agh-ref-color-green-gradient-500: linear-gradient(to bottom right, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%) !default; // linear-gradient(143deg, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%)
+$agh-ref-color-green-gradient-600: linear-gradient(to bottom right, #81D8C3 14.26%, #019C75 83.88%) !default; // linear-gradient(143deg, #81D8C3 14.26%, #019C75 83.88%)
 $agh-ref-color-green-gradient-700: linear-gradient(to bottom right, #52CDB0 10.03%, #007A5B 87.89%) !default; // linear-gradient(143deg, #52CDB0 10.03%, #007A5B 87.89%)
 $agh-ref-color-green-base: #6abb9f !default;
 $agh-ref-color-orange-100: hsl(32.5 96.2% 91.6%) !default;
@@ -108,6 +113,7 @@ $agh-ref-color-orange-900: hsl(32.5 96.2% 11.6%) !default;
 $agh-ref-color-orange-gradient-100: linear-gradient(to bottom right, #FFF1E6 14.26%, #FFDDC4 85.74%) !default; // linear-gradient(143deg, #FFF1E6 14.26%, #FFDDC4 85.74%)
 $agh-ref-color-orange-gradient-200: linear-gradient(to bottom right, #FFE3CB 10.03%, #F59752 89.97%) !default; // linear-gradient(143deg, #FFE3CB 10.03%, #F59752 89.97%)
 $agh-ref-color-orange-gradient-500: linear-gradient(to bottom right, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%) !default; // linear-gradient(143deg, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%)
+$agh-ref-color-orange-gradient-600: linear-gradient(to bottom right, #F4BC87 14.26%, #F37D28 85.74%) !default; // linear-gradient(143deg, #F4BC87 14.26%, #F37D28 85.74%)
 $agh-ref-color-orange-gradient-700: linear-gradient(to bottom right, #F4BC87 10.03%, #F36701 89.97%) !default; // linear-gradient(143deg, #F4BC87 10.03%, #F36701 89.97%)
 $agh-ref-color-orange-base: #FB9D2E !default;
 $agh-ref-color-blue-100: hsl(212 69.6% 88.8%) !default;
@@ -122,6 +128,7 @@ $agh-ref-color-blue-900: hsl(212 69.6% 8.78%) !default;
 $agh-ref-color-blue-gradient-100: linear-gradient(to bottom right, #DFEAFF 14.26%, #BAD4FC 85.74%) !default; // linear-gradient(143deg, #DFEAFF 14.26%, #BAD4FC 85.74%)
 $agh-ref-color-blue-gradient-200: linear-gradient(to bottom right, #B1CCFF 10.03%, #0061F3 89.97%) !default; // linear-gradient(143deg, #B1CCFF 10.03%, #0061F3 89.97%)
 $agh-ref-color-blue-gradient-500: linear-gradient(to bottom right, #92B7FF 10.03%, #004FC7 89.97%) !default; // linear-gradient(143deg, #92B7FF 10.03%, #004FC7 89.97%)
+$agh-ref-color-blue-gradient-600: linear-gradient(to bottom right, #8FB5FF 18.05%, #0146AE 81.95%) !default; // linear-gradient(143deg, #8FB5FF 18.05%, #0146AE 81.95%)
 $agh-ref-color-blue-gradient-700: linear-gradient(to bottom right, #84AEFF 10.03%, #02337D 89.97%) !default; // linear-gradient(143deg, #84AEFF 10.03%, #02337D 89.97%)
 $agh-ref-color-blue-base: #226ABE !default;
 $agh-ref-color-red-100: hsl(3.07 65.6% 91.8%) !default;
@@ -136,7 +143,8 @@ $agh-ref-color-red-900: hsl(3.07 65.6% 11.8%) !default;
 $agh-ref-color-red-gradient-100: linear-gradient(to bottom right, #FFE9E9 10.03%, #FFB3B3 89.97%) !default; // linear-gradient(143deg, #FFE9E9 10.03%, #FFB3B3 89.97%)
 $agh-ref-color-red-gradient-200: linear-gradient(to bottom right, #FFD0D0 10.03%, #E66665 89.97%) !default; // linear-gradient(143deg, #FFD0D0 10.03%, #E66665 89.97%)
 $agh-ref-color-red-gradient-500: linear-gradient(to bottom right, #FF9191 5.3%, #DC1615 94.7%) !default; // linear-gradient(143deg, #FF9191 5.3%, #DC1615 94.7%)
-$agh-ref-color-red-gradient-700: linear-gradient(to bottom right, #DC3E3E 14.26%, #850100 85.74%) !default; // linear-gradient(143deg, #DC3E3E 14.26%, #850100 85.74%)
+$agh-ref-color-red-gradient-600: linear-gradient(to bottom right, #E08282 18.05%, #D91412 81.95%) !default; // linear-gradient(143deg, #E08282 18.05%, #D91412 81.95%)
+$agh-ref-color-red-gradient-700: linear-gradient(to bottom right, #DE6C6C 18.05%, #B30301 81.95%) !default; // linear-gradient(143deg, #DE6C6C 18.05%, #B30301 81.95%)
 $agh-ref-color-red-base: #DB5952 !default;
 $agh-ref-color-grayscale-100: #ffffff !default;
 $agh-ref-color-grayscale-120: hsl(0 0% 98%) !default;
@@ -164,6 +172,7 @@ $agh-ref-color-cyan-900: hsl(186 59.7% 10.1%) !default;
 $agh-ref-color-cyan-gradient-100: linear-gradient(to bottom right, #E8FDFF 14.26%, #B1DCE1 85.74%) !default; // linear-gradient(143deg, #E8FDFF 14.26%, #B1DCE1 85.74%)
 $agh-ref-color-cyan-gradient-200: linear-gradient(to bottom right, #D7FBFF 14.26%, #39C7D8 85.74%) !default; // linear-gradient(143deg, #D7FBFF 14.26%, #39C7D8 85.74%)
 $agh-ref-color-cyan-gradient-500: linear-gradient(to bottom right, #CEF0F4 10.03%, #35BCCC 89.97%) !default; // linear-gradient(143deg, #CEF0F4 10.03%, #35BCCC 89.97%)
+$agh-ref-color-cyan-gradient-600: linear-gradient(to bottom right, #C0EDF2 14.26%, #44B3C0 78.57%) !default; // linear-gradient(143deg, #C0EDF2 14.26%, #44B3C0 78.57%)
 $agh-ref-color-cyan-gradient-700: linear-gradient(to bottom right, #9DDEE6 10.03%, #1EA0AF 81.95%) !default; // linear-gradient(143deg, #9DDEE6 10.03%, #1EA0AF 81.95%)
 $agh-ref-color-cyan-base: #35BCCC !default;
 $agh-ref-color-white-gradient-500: linear-gradient(to bottom right, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%) !default; // linear-gradient(143deg, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%)
@@ -340,6 +349,7 @@ $agh-sys-card-vertical-card-height: 323px !default;
 $agh-sys-card-list-card-width: 400px !default;
 $agh-sys-card-vm-card-width-large: 280px !default;
 $agh-sys-card-vm-card-width-small: 176px !default;
+$agh-sys-card-vm-card-width-medium: 330px !default;
 $agh-sys-button-square-width-small: 40px !default;
 $agh-sys-button-square-width-medium: 48px !default;
 $agh-sys-button-square-width-large: 56px !default;
@@ -360,20 +370,30 @@ $agh-sys-list-upload-list-width-medium: 1120px !default;
 $agh-sys-list-playbooklist-width-small: 611px !default;
 $agh-sys-menubar-width-default: 96px !default;
 $agh-sys-menubar-height-default: 982px !default;
-$agh-sys-gaget-searchbar-width-small: 333px !default;
-$agh-sys-gaget-searchbar-height-small: 28px !default;
-$agh-sys-gaget-kill-chain-card-width-small: 40px !default;
-$agh-sys-gaget-kill-chain-card-width-large: 156px !default;
-$agh-sys-gaget-kill-chain-card-height-small: 44px !default;
-$agh-sys-gaget-kill-chain-card-height-large: 173px !default;
-$agh-sys-gaget-progress-circle-width-medium: 144px !default;
-$agh-sys-gaget-progress-circle-width-small: 36px !default;
-$agh-sys-gaget-progress-circle-height-medium: 144px !default;
-$agh-sys-gaget-progress-circle-height-small: 36px !default;
-$agh-sys-gaget-progress-bar-width-small: 362px !default;
-$agh-sys-gaget-progress-bar-width-large: 740px !default;
-$agh-sys-gaget-progress-bar-height-small: 16px !default;
-$agh-sys-gaget-progress-bar-height-large: 28px !default;
+$agh-sys-gadget-searchbar-width-small: 333px !default;
+$agh-sys-gadget-searchbar-height-small: 28px !default;
+$agh-sys-gadget-kill-chain-card-width-small: 40px !default;
+$agh-sys-gadget-kill-chain-card-width-large: 156px !default;
+$agh-sys-gadget-kill-chain-card-height-small: 44px !default;
+$agh-sys-gadget-kill-chain-card-height-large: 173px !default;
+$agh-sys-gadget-progress-circle-width-medium: 144px !default;
+$agh-sys-gadget-progress-circle-width-small: 36px !default;
+$agh-sys-gadget-progress-circle-height-medium: 144px !default;
+$agh-sys-gadget-progress-circle-height-small: 36px !default;
+$agh-sys-gadget-progress-bar-width-small: 362px !default;
+$agh-sys-gadget-progress-bar-width-large: 740px !default;
+$agh-sys-gadget-progress-bar-height-small: 16px !default;
+$agh-sys-gadget-progress-bar-height-large: 28px !default;
+$agh-sys-color-blue-surface-normal: #F1F5FA !default;
+$agh-sys-color-blue-surface-dim: #DFE8F2 !default;
+$agh-sys-color-blue-surface-bright: #F9FCFF !default;
+$agh-sys-color-blue-surface-vivid: #EDF5FF !default;
+$agh-sys-color-orange-surface-normal: #FBF6F0 !default;
+$agh-sys-color-orange-surface-dim: #F3EEE8 !default;
+$agh-sys-color-orange-surface-bright: #FFFCF8 !default;
+$agh-sys-color-red-surface-bright: #FFFAFA !default;
+$agh-sys-color-red-surface-normal: #FCF0F0 !default;
+$agh-sys-color-red-surface-dim: #F2E1E1 !default;
 $agh-sys-color-test: hsl(0 0% 80%) !default;
 $agh-sys-color-test2-100: hsl(0 0% 10%) !default;
 
@@ -466,6 +486,14 @@ $tokens: (
       ),
       'textdeco': (
         'none': $agh-ref-typeface-textdeco-none
+      ),
+      'icon': (
+        'type': (
+          'solid': $agh-ref-typeface-icon-type-solid,
+          'regular': $agh-ref-typeface-icon-type-regular,
+          'light': $agh-ref-typeface-icon-type-light,
+          'thin': $agh-ref-typeface-icon-type-thin
+        )
       )
     ),
     'effects': (
@@ -528,6 +556,7 @@ $tokens: (
         'gradient-100': $agh-ref-color-green-gradient-100,
         'gradient-200': $agh-ref-color-green-gradient-200,
         'gradient-500': $agh-ref-color-green-gradient-500,
+        'gradient-600': $agh-ref-color-green-gradient-600,
         'gradient-700': $agh-ref-color-green-gradient-700,
         'base': $agh-ref-color-green-base
       ),
@@ -544,6 +573,7 @@ $tokens: (
         'gradient-100': $agh-ref-color-orange-gradient-100,
         'gradient-200': $agh-ref-color-orange-gradient-200,
         'gradient-500': $agh-ref-color-orange-gradient-500,
+        'gradient-600': $agh-ref-color-orange-gradient-600,
         'gradient-700': $agh-ref-color-orange-gradient-700,
         'base': $agh-ref-color-orange-base
       ),
@@ -560,6 +590,7 @@ $tokens: (
         'gradient-100': $agh-ref-color-blue-gradient-100,
         'gradient-200': $agh-ref-color-blue-gradient-200,
         'gradient-500': $agh-ref-color-blue-gradient-500,
+        'gradient-600': $agh-ref-color-blue-gradient-600,
         'gradient-700': $agh-ref-color-blue-gradient-700,
         'base': $agh-ref-color-blue-base
       ),
@@ -576,6 +607,7 @@ $tokens: (
         'gradient-100': $agh-ref-color-red-gradient-100,
         'gradient-200': $agh-ref-color-red-gradient-200,
         'gradient-500': $agh-ref-color-red-gradient-500,
+        'gradient-600': $agh-ref-color-red-gradient-600,
         'gradient-700': $agh-ref-color-red-gradient-700,
         'base': $agh-ref-color-red-base
       ),
@@ -608,6 +640,7 @@ $tokens: (
         'gradient-100': $agh-ref-color-cyan-gradient-100,
         'gradient-200': $agh-ref-color-cyan-gradient-200,
         'gradient-500': $agh-ref-color-cyan-gradient-500,
+        'gradient-600': $agh-ref-color-cyan-gradient-600,
         'gradient-700': $agh-ref-color-cyan-gradient-700,
         'base': $agh-ref-color-cyan-base
       ),
@@ -924,7 +957,8 @@ $tokens: (
       'vm-card': (
         'width': (
           'large': $agh-sys-card-vm-card-width-large,
-          'small': $agh-sys-card-vm-card-width-small
+          'small': $agh-sys-card-vm-card-width-small,
+          'medium': $agh-sys-card-vm-card-width-medium
         )
       )
     ),
@@ -998,47 +1032,69 @@ $tokens: (
         'default': $agh-sys-menubar-height-default
       )
     ),
-    'gaget': (
+    'gadget': (
       'searchbar': (
         'width': (
-          'small': $agh-sys-gaget-searchbar-width-small
+          'small': $agh-sys-gadget-searchbar-width-small
         ),
         'height': (
-          'small': $agh-sys-gaget-searchbar-height-small
+          'small': $agh-sys-gadget-searchbar-height-small
         )
       ),
       'kill-chain-card': (
         'width': (
-          'small': $agh-sys-gaget-kill-chain-card-width-small,
-          'large': $agh-sys-gaget-kill-chain-card-width-large
+          'small': $agh-sys-gadget-kill-chain-card-width-small,
+          'large': $agh-sys-gadget-kill-chain-card-width-large
         ),
         'height': (
-          'small': $agh-sys-gaget-kill-chain-card-height-small,
-          'large': $agh-sys-gaget-kill-chain-card-height-large
+          'small': $agh-sys-gadget-kill-chain-card-height-small,
+          'large': $agh-sys-gadget-kill-chain-card-height-large
         )
       ),
       'progress-circle': (
         'width': (
-          'medium': $agh-sys-gaget-progress-circle-width-medium,
-          'small': $agh-sys-gaget-progress-circle-width-small
+          'medium': $agh-sys-gadget-progress-circle-width-medium,
+          'small': $agh-sys-gadget-progress-circle-width-small
         ),
         'height': (
-          'medium': $agh-sys-gaget-progress-circle-height-medium,
-          'small': $agh-sys-gaget-progress-circle-height-small
+          'medium': $agh-sys-gadget-progress-circle-height-medium,
+          'small': $agh-sys-gadget-progress-circle-height-small
         )
       ),
       'progress-bar': (
         'width': (
-          'small': $agh-sys-gaget-progress-bar-width-small,
-          'large': $agh-sys-gaget-progress-bar-width-large
+          'small': $agh-sys-gadget-progress-bar-width-small,
+          'large': $agh-sys-gadget-progress-bar-width-large
         ),
         'height': (
-          'small': $agh-sys-gaget-progress-bar-height-small,
-          'large': $agh-sys-gaget-progress-bar-height-large
+          'small': $agh-sys-gadget-progress-bar-height-small,
+          'large': $agh-sys-gadget-progress-bar-height-large
         )
       )
     ),
     'color': (
+      'blue': (
+        'surface': (
+          'normal': $agh-sys-color-blue-surface-normal,
+          'dim': $agh-sys-color-blue-surface-dim,
+          'bright': $agh-sys-color-blue-surface-bright,
+          'vivid': $agh-sys-color-blue-surface-vivid
+        )
+      ),
+      'orange': (
+        'surface': (
+          'normal': $agh-sys-color-orange-surface-normal,
+          'dim': $agh-sys-color-orange-surface-dim,
+          'bright': $agh-sys-color-orange-surface-bright
+        )
+      ),
+      'red': (
+        'surface': (
+          'bright': $agh-sys-color-red-surface-bright,
+          'normal': $agh-sys-color-red-surface-normal,
+          'dim': $agh-sys-color-red-surface-dim
+        )
+      ),
       'test': $agh-sys-color-test,
       'test2': (
         '100': $agh-sys-color-test2-100

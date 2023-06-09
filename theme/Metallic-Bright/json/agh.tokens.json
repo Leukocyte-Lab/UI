@@ -194,6 +194,26 @@
           "value": "none",
           "type": "textDecoration"
         }
+      },
+      "icon": {
+        "type": {
+          "solid": {
+            "value": "Solid",
+            "type": "fontWeights"
+          },
+          "regular": {
+            "value": "Regular",
+            "type": "fontWeights"
+          },
+          "light": {
+            "value": "Light",
+            "type": "fontWeights"
+          },
+          "thin": {
+            "value": "Thin",
+            "type": "fontWeights"
+          }
+        }
       }
     },
     "effects": {
@@ -703,7 +723,7 @@
             "x": "0",
             "y": "0",
             "blur": "0",
-            "spread": "3",
+            "spread": "3px",
             "color": "rgba(0, 79, 199, 0.2)",
             "type": "dropShadow"
           },
@@ -714,7 +734,7 @@
             "x": "0",
             "y": "0",
             "blur": "0",
-            "spread": "3",
+            "spread": "3px",
             "color": "rgba(53, 188, 204, 0.2)",
             "type": "dropShadow"
           },
@@ -725,7 +745,7 @@
             "x": "0",
             "y": "0",
             "blur": "0",
-            "spread": "3",
+            "spread": "3px",
             "color": "rgba(219, 89, 82, 0.2)",
             "type": "dropShadow"
           },
@@ -736,7 +756,7 @@
             "x": "0",
             "y": "0",
             "blur": "0",
-            "spread": "3",
+            "spread": "3px",
             "color": "rgba(251, 157, 46, 0.2)",
             "type": "dropShadow"
           },
@@ -747,7 +767,7 @@
             "x": "0",
             "y": "0",
             "blur": "0",
-            "spread": "3",
+            "spread": "3px",
             "color": "rgba(106, 187, 159, 0.2)",
             "type": "dropShadow"
           },
@@ -758,7 +778,7 @@
             "x": "0",
             "y": "0",
             "blur": "0",
-            "spread": "3",
+            "spread": "3px",
             "color": "rgba(121, 81, 207, 0.2)",
             "type": "dropShadow"
           },
@@ -1018,6 +1038,10 @@
           "value": "linear-gradient(143deg, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%)",
           "type": "color"
         },
+        "gradient-600": {
+          "value": "linear-gradient(143deg, #81D8C3 14.26%, #019C75 83.88%)",
+          "type": "color"
+        },
         "gradient-700": {
           "value": "linear-gradient(143deg, #52CDB0 10.03%, #007A5B 87.89%)",
           "type": "color"
@@ -1146,6 +1170,10 @@
         },
         "gradient-500": {
           "value": "linear-gradient(143deg, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%)",
+          "type": "color"
+        },
+        "gradient-600": {
+          "value": "linear-gradient(143deg, #F4BC87 14.26%, #F37D28 85.74%)",
           "type": "color"
         },
         "gradient-700": {
@@ -1278,6 +1306,10 @@
           "value": "linear-gradient(143deg, #92B7FF 10.03%, #004FC7 89.97%)",
           "type": "color"
         },
+        "gradient-600": {
+          "value": "linear-gradient(143deg, #8FB5FF 18.05%, #0146AE 81.95%)",
+          "type": "color"
+        },
         "gradient-700": {
           "value": "linear-gradient(143deg, #84AEFF 10.03%, #02337D 89.97%)",
           "type": "color"
@@ -1408,8 +1440,12 @@
           "value": "linear-gradient(143deg, #FF9191 5.3%, #DC1615 94.7%)",
           "type": "color"
         },
+        "gradient-600": {
+          "value": "linear-gradient(143deg, #E08282 18.05%, #D91412 81.95%)",
+          "type": "color"
+        },
         "gradient-700": {
-          "value": "linear-gradient(143deg, #DC3E3E 14.26%, #850100 85.74%)",
+          "value": "linear-gradient(143deg, #DE6C6C 18.05%, #B30301 81.95%)",
           "type": "color"
         },
         "base": {
@@ -1711,6 +1747,10 @@
         },
         "gradient-500": {
           "value": "linear-gradient(143deg, #CEF0F4 10.03%, #35BCCC 89.97%)",
+          "type": "color"
+        },
+        "gradient-600": {
+          "value": "linear-gradient(143deg, #C0EDF2 14.26%, #44B3C0 78.57%)",
           "type": "color"
         },
         "gradient-700": {
@@ -3088,6 +3128,10 @@
           "small": {
             "value": "176",
             "type": "sizing"
+          },
+          "medium": {
+            "value": "330",
+            "type": "sizing"
           }
         }
       }
@@ -3222,7 +3266,7 @@
         }
       }
     },
-    "gaget": {
+    "gadget": {
       "searchbar": {
         "width": {
           "small": {
@@ -3300,6 +3344,60 @@
           "large": {
             "value": "28",
             "type": "sizing"
+          }
+        }
+      }
+    },
+    "color": {
+      "blue": {
+        "surface": {
+          "normal": {
+            "value": "#F1F5FA",
+            "type": "color"
+          },
+          "dim": {
+            "value": "#DFE8F2",
+            "type": "color"
+          },
+          "bright": {
+            "value": "#F9FCFF",
+            "type": "color"
+          },
+          "vivid": {
+            "value": "#EDF5FF",
+            "type": "color"
+          }
+        }
+      },
+      "orange": {
+        "surface": {
+          "normal": {
+            "value": "#FBF6F0",
+            "type": "color"
+          },
+          "dim": {
+            "value": "#F3EEE8",
+            "type": "color"
+          },
+          "bright": {
+            "value": "#FFFCF8",
+            "type": "color"
+          }
+        }
+      },
+      "red": {
+        "surface": {
+          "bright": {
+            "value": "#FFFAFA",
+            "type": "color"
+          },
+          "normal": {
+            "value": "#FCF0F0",
+            "type": "color"
+          },
+          "dim": {
+            "value": "#F2E1E1",
+            "type": "color"
           }
         }
       }

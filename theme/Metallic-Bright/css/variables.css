@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Fri, 02 Jun 2023 03:44:16 GMT
+ * Generated on Thu, 08 Jun 2023 14:50:06 GMT
  */
 
 :root {
@@ -48,6 +48,10 @@
   --agh-ref-typeface-letterspace-none: 0;
   --agh-ref-typeface-textcase-none: none;
   --agh-ref-typeface-textdeco-none: none;
+  --agh-ref-typeface-icon-type-solid: Solid;
+  --agh-ref-typeface-icon-type-regular: 400;
+  --agh-ref-typeface-icon-type-light: 300;
+  --agh-ref-typeface-icon-type-thin: 100;
   --agh-ref-effects-shadow-100: 6px 6px 3px rgba(0,0,0,0.01), 3px 4px 3px rgba(0,0,0,0.05), 1px 2px 2px rgba(0,0,0,0.08), 0 0 1px rgba(0,0,0,0.09);
   --agh-ref-effects-shadow-200: 8px 14px 10px rgba(0,0,0,0.05), 4px 6px 7px rgba(0,0,0,0.09), 1px 2px 4px rgba(0,0,0,0.1);
   --agh-ref-effects-shadow-300: 21px 27px 20px rgba(0,0,0,0.05), 9px 12px 15px rgba(0,0,0,0.09), 2px 3px 8px rgba(0,0,0,0.1);
@@ -62,12 +66,12 @@
   --agh-ref-effects-inner-shadow-100: inset 4px 4px 2px rgba(0,0,0,0.03), inset 2px 2px 2px rgba(0,0,0,0.1), inset 1px 1px 1px rgba(0,0,0,0.17), inset 0 0 1px rgba(0,0,0,0.2);
   --agh-ref-effects-inner-shadow-200: inset 8px 10px 5px rgba(0,0,0,0.02), inset 5px 6px 4px rgba(0,0,0,0.06), inset 2px 3px 3px rgba(0,0,0,0.11), inset 1px 1px 2px rgba(0,0,0,0.12);
   --agh-ref-effects-inner-shadow-700: inset 51px 48px 28px rgba(0,0,0,0.02), inset 29px 27px 24px rgba(0,0,0,0.08), inset 13px 12px 17px rgba(0,0,0,0.14), inset 3px 3px 10px rgba(0,0,0,0.16);
-  --agh-ref-effects-solid-blue: 0 0 0 3 rgba(0, 79, 199, 0.2);
-  --agh-ref-effects-solid-cyan: 0 0 0 3 rgba(53, 188, 204, 0.2);
-  --agh-ref-effects-solid-red: 0 0 0 3 rgba(219, 89, 82, 0.2);
-  --agh-ref-effects-solid-orange: 0 0 0 3 rgba(251, 157, 46, 0.2);
-  --agh-ref-effects-solid-green: 0 0 0 3 rgba(106, 187, 159, 0.2);
-  --agh-ref-effects-solid-purple: 0 0 0 3 rgba(121, 81, 207, 0.2);
+  --agh-ref-effects-solid-blue: 0 0 0 3px rgba(0, 79, 199, 0.2);
+  --agh-ref-effects-solid-cyan: 0 0 0 3px rgba(53, 188, 204, 0.2);
+  --agh-ref-effects-solid-red: 0 0 0 3px rgba(219, 89, 82, 0.2);
+  --agh-ref-effects-solid-orange: 0 0 0 3px rgba(251, 157, 46, 0.2);
+  --agh-ref-effects-solid-green: 0 0 0 3px rgba(106, 187, 159, 0.2);
+  --agh-ref-effects-solid-purple: 0 0 0 3px rgba(121, 81, 207, 0.2);
   --agh-ref-color-purple-100: hsl(259 56.8% 91.3%);
   --agh-ref-color-purple-200: hsl(259 56.8% 82.6%);
   --agh-ref-color-purple-300: hsl(259 56.8% 73.9%);
@@ -94,6 +98,7 @@
   --agh-ref-color-green-gradient-100: linear-gradient(to bottom right, #EFFFFB 10.03%, #C2DCD5 89.97%); /* linear-gradient(143deg, #EFFFFB 10.03%, #C2DCD5 89.97%) */
   --agh-ref-color-green-gradient-200: linear-gradient(to bottom right, #D1FFF4 5.3%, #4DC8A8 94.7%); /* linear-gradient(143deg, #D1FFF4 5.3%, #4DC8A8 94.7%) */
   --agh-ref-color-green-gradient-500: linear-gradient(to bottom right, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%); /* linear-gradient(143deg, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%) */
+  --agh-ref-color-green-gradient-600: linear-gradient(to bottom right, #81D8C3 14.26%, #019C75 83.88%); /* linear-gradient(143deg, #81D8C3 14.26%, #019C75 83.88%) */
   --agh-ref-color-green-gradient-700: linear-gradient(to bottom right, #52CDB0 10.03%, #007A5B 87.89%); /* linear-gradient(143deg, #52CDB0 10.03%, #007A5B 87.89%) */
   --agh-ref-color-green-base: #6abb9f;
   --agh-ref-color-orange-100: hsl(32.5 96.2% 91.6%);
@@ -108,6 +113,7 @@
   --agh-ref-color-orange-gradient-100: linear-gradient(to bottom right, #FFF1E6 14.26%, #FFDDC4 85.74%); /* linear-gradient(143deg, #FFF1E6 14.26%, #FFDDC4 85.74%) */
   --agh-ref-color-orange-gradient-200: linear-gradient(to bottom right, #FFE3CB 10.03%, #F59752 89.97%); /* linear-gradient(143deg, #FFE3CB 10.03%, #F59752 89.97%) */
   --agh-ref-color-orange-gradient-500: linear-gradient(to bottom right, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%); /* linear-gradient(143deg, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%) */
+  --agh-ref-color-orange-gradient-600: linear-gradient(to bottom right, #F4BC87 14.26%, #F37D28 85.74%); /* linear-gradient(143deg, #F4BC87 14.26%, #F37D28 85.74%) */
   --agh-ref-color-orange-gradient-700: linear-gradient(to bottom right, #F4BC87 10.03%, #F36701 89.97%); /* linear-gradient(143deg, #F4BC87 10.03%, #F36701 89.97%) */
   --agh-ref-color-orange-base: #FB9D2E;
   --agh-ref-color-blue-100: hsl(212 69.6% 88.8%);
@@ -122,6 +128,7 @@
   --agh-ref-color-blue-gradient-100: linear-gradient(to bottom right, #DFEAFF 14.26%, #BAD4FC 85.74%); /* linear-gradient(143deg, #DFEAFF 14.26%, #BAD4FC 85.74%) */
   --agh-ref-color-blue-gradient-200: linear-gradient(to bottom right, #B1CCFF 10.03%, #0061F3 89.97%); /* linear-gradient(143deg, #B1CCFF 10.03%, #0061F3 89.97%) */
   --agh-ref-color-blue-gradient-500: linear-gradient(to bottom right, #92B7FF 10.03%, #004FC7 89.97%); /* linear-gradient(143deg, #92B7FF 10.03%, #004FC7 89.97%) */
+  --agh-ref-color-blue-gradient-600: linear-gradient(to bottom right, #8FB5FF 18.05%, #0146AE 81.95%); /* linear-gradient(143deg, #8FB5FF 18.05%, #0146AE 81.95%) */
   --agh-ref-color-blue-gradient-700: linear-gradient(to bottom right, #84AEFF 10.03%, #02337D 89.97%); /* linear-gradient(143deg, #84AEFF 10.03%, #02337D 89.97%) */
   --agh-ref-color-blue-base: #226ABE;
   --agh-ref-color-red-100: hsl(3.07 65.6% 91.8%);
@@ -136,7 +143,8 @@
   --agh-ref-color-red-gradient-100: linear-gradient(to bottom right, #FFE9E9 10.03%, #FFB3B3 89.97%); /* linear-gradient(143deg, #FFE9E9 10.03%, #FFB3B3 89.97%) */
   --agh-ref-color-red-gradient-200: linear-gradient(to bottom right, #FFD0D0 10.03%, #E66665 89.97%); /* linear-gradient(143deg, #FFD0D0 10.03%, #E66665 89.97%) */
   --agh-ref-color-red-gradient-500: linear-gradient(to bottom right, #FF9191 5.3%, #DC1615 94.7%); /* linear-gradient(143deg, #FF9191 5.3%, #DC1615 94.7%) */
-  --agh-ref-color-red-gradient-700: linear-gradient(to bottom right, #DC3E3E 14.26%, #850100 85.74%); /* linear-gradient(143deg, #DC3E3E 14.26%, #850100 85.74%) */
+  --agh-ref-color-red-gradient-600: linear-gradient(to bottom right, #E08282 18.05%, #D91412 81.95%); /* linear-gradient(143deg, #E08282 18.05%, #D91412 81.95%) */
+  --agh-ref-color-red-gradient-700: linear-gradient(to bottom right, #DE6C6C 18.05%, #B30301 81.95%); /* linear-gradient(143deg, #DE6C6C 18.05%, #B30301 81.95%) */
   --agh-ref-color-red-base: #DB5952;
   --agh-ref-color-grayscale-100: #ffffff;
   --agh-ref-color-grayscale-120: hsl(0 0% 98%);
@@ -164,6 +172,7 @@
   --agh-ref-color-cyan-gradient-100: linear-gradient(to bottom right, #E8FDFF 14.26%, #B1DCE1 85.74%); /* linear-gradient(143deg, #E8FDFF 14.26%, #B1DCE1 85.74%) */
   --agh-ref-color-cyan-gradient-200: linear-gradient(to bottom right, #D7FBFF 14.26%, #39C7D8 85.74%); /* linear-gradient(143deg, #D7FBFF 14.26%, #39C7D8 85.74%) */
   --agh-ref-color-cyan-gradient-500: linear-gradient(to bottom right, #CEF0F4 10.03%, #35BCCC 89.97%); /* linear-gradient(143deg, #CEF0F4 10.03%, #35BCCC 89.97%) */
+  --agh-ref-color-cyan-gradient-600: linear-gradient(to bottom right, #C0EDF2 14.26%, #44B3C0 78.57%); /* linear-gradient(143deg, #C0EDF2 14.26%, #44B3C0 78.57%) */
   --agh-ref-color-cyan-gradient-700: linear-gradient(to bottom right, #9DDEE6 10.03%, #1EA0AF 81.95%); /* linear-gradient(143deg, #9DDEE6 10.03%, #1EA0AF 81.95%) */
   --agh-ref-color-cyan-base: #35BCCC;
   --agh-ref-color-white-gradient-500: linear-gradient(to bottom right, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%); /* linear-gradient(143deg, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%) */
@@ -340,6 +349,7 @@
   --agh-sys-card-list-card-width: 400px;
   --agh-sys-card-vm-card-width-large: 280px;
   --agh-sys-card-vm-card-width-small: 176px;
+  --agh-sys-card-vm-card-width-medium: 330px;
   --agh-sys-button-square-width-small: 40px;
   --agh-sys-button-square-width-medium: 48px;
   --agh-sys-button-square-width-large: 56px;
@@ -360,20 +370,30 @@
   --agh-sys-list-playbooklist-width-small: 611px;
   --agh-sys-menubar-width-default: 96px;
   --agh-sys-menubar-height-default: 982px;
-  --agh-sys-gaget-searchbar-width-small: 333px;
-  --agh-sys-gaget-searchbar-height-small: 28px;
-  --agh-sys-gaget-kill-chain-card-width-small: 40px;
-  --agh-sys-gaget-kill-chain-card-width-large: 156px;
-  --agh-sys-gaget-kill-chain-card-height-small: 44px;
-  --agh-sys-gaget-kill-chain-card-height-large: 173px;
-  --agh-sys-gaget-progress-circle-width-medium: 144px;
-  --agh-sys-gaget-progress-circle-width-small: 36px;
-  --agh-sys-gaget-progress-circle-height-medium: 144px;
-  --agh-sys-gaget-progress-circle-height-small: 36px;
-  --agh-sys-gaget-progress-bar-width-small: 362px;
-  --agh-sys-gaget-progress-bar-width-large: 740px;
-  --agh-sys-gaget-progress-bar-height-small: 16px;
-  --agh-sys-gaget-progress-bar-height-large: 28px;
+  --agh-sys-gadget-searchbar-width-small: 333px;
+  --agh-sys-gadget-searchbar-height-small: 28px;
+  --agh-sys-gadget-kill-chain-card-width-small: 40px;
+  --agh-sys-gadget-kill-chain-card-width-large: 156px;
+  --agh-sys-gadget-kill-chain-card-height-small: 44px;
+  --agh-sys-gadget-kill-chain-card-height-large: 173px;
+  --agh-sys-gadget-progress-circle-width-medium: 144px;
+  --agh-sys-gadget-progress-circle-width-small: 36px;
+  --agh-sys-gadget-progress-circle-height-medium: 144px;
+  --agh-sys-gadget-progress-circle-height-small: 36px;
+  --agh-sys-gadget-progress-bar-width-small: 362px;
+  --agh-sys-gadget-progress-bar-width-large: 740px;
+  --agh-sys-gadget-progress-bar-height-small: 16px;
+  --agh-sys-gadget-progress-bar-height-large: 28px;
+  --agh-sys-color-blue-surface-normal: #F1F5FA;
+  --agh-sys-color-blue-surface-dim: #DFE8F2;
+  --agh-sys-color-blue-surface-bright: #F9FCFF;
+  --agh-sys-color-blue-surface-vivid: #EDF5FF;
+  --agh-sys-color-orange-surface-normal: #FBF6F0;
+  --agh-sys-color-orange-surface-dim: #F3EEE8;
+  --agh-sys-color-orange-surface-bright: #FFFCF8;
+  --agh-sys-color-red-surface-bright: #FFFAFA;
+  --agh-sys-color-red-surface-normal: #FCF0F0;
+  --agh-sys-color-red-surface-dim: #F2E1E1;
   --agh-sys-color-test: hsl(0 0% 80%);
   --agh-sys-color-test2-100: hsl(0 0% 10%);
   --agh-ref-color-purple-gradient-100-svg: <linearGradient id="agh-ref-color-purple-gradient-100" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="5.3%" style="stop-color: #F3EEFF;" /><stop offset="94.7%" style="stop-color: #DCCBFF;" /></linearGradient>; /* linear-gradient(143deg, #F3EEFF 5.3%, #DCCBFF 94.7%) */
@@ -383,22 +403,27 @@
   --agh-ref-color-green-gradient-100-svg: <linearGradient id="agh-ref-color-green-gradient-100" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #EFFFFB;" /><stop offset="89.97%" style="stop-color: #C2DCD5;" /></linearGradient>; /* linear-gradient(143deg, #EFFFFB 10.03%, #C2DCD5 89.97%) */
   --agh-ref-color-green-gradient-200-svg: <linearGradient id="agh-ref-color-green-gradient-200" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="5.3%" style="stop-color: #D1FFF4;" /><stop offset="94.7%" style="stop-color: #4DC8A8;" /></linearGradient>; /* linear-gradient(143deg, #D1FFF4 5.3%, #4DC8A8 94.7%) */
   --agh-ref-color-green-gradient-500-svg: <linearGradient id="agh-ref-color-green-gradient-500" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="0%" style="stop-color: rgba(143, 231, 210, 1);" /><stop offset="68%" style="stop-color: rgba(74, 190, 160, 1);" /><stop offset="100%" style="stop-color: rgba(32, 172, 136, 1);" /></linearGradient>; /* linear-gradient(143deg, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%) */
+  --agh-ref-color-green-gradient-600-svg: <linearGradient id="agh-ref-color-green-gradient-600" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="14.26%" style="stop-color: #81D8C3;" /><stop offset="83.88%" style="stop-color: #019C75;" /></linearGradient>; /* linear-gradient(143deg, #81D8C3 14.26%, #019C75 83.88%) */
   --agh-ref-color-green-gradient-700-svg: <linearGradient id="agh-ref-color-green-gradient-700" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #52CDB0;" /><stop offset="87.89%" style="stop-color: #007A5B;" /></linearGradient>; /* linear-gradient(143deg, #52CDB0 10.03%, #007A5B 87.89%) */
   --agh-ref-color-orange-gradient-100-svg: <linearGradient id="agh-ref-color-orange-gradient-100" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="14.26%" style="stop-color: #FFF1E6;" /><stop offset="85.74%" style="stop-color: #FFDDC4;" /></linearGradient>; /* linear-gradient(143deg, #FFF1E6 14.26%, #FFDDC4 85.74%) */
   --agh-ref-color-orange-gradient-200-svg: <linearGradient id="agh-ref-color-orange-gradient-200" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #FFE3CB;" /><stop offset="89.97%" style="stop-color: #F59752;" /></linearGradient>; /* linear-gradient(143deg, #FFE3CB 10.03%, #F59752 89.97%) */
   --agh-ref-color-orange-gradient-500-svg: <linearGradient id="agh-ref-color-orange-gradient-500" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="5.3%" style="stop-color: #F8CEA8;" /><stop offset="5.3%" style="stop-color: #F9D0AB;" /><stop offset="94.7%" style="stop-color: #FF8227;" /></linearGradient>; /* linear-gradient(143deg, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%) */
+  --agh-ref-color-orange-gradient-600-svg: <linearGradient id="agh-ref-color-orange-gradient-600" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="14.26%" style="stop-color: #F4BC87;" /><stop offset="85.74%" style="stop-color: #F37D28;" /></linearGradient>; /* linear-gradient(143deg, #F4BC87 14.26%, #F37D28 85.74%) */
   --agh-ref-color-orange-gradient-700-svg: <linearGradient id="agh-ref-color-orange-gradient-700" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #F4BC87;" /><stop offset="89.97%" style="stop-color: #F36701;" /></linearGradient>; /* linear-gradient(143deg, #F4BC87 10.03%, #F36701 89.97%) */
   --agh-ref-color-blue-gradient-100-svg: <linearGradient id="agh-ref-color-blue-gradient-100" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="14.26%" style="stop-color: #DFEAFF;" /><stop offset="85.74%" style="stop-color: #BAD4FC;" /></linearGradient>; /* linear-gradient(143deg, #DFEAFF 14.26%, #BAD4FC 85.74%) */
   --agh-ref-color-blue-gradient-200-svg: <linearGradient id="agh-ref-color-blue-gradient-200" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #B1CCFF;" /><stop offset="89.97%" style="stop-color: #0061F3;" /></linearGradient>; /* linear-gradient(143deg, #B1CCFF 10.03%, #0061F3 89.97%) */
   --agh-ref-color-blue-gradient-500-svg: <linearGradient id="agh-ref-color-blue-gradient-500" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #92B7FF;" /><stop offset="89.97%" style="stop-color: #004FC7;" /></linearGradient>; /* linear-gradient(143deg, #92B7FF 10.03%, #004FC7 89.97%) */
+  --agh-ref-color-blue-gradient-600-svg: <linearGradient id="agh-ref-color-blue-gradient-600" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="18.05%" style="stop-color: #8FB5FF;" /><stop offset="81.95%" style="stop-color: #0146AE;" /></linearGradient>; /* linear-gradient(143deg, #8FB5FF 18.05%, #0146AE 81.95%) */
   --agh-ref-color-blue-gradient-700-svg: <linearGradient id="agh-ref-color-blue-gradient-700" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #84AEFF;" /><stop offset="89.97%" style="stop-color: #02337D;" /></linearGradient>; /* linear-gradient(143deg, #84AEFF 10.03%, #02337D 89.97%) */
   --agh-ref-color-red-gradient-100-svg: <linearGradient id="agh-ref-color-red-gradient-100" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #FFE9E9;" /><stop offset="89.97%" style="stop-color: #FFB3B3;" /></linearGradient>; /* linear-gradient(143deg, #FFE9E9 10.03%, #FFB3B3 89.97%) */
   --agh-ref-color-red-gradient-200-svg: <linearGradient id="agh-ref-color-red-gradient-200" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #FFD0D0;" /><stop offset="89.97%" style="stop-color: #E66665;" /></linearGradient>; /* linear-gradient(143deg, #FFD0D0 10.03%, #E66665 89.97%) */
   --agh-ref-color-red-gradient-500-svg: <linearGradient id="agh-ref-color-red-gradient-500" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="5.3%" style="stop-color: #FF9191;" /><stop offset="94.7%" style="stop-color: #DC1615;" /></linearGradient>; /* linear-gradient(143deg, #FF9191 5.3%, #DC1615 94.7%) */
-  --agh-ref-color-red-gradient-700-svg: <linearGradient id="agh-ref-color-red-gradient-700" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="14.26%" style="stop-color: #DC3E3E;" /><stop offset="85.74%" style="stop-color: #850100;" /></linearGradient>; /* linear-gradient(143deg, #DC3E3E 14.26%, #850100 85.74%) */
+  --agh-ref-color-red-gradient-600-svg: <linearGradient id="agh-ref-color-red-gradient-600" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="18.05%" style="stop-color: #E08282;" /><stop offset="81.95%" style="stop-color: #D91412;" /></linearGradient>; /* linear-gradient(143deg, #E08282 18.05%, #D91412 81.95%) */
+  --agh-ref-color-red-gradient-700-svg: <linearGradient id="agh-ref-color-red-gradient-700" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="18.05%" style="stop-color: #DE6C6C;" /><stop offset="81.95%" style="stop-color: #B30301;" /></linearGradient>; /* linear-gradient(143deg, #DE6C6C 18.05%, #B30301 81.95%) */
   --agh-ref-color-cyan-gradient-100-svg: <linearGradient id="agh-ref-color-cyan-gradient-100" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="14.26%" style="stop-color: #E8FDFF;" /><stop offset="85.74%" style="stop-color: #B1DCE1;" /></linearGradient>; /* linear-gradient(143deg, #E8FDFF 14.26%, #B1DCE1 85.74%) */
   --agh-ref-color-cyan-gradient-200-svg: <linearGradient id="agh-ref-color-cyan-gradient-200" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="14.26%" style="stop-color: #D7FBFF;" /><stop offset="85.74%" style="stop-color: #39C7D8;" /></linearGradient>; /* linear-gradient(143deg, #D7FBFF 14.26%, #39C7D8 85.74%) */
   --agh-ref-color-cyan-gradient-500-svg: <linearGradient id="agh-ref-color-cyan-gradient-500" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #CEF0F4;" /><stop offset="89.97%" style="stop-color: #35BCCC;" /></linearGradient>; /* linear-gradient(143deg, #CEF0F4 10.03%, #35BCCC 89.97%) */
+  --agh-ref-color-cyan-gradient-600-svg: <linearGradient id="agh-ref-color-cyan-gradient-600" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="14.26%" style="stop-color: #C0EDF2;" /><stop offset="78.57%" style="stop-color: #44B3C0;" /></linearGradient>; /* linear-gradient(143deg, #C0EDF2 14.26%, #44B3C0 78.57%) */
   --agh-ref-color-cyan-gradient-700-svg: <linearGradient id="agh-ref-color-cyan-gradient-700" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="10.03%" style="stop-color: #9DDEE6;" /><stop offset="81.95%" style="stop-color: #1EA0AF;" /></linearGradient>; /* linear-gradient(143deg, #9DDEE6 10.03%, #1EA0AF 81.95%) */
   --agh-ref-color-white-gradient-500-svg: <linearGradient id="agh-ref-color-white-gradient-500" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="0%" style="stop-color: rgba(255, 255, 255, 1);" /><stop offset="100%" style="stop-color: rgba(227, 227, 227, 1);" /></linearGradient>; /* linear-gradient(143deg, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%) */
   --agh-ref-color-border-white-500-svg: <linearGradient id="agh-ref-color-border-white-500" data-gradient-angle="223.97" x1="84.71%" y1="14.01%" x2="15.290000000000001%" y2="85.99%"><stop offset="0.84%" style="stop-color: #B4B4B4;" /><stop offset="20.05%" style="stop-color: #DBDBDB;" /><stop offset="31.44%" style="stop-color: #CFCFCF;" /><stop offset="38.95%" style="stop-color: #D3D3D3;" /><stop offset="45.25%" style="stop-color: #F3F3F3;" /><stop offset="54.21%" style="stop-color: #CACACA;" /><stop offset="68.34%" style="stop-color: #D9D9D9;" /><stop offset="78.67%" style="stop-color: #E8E8E8;" /></linearGradient>; /* linear-gradient(223.97deg, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) */
@@ -433,22 +458,27 @@
   --agh-ref-color-green-gradient-100-origin: linear-gradient(143deg, #EFFFFB 10.03%, #C2DCD5 89.97%); /* linear-gradient(to bottom right, #EFFFFB 10.03%, #C2DCD5 89.97%) */
   --agh-ref-color-green-gradient-200-origin: linear-gradient(143deg, #D1FFF4 5.3%, #4DC8A8 94.7%); /* linear-gradient(to bottom right, #D1FFF4 5.3%, #4DC8A8 94.7%) */
   --agh-ref-color-green-gradient-500-origin: linear-gradient(143deg, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%); /* linear-gradient(to bottom right, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%) */
+  --agh-ref-color-green-gradient-600-origin: linear-gradient(143deg, #81D8C3 14.26%, #019C75 83.88%); /* linear-gradient(to bottom right, #81D8C3 14.26%, #019C75 83.88%) */
   --agh-ref-color-green-gradient-700-origin: linear-gradient(143deg, #52CDB0 10.03%, #007A5B 87.89%); /* linear-gradient(to bottom right, #52CDB0 10.03%, #007A5B 87.89%) */
   --agh-ref-color-orange-gradient-100-origin: linear-gradient(143deg, #FFF1E6 14.26%, #FFDDC4 85.74%); /* linear-gradient(to bottom right, #FFF1E6 14.26%, #FFDDC4 85.74%) */
   --agh-ref-color-orange-gradient-200-origin: linear-gradient(143deg, #FFE3CB 10.03%, #F59752 89.97%); /* linear-gradient(to bottom right, #FFE3CB 10.03%, #F59752 89.97%) */
   --agh-ref-color-orange-gradient-500-origin: linear-gradient(143deg, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%); /* linear-gradient(to bottom right, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%) */
+  --agh-ref-color-orange-gradient-600-origin: linear-gradient(143deg, #F4BC87 14.26%, #F37D28 85.74%); /* linear-gradient(to bottom right, #F4BC87 14.26%, #F37D28 85.74%) */
   --agh-ref-color-orange-gradient-700-origin: linear-gradient(143deg, #F4BC87 10.03%, #F36701 89.97%); /* linear-gradient(to bottom right, #F4BC87 10.03%, #F36701 89.97%) */
   --agh-ref-color-blue-gradient-100-origin: linear-gradient(143deg, #DFEAFF 14.26%, #BAD4FC 85.74%); /* linear-gradient(to bottom right, #DFEAFF 14.26%, #BAD4FC 85.74%) */
   --agh-ref-color-blue-gradient-200-origin: linear-gradient(143deg, #B1CCFF 10.03%, #0061F3 89.97%); /* linear-gradient(to bottom right, #B1CCFF 10.03%, #0061F3 89.97%) */
   --agh-ref-color-blue-gradient-500-origin: linear-gradient(143deg, #92B7FF 10.03%, #004FC7 89.97%); /* linear-gradient(to bottom right, #92B7FF 10.03%, #004FC7 89.97%) */
+  --agh-ref-color-blue-gradient-600-origin: linear-gradient(143deg, #8FB5FF 18.05%, #0146AE 81.95%); /* linear-gradient(to bottom right, #8FB5FF 18.05%, #0146AE 81.95%) */
   --agh-ref-color-blue-gradient-700-origin: linear-gradient(143deg, #84AEFF 10.03%, #02337D 89.97%); /* linear-gradient(to bottom right, #84AEFF 10.03%, #02337D 89.97%) */
   --agh-ref-color-red-gradient-100-origin: linear-gradient(143deg, #FFE9E9 10.03%, #FFB3B3 89.97%); /* linear-gradient(to bottom right, #FFE9E9 10.03%, #FFB3B3 89.97%) */
   --agh-ref-color-red-gradient-200-origin: linear-gradient(143deg, #FFD0D0 10.03%, #E66665 89.97%); /* linear-gradient(to bottom right, #FFD0D0 10.03%, #E66665 89.97%) */
   --agh-ref-color-red-gradient-500-origin: linear-gradient(143deg, #FF9191 5.3%, #DC1615 94.7%); /* linear-gradient(to bottom right, #FF9191 5.3%, #DC1615 94.7%) */
-  --agh-ref-color-red-gradient-700-origin: linear-gradient(143deg, #DC3E3E 14.26%, #850100 85.74%); /* linear-gradient(to bottom right, #DC3E3E 14.26%, #850100 85.74%) */
+  --agh-ref-color-red-gradient-600-origin: linear-gradient(143deg, #E08282 18.05%, #D91412 81.95%); /* linear-gradient(to bottom right, #E08282 18.05%, #D91412 81.95%) */
+  --agh-ref-color-red-gradient-700-origin: linear-gradient(143deg, #DE6C6C 18.05%, #B30301 81.95%); /* linear-gradient(to bottom right, #DE6C6C 18.05%, #B30301 81.95%) */
   --agh-ref-color-cyan-gradient-100-origin: linear-gradient(143deg, #E8FDFF 14.26%, #B1DCE1 85.74%); /* linear-gradient(to bottom right, #E8FDFF 14.26%, #B1DCE1 85.74%) */
   --agh-ref-color-cyan-gradient-200-origin: linear-gradient(143deg, #D7FBFF 14.26%, #39C7D8 85.74%); /* linear-gradient(to bottom right, #D7FBFF 14.26%, #39C7D8 85.74%) */
   --agh-ref-color-cyan-gradient-500-origin: linear-gradient(143deg, #CEF0F4 10.03%, #35BCCC 89.97%); /* linear-gradient(to bottom right, #CEF0F4 10.03%, #35BCCC 89.97%) */
+  --agh-ref-color-cyan-gradient-600-origin: linear-gradient(143deg, #C0EDF2 14.26%, #44B3C0 78.57%); /* linear-gradient(to bottom right, #C0EDF2 14.26%, #44B3C0 78.57%) */
   --agh-ref-color-cyan-gradient-700-origin: linear-gradient(143deg, #9DDEE6 10.03%, #1EA0AF 81.95%); /* linear-gradient(to bottom right, #9DDEE6 10.03%, #1EA0AF 81.95%) */
   --agh-ref-color-white-gradient-500-origin: linear-gradient(143deg, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%); /* linear-gradient(to bottom right, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%) */
   --agh-ref-color-border-white-500-origin: linear-gradient(223.97deg, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%); /* linear-gradient(to bottom left, #B4B4B4 0.84%, #DBDBDB 20.05%, #CFCFCF 31.44%, #D3D3D3 38.95%, #F3F3F3 45.25%, #CACACA 54.21%, #D9D9D9 68.34%, #E8E8E8 78.67%) */
@@ -490,12 +520,12 @@
   --agh-ref-effects-inner-shadow-100-filter: drop-shadow(inset 4px 4px rgba(0,0,0,0.03)) drop-shadow(inset 2px 2px rgba(0,0,0,0.1)) drop-shadow(inset 1px 1px rgba(0,0,0,0.17)) drop-shadow(inset 0 0 rgba(0,0,0,0.2)); /* inset 4px 4px 2px rgba(0,0,0,0.03), inset 2px 2px 2px rgba(0,0,0,0.1), inset 1px 1px 1px rgba(0,0,0,0.17), inset 0 0 1px rgba(0,0,0,0.2) */
   --agh-ref-effects-inner-shadow-200-filter: drop-shadow(inset 8px 10px rgba(0,0,0,0.02)) drop-shadow(inset 5px 6px rgba(0,0,0,0.06)) drop-shadow(inset 2px 3px rgba(0,0,0,0.11)) drop-shadow(inset 1px 1px rgba(0,0,0,0.12)); /* inset 8px 10px 5px rgba(0,0,0,0.02), inset 5px 6px 4px rgba(0,0,0,0.06), inset 2px 3px 3px rgba(0,0,0,0.11), inset 1px 1px 2px rgba(0,0,0,0.12) */
   --agh-ref-effects-inner-shadow-700-filter: drop-shadow(inset 51px 48px rgba(0,0,0,0.02)) drop-shadow(inset 29px 27px rgba(0,0,0,0.08)) drop-shadow(inset 13px 12px rgba(0,0,0,0.14)) drop-shadow(inset 3px 3px rgba(0,0,0,0.16)); /* inset 51px 48px 28px rgba(0,0,0,0.02), inset 29px 27px 24px rgba(0,0,0,0.08), inset 13px 12px 17px rgba(0,0,0,0.14), inset 3px 3px 10px rgba(0,0,0,0.16) */
-  --agh-ref-effects-solid-blue-filter: drop-shadow(0 0 0 rgba(0, 79, 199, 0.2)); /* 0 0 0 3 rgba(0, 79, 199, 0.2) */
-  --agh-ref-effects-solid-cyan-filter: drop-shadow(0 0 0 rgba(53, 188, 204, 0.2)); /* 0 0 0 3 rgba(53, 188, 204, 0.2) */
-  --agh-ref-effects-solid-red-filter: drop-shadow(0 0 0 rgba(219, 89, 82, 0.2)); /* 0 0 0 3 rgba(219, 89, 82, 0.2) */
-  --agh-ref-effects-solid-orange-filter: drop-shadow(0 0 0 rgba(251, 157, 46, 0.2)); /* 0 0 0 3 rgba(251, 157, 46, 0.2) */
-  --agh-ref-effects-solid-green-filter: drop-shadow(0 0 0 rgba(106, 187, 159, 0.2)); /* 0 0 0 3 rgba(106, 187, 159, 0.2) */
-  --agh-ref-effects-solid-purple-filter: drop-shadow(0 0 0 rgba(121, 81, 207, 0.2)); /* 0 0 0 3 rgba(121, 81, 207, 0.2) */
+  --agh-ref-effects-solid-blue-filter: drop-shadow(0 0 0 rgba(0, 79, 199, 0.2)); /* 0 0 0 3px rgba(0, 79, 199, 0.2) */
+  --agh-ref-effects-solid-cyan-filter: drop-shadow(0 0 0 rgba(53, 188, 204, 0.2)); /* 0 0 0 3px rgba(53, 188, 204, 0.2) */
+  --agh-ref-effects-solid-red-filter: drop-shadow(0 0 0 rgba(219, 89, 82, 0.2)); /* 0 0 0 3px rgba(219, 89, 82, 0.2) */
+  --agh-ref-effects-solid-orange-filter: drop-shadow(0 0 0 rgba(251, 157, 46, 0.2)); /* 0 0 0 3px rgba(251, 157, 46, 0.2) */
+  --agh-ref-effects-solid-green-filter: drop-shadow(0 0 0 rgba(106, 187, 159, 0.2)); /* 0 0 0 3px rgba(106, 187, 159, 0.2) */
+  --agh-ref-effects-solid-purple-filter: drop-shadow(0 0 0 rgba(121, 81, 207, 0.2)); /* 0 0 0 3px rgba(121, 81, 207, 0.2) */
   --agh-sys-effects-shadow-gadget-filter: drop-shadow(8px 14px 10px rgba(0,0,0,0.05)) drop-shadow(4px 6px 7px rgba(0,0,0,0.09)) drop-shadow(1px 2px 4px rgba(0,0,0,0.1)); /* 8px 14px 10px rgba(0,0,0,0.05), 4px 6px 7px rgba(0,0,0,0.09), 1px 2px 4px rgba(0,0,0,0.1) */
   --agh-sys-effects-shadow-chart-filter: drop-shadow(8px 14px 10px rgba(0,0,0,0.05)) drop-shadow(4px 6px 7px rgba(0,0,0,0.09)) drop-shadow(1px 2px 4px rgba(0,0,0,0.1)); /* 8px 14px 10px rgba(0,0,0,0.05), 4px 6px 7px rgba(0,0,0,0.09), 1px 2px 4px rgba(0,0,0,0.1) */
   --agh-sys-effects-shadow-card-filter: drop-shadow(8px 14px 10px rgba(0,0,0,0.05)) drop-shadow(4px 6px 7px rgba(0,0,0,0.09)) drop-shadow(1px 2px 4px rgba(0,0,0,0.1)); /* 8px 14px 10px rgba(0,0,0,0.05), 4px 6px 7px rgba(0,0,0,0.09), 1px 2px 4px rgba(0,0,0,0.1) */
