@@ -74,7 +74,6 @@ const computeOverflowed = () => {
   if (wrapperRef$.value) {
     delay(() => {
       const { scrollHeight, clientHeight } = wrapperRef$.value!;
-      console.log(scrollHeight, clientHeight);
       overflowed.set(scrollHeight > clientHeight + 1);
     }, 30);
   }
