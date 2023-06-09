@@ -192,6 +192,7 @@ const clickSelection = () => {
       padding: var(--agh-ref-spacing-300);
 
       > .menu-header {
+        margin-bottom: var(--agh-ref-spacing-400);
         padding: 0;
       }
     }
@@ -202,7 +203,7 @@ const clickSelection = () => {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--agh-ref-spacing-400);
+    margin-bottom: var(--agh-ref-spacing-200);
     padding: var(--agh-ref-spacing-100);
 
     > .title {
