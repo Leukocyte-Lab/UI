@@ -27,7 +27,7 @@ export default {
     variant: {
       control: 'select',
       description: 'Button variant (optional)',
-      options: ['rounded', 'square', 'circle', 'rect'],
+      options: ['rounded', 'square', 'circle', 'rect', 'text'],
       defaultValue: 'rounded'
     },
     level: {
@@ -88,6 +88,13 @@ SecondaryRectButtonBox.args = {
   icon: 'fa6-solid:door-closed',
   variant: 'rect',
   level: 'secondary'
+};
+
+export const TextButtonBox = Template.bind({});
+TextButtonBox.args = {
+  label: 'Mark as read',
+  icon: 'fa6-solid:check-double',
+  variant: 'text'
 };
 
 export const SquareButtonBox = Template.bind({});
