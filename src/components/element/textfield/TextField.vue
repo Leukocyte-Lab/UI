@@ -8,23 +8,15 @@ import { signal } from '@/shared/libs/signal';
 
 import type { TextField } from '@/components/element/textfield/text-field.model';
 
-const props = withDefaults(
-  defineProps<
-    TextField.Props & {
-      modelValue: string;
-    }
-  >(),
-  {
-    value: '',
-    type: 'text',
-    required: false,
-    disabled: false,
-    readonly: false,
-    spellcheck: false,
-    autocomplete: 'off',
-    iconAlign: 'right'
-  }
-);
+const props = withDefaults(defineProps<TextField.Props>(), {
+  type: 'text',
+  required: false,
+  disabled: false,
+  readonly: false,
+  spellcheck: false,
+  autocomplete: 'off',
+  iconAlign: 'right'
+});
 
 const emits = defineEmits<{
   (e: 'update:modelValue', value: string): void;
@@ -72,7 +64,7 @@ onMounted(() => {
       }
     ]"
   >
-    <input ref="inputRef$" :class="[$style['textfield-input']]" v-bind="props" @input="onTrigger" />
+    <input ref="inputRef$" :class="[$style['textfield-input']]" v-bind="props" :value="props.modelValue" @input="onTrigger" />
     <template v-if="type === 'search' || props.icon">
       <Icon
         :class="[$style['textfield-label--icon'], $style['icon']]"
@@ -137,6 +129,8 @@ onMounted(() => {
   &-input {
     appearance: none;
     position: relative;
+    width: 100%;
+    height: 100%;
     padding: var(--agh-ref-spacing-100) var(--agh-ref-spacing-300);
     background-color: var(--agh-ref-color-grayscale-120);
     border: var(--agh-sys-border-gadget-textfield);
