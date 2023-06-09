@@ -15,7 +15,7 @@ namespace ButtonBox {
     level?: Level;
   };
 
-  export type Variant = 'rounded' | 'square' | 'circle' | 'rect' | 'file';
+  export type Variant = 'rounded' | 'square' | 'circle' | 'rect' | 'text' | 'file';
   export type Level = 'primary' | 'secondary';
 
   export type Props = BaseProps;
@@ -96,12 +96,12 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     }
 
     &:not(.rounded.secondary, .rect.secondary) {
-      @include metallic.box;
-
       &.rounded,
       &.square,
       &.circle,
       &.rect {
+        @include metallic.box;
+
         --box-fill-gradient: var(--agh-ref-color-blue-gradient-500);
         --box-fill-gradient-hover: var(--agh-ref-color-blue-gradient-200);
         --box-fill-gradient-click: var(--agh-ref-color-blue-gradient-700);
@@ -228,6 +228,32 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
     }
 
+    &.text {
+      display: flex;
+      flex-direction: row-reverse;
+      place-content: center;
+      gap: var(--agh-ref-spacing-100);
+      color: var(--agh-ref-color-blue-500);
+      font: var(--agh-sys-typeface-label-hl-medium);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--agh-ref-color-blue-400);
+      }
+
+      &.clicked {
+        color: var(--agh-ref-color-blue-600);
+      }
+
+      &.disabled {
+        color: var(--agh-ref-color-grayscale-400);
+      }
+
+      #{$self}-icon {
+        font-size: var(--agh-ref-icon-size-100);
+      }
+    }
+
     &.disabled {
       box-shadow: none !important;
 
@@ -243,6 +269,12 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     font: var(--button-font);
     font-weight: var(--button-font-weight);
     text-shadow: var(--button-text-shadow);
+  }
+
+  &-icon {
+    display: flex;
+    place-content: center;
+    place-items: center;
   }
 }
 </style>
