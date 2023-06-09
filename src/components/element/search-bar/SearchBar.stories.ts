@@ -13,7 +13,11 @@ export default {
     },
     modelValue: {
       control: 'text',
-      description: 'TextField value, use by `v-model`.'
+      description: 'SearchBar value, use by `v-model`.'
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'SearchBar disabled (optional)'
     }
   }
 } satisfies Meta<typeof SearchBar>;
