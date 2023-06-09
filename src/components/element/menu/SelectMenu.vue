@@ -35,9 +35,9 @@ const groups = computedEager(() =>
           ...option,
           selected: Boolean(
             props.multiple
-              ? map(props.value, props.fields.key).includes(selector(option, props.fields.key))
+              ? map(props.modelValue, props.fields.key).includes(selector(option, props.fields.key))
               : selector(option, props.fields.key) ===
-                  selector(props.value as ObjectLike<any>, props.fields.key)
+                  selector(props.modelValue as ObjectLike<any>, props.fields.key)
           )
         })
       )
