@@ -18,6 +18,12 @@ export default {
     disabled: {
       control: 'boolean',
       description: 'SearchBar disabled (optional)'
+    },
+    'onUpdate:modelValue': {
+      action: 'search'
+    },
+    'onSelect': {
+      action: 'selected'
     }
   }
 } satisfies Meta<typeof SearchBar>;

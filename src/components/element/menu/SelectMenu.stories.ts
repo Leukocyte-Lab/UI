@@ -18,6 +18,9 @@ export default {
     multiple: {
       control: 'boolean',
       description: 'Whether the menu allows multiple selections.'
+    },
+    'onUpdate:modelValue': {
+      action: 'selected'
     }
   }
 } satisfies Meta<typeof SelectMenu>;
