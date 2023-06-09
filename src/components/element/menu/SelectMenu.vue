@@ -20,9 +20,9 @@ namespace SelectMenu {
   };
   export type Props = {
     options: ObjectLike<any>[];
-    value: ObjectLike<any> | ObjectLike<any>[];
-    groupBy: string;
     fields: Fields;
+    value?: ObjectLike<any> | ObjectLike<any>[];
+    groupBy?: string;
     label?: string;
     multiple?: boolean;
   };
@@ -31,7 +31,7 @@ namespace SelectMenu {
 const props = withDefaults(
   defineProps<
     SelectMenu.Props & {
-      modelValue?: SelectMenu.Props['value'][];
+      modelValue?: SelectMenu.Props['value'];
     }
   >(),
   {
