@@ -145,3 +145,26 @@ InvalidWithCustomErrorMessageTextField.args = {
     valueMissing: 'IP Address is required'
   }
 };
+
+export const SearchTextField = Template.bind({});
+SearchTextField.args = {
+  type: 'search',
+};
+
+export const DisabledSearchTextField = Template.bind({});
+DisabledSearchTextField.args = {
+  ...SearchTextField.args,
+  disabled: true
+};
+
+export const FindTextField = Template.bind({});
+FindTextField.args = {
+  type: 'search',
+  iconAlign: 'left'
+};
+
+export const DisabledFindTextField = Template.bind({});
+DisabledFindTextField.args = {
+  ...FindTextField.args,
+  disabled: true
+};
