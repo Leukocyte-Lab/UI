@@ -11,36 +11,13 @@ import { selector } from '@/shared/libs/selector';
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
 
+import type { SelectMenu } from '@/components/element/menu/SelectMenu.model';
 import type { Signal } from '@/shared/libs/signal';
 import type { ObjectLike } from '@/shared/types/object';
 
-namespace SelectMenu {
-  export type Fields = {
-    key: string;
-    title?: string;
-    content?: string;
-    icon?: string;
-  };
-  export type Props = {
-    options: ObjectLike<any>[];
-    fields: Fields;
-    value?: ObjectLike<any> | ObjectLike<any>[];
-    groupBy?: string;
-    label?: string;
-    multiple?: boolean;
-  };
-}
-
-const props = withDefaults(
-  defineProps<
-    SelectMenu.Props & {
-      modelValue?: SelectMenu.Props['value'];
-    }
-  >(),
-  {
-    multiple: false
-  }
-);
+const props = withDefaults(defineProps<SelectMenu.Props>(), {
+  multiple: false
+});
 
 const emits = defineEmits<{
   (e: 'update:modelValue', option: ObjectLike): void;
