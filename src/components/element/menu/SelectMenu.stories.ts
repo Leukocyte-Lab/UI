@@ -165,3 +165,35 @@ GroupWithSubtitleMultiSelectMenu.args = {
   multiple: true,
   groupBy: 'category'
 };
+
+export const IconWithSubtitleSelectMenu = Template.bind({});
+IconWithSubtitleSelectMenu.args = {
+  options: [
+    {
+      action: 'Sort by Time',
+      direction: 'Latest First',
+      icon: 'fa6-solid:arrow-down-wide-short'
+    },
+    {
+      action: 'Sort by Time',
+      direction: 'Oldest First',
+      icon: 'fa6-solid:arrow-up-wide-short'
+    },
+    {
+      action: 'Sort by Name',
+      direction: 'Ascending (A to Z)',
+      icon: 'fa6-solid:arrow-down-a-z'
+    },
+    {
+      action: 'Sort by Name',
+      direction: 'Descending (Z to A)',
+      icon: 'fa6-solid:arrow-up-z-a'
+    }
+  ],
+  fields: {
+    key: 'direction',
+    title: '{{ $.action }}',
+    content: '{{ $.direction }}',
+    icon: 'icon'
+  }
+};
