@@ -86,7 +86,15 @@ const onSelect = (option: Signal<ObjectLike>) => {
 </script>
 
 <template>
-  <CardBox :class="$style['menu-container']" :radius="'var(--agh-ref-border-radius-500)'">
+  <CardBox
+    :class="[
+      $style['menu-container'],
+      {
+        [$style['group']]: props.groupBy
+      }
+    ]"
+    :radius="'var(--agh-ref-border-radius-500)'"
+  >
     <template v-for="(options, group) in groups" :key="group">
       <div :class="$style['menu-wrapper']">
         <template v-if="group">
@@ -153,9 +161,13 @@ const onSelect = (option: Signal<ObjectLike>) => {
     width: var(--agh-sys-gadget-searchbar-width-small);
     height: fit-content;
     max-height: calc(var(--agh-sys-gadget-searchbar-width-small) * 2);
-    padding: var(--agh-ref-spacing-300);
+    padding: var(--agh-ref-spacing-100);
     box-shadow: var(--agh-sys-effects-shadow-pop-up);
     overflow: hidden;
+
+    &.group {
+      padding: var(--agh-ref-spacing-300);
+    }
   }
 
   &-wrapper {
