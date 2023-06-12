@@ -5,21 +5,7 @@ import BaseLink from '@/components/base/BaseLink.vue';
 
 import { useEventDebounceSignal } from '@/shared/libs/event';
 
-namespace ButtonBox {
-  export type BaseProps = {
-    label?: string;
-    icon?: string;
-    link?: string;
-    disabled?: boolean;
-    variant?: Variant;
-    level?: Level;
-  };
-
-  export type Variant = 'rounded' | 'square' | 'circle' | 'rect' | 'text' | 'file';
-  export type Level = 'primary' | 'secondary';
-
-  export type Props = BaseProps;
-}
+import type { ButtonBox } from '@/components/element/button/ButtonBox.model';
 
 const props = withDefaults(defineProps<ButtonBox.Props>(), {
   disabled: false,
@@ -52,7 +38,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       $style[props.level],
       props.disabled ? [$style['disabled']] : [$style['clickable']],
       {
-        [$style['clicked']]: triggered()
+        [$style['clicked']]: props.clicked || triggered()
       }
     ]"
     :aria-disabled="props.disabled"
