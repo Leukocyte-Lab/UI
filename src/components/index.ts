@@ -14,6 +14,9 @@ import DoughnutChart from '@/components/element/chart/DoughnutChart.vue';
 import LineChart from '@/components/element/chart/LineChart.vue';
 import RadarChart from '@/components/element/chart/RadarChart.vue';
 
+// dropdown
+import DropDown from '@/components/element/dropdown/DropDown.vue';
+
 // menu
 import SelectMenu from '@/components/element/menu/SelectMenu.vue';
 
@@ -43,6 +46,9 @@ export {
   DoughnutChart,
   LineChart,
   RadarChart,
+
+  // dropdown
+  DropDown,
 
   // menu
   SelectMenu,
