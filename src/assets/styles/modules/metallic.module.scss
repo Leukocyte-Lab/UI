@@ -12,6 +12,7 @@
 
       &.clicked {
         color: var(--box-text-color-click, var(--box-text-color));
+        box-shadow: var(--box-box-shadow-clicked);
       }
     }
 
@@ -44,8 +45,8 @@
     }
 
     &.disabled {
-      background-image: var(--box-fill-gradient-disabled, var(--box-fill-gradient)),
-          var(--box-border-gradient-disabled, var(--box-border-gradient));
+      background-color: var(--box-fill-disabled);
+      background-image: var(--box-fill-gradient-disabled), var(--box-border-gradient-disabled);
     }
   } @else {
     background-color: var(--box-fill); // fallback for `--box-fill-gradient` not present
