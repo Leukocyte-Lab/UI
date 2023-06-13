@@ -172,10 +172,12 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>();
     &.purpose {
       &-box {
         --box-box-shadow: var(--agh-sys-effects-shadow-card);
+        --box-border-width: var(--agh-ref-border-width-100);
       }
 
       &-container {
         --box-box-shadow: var(--agh-sys-effects-shadow-container);
+        --box-border-width: var(--agh-ref-border-width-200);
       }
     }
   }
