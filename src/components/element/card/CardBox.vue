@@ -16,7 +16,7 @@ namespace CardBox {
   };
 
   export type Variant = 'metallic' | 'flat' | 'dash';
-  export type Color = 'default' | 'cyan' | 'blue' | 'green' | 'orange' | 'red' | 'purple';
+  export type Color = 'default' | 'cyan' | 'blue' | 'green' | 'orange' | 'red';
   export type StrokeWeight = 'bold' | 'normal' | 'thin';
   export type Purpose = 'box' | 'container';
 
@@ -78,39 +78,36 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>();
     outline: none;
     text-decoration: none;
 
-    $colors: 'default', 'cyan', 'blue', 'green', 'orange', 'red', 'purple';
+    $colors: 'default', 'cyan', 'blue', 'green', 'orange', 'red';
 
     @each $color in $colors {
       &.color-#{$color} {
-        $fill: var(--agh-ref-color-grayscale-100);
-        $fill-hover: var(--agh-ref-color-grayscale-200);
+        $fill: var(--agh-ref-color-grayscale-120);
+        $fill-hover: var(--agh-ref-color-grayscale-100);
+        $fill-clicked: var(--agh-ref-color-grayscale-100);
         $fill-gradient: var(--agh-ref-color-white-gradient-500);
         $fill-gradient-hover: var(--agh-ref-color-white-gradient-700);
+        $fill-gradient-clicked: var(--agh-ref-color-white-gradient-500);
         $border-gradient: var(--agh-ref-color-border-white-500);
+        $border-gradient-clicked: var(--agh-ref-color-border-white-500);
 
         @if $color != 'default' {
-          $fill: var(--agh-ref-color-#{$color}-500);
-          $fill-hover: var(--agh-ref-color-#{$color}-700);
-          $fill-gradient: var(--agh-ref-color-#{$color}-gradient-500);
-          $fill-gradient-hover: var(--agh-ref-color-#{$color}-gradient-700);
-          $border-gradient: var(--agh-ref-color-border-#{$color}-500);
+          $fill-clicked: var(--agh-ref-color-#{$color}-500);
+          $fill-gradient: var(--agh-ref-color-#{$color}-gradient-600);
+          $fill-gradient-hover: var(--agh-ref-color-#{$color}-gradient-500);
+          $fill-gradient-clicked: var(--agh-ref-color-#{$color}-gradient-700);
+          $border-gradient-clicked: var(--agh-ref-color-border-#{$color}-500);
 
           --box-text-color: var(--agh-ref-color-grayscale-100);
-        }
-
-        &.metallic {
-          --box-fill-gradient: #{$fill-gradient};
-          --box-fill-gradient-hover: #{$fill-gradient-hover};
-        }
-
-        &.flat {
-          --box-fill-gradient: linear-gradient(#{$fill}, #{$fill});
-          --box-fill-gradient-hover: linear-gradient(#{$fill-hover}, #{$fill-hover});
         }
 
         &.metallic,
         &.flat {
           --box-border-gradient: #{$border-gradient};
+
+          &.clicked {
+            --box-border-gradient: #{$border-gradient-clicked};
+          }
 
           &:not(.has-stroke) {
             @include metallic.box;
@@ -121,8 +118,27 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>();
           }
         }
 
+        &.metallic {
+          --box-fill-gradient: #{$fill-gradient};
+          --box-fill-gradient-hover: #{$fill-gradient-hover};
+          --box-fill-gradient-clicked: #{$fill-gradient-clicked};
+          --box-border-gradient: #{$border-gradient-clicked};
+        }
+
+        &.flat {
+          --box-fill-gradient: linear-gradient(#{$fill}, #{$fill});
+          --box-fill-gradient-hover: linear-gradient(#{$fill-hover}, #{$fill-hover});
+          --box-fill-gradient-clicked: linear-gradient(#{$fill-clicked}, #{$fill-clicked});
+
+          --box-text-color: var(--agh-ref-color-grayscale-1000);
+
+          &.clicked {
+            --box-text-color: var(--agh-ref-color-grayscale-100);
+          }
+        }
+
         &.dash {
-          border: var(--box-border-width) dashed #{$fill};
+          border: var(--box-border-width) dashed #{$fill-clicked};
           border-radius: var(--box-border-radius);
         }
       }

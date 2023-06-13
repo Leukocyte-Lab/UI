@@ -14,7 +14,7 @@ export default {
     color: {
       control: 'select',
       description: 'Card color (optional)',
-      options: ['default', 'cyan', 'blue', 'green', 'orange', 'red', 'purple'],
+      options: ['default', 'cyan', 'blue', 'green', 'orange', 'red'],
       defaultValue: 'default'
     },
     variant: {
@@ -181,22 +181,4 @@ export const DashRedCardBox = Template.bind({});
 DashRedCardBox.args = {
   ...DashDefaultCardBox.args,
   color: 'red'
-};
-
-export const MetallicPurpleCardBox = Template.bind({});
-MetallicPurpleCardBox.args = {
-  ...MetallicDefaultCardBox.args,
-  color: 'purple'
-};
-
-export const FlatPurpleCardBox = Template.bind({});
-FlatPurpleCardBox.args = {
-  ...FlatDefaultCardBox.args,
-  color: 'purple'
-};
-
-export const DashPurpleCardBox = Template.bind({});
-DashPurpleCardBox.args = {
-  ...DashDefaultCardBox.args,
-  color: 'purple'
 };
