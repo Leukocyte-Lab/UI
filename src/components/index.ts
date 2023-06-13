@@ -1,34 +1,34 @@
 // base
-import BaseLink from '@/components/base/BaseLink.vue';
-import BasePoly from '@/components/base/BasePoly.vue';
+import BaseLink from './base/BaseLink.vue';
+import BasePoly from './base/BasePoly.vue';
 
 // element
 // button
-import ButtonBox from '@/components/element/button/ButtonBox.vue';
+import ButtonBox from './element/button/ButtonBox.vue';
 
 // card
-import CardBox from '@/components/element/card/CardBox.vue';
+import CardBox from './element/card/CardBox.vue';
 
 // chart
-import DoughnutChart from '@/components/element/chart/DoughnutChart.vue';
-import LineChart from '@/components/element/chart/LineChart.vue';
-import RadarChart from '@/components/element/chart/RadarChart.vue';
+import DoughnutChart from './element/chart/DoughnutChart.vue';
+import LineChart from './element/chart/LineChart.vue';
+import RadarChart from './element/chart/RadarChart.vue';
 
 // dropdown
-import DropDown from '@/components/element/dropdown/DropDown.vue';
+import DropDown from './element/dropdown/DropDown.vue';
 
 // menu
-import SelectMenu from '@/components/element/menu/SelectMenu.vue';
+import SelectMenu from './element/menu/SelectMenu.vue';
 
 // progress
-import ProgressBar from '@/components/element/progress/ProgressBar.vue';
-import ProgressCircle from '@/components/element/progress/ProgressCircle.vue';
+import ProgressBar from './element/progress/ProgressBar.vue';
+import ProgressCircle from './element/progress/ProgressCircle.vue';
 
 // searchbar
-import SearchBar from '@/components/element/search-bar/SearchBar.vue';
+import SearchBar from './element/search-bar/SearchBar.vue';
 
 // textfield
-import TextField from '@/components/element/textfield/TextField.vue';
+import TextField from './element/textfield/TextField.vue';
 
 export {
   // base
