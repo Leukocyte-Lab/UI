@@ -24,12 +24,12 @@
     "./shared": {
       "import": "./dist/ui.shared.es.js",
       "require": "./dist/ui.shared.cjs.js",
-      "type": "./dist/shared/index.d.ts"
+      "types": "./dist/shared/index.d.ts"
     },
     "./component": {
       "import": "./dist/ui.component.es.js",
       "require": "./dist/ui.component.cjs.js",
-      "type": "./dist/components/index.d.ts"
+      "types": "./dist/components/index.d.ts"
     }
   },
   "files": [
