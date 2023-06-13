@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("./uuid-4b061abe.cjs");require("vue");const t=(u,i)=>u??i;exports.Hex2UUID=e.Hex2UUID;exports.Math$=e.Math$;exports.NilUUID=e.NilUUID;exports.String$=e.String$;exports.UUID2Hex=e.UUID2Hex;exports.computed=e.computed;exports.signal=e.signal;exports.useEventDebounceSignal=e.useEventDebounceSignal;exports.uuid=e.uuid;exports.useFallback=t;
+//# sourceMappingURL=ui.shared.cjs.js.map
