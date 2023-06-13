@@ -108,3 +108,16 @@ jobs:
 
       - name: 🔧 Run Build
         run: pnpm run build:prod
+
+      - name: 💼 Packing
+        if: ${{ contains(github.ref, 'refs/heads/main') }}
+        run: |
+          pnpm pack
+          tar -zxvf *.tgz
+
+      - name: 🚀 Publish Packages
+        if: ${{ contains(github.ref, 'refs/heads/main') }}
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: release # The branch the action should deploy to.
+          folder: package/ # The folder the action should deploy.
