@@ -36,6 +36,12 @@ export default {
       options: ['primary', 'secondary'],
       defaultValue: 'primary'
     },
+    size: {
+      control: 'radio',
+      description: 'Button size (optional)',
+      options: ['small', 'large'],
+      defaultValue: 'primary'
+    },
     onClick: { action: 'clicked' }
   }
 } satisfies Meta<typeof ButtonBox>;
@@ -55,6 +61,7 @@ DefaultRoundedButtonBox.args = {
   icon: 'fa6-solid:arrow-right',
   variant: 'rounded',
   level: 'primary',
+  size: 'small',
   disabled: false
 };
 
