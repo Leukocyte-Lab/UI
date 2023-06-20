@@ -30,7 +30,8 @@
       "import": "./dist/ui.component.es.js",
       "require": "./dist/ui.component.cjs.js",
       "types": "./dist/components/index.d.ts"
-    }
+    },
+    "./style.css": "./dist/style.css"
   },
   "files": [
     "dist/*"
