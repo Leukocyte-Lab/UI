@@ -1,0 +1,24 @@
+@mixin use($offset: 0) {
+  scrollbar-width: var(--agh-ref-border-width-200);
+
+  &::-webkit-scrollbar {
+    width: var(--agh-ref-border-width-200);
+    height: var(--agh-ref-border-width-200);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--agh-ref-color-grayscale-200);
+    border-radius: var(--agh-ref-border-radius-900);
+    box-shadow: var(--agh-sys-effects-inner-shadow-deco);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--agh-ref-color-grayscale-700);
+    border-radius: var(--agh-ref-border-radius-900);
+  }
+
+  &::-webkit-scrollbar-button:decrement {
+    width: $offset;
+    height: $offset;
+  }
+}
