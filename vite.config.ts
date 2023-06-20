@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => ({
     sourcemap: true,
     rollupOptions: {
       // Vue is provided by the parent project, don't compile Vue source-code inside our library.
-      external: ['vue'],
+      external: ['vue', '@iconify/vue/offline'],
       output: { globals: { vue: 'Vue' }, inlineDynamicImports: false, format: 'esm' }
     }
   }
