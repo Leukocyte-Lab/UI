@@ -74,7 +74,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     width: fit-content;
     height: fit-content;
     place-items: center;
-    place-items: center;
     vertical-align: middle;
     outline: none;
     text-decoration: none;
@@ -189,6 +188,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         padding: var(--agh-ref-spacing-75) var(--agh-ref-spacing-500);
         font: var(--agh-sys-typeface-label-hl-medium);
       }
+
       &.large {
         padding: var(--agh-ref-spacing-100) var(--agh-ref-spacing-500);
         font: var(--agh-sys-typeface-label-hl-large);
@@ -280,7 +280,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
             background-image: none;
             -webkit-text-fill-color: initial;
             -moz-text-fill-color: initial;
-
             filter: none;
           }
         }
