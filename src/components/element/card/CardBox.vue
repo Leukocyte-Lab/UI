@@ -33,7 +33,11 @@ const props = withDefaults(defineProps<CardBox.Props>(), {
   radius: 'var(--agh-ref-border-radius-300)'
 });
 
-const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>();
+const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
+  if (!props.clickable) {
+    event.preventDefault();
+  }
+});
 </script>
 
 <template>
@@ -50,7 +54,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>();
       {
         [$style['clickable']]: props.link || props.clickable,
         [$style['has-stroke']]: props.hasStroke,
-        [$style['clicked']]: triggered()
+        [$style['clicked']]: triggered() && props.clickable
       }
     ]"
     @click="onTrigger"
