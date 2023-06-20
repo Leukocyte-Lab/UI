@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly -p tsconfig.app.json --composite false --outDir dist",
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly -p tsconfig.app.json --composite false --outDir dist && cp -r ./src/assets/styles ./dist",
     "build:check": "run-p lint type-check",
     "build:prod": "run-p build",
     "build:storybook": "VITE_STORYBOOK=true storybook build && cp -r theme/ storybook-static/theme",
@@ -31,6 +31,7 @@
       "require": "./dist/ui.component.cjs.js",
       "types": "./dist/components/index.d.ts"
     },
+    "./styles": "./dist/styles",
     "./style.css": "./dist/style.css"
   },
   "files": [
