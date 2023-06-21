@@ -7,6 +7,8 @@ import { signal, computed } from './libs/signal';
 import Math$ from './libs/math';
 import String$ from './libs/string';
 import uuid, { NilUUID, Hex2UUID, UUID2Hex } from './libs/uuid';
+import { selector } from './libs/selector';
+import { parser } from './libs/parser';
 
 // types
 import type { UUID, HexUUID } from './libs/uuid';
@@ -39,7 +41,9 @@ export {
   uuid,
   NilUUID,
   Hex2UUID,
-  UUID2Hex
+  UUID2Hex,
+  selector,
+  parser
 };
 
 export type {
