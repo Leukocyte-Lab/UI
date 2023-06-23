@@ -17,6 +17,10 @@ import RadarChart from './element/chart/RadarChart.vue';
 // dropdown
 import DropDown from './element/dropdown/DropDown.vue';
 
+// effect
+import InnerShadowDeco from '@/components/effect/InnerShadowDeco.vue';
+import RoundEffect from '@/components/effect/RoundEffect.vue';
+
 // menu
 import SelectMenu from './element/menu/SelectMenu.vue';
 
@@ -49,6 +53,10 @@ export {
 
   // dropdown
   DropDown,
+
+  // effect
+  InnerShadowDeco,
+  RoundEffect,
 
   // menu
   SelectMenu,
