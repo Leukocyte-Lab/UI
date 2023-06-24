@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly -p tsconfig.app.json --composite false --outDir dist && cp -r ./src/assets/styles ./dist",
+    "build": "vite build",
     "build:check": "run-p lint type-check",
-    "build:prod": "run-p build",
+    "build:prod": "run-p build build:type build:assets",
+    "build:type": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.app.json --composite false --outDir dist && tsc-alias -p tsconfig.app.json --outDir dist",
+    "build:assets": "cp -r ./src/assets/styles ./dist",
     "build:storybook": "VITE_STORYBOOK=true storybook build && cp -r theme/ storybook-static/theme",
     "preview": "vite preview",
     "test:unit": "vitest",
