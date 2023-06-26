@@ -1,5 +1,6 @@
 // base
 import BaseLink from './base/BaseLink.vue';
+import BaseList from './base/BaseList.vue';
 import BasePoly from './base/BasePoly.vue';
 
 // element
@@ -37,6 +38,7 @@ import TextField from './element/textfield/TextField.vue';
 export {
   // base
   BaseLink,
+  BaseList,
   BasePoly,
 
   // element
