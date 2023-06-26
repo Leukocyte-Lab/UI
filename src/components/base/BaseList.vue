@@ -1,0 +1,35 @@
+<script setup lang="ts">
+import { computedEager } from '@vueuse/core';
+import { fromPairs, toPairs, groupBy } from 'lodash-es';
+
+import type { BaseList } from '@/components/base/BaseList.model';
+
+defineSlots<{
+  default: (props: { item: BaseList.Props['items'][number]; index: number }) => JSX.Element;
+  group?: (props: { group: string | number; items: BaseList.Props['items'] }) => JSX.Element;
+}>();
+
+const props = defineProps<BaseList.Props>();
+
+const groups = computedEager(() =>
+  fromPairs(
+    toPairs(groupBy(props.items, props.groupBy ?? '')).map(([group, options]) => [
+      group === 'undefined' ? '' : group,
+      options
+    ])
+  )
+);
+</script>
+
+<template>
+  <template v-for="(items, group) in groups" :key="`list-group-${group}`">
+    <template v-if="group">
+      <!-- @slot Use this group slot to access group in grouped items -->
+      <slot name="group" :group="group" :items="items" />
+    </template>
+    <template v-for="(item, index) in items" :key="`list-item-${index}`">
+      <!-- @slot Use this default slot to access item in items -->
+      <slot name="default" :item="item" :index="index" />
+    </template>
+  </template>
+</template>
