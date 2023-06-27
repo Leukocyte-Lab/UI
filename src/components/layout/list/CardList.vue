@@ -172,7 +172,7 @@ onUpdated(() => {
   computeOverflowed();
 });
 
-watch([items, sort, filters, search, selected], () => {
+watch([sort, filters, search, selected], () => {
   computeItems();
   computeOverflowed();
 });
