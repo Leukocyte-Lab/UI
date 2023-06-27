@@ -1,4 +1,4 @@
-import type { Vector } from '@/shared/types/vector';
+import type { Vector } from '../../shared/types/vector';
 export type MathProxy = Math & {
     ARC_BASE: number;
     Vector: {

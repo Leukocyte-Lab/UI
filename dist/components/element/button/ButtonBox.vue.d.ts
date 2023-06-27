@@ -1,4 +1,4 @@
-import type { ButtonBox } from '@/components/element/button/ButtonBox.model';
+import type { ButtonBox } from '../../../components/element/button/ButtonBox.model';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps>, {
     disabled: boolean;
     variant: string;

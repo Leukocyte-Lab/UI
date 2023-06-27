@@ -1,4 +1,4 @@
-import type { TextField } from '@/components/element/textfield/text-field.model';
+import type { TextField } from '../../../components/element/textfield/text-field.model';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<TextField.Props>, {
     type: string;
     required: boolean;

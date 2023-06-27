@@ -1,4 +1,4 @@
-import type { Progress } from '@/components/element/progress/progress.model';
+import type { Progress } from '../../../components/element/progress/progress.model';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<Progress.Props>, {
     value: number;
     variant: string;

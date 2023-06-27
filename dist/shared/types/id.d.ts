@@ -1,4 +1,4 @@
-import type { HexUUID, UUID } from '@/shared/libs/uuid';
+import type { HexUUID, UUID } from '../../shared/libs/uuid';
 export type HasUUID<T> = T & {
     id: UUID;
 };

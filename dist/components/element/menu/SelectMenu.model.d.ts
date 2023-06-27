@@ -1,4 +1,4 @@
-import type { ObjectLike } from '@/shared/types/object';
+import type { ObjectLike } from '../../../shared/types/object';
 export declare namespace SelectMenu {
     type Fields = {
         key: string;
@@ -7,9 +7,9 @@ export declare namespace SelectMenu {
         icon?: string;
     };
     type Props = {
-        options: ObjectLike<any>[];
+        options: ObjectLike[];
         fields: Fields;
-        modelValue?: ObjectLike<any> | ObjectLike<any>[];
+        modelValue?: ObjectLike | ObjectLike[];
         groupBy?: string;
         label?: string;
         multiple?: boolean;

@@ -1,7 +1,7 @@
-import type { MustHas } from '@/shared';
-import type { Char } from '@/shared/types/char';
-import type { ObjectLike } from '@/shared/types/object';
-import type { Vector } from '@/shared/types/vector';
+import type { MustHas } from '../../../shared';
+import type { Char } from '../../../shared/types/char';
+import type { ObjectLike } from '../../../shared/types/object';
+import type { Vector } from '../../../shared/types/vector';
 export declare namespace Chart {
     type Type = 'line' | 'bar' | 'radar' | 'doughnut';
     type DataType = number | string | Date;

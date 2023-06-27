@@ -1,28 +1,20 @@
-import type { ObjectLike } from '@/shared/types/object';
-import type { SelectMenu as SelectMenuNS } from '@/components/element/menu/SelectMenu.model';
-declare namespace SearchBar {
-    type Props = {
-        fields: SelectMenuNS.Props['fields'];
-        modelValue?: string;
-        items?: ObjectLike<any>[];
-        disabled?: boolean;
-    };
-}
+import type { SearchBar } from './SearchBar.model';
+import type { ObjectLike } from '../../../shared/types/object';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<SearchBar.Props>, {
     items: () => never[];
     modelValue: string;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (option: any) => void;
-    select: (option: ObjectLike<any>) => void;
+    select: (option: ObjectLike) => void;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<SearchBar.Props>, {
     items: () => never[];
     modelValue: string;
 }>>> & {
-    onSelect?: ((option: ObjectLike<any>) => any) | undefined;
+    onSelect?: ((option: ObjectLike) => any) | undefined;
     "onUpdate:modelValue"?: ((option: any) => any) | undefined;
 }, {
+    items: ObjectLike[];
     modelValue: string;
-    items: ObjectLike<any>[];
 }, {}>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;

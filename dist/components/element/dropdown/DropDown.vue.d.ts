@@ -1,4 +1,4 @@
-import type { DropDown } from '@/components/element/dropdown/DropDown.model';
+import type { DropDown } from '../../../components/element/dropdown/DropDown.model';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<DropDown.Props>, {
     items: () => never[];
     level: string;
@@ -10,8 +10,8 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
 }>>> & {
     "onUpdate:modelValue"?: ((option: any) => any) | undefined;
 }, {
-    level: import("../button/ButtonBox.model").ButtonBox.Level;
     items: import("../../../shared/types/object").ObjectLike<any>[];
+    level: import("../button/ButtonBox.model").ButtonBox.Level;
 }, {}>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;

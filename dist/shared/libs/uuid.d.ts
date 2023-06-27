@@ -1,8 +1,7 @@
-import { v4 as UUIDv4 } from 'uuid';
-export type UUID = ReturnType<typeof UUIDv4> & {
+export type UUID = string & {
     readonly _UUID: unique symbol;
 };
-export type HexUUID = ReturnType<typeof UUIDv4> & {
+export type HexUUID = string & {
     readonly _HexUUID?: unique symbol;
 };
 export declare const uuid: {

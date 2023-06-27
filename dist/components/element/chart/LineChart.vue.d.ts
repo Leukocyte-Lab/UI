@@ -1,4 +1,4 @@
-import type { Chart } from '@/components/element/chart/chart.model';
+import type { Chart } from '../../../components/element/chart/chart.model';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<Chart.Props>, {
     options: () => {
         offset: {
