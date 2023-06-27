@@ -11,6 +11,10 @@ export default {
       control: 'object',
       description: 'Data to be displayed in the menu.'
     },
+    fields: {
+      control: 'object',
+      description: 'Fields to control options displayed in the menu.'
+    },
     modelValue: {
       control: 'text',
       description: 'SelectMenu value, use by `v-model`.'

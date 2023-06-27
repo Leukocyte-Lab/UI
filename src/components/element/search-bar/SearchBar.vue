@@ -7,17 +7,8 @@ import TextField from '@/components/element/textfield/TextField.vue';
 import { selector } from '@/shared/libs/selector';
 import { signal } from '@/shared/libs/signal';
 
+import type { SearchBar } from './SearchBar.model';
 import type { ObjectLike } from '@/shared/types/object';
-import type { SelectMenu as SelectMenuNS } from '@/components/element/menu/SelectMenu.model';
-
-namespace SearchBar {
-  export type Props = {
-    fields: SelectMenuNS.Props['fields'];
-    modelValue?: string;
-    items?: ObjectLike<any>[];
-    disabled?: boolean;
-  };
-}
 
 const props = withDefaults(defineProps<SearchBar.Props>(), {
   items: () => [],
@@ -26,7 +17,7 @@ const props = withDefaults(defineProps<SearchBar.Props>(), {
 
 const emits = defineEmits<{
   (e: 'update:modelValue', option: any): void;
-  (e: 'select', option: ObjectLike<any>): void;
+  (e: 'select', option: ObjectLike): void;
 }>();
 
 const search = computed({
@@ -37,12 +28,14 @@ const search = computed({
   }
 });
 
-const selected = ref<ObjectLike<any>>();
+const selected = ref<ObjectLike>();
 
 const closeMenu = signal(false);
-const filteredItems = signal<ObjectLike<any>[]>([]);
+const filteredItems = signal<ObjectLike[]>([]);
 
-const onSelect = (option: ObjectLike<any>) => {
+const onSelect = (option?: ObjectLike) => {
+  if (!option) return;
+
   emits('update:modelValue', selector(option, props.fields.key));
   emits('select', option);
   closeMenu.set(true);
@@ -50,7 +43,7 @@ const onSelect = (option: ObjectLike<any>) => {
 
 const computeFilteredItems = (value: string) => {
   filteredItems.set(
-    props.items?.filter((item) => selector(item, props.fields.key).includes(value)) ?? []
+    props.items?.filter((item) => String(selector(item, props.fields.key)).includes(value)) ?? []
   );
 };
 

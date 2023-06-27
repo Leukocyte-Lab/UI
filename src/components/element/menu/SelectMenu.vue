@@ -31,13 +31,13 @@ const groups = computedEager(() =>
     toPairs(groupBy(props.options, props.groupBy ?? '')).map(([group, options]) => [
       group === 'undefined' ? '' : group,
       options.map((option) =>
-        signal<ObjectLike<any>>({
+        signal<ObjectLike>({
           ...option,
           selected: Boolean(
             props.multiple
               ? map(props.modelValue, props.fields.key).includes(selector(option, props.fields.key))
               : selector(option, props.fields.key) ===
-                  selector(props.modelValue as ObjectLike<any>, props.fields.key)
+                  selector(props.modelValue as ObjectLike, props.fields.key)
           )
         })
       )
@@ -156,7 +156,7 @@ onMounted(() => {
               <template v-if="props.fields.icon">
                 <Icon
                   :class="$style['menu-option-icon']"
-                  :icon="selector(option(), props.fields.icon)"
+                  :icon="String(selector(option(), props.fields.icon))"
                 />
               </template>
               <div :class="$style['menu-option-group']">

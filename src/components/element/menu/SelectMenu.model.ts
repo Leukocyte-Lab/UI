@@ -8,9 +8,9 @@ export namespace SelectMenu {
     icon?: string;
   };
   export type Props = {
-    options: ObjectLike<any>[];
+    options: ObjectLike[];
     fields: Fields;
-    modelValue?: ObjectLike<any> | ObjectLike<any>[];
+    modelValue?: ObjectLike | ObjectLike[];
     groupBy?: string;
     label?: string;
     multiple?: boolean;
