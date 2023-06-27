@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUpdated, ref, watch } from 'vue';
 import {
-  delay,
   filter,
   first,
   flatMap,
@@ -14,7 +13,7 @@ import {
   orderBy,
   uniq
 } from 'lodash-es';
-import { computedEager } from '@vueuse/core';
+import { computedEager, useResizeObserver } from '@vueuse/core';
 import { vOnClickOutside } from '@vueuse/components';
 
 import { signal } from '@/shared/libs/signal';
@@ -118,10 +117,8 @@ const overflowed = signal(false);
 
 const computeOverflowed = () => {
   if (wrapperRef$.value) {
-    delay(() => {
-      const { scrollHeight, clientHeight } = wrapperRef$.value!;
-      overflowed.set(scrollHeight > clientHeight + 1);
-    }, 30);
+    const { scrollHeight, clientHeight } = wrapperRef$.value!;
+    overflowed.set(scrollHeight > clientHeight + 1);
   }
 };
 
@@ -162,6 +159,10 @@ const computeItems = () => {
 
   items.value = filteredItems;
 };
+
+useResizeObserver(wrapperRef$, computeOverflowed, {
+  window
+});
 
 onMounted(() => {
   computeItems();

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, onUpdated, ref } from 'vue';
-import { computedEager, useElementSize } from '@vueuse/core';
+import { computed, onMounted, ref } from 'vue';
+import { computedEager, useElementSize, useCssVar } from '@vueuse/core';
 import { delay } from 'lodash-es';
 
 import Math$ from '@/shared/libs/math';
@@ -105,17 +105,19 @@ const bgFill = signal('');
 
 const computeBgFill = () => {
   if (wrapperRef$.value) {
-    delay(
-      () =>
-        bgFill.set(
-          globalThis.getComputedStyle(wrapperRef$.value!).getPropertyValue('--chart-bg-fill-svg')
-        ),
-      30
+    bgFill.set(
+      useCssVar('--chart-bg-fill-svg', wrapperRef$, {
+        observe: true
+      }).value
     );
+
+    if (!bgFill()) {
+      delay(computeBgFill, 1);
+    }
   }
 };
 
-onUpdated(() => {
+onMounted(() => {
   computeBgFill();
 });
 </script>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { computedEager } from '@vueuse/core';
-import { delay, flatMap, fromPairs, groupBy, map, omit, toPairs } from 'lodash-es';
+import { computedEager, useResizeObserver } from '@vueuse/core';
+import { flatMap, fromPairs, groupBy, map, omit, toPairs } from 'lodash-es';
 import { Icon } from '@iconify/vue/offline';
 
 import { signal } from '@/shared/libs/signal';
@@ -49,10 +49,8 @@ const overflowed = signal(false);
 
 const computeOverflowed = () => {
   if (wrapperRef$.value) {
-    delay(() => {
-      const { scrollHeight, clientHeight } = wrapperRef$.value!;
-      overflowed.set(scrollHeight > clientHeight + 1);
-    }, 30);
+    const { scrollHeight, clientHeight } = wrapperRef$.value!;
+    overflowed.set(scrollHeight > clientHeight + 1);
   }
 };
 
@@ -83,6 +81,10 @@ const clickSelection = () => {
     emits('update:modelValue', {});
   }
 };
+
+useResizeObserver(wrapperRef$, computeOverflowed, {
+  window
+});
 
 onMounted(() => {
   computeOverflowed();

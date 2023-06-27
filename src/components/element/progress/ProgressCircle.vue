@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onUpdated, ref } from 'vue';
-import { computedEager, useElementSize } from '@vueuse/core';
+import { onMounted, ref } from 'vue';
+import { computedEager, useCssVar, useElementSize } from '@vueuse/core';
 import { delay } from 'lodash-es';
 
 import Math$ from '@/shared/libs/math';
@@ -34,19 +34,19 @@ const valueFill = signal('');
 
 const computeValueFill = () => {
   if (wrapperRef$.value && props.variant === 'convex') {
-    delay(
-      () =>
-        valueFill.set(
-          globalThis
-            .getComputedStyle(wrapperRef$.value!)
-            .getPropertyValue('--progress-value-fill-gradient')
-        ),
-      30
+    valueFill.set(
+      useCssVar('--progress-value-fill-gradient', wrapperRef$, {
+        observe: true
+      }).value
     );
+
+    if (!valueFill()) {
+      delay(computeValueFill, 1);
+    }
   }
 };
 
-onUpdated(() => {
+onMounted(() => {
   computeValueFill();
 });
 </script>
