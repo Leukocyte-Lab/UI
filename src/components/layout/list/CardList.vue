@@ -36,7 +36,7 @@ defineSlots<{
     index: number;
     selected: boolean;
   }) => JSX.Element;
-  footer: (props: {}) => JSX.Element;
+  footer?: (props: {}) => JSX.Element;
 }>();
 
 const props = withDefaults(defineProps<CardList.Props>(), {
