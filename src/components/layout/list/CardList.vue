@@ -37,6 +37,7 @@ defineSlots<{
     selected: boolean;
   }) => JSX.Element;
   footer?: (props: {}) => JSX.Element;
+  placeholder?: (props: {}) => JSX.Element;
 }>();
 
 const props = withDefaults(defineProps<CardList.Props>(), {
@@ -253,6 +254,10 @@ watch([sort, filters, search, selected], () => {
       ]"
     >
       <BaseList :items="items" :group-by="props.groupBy">
+        <template #placeholder>
+          <!-- @slot Use this placeholder slot to display the placeholder when items are empty -->
+          <slot name="placeholder" />
+        </template>
         <template v-slot:group="slotProps">
           <label :class="$style['list-item-label']">{{ slotProps.group }}</label>
         </template>
