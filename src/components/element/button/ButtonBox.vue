@@ -136,7 +136,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       padding: var(--agh-ref-spacing-400);
 
       #{$self}-icon {
-        font-size: var(--agh-ref-spacing-600);
+        font-size: var(--button-icon-size, var(--agh-ref-spacing-600));
       }
     }
 
@@ -212,7 +212,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
 
       #{$self}-icon {
-        font-size: var(--agh-ref-icon-size-100);
+        font-size: var(--button-icon-size, var(--agh-ref-icon-size-100));
       }
     }
 
@@ -243,7 +243,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
 
       #{$self}-icon {
-        font-size: var(--agh-ref-icon-size-200);
+        font-size: var(--button-icon-size, var(--agh-ref-icon-size-200));
       }
     }
 
@@ -321,7 +321,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
 
       #{$self}-icon {
-        font-size: var(--agh-ref-icon-size-100);
+        font-size: var(--button-icon-size, var(--agh-ref-icon-size-100));
       }
     }
 
