@@ -24,7 +24,7 @@ const groups = computedEager(() =>
 
 <template>
   <template v-if="!props.items || props.items.length === 0">
-    <!-- @slot Use this placeholder slot to display placeholder when items is empty -->
+    <!-- @slot Use this placeholder slot to display the placeholder when items are empty -->
     <slot name="placeholder" />
   </template>
   <template v-for="(items, group) in groups" :key="`list-group-${group}`">
