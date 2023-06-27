@@ -35,6 +35,10 @@ import SearchBar from './element/search-bar/SearchBar.vue';
 // textfield
 import TextField from './element/textfield/TextField.vue';
 
+// layout
+// list
+import CardList from './layout/list/CardList.vue';
+
 export {
   // base
   BaseLink,
@@ -71,5 +75,9 @@ export {
   SearchBar,
 
   // textfield
-  TextField
+  TextField,
+
+  // layout
+  // list
+  CardList
 };
