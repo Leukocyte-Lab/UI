@@ -2,6 +2,7 @@ import type { ObjectLike } from '../../../shared/types/object';
 import type { CardList } from './CardList.model';
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<CardList.Props>, {
     items: () => never[];
+    modelValue: string;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (option: string) => void;
     "update:sort": (option: CardList.SortOption) => void;
@@ -9,6 +10,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     "update:selected": (option: ObjectLike) => void;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<CardList.Props>, {
     items: () => never[];
+    modelValue: string;
 }>>> & {
     "onUpdate:modelValue"?: ((option: string) => any) | undefined;
     "onUpdate:sort"?: ((option: CardList.SortOption) => any) | undefined;
@@ -16,6 +18,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     "onUpdate:selected"?: ((option: ObjectLike) => any) | undefined;
 }, {
     items: ObjectLike[];
+    modelValue: string;
 }, {}>, {
     default: (props: {
         item: ObjectLike;

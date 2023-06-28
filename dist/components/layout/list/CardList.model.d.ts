@@ -16,7 +16,7 @@ export declare namespace CardList {
     };
     type Props = BaseList.Props & {
         fields: SelectMenu.Fields;
-        selected?: ObjectLike;
+        selected?: ObjectLike | null;
         modelValue?: string;
         sort?: SortOption;
         filter?: FilterOption[];
