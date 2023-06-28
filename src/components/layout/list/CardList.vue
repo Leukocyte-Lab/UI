@@ -114,7 +114,7 @@ const filters = computed({
 
 const localSelected = ref<ObjectLike | undefined>();
 const selected = computed({
-  get: () => props.selected ?? localSelected.value,
+  get: () => props.selected !== undefined ? props.selected : localSelected.value,
   set: (value) => {
     if (value) {
       emits('update:selected', value);
