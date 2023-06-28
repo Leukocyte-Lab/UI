@@ -2527,7 +2527,9 @@ const xu = /* @__PURE__ */ L({
       )
     ), i = T(n.modelValue ?? ""), u = F({
       get: () => n.modelValue ?? i.value,
-      set: (z) => t("update:modelValue", z ?? "")
+      set: (z) => {
+        t("update:modelValue", z ?? ""), n.modelValue || (i.value = z ?? "");
+      }
     }), r = T(Jl(n.sortOptions)), f = F({
       get: () => n.sort ?? r.value,
       set: (z) => {
@@ -2539,7 +2541,7 @@ const xu = /* @__PURE__ */ L({
         t("update:filter", z ?? []), n.filter || (y.value = z ?? []);
       }
     }), g = T(), d = F({
-      get: () => n.selected ?? g.value,
+      get: () => n.selected !== void 0 ? n.selected : g.value,
       set: (z) => {
         z && (t("update:selected", z), n.selected || (g.value = z));
       }
@@ -2725,7 +2727,7 @@ const xu = /* @__PURE__ */ L({
   "list-item-label": "_list-item-label_10vs0_89"
 }, Mu = {
   $style: Su
-}, Fu = /* @__PURE__ */ D(xu, [["__cssModules", Mu], ["__scopeId", "data-v-5c980b7d"]]);
+}, Fu = /* @__PURE__ */ D(xu, [["__cssModules", Mu], ["__scopeId", "data-v-3097007d"]]);
 export {
   qt as BaseLink,
   Do as BaseList,
