@@ -74,15 +74,15 @@ const filterOptions = computedEager<CardList.FilterOption[]>(() =>
 
 const localSearch = ref<string>(props.modelValue ?? '');
 const search = computed({
-  get: () => props.modelValue ?? localSearch.value,
+  get: () => (props.modelValue !== undefined ? props.modelValue : localSearch.value),
   set: (value) => {
-    return emits('update:modelValue', value);
+    return emits('update:modelValue', value ?? '');
   }
 });
 
 const localSort = ref<CardList.SortOption | undefined>(first(props.sortOptions));
 const sort = computed({
-  get: () => props.sort ?? localSort.value,
+  get: () => (props.sort !== undefined ? props.sort : localSort.value),
   set: (value) => {
     if (value) {
       closeSortMenu.set(true);
@@ -93,7 +93,7 @@ const sort = computed({
 
 const localFilter = ref<CardList.FilterOption[]>([]);
 const filters = computed({
-  get: () => props.filter ?? localFilter.value,
+  get: () => (props.filter !== undefined ? props.filter : localFilter.value),
   set: (value) => {
     return props.filter ? emits('update:filter', value) : (localFilter.value = value);
   }
@@ -101,7 +101,7 @@ const filters = computed({
 
 const localSelected = ref<ObjectLike | undefined>();
 const selected = computed({
-  get: () => props.selected ?? localSelected.value,
+  get: () => (props.selected !== undefined ? props.selected : localSelected.value),
   set: (value) => {
     if (value) {
       return props.selected ? emits('update:selected', value) : (localSelected.value = value);
