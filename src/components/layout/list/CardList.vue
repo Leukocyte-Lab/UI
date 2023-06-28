@@ -77,7 +77,11 @@ const localSearch = ref<string>(props.modelValue ?? '');
 const search = computed({
   get: () => props.modelValue ?? localSearch.value,
   set: (value) => {
-    return emits('update:modelValue', value ?? '');
+    emits('update:modelValue', value ?? '');
+
+    if (!props.modelValue) {
+      localSearch.value = value ?? '';
+    }
   }
 });
 
