@@ -40,7 +40,8 @@ defineSlots<{
 }>();
 
 const props = withDefaults(defineProps<CardList.Props>(), {
-  items: () => []
+  items: () => [],
+  modelValue: ''
 });
 
 const emits = defineEmits<{
@@ -74,7 +75,7 @@ const filterOptions = computedEager<CardList.FilterOption[]>(() =>
 
 const localSearch = ref<string>(props.modelValue ?? '');
 const search = computed({
-  get: () => (props.modelValue !== undefined ? props.modelValue : localSearch.value),
+  get: () => props.modelValue ?? localSearch.value,
   set: (value) => {
     return emits('update:modelValue', value ?? '');
   }
@@ -82,29 +83,41 @@ const search = computed({
 
 const localSort = ref<CardList.SortOption | undefined>(first(props.sortOptions));
 const sort = computed({
-  get: () => (props.sort !== undefined ? props.sort : localSort.value),
+  get: () => props.sort ?? localSort.value,
   set: (value) => {
     if (value) {
       closeSortMenu.set(true);
-      return props.sort ? emits('update:sort', value) : (localSort.value = value);
+      emits('update:sort', value);
+
+      if (!props.sort) {
+        localSort.value = value;
+      }
     }
   }
 });
 
 const localFilter = ref<CardList.FilterOption[]>([]);
 const filters = computed({
-  get: () => (props.filter !== undefined ? props.filter : localFilter.value),
+  get: () => props.filter ?? localFilter.value,
   set: (value) => {
-    return props.filter ? emits('update:filter', value) : (localFilter.value = value);
+    emits('update:filter', value ?? []);
+
+    if (!props.filter) {
+      localFilter.value = value ?? [];
+    }
   }
 });
 
 const localSelected = ref<ObjectLike | undefined>();
 const selected = computed({
-  get: () => (props.selected !== undefined ? props.selected : localSelected.value),
+  get: () => props.selected ?? localSelected.value,
   set: (value) => {
     if (value) {
-      return props.selected ? emits('update:selected', value) : (localSelected.value = value);
+      emits('update:selected', value);
+
+      if (!props.selected) {
+        localSelected.value = value;
+      }
     }
   }
 });
