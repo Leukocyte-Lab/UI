@@ -27,6 +27,18 @@ export default {
       control: 'text',
       description: 'CardList value, use by `v-model`.'
     },
+    selected: {
+      control: 'object',
+      description: 'Selected item, use by `v-model:selected`. (optional)'
+    },
+    sort: {
+      control: 'object',
+      description: 'Sort option, use by `v-model:sort`. (optional)'
+    },
+    filter: {
+      control: 'object',
+      description: 'Filter option, use by `v-model:filter`. (optional)'
+    },
     groupBy: {
       control: 'text',
       description: 'Group by field name. (optional)'
