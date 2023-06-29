@@ -1,5 +1,5 @@
-import { shallowRef as en, watchEffect as gt, readonly as yt, getCurrentScope as vt, onScopeDispose as $t, unref as l, computed as F, watch as H, ref as T, getCurrentInstance as tn, onMounted as te, defineComponent as L, openBlock as v, createBlock as R, resolveDynamicComponent as nn, normalizeProps as sn, guardReactiveProps as ln, withCtx as I, renderSlot as G, createElementBlock as m, Fragment as x, createCommentVNode as O, renderList as j, normalizeClass as p, createElementVNode as _, mergeProps as mt, toDisplayString as A, createVNode as E, useCssVars as on, reactive as rn, pushScopeId as be, popScopeId as we, toRefs as fe, normalizeStyle as an, toRef as un, customRef as cn, onUpdated as dn, withDirectives as We, withKeys as ue } from "vue";
-import { i as pe, d as oe, g as fn, e as ae, f as pn, h as bt, j as wt, k as _n, l as hn, o as gn, m as ke, n as yn, q as Be, r as vn, t as kt, v as $n, w as mn, x as bn, y as Ye, z as Ze, A as ze, B as _e, C as xe, D as Q, E as wn, F as kn, G as zn, I as zt, J as je, K as W, L as xn, O as On, P as Sn, Q as Xe, R as Mn, T as An, V as xt, W as Ot, X as Cn, Y as Pn, Z as Tn, _ as St, $ as Bn, a0 as jn, a1 as he, u as Ie, a2 as X, p as ge, a3 as Mt, a4 as K, M as k, b as U, s as q, a5 as Pe } from "./parser-9fc50bc2.js";
+import { shallowRef as en, watchEffect as gt, readonly as yt, getCurrentScope as vt, onScopeDispose as $t, unref as l, computed as F, watch as H, ref as T, getCurrentInstance as tn, onMounted as ee, defineComponent as L, openBlock as v, createBlock as R, resolveDynamicComponent as nn, normalizeProps as sn, guardReactiveProps as ln, withCtx as I, renderSlot as G, createElementBlock as m, Fragment as x, createCommentVNode as O, renderList as j, normalizeClass as p, createElementVNode as _, mergeProps as mt, toDisplayString as A, createVNode as E, useCssVars as on, reactive as rn, pushScopeId as be, popScopeId as we, toRefs as fe, normalizeStyle as an, toRef as un, customRef as cn, onUpdated as dn, withDirectives as We, withKeys as ue } from "vue";
+import { i as pe, d as oe, g as fn, e as ae, f as pn, h as bt, j as wt, k as _n, l as hn, o as gn, m as ke, n as yn, q as Be, r as vn, t as kt, v as $n, w as mn, x as bn, y as Ye, z as Ze, A as ze, B as _e, C as xe, D as J, E as wn, F as kn, G as zn, I as zt, J as je, K as W, L as xn, O as On, P as Sn, Q as Xe, R as Mn, T as An, V as xt, W as Ot, X as Cn, Y as Pn, Z as Tn, _ as St, $ as Bn, a0 as jn, a1 as he, u as Ie, p as ge, a2 as le, a3 as Mt, a4 as Q, M as k, b as U, s as q, a5 as Pe } from "./parser-9fc50bc2.js";
 import { Icon as re } from "@iconify/vue/offline";
 var In = /\s/;
 function En(e) {
@@ -295,7 +295,7 @@ function ce(e, t, n, s, o, a) {
     return c;
   if (!oe(e))
     return e;
-  var f = Q(e);
+  var f = J(e);
   if (f) {
     if (c = Cs(e), !i)
       return Wn(e, c);
@@ -340,7 +340,7 @@ function Ll(e, t, n, s) {
 }
 function Fl(e, t) {
   return function(n, s) {
-    var o = Q(n) ? Vl : Ll, a = t ? t() : {};
+    var o = J(n) ? Vl : Ll, a = t ? t() : {};
     return o(n, e, je(s), a);
   };
 }
@@ -378,7 +378,7 @@ function Yl(e) {
   };
 }
 var Zl = Yl(Be);
-const J = Zl;
+const X = Zl;
 function Xl(e, t) {
   var n = [];
   return zt(e, function(s, o, a) {
@@ -386,7 +386,7 @@ function Xl(e, t) {
   }), n;
 }
 function Jl(e, t) {
-  var n = Q(e) ? On : Xl;
+  var n = J(e) ? On : Xl;
   return n(e, je(t));
 }
 function Ql(e) {
@@ -504,7 +504,7 @@ function ko(e, t, n) {
 }
 function zo(e, t, n) {
   t.length ? t = W(t, function(a) {
-    return Q(a) ? function(c) {
+    return J(a) ? function(c) {
       return Ot(c, a.length === 1 ? a[0] : a);
     } : a;
   }) : t = [ae];
@@ -521,7 +521,7 @@ function zo(e, t, n) {
   });
 }
 function xo(e, t, n, s) {
-  return e == null ? [] : (Q(t) || (t = t == null ? [] : [t]), n = s ? void 0 : n, Q(n) || (n = n == null ? [] : [n]), zo(e, t, n));
+  return e == null ? [] : (J(t) || (t = t == null ? [] : [t]), n = s ? void 0 : n, J(n) || (n = n == null ? [] : [n]), zo(e, t, n));
 }
 var Oo = Object.defineProperty, So = Object.defineProperties, Mo = Object.getOwnPropertyDescriptors, at = Object.getOwnPropertySymbols, Ao = Object.prototype.hasOwnProperty, Co = Object.prototype.propertyIsEnumerable, it = (e, t, n) => t in e ? Oo(e, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : e[t] = n, Po = (e, t) => {
   for (var n in t || (t = {}))
@@ -543,19 +543,19 @@ function B(e, t) {
 function Ut(e) {
   return vt() ? ($t(e), !0) : !1;
 }
-function se(e) {
+function ne(e) {
   return typeof e == "function" ? e() : l(e);
 }
 const Bo = typeof window < "u";
 function Y(e) {
   var t;
-  const n = se(e);
+  const n = ne(e);
   return (t = n == null ? void 0 : n.$el) != null ? t : n;
 }
 const Oe = Bo ? window : void 0;
 function jo() {
   const e = T(!1);
-  return tn() && te(() => {
+  return tn() && ee(() => {
     e.value = !0;
   }), e;
 }
@@ -598,7 +598,7 @@ function qt(e, t, n = {}) {
   });
   function u() {
     var r;
-    const f = se(e), y = se(i);
+    const f = ne(e), y = ne(i);
     if (y && s) {
       const h = (r = s.getComputedStyle(y).getPropertyValue(f)) == null ? void 0 : r.trim();
       c.value = h || o;
@@ -608,14 +608,14 @@ function qt(e, t, n = {}) {
     attributes: !0,
     window: s
   }), H(
-    [i, () => se(e)],
+    [i, () => ne(e)],
     u,
     { immediate: !0 }
   ), H(
     c,
     (r) => {
       var f;
-      (f = i.value) != null && f.style && i.value.style.setProperty(se(e), r);
+      (f = i.value) != null && f.style && i.value.style.setProperty(ne(e), r);
     }
   ), c;
 }
@@ -719,7 +719,7 @@ const Ht = /* @__PURE__ */ L({
   setup(e) {
     const t = e, n = B(
       () => he(
-        J(Re(t.items, t.groupBy ?? "")).map(([s, o]) => [
+        X(Re(t.items, t.groupBy ?? "")).map(([s, o]) => [
           s === "undefined" ? "" : s,
           o
         ])
@@ -918,7 +918,7 @@ const Ht = /* @__PURE__ */ L({
   "purpose-container": "_purpose-container_ouh7m_412"
 }, br = {
   $style: mr
-}, ee = /* @__PURE__ */ D(cr, [["__cssModules", br], ["__scopeId", "data-v-d941fd1e"]]), Ne = ({
+}, K = /* @__PURE__ */ D(cr, [["__cssModules", br], ["__scopeId", "data-v-d941fd1e"]]), Ne = ({
   type: e,
   axises: t,
   data: n
@@ -940,7 +940,7 @@ const Ht = /* @__PURE__ */ L({
   }, c = (u, r) => r.map((f) => ({
     data: f,
     ...he(
-      J(u).filter(([, y]) => !X(y)).map(([y, h]) => {
+      X(u).filter(([, y]) => !le(y)).map(([y, h]) => {
         const g = h.selector ? U(f, h.selector) : null, d = h.accessor ? ge(f, h.accessor) : g;
         return [
           y,
@@ -959,9 +959,9 @@ const Ht = /* @__PURE__ */ L({
       label: ge(d, d.label ?? ""),
       series: c(r, d.series)
     })), h = y.flatMap((d) => d.series), g = he(
-      J(r).filter(([, d]) => !X(d)).map(([d, $]) => {
-        const b = Mt(K(h, `${d}.${$.type === "string" ? "value" : "normalized"}`)), w = Number($.min === "auto" ? _o(b) : $.min ?? 0), V = Number(
-          $.max === "auto" ? po(b) : $.max ?? b.length - (/radar|doughnut/.test(u ?? "") ? 0 : 1)
+      X(r).filter(([, d]) => !le(d)).map(([d, $]) => {
+        const b = Mt(Q(h, `${d}.${$.type === "string" ? "value" : "normalized"}`)), w = Number($.min === "auto" ? _o(b) : $.min ?? 0), V = Number(
+          $.max === "auto" ? po(b) ?? 0 : $.max ?? b.length - (/radar|doughnut/.test(u ?? "") ? 0 : 1)
         );
         return [
           d,
@@ -980,10 +980,10 @@ const Ht = /* @__PURE__ */ L({
         ];
       })
     );
-    return g && J(g).forEach(([d, $]) => {
+    return g && X(g).forEach(([d, $]) => {
       $.type === "string" ? y.forEach((b) => {
         b.series.forEach((w) => {
-          w[d].normalized = K($.metrics, "value").indexOf(w[d].value) / ($.metrics.length - (/radar|doughnut/.test(u ?? "") ? 0 : 1));
+          w[d].normalized = Q($.metrics, "value").indexOf(w[d].value) / (($.metrics ?? []).length - (/radar|doughnut/.test(u ?? "") ? 0 : 1));
         });
       }) : y.forEach((b) => {
         b.series.forEach((w) => {
@@ -996,10 +996,8 @@ const Ht = /* @__PURE__ */ L({
     };
   };
   return gt(() => {
-    if (!X(l(n))) {
-      const u = i(l(e), l(t), l(n));
-      s.datasets = u.datasets, s.axises = u.axises;
-    }
+    const u = i(l(e), l(t), l(n));
+    s.datasets = u.datasets, s.axises = u.axises;
   }), {
     ...o
   };
@@ -1133,7 +1131,7 @@ const Ht = /* @__PURE__ */ L({
                   width: "260",
                   class: p([g.$style["chart-area"], g.$style["legend-container"]])
                 }, [
-                  E(ee, {
+                  E(K, {
                     class: p([g.$style["chart-area"], g.$style["legend-wrapper"]]),
                     radius: "var(--agh-ref-border-radius-500)"
                   }, {
@@ -1357,7 +1355,7 @@ const Ht = /* @__PURE__ */ L({
                   width: "280",
                   class: p([r.$style["chart-area"], r.$style["legend-container"]])
                 }, [
-                  E(ee, {
+                  E(K, {
                     class: p([r.$style["chart-area"], r.$style["legend-wrapper"]]),
                     radius: "var(--agh-ref-border-radius-500)"
                   }, {
@@ -1513,7 +1511,7 @@ const Ht = /* @__PURE__ */ L({
         }).value
       ), h() || Rt(g, 1));
     };
-    return te(() => {
+    return ee(() => {
       g();
     }), (d, $) => (v(), m("div", {
       ref_key: "wrapperRef$",
@@ -1646,7 +1644,7 @@ const Ht = /* @__PURE__ */ L({
                 width: "260",
                 class: p([d.$style["chart-area"], d.$style["legend-container"]])
               }, [
-                E(ee, {
+                E(K, {
                   class: p([d.$style["chart-area"], d.$style["legend-wrapper"]]),
                   radius: "var(--agh-ref-border-radius-500)"
                 }, {
@@ -1733,12 +1731,12 @@ const Ht = /* @__PURE__ */ L({
   setup(e, { emit: t }) {
     const n = e, s = T(), o = B(
       () => he(
-        J(Re(n.options, n.groupBy ?? "")).map(([r, f]) => [
+        X(Re(n.options, n.groupBy ?? "")).map(([r, f]) => [
           r === "undefined" ? "" : r,
           f.map(
             (y) => q({
               ...y,
-              selected: !!(n.multiple ? K(n.modelValue, n.fields.key).includes(U(y, n.fields.key)) : U(y, n.fields.key) === U(n.modelValue, n.fields.key))
+              selected: !!(n.multiple ? Q(n.modelValue, n.fields.key).includes(U(y, n.fields.key)) : U(y, n.fields.key) === U(n.modelValue, n.fields.key))
             })
           )
         ])
@@ -1755,7 +1753,7 @@ const Ht = /* @__PURE__ */ L({
       })), n.multiple ? t(
         "update:modelValue",
         Pe(
-          K(
+          Q(
             o.value,
             (f) => f.map((y) => y()).filter((y) => y.selected)
           )
@@ -1766,9 +1764,9 @@ const Ht = /* @__PURE__ */ L({
     };
     return De(s, c, {
       window
-    }), te(() => {
+    }), ee(() => {
       c();
-    }), (r, f) => (v(), R(ee, {
+    }), (r, f) => (v(), R(K, {
       class: p([
         r.$style["menu-container"],
         {
@@ -2110,7 +2108,7 @@ const Ht = /* @__PURE__ */ L({
         }).value
       ), u() || Rt(r, 1));
     };
-    return te(() => {
+    return ee(() => {
       r();
     }), (f, y) => (v(), m("div", {
       ref_key: "wrapperRef$",
@@ -2192,7 +2190,7 @@ const Ht = /* @__PURE__ */ L({
 }, Lu = /* @__PURE__ */ D(au, [["__cssModules", du], ["__scopeId", "data-v-017d9edf"]]), fu = (e, t) => {
   var n;
   if (t) {
-    const s = (n = J(Nt(e, "valid")).find(([o, a]) => a && t[o])) == null ? void 0 : n[0];
+    const s = (n = X(Nt(e, "valid")).find(([o, a]) => a && t[o])) == null ? void 0 : n[0];
     return s ? t[s] ?? null : null;
   }
   return null;
@@ -2235,7 +2233,7 @@ const Ht = /* @__PURE__ */ L({
         o.value ? (i = o.value) != null && i.validity.valid ? "" : fu(o.value.validity, n.invalidMessage ?? {}) ?? o.value.validationMessage : ""
       );
     };
-    return te(() => {
+    return ee(() => {
       c();
     }), (i, u) => (v(), m("div", {
       class: p([
@@ -2358,7 +2356,7 @@ function wu(...e) {
   const t = e[0];
   return typeof t == "function" ? yt(cn(() => ({ get: t, set: Ge }))) : T(t);
 }
-function le(e) {
+function se(e) {
   var t;
   const n = me(e);
   return (t = n == null ? void 0 : n.$el) != null ? t : n;
@@ -2372,7 +2370,7 @@ function de(...e) {
   const a = [], c = () => {
     a.forEach((f) => f()), a.length = 0;
   }, i = (f, y, h, g) => (f.addEventListener(y, h, g), () => f.removeEventListener(y, h, g)), u = H(
-    () => [le(t), me(o)],
+    () => [se(t), me(o)],
     ([f, y]) => {
       c(), f && a.push(
         ...n.flatMap((h) => s.map((g) => i(f, h, g, y)))
@@ -2395,12 +2393,12 @@ function _t(e, t, n = {}) {
     if (typeof g == "string")
       return Array.from(s.document.querySelectorAll(g)).some((d) => d === h.target || h.composedPath().includes(d));
     {
-      const d = le(g);
+      const d = se(g);
       return d && (h.target === d || h.composedPath().includes(d));
     }
   }), f = [
     de(s, "click", (h) => {
-      const g = le(e);
+      const g = se(e);
       if (!(!g || g === h.target || h.composedPath().includes(g))) {
         if (h.detail === 0 && (i = !u(h)), !i) {
           i = !0;
@@ -2410,13 +2408,13 @@ function _t(e, t, n = {}) {
       }
     }, { passive: !0, capture: a }),
     de(s, "pointerdown", (h) => {
-      const g = le(e);
+      const g = se(e);
       g && (i = !h.composedPath().includes(g) && !u(h));
     }, { passive: !0 }),
     c && de(s, "blur", (h) => {
       setTimeout(() => {
         var g;
-        const d = le(e);
+        const d = se(e);
         ((g = s.document.activeElement) == null ? void 0 : g.tagName) === "IFRAME" && !(d != null && d.contains(s.document.activeElement)) && t(h);
       }, 0);
     })
@@ -2522,7 +2520,7 @@ const Ou = /* @__PURE__ */ L({
     }, c = B(
       () => Pe(
         (n.filterOptions ?? []).map(
-          (z) => Mt(K(n.items, z.field)).map((S) => ({ ...z, value: S }))
+          (z) => Mt(Q(n.items, z.field)).map((S) => ({ ...z, value: S }))
         )
       )
     ), i = T(n.modelValue ?? ""), u = F({
@@ -2562,16 +2560,16 @@ const Ou = /* @__PURE__ */ L({
       ), S = Jl(
         z,
         (Z) => U(Z, n.fields.key).includes(u.value)
-      ), ne = xo(
+      ), te = xo(
         S,
         [((Ce = f.value) == null ? void 0 : Ce.field) ?? n.fields.key],
         [((qe = f.value) == null ? void 0 : qe.direction) ?? "asc"]
-      ), P = X(h.value) ? ne : ao(
-        ...K(
+      ), P = le(h.value) ? te : ao(
+        ...Q(
           Re(h.value, "field"),
           (Z) => Pe(
             Z.map(
-              (He) => ne.filter((Kt) => co(Kt, { [He.field]: He.value }))
+              (He) => te.filter((Kt) => co(Kt, { [He.field]: He.value }))
             )
           )
         ),
@@ -2581,19 +2579,19 @@ const Ou = /* @__PURE__ */ L({
     };
     return De(s, C, {
       window
-    }), te(() => {
+    }), ee(() => {
       Ae(), C();
     }), dn(() => {
       Ae(), C();
     }), H([f, h, u, d], () => {
       Ae(), C();
-    }), (z, S) => (v(), R(ee, {
+    }), (z, S) => (v(), R(K, {
       class: p(z.$style["list-container"]),
       purpose: "container",
       radius: "var(--agh-ref-border-radius-600)"
     }, {
       default: I(() => {
-        var ne;
+        var te;
         return [
           _("div", {
             class: p(z.$style["list-toolbar"])
@@ -2604,7 +2602,7 @@ const Ou = /* @__PURE__ */ L({
               class: p(z.$style["list-toolbar-search"]),
               type: "search"
             }, null, 8, ["modelValue", "class"]),
-            n.filterOptions && !l(X)(n.filterOptions) ? We((v(), m("div", {
+            n.filterOptions && !l(le)(n.filterOptions) ? We((v(), m("div", {
               key: 0,
               class: p(z.$style["list-toolbar-tool"]),
               onKeydown: [
@@ -2637,7 +2635,7 @@ const Ou = /* @__PURE__ */ L({
             ], 34)), [
               [l(ht), () => l(b).set(!0)]
             ]) : O("", !0),
-            n.sortOptions && !l(X)(n.sortOptions) ? We((v(), m("div", {
+            n.sortOptions && !l(le)(n.sortOptions) ? We((v(), m("div", {
               key: 1,
               class: p(z.$style["list-toolbar-tool"]),
               onKeydown: [
@@ -2647,7 +2645,7 @@ const Ou = /* @__PURE__ */ L({
             }, [
               E(ve, {
                 class: p(z.$style["list-toolbar-button"]),
-                icon: ((ne = f.value) == null ? void 0 : ne.icon) ?? "fa6-solid:arrow-down-wide-short",
+                icon: ((te = f.value) == null ? void 0 : te.icon) ?? "fa6-solid:arrow-down-wide-short",
                 clicked: !l(w)(),
                 onClick: S[5] || (S[5] = (P) => N(l(w))),
                 variant: "text"
@@ -2687,7 +2685,7 @@ const Ou = /* @__PURE__ */ L({
                 }, A(P.group), 3)
               ]),
               default: I((P) => [
-                E(ee, {
+                E(K, {
                   class: p(z.$style["list-item"]),
                   color: P.item.selected ? "blue" : "default",
                   clickable: !0,
@@ -2733,7 +2731,7 @@ export {
   No as BaseList,
   Me as BasePoly,
   ve as ButtonBox,
-  ee as CardBox,
+  K as CardBox,
   Ru as CardList,
   Bu as DoughnutChart,
   Eu as DropDown,
