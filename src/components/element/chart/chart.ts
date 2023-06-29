@@ -96,7 +96,7 @@ export const useChart = ({
         const axisMin = Number(axis.min === 'auto' ? min(plotSets) : axis.min ?? 0);
         const axisMax = Number(
           axis.max === 'auto'
-            ? max(plotSets)
+            ? max(plotSets) ?? 0
             : axis.max ?? plotSets.length - (/radar|doughnut/.test(type ?? '') ? 0 : 1)
         );
 
@@ -130,7 +130,7 @@ export const useChart = ({
             dataset.series.forEach((plot) => {
               plot[axisKey].normalized =
                 map(axis.metrics, 'value').indexOf(plot[axisKey].value) /
-                (axis.metrics!.length - (/radar|doughnut/.test(type ?? '') ? 0 : 1));
+                ((axis.metrics ?? []).length - (/radar|doughnut/.test(type ?? '') ? 0 : 1));
             });
           });
         } else {
@@ -152,11 +152,9 @@ export const useChart = ({
   };
 
   watchEffect(() => {
-    if (!isEmpty(unref(data))) {
-      const chartData = computeChartData(unref(type), unref(axises), unref(data));
-      state.datasets = chartData.datasets;
-      state.axises = chartData.axises;
-    }
+    const chartData = computeChartData(unref(type), unref(axises), unref(data));
+    state.datasets = chartData.datasets;
+    state.axises = chartData.axises;
   });
 
   return {
