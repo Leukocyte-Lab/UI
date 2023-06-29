@@ -13,7 +13,7 @@ const Template: StoryFn<typeof RadarChart> = (args) => ({
   setup() {
     return { args };
   },
-  template: '<RadarChart v-bind="args" style="width: 900px; height: 320px;" />'
+  template: '<RadarChart v-bind="args" style="width: 320px; height: 320px;" />'
 });
 
 export const DefaultRadarChart = Template.bind({});
@@ -142,5 +142,16 @@ DefaultRadarChart.args = {
       x: 5,
       y: 50
     }
+  }
+};
+
+export const EmptyRadarChart = Template.bind({});
+EmptyRadarChart.args = {
+  datasets: [],
+  axises: {
+    ...DefaultRadarChart.args.axises
+  },
+  options: {
+    ...DefaultRadarChart.args.options
   }
 };
