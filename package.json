@@ -37,7 +37,7 @@
       "require": "./dist/ui.component.cjs.js",
       "types": "./dist/components/index.d.ts"
     },
-    "./styles": "./dist/styles",
+    "./styles/": "./dist/styles/",
     "./style.css": "./dist/style.css"
   },
   "files": [
