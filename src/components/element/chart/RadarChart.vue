@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, toRefs } from 'vue';
 import { computedEager, useElementSize, useCssVar } from '@vueuse/core';
 import { delay } from 'lodash-es';
 
@@ -30,8 +30,8 @@ const wrapperRef$ = ref<HTMLElement>();
 const { width, height } = useElementSize(wrapperRef$);
 const { axises, datasets } = useChart({
   type: 'radar',
-  data: props.datasets,
-  axises: props.axises
+  data: toRefs(props).datasets,
+  axises: toRefs(props).axises
 });
 
 const radius = computedEager(() =>

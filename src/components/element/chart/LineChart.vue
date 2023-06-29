@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, toRefs } from 'vue';
 import { computedEager, useElementSize } from '@vueuse/core';
 
 import { useChart } from './chart';
@@ -26,8 +26,8 @@ const wrapperRef$ = ref<HTMLElement>();
 const { width, height } = useElementSize(wrapperRef$);
 const { axises, datasets } = useChart({
   type: 'line',
-  data: props.datasets,
-  axises: props.axises
+  data: toRefs(props).datasets,
+  axises: toRefs(props).axises
 });
 
 const axisPath = computedEager(() =>
