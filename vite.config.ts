@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => ({
       formats: ['es', 'cjs']
     },
     minify: true,
-    emptyOutDir: false,
+    emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
       // Vue is provided by the parent project, don't compile Vue source-code inside our library.
