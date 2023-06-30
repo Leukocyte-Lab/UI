@@ -9,7 +9,7 @@ export declare namespace ButtonBox {
         level?: Level;
         size?: Size;
     };
-    type Variant = 'rounded' | 'square' | 'circle' | 'rect' | 'text' | 'file';
+    type Variant = 'rounded' | 'square' | 'circle' | 'rect' | 'extendable-rect' | 'text' | 'file';
     type Level = 'primary' | 'secondary';
     type Size = 'small' | 'large';
     type Props = BaseProps;

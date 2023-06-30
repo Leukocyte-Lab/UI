@@ -2,16 +2,19 @@ import type { DropDown } from '../../../components/element/dropdown/DropDown.mod
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<DropDown.Props>, {
     items: () => never[];
     level: string;
+    size: string;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (option: any) => void;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<DropDown.Props>, {
     items: () => never[];
     level: string;
+    size: string;
 }>>> & {
     "onUpdate:modelValue"?: ((option: any) => any) | undefined;
 }, {
     items: import("../../../shared/types/object").ObjectLike<any>[];
     level: import("../button/ButtonBox.model").ButtonBox.Level;
+    size: import("../button/ButtonBox.model").ButtonBox.Size;
 }, {}>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
