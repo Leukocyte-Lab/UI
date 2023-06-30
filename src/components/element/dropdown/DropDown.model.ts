@@ -9,5 +9,6 @@ export namespace DropDown {
     items?: ObjectLike<any>[];
     disabled?: boolean;
     level?: ButtonBoxNS.Level;
+    size?: ButtonBoxNS.Size;
   };
 }
