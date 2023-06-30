@@ -113,7 +113,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         --box-fill-gradient: var(--agh-ref-color-blue-gradient-500);
         --box-border-gradient: var(--agh-ref-color-border-blue-500);
         --box-fill-gradient-hover: var(--agh-ref-color-blue-gradient-200);
-        --box-fill-gradient-click: var(--agh-ref-color-blue-gradient-700);
+        --box-fill-gradient-clicked: var(--agh-ref-color-blue-gradient-700);
         --box-fill-disabled: color-mix(
           in srgb,
           var(--agh-ref-color-blue-300) calc(100% * var(--agh-ref-opacity-100)),
