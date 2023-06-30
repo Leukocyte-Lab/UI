@@ -82,7 +82,8 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     &.rounded,
     &.square,
     &.circle,
-    &.rect {
+    &.rect,
+    &.extendable-rect {
       --box-border-width: var(--agh-ref-border-width-50);
       --box-box-shadow: var(--agh-sys-effects-shadow-gadget);
       --box-box-shadow-clicked: var(--agh-sys-effects-inner-shadow-button-small);
@@ -91,7 +92,8 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 
     &:not(.rounded.secondary, .rect.secondary) {
       &.rounded,
-      &.rect {
+      &.rect,
+      &.extendable-rect {
         @include metallic.box($has-stroke: true);
       }
 
@@ -103,7 +105,8 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       &.rounded,
       &.square,
       &.circle,
-      &.rect {
+      &.rect,
+      &.extendable-rect {
         --box-fill-gradient: var(--agh-ref-color-blue-gradient-500);
         --box-border-gradient: var(--agh-ref-color-border-blue-500);
         --box-fill-gradient-hover: var(--agh-ref-color-blue-gradient-200);
@@ -216,7 +219,8 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
     }
 
-    &.rect {
+    &.rect,
+    &.extendable-rect {
       --box-border-radius: var(--agh-ref-border-radius-400);
       --button-font: var(--agh-sys-type-content-large);
       --button-font-weight: var(--agh-ref-typeface-weight-700);
@@ -248,7 +252,8 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     }
 
     &.rounded,
-    &.rect {
+    &.rect,
+    &.extendable-rect {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -296,6 +301,44 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         #{$self}-icon {
           color: var(--agh-ref-color-blue-500);
         }
+      }
+    }
+
+    &.extendable-rect {
+      --button-extendable-rect-icon-size: var(--button-icon-size, var(--agh-ref-icon-size-400));
+
+      position: absolute;
+      padding: var(--agh-ref-spacing-200);
+      padding-right: calc(var(--agh-ref-spacing-200) + var(--button-extendable-rect-icon-size));
+      gap: 0;
+      width: var(--button-extendable-rect-icon-size);
+      justify-content: flex-start;
+      transition: padding 0.3s ease-in, width 0.3s ease-in-out, opacity 0.3s ease-in;
+      max-width: fit-content;
+
+      &:hover {
+        padding: var(--agh-ref-spacing-200);
+        width: calc(100% - var(--agh-ref-spacing-200) * 2);
+
+        #{$self}-content {
+          width: 100%;
+          opacity: 1;
+          padding-right: var(--agh-ref-spacing-100);
+        }
+      }
+
+      #{$self}-content {
+        width: 0;
+        opacity: 0;
+        white-space: nowrap;
+        transition: padding 0.3s ease-in, width 0.3s ease-in-out, opacity 0.3s ease-in;
+        will-change: padding, width, opacity;
+      }
+
+      #{$self}-icon {
+        font-size: var(--button-extendable-rect-icon-size);
+        width: var(--button-extendable-rect-icon-size);
+        height: var(--button-extendable-rect-icon-size);
       }
     }
 
