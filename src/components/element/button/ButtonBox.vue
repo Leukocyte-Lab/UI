@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { flatMap } from 'lodash-es';
 import { Icon } from '@iconify/vue/offline';
 
 import BaseLink from '@/components/base/BaseLink.vue';
@@ -7,12 +8,20 @@ import { useEventDebounceSignal } from '@/shared/libs/event';
 
 import type { ButtonBox } from '@/components/element/button/ButtonBox.model';
 
-const props = withDefaults(defineProps<ButtonBox.Props>(), {
-  disabled: false,
-  variant: 'rounded',
-  level: 'primary',
-  size: 'small'
-});
+const props = withDefaults(
+  defineProps<
+    ButtonBox.Props & {
+      class?: string | string[];
+      style?: string | string[];
+    }
+  >(),
+  {
+    disabled: false,
+    variant: 'rounded',
+    level: 'primary',
+    size: 'small'
+  }
+);
 
 const emits = defineEmits<{
   (e: 'click', event: MouseEvent): void;
@@ -41,7 +50,9 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       props.disabled ? [$style['disabled']] : [$style['clickable']],
       {
         [$style['clicked']]: props.clicked || triggered()
-      }
+      },
+      ...flatMap([props.class ?? []]),
+      ...flatMap([props.style ?? []])
     ]"
     :aria-disabled="props.disabled"
     :aria-label="props.label"
