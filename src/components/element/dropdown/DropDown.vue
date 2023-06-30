@@ -70,6 +70,7 @@ const closeMenu = signal(true);
   &--menu {
     position: absolute;
     top: calc(100% + var(--agh-ref-spacing-200));
+    z-index: 10;
   }
 }
 </style>
