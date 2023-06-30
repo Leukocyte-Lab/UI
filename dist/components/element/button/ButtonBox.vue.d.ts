@@ -1,12 +1,18 @@
 import type { ButtonBox } from '../../../components/element/button/ButtonBox.model';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps>, {
+declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps & {
+    class?: string | string[] | undefined;
+    style?: string | string[] | undefined;
+}>, {
     disabled: boolean;
     variant: string;
     level: string;
     size: string;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     click: (event: MouseEvent) => void;
-}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps>, {
+}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps & {
+    class?: string | string[] | undefined;
+    style?: string | string[] | undefined;
+}>, {
     disabled: boolean;
     variant: string;
     level: string;
