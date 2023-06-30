@@ -339,6 +339,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
           width: 100%;
           opacity: 1;
           padding-right: var(--agh-ref-spacing-100);
+          pointer-events: auto;
         }
       }
 
@@ -348,6 +349,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         white-space: nowrap;
         transition: padding 0.3s ease-in, width 0.3s ease-in-out, opacity 0.3s ease-in;
         will-change: padding, width, opacity;
+        pointer-events: none;
       }
 
       #{$self}-icon {
