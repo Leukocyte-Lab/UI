@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { vOnClickOutside } from '@vueuse/components';
 
 import SelectMenu from '@/components/element/menu/SelectMenu.vue';
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
@@ -30,11 +31,11 @@ const closeMenu = signal(true);
 </script>
 
 <template>
-  <div :class="$style['dropdown--container']">
+  <div :class="$style['dropdown--container']" v-on-click-outside="() => closeMenu.set(true)">
     <ButtonBox
       :disabled="props.disabled"
       :label="selector(props.modelValue, props.fields.key)"
-      :icon="closeMenu() ? 'fa6-solid:chevron-up' : 'fa6-solid:chevron-down'"
+      :icon="closeMenu() ? 'fa6-solid:chevron-down' : 'fa6-solid:chevron-up'"
       :clicked="!closeMenu()"
       :level="props.level"
       :class="$style['dropdown--input']"
