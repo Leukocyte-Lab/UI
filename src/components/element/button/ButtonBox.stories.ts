@@ -27,7 +27,7 @@ export default {
     variant: {
       control: 'select',
       description: 'Button variant (optional)',
-      options: ['rounded', 'square', 'circle', 'rect', 'text'],
+      options: ['rounded', 'square', 'circle', 'rect', 'extendable-rect', 'text'],
       defaultValue: 'rounded'
     },
     level: {
@@ -95,6 +95,14 @@ SecondaryRectButtonBox.args = {
   icon: 'fa6-solid:door-closed',
   variant: 'rect',
   level: 'secondary'
+};
+
+export const ExtendableRectButtonBox = Template.bind({});
+ExtendableRectButtonBox.args = {
+  label: 'Back to Project',
+  icon: 'fa6-solid:door-closed',
+  variant: 'extendable-rect',
+  level: 'primary'
 };
 
 export const TextButtonBox = Template.bind({});
