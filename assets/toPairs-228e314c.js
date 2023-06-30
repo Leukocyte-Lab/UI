@@ -1,0 +1,2 @@
+import{a as e,g as i,m as s,k as u}from"./_mapToArray-2ab8e78b.js";function m(n){var r=n==null?0:n.length;return r?n[r-1]:void 0}function o(n,r){return e(r,function(a){return[a,n[a]]})}function f(n){var r=-1,a=Array(n.size);return n.forEach(function(t){a[++r]=[t,t]}),a}var c="[object Map]",g="[object Set]";function T(n){return function(r){var a=i(r);return a==c?s(r):a==g?f(r):o(r,n(r))}}var l=T(u);const P=l;export{m as l,P as t};
+//# sourceMappingURL=toPairs-228e314c.js.map
