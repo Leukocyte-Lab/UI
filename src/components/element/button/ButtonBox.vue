@@ -126,7 +126,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       padding: var(--agh-ref-spacing-100);
 
       #{$self}-icon {
-        font-size: calc(var(--agh-ref-spacing-600) / 1.2);
+        font-size: var(--button-icon-size, calc(var(--agh-ref-spacing-600) / 1.2));
       }
     }
 
