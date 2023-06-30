@@ -21,6 +21,12 @@ export default {
       options: ['primary', 'secondary'],
       defaultValue: 'primary'
     },
+    size: {
+      control: 'radio',
+      description: 'Button size (optional)',
+      options: ['small', 'large'],
+      defaultValue: 'primary'
+    },
     disabled: {
       control: 'boolean',
       description: 'DropDown disabled (optional)'
@@ -83,6 +89,12 @@ DefaultDropDown.args = {
   modelValue: {
     name: 'APT-38',
   }
+};
+
+export const LargeDropDown = Template.bind({});
+LargeDropDown.args = {
+  ...DefaultDropDown.args,
+  size: 'large'
 };
 
 export const WithSubtitleDropDown = Template.bind({});
