@@ -11,7 +11,7 @@
       }
 
       &.clicked {
-        color: var(--box-text-color-click, var(--box-text-color));
+        color: var(--box-text-color-clicked, var(--box-text-color));
         box-shadow: var(--box-box-shadow-clicked);
       }
     }
@@ -66,12 +66,12 @@
 
       &.clicked {
         background-color: var(
-          --box-fill-click
-        ); // fallback for `--box-fill-gradient-click` not present
+          --box-fill-clicked
+        ); // fallback for `--box-fill-gradient-clicked` not present
 
         background-image: var(
-          --box-fill-gradient-click
-        ); // fallback for `--box-fill-click` not present
+          --box-fill-gradient-clicked
+        ); // fallback for `--box-fill-clicked` not present
       }
     }
 
