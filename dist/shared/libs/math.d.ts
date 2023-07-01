@@ -8,6 +8,9 @@ export type MathProxy = Math & {
     };
     deg: (rad: number) => number;
     rad: (deg: number) => number;
+    cot: (x: number) => number;
+    sec: (x: number) => number;
+    csc: (x: number) => number;
     gcd: (a: number, b: number) => number;
     lcm: (a: number, b: number) => number;
     clamp: (value: number, min: number, max: number) => number;

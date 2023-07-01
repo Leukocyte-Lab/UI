@@ -899,7 +899,7 @@ const rn = 0.5522847498307935, nn = (u, D, e, t = !1) => t ? u[e] - D[e] : Math.
   ) : Reflect.get(u, D, e)
 }, R0 = new Proxy(Math, {
   get(u, D, e) {
-    return D === "ARC_BASE" ? rn : D === "Vector" ? new Proxy({}, En) : D === "deg" ? (t) => t * (180 / Math.PI) : D === "rad" ? (t) => t * (Math.PI / 180) : D === "gcd" ? (t, F) => F ? R0.gcd(F, t % F) : t : D === "lcm" ? (t, F) => t * F / R0.gcd(t, F) : D === "clamp" ? (t, F, r) => Math.min(Math.max(t, F), r) : D === "round" ? (t, F = 0) => Math.round(t * 10 ** F) / 10 ** F : Reflect.get(u, D, e);
+    return D === "ARC_BASE" ? rn : D === "Vector" ? new Proxy({}, En) : D === "deg" ? (t) => t * (180 / Math.PI) : D === "rad" ? (t) => t * (Math.PI / 180) : D === "gcd" ? (t, F) => F ? R0.gcd(F, t % F) : t : D === "lcm" ? (t, F) => t * F / R0.gcd(t, F) : D === "clamp" ? (t, F, r) => Math.min(Math.max(t, F), r) : D === "round" ? (t, F = 0) => Math.round(t * 10 ** F) / 10 ** F : D === "cot" ? (t) => 1 / Math.tan(t) : D === "sec" ? (t) => 1 / Math.cos(t) : D === "csc" ? (t) => 1 / Math.sin(t) : Reflect.get(u, D, e);
   }
 }), pE = new Proxy(String, {
   get(u, D, e) {
@@ -5435,4 +5435,4 @@ export {
   P0 as y,
   W as z
 };
-//# sourceMappingURL=parser-9fc50bc2.js.map
+//# sourceMappingURL=parser-f68503d3.js.map
