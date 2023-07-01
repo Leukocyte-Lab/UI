@@ -154,7 +154,7 @@ const computeItems = () => {
       } as ObjectLike)
   );
   const searchItems = filter(markSelected, (item) =>
-    selector(item, props.fields.key).includes(search.value)
+    selector(item, props.fields.title ?? props.fields.key).includes(search.value)
   );
   const sortedItems = orderBy(
     searchItems,
