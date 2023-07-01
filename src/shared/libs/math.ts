@@ -14,6 +14,9 @@ export type MathProxy = Math & {
   };
   deg: (rad: number) => number;
   rad: (deg: number) => number;
+  cot: (x: number) => number;
+  sec: (x: number) => number;
+  csc: (x: number) => number;
   gcd: (a: number, b: number) => number;
   lcm: (a: number, b: number) => number;
   clamp: (value: number, min: number, max: number) => number;
@@ -110,6 +113,12 @@ const Math$: MathProxy = new Proxy<MathProxy>(Math as MathProxy, {
     if (prop === 'round')
       return (value: number, precision = 0): number =>
         Math.round(value * 10 ** precision) / 10 ** precision;
+    if (prop === 'cot')
+      return (x: number): number => 1 / Math.tan(x);
+    if (prop === 'sec')
+      return (x: number): number => 1 / Math.cos(x);
+    if (prop === 'csc')
+      return (x: number): number => 1 / Math.sin(x);
     return Reflect.get(target, prop, receiver);
   }
 });
