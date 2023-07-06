@@ -13,7 +13,7 @@ const Template: StoryFn<typeof MatrixChart> = (args) => ({
   setup() {
     return { args };
   },
-  template: '<MatrixChart v-bind="args" />'
+  template: '<MatrixChart v-bind="args"/>'
 });
 
 export const DefaultMatrixChart = Template.bind({});
@@ -24,56 +24,49 @@ DefaultMatrixChart.args = {
       series: [
         {
           name: 'Reconnaissance',
-          percentage: 20
+          value: 20
         },
         {
           name: 'Weaponization',
-          percentage: 55
+          value: 55
         },
         {
           name: 'Delivery',
-          percentage: 78
+          value: 78
         },
         {
           name: 'Exploitation',
-          percentage: 34
+          value: 34
         },
         {
           name: 'Installation',
-          percentage: 69
+          value: 69
         },
         {
           name: 'Command & Control',
-          percentage: 53
+          value: 53
         },
         {
           name: 'Actions on Objectives',
-          percentage: 99
+          value: 99
         }
       ]
     }
   ],
   axises: {
     x: {
-      label: 'Cyber Kill Chain',
+      label: 'Name',
       accessor: '{{ $.name }}',
       selector: '$.name',
       type: 'string'
     },
     y: {
-      label: 'Count',
+      label: 'Percentage',
       accessor: '{{ $.value | number }}%',
       selector: '$.value',
       type: 'number',
-      max: 'auto'
-    }
-  },
-  options: {
-    title: '{{ $.name }}',
-    round: true,
-    offset: {
-      x: 5,
-      y: 50
+      max: 5,
+      min: 0
     }
   }
 };
