@@ -119,6 +119,7 @@ onMounted(() => {
         padding-left: var(--agh-ref-spacing-200);
 
         &-border {
+          margin-left: calc(var(--matrix-border-width) * -1);
           border-left: var(--matrix-border-width) solid var(--agh-ref-color-grayscale-500);
         }
 
