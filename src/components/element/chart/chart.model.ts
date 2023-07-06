@@ -4,7 +4,7 @@ import type { ObjectLike } from '@/shared/types/object';
 import type { Vector } from '@/shared/types/vector';
 
 export namespace Chart {
-  export type Type = 'line' | 'bar' | 'radar' | 'doughnut';
+  export type Type = 'line' | 'bar' | 'radar' | 'doughnut' | 'matrix';
   export type DataType = number | string | Date;
   export type DataTypeSet = 'number' | 'string' | 'date';
   export type Payload = {
