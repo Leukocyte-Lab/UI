@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, toRefs, computed } from 'vue';
-import { useCssVar, useResizeObserver } from '@vueuse/core';
+import { computedEager, useCssVar, useResizeObserver } from '@vueuse/core';
 import { delay } from 'lodash-es';
 
 import Math$ from '@/shared/libs/math';
@@ -9,15 +9,7 @@ import { signal } from '@/shared/libs/signal';
 import type { Chart } from '@/components/element/chart/chart.model';
 import { useChart } from './chart';
 
-const props = withDefaults(defineProps<Chart.Props>(), {
-  options: () => ({
-    offset: {
-      x: 0,
-      y: 0
-    },
-    radius: 0
-  })
-});
+const props = defineProps<Chart.Props>();
 
 const { axises, datasets } = useChart({
   type: 'matrix',
@@ -25,9 +17,7 @@ const { axises, datasets } = useChart({
   axises: toRefs(props).axises
 });
 
-const TotalCells = axises.value.y.max as number;
-
-const cellValue = 100 / TotalCells / TotalCells;
+const TotalCells = computedEager(() => axises.value.y.step as number);
 
 const formatDatasets = computed(() =>
   datasets.value[0].series.map((item) => {
@@ -35,7 +25,7 @@ const formatDatasets = computed(() =>
       ...item,
       y: {
         ...item.y,
-        normalized: Math$.round(item.y.normalized / cellValue)
+        normalized: Math$.round(item.y.normalized * TotalCells.value)
       }
     };
   })
@@ -45,27 +35,28 @@ const containerRef$ = ref<HTMLElement>();
 
 const columnNum = ref<number>();
 
-const columnSpacing = signal('');
+const borderWidth = signal('');
 
 const handleResize = () => {
   if (containerRef$.value && containerRef$.value.firstElementChild) {
     const { firstElementChild, clientWidth } = containerRef$.value;
     const totalWidth = clientWidth;
     const itemWidth = firstElementChild?.clientWidth;
+
     columnNum.value = Math$.floor(totalWidth / itemWidth);
   }
 };
 
-const computeColumnSpacing = () => {
+const computeBorderWidth = () => {
   if (containerRef$.value) {
-    columnSpacing.set(
-      useCssVar('--chart-container-gap-spacing', containerRef$, {
+    borderWidth.set(
+      useCssVar('--matrix-border-width', containerRef$, {
         observe: true
       }).value
     );
 
-    if (!columnSpacing()) {
-      delay(computeColumnSpacing, 1);
+    if (!borderWidth()) {
+      delay(computeBorderWidth, 1);
     }
   }
 };
@@ -73,7 +64,7 @@ const computeColumnSpacing = () => {
 useResizeObserver(containerRef$, handleResize, { window });
 
 onMounted(() => {
-  computeColumnSpacing();
+  computeBorderWidth();
   handleResize();
 });
 </script>
@@ -111,8 +102,7 @@ onMounted(() => {
 
 .chart {
   &-container {
-    --chart-container-gap-spacing: var(--agh-ref-spacing-200);
-    --matrix-container-gap-spacing: var(--agh-ref-spacing-200);
+    --matrix-border-width: var(--agh-ref-border-width-50);
 
     display: flex;
     flex-wrap: wrap;
@@ -126,10 +116,10 @@ onMounted(() => {
         gap: var(--agh-ref-spacing-300);
         margin-bottom: var(--agh-ref-spacing-400);
         padding-right: var(--agh-ref-spacing-500);
+        padding-left: var(--agh-ref-spacing-200);
 
         &-border {
-          border-left: 1px solid var(--agh-ref-color-grayscale-500);
-          padding-left: var(--agh-ref-spacing-200);
+          border-left: var(--matrix-border-width) solid var(--agh-ref-color-grayscale-500);
         }
 
         .label {
