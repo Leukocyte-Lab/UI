@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref, toRefs } from 'vue';
-import { useCssVar } from '@vueuse/core';
+import { onMounted, ref, toRefs, computed } from 'vue';
+import { useCssVar, useResizeObserver } from '@vueuse/core';
 import { delay } from 'lodash-es';
 
 import Math$ from '@/shared/libs/math';
@@ -19,15 +19,27 @@ const props = withDefaults(defineProps<Chart.Props>(), {
   })
 });
 
-const TotalCells = 5;
-
 const { axises, datasets } = useChart({
   type: 'matrix',
   data: toRefs(props).datasets,
   axises: toRefs(props).axises
 });
 
-const filledCells = (percentage: number) => Math$.round((percentage / 100) * TotalCells);
+const TotalCells = axises.value.y.max as number;
+
+const cellValue = 100 / TotalCells / TotalCells;
+
+const formatDatasets = computed(() =>
+  datasets.value[0].series.map((item) => {
+    return {
+      ...item,
+      y: {
+        ...item.y,
+        normalized: Math$.round(item.y.normalized / cellValue)
+      }
+    };
+  })
+);
 
 const containerRef$ = ref<HTMLElement>();
 
@@ -37,13 +49,10 @@ const columnSpacing = signal('');
 
 const handleResize = () => {
   if (containerRef$.value && containerRef$.value.firstElementChild) {
-    const totalWidth = containerRef$.value?.clientWidth + parseInt(columnSpacing());
-    const itemWidth =
-      containerRef$.value.firstElementChild?.clientWidth + parseInt(columnSpacing());
+    const { firstElementChild, clientWidth } = containerRef$.value;
+    const totalWidth = clientWidth;
+    const itemWidth = firstElementChild?.clientWidth;
     columnNum.value = Math$.floor(totalWidth / itemWidth);
-  }
-  if (!columnNum.value) {
-    delay(handleResize, 1);
   }
 };
 
@@ -61,10 +70,11 @@ const computeColumnSpacing = () => {
   }
 };
 
+useResizeObserver(containerRef$, handleResize, { window });
+
 onMounted(() => {
   computeColumnSpacing();
   handleResize();
-  window.addEventListener('resize', handleResize);
 });
 </script>
 
@@ -73,21 +83,19 @@ onMounted(() => {
     <div
       :class="[
         $style['matrix-container'],
-        columnNum && (index + 1) % columnNum !== 0 && $style['matrix-container-border']
+        columnNum && index % columnNum !== 0 && $style['matrix-container-border']
       ]"
-      v-for="(item, index) in datasets[0].series"
+      v-for="(item, index) in formatDatasets"
       :key="index"
     >
       <div :class="$style['label']">
-        {{ item.data.name }}
+        {{ item.x.value }}
       </div>
       <div :class="$style['box-container']">
         <div
           :class="[
             $style['square'],
-            i <= filledCells(item.data.percentage as number)
-              ? $style['square-cyan']
-              : $style['square-grayscale']
+            i <= item.y.normalized ? $style['square-cyan'] : $style['square-grayscale']
           ]"
           v-for="i in TotalCells"
           :key="i"
@@ -110,7 +118,6 @@ onMounted(() => {
     flex-wrap: wrap;
     width: fit-content;
     height: fit-content;
-    gap: var(--chart-container-gap-spacing);
 
     .matrix {
       &-container {
@@ -121,13 +128,14 @@ onMounted(() => {
         padding-right: var(--agh-ref-spacing-500);
 
         &-border {
-          border-right: 1px solid var(--agh-ref-color-grayscale-500);
+          border-left: 1px solid var(--agh-ref-color-grayscale-500);
+          padding-left: var(--agh-ref-spacing-200);
         }
 
         .label {
           font: var(--agh-sys-typeface-label-default-medium);
           color: var(--agh-ref-color-grayscale-700);
-          width: var(--agh-sys-label-sizing-width-medium);
+          width: var(--agh-sys-lable-sizing-width-medium);
           overflow-wrap: break-word;
         }
 
