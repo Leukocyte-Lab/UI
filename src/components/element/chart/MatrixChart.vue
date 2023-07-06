@@ -79,9 +79,9 @@ onMounted(() => {
       v-for="(item, index) in formatDatasets"
       :key="index"
     >
-      <div :class="$style['label']">
+      <label :class="$style['label']">
         {{ item.x.value }}
-      </div>
+      </label>
       <div :class="$style['box-container']">
         <div
           :class="[
@@ -90,7 +90,7 @@ onMounted(() => {
           ]"
           v-for="i in TotalCells"
           :key="i"
-        ></div>
+        />
       </div>
     </div>
   </div>
