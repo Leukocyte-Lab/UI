@@ -65,7 +65,8 @@ DefaultMatrixChart.args = {
       accessor: '{{ $.value | number }}%',
       selector: '$.value',
       type: 'number',
-      max: 5,
+      step: 5,
+      max: 100,
       min: 0
     }
   }
