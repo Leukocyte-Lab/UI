@@ -1,10 +1,12 @@
 import BaseLink from './base/BaseLink.vue';
 import BaseList from './base/BaseList.vue';
 import BasePoly from './base/BasePoly.vue';
+import BadgeBox from './element/badge/BadgeBox.vue';
 import ButtonBox from './element/button/ButtonBox.vue';
 import CardBox from './element/card/CardBox.vue';
 import DoughnutChart from './element/chart/DoughnutChart.vue';
 import LineChart from './element/chart/LineChart.vue';
+import MatrixChart from './element/chart/MatrixChart.vue';
 import RadarChart from './element/chart/RadarChart.vue';
 import DropDown from './element/dropdown/DropDown.vue';
 import InnerShadowDeco from '../components/effect/InnerShadowDeco.vue';
@@ -15,4 +17,4 @@ import ProgressCircle from './element/progress/ProgressCircle.vue';
 import SearchBar from './element/search-bar/SearchBar.vue';
 import TextField from './element/textfield/TextField.vue';
 import CardList from './layout/list/CardList.vue';
-export { BaseLink, BaseList, BasePoly, ButtonBox, CardBox, DoughnutChart, LineChart, RadarChart, DropDown, InnerShadowDeco, RoundEffect, SelectMenu, ProgressBar, ProgressCircle, SearchBar, TextField, CardList };
+export { BaseLink, BaseList, BasePoly, BadgeBox, ButtonBox, CardBox, DoughnutChart, LineChart, MatrixChart, RadarChart, DropDown, InnerShadowDeco, RoundEffect, SelectMenu, ProgressBar, ProgressCircle, SearchBar, TextField, CardList };
