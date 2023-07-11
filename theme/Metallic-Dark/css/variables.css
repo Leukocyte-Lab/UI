@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 08 Jun 2023 14:50:05 GMT
+ * Generated on Thu, 06 Jul 2023 04:15:47 GMT
  */
 
 :root {
@@ -72,6 +72,15 @@
   --agh-ref-effects-solid-orange: 0 0 0 3px rgba(251, 157, 46, 0.2);
   --agh-ref-effects-solid-green: 0 0 0 3px rgba(106, 187, 159, 0.2);
   --agh-ref-effects-solid-purple: 0 0 0 3px rgba(121, 81, 207, 0.2);
+  --agh-ref-effects-bgblur-100: 4px;
+  --agh-ref-effects-bgblur-200: 6px;
+  --agh-ref-effects-bgblur-300: 8px;
+  --agh-ref-effects-bgblur-400: 12px;
+  --agh-ref-effects-bgblur-500: 16px;
+  --agh-ref-effects-bgblur-600: 20px;
+  --agh-ref-effects-bgblur-700: 24px;
+  --agh-ref-effects-bgblur-800: 32px;
+  --agh-ref-effects-bgblur-900: 40px;
   --agh-ref-color-purple-100: hsl(259 56.8% 91.3%);
   --agh-ref-color-purple-200: hsl(259 56.8% 82.6%);
   --agh-ref-color-purple-300: hsl(259 56.8% 73.9%);
@@ -201,6 +210,15 @@
   --agh-ref-color-border-cyan-200: linear-gradient(to bottom left, hsl(186 59.7% 60.3%) 6.7%, hsl(186 59.7% 70.2%) 24.29%, hsl(186 59.7% 80.2%) 33.31%, hsl(186 59.7% 60.3%) 44.51%, hsl(186 59.7% 80.2%) 51.34%); /* linear-gradient(223.94deg, hsl(186 59.7% 60.3%) 6.7%, hsl(186 59.7% 70.2%) 24.29%, hsl(186 59.7% 80.2%) 33.31%, hsl(186 59.7% 60.3%) 44.51%, hsl(186 59.7% 80.2%) 51.34%) */
   --agh-ref-color-border-cyan-500: linear-gradient(to bottom left, #35BCCC 1.77%, hsl(186 59.7% 60.3%) 21.36%, hsl(186 59.7% 70.2%) 31.41%, #35BCCC 43.88%, hsl(186 59.7% 70.2%) 51.5%); /* linear-gradient(223.94deg, #35BCCC 1.77%, hsl(186 59.7% 60.3%) 21.36%, hsl(186 59.7% 70.2%) 31.41%, #35BCCC 43.88%, hsl(186 59.7% 70.2%) 51.5%) */
   --agh-ref-color-border-cyan-700: linear-gradient(to bottom left, hsl(186 59.7% 40.3%) 1.77%, #35BCCC 21.36%, hsl(186 59.7% 60.3%) 31.41%, hsl(186 59.7% 40.3%) 43.88%, hsl(186 59.7% 70.2%) 51.5%); /* linear-gradient(223.94deg, hsl(186 59.7% 40.3%) 1.77%, #35BCCC 21.36%, hsl(186 59.7% 60.3%) 31.41%, hsl(186 59.7% 40.3%) 43.88%, hsl(186 59.7% 70.2%) 51.5%) */
+  --agh-ref-color-transparent-white-100: rgba(255,255,255,0.9);
+  --agh-ref-color-transparent-white-200: rgba(255,255,255,0.8);
+  --agh-ref-color-transparent-white-300: rgba(255,255,255,0.7);
+  --agh-ref-color-transparent-white-400: rgba(255,255,255,0.6);
+  --agh-ref-color-transparent-white-500: rgba(255,255,255,0.5);
+  --agh-ref-color-transparent-white-600: rgba(255,255,255,0.4);
+  --agh-ref-color-transparent-white-700: rgba(255,255,255,0.3);
+  --agh-ref-color-transparent-white-800: rgba(255,255,255,0.2);
+  --agh-ref-color-transparent-white-900: rgba(255,255,255,0.1);
   --agh-ref-border-width-50: 1px;
   --agh-ref-border-width-100: 2px;
   --agh-ref-border-width-200: 4px;
@@ -339,17 +357,25 @@
   --agh-sys-container-body-width-small: 472px;
   --agh-sys-container-body-width-full: 1712px;
   --agh-sys-container-button-width-large: 424px;
+  --agh-sys-container-button-width-medium: 268px;
+  --agh-sys-container-button-width-small: 140px;
   --agh-sys-container-resource-container-width-full: 1712px;
   --agh-sys-container-resource-container-height-medium: 324px;
+  --agh-sys-container-history-container-height-large: 515px;
+  --agh-sys-container-history-container-height-medium: 406px;
+  --agh-sys-container-history-container-height-small: 202px;
   --agh-sys-popup-width-large: 1200px;
   --agh-sys-popup-width-small: 550px;
   --agh-sys-popup-button-width-large: 486px;
+  --agh-sys-popup-button-width-small: 237px;
   --agh-sys-card-vertical-card-width: 252px;
   --agh-sys-card-vertical-card-height: 323px;
-  --agh-sys-card-list-card-width: 400px;
-  --agh-sys-card-vm-card-width-large: 280px;
-  --agh-sys-card-vm-card-width-small: 176px;
+  --agh-sys-card-vm-card-width-large: 424px;
   --agh-sys-card-vm-card-width-medium: 330px;
+  --agh-sys-card-vm-card-width-small: 176px;
+  --agh-sys-card-list-card-width-medium: 400px;
+  --agh-sys-card-list-card-height-medium: 120px;
+  --agh-sys-card-list-card-height-large: 186px;
   --agh-sys-button-square-width-small: 40px;
   --agh-sys-button-square-width-medium: 48px;
   --agh-sys-button-square-width-large: 56px;
@@ -365,25 +391,35 @@
   --agh-sys-button-play-width-default: 130px;
   --agh-sys-button-play-height-default: 90px;
   --agh-sys-list-schedule-list-width-medium: 1105px;
+  --agh-sys-list-schedule-list-width-small: 424px;
   --agh-sys-list-card-list-width-medium: 400px;
   --agh-sys-list-upload-list-width-medium: 1120px;
-  --agh-sys-list-playbooklist-width-small: 611px;
+  --agh-sys-list-playbook-list-width-small: 611px;
+  --agh-sys-list-dropdown-small: 333px;
+  --agh-sys-list-dropdown-medium: 486px;
+  --agh-sys-list-dropdown-button-height-medium: 36px;
   --agh-sys-menubar-width-default: 96px;
   --agh-sys-menubar-height-default: 982px;
   --agh-sys-gadget-searchbar-width-small: 333px;
-  --agh-sys-gadget-searchbar-height-small: 28px;
+  --agh-sys-gadget-searchbar-height-small: 36px;
   --agh-sys-gadget-kill-chain-card-width-small: 40px;
   --agh-sys-gadget-kill-chain-card-width-large: 156px;
   --agh-sys-gadget-kill-chain-card-height-small: 44px;
   --agh-sys-gadget-kill-chain-card-height-large: 173px;
-  --agh-sys-gadget-progress-circle-width-medium: 144px;
-  --agh-sys-gadget-progress-circle-width-small: 36px;
-  --agh-sys-gadget-progress-circle-height-medium: 144px;
-  --agh-sys-gadget-progress-circle-height-small: 36px;
-  --agh-sys-gadget-progress-bar-width-small: 362px;
+  --agh-sys-gadget-progress-circle-width-large: 144px;
+  --agh-sys-gadget-progress-circle-width-medium: 36px;
+  --agh-sys-gadget-progress-circle-width-small: 24px;
+  --agh-sys-gadget-progress-circle-width-tiny: 16px;
+  --agh-sys-gadget-progress-circle-height-large: 144px;
+  --agh-sys-gadget-progress-circle-height-medium: 36px;
+  --agh-sys-gadget-progress-circle-height-small: 24px;
+  --agh-sys-gadget-progress-circle-height-tiny: 16px;
+  --agh-sys-gadget-progress-bar-width-small: 424px;
   --agh-sys-gadget-progress-bar-width-large: 740px;
   --agh-sys-gadget-progress-bar-height-small: 16px;
   --agh-sys-gadget-progress-bar-height-large: 28px;
+  --agh-sys-gadget-matrix-square-width-medium: 32px;
+  --agh-sys-gadget-matrix-square-height-medium: 32px;
   --agh-sys-color-blue-surface-normal: #F1F5FA;
   --agh-sys-color-blue-surface-dim: #DFE8F2;
   --agh-sys-color-blue-surface-bright: #F9FCFF;
@@ -394,6 +430,14 @@
   --agh-sys-color-red-surface-bright: #FFFAFA;
   --agh-sys-color-red-surface-normal: #FCF0F0;
   --agh-sys-color-red-surface-dim: #F2E1E1;
+  --agh-sys-color-gradient-dark-center: rgba(37, 138, 149, 0.8);
+  --agh-sys-color-gradient-dark-outer: rgba(31, 114, 123, 0);
+  --agh-sys-color-gradient-bright-center: rgba(49, 170, 185, 0.3);
+  --agh-sys-color-gradient-bright-outer: rgba(102, 185, 193, 0);
+  --agh-sys-navigation-title-width-default: 600px;
+  --agh-sys-chart-history-height-large: 247px;
+  --agh-sys-chart-history-width-large: 1136px;
+  --agh-sys-lable-sizing-width-medium: 120px;
   --agh-ref-color-purple-gradient-100-svg: <linearGradient id="agh-ref-color-purple-gradient-100" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="5.3%" style="stop-color: #F3EEFF;" /><stop offset="94.7%" style="stop-color: #DCCBFF;" /></linearGradient>; /* linear-gradient(143deg, #F3EEFF 5.3%, #DCCBFF 94.7%) */
   --agh-ref-color-purple-gradient-200-svg: <linearGradient id="agh-ref-color-purple-gradient-200" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="5.3%" style="stop-color: #E1D3FF;" /><stop offset="94.7%" style="stop-color: #AB82FF;" /></linearGradient>; /* linear-gradient(143deg, #E1D3FF 5.3%, #AB82FF 94.7%) */
   --agh-ref-color-purple-gradient-500-svg: <linearGradient id="agh-ref-color-purple-gradient-500" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="0%" style="stop-color: rgba(199, 176, 249, 1);" /><stop offset="100%" style="stop-color: rgba(130, 69, 255, 1);" /></linearGradient>; /* linear-gradient(143deg, rgba(199,176,249,1) 0%, rgba(130,69,255,1) 100%) */
