@@ -4,6 +4,9 @@ import BaseList from './base/BaseList.vue';
 import BasePoly from './base/BasePoly.vue';
 
 // element
+// badge
+import BadgeBox from './element/badge/BadgeBox.vue';
+
 // button
 import ButtonBox from './element/button/ButtonBox.vue';
 
@@ -13,6 +16,7 @@ import CardBox from './element/card/CardBox.vue';
 // chart
 import DoughnutChart from './element/chart/DoughnutChart.vue';
 import LineChart from './element/chart/LineChart.vue';
+import MatrixChart from './element/chart/MatrixChart.vue';
 import RadarChart from './element/chart/RadarChart.vue';
 
 // dropdown
@@ -46,6 +50,9 @@ export {
   BasePoly,
 
   // element
+  // badge
+  BadgeBox,
+
   // button
   ButtonBox,
 
@@ -55,6 +62,7 @@ export {
   // chart
   DoughnutChart,
   LineChart,
+  MatrixChart,
   RadarChart,
 
   // dropdown
