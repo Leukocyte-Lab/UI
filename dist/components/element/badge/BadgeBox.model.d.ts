@@ -1,6 +1,6 @@
 export declare namespace BadgeBox {
     type Variant = 'capsule' | 'tab';
-    type Color = 'default' | 'cyan' | 'blue' | 'green' | 'orange' | 'red';
+    type Color = 'default' | 'cyan' | 'blue' | 'green' | 'orange' | 'red' | 'purple';
     interface Props {
         label: string;
         content?: string;
