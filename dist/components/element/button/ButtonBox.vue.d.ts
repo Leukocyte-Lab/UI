@@ -14,8 +14,8 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
 }>>> & {
     onClick?: ((event: MouseEvent) => any) | undefined;
 }, {
-    disabled: boolean;
     variant: ButtonBox.Variant;
+    disabled: boolean;
     level: ButtonBox.Level;
     size: ButtonBox.Size;
 }, {}>;

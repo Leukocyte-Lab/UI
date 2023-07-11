@@ -3,7 +3,7 @@ import type { Char } from '../../../shared/types/char';
 import type { ObjectLike } from '../../../shared/types/object';
 import type { Vector } from '../../../shared/types/vector';
 export declare namespace Chart {
-    type Type = 'line' | 'bar' | 'radar' | 'doughnut';
+    type Type = 'line' | 'bar' | 'radar' | 'doughnut' | 'matrix';
     type DataType = number | string | Date;
     type DataTypeSet = 'number' | 'string' | 'date';
     type Payload = {

@@ -22,8 +22,8 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
 }, {
     type: TextField.Type;
     required: boolean;
-    disabled: boolean;
     spellcheck: boolean;
+    disabled: boolean;
     readonly: boolean;
     autocomplete: string;
     iconAlign: "left" | "right";
