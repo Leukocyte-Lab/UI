@@ -126,7 +126,7 @@ onMounted(() => {
         .label {
           font: var(--agh-sys-typeface-label-default-medium);
           color: var(--agh-ref-color-grayscale-700);
-          width: var(--agh-sys-lable-sizing-width-medium);
+          width: var(--agh-sys-label-sizing-width-medium);
           overflow-wrap: break-word;
         }
 
