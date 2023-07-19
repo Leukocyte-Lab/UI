@@ -30,7 +30,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 
 <template>
   <BaseLink
-    ref="wrapperRef$"
     :link="props.link"
     :class="[
       $style['button-container'],
@@ -59,9 +58,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       </span>
     </template>
   </BaseLink>
-  <template v-if="props.variant === 'extendable-rect'">
-    <div :class="$style['button-placeholder']" />
-  </template>
 </template>
 
 <style module scoped lang="scss">
@@ -308,32 +304,18 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     }
 
     &.extendable-rect {
-      position: absolute;
+      --button-extendable-rect-icon-size: var(--button-icon-size, var(--agh-ref-icon-size-400));
+
       padding: var(--agh-ref-spacing-200);
-      padding-right: calc(var(--fake-width) - var(--agh-ref-spacing-200));
       gap: 0;
-      width: var(--button-extendable-rect-icon-size);
+      width: var(--agh-ref-spacing-900);
+      height: var(--agh-ref-spacing-900);
       justify-content: flex-start;
       transition: padding 0.3s ease-in, width 0.3s ease-in-out, opacity 0.3s ease-in;
       max-width: var(--button-max-width, fit-content);
 
-      &,
-      & + #{$self}-placeholder {
-        --button-extendable-rect-icon-size: var(--button-icon-size, var(--agh-ref-icon-size-400));
-        --fake-width: calc(
-          var(--agh-ref-spacing-200) * 2 + var(--button-extendable-rect-icon-size)
-        );
-      }
-
-      & + #{$self}-placeholder {
-        height: var(--fake-width);
-        width: var(--fake-width);
-        pointer-events: none;
-      }
-
       &:hover {
-        padding: var(--agh-ref-spacing-200);
-        width: calc(100% - var(--agh-ref-spacing-200) * 2);
+        width: 100%;
 
         #{$self}-content {
           width: 100%;
