@@ -90,12 +90,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       --button-text-shadow: var(--agh-sys-effects-shadow-gadget-filter);
     }
 
-    &.square,
-    &.text-square,
-    &.circle {
-      @include metallic.box($has-stroke: false);
-    }
-
     &:not(
         .rounded.secondary,
         .rect.secondary,
@@ -155,6 +149,8 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     &.square,
     &.text-square,
     &.circle {
+      @include metallic.box($has-stroke: false);
+
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -180,29 +176,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         justify-content: center;
         align-items: center;
       }
-    }
 
-    &.square,
-    &.circle {
-      #{$self}-content {
-        display: none;
-      }
-
-      &:hover,
-      &:focus-visible {
-        #{$self}-content {
-          display: flex;
-        }
-      }
-    }
-
-    &.text-square {
-      margin-left: calc(var(--agh-ref-spacing-600) * 3);
-    }
-
-    &.square,
-    &.text-square,
-    &.circle {
       &.secondary {
         --box-fill-gradient: var(--agh-ref-color-blue-gradient-100);
         --box-fill-gradient-hover: linear-gradient(
@@ -230,6 +204,24 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
           }
         }
       }
+    }
+
+    &.square,
+    &.circle {
+      #{$self}-content {
+        display: none;
+      }
+
+      &:hover,
+      &:focus-visible {
+        #{$self}-content {
+          display: flex;
+        }
+      }
+    }
+
+    &.text-square {
+      margin-left: calc(var(--agh-ref-spacing-600) * 3);
     }
 
     &.rounded {
