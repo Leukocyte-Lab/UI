@@ -27,7 +27,7 @@ export default {
     variant: {
       control: 'select',
       description: 'Button variant (optional)',
-      options: ['rounded', 'square', 'circle', 'rect', 'extendable-rect', 'text'],
+      options: ['rounded', 'square', 'text-square', 'circle', 'rect', 'extendable-rect', 'text'],
       defaultValue: 'rounded'
     },
     level: {
@@ -117,6 +117,13 @@ SquareButtonBox.args = {
   label: 'Full Report Download',
   icon: 'fa6-solid:file-arrow-down',
   variant: 'square'
+};
+
+export const TextSquareButtonBox = Template.bind({});
+TextSquareButtonBox.args = {
+  label: 'Full Report Download',
+  icon: 'fa6-solid:file-arrow-down',
+  variant: 'text-square'
 };
 
 export const CircleButtonBox = Template.bind({});
