@@ -90,17 +90,23 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       --button-text-shadow: var(--agh-sys-effects-shadow-gadget-filter);
     }
 
-    &:not(.rounded.secondary, .rect.secondary) {
+    &.square,
+    &.text-square,
+    &.circle {
+      @include metallic.box($has-stroke: false);
+    }
+
+    &:not(
+        .rounded.secondary,
+        .rect.secondary,
+        .square.secondary,
+        .text-square.secondary,
+        .circle.secondary
+      ) {
       &.rounded,
       &.rect,
       &.extendable-rect {
         @include metallic.box($has-stroke: true);
-      }
-
-      &.square,
-      &.text-square,
-      &.circle {
-        @include metallic.box($has-stroke: false);
       }
 
       &.rounded,
@@ -192,6 +198,38 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 
     &.text-square {
       margin-left: calc(var(--agh-ref-spacing-600) * 3);
+    }
+
+    &.square,
+    &.text-square,
+    &.circle {
+      &.secondary {
+        --box-fill-gradient: var(--agh-ref-color-blue-gradient-100);
+        --box-fill-gradient-hover: linear-gradient(
+          var(--agh-sys-color-blue-surface-dim),
+          var(--agh-sys-color-blue-surface-dim)
+        );
+        --box-fill-gradient-clicked: linear-gradient(
+          var(--agh-sys-color-blue-surface-dim),
+          var(--agh-sys-color-blue-surface-dim)
+        );
+        --box-fill-disabled: var(--agh-ref-color-grayscale-120);
+
+        #{$self}-icon {
+          color: var(--agh-ref-color-blue-400);
+        }
+
+        &.disabled {
+          #{$self}-icon {
+            filter: none;
+            color: color-mix(
+              in srgb,
+              var(--agh-ref-color-blue-400) calc(100% * var(--agh-ref-opacity-300)),
+              white
+            );
+          }
+        }
+      }
     }
 
     &.rounded {
