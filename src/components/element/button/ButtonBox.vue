@@ -80,6 +80,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 
     &.rounded,
     &.square,
+    &.text-square,
     &.circle,
     &.rect,
     &.extendable-rect {
@@ -97,12 +98,14 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
 
       &.square,
+      &.text-square,
       &.circle {
         @include metallic.box($has-stroke: false);
       }
 
       &.rounded,
       &.square,
+      &.text-square,
       &.circle,
       &.rect,
       &.extendable-rect {
@@ -122,7 +125,8 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
     }
 
-    &.square {
+    &.square,
+    &.text-square {
       --box-border-radius: var(--agh-ref-border-radius-400);
 
       padding: var(--agh-ref-spacing-100);
@@ -143,6 +147,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     }
 
     &.square,
+    &.text-square,
     &.circle {
       display: flex;
       flex-direction: row;
@@ -150,10 +155,9 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       align-items: center;
 
       #{$self}-content {
-        display: none;
+        position: absolute;
         justify-content: flex-end;
         align-items: center;
-        position: absolute;
         width: calc(var(--agh-ref-spacing-600) * 3);
         height: fit-content;
         right: calc(100% + var(--agh-ref-spacing-200));
@@ -170,6 +174,13 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         justify-content: center;
         align-items: center;
       }
+    }
+
+    &.square,
+    &.circle {
+      #{$self}-content {
+        display: none;
+      }
 
       &:hover,
       &:focus-visible {
@@ -177,6 +188,10 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
           display: flex;
         }
       }
+    }
+
+    &.text-square {
+      margin-left: calc(var(--agh-ref-spacing-600) * 3);
     }
 
     &.rounded {
