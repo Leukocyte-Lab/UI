@@ -1,7 +1,7 @@
 
 /**
  * Do not edit directly
- * Generated on Thu, 06 Jul 2023 04:15:48 GMT
+ * Generated on Thu, 13 Jul 2023 07:16:35 GMT
  */
 
 $agh-ref-typeface-family-sans-serif: Lato, Noto Sans CJK TC, Sans-serif !default;
@@ -356,6 +356,7 @@ $agh-sys-border-button-secondary-enabled: 2px solid linear-gradient(to bottom le
 $agh-sys-container-body-width-large: 1200px !default;
 $agh-sys-container-body-width-small: 472px !default;
 $agh-sys-container-body-width-full: 1712px !default;
+$agh-sys-container-body-height-full: 842px !default;
 $agh-sys-container-button-width-large: 424px !default;
 $agh-sys-container-button-width-medium: 268px !default;
 $agh-sys-container-button-width-small: 140px !default;
@@ -373,6 +374,7 @@ $agh-sys-card-vertical-card-height: 323px !default;
 $agh-sys-card-vm-card-width-large: 424px !default;
 $agh-sys-card-vm-card-width-medium: 330px !default;
 $agh-sys-card-vm-card-width-small: 176px !default;
+$agh-sys-card-vm-card-height-medium: 76px !default;
 $agh-sys-card-list-card-width-medium: 400px !default;
 $agh-sys-card-list-card-height-medium: 120px !default;
 $agh-sys-card-list-card-height-large: 186px !default;
@@ -437,7 +439,7 @@ $agh-sys-color-gradient-bright-outer: rgba(102, 185, 193, 0) !default;
 $agh-sys-navigation-title-width-default: 600px !default;
 $agh-sys-chart-history-height-large: 247px !default;
 $agh-sys-chart-history-width-large: 1136px !default;
-$agh-sys-lable-sizing-width-medium: 120px !default;
+$agh-sys-label-sizing-width-medium: 120px !default;
 
 $tokens: (
   '0': (
@@ -1200,6 +1202,9 @@ $tokens: (
           'large': $agh-sys-container-body-width-large,
           'small': $agh-sys-container-body-width-small,
           'full': $agh-sys-container-body-width-full
+        ),
+        'height': (
+          'full': $agh-sys-container-body-height-full
         )
       ),
       'button': (
@@ -1247,6 +1252,9 @@ $tokens: (
           'large': $agh-sys-card-vm-card-width-large,
           'medium': $agh-sys-card-vm-card-width-medium,
           'small': $agh-sys-card-vm-card-width-small
+        ),
+        'height': (
+          'medium': $agh-sys-card-vm-card-height-medium
         )
       ),
       'list-card': (
@@ -1442,10 +1450,10 @@ $tokens: (
         )
       )
     ),
-    'lable': (
+    'label': (
       'sizing': (
         'width': (
-          'medium': $agh-sys-lable-sizing-width-medium
+          'medium': $agh-sys-label-sizing-width-medium
         )
       )
     )

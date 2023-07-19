@@ -3133,6 +3133,12 @@
             "value": "1712",
             "type": "sizing"
           }
+        },
+        "height": {
+          "full": {
+            "value": "842",
+            "type": "sizing"
+          }
         }
       },
       "button": {
@@ -3229,6 +3235,12 @@
           },
           "small": {
             "value": "176",
+            "type": "sizing"
+          }
+        },
+        "height": {
+          "medium": {
+            "value": "76",
             "type": "sizing"
           }
         }
@@ -3618,7 +3630,7 @@
         }
       }
     },
-    "lable": {
+    "label": {
       "sizing": {
         "width": {
           "medium": {

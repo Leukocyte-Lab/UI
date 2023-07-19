@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 06 Jul 2023 04:15:48 GMT
+ * Generated on Thu, 13 Jul 2023 07:16:35 GMT
  */
 
 :root {
@@ -356,6 +356,7 @@
   --agh-sys-container-body-width-large: 1200px;
   --agh-sys-container-body-width-small: 472px;
   --agh-sys-container-body-width-full: 1712px;
+  --agh-sys-container-body-height-full: 842px;
   --agh-sys-container-button-width-large: 424px;
   --agh-sys-container-button-width-medium: 268px;
   --agh-sys-container-button-width-small: 140px;
@@ -373,6 +374,7 @@
   --agh-sys-card-vm-card-width-large: 424px;
   --agh-sys-card-vm-card-width-medium: 330px;
   --agh-sys-card-vm-card-width-small: 176px;
+  --agh-sys-card-vm-card-height-medium: 76px;
   --agh-sys-card-list-card-width-medium: 400px;
   --agh-sys-card-list-card-height-medium: 120px;
   --agh-sys-card-list-card-height-large: 186px;
@@ -437,7 +439,7 @@
   --agh-sys-navigation-title-width-default: 600px;
   --agh-sys-chart-history-height-large: 247px;
   --agh-sys-chart-history-width-large: 1136px;
-  --agh-sys-lable-sizing-width-medium: 120px;
+  --agh-sys-label-sizing-width-medium: 120px;
   --agh-ref-color-purple-gradient-100-svg: <linearGradient id="agh-ref-color-purple-gradient-100" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="5.3%" style="stop-color: #F3EEFF;" /><stop offset="94.7%" style="stop-color: #DCCBFF;" /></linearGradient>; /* linear-gradient(143deg, #F3EEFF 5.3%, #DCCBFF 94.7%) */
   --agh-ref-color-purple-gradient-200-svg: <linearGradient id="agh-ref-color-purple-gradient-200" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="5.3%" style="stop-color: #E1D3FF;" /><stop offset="94.7%" style="stop-color: #AB82FF;" /></linearGradient>; /* linear-gradient(143deg, #E1D3FF 5.3%, #AB82FF 94.7%) */
   --agh-ref-color-purple-gradient-500-svg: <linearGradient id="agh-ref-color-purple-gradient-500" data-gradient-angle="143" x1="19.91%" y1="10.07%" x2="80.08999999999999%" y2="89.92999999999999%"><stop offset="0%" style="stop-color: rgba(199, 176, 249, 1);" /><stop offset="100%" style="stop-color: rgba(130, 69, 255, 1);" /></linearGradient>; /* linear-gradient(143deg, rgba(199,176,249,1) 0%, rgba(130,69,255,1) 100%) */
