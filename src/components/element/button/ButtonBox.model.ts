@@ -10,7 +10,7 @@ export namespace ButtonBox {
     size?: Size;
   };
 
-  export type Variant = 'rounded' | 'square' | 'circle' | 'rect' | 'extendable-rect' | 'text' | 'file';
+  export type Variant = 'rounded' | 'square' | 'text-square' | 'circle' | 'rect' | 'extendable-rect' | 'text' | 'file';
   export type Level = 'primary' | 'secondary';
   export type Size = 'small' | 'large';
 

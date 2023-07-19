@@ -30,7 +30,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 
 <template>
   <BaseLink
-    ref="wrapperRef$"
     :link="props.link"
     :class="[
       $style['button-container'],
@@ -59,9 +58,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       </span>
     </template>
   </BaseLink>
-  <template v-if="props.variant === 'extendable-rect'">
-    <div :class="$style['button-placeholder']" />
-  </template>
 </template>
 
 <style module scoped lang="scss">
@@ -84,6 +80,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 
     &.rounded,
     &.square,
+    &.text-square,
     &.circle,
     &.rect,
     &.extendable-rect {
@@ -93,20 +90,22 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       --button-text-shadow: var(--agh-sys-effects-shadow-gadget-filter);
     }
 
-    &:not(.rounded.secondary, .rect.secondary) {
+    &:not(
+        .rounded.secondary,
+        .rect.secondary,
+        .square.secondary,
+        .text-square.secondary,
+        .circle.secondary
+      ) {
       &.rounded,
       &.rect,
       &.extendable-rect {
         @include metallic.box($has-stroke: true);
       }
 
-      &.square,
-      &.circle {
-        @include metallic.box($has-stroke: false);
-      }
-
       &.rounded,
       &.square,
+      &.text-square,
       &.circle,
       &.rect,
       &.extendable-rect {
@@ -126,7 +125,8 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
     }
 
-    &.square {
+    &.square,
+    &.text-square {
       --box-border-radius: var(--agh-ref-border-radius-400);
 
       padding: var(--agh-ref-spacing-100);
@@ -147,17 +147,19 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     }
 
     &.square,
+    &.text-square,
     &.circle {
+      @include metallic.box($has-stroke: false);
+
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
 
       #{$self}-content {
-        display: none;
+        position: absolute;
         justify-content: flex-end;
         align-items: center;
-        position: absolute;
         width: calc(var(--agh-ref-spacing-600) * 3);
         height: fit-content;
         right: calc(100% + var(--agh-ref-spacing-200));
@@ -175,12 +177,51 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         align-items: center;
       }
 
+      &.secondary {
+        --box-fill-gradient: var(--agh-ref-color-blue-gradient-100);
+        --box-fill-gradient-hover: linear-gradient(
+          var(--agh-sys-color-blue-surface-dim),
+          var(--agh-sys-color-blue-surface-dim)
+        );
+        --box-fill-gradient-clicked: linear-gradient(
+          var(--agh-sys-color-blue-surface-dim),
+          var(--agh-sys-color-blue-surface-dim)
+        );
+        --box-fill-disabled: var(--agh-ref-color-grayscale-120);
+
+        #{$self}-icon {
+          color: var(--agh-ref-color-blue-400);
+        }
+
+        &.disabled {
+          #{$self}-icon {
+            filter: none;
+            color: color-mix(
+              in srgb,
+              var(--agh-ref-color-blue-400) calc(100% * var(--agh-ref-opacity-300)),
+              white
+            );
+          }
+        }
+      }
+    }
+
+    &.square,
+    &.circle {
+      #{$self}-content {
+        display: none;
+      }
+
       &:hover,
       &:focus-visible {
         #{$self}-content {
           display: flex;
         }
       }
+    }
+
+    &.text-square {
+      margin-left: calc(var(--agh-ref-spacing-600) * 3);
     }
 
     &.rounded {
@@ -308,32 +349,18 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     }
 
     &.extendable-rect {
-      position: absolute;
+      --button-extendable-rect-icon-size: var(--button-icon-size, var(--agh-ref-icon-size-400));
+
       padding: var(--agh-ref-spacing-200);
-      padding-right: calc(var(--fake-width) - var(--agh-ref-spacing-200));
       gap: 0;
-      width: var(--button-extendable-rect-icon-size);
+      width: var(--agh-ref-spacing-900);
+      height: var(--agh-ref-spacing-900);
       justify-content: flex-start;
       transition: padding 0.3s ease-in, width 0.3s ease-in-out, opacity 0.3s ease-in;
       max-width: var(--button-max-width, fit-content);
 
-      &,
-      & + #{$self}-placeholder {
-        --button-extendable-rect-icon-size: var(--button-icon-size, var(--agh-ref-icon-size-400));
-        --fake-width: calc(
-          var(--agh-ref-spacing-200) * 2 + var(--button-extendable-rect-icon-size)
-        );
-      }
-
-      & + #{$self}-placeholder {
-        height: var(--fake-width);
-        width: var(--fake-width);
-        pointer-events: none;
-      }
-
       &:hover {
-        padding: var(--agh-ref-spacing-200);
-        width: calc(100% - var(--agh-ref-spacing-200) * 2);
+        width: 100%;
 
         #{$self}-content {
           width: 100%;

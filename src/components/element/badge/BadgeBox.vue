@@ -93,7 +93,7 @@ const props = withDefaults(defineProps<BadgeBox.Props>(), {
             &:last-child:not(:first-child) {
               font: var(--agh-sys-typeface-label-hl-small);
 
-              &:before {
+              &::before {
                 content: v-bind('`"${props.delimiter}"`');
               }
             }

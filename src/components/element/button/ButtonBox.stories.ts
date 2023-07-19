@@ -27,7 +27,7 @@ export default {
     variant: {
       control: 'select',
       description: 'Button variant (optional)',
-      options: ['rounded', 'square', 'circle', 'rect', 'extendable-rect', 'text'],
+      options: ['rounded', 'square', 'text-square', 'circle', 'rect', 'extendable-rect', 'text'],
       defaultValue: 'rounded'
     },
     level: {
@@ -112,15 +112,39 @@ TextButtonBox.args = {
   variant: 'text'
 };
 
-export const SquareButtonBox = Template.bind({});
-SquareButtonBox.args = {
+export const PrimarySquareButtonBox = Template.bind({});
+PrimarySquareButtonBox.args = {
   label: 'Full Report Download',
   icon: 'fa6-solid:file-arrow-down',
-  variant: 'square'
+  variant: 'square',
+  level: 'primary'
 };
 
-export const CircleButtonBox = Template.bind({});
-CircleButtonBox.args = {
+export const SecondarySquareButtonBox = Template.bind({});
+SecondarySquareButtonBox.args = {
+  label: 'Full Report Download',
+  icon: 'fa6-solid:file-arrow-down',
+  variant: 'square',
+  level: 'secondary'
+};
+
+export const TextSquareButtonBox = Template.bind({});
+TextSquareButtonBox.args = {
+  label: 'Full Report Download',
+  icon: 'fa6-solid:file-arrow-down',
+  variant: 'text-square'
+};
+
+export const PrimaryCircleButtonBox = Template.bind({});
+PrimaryCircleButtonBox.args = {
   icon: 'fa6-solid:plus',
-  variant: 'circle'
+  variant: 'circle',
+  level: 'primary'
+};
+
+export const SecondaryCircleButtonBox = Template.bind({});
+SecondaryCircleButtonBox.args = {
+  icon: 'fa6-solid:plus',
+  variant: 'circle',
+  level: 'secondary'
 };
