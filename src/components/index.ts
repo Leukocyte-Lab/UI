@@ -36,7 +36,8 @@ import ProgressCircle from './element/progress/ProgressCircle.vue';
 // searchbar
 import SearchBar from './element/search-bar/SearchBar.vue';
 
-// textfield
+// text
+import TextArea from './element/textarea/TextArea.vue';
 import TextField from './element/textfield/TextField.vue';
 
 // layout
@@ -82,7 +83,8 @@ export {
   // searchbar
   SearchBar,
 
-  // textfield
+  // text
+  TextArea,
   TextField,
 
   // layout
