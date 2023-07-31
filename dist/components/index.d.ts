@@ -15,6 +15,7 @@ import SelectMenu from './element/menu/SelectMenu.vue';
 import ProgressBar from './element/progress/ProgressBar.vue';
 import ProgressCircle from './element/progress/ProgressCircle.vue';
 import SearchBar from './element/search-bar/SearchBar.vue';
+import TextArea from './element/textarea/TextArea.vue';
 import TextField from './element/textfield/TextField.vue';
 import CardList from './layout/list/CardList.vue';
-export { BaseLink, BaseList, BasePoly, BadgeBox, ButtonBox, CardBox, DoughnutChart, LineChart, MatrixChart, RadarChart, DropDown, InnerShadowDeco, RoundEffect, SelectMenu, ProgressBar, ProgressCircle, SearchBar, TextField, CardList };
+export { BaseLink, BaseList, BasePoly, BadgeBox, ButtonBox, CardBox, DoughnutChart, LineChart, MatrixChart, RadarChart, DropDown, InnerShadowDeco, RoundEffect, SelectMenu, ProgressBar, ProgressCircle, SearchBar, TextArea, TextField, CardList };
