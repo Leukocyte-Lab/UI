@@ -1,4 +1,4 @@
-import type { Chart } from '../../../components/element/chart/chart.model';
+import type { Chart } from '@/components/element/chart/chart.model';
 declare const _default: import("vue").DefineComponent<__VLS_TypePropsToRuntimeProps<Chart.Props>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<Chart.Props>>>, {}, {}>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;

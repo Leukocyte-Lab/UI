@@ -1,23 +1,14 @@
-import type { ButtonBox } from '../../../components/element/button/ButtonBox.model';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps>, {
+import type { SwitchButton } from './SwitchButton.model';
+declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<SwitchButton.Props>, {
     disabled: boolean;
-    variant: string;
-    level: string;
-    size: string;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    click: (event: MouseEvent) => void;
-}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps>, {
+    "update:modelValue": (value: boolean) => void;
+}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<SwitchButton.Props>, {
     disabled: boolean;
-    variant: string;
-    level: string;
-    size: string;
 }>>> & {
-    onClick?: ((event: MouseEvent) => any) | undefined;
+    "onUpdate:modelValue"?: ((value: boolean) => any) | undefined;
 }, {
-    variant: ButtonBox.Variant;
     disabled: boolean;
-    level: ButtonBox.Level;
-    size: ButtonBox.Size;
 }, {}>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;

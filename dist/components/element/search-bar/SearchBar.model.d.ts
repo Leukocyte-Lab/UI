@@ -1,5 +1,5 @@
 import type { SelectMenu as SelectMenuNS } from '../../../components/element/menu/SelectMenu.model';
-import type { ObjectLike } from '../../../shared/types/object';
+import type { ObjectLike } from '@/shared/types/object';
 export declare namespace SearchBar {
     type Props = {
         fields: SelectMenuNS.Props['fields'];
