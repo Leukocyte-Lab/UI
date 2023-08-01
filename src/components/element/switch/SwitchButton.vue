@@ -1,10 +1,9 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { useEventDebounceSignal } from '@/shared/libs/event';
 
-import type { Switch } from './switch.model';
+import type { SwitchButton } from './SwitchButton.model';
 
-const props = withDefaults(defineProps<Switch.Props>(), {
+const props = withDefaults(defineProps<SwitchButton.Props>(), {
   disabled: false
 });
 
@@ -42,9 +41,11 @@ const { onTrigger } = useEventDebounceSignal(
   border-radius: var(--agh-ref-border-radius-900);
   cursor: pointer;
   position: relative;
+
   &_active {
     background-color: var(--agh-ref-color-blue-500);
   }
+
   .slider {
     width: var(--agh-sys-gadget-switch-circle-width-full);
     height: var(--agh-sys-gadget-switch-circle-height-full);
@@ -55,6 +56,7 @@ const { onTrigger } = useEventDebounceSignal(
     top: var(--agh-ref-spacing-25);
     left: var(--agh-ref-spacing-25);
     transition: transform 0.4s;
+
     &_active {
       transform: translateX(calc((var(--agh-sys-gadget-switch-width-full) - var(--agh-sys-gadget-switch-circle-width-full)) - (var(--agh-ref-spacing-25) * 2)));
     }

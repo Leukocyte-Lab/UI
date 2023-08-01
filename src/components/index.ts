@@ -41,7 +41,7 @@ import TextArea from './element/textarea/TextArea.vue';
 import TextField from './element/textfield/TextField.vue';
 
 // switch
-import Switch from './element/switch/Switch.vue';
+import SwitchButton from './element/switch/SwitchButton.vue';
 
 // layout
 // list
@@ -91,7 +91,7 @@ export {
   TextField,
 
   // switch
-  Switch,
+  SwitchButton,
 
   // layout
   // list
