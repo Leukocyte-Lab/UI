@@ -40,6 +40,9 @@ import SearchBar from './element/search-bar/SearchBar.vue';
 import TextArea from './element/textarea/TextArea.vue';
 import TextField from './element/textfield/TextField.vue';
 
+// switch
+import SwitchButton from './element/switch/SwitchButton.vue';
+
 // layout
 // list
 import CardList from './layout/list/CardList.vue';
@@ -86,6 +89,9 @@ export {
   // text
   TextArea,
   TextField,
+
+  // switch
+  SwitchButton,
 
   // layout
   // list
