@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 13 Jul 2023 07:16:35 GMT
+ * Generated on Mon, 31 Jul 2023 07:59:15 GMT
  */
 
 :root {
@@ -369,7 +369,7 @@
   --agh-sys-popup-width-small: 550px;
   --agh-sys-popup-button-width-large: 486px;
   --agh-sys-popup-button-width-small: 237px;
-  --agh-sys-card-vertical-card-width: 252px;
+  --agh-sys-card-vertical-card-width: 265px;
   --agh-sys-card-vertical-card-height: 323px;
   --agh-sys-card-vm-card-width-large: 424px;
   --agh-sys-card-vm-card-width-medium: 330px;
@@ -422,6 +422,9 @@
   --agh-sys-gadget-progress-bar-height-large: 28px;
   --agh-sys-gadget-matrix-square-width-medium: 32px;
   --agh-sys-gadget-matrix-square-height-medium: 32px;
+  --agh-sys-gadget-switch-width-full: 50px;
+  --agh-sys-gadget-switch-circle-width-full: 26px;
+  --agh-sys-gadget-switch-circle-height-full: 26px;
   --agh-sys-color-blue-surface-normal: #F1F5FA;
   --agh-sys-color-blue-surface-dim: #DFE8F2;
   --agh-sys-color-blue-surface-bright: #F9FCFF;

@@ -3215,7 +3215,7 @@
     "card": {
       "vertical-card": {
         "width": {
-          "value": "252",
+          "value": "265",
           "type": "sizing"
         },
         "height": {
@@ -3524,6 +3524,28 @@
           "medium": {
             "value": "32",
             "type": "sizing"
+          }
+        }
+      },
+      "switch": {
+        "width": {
+          "full": {
+            "value": "50",
+            "type": "sizing"
+          }
+        },
+        "circle": {
+          "width": {
+            "full": {
+              "value": "26",
+              "type": "sizing"
+            }
+          },
+          "height": {
+            "full": {
+              "value": "26",
+              "type": "sizing"
+            }
           }
         }
       }
