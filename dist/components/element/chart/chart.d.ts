@@ -1,5 +1,5 @@
 import type { MaybeRef } from 'vue';
-import type { ObjectLike } from '@/shared/types/object';
+import type { ObjectLike } from '../../../shared/types/object';
 import type { Chart } from './chart.model';
 export declare const useChart: ({ type, axises, data }: {
     type: MaybeRef<Chart.Type>;

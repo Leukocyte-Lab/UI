@@ -1,5 +1,5 @@
 import type { SearchBar } from './SearchBar.model';
-import type { ObjectLike } from '@/shared/types/object';
+import type { ObjectLike } from '../../../shared/types/object';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<SearchBar.Props>, {
     items: () => never[];
     modelValue: string;

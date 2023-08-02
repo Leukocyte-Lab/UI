@@ -1,4 +1,4 @@
-import type { ObjectLike } from '@/shared/types/object';
+import type { ObjectLike } from '../../../shared/types/object';
 import type { CardList } from './CardList.model';
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<CardList.Props>, {
     items: () => never[];

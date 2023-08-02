@@ -1,5 +1,5 @@
 import type { SelectMenu } from '../../../components/element/menu/SelectMenu.model';
-import type { ObjectLike } from '@/shared/types/object';
+import type { ObjectLike } from '../../../shared/types/object';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<SelectMenu.Props>, {
     multiple: boolean;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {

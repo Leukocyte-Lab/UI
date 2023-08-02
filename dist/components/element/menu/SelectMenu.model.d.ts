@@ -1,4 +1,4 @@
-import type { ObjectLike } from '@/shared/types/object';
+import type { ObjectLike } from '../../../shared/types/object';
 export declare namespace SelectMenu {
     type Fields = {
         key: string;
