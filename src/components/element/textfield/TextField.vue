@@ -40,7 +40,7 @@ const { onTrigger } = useEventDebounceSignal(
 
 const inputRef$ = ref<HTMLInputElement>();
 const errMsg = signal('');
-const focused = signal(false);
+const focused = signal(props.modelValue !== '');
 
 const computeErrMsg = () =>
   errMsg.set(
@@ -62,30 +62,45 @@ onMounted(() => {
     :class="[
       $style['textfield-container'],
       {
-        [$style[`icon-align--${props.iconAlign}`]]: props.icon || type === 'search'
+        [$style[`icon-align--${props.iconAlign}`]]: props.icon || type === 'search',
+        [$style['no-label']]: !props.label
       }
     ]"
   >
+    <template v-if="props.label || props.required">
+      <label :class="[$style['textfield-label']]">
+        <template v-if="props.label">
+          <p :class="[$style['textfield-label--value']]">{{ props.label }}</p>
+        </template>
+        <p :class="[$style['textfield-label--notation']]">
+          <Icon :class="$style.icon" icon="fa6-solid:asterisk" />
+          <span>Required</span>
+        </p>
+      </label>
+    </template>
     <input
       ref="inputRef$"
-      :class="[$style['textfield-input'], {
-        [$style['focused']]: focused()
-      }]"
+      :class="[
+        $style['textfield-input'],
+        {
+          [$style['focused']]: focused()
+        }
+      ]"
       v-bind="props"
       :value="props.modelValue"
       @input="onTrigger"
     />
     <template v-if="type === 'search' || props.icon">
       <Icon
-        :class="[$style['textfield-label--icon'], $style['icon']]"
+        :class="[$style['textfield-icon'], $style['icon']]"
         :icon="props.icon || type === 'search' ? 'fa6-solid:magnifying-glass' : ''"
       />
     </template>
     <template v-if="errMsg() && focused()">
-      <label :for="props.name" :class="[$style['textfield-label']]">
-        <Icon :class="[$style['textfield-label--icon']]" :icon="'fa6-solid:circle-xmark'" />
-        <span :class="[$style['textfield-label--value']]">{{ errMsg() }}</span>
-      </label>
+      <div :class="[$style['textfield-msg']]">
+        <Icon :class="[$style['textfield-icon']]" :icon="'fa6-solid:circle-xmark'" />
+        <span :class="[$style['textfield-msg--value']]">{{ errMsg() }}</span>
+      </div>
     </template>
   </div>
 </template>
@@ -94,11 +109,21 @@ onMounted(() => {
 .textfield {
   &-container {
     display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
+    flex-direction: column;
+    place-content: center;
     position: relative;
     width: fit-content;
     height: fit-content;
+    gap: var(--agh-ref-spacing-200);
+
+    &.no-label {
+      flex-direction: column-reverse;
+    }
+
+    &,
+    & *:not(svg) {
+      box-sizing: border-box;
+    }
 
     &.icon-align {
       &--left,
@@ -109,8 +134,6 @@ onMounted(() => {
       }
 
       &--left {
-        flex-direction: row;
-
         .textfield {
           &-input {
             padding-left: var(--icon-offset);
@@ -120,6 +143,10 @@ onMounted(() => {
 
       &--right {
         .textfield {
+          &-icon {
+            right: 0;
+          }
+
           &-input {
             padding-right: var(--icon-offset);
           }
@@ -127,11 +154,35 @@ onMounted(() => {
       }
     }
 
-    > .textfield-label {
-      &--icon {
+    > .textfield {
+      &-icon {
         position: absolute;
         color: var(--agh-ref-color-grayscale-500);
         padding: var(--agh-ref-spacing-100) var(--agh-ref-spacing-200);
+      }
+    }
+  }
+
+  &-label {
+    display: flex;
+    flex-direction: row;
+    place-content: space-between;
+    position: relative;
+    width: 100%;
+    height: fit-content;
+
+    &--value {
+      color: var(--agh-ref-color-grayscale-700);
+      font: var(--agh-sys-typeface-label-default-large);
+    }
+
+    &--notation {
+      color: var(--agh-ref-color-red-500);
+      font: var(--agh-sys-typeface-label-default-small);
+
+      > .icon {
+        font-size: calc(var(--agh-ref-icon-size-100) * 0.5);
+        vertical-align: 0.5em;
       }
     }
   }
@@ -148,6 +199,10 @@ onMounted(() => {
     color: var(--agh-ref-color-grayscale-800);
     caret-color: var(--agh-ref-color-blue-500);
     font: var(--agh-sys-typeface-label-default-medium);
+
+    &::placeholder {
+      color: var(--agh-ref-color-grayscale-400);
+    }
 
     &:hover,
     &:focus {
@@ -200,29 +255,26 @@ onMounted(() => {
     }
   }
 
-  &-label {
+  &-icon {
+    font: var(--agh-ref-typeface-family-icon-default);
+    flex-shrink: 0;
+  }
+
+  &-msg {
     position: absolute;
     top: calc(100% + var(--agh-ref-spacing-200));
     left: 0;
     display: inline-flex;
     place-items: center;
     padding: var(--agh-ref-spacing-50) var(--agh-ref-spacing-200);
-    gap: var(--agh-ref-spacing-100);
+    gap: var(--agh-ref-spacing-200);
     font: var(--agh-sys-typeface-content-default-medium);
     background-color: var(--agh-ref-color-red-500);
     color: var(--agh-ref-color-grayscale-100);
     border-radius: var(--agh-ref-border-radius-300);
     box-shadow: var(--agh-sys-effects-shadow-gadget);
     z-index: 100;
-
-    &--icon {
-      font: var(--agh-ref-typeface-family-icon-default);
-      flex-shrink: 0;
-    }
-
-    &--value {
-      white-space: nowrap;
-    }
+    max-width: 100%;
   }
 }
 </style>
