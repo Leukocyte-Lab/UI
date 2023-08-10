@@ -1,17 +1,20 @@
-declare const _default: import("vue").DefineComponent<__VLS_TypePropsToRuntimeProps<{
-    id: string;
-    radius: number;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
-    id: string;
-    radius: number;
-}>>>, {}, {}>;
-export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
+declare const _default: import("vue").DefineComponent<{
+    id: {
+        type: import("vue").PropType<string>;
         required: true;
     };
-};
+    radius: {
+        type: import("vue").PropType<number>;
+        required: true;
+    };
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    id: {
+        type: import("vue").PropType<string>;
+        required: true;
+    };
+    radius: {
+        type: import("vue").PropType<number>;
+        required: true;
+    };
+}>>, {}, {}>;
+export default _default;

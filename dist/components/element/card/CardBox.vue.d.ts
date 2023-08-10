@@ -15,23 +15,71 @@ declare namespace CardBox {
     type Purpose = 'box' | 'container';
     type Props = BaseProps;
 }
-declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<CardBox.BaseProps>, {
-    variant: string;
-    color: string;
-    hasStroke: boolean;
-    clickable: boolean;
-    strokeWeight: string;
-    purpose: string;
-    radius: string;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<CardBox.BaseProps>, {
-    variant: string;
-    color: string;
-    hasStroke: boolean;
-    clickable: boolean;
-    strokeWeight: string;
-    purpose: string;
-    radius: string;
-}>>>, {
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
+    link: {
+        type: import("vue").PropType<string>;
+    };
+    color: {
+        type: import("vue").PropType<CardBox.Color>;
+        default: string;
+    };
+    radius: {
+        type: import("vue").PropType<string>;
+        default: string;
+    };
+    variant: {
+        type: import("vue").PropType<CardBox.Variant>;
+        default: string;
+    };
+    clickable: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    hasStroke: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    strokeWeight: {
+        type: import("vue").PropType<CardBox.StrokeWeight>;
+        default: string;
+    };
+    purpose: {
+        type: import("vue").PropType<CardBox.Purpose>;
+        default: string;
+    };
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    link: {
+        type: import("vue").PropType<string>;
+    };
+    color: {
+        type: import("vue").PropType<CardBox.Color>;
+        default: string;
+    };
+    radius: {
+        type: import("vue").PropType<string>;
+        default: string;
+    };
+    variant: {
+        type: import("vue").PropType<CardBox.Variant>;
+        default: string;
+    };
+    clickable: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    hasStroke: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    strokeWeight: {
+        type: import("vue").PropType<CardBox.StrokeWeight>;
+        default: string;
+    };
+    purpose: {
+        type: import("vue").PropType<CardBox.Purpose>;
+        default: string;
+    };
+}>>, {
     color: CardBox.Color;
     radius: string;
     variant: CardBox.Variant;
@@ -43,25 +91,8 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     default?(_: {}): any;
 }>;
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
-type __VLS_WithDefaults<P, D> = {
-    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
-        default: D[K];
-    }> : P[K];
-};
 type __VLS_WithTemplateSlots<T, S> = T & {
     new (): {
         $slots: S;
     };
 };
-type __VLS_Prettify<T> = {
-    [K in keyof T]: T[K];
-} & {};

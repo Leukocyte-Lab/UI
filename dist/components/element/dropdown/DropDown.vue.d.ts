@@ -1,15 +1,52 @@
-import type { DropDown } from '../../../components/element/dropdown/DropDown.model';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<DropDown.Props>, {
-    items: () => never[];
-    level: string;
-    size: string;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+declare const _default: import("vue").DefineComponent<{
+    items: {
+        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike<any>[]>;
+        default: () => never[];
+    };
+    disabled: {
+        type: import("vue").PropType<boolean>;
+    };
+    level: {
+        type: import("vue").PropType<import("../button/ButtonBox.model").ButtonBox.Level>;
+        default: string;
+    };
+    size: {
+        type: import("vue").PropType<import("../button/ButtonBox.model").ButtonBox.Size>;
+        default: string;
+    };
+    fields: {
+        type: import("vue").PropType<import("../menu/SelectMenu.model").SelectMenu.Fields>;
+        required: true;
+    };
+    modelValue: {
+        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike<any>>;
+    };
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (option: any) => void;
-}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<DropDown.Props>, {
-    items: () => never[];
-    level: string;
-    size: string;
-}>>> & {
+}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    items: {
+        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike<any>[]>;
+        default: () => never[];
+    };
+    disabled: {
+        type: import("vue").PropType<boolean>;
+    };
+    level: {
+        type: import("vue").PropType<import("../button/ButtonBox.model").ButtonBox.Level>;
+        default: string;
+    };
+    size: {
+        type: import("vue").PropType<import("../button/ButtonBox.model").ButtonBox.Size>;
+        default: string;
+    };
+    fields: {
+        type: import("vue").PropType<import("../menu/SelectMenu.model").SelectMenu.Fields>;
+        required: true;
+    };
+    modelValue: {
+        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike<any>>;
+    };
+}>> & {
     "onUpdate:modelValue"?: ((option: any) => any) | undefined;
 }, {
     items: import("../../../shared/types/object").ObjectLike<any>[];
@@ -17,20 +54,3 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     size: import("../button/ButtonBox.model").ButtonBox.Size;
 }, {}>;
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
-type __VLS_WithDefaults<P, D> = {
-    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
-        default: D[K];
-    }> : P[K];
-};
-type __VLS_Prettify<T> = {
-    [K in keyof T]: T[K];
-} & {};

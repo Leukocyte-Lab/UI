@@ -472,7 +472,7 @@ export declare const useChart: ({ type, axises, data }: {
                     };
                 } | undefined;
             } | undefined;
-            $?: {
+            a?: {
                 normalized: number;
                 value?: string | number | {
                     toString: () => string;
@@ -538,7 +538,7 @@ export declare const useChart: ({ type, axises, data }: {
                     };
                 } | undefined;
             } | undefined;
-            a?: {
+            $?: {
                 normalized: number;
                 value?: string | number | {
                     toString: () => string;
@@ -6833,7 +6833,7 @@ export declare const useChart: ({ type, axises, data }: {
                 } | undefined;
             }[] | undefined;
         } | undefined;
-        $?: {
+        a?: {
             label: string;
             min?: number | "auto" | undefined;
             max?: number | "auto" | undefined;
@@ -6921,7 +6921,7 @@ export declare const useChart: ({ type, axises, data }: {
                 } | undefined;
             }[] | undefined;
         } | undefined;
-        a?: {
+        $?: {
             label: string;
             min?: number | "auto" | undefined;
             max?: number | "auto" | undefined;

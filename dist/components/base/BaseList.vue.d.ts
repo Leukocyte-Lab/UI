@@ -1,5 +1,20 @@
-import type { BaseList } from '../../components/base/BaseList.model';
-declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_TypePropsToRuntimeProps<BaseList.Props>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<BaseList.Props>>>, {}, {}>, {
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
+    items: {
+        type: import("vue").PropType<import("../../shared/types/object").ObjectLike[]>;
+        required: true;
+    };
+    groupBy: {
+        type: import("vue").PropType<string>;
+    };
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    items: {
+        type: import("vue").PropType<import("../../shared/types/object").ObjectLike[]>;
+        required: true;
+    };
+    groupBy: {
+        type: import("vue").PropType<string>;
+    };
+}>>, {}, {}>, {
     default: (props: {
         item: import("../../shared/types/object").ObjectLike;
         index: number;
@@ -11,15 +26,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     placeholder?: ((props: {}) => JSX.Element) | undefined;
 }>;
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
 type __VLS_WithTemplateSlots<T, S> = T & {
     new (): {
         $slots: S;

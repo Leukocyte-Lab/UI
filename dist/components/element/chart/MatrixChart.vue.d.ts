@@ -1,12 +1,27 @@
 import type { Chart } from '../../../components/element/chart/chart.model';
-declare const _default: import("vue").DefineComponent<__VLS_TypePropsToRuntimeProps<Chart.Props>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<Chart.Props>>>, {}, {}>;
-export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
+declare const _default: import("vue").DefineComponent<{
+    axises: {
+        type: import("vue").PropType<Record<"x" | "y", Chart.Axis> & Partial<Record<import("../../../shared/types/char").Char, Chart.Axis>>>;
         required: true;
     };
-};
+    datasets: {
+        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike | import("../../../shared/types/object").ObjectLike[]>;
+        required: true;
+    };
+    options: {
+        type: import("vue").PropType<Chart.Options>;
+    };
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    axises: {
+        type: import("vue").PropType<Record<"x" | "y", Chart.Axis> & Partial<Record<import("../../../shared/types/char").Char, Chart.Axis>>>;
+        required: true;
+    };
+    datasets: {
+        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike | import("../../../shared/types/object").ObjectLike[]>;
+        required: true;
+    };
+    options: {
+        type: import("vue").PropType<Chart.Options>;
+    };
+}>>, {}, {}>;
+export default _default;

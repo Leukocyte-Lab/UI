@@ -1,17 +1,75 @@
 import type { ObjectLike } from '../../../shared/types/object';
 import type { CardList } from './CardList.model';
-declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<CardList.Props>, {
-    items: () => never[];
-    modelValue: string;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
+    sort: {
+        type: import("vue").PropType<CardList.SortOption>;
+    };
+    filter: {
+        type: import("vue").PropType<CardList.FilterOption[]>;
+    };
+    items: {
+        type: import("vue").PropType<ObjectLike[]>;
+        required: true;
+        default: () => never[];
+    };
+    groupBy: {
+        type: import("vue").PropType<string>;
+    };
+    fields: {
+        type: import("vue").PropType<import("../../element/menu/SelectMenu.model").SelectMenu.Fields>;
+        required: true;
+    };
+    modelValue: {
+        type: import("vue").PropType<string>;
+        default: string;
+    };
+    selected: {
+        type: import("vue").PropType<ObjectLike | null>;
+    };
+    sortOptions: {
+        type: import("vue").PropType<CardList.SortOption[]>;
+    };
+    filterOptions: {
+        type: import("vue").PropType<CardList.FilterOption[]>;
+    };
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (option: string) => void;
     "update:sort": (option: CardList.SortOption) => void;
     "update:filter": (option: CardList.FilterOption[]) => void;
     "update:selected": (option: ObjectLike) => void;
-}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<CardList.Props>, {
-    items: () => never[];
-    modelValue: string;
-}>>> & {
+}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    sort: {
+        type: import("vue").PropType<CardList.SortOption>;
+    };
+    filter: {
+        type: import("vue").PropType<CardList.FilterOption[]>;
+    };
+    items: {
+        type: import("vue").PropType<ObjectLike[]>;
+        required: true;
+        default: () => never[];
+    };
+    groupBy: {
+        type: import("vue").PropType<string>;
+    };
+    fields: {
+        type: import("vue").PropType<import("../../element/menu/SelectMenu.model").SelectMenu.Fields>;
+        required: true;
+    };
+    modelValue: {
+        type: import("vue").PropType<string>;
+        default: string;
+    };
+    selected: {
+        type: import("vue").PropType<ObjectLike | null>;
+    };
+    sortOptions: {
+        type: import("vue").PropType<CardList.SortOption[]>;
+    };
+    filterOptions: {
+        type: import("vue").PropType<CardList.FilterOption[]>;
+    };
+}>> & {
     "onUpdate:modelValue"?: ((option: string) => any) | undefined;
     "onUpdate:sort"?: ((option: CardList.SortOption) => any) | undefined;
     "onUpdate:filter"?: ((option: CardList.FilterOption[]) => any) | undefined;
@@ -29,25 +87,8 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     placeholder?: ((props: {}) => JSX.Element) | undefined;
 }>;
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
-type __VLS_WithDefaults<P, D> = {
-    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
-        default: D[K];
-    }> : P[K];
-};
 type __VLS_WithTemplateSlots<T, S> = T & {
     new (): {
         $slots: S;
     };
 };
-type __VLS_Prettify<T> = {
-    [K in keyof T]: T[K];
-} & {};

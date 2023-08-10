@@ -1,23 +1,143 @@
-import type { TextField } from '../../../components/element/textfield/text-field.model';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<TextField.Props>, {
-    type: string;
-    required: boolean;
-    disabled: boolean;
-    readonly: boolean;
-    spellcheck: boolean;
-    autocomplete: string;
-    iconAlign: string;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+import type { TextField } from '../../../components/element/textfield/TextField.model';
+declare const _default: import("vue").DefineComponent<{
+    type: {
+        type: import("vue").PropType<TextField.Type>;
+        default: string;
+    };
+    required: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    placeholder: {
+        type: import("vue").PropType<string>;
+    };
+    label: {
+        type: import("vue").PropType<string>;
+    };
+    pattern: {
+        type: import("vue").PropType<string>;
+    };
+    name: {
+        type: import("vue").PropType<string>;
+    };
+    tabindex: {
+        type: import("vue").PropType<number>;
+    };
+    spellcheck: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    inputmode: {
+        type: import("vue").PropType<TextField.InputMode>;
+    };
+    icon: {
+        type: import("vue").PropType<string>;
+    };
+    disabled: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    size: {
+        type: import("vue").PropType<number>;
+    };
+    modelValue: {
+        type: import("vue").PropType<string>;
+    };
+    readonly: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    autocomplete: {
+        type: import("vue").PropType<string>;
+        default: string;
+    };
+    autofocus: {
+        type: import("vue").PropType<boolean>;
+    };
+    maxlength: {
+        type: import("vue").PropType<number>;
+    };
+    minlength: {
+        type: import("vue").PropType<number>;
+    };
+    invalidMessage: {
+        type: import("vue").PropType<Partial<import("../../../shared/libs/validation").InvalidMessage>>;
+    };
+    iconAlign: {
+        type: import("vue").PropType<"left" | "right">;
+        default: string;
+    };
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (value: string) => void;
-}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<TextField.Props>, {
-    type: string;
-    required: boolean;
-    disabled: boolean;
-    readonly: boolean;
-    spellcheck: boolean;
-    autocomplete: string;
-    iconAlign: string;
-}>>> & {
+}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    type: {
+        type: import("vue").PropType<TextField.Type>;
+        default: string;
+    };
+    required: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    placeholder: {
+        type: import("vue").PropType<string>;
+    };
+    label: {
+        type: import("vue").PropType<string>;
+    };
+    pattern: {
+        type: import("vue").PropType<string>;
+    };
+    name: {
+        type: import("vue").PropType<string>;
+    };
+    tabindex: {
+        type: import("vue").PropType<number>;
+    };
+    spellcheck: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    inputmode: {
+        type: import("vue").PropType<TextField.InputMode>;
+    };
+    icon: {
+        type: import("vue").PropType<string>;
+    };
+    disabled: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    size: {
+        type: import("vue").PropType<number>;
+    };
+    modelValue: {
+        type: import("vue").PropType<string>;
+    };
+    readonly: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    autocomplete: {
+        type: import("vue").PropType<string>;
+        default: string;
+    };
+    autofocus: {
+        type: import("vue").PropType<boolean>;
+    };
+    maxlength: {
+        type: import("vue").PropType<number>;
+    };
+    minlength: {
+        type: import("vue").PropType<number>;
+    };
+    invalidMessage: {
+        type: import("vue").PropType<Partial<import("../../../shared/libs/validation").InvalidMessage>>;
+    };
+    iconAlign: {
+        type: import("vue").PropType<"left" | "right">;
+        default: string;
+    };
+}>> & {
     "onUpdate:modelValue"?: ((value: string) => any) | undefined;
 }, {
     type: TextField.Type;
@@ -29,20 +149,3 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     iconAlign: "left" | "right";
 }, {}>;
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
-type __VLS_WithDefaults<P, D> = {
-    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
-        default: D[K];
-    }> : P[K];
-};
-type __VLS_Prettify<T> = {
-    [K in keyof T]: T[K];
-} & {};

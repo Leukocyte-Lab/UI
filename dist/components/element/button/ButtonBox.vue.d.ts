@@ -1,17 +1,65 @@
 import type { ButtonBox } from '../../../components/element/button/ButtonBox.model';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps>, {
-    disabled: boolean;
-    variant: string;
-    level: string;
-    size: string;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+declare const _default: import("vue").DefineComponent<{
+    link: {
+        type: import("vue").PropType<string>;
+    };
+    label: {
+        type: import("vue").PropType<string>;
+    };
+    variant: {
+        type: import("vue").PropType<ButtonBox.Variant>;
+        default: string;
+    };
+    icon: {
+        type: import("vue").PropType<string>;
+    };
+    disabled: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    clicked: {
+        type: import("vue").PropType<boolean>;
+    };
+    level: {
+        type: import("vue").PropType<ButtonBox.Level>;
+        default: string;
+    };
+    size: {
+        type: import("vue").PropType<ButtonBox.Size>;
+        default: string;
+    };
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     click: (event: MouseEvent) => void;
-}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps>, {
-    disabled: boolean;
-    variant: string;
-    level: string;
-    size: string;
-}>>> & {
+}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    link: {
+        type: import("vue").PropType<string>;
+    };
+    label: {
+        type: import("vue").PropType<string>;
+    };
+    variant: {
+        type: import("vue").PropType<ButtonBox.Variant>;
+        default: string;
+    };
+    icon: {
+        type: import("vue").PropType<string>;
+    };
+    disabled: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
+    clicked: {
+        type: import("vue").PropType<boolean>;
+    };
+    level: {
+        type: import("vue").PropType<ButtonBox.Level>;
+        default: string;
+    };
+    size: {
+        type: import("vue").PropType<ButtonBox.Size>;
+        default: string;
+    };
+}>> & {
     onClick?: ((event: MouseEvent) => any) | undefined;
 }, {
     variant: ButtonBox.Variant;
@@ -20,20 +68,3 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     size: ButtonBox.Size;
 }, {}>;
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
-type __VLS_WithDefaults<P, D> = {
-    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
-        default: D[K];
-    }> : P[K];
-};
-type __VLS_Prettify<T> = {
-    [K in keyof T]: T[K];
-} & {};
