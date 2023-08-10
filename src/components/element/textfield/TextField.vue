@@ -6,7 +6,7 @@ import { useEventDebounceSignal } from '@/shared/libs/event';
 import { promoteInvalidMessage } from '@/shared/libs/validation';
 import { signal } from '@/shared/libs/signal';
 
-import type { TextField } from '@/components/element/textfield/text-field.model';
+import type { TextField } from '@/components/element/textfield/TextField.model';
 
 const props = withDefaults(defineProps<TextField.Props>(), {
   type: 'text',
