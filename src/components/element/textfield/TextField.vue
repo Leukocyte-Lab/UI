@@ -28,6 +28,7 @@ const { onTrigger } = useEventDebounceSignal(
       event.preventDefault();
       event.stopPropagation();
     } else {
+      focused.set(true);
       computeErrMsg();
       emits('update:modelValue', (event.target as HTMLInputElement).value);
     }
@@ -39,6 +40,7 @@ const { onTrigger } = useEventDebounceSignal(
 
 const inputRef$ = ref<HTMLInputElement>();
 const errMsg = signal('');
+const focused = signal(false);
 
 const computeErrMsg = () =>
   errMsg.set(
@@ -64,14 +66,22 @@ onMounted(() => {
       }
     ]"
   >
-    <input ref="inputRef$" :class="[$style['textfield-input']]" v-bind="props" :value="props.modelValue" @input="onTrigger" />
+    <input
+      ref="inputRef$"
+      :class="[$style['textfield-input'], {
+        [$style['focused']]: focused()
+      }]"
+      v-bind="props"
+      :value="props.modelValue"
+      @input="onTrigger"
+    />
     <template v-if="type === 'search' || props.icon">
       <Icon
         :class="[$style['textfield-label--icon'], $style['icon']]"
         :icon="props.icon || type === 'search' ? 'fa6-solid:magnifying-glass' : ''"
       />
     </template>
-    <template v-if="errMsg()">
+    <template v-if="errMsg() && focused()">
       <label :for="props.name" :class="[$style['textfield-label']]">
         <Icon :class="[$style['textfield-label--icon']]" :icon="'fa6-solid:circle-xmark'" />
         <span :class="[$style['textfield-label--value']]">{{ errMsg() }}</span>
@@ -156,7 +166,7 @@ onMounted(() => {
       cursor: not-allowed;
     }
 
-    &:invalid {
+    &:invalid.focused {
       outline: none;
       background-color: var(--agh-sys-color-red-surface-normal);
       border-color: var(--agh-ref-color-red-500);
