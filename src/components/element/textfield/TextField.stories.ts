@@ -133,6 +133,26 @@ EmptyRequiredTextField.args = {
   type: 'text'
 };
 
+export const NoLabelTextField = Template.bind({});
+NoLabelTextField.args = {
+  placeholder: 'Placeholder',
+  modelValue: 'Default Value',
+  required: false,
+  disabled: false,
+  readonly: false,
+  type: 'text'
+};
+
+export const NoLabelRequiredTextField = Template.bind({});
+NoLabelRequiredTextField.args = {
+  placeholder: 'Placeholder',
+  modelValue: 'Default Value',
+  required: true,
+  disabled: false,
+  readonly: false,
+  type: 'text'
+};
+
 export const DisabledTextField = Template.bind({});
 DisabledTextField.args = {
   modelValue: 'Default Value',
