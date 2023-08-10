@@ -109,6 +109,7 @@ jobs:
       - name: 🔧 Run Build
         run: |
           pnpm run build:prod
+          pnpm run build:type
           pnpm run build:assets
 
       - name: 💼 Packing
