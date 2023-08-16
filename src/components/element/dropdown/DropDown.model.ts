@@ -5,10 +5,12 @@ import type { ObjectLike } from '@/shared/types/object';
 export namespace DropDown {
   export type Props = {
     fields: SelectMenuNS.Props['fields'];
-    modelValue?: ObjectLike<any>;
-    items?: ObjectLike<any>[];
+    modelValue?: ObjectLike | ObjectLike[];
+    items?: ObjectLike[];
+    label?: string;
     disabled?: boolean;
     level?: ButtonBoxNS.Level;
     size?: ButtonBoxNS.Size;
+    multiple?: boolean;
   };
 }
