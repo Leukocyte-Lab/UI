@@ -151,11 +151,13 @@ const computeItems = () => {
       ({
         ...item,
         selected: selector(item, props.fields.key) === selector(selected.value, props.fields.key)
-      } as ObjectLike)
+      }) as ObjectLike
   );
-  const searchItems = filter(markSelected, (item) =>
-    selector(item, props.fields.title ?? props.fields.key).includes(search.value)
-  );
+  const searchItems = search.value
+    ? filter(markSelected, (item) =>
+        selector(item, props.fields.title ?? props.fields.key).includes(search.value)
+      )
+    : markSelected;
   const sortedItems = orderBy(
     searchItems,
     [sort.value?.field ?? props.fields.key],
