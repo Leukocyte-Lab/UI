@@ -91,6 +91,13 @@ DefaultDropDown.args = {
   }
 };
 
+export const MultiDropDown = Template.bind({});
+MultiDropDown.args = {
+  ...DefaultDropDown.args,
+  label: 'Multi Select',
+  multiple: true
+};
+
 export const LargeDropDown = Template.bind({});
 LargeDropDown.args = {
   ...DefaultDropDown.args,
