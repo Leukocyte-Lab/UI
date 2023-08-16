@@ -9,22 +9,27 @@ import { selector } from '@/shared/libs/selector';
 import { signal } from '@/shared/libs/signal';
 
 import type { DropDown } from '@/components/element/dropdown/DropDown.model';
+import type { ObjectLike } from '@/shared/types/object';
 
 const props = withDefaults(defineProps<DropDown.Props>(), {
   items: () => [],
   level: 'primary',
-  size: 'small'
+  size: 'small',
+  multiple: false
 });
 
 const emits = defineEmits<{
-  (e: 'update:modelValue', option: any): void;
+  (e: 'update:modelValue', option: ObjectLike): void;
+  (e: 'update:modelValue', options: ObjectLike[]): void;
 }>();
 
 const selected = computed({
   get: () => props.modelValue,
   set: (value) => {
-    closeMenu.set(true);
-    return emits('update:modelValue', value);
+    return emits(
+      'update:modelValue',
+      props.multiple ? (value as ObjectLike) : (value as ObjectLike[])
+    );
   }
 });
 
@@ -38,7 +43,9 @@ const closeMenu = signal(true);
   >
     <ButtonBox
       :disabled="props.disabled"
-      :label="selector(props.modelValue, props.fields.key)"
+      :label="
+        props.multiple ? props.label : selector(props.modelValue, props.fields.key) ?? props.label
+      "
       :icon="closeMenu() ? 'fa6-solid:chevron-down' : 'fa6-solid:chevron-up'"
       :clicked="!closeMenu()"
       :level="props.level"
@@ -52,7 +59,9 @@ const closeMenu = signal(true);
       <SelectMenu
         :class="$style['dropdown-menu']"
         :options="items"
+        :label="props.label"
         :fields="props.fields"
+        :multiple="props.multiple"
         v-model="selected"
       />
     </template>
