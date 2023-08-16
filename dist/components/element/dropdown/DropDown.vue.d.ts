@@ -1,7 +1,11 @@
+import type { ObjectLike } from '../../../shared/types/object';
 declare const _default: import("vue").DefineComponent<{
     items: {
-        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike<any>[]>;
+        type: import("vue").PropType<ObjectLike[]>;
         default: () => never[];
+    };
+    label: {
+        type: import("vue").PropType<string>;
     };
     disabled: {
         type: import("vue").PropType<boolean>;
@@ -19,14 +23,21 @@ declare const _default: import("vue").DefineComponent<{
         required: true;
     };
     modelValue: {
-        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike<any>>;
+        type: import("vue").PropType<ObjectLike | ObjectLike[]>;
+    };
+    multiple: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    "update:modelValue": (option: any) => void;
+    "update:modelValue": ((option: ObjectLike) => void) & ((options: ObjectLike[]) => void);
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     items: {
-        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike<any>[]>;
+        type: import("vue").PropType<ObjectLike[]>;
         default: () => never[];
+    };
+    label: {
+        type: import("vue").PropType<string>;
     };
     disabled: {
         type: import("vue").PropType<boolean>;
@@ -44,13 +55,18 @@ declare const _default: import("vue").DefineComponent<{
         required: true;
     };
     modelValue: {
-        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike<any>>;
+        type: import("vue").PropType<ObjectLike | ObjectLike[]>;
+    };
+    multiple: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
     };
 }>> & {
-    "onUpdate:modelValue"?: ((option: any) => any) | undefined;
+    "onUpdate:modelValue"?: ((options: ObjectLike[]) => any) | undefined;
 }, {
-    items: import("../../../shared/types/object").ObjectLike<any>[];
+    items: ObjectLike[];
     level: import("../button/ButtonBox.model").ButtonBox.Level;
     size: import("../button/ButtonBox.model").ButtonBox.Size;
+    multiple: boolean;
 }, {}>;
 export default _default;
