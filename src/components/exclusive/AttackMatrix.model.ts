@@ -1,8 +1,8 @@
 export namespace AttackMatrix {
   export type Props = {
     items: AttackMatrixItem[];
-    disabled: false;
-    showDetected: true;
+    disabled: boolean;
+    showDetected: boolean;
   };
 
   export type AttackMatrixItem = {
