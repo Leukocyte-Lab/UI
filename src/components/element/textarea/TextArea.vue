@@ -34,7 +34,7 @@ const { onTrigger } = useEventDebounceSignal(
       emits('update:modelValue', (event.target as HTMLInputElement).value);
     }
   },
-  {
+  props.eventSignalOptions ?? {
     flush: 'post'
   }
 );
@@ -58,7 +58,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <CardBox :class="[$style['textarea-container']]" variant="flat" radius="var(--agh-ref-border-radius-400)">
+  <CardBox
+    :class="[$style['textarea-container']]"
+    variant="flat"
+    radius="var(--agh-ref-border-radius-400)"
+  >
     <textarea
       ref="inputRef$"
       :class="[$style['textarea-input']]"
