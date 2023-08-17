@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { AttackMatrix } from './AttackMatrix.model';
 import { Icon } from '@iconify/vue/offline';
+
+import type { AttackMatrix } from './AttackMatrix.model';
 
 const props = withDefaults(defineProps<AttackMatrix.Props>(), {
   disabled: false,
@@ -43,10 +44,12 @@ const props = withDefaults(defineProps<AttackMatrix.Props>(), {
     border-radius: var(--agh-ref-border-radius-900);
     width: var(--agh-ref-border-width-400);
   }
+
   .container {
     display: flex;
     flex-direction: column;
     gap: var(--agh-ref-spacing-300);
+
     .card {
       padding: var(--agh-ref-spacing-200) var(--agh-ref-spacing-300);
       display: flex;
@@ -55,23 +58,28 @@ const props = withDefaults(defineProps<AttackMatrix.Props>(), {
       background-color: var(--agh-ref-color-grayscale-100);
       border-radius: var(--agh-ref-border-radius-300);
       box-shadow: var(--agh-sys-effects-shadow-gadget);
+
       .body {
         display: flex;
         flex-direction: column;
         gap: var(--agh-ref-spacing-50);
+
         .title {
           color: var(--agh-ref-color-grayscale-1000);
           font: var(--agh-sys-typeface-label-default-medium);
         }
+
         .description {
           color: var(--agh-ref-color-grayscale-1100);
           font: var(--agh-sys-typeface-label-hl-medium);
         }
       }
+
       .detected {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         .label {
           display: flex;
           gap: var(--agh-ref-spacing-50);
@@ -79,14 +87,17 @@ const props = withDefaults(defineProps<AttackMatrix.Props>(), {
           color: var(--agh-ref-color-grayscale-900);
           font: var(--agh-sys-typeface-label-default-small);
         }
+
         .fraction {
           display: flex;
           align-items: center;
           gap: var(--agh-ref-spacing-50);
+
           .denominator {
             color: var(--agh-ref-color-grayscale-700);
             font: var(--agh-sys-typeface-number-default-small);
           }
+
           .numerator {
             color: var(--agh-ref-color-grayscale-900);
             font: var(--agh-sys-typeface-number-hl-small);
@@ -94,6 +105,7 @@ const props = withDefaults(defineProps<AttackMatrix.Props>(), {
         }
       }
     }
+
     .card:first-child {
       border: var(--agh-ref-border-width-100) solid var(--agh-ref-color-cyan-300);
     }
@@ -104,11 +116,13 @@ const props = withDefaults(defineProps<AttackMatrix.Props>(), {
       background-color: var(--agh-ref-color-grayscale-300);
       opacity: var(--agh-ref-opacity-300);
     }
+
     .container {
       .card {
         background-color: var(--agh-ref-color-grayscale-300);
         opacity: var(--agh-ref-opacity-300);
       }
+
       .card:first-child {
         border: 0;
       }
