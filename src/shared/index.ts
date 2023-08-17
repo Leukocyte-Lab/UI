@@ -12,6 +12,7 @@ import { parser } from './libs/parser';
 
 // types
 import type { UUID, HexUUID } from './libs/uuid';
+import type { EventSignalOptions } from './libs/event';
 import type { Signal } from './libs/signal';
 import type { Callback, EventCallback } from './types/callback';
 import type { HasUUID, HasHexUUID, HasID } from './types/id';
@@ -52,6 +53,7 @@ export type {
   Callback,
   EventCallback,
   Signal,
+  EventSignalOptions,
   HasUUID,
   HasHexUUID,
   HasID,
