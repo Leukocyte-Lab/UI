@@ -49,7 +49,8 @@ const props = withDefaults(defineProps<AttackMatrix.Props>(), {
     display: flex;
     flex-direction: column;
     gap: var(--agh-ref-spacing-300);
-
+    // todo:add width token
+    width: 280px;
     .card {
       padding: var(--agh-ref-spacing-200) var(--agh-ref-spacing-300);
       display: flex;
