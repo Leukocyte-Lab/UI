@@ -76,8 +76,7 @@ const props = defineProps<LoadingIcon.Props>();
     width: 100%;
     height: 100%;
     opacity: 0;
-    animation-delay: 0.3s;
-    animation: fade-in 0.3s ease-in-out forwards;
+    animation: fade-in 0.3s ease-in-out 0.3s forwards;
 
     $style-sets: (
       'waiting': var(--agh-ref-color-grayscale-300),
@@ -95,14 +94,14 @@ const props = defineProps<LoadingIcon.Props>();
     &.loading {
       cursor: progress;
       animation:
-        fade-in 0.3s ease-in-out forwards,
+        fade-in 0.3s ease-in-out 0.3s forwards,
         rotate 1.5s linear infinite;
     }
 
     &.waiting {
       cursor: wait;
       animation:
-        fade-in 0.3s ease-in-out forwards,
+        fade-in 0.3s ease-in-out 0.3s forwards,
         step-rotate 1.5s linear infinite;
 
       path {
