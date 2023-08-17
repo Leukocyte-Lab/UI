@@ -26,6 +26,9 @@ import DropDown from './element/dropdown/DropDown.vue';
 import InnerShadowDeco from '@/components/effect/InnerShadowDeco.vue';
 import RoundEffect from '@/components/effect/RoundEffect.vue';
 
+// icon
+import LoadingIcon from './element/icon/LoadingIcon.vue';
+
 // menu
 import SelectMenu from './element/menu/SelectMenu.vue';
 
@@ -46,6 +49,9 @@ import SwitchButton from './element/switch/SwitchButton.vue';
 // layout
 // list
 import CardList from './layout/list/CardList.vue';
+
+// exclusive
+import AttackMatrix from './exclusive/AttackMatrix.vue';
 
 export {
   // base
@@ -76,6 +82,9 @@ export {
   InnerShadowDeco,
   RoundEffect,
 
+  // icon
+  LoadingIcon,
+
   // menu
   SelectMenu,
 
@@ -95,5 +104,8 @@ export {
 
   // layout
   // list
-  CardList
+  CardList,
+
+  // exclusive
+  AttackMatrix
 };
