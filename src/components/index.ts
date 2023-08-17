@@ -50,6 +50,9 @@ import SwitchButton from './element/switch/SwitchButton.vue';
 // list
 import CardList from './layout/list/CardList.vue';
 
+// exclusive
+import AttackMatrix from './exclusive/AttackMatrix.vue';
+
 export {
   // base
   BaseLink,
@@ -101,5 +104,8 @@ export {
 
   // layout
   // list
-  CardList
+  CardList,
+
+  // exclusive
+  AttackMatrix
 };
