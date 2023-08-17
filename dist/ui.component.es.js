@@ -2776,7 +2776,8 @@ const xi = ["onClick"], Mi = /* @__PURE__ */ P({
     size: {},
     spellcheck: { type: Boolean, default: !1 },
     tabindex: {},
-    invalidMessage: {}
+    invalidMessage: {},
+    eventSignalOptions: {}
   },
   emits: ["update:modelValue"],
   setup(e, { emit: t }) {
@@ -2784,7 +2785,7 @@ const xi = ["onClick"], Mi = /* @__PURE__ */ P({
       (c) => {
         s.disabled ? (c.preventDefault(), c.stopPropagation()) : (u(), t("update:modelValue", c.target.value));
       },
-      {
+      s.eventSignalOptions ?? {
         flush: "post"
       }
     ), a = S(), o = F(""), u = () => {
@@ -2837,7 +2838,7 @@ const xi = ["onClick"], Mi = /* @__PURE__ */ P({
   "textarea-label--value": "_textarea-label--value_v6fbk_107"
 }, $u = {
   $style: bu
-}, ad = /* @__PURE__ */ V(vu, [["__cssModules", $u], ["__scopeId", "data-v-1a3f9f23"]]), mu = /* @__PURE__ */ P({
+}, ad = /* @__PURE__ */ V(vu, [["__cssModules", $u], ["__scopeId", "data-v-c258336a"]]), mu = /* @__PURE__ */ P({
   __name: "SwitchButton",
   props: {
     modelValue: { type: Boolean },

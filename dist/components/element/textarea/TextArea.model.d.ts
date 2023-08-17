@@ -1,3 +1,4 @@
+import type { EventSignalOptions } from '../../../shared/libs/event';
 import type { InvalidMessage } from '../../../shared/libs/validation';
 export declare namespace TextArea {
     type Props = {
@@ -15,5 +16,6 @@ export declare namespace TextArea {
         spellcheck?: boolean;
         tabindex?: number;
         invalidMessage?: Partial<InvalidMessage>;
+        eventSignalOptions?: EventSignalOptions;
     };
 }

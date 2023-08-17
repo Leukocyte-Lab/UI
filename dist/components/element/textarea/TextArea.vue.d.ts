@@ -46,6 +46,9 @@ declare const _default: import("vue").DefineComponent<{
     invalidMessage: {
         type: import("vue").PropType<Partial<import("../../../shared/libs/validation").InvalidMessage>>;
     };
+    eventSignalOptions: {
+        type: import("vue").PropType<import("../../../shared/libs/event").EventSignalOptions>;
+    };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (value: string) => void;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
@@ -95,6 +98,9 @@ declare const _default: import("vue").DefineComponent<{
     };
     invalidMessage: {
         type: import("vue").PropType<Partial<import("../../../shared/libs/validation").InvalidMessage>>;
+    };
+    eventSignalOptions: {
+        type: import("vue").PropType<import("../../../shared/libs/event").EventSignalOptions>;
     };
 }>> & {
     "onUpdate:modelValue"?: ((value: string) => any) | undefined;
