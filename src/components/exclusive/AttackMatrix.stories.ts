@@ -3,7 +3,7 @@ import AttackMatrix from './AttackMatrix.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';
 
 export default {
-  title: 'Components / Layout / AttackMatrix',
+  title: 'Components / Exclusive / AttackMatrix',
   component: AttackMatrix,
   tags: ['autodocs']
 } satisfies Meta<typeof AttackMatrix>;
