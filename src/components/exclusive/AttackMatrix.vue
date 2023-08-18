@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<AttackMatrix.Props>(), {
 <style module scoped lang="scss">
 .matrix {
   display: flex;
-  gap: var(--agh-ref-spacing-600);
+  gap: var(--agh-ref-spacing-100);
 
   .line {
     background-color: var(--agh-ref-color-cyan-300);
