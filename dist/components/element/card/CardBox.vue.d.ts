@@ -8,6 +8,7 @@ declare namespace CardBox {
         purpose?: Purpose;
         radius?: string;
         clickable?: boolean;
+        active?: boolean;
     };
     type Variant = 'metallic' | 'flat' | 'dash';
     type Color = 'default' | 'cyan' | 'blue' | 'green' | 'orange' | 'red';
@@ -47,6 +48,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<CardBox.Purpose>;
         default: string;
     };
+    active: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     link: {
         type: import("vue").PropType<string>;
@@ -79,6 +84,10 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<CardBox.Purpose>;
         default: string;
     };
+    active: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
 }>>, {
     color: CardBox.Color;
     radius: string;
@@ -87,6 +96,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     hasStroke: boolean;
     strokeWeight: CardBox.StrokeWeight;
     purpose: CardBox.Purpose;
+    active: boolean;
 }, {}>, {
     default?(_: {}): any;
 }>;
