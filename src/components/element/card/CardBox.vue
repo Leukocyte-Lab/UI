@@ -137,7 +137,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
           --box-fill-gradient-hover: linear-gradient(#{$fill-hover}, #{$fill-hover});
           --box-fill-gradient-clicked: linear-gradient(#{$fill-clicked}, #{$fill-clicked});
           --box-text-color: var(--agh-ref-color-grayscale-1000);
-          --box-text-color-hover: var(--agh-ref-color-grayscale-100);
           --box-box-shadow-clicked: var(--box-box-shadow);
 
           &:not(.clickable),
@@ -145,9 +144,16 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
             --box-border-gradient: #{$border-gradient-clicked};
           }
 
+          &:not(.color-default) {
+            --box-text-color-hover: var(--agh-ref-color-grayscale-100);
+
+            &:not(.clickable) {
+              --box-text-color: var(--agh-ref-color-grayscale-100);
+            }
+          }
+
           &:not(.clickable) {
             --box-fill-gradient: linear-gradient(#{$fill-clicked}, #{$fill-clicked});
-            --box-text-color: var(--agh-ref-color-grayscale-100);
           }
 
           &.clicked:not(.color-default) {
