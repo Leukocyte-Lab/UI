@@ -13,6 +13,7 @@ namespace CardBox {
     purpose?: Purpose;
     radius?: string;
     clickable?: boolean;
+    active?: boolean;
   };
 
   export type Variant = 'metallic' | 'flat' | 'dash';
@@ -30,7 +31,8 @@ const props = withDefaults(defineProps<CardBox.Props>(), {
   clickable: false,
   strokeWeight: 'normal',
   purpose: 'box',
-  radius: 'var(--agh-ref-border-radius-300)'
+  radius: 'var(--agh-ref-border-radius-300)',
+  active: false
 });
 
 const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
@@ -54,7 +56,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       {
         [$style['clickable']]: props.link || props.clickable,
         [$style['has-stroke']]: props.hasStroke,
-        [$style['clicked']]: triggered() && props.clickable
+        [$style['clicked']]: (triggered() && props.clickable) || props.active
       }
     ]"
     @click="onTrigger"
@@ -97,6 +99,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 
         @if $color != 'default' {
           $fill-clicked: var(--agh-ref-color-#{$color}-500);
+          $fill-hover: var(--agh-ref-color-#{$color}-400);
           $fill-gradient: var(--agh-ref-color-#{$color}-gradient-600);
           $fill-gradient-hover: var(--agh-ref-color-#{$color}-gradient-500);
           $fill-gradient-clicked: var(--agh-ref-color-#{$color}-gradient-700);
@@ -109,7 +112,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         &.flat {
           --box-border-gradient: #{$border-gradient};
 
-          &.clicked {
+          &.clicked:not(.color-default) {
             --box-border-gradient: #{$border-gradient-clicked};
           }
 
@@ -134,8 +137,20 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
           --box-fill-gradient-hover: linear-gradient(#{$fill-hover}, #{$fill-hover});
           --box-fill-gradient-clicked: linear-gradient(#{$fill-clicked}, #{$fill-clicked});
           --box-text-color: var(--agh-ref-color-grayscale-1000);
+          --box-text-color-hover: var(--agh-ref-color-grayscale-100);
+          --box-box-shadow-clicked: var(--box-box-shadow);
 
-          &.clicked {
+          &:not(.clickable),
+          &:hover {
+            --box-border-gradient: #{$border-gradient-clicked};
+          }
+
+          &:not(.clickable) {
+            --box-fill-gradient: linear-gradient(#{$fill-clicked}, #{$fill-clicked});
+            --box-text-color: var(--agh-ref-color-grayscale-100);
+          }
+
+          &.clicked:not(.color-default) {
             --box-text-color: var(--agh-ref-color-grayscale-100);
           }
         }
