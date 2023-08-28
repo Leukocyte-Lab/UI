@@ -17,7 +17,6 @@ const { onTrigger } = useEventDebounceSignal(
       event.preventDefault();
       event.stopPropagation();
     } else {
-      console.log(props.modelValue);
       emits('update:modelValue', !props.modelValue);
     }
   },
