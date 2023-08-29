@@ -1,5 +1,5 @@
 import { shallowRef as en, watchEffect as kt, readonly as wt, getCurrentScope as tn, onScopeDispose as nn, unref as l, toRef as sn, customRef as ln, ref as S, computed as D, watch as Z, getCurrentInstance as an, onMounted as Y, defineComponent as P, openBlock as h, createBlock as R, resolveDynamicComponent as on, normalizeProps as rn, guardReactiveProps as cn, withCtx as A, renderSlot as G, createElementBlock as g, Fragment as C, createCommentVNode as x, renderList as B, normalizeClass as d, createElementVNode as _, useCssVars as zt, toDisplayString as M, createTextVNode as Ct, mergeProps as Re, createVNode as T, reactive as un, pushScopeId as le, popScopeId as ae, toRefs as te, withDirectives as Ie, normalizeStyle as dn, onUpdated as fn, withKeys as he } from "vue";
-import { i as ve, d as ue, g as _n, e as de, f as pn, h as xt, j as Mt, k as hn, l as yn, o as gn, m as xe, n as vn, q as De, r as bn, t as Ot, v as $n, w as mn, x as kn, y as tt, z as nt, A as Me, B as be, C as Oe, D as ne, E as wn, F as zn, G as Cn, I as jt, J as Fe, K as X, L as xn, O as Mn, P as On, Q as st, R as jn, T as Sn, V as St, W as Bt, X as Bn, Y as An, Z as Tn, _ as At, $ as Pn, a0 as Ln, a1 as $e, u as fe, p as me, a2 as ce, a3 as Tt, a4 as se, M as w, b as U, s as F, a5 as Ve } from "./parser-f68503d3.js";
+import { i as ve, d as ue, g as _n, e as de, f as pn, h as xt, j as Mt, k as hn, l as yn, o as gn, m as xe, n as vn, q as De, r as bn, t as Ot, v as $n, w as mn, x as kn, y as tt, z as nt, A as Me, B as be, C as Oe, D as ne, E as wn, F as zn, G as Cn, I as jt, J as Fe, K as X, L as xn, O as Mn, P as On, Q as st, R as jn, T as Sn, V as St, W as Bt, X as Bn, Y as An, Z as Tn, _ as At, $ as Pn, a0 as Ln, a1 as $e, u as fe, p as me, a2 as ce, a3 as Tt, a4 as se, M as w, b as U, s as F, a5 as Ve } from "./parser-033bd464.js";
 import { Icon as H } from "@iconify/vue/offline";
 var In = /\s/;
 function Vn(e) {
@@ -2849,7 +2849,7 @@ const xi = ["onClick"], Mi = /* @__PURE__ */ P({
   setup(e, { emit: t }) {
     const n = e, { onTrigger: s } = fe(
       (a) => {
-        n.disabled ? (a.preventDefault(), a.stopPropagation()) : (console.log(n.modelValue), t("update:modelValue", !n.modelValue));
+        n.disabled ? (a.preventDefault(), a.stopPropagation()) : t("update:modelValue", !n.modelValue);
       },
       {
         flush: "post"
@@ -2872,7 +2872,7 @@ const xi = ["onClick"], Mi = /* @__PURE__ */ P({
   slider_active: zu
 }, xu = {
   $style: Cu
-}, od = /* @__PURE__ */ E(mu, [["__cssModules", xu], ["__scopeId", "data-v-1ba5eb50"]]), Mu = /* @__PURE__ */ P({
+}, od = /* @__PURE__ */ E(mu, [["__cssModules", xu], ["__scopeId", "data-v-ba7e8ec3"]]), Mu = /* @__PURE__ */ P({
   __name: "CardList",
   props: {
     items: { default: () => [] },

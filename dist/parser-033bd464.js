@@ -903,7 +903,16 @@ const rn = 0.5522847498307935, nn = (u, D, e, t = !1) => t ? u[e] - D[e] : Math.
   }
 }), pE = new Proxy(String, {
   get(u, D, e) {
-    return D === "toKebabCase" ? (t) => t.replace(/([a-z])([A-Z])/g, "$1-$2").replace(/[\s_]+/g, "-").toLowerCase() : Reflect.get(u, D, e);
+    return D === "toKebabCase" ? (t) => t.replace(/([a-z])([A-Z])/g, "$1-$2").replace(/[\s_]+/g, "-").toLowerCase() : D === "toUpperCase" || D === "toLocaleUpperCase" ? (t, F = "every") => {
+      switch (F) {
+        case "every":
+          return t[D]();
+        case "eachFirst":
+          return t.split(" ").map((r) => r.charAt(0)[D]() + r.slice(1)).join(" ");
+        case "onlyFirst":
+          return t.charAt(0)[D]() + t.slice(1);
+      }
+    } : Reflect.get(u, D, e);
   }
 });
 let Nu;
@@ -5435,4 +5444,4 @@ export {
   P0 as y,
   W as z
 };
-//# sourceMappingURL=parser-f68503d3.js.map
+//# sourceMappingURL=parser-033bd464.js.map
