@@ -1,8 +1,11 @@
 {
-  "name": "ui",
+  "name": "@leukocyte-lab/ui",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Leukocyte-Lab/UI.git"
+  },
   "dependencies": {
     "@iconify-json/fa6-brands": "^1.1.13",
     "@iconify-json/fa6-regular": "^1.1.13",
