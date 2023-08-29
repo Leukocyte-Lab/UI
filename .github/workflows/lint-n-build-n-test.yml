@@ -113,7 +113,7 @@ jobs:
           pnpm run build:assets
 
       - name: 💼 Packing
-        if: ${{ contains(github.ref, 'refs/heads/main') || contains(github.ref, 'refs/tags/') }}
+        if: ${{ contains(github.ref, 'refs/heads/main') }}
         run: |
           pnpm pack
           tar -zxvf *.tgz
@@ -128,6 +128,7 @@ jobs:
       - name: 🚀 Publish Packages (Tagged)
         if: ${{ contains(github.ref, 'refs/tags/') }}
         run: |
-          pnpm publish
+          pnpm config set '//npm.pkg.github.com/:_authToken' "${GH_NPM_REGISTRY_AUTH_TOKEN}"
+          pnpm publish --no-git-checks
         env:
-          GH_NPM_REGISTRY_AUTH_TOKEN: ${{ secrets.GH_NPM_REGISTRY_AUTH_TOKEN }}
+          GH_NPM_REGISTRY_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
