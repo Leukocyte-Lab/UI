@@ -127,10 +127,7 @@ jobs:
 
       - name: 🚀 Publish Packages (Tagged)
         if: ${{ contains(github.ref, 'refs/tags/') }}
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ui-*.tgz
-          tag: ${{ github.ref }}
-          overwrite: true
-          file_glob: true
+        run: |
+          pnpm publish
+        env:
+          GH_NPM_REGISTRY_AUTH_TOKEN: ${{ secrets.GH_NPM_REGISTRY_AUTH_TOKEN }}
