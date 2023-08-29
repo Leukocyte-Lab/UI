@@ -128,6 +128,6 @@ jobs:
       - name: 🚀 Publish Packages (Tagged)
         if: ${{ contains(github.ref, 'refs/tags/') }}
         run: |
-          pnpm publish
+          pnpm publish --no-git-checks
         env:
           GH_NPM_REGISTRY_AUTH_TOKEN: ${{ secrets.GH_NPM_REGISTRY_AUTH_TOKEN }}
