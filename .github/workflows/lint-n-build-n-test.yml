@@ -113,7 +113,7 @@ jobs:
           pnpm run build:assets
 
       - name: 💼 Packing
-        if: ${{ contains(github.ref, 'refs/heads/main') || contains(github.ref, 'refs/tags/') }}
+        if: ${{ contains(github.ref, 'refs/heads/main') }}
         run: |
           pnpm pack
           tar -zxvf *.tgz
