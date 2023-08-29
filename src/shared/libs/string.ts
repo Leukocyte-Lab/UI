@@ -1,5 +1,7 @@
 export type StringProxy = StringConstructor & {
   toKebabCase(str: string): string;
+  toUpperCase(str: string, mode?: 'every' | 'eachFirst' | 'onlyFirst'): string;
+  toLocaleUpperCase(str: string, mode?: 'every' | 'eachFirst' | 'onlyFirst'): string;
 };
 
 const String$ = new Proxy<StringProxy>(String as StringProxy, {
@@ -10,8 +12,20 @@ const String$ = new Proxy<StringProxy>(String as StringProxy, {
           .replace(/([a-z])([A-Z])/g, '$1-$2')
           .replace(/[\s_]+/g, '-')
           .toLowerCase();
-
-
+    if (prop === 'toUpperCase' || prop === 'toLocaleUpperCase')
+      return (str: string, mode: 'every' | 'eachFirst' | 'onlyFirst' = 'every'): string => {
+        switch (mode) {
+          case 'every':
+            return str[prop]();
+          case 'eachFirst':
+            return str
+              .split(' ')
+              .map((word) => word.charAt(0)[prop]() + word.slice(1))
+              .join(' ');
+          case 'onlyFirst':
+            return str.charAt(0)[prop]() + str.slice(1);
+        }
+      };
 
     return Reflect.get(target, prop, receiver);
   }

@@ -113,14 +113,24 @@ jobs:
           pnpm run build:assets
 
       - name: 💼 Packing
-        if: ${{ contains(github.ref, 'refs/heads/main') }}
+        if: ${{ contains(github.ref, 'refs/heads/main') || contains(github.ref, 'refs/tags/') }}
         run: |
           pnpm pack
           tar -zxvf *.tgz
 
-      - name: 🚀 Publish Packages
+      - name: 🚀 Publish Packages (Rolling)
         if: ${{ contains(github.ref, 'refs/heads/main') }}
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: release # The branch the action should deploy to.
           folder: package/ # The folder the action should deploy.
+
+      - name: 🚀 Publish Packages (Tagged)
+        if: ${{ contains(github.ref, 'refs/tags/') }}
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ui-*.tgz
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
