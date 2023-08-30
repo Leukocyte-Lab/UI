@@ -249,7 +249,17 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
   >
     <template v-if="isOverDropZone || files.size === 0">
       <CardBox
-        :class="[$style['uploader-drop-area'], $style.wrapper, $style.flex, $style.vertical]"
+        :class="[
+          $style['uploader-drop-area'],
+          $style.wrapper,
+          $style.flex,
+          $style.vertical,
+          $style.behavior,
+          $style.clickable,
+          {
+            [$style.active]: isOverDropZone
+          }
+        ]"
         @click="open"
         variant="dash"
         radius="var(--agh-ref-border-radius-300)"
@@ -345,6 +355,7 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
 </template>
 
 <style module scoped lang="scss">
+@use '@/assets/styles/modules/behavior.module' as behavior;
 @use '@/assets/styles/modules/scrollbar.module' as scrollbar;
 @use '@/assets/styles/modules/wrapper.module' as wrapper;
 
@@ -363,6 +374,15 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
     padding: var(--agh-ref-spacing-900);
     place-content: center;
     place-items: center;
+
+    &.active {
+      background-color: var(--agh-sys-color-blue-surface-normal);
+
+      > .icon,
+      > h1 {
+        color: var(--agh-ref-color-blue-500);
+      }
+    }
 
     > .icon {
       color: var(--agh-ref-color-grayscale-1100);
