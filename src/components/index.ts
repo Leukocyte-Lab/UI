@@ -26,6 +26,9 @@ import DropDown from './element/dropdown/DropDown.vue';
 import InnerShadowDeco from '@/components/effect/InnerShadowDeco.vue';
 import RoundEffect from '@/components/effect/RoundEffect.vue';
 
+// file
+import FileUploader from './element/file/FileUploader.vue';
+
 // icon
 import LoadingIcon from './element/icon/LoadingIcon.vue';
 
@@ -81,6 +84,9 @@ export {
   // effect
   InnerShadowDeco,
   RoundEffect,
+
+  // file
+  FileUploader,
 
   // icon
   LoadingIcon,
