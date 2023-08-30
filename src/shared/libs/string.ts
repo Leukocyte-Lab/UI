@@ -2,6 +2,7 @@ export type StringProxy = StringConstructor & {
   toKebabCase(str: string): string;
   toUpperCase(str: string, mode?: 'every' | 'eachFirst' | 'onlyFirst'): string;
   toLocaleUpperCase(str: string, mode?: 'every' | 'eachFirst' | 'onlyFirst'): string;
+  humanizeByte(bytes: number, base?: number): string;
 };
 
 const String$ = new Proxy<StringProxy>(String as StringProxy, {
@@ -26,6 +27,16 @@ const String$ = new Proxy<StringProxy>(String as StringProxy, {
             return str.charAt(0)[prop]() + str.slice(1);
         }
       };
+
+    if (prop === 'humanizeByte')
+      return (bytes: number, base: number = 1024): string => {
+        const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        const index = Math.floor(Math.log(bytes) / Math.log(base));
+        const value = bytes / Math.pow(base, index);
+
+        return `${value.toFixed(2)} ${units[index]}`;
+      };
+
 
     return Reflect.get(target, prop, receiver);
   }
