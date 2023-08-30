@@ -912,6 +912,9 @@ const rn = 0.5522847498307935, nn = (u, D, e, t = !1) => t ? u[e] - D[e] : Math.
         case "onlyFirst":
           return t.charAt(0)[D]() + t.slice(1);
       }
+    } : D === "humanizeByte" ? (t, F = 1024) => {
+      const r = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"], n = Math.floor(Math.log(t) / Math.log(F));
+      return `${(t / Math.pow(F, n)).toFixed(2)} ${r[n]}`;
     } : Reflect.get(u, D, e);
   }
 });
@@ -5412,12 +5415,14 @@ export {
   g1 as Z,
   le as _,
   E0 as a,
-  W1 as a0,
-  oD as a1,
-  k0 as a2,
-  Fn as a3,
-  z1 as a4,
-  H1 as a5,
+  Ee as a0,
+  W1 as a1,
+  w1 as a2,
+  oD as a3,
+  k0 as a4,
+  Fn as a5,
+  z1 as a6,
+  H1 as a7,
   L0 as b,
   cE as c,
   u0 as d,
@@ -5444,4 +5449,4 @@ export {
   P0 as y,
   W as z
 };
-//# sourceMappingURL=parser-033bd464.js.map
+//# sourceMappingURL=parser-f6af9fb4.js.map
