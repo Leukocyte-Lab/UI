@@ -16,7 +16,6 @@ import type { EventSignalOptions } from './libs/event';
 import type { Signal } from './libs/signal';
 import type { Callback, EventCallback } from './types/callback';
 import type { HasUUID, HasHexUUID, HasID } from './types/id';
-import type { ObjectLike } from './types/object';
 import type {
   AtLeastOne,
   AtLeastOneOptional,
@@ -25,7 +24,6 @@ import type {
   OnlyOneByKey,
   OnlyOneOf,
   Optional,
-  OptionalObject,
   Nullable,
   ValueOf
 } from './types/optional';
@@ -61,8 +59,6 @@ export type {
   HasID,
   AtLeastOne,
   AtLeastOneOptional,
-  ObjectLike,
-  OptionalObject,
   OneOf,
   OnlyOne,
   OnlyOneByKey,

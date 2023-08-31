@@ -20,7 +20,3 @@ export type AtLeastOneOptional<T, R extends keyof T = keyof T> = Omit<T, R> &
   { [P in R]: Optional<Pick<T, P>> & Partial<Omit<T, P>> }[R];
 
 export type OneOf<T, R extends keyof T = keyof T> = Pick<T, R>;
-
-export type OptionalObject<T, R extends keyof T = keyof T> = Omit<T, R> & {
-  [P in R]?: T[P];
-};
