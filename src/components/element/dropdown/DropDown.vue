@@ -26,6 +26,10 @@ const emits = defineEmits<{
 const selected = computed({
   get: () => props.modelValue,
   set: (value) => {
+    if (!props.multiple) {
+      closeMenu.set(true);
+    }
+
     return emits(
       'update:modelValue',
       props.multiple ? (value as ObjectLike) : (value as ObjectLike[])
@@ -102,6 +106,7 @@ const closeMenu = signal(true);
     position: absolute;
     top: calc(100% + var(--agh-ref-spacing-200));
     z-index: 10;
+    max-height: var(--dropdown-max-height, var(--agh-sys-gadget-searchbar-width-small)) !important;
   }
 }
 </style>
