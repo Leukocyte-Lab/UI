@@ -1,6 +1,7 @@
 import type { BaseList } from '../../../components/base/BaseList.model';
 import type { SelectMenu } from '../../../components/element/menu/SelectMenu.model';
-import type { ObjectLike, ValueOf } from '../../../shared/types/object';
+import type { ObjectLike } from '../../../shared/types/object';
+import type { ValueOf } from '../../../shared/types/optional';
 export declare namespace CardList {
     type SortOption = {
         action: string;
