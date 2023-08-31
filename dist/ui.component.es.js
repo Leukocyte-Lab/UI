@@ -2343,10 +2343,10 @@ const Hi = ["onClick"], Wi = /* @__PURE__ */ I({
   setup(e, { emit: t }) {
     const l = e, s = R({
       get: () => l.modelValue,
-      set: (a) => t(
+      set: (a) => (l.multiple || n.set(!0), t(
         "update:modelValue",
         (l.multiple, a)
-      )
+      ))
     }), n = F(!0);
     return (a, u) => De((v(), b("div", {
       class: d([a.$style["dropdown-container"], a.$style[a.size]])
@@ -2377,14 +2377,14 @@ const Hi = ["onClick"], Wi = /* @__PURE__ */ I({
       [r(Ne), () => r(n).set(!0)]
     ]);
   }
-}), uc = "_large_184z5_7", dc = {
-  "dropdown-container": "_dropdown-container_184z5_1",
+}), uc = "_large_wogtz_7", dc = {
+  "dropdown-container": "_dropdown-container_wogtz_1",
   large: uc,
-  "dropdown-menu": "_dropdown-menu_184z5_11",
-  "dropdown-button": "_dropdown-button_184z5_11"
+  "dropdown-menu": "_dropdown-menu_wogtz_11",
+  "dropdown-button": "_dropdown-button_wogtz_11"
 }, fc = {
   $style: dc
-}, Hd = /* @__PURE__ */ q(cc, [["__cssModules", fc], ["__scopeId", "data-v-12c6e9fa"]]), pc = ["height", "width"], _c = /* @__PURE__ */ g("feFlood", {
+}, Hd = /* @__PURE__ */ q(cc, [["__cssModules", fc], ["__scopeId", "data-v-1852f87d"]]), pc = ["height", "width"], _c = /* @__PURE__ */ g("feFlood", {
   "flood-opacity": "0",
   result: "BackgroundImageFix"
 }, null, -1), hc = /* @__PURE__ */ g("feBlend", {

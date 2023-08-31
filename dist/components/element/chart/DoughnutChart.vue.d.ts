@@ -15,7 +15,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         required: true;
     };
     datasets: {
-        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike | import("../../../shared/types/object").ObjectLike[]>;
+        type: import("vue").PropType<import("../../../shared").ObjectLike | import("../../../shared").ObjectLike[]>;
         required: true;
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
@@ -34,7 +34,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         required: true;
     };
     datasets: {
-        type: import("vue").PropType<import("../../../shared/types/object").ObjectLike | import("../../../shared/types/object").ObjectLike[]>;
+        type: import("vue").PropType<import("../../../shared").ObjectLike | import("../../../shared").ObjectLike[]>;
         required: true;
     };
 }>>, {

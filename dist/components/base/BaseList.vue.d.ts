@@ -1,6 +1,6 @@
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     items: {
-        type: import("vue").PropType<import("../../shared/types/object").ObjectLike[]>;
+        type: import("vue").PropType<import("../../shared").ObjectLike[]>;
         required: true;
     };
     groupBy: {
@@ -8,7 +8,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     items: {
-        type: import("vue").PropType<import("../../shared/types/object").ObjectLike[]>;
+        type: import("vue").PropType<import("../../shared").ObjectLike[]>;
         required: true;
     };
     groupBy: {
@@ -16,12 +16,12 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     };
 }>>, {}, {}>, {
     default: (props: {
-        item: import("../../shared/types/object").ObjectLike;
+        item: import("../../shared").ObjectLike;
         index: number;
     }) => JSX.Element;
     group?: ((props: {
         group: string | number;
-        items: import("../../shared/types/object").ObjectLike[];
+        items: import("../../shared").ObjectLike[];
     }) => JSX.Element) | undefined;
     placeholder?: ((props: {}) => JSX.Element) | undefined;
 }>;
