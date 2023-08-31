@@ -26,6 +26,10 @@ const emits = defineEmits<{
 const selected = computed({
   get: () => props.modelValue,
   set: (value) => {
+    if (!props.multiple) {
+      closeMenu.set(true);
+    }
+
     return emits(
       'update:modelValue',
       props.multiple ? (value as ObjectLike) : (value as ObjectLike[])
