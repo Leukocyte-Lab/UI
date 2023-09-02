@@ -38,6 +38,7 @@ const props = withDefaults(defineProps<BadgeBox.Props>(), {
     width: fit-content;
     height: fit-content;
     box-sizing: border-box;
+    text-decoration: none;
 
     $colors: 'default', 'cyan', 'blue', 'green', 'orange', 'red', 'purple';
 
