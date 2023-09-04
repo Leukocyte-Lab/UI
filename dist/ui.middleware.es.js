@@ -1,4 +1,4 @@
-import { u as m } from "./index-b6d5966a.js";
+import { u as m } from "./index-8ac250c5.js";
 import "vue";
 export {
   m as useI18n

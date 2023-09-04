@@ -1,4 +1,2 @@
-export declare const useI18n: (...args: any[]) => {
-    language: import("../../shared/libs/signal").Signal<string>;
-    timeZone: import("../../shared/libs/signal").Signal<string>;
-};
+import type { UseI18n } from '../../middleware/i18n/i18n.model';
+export declare const useI18n: () => UseI18n;
