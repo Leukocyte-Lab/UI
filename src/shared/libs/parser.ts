@@ -11,8 +11,6 @@ import { selector } from './selector';
 import type { ObjectLike } from '@/shared/types/object';
 import type { Optional } from '@/shared/types/optional';
 
-const i18n = useI18n();
-
 const tailingRegExp = XRegExp.build(`[^\\{\\}]*`, {}, 'gmx');
 const filterRegExp = XRegExp.build(`[^\\|\\(\\)\\{\\}: \t]+`, {}, 'gmx');
 const argsRegExp = XRegExp.build(`[^\\|\\(\\)\\{\\}]+`, {}, 'gmx');
@@ -74,12 +72,14 @@ export const parser = <T extends ObjectLike = ObjectLike>(
             if (pipe) {
               const params = (pipe?.args ?? '').trim().split(/\s:\s/);
 
+              const i18n = useI18n();
+
               switch (pipe.filter) {
                 case 'date': {
                   const timeZone = (
                     params?.[1]
                       ? selector(datasets, String(params?.[1])) ?? params?.[1]
-                      : i18n.timeZone()
+                      : i18n.timeZone.value
                   ) as string;
                   result = formatInTimeZone(
                     new Date(data as Date),
@@ -110,9 +110,7 @@ export const parser = <T extends ObjectLike = ObjectLike>(
                   result = (data as string).toLowerCase();
                   break;
                 case 'capitalize':
-                  result = (data as string).replace(/\b\w/g, (l) =>
-                    l.toUpperCase()
-                  );
+                  result = (data as string).replace(/\b\w/g, (l) => l.toUpperCase());
                   break;
                 case 'join':
                   result = join(data, params?.[0]);
@@ -135,10 +133,7 @@ export const parser = <T extends ObjectLike = ObjectLike>(
               }
             }
 
-            const tail = (pipe?.tailing ?? groups?.tailing ?? '').replace(
-              /^\)/,
-              ''
-            );
+            const tail = (pipe?.tailing ?? groups?.tailing ?? '').replace(/^\)/, '');
 
             if (tail) {
               result = parser({ ...datasets, result }, `{{ result${tail} }}`);
