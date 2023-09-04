@@ -4,10 +4,14 @@ import XRegExp from 'xregexp';
 
 import type { NamedGroupsArray } from 'xregexp';
 
+import { useI18n } from '@/middleware/i18n/i18n.service';
+
 import { selector } from './selector';
 
 import type { ObjectLike } from '@/shared/types/object';
 import type { Optional } from '@/shared/types/optional';
+
+const i18n = useI18n();
 
 const tailingRegExp = XRegExp.build(`[^\\{\\}]*`, {}, 'gmx');
 const filterRegExp = XRegExp.build(`[^\\|\\(\\)\\{\\}: \t]+`, {}, 'gmx');
@@ -75,7 +79,7 @@ export const parser = <T extends ObjectLike = ObjectLike>(
                   const timeZone = (
                     params?.[1]
                       ? selector(datasets, String(params?.[1])) ?? params?.[1]
-                      : Intl.DateTimeFormat().resolvedOptions().timeZone
+                      : i18n.timeZone()
                   ) as string;
                   result = formatInTimeZone(
                     new Date(data as Date),
