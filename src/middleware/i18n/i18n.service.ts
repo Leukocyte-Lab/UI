@@ -1,21 +1,30 @@
-import type { InjectionKey } from 'vue';
-
-import { createMiddlewareHook } from '@/middleware/util/factory';
-
-import { signal } from '@/shared/libs/signal';
+import { ref, reactive } from 'vue';
+import { computedEager } from '@vueuse/core';
 
 import type { UseI18n } from '@/middleware/i18n/i18n.model';
 
-const PROVIDE_KEY: InjectionKey<UseI18n> = Symbol('I18n');
+const state = reactive({
+  language: ref(Intl.DateTimeFormat().resolvedOptions().locale),
+  timeZone: ref(Intl.DateTimeFormat().resolvedOptions().timeZone)
+});
 
-const useI18n$ = () => {
-  const language = signal(Intl.DateTimeFormat().resolvedOptions().locale);
-  const timeZone = signal(Intl.DateTimeFormat().resolvedOptions().timeZone);
+export const useI18n = (): UseI18n => {
+  const getters = {
+    language: computedEager(() => state.language),
+    timeZone: computedEager(() => state.timeZone)
+  };
+
+  const actions = {
+    setLanguage: (language: string) => {
+      state.language = language;
+    },
+    setTimeZone: (timeZone: string) => {
+      state.timeZone = timeZone;
+    }
+  };
 
   return {
-    language,
-    timeZone
+    ...getters,
+    ...actions
   };
 };
-
-export const useI18n = createMiddlewareHook(PROVIDE_KEY, useI18n$);
