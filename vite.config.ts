@@ -19,7 +19,8 @@ export default defineConfig(({ mode }) => ({
       // Could also be a dictionary or array of multiple entry points
       entry: {
         shared: resolve(__dirname, 'src/shared/index.ts'),
-        component: resolve(__dirname, 'src/components/index.ts')
+        component: resolve(__dirname, 'src/components/index.ts'),
+        middleware: resolve(__dirname, 'src/middleware/index.ts'),
       },
       name: 'UI',
       // the proper extensions will be added
