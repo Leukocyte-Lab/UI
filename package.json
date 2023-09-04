@@ -40,6 +40,11 @@
       "require": "./dist/ui.component.cjs.js",
       "types": "./dist/components/index.d.ts"
     },
+    "./middleware": {
+      "import": "./dist/ui.middleware.es.js",
+      "require": "./dist/ui.middleware.cjs.js",
+      "types": "./dist/middleware/index.d.ts"
+    },
     "./styles/": "./dist/styles/",
     "./style.css": "./dist/style.css"
   },
