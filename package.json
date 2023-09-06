@@ -70,7 +70,7 @@
     "@vue/compiler-sfc": "^3.3.4",
     "@vue/eslint-config-prettier": "^8.0.0",
     "@vue/eslint-config-typescript": "^11.0.3",
-    "@vue/test-utils": "^2.4.1",
+    "@vue/test-utils": "2.4.0-alpha.2",
     "@vue/tsconfig": "^0.4.0",
     "@vueuse/components": "^10.3.0",
     "@vueuse/core": "^10.3.0",
