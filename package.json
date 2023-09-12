@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "vite",
+    "postinstall": "pnpm run setup-git-hooks",
+    "setup-git-hooks": "git config core.hooksPath .githooks",
     "build": "vite build",
     "build:check": "run-p lint type-check",
     "build:prod": "run-p build",
