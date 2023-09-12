@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# 运行 vitest 测试
 pnpm vitest --run
 
-# 检查测试结果，如果有测试失败，阻止提交
 if [ $? -ne 0 ]; then
-  echo "Pre-commit hook: Vitest tests failed. Aborting commit."
+  echo "Pre-push hook: Vitest tests failed. Aborting push."
   exit 1
 fi
 
-# 如果测试通过，允许提交
 exit 0
