@@ -35,5 +35,8 @@ export default defineConfig(({ mode }) => ({
       external: ['vue', '@iconify/vue/offline'],
       output: { globals: { vue: 'Vue' }, inlineDynamicImports: false, format: 'esm' }
     }
+  },
+  test: {
+    environment: "jsdom"
   }
 }));
