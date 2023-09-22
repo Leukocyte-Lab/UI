@@ -51,7 +51,8 @@ DefaultSelectMenu.args = {
       name: 'APT-39',
       description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
       category: 'APT Group Simulation Data',
-      recentlyUsed: '2021-01-01T00:00:00Z'
+      recentlyUsed: '2021-01-01T00:00:00Z',
+      disabled: true
     },
     {
       name: 'APT-40',
@@ -76,7 +77,8 @@ DefaultSelectMenu.args = {
   ],
   fields: {
     key: 'name',
-    title: '{{ $.name }}'
+    title: '{{ $.name }}',
+    disabled: 'disabled'
   },
   multiple: false
 };
