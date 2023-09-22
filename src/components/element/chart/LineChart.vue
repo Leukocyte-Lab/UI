@@ -224,12 +224,12 @@ const plotPolyPaths = computedEager(() =>
                 <foreignObject
                   :x="
                     plot.x.normalized * (width - props.options.offset.x) +
-                    props.options.offset.x -
-                    140
+                    props.options.offset.x +
+                    (index === 0 ? 0 : index === dataset.series.length - 1 ? -280 : -140)
                   "
                   :y="
                     (1 - plot.y.normalized) * (height - props.options.offset.y) -
-                    (plot.y.normalized >= 0.5 ? 0 : 220)
+                    (plot.y.normalized > 0.5 ? 0 : plot.y.normalized < 0.5 ? 220 : 110)
                   "
                   height="220"
                   width="280"
