@@ -1,0 +1,10 @@
+#!/bin/bash
+
+pnpm vitest --run
+
+if [ $? -ne 0 ]; then
+  echo "Pre-push hook: Vitest tests failed. Aborting push."
+  exit 1
+fi
+
+exit 0

@@ -61,8 +61,8 @@ const axisPath = computedEager(() =>
           .map(
             (metric) => `
               M ${props.options.offset.x} ${
-              (1 - metric.normalized) * (height.value - props.options.offset.y)
-            }
+                (1 - metric.normalized) * (height.value - props.options.offset.y)
+              }
               H ${width.value}
             `
           )
@@ -142,7 +142,20 @@ const plotPolyPaths = computedEager(() =>
                     index === 0 ? 'start' : index === axises.x.metrics.length - 1 ? 'end' : 'middle'
                   "
                 >
-                  {{ metric.value }}
+                  <template
+                    v-for="(text, index) in (metric.value ?? '').toString().split('\n')"
+                    :key="index"
+                  >
+                    <tspan
+                      :x="
+                        metric.normalized * (width - props.options.offset.x) +
+                        props.options.offset.x
+                      "
+                      :dy="`${index * 1.2}em`"
+                    >
+                      {{ text }}
+                    </tspan>
+                  </template>
                 </text>
               </template>
             </template>
@@ -154,7 +167,21 @@ const plotPolyPaths = computedEager(() =>
                   :class="[$style['chart-axis'], $style['label']]"
                   text-anchor="end"
                 >
-                  {{ metric.value }}
+                  <template
+                    v-for="(textGroup, index) in [(metric.value ?? '').toString().split('\n')]"
+                    :key="`group-${index}`"
+                  >
+                    <template v-if="textGroup.length > 1">
+                      <template v-for="(text, index) in textGroup" :key="index">
+                        <tspan :x="props.options.offset.x - 10" :dy="`${index * 0.5 - 0.5}em`">
+                          {{ text }}
+                        </tspan>
+                      </template>
+                    </template>
+                    <template v-else>
+                      <tspan>{{ metric.value }}</tspan>
+                    </template>
+                  </template>
                 </text>
               </template>
             </template>
@@ -197,12 +224,12 @@ const plotPolyPaths = computedEager(() =>
                 <foreignObject
                   :x="
                     plot.x.normalized * (width - props.options.offset.x) +
-                    props.options.offset.x -
-                    140
+                    props.options.offset.x +
+                    (index === 0 ? 0 : index === dataset.series.length - 1 ? -280 : -140)
                   "
                   :y="
                     (1 - plot.y.normalized) * (height - props.options.offset.y) -
-                    (plot.y.normalized >= 0.5 ? 0 : 220)
+                    (plot.y.normalized > 0.5 ? 0 : plot.y.normalized < 0.5 ? 220 : 110)
                   "
                   height="220"
                   width="280"

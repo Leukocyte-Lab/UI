@@ -71,7 +71,7 @@ DefaultLineChart.args = {
   axises: {
     x: {
       label: 'Execution Time',
-      accessor: '{{ $.terminatedAt | date : yyyy/MM/dd }}',
+      accessor: "{{ $.terminatedAt | date : yyyy/MM/dd'\n'HH:mm:ss }}",
       selector: '$.terminatedAt',
       type: 'string'
     },

@@ -106,6 +106,9 @@ jobs:
       - name: 📦 Install Dependencies
         run: pnpm install
 
+      - name: 📦 Run Unit Test
+        run: pnpm vitest --run
+
       - name: 🔧 Run Build
         run: |
           pnpm run build:prod
