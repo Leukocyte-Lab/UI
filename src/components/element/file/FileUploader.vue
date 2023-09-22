@@ -438,6 +438,7 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
           'progressing': 'grayscale-1000',
           'pending': 'grayscale-600'
         );
+
         @each $style, $color in $style-sets {
           &.#{$style} {
             color: var(--agh-ref-color-#{$color});
