@@ -160,8 +160,8 @@ const computeItems = () => {
     : markSelected;
   const sortedItems = orderBy(
     searchItems,
-    [sort.value?.field ?? props.fields.key],
-    [sort.value?.direction ?? 'asc']
+    flatMap([sort.value?.field ?? props.fields.key]),
+    flatMap([sort.value?.direction ?? 'asc'])
   );
   const filteredItems = isEmpty(filters.value)
     ? sortedItems
