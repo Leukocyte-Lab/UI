@@ -141,13 +141,15 @@ onMounted(() => {
               :class="[
                 $style['menu-option'],
                 $style['behavior'],
-                $style['clickable'],
+                selector(option(), props.fields.disabled)
+                  ? [$style['disabled']]
+                  : $style['clickable'],
                 {
                   [$style['selected']]: option().selected,
                   [$style['multiple']]: props.multiple
                 }
               ]"
-              @click="onSelect(option)"
+              @click="selector(option(), props.fields.disabled) ? null : onSelect(option)"
             >
               <template v-if="props.multiple">
                 <Icon
@@ -168,7 +170,7 @@ onMounted(() => {
                   </p>
                 </template>
                 <template
-                  v-for="field in omit(props.fields, ['key', 'icon'])"
+                  v-for="field in omit(props.fields, ['key', 'icon', 'disabled'])"
                   :key="`option-field-${field}`"
                 >
                   <template v-if="field">
@@ -262,10 +264,16 @@ onMounted(() => {
     border: transparent solid var(--agh-ref-border-width-50);
     border-radius: var(--agh-ref-border-radius-400);
 
-    &:hover,
-    &.hover {
-      background-color: var(--agh-ref-color-grayscale-200);
-      border-color: var(--agh-ref-color-grayscale-300);
+    &.disabled {
+      opacity: var(--agh-ref-opacity-300);
+    }
+
+    &:not(.disabled) {
+      &:hover,
+      &.hover {
+        background-color: var(--agh-ref-color-grayscale-200);
+        border-color: var(--agh-ref-color-grayscale-300);
+      }
     }
 
     &.selected {

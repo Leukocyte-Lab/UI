@@ -6,6 +6,7 @@ export namespace SelectMenu {
     title?: string;
     content?: string;
     icon?: string;
+    disabled?: string;
   };
   export type Props = {
     options: ObjectLike[];
