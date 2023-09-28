@@ -145,6 +145,135 @@ DefaultRadarChart.args = {
   }
 };
 
+export const ExtremumRadarChart = Template.bind({});
+ExtremumRadarChart.args = {
+  datasets: [
+    {
+      label: 'project-analysis',
+      series: [
+        {
+          name: 'Reconnaissance',
+          techniques: 3,
+          total: 10,
+          value: 100
+        },
+        {
+          name: 'Weaponization',
+          techniques: 8,
+          total: 12,
+          value: 100
+        },
+        {
+          name: 'Delivery',
+          techniques: 6,
+          total: 10,
+          value: 100
+        },
+        {
+          name: 'Exploitation',
+          techniques: 7,
+          total: 15,
+          value: 100
+        },
+        {
+          name: 'Installation',
+          techniques: 7,
+          total: 14,
+          value: 100
+        },
+        {
+          name: 'Command & Control',
+          techniques: 6,
+          total: 10,
+          value: 100
+        },
+        {
+          name: 'Actions on Objectives',
+          techniques: 5,
+          total: 10,
+          value: 100
+        }
+      ]
+    },
+    {
+      label: 'project-analysis-overlay',
+      series: [
+        {
+          name: 'Reconnaissance',
+          techniques: 1,
+          total: 10,
+          value: 0
+        },
+        {
+          name: 'Weaponization',
+          techniques: 4,
+          total: 12,
+          value: 0
+        },
+        {
+          name: 'Delivery',
+          techniques: 5,
+          total: 10,
+          value: 0
+        },
+        {
+          name: 'Exploitation',
+          techniques: 6,
+          total: 15,
+          value: 0
+        },
+        {
+          name: 'Installation',
+          techniques: 7,
+          total: 14,
+          value: 0
+        },
+        {
+          name: 'Command & Control',
+          techniques: 4,
+          total: 10,
+          value: 0
+        },
+        {
+          name: 'Actions on Objectives',
+          techniques: 1,
+          total: 10,
+          value: 0
+        }
+      ]
+    }
+  ],
+  axises: {
+    x: {
+      label: 'Cyber Kill Chain',
+      accessor: '{{ $.name }}',
+      selector: '$.name',
+      type: 'string'
+    },
+    y: {
+      label: 'Count',
+      accessor: '{{ $.value | number }}%',
+      selector: '$.value',
+      type: 'number',
+      max: 'auto'
+    },
+    z: {
+      label: 'Techniques',
+      accessor: '{{ $.techniques }}',
+      selector: '$.techniques',
+      type: 'string'
+    }
+  },
+  options: {
+    title: '{{ $.name }}',
+    round: true,
+    offset: {
+      x: 5,
+      y: 50
+    }
+  }
+};
+
 export const EmptyRadarChart = Template.bind({});
 EmptyRadarChart.args = {
   datasets: [],
