@@ -71,12 +71,12 @@ const plotPolyPaths = computed(() =>
               `${index === 0 ? 'M' : 'L'} ${
                 center.value.x +
                 radius.value *
-                  plot.y.normalized *
+                  (0.1 + 0.8 * plot.y.normalized) *
                   Math$.cos(Math$.rad(plot.x.normalized * 360 - 90))
               } ${
                 center.value.y +
                 radius.value *
-                  plot.y.normalized *
+                  (0.1 + 0.8 * plot.y.normalized) *
                   Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
               }`
           )
@@ -238,11 +238,15 @@ onMounted(() => {
                   ]"
                   :cx="
                     center.x +
-                    radius * plot.y.normalized * Math$.cos(Math$.rad(plot.x.normalized * 360 - 90))
+                    radius *
+                      (0.1 + 0.8 * plot.y.normalized) *
+                      Math$.cos(Math$.rad(plot.x.normalized * 360 - 90))
                   "
                   :cy="
                     center.y +
-                    radius * plot.y.normalized * Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
+                    radius *
+                      (0.1 + 0.8 * plot.y.normalized) *
+                      Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
                   "
                   r="10"
                 />
@@ -250,22 +254,31 @@ onMounted(() => {
                   :class="[$style['chart-area'], $style['radar'], $style['point'], $style['plot']]"
                   :cx="
                     center.x +
-                    radius * plot.y.normalized * Math$.cos(Math$.rad(plot.x.normalized * 360 - 90))
+                    radius *
+                      (0.1 + 0.8 * plot.y.normalized) *
+                      Math$.cos(Math$.rad(plot.x.normalized * 360 - 90))
                   "
                   :cy="
                     center.y +
-                    radius * plot.y.normalized * Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
+                    radius *
+                      (0.1 + 0.8 * plot.y.normalized) *
+                      Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
                   "
                   r="5"
                 />
                 <foreignObject
                   :x="
                     center.x +
-                    radius * plot.y.normalized * Math$.cos(Math$.rad(plot.x.normalized * 360 - 90)) - 130
+                    radius *
+                      (0.1 + 0.8 * plot.y.normalized) *
+                      Math$.cos(Math$.rad(plot.x.normalized * 360 - 90)) -
+                    130
                   "
                   :y="
                     center.y +
-                    radius * plot.y.normalized * Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
+                    radius *
+                      (0.1 + 0.8 * plot.y.normalized) *
+                      Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
                   "
                   height="200"
                   width="260"
@@ -284,7 +297,9 @@ onMounted(() => {
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
                       <template v-if="!/(x|y)/.test(axisKey) && axis && plot[axisKey]">
-                        <div :class="[$style['chart-area'], $style['legend-group'], $style['radar']]">
+                        <div
+                          :class="[$style['chart-area'], $style['legend-group'], $style['radar']]"
+                        >
                           <p :class="[$style['chart-area'], $style['legend-value']]">
                             {{ plot[axisKey]!.value }}
                           </p>
@@ -312,7 +327,7 @@ onMounted(() => {
 .chart {
   &-container {
     --chart-bg-fill-svg: var(--agh-ref-color-cyan-gradient-500-svg);
-    --chart-bg-fill: url("#agh-ref-color-cyan-gradient-500");
+    --chart-bg-fill: url('#agh-ref-color-cyan-gradient-500');
     --chart-axis-label-fill: var(--agh-ref-color-grayscale-500);
     --chart-axis-stroke-fill: var(--agh-ref-color-grayscale-100);
     --chart-axis-stroke-width: var(--agh-ref-border-width-50);
