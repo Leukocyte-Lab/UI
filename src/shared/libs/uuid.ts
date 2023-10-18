@@ -7,10 +7,9 @@ export type HexUUID = string & {
   readonly _HexUUID?: unique symbol;
 };
 
-const UUIDValidator =
+export const UUIDValidator =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const HexUUIDValidator =
-  /^[0-9a-f]{12}[0-5][0-9a-f]{3}[089ab][0-9a-f]{3}[0-9a-f]{12}$/i;
+export const HexUUIDValidator = /^[0-9a-f]{12}[0-5][0-9a-f]{3}[089ab][0-9a-f]{3}[0-9a-f]{12}$/i;
 
 export const uuid: {
   (): UUID;
@@ -34,10 +33,10 @@ export function Hex2UUID(id: HexUUID, skipCheck = false): UUID {
   }
 
   return uuid(
-    `${id.slice(0, 8)}-${id.slice(8, 12)}-${id.slice(12, 16)}-${id.slice(
-      16,
-      20
-    )}-${id.slice(20, 32)}`,
+    `${id.slice(0, 8)}-${id.slice(8, 12)}-${id.slice(12, 16)}-${id.slice(16, 20)}-${id.slice(
+      20,
+      32
+    )}`,
     skipCheck
   );
 }
