@@ -34,6 +34,10 @@
         }
       },
       "size": {
+        "50": {
+          "value": "{ref.typeface.size.100}-4",
+          "type": "fontSizes"
+        },
         "75": {
           "value": "{ref.typeface.size.100}-2",
           "type": "fontSizes"
@@ -879,7 +883,7 @@
           }
         },
         "500": {
-          "value": "#7951CF",
+          "value": "#723FDB",
           "type": "color"
         },
         "600": {
@@ -935,19 +939,19 @@
           }
         },
         "gradient-100": {
-          "value": "linear-gradient(143deg, #F3EEFF 5.3%, #DCCBFF 94.7%)",
+          "value": "linear-gradient(143deg, {ref.color.purple.100} 10.03%, {ref.color.purple.200} 89.97%)",
           "type": "color"
         },
         "gradient-200": {
-          "value": "linear-gradient(143deg, #E1D3FF 5.3%, #AB82FF 94.7%)",
+          "value": "linear-gradient(143deg, {ref.color.purple.100} 10.03%, {ref.color.purple.300} 89.97%)",
           "type": "color"
         },
         "gradient-500": {
-          "value": "linear-gradient(143deg, rgba(199,176,249,1) 0%, rgba(130,69,255,1) 100%)",
+          "value": "linear-gradient(143deg, {ref.color.purple.300} 5.3%, {ref.color.purple.500} 94.7%)",
           "type": "color"
         },
         "gradient-700": {
-          "value": "linear-gradient(143deg, #9361FF 10.03%, #3B0B9C 89.97%)",
+          "value": "linear-gradient(143deg, {ref.color.purple.400} 14.26%, {ref.color.purple.700} 85.74%);",
           "type": "color"
         },
         "base": {
@@ -1009,7 +1013,7 @@
           }
         },
         "500": {
-          "value": "#6abb9f",
+          "value": "#29BA95",
           "type": "color"
         },
         "600": {
@@ -1065,23 +1069,23 @@
           }
         },
         "gradient-100": {
-          "value": "linear-gradient(143deg, #EFFFFB 10.03%, #C2DCD5 89.97%)",
+          "value": "linear-gradient(143deg, {ref.color.green.100} 14.26%, {ref.color.green.200} 85.74%)",
           "type": "color"
         },
         "gradient-200": {
-          "value": "linear-gradient(143deg, #D1FFF4 5.3%, #4DC8A8 94.7%)",
+          "value": "linear-gradient(143deg, {ref.color.green.100} 10.03%, {ref.color.green.300} 89.97%)",
           "type": "color"
         },
         "gradient-500": {
-          "value": "linear-gradient(143deg, rgba(143,231,210,1) 0%, rgba(74,190,160,1) 68%, rgba(32,172,136,1) 100%)",
+          "value": "linear-gradient(143deg, {ref.color.green.300} 5.3%, {ref.color.green.500} 94.7%)",
           "type": "color"
         },
         "gradient-600": {
-          "value": "linear-gradient(143deg, #81D8C3 14.26%, #019C75 83.88%)",
+          "value": "linear-gradient(143deg, {ref.color.green.300} 18.05%, {ref.color.green.600} 80.29%)",
           "type": "color"
         },
         "gradient-700": {
-          "value": "linear-gradient(143deg, #52CDB0 10.03%, #007A5B 87.89%)",
+          "value": "linear-gradient(143deg, {ref.color.green.400} 14.26%, {ref.color.green.700} 83.88%)",
           "type": "color"
         },
         "base": {
@@ -1143,7 +1147,7 @@
           }
         },
         "500": {
-          "value": "#FB9D2E",
+          "value": "#FF8F27",
           "type": "color"
         },
         "600": {
@@ -1199,23 +1203,23 @@
           }
         },
         "gradient-100": {
-          "value": "linear-gradient(143deg, #FFF1E6 14.26%, #FFDDC4 85.74%)",
+          "value": "linear-gradient(143deg, {ref.color.orange.100} 18.05%, {ref.color.orange.200} 81.95%)",
           "type": "color"
         },
         "gradient-200": {
-          "value": "linear-gradient(143deg, #FFE3CB 10.03%, #F59752 89.97%)",
+          "value": "linear-gradient(143deg, {ref.color.orange.100} 14.26%, {ref.color.orange.300} 85.74%)",
           "type": "color"
         },
         "gradient-500": {
-          "value": "linear-gradient(143deg, #F8CEA8 5.3%, #F9D0AB 5.3%, #FF8227 94.7%)",
+          "value": "linear-gradient(143deg, {ref.color.orange.300} 10.03%, {ref.color.orange.500} 89.97%)",
           "type": "color"
         },
         "gradient-600": {
-          "value": "linear-gradient(143deg, #F4BC87 14.26%, #F37D28 85.74%)",
+          "value": "linear-gradient(143deg, {ref.color.orange.300} 18.05%, {ref.color.orange.600} 81.95%)",
           "type": "color"
         },
         "gradient-700": {
-          "value": "linear-gradient(143deg, #F4BC87 10.03%, #F36701 89.97%)",
+          "value": "linear-gradient(143deg, {ref.color.orange.400} 14.26%, {ref.color.orange.600} 85.74%)",
           "type": "color"
         },
         "base": {
@@ -1277,7 +1281,7 @@
           }
         },
         "500": {
-          "value": "#226ABE",
+          "value": "#145BC8",
           "type": "color"
         },
         "600": {
@@ -1333,23 +1337,23 @@
           }
         },
         "gradient-100": {
-          "value": "linear-gradient(143deg, #DFEAFF 14.26%, #BAD4FC 85.74%)",
+          "value": "linear-gradient(143deg, {ref.color.blue.100} 18.05%, {ref.color.blue.200} 81.95%)",
           "type": "color"
         },
         "gradient-200": {
-          "value": "linear-gradient(143deg, #B1CCFF 10.03%, #0061F3 89.97%)",
+          "value": "linear-gradient(143deg, {ref.color.blue.100} 14.26%, {ref.color.blue.300} 85.74%)",
           "type": "color"
         },
         "gradient-500": {
-          "value": "linear-gradient(143deg, #92B7FF 10.03%, #004FC7 89.97%)",
+          "value": "linear-gradient(143deg, {ref.color.blue.200} 14.26%, {ref.color.blue.500} 85.74%)",
           "type": "color"
         },
         "gradient-600": {
-          "value": "linear-gradient(143deg, #8FB5FF 18.05%, #0146AE 81.95%)",
+          "value": "linear-gradient(143deg, {ref.color.blue.300} 21.43%, {ref.color.blue.600} 77.94%)",
           "type": "color"
         },
         "gradient-700": {
-          "value": "linear-gradient(143deg, #84AEFF 10.03%, #02337D 89.97%)",
+          "value": "linear-gradient(143deg, {ref.color.blue.300} 14.26%, {ref.color.blue.700} 85.74%)",
           "type": "color"
         },
         "base": {
@@ -1411,7 +1415,7 @@
           }
         },
         "500": {
-          "value": "#DB5952",
+          "value": "#E04241",
           "type": "color"
         },
         "600": {
@@ -1467,23 +1471,23 @@
           }
         },
         "gradient-100": {
-          "value": "linear-gradient(143deg, #FFE9E9 10.03%, #FFB3B3 89.97%)",
+          "value": "linear-gradient(143deg, {ref.color.red.100} 14.26%, {ref.color.red.200} 85.74%)",
           "type": "color"
         },
         "gradient-200": {
-          "value": "linear-gradient(143deg, #FFD0D0 10.03%, #E66665 89.97%)",
+          "value": "linear-gradient(143deg, {ref.color.red.100} 21.43%, {ref.color.red.300} 78.57%)",
           "type": "color"
         },
         "gradient-500": {
-          "value": "linear-gradient(143deg, #FF9191 5.3%, #DC1615 94.7%)",
+          "value": "linear-gradient(143deg, {ref.color.red.300} 10.03%, {ref.color.red.500} 89.97%)",
           "type": "color"
         },
         "gradient-600": {
-          "value": "linear-gradient(143deg, #E08282 18.05%, #D91412 81.95%)",
+          "value": "linear-gradient(143deg, {ref.color.red.400} 21.43%, {ref.color.red.600} 78.57%)",
           "type": "color"
         },
         "gradient-700": {
-          "value": "linear-gradient(143deg, #DE6C6C 18.05%, #B30301 81.95%)",
+          "value": "linear-gradient(143deg, {ref.color.red.400} 21.43%, {ref.color.red.700} 78.57%)",
           "type": "color"
         },
         "base": {
@@ -1720,7 +1724,7 @@
           }
         },
         "500": {
-          "value": "#35BCCC",
+          "value": "#25ACBC",
           "type": "color"
         },
         "600": {
@@ -1776,23 +1780,23 @@
           }
         },
         "gradient-100": {
-          "value": "linear-gradient(143deg, #E8FDFF 14.26%, #B1DCE1 85.74%)",
+          "value": "linear-gradient(143deg, {ref.color.cyan.100} 18.05%, {ref.color.cyan.200} 81.95%)",
           "type": "color"
         },
         "gradient-200": {
-          "value": "linear-gradient(143deg, #D7FBFF 14.26%, #39C7D8 85.74%)",
+          "value": "linear-gradient(143deg, {ref.color.cyan.100} 18.05%, {ref.color.cyan.300} 81.95%)",
           "type": "color"
         },
         "gradient-500": {
-          "value": "linear-gradient(143deg, #CEF0F4 10.03%, #35BCCC 89.97%)",
+          "value": "linear-gradient(143deg, {ref.color.cyan.300} 14.26%, {ref.color.cyan.500} 85.74%)",
           "type": "color"
         },
         "gradient-600": {
-          "value": "linear-gradient(143deg, #C0EDF2 14.26%, #44B3C0 78.57%)",
+          "value": "linear-gradient(143deg, {ref.color.cyan.300} 18.05%, {ref.color.cyan.600} 75.54%)",
           "type": "color"
         },
         "gradient-700": {
-          "value": "linear-gradient(143deg, #9DDEE6 10.03%, #1EA0AF 81.95%)",
+          "value": "linear-gradient(143deg, {ref.color.cyan.400} 14.26%, {ref.color.cyan.700} 78.57%)",
           "type": "color"
         },
         "base": {
@@ -1815,109 +1819,129 @@
         },
         "purple": {
           "100": {
-            "value": "linear-gradient(223.94deg, {ref.color.purple.300} 4.3%, {ref.color.purple.300} 22.86%, {ref.color.purple.200} 32.39%, {ref.color.purple.300} 44.21%, {ref.color.purple.100} 51.41%)",
+            "value": "linear-gradient(224deg, {ref.color.purple.300} 5.11%, {ref.color.purple.200} 23.34%, {ref.color.purple.100} 32.7%, {ref.color.purple.300} 44.31%, {ref.color.purple.100} 51.38%)",
             "type": "color"
           },
           "200": {
-            "value": "linear-gradient(223.94deg, {ref.color.purple.300} 3.47%, {ref.color.purple.300} 22.37%, {ref.color.purple.200} 32.07%, {ref.color.purple.400} 44.1%, {ref.color.purple.200} 51.44%)",
+            "value": "linear-gradient(224deg, {ref.color.purple.300} 5.11%, {ref.color.purple.300} 23.34%, {ref.color.purple.200} 32.7%, {ref.color.purple.300} 44.31%, {ref.color.purple.100} 51.38%)",
             "type": "color"
           },
           "500": {
-            "value": "linear-gradient(223.94deg, {ref.color.purple.500} 2.63%, {ref.color.purple.400} 21.87%, {ref.color.purple.300} 31.74%, {ref.color.purple.500} 43.99%, {ref.color.purple.300} 51.47%)",
+            "value": "linear-gradient(224deg, {ref.color.purple.500} 3.47%, {ref.color.purple.400} 22.37%, {ref.color.purple.300} 32.07%, {ref.color.purple.400} 44.1%, {ref.color.purple.300} 51.44%)",
             "type": "color"
           },
           "700": {
-            "value": "linear-gradient(223.94deg, {ref.color.purple.800} 2.63%, {ref.color.purple.700} 21.87%, {ref.color.purple.400} 31.74%, {ref.color.purple.800} 43.99%, {ref.color.purple.300} 51.47%)",
+            "value": "linear-gradient(224deg, {ref.color.purple.600} 3.47%, {ref.color.purple.600} 22.37%, {ref.color.purple.500} 32.07%, {ref.color.purple.600} 44.1%, {ref.color.purple.400} 51.44%)",
             "type": "color"
           }
         },
         "green": {
           "100": {
-            "value": "linear-gradient(223.94deg, {ref.color.green.300} 4.3%, {ref.color.green.300} 22.86%, {ref.color.green.200} 32.39%, {ref.color.green.300} 44.21%, {ref.color.green.100} 51.41%)",
+            "value": "linear-gradient(224deg, {ref.color.green.200} 5.11%, {ref.color.green.200} 23.34%, {ref.color.green.100} 32.7%, {ref.color.green.200} 44.31%, {ref.color.green.100} 51.38%)",
             "type": "color"
           },
           "200": {
-            "value": "linear-gradient(223.94deg, {ref.color.green.500} 5.11%, {ref.color.green.300} 23.34%, {ref.color.green.300} 32.7%, {ref.color.green.500} 44.31%, {ref.color.green.300} 51.38%)",
+            "value": "linear-gradient(224deg, {ref.color.green.400} 5.11%, {ref.color.green.300} 23.34%, {ref.color.green.200} 32.7%, {ref.color.green.300} 44.31%, {ref.color.green.100} 51.38%)",
             "type": "color"
           },
           "500": {
-            "value": "linear-gradient(223.94deg, {ref.color.green.700} 4.3%, {ref.color.green.500} 22.86%, {ref.color.green.500} 32.39%, {ref.color.green.700} 44.21%, {ref.color.green.500} 51.41%)",
+            "value": "linear-gradient(224deg, {ref.color.green.500} 5.91%, {ref.color.green.500} 23.82%, {ref.color.green.400} 33.01%, {ref.color.green.500} 44.41%, {ref.color.green.300} 51.36%)",
+            "type": "color"
+          },
+          "600": {
+            "value": "linear-gradient(224deg, {ref.color.green.500} 5.91%, {ref.color.green.500} 23.82%, {ref.color.green.400} 33.01%, {ref.color.green.500} 44.41%, {ref.color.green.400} 51.36%)",
             "type": "color"
           },
           "700": {
-            "value": "linear-gradient(223.94deg, {ref.color.green.800} 5.11%, {ref.color.green.700} 23.34%, {ref.color.green.600} 32.7%, {ref.color.green.800} 44.31%, {ref.color.green.600} 51.38%)",
+            "value": "linear-gradient(224deg, {ref.color.green.700} 5.91%, {ref.color.green.700} 23.82%, {ref.color.green.600} 33.01%, {ref.color.green.700} 44.41%, {ref.color.green.500} 51.36%)",
             "type": "color"
           }
         },
         "orange": {
           "100": {
-            "value": "linear-gradient(223.94deg, {ref.color.orange.300} 4.3%, {ref.color.orange.300} 22.86%, {ref.color.orange.200} 32.39%, {ref.color.orange.300} 44.21%, {ref.color.orange.100} 51.41%)",
+            "value": "linear-gradient(224deg, {ref.color.orange.200} 5.11%, {ref.color.orange.200} 23.34%, {ref.color.orange.100} 32.7%, {ref.color.orange.200} 44.31%, {ref.color.orange.100} 51.38%)",
             "type": "color"
           },
           "200": {
-            "value": "linear-gradient(223.94deg, {ref.color.orange.400} 5.91%, {ref.color.orange.300} 23.82%, {ref.color.orange.200} 33.01%, {ref.color.orange.400} 44.41%, {ref.color.orange.200} 51.36%)",
+            "value": "linear-gradient(224deg, {ref.color.orange.300} 5.11%, {ref.color.orange.300} 23.34%, {ref.color.orange.200} 32.7%, {ref.color.orange.300} 44.31%, {ref.color.orange.100} 51.38%)",
             "type": "color"
           },
           "500": {
-            "value": "linear-gradient(223.94deg, {ref.color.orange.500} 5.11%, {ref.color.orange.500} 23.34%, {ref.color.orange.300} 32.7%, {ref.color.orange.500} 44.31%, {ref.color.orange.300} 51.38%)",
+            "value": "linear-gradient(224deg, {ref.color.orange.400} 5.11%, {ref.color.orange.400} 23.34%, {ref.color.orange.300} 32.7%, {ref.color.orange.400} 44.31%, {ref.color.orange.200} 51.38%)",
+            "type": "color"
+          },
+          "600": {
+            "value": "linear-gradient(224deg, {ref.color.orange.400} 5.11%, {ref.color.orange.500} 23.34%, {ref.color.orange.300} 32.7%, {ref.color.orange.500} 44.31%, {ref.color.orange.300} 51.38%)",
             "type": "color"
           },
           "700": {
-            "value": "linear-gradient(223.94deg, {ref.color.orange.600} 6.7%, {ref.color.orange.600} 24.29%, {ref.color.orange.400} 33.31%, {ref.color.orange.600} 44.51%, {ref.color.orange.500} 51.34%)",
+            "value": "linear-gradient(224deg, {ref.color.orange.600} 5.11%, {ref.color.orange.600} 23.34%, {ref.color.orange.400} 32.7%, {ref.color.orange.600} 44.31%, {ref.color.orange.500} 51.38%)",
             "type": "color"
           }
         },
         "blue": {
           "100": {
-            "value": "linear-gradient(223.94deg, {ref.color.blue.300} 4.3%, {ref.color.blue.300} 22.86%, {ref.color.blue.200} 32.39%, {ref.color.blue.300} 44.21%, {ref.color.blue.100} 51.41%)",
+            "value": "linear-gradient(224deg, {ref.color.blue.200} 5.11%, {ref.color.blue.200} 23.34%, {ref.color.blue.100} 32.7%, {ref.color.blue.200} 44.31%, {ref.color.blue.100} 51.38%)",
             "type": "color"
           },
           "200": {
-            "value": "linear-gradient(223.94deg, {ref.color.blue.400} 8.23%, {ref.color.blue.300} 25.2%, {ref.color.blue.300} 33.9%, {ref.color.blue.400} 44.71%, {ref.color.blue.200} 51.3%)",
+            "value": "linear-gradient(224deg, {ref.color.blue.300} 5.11%, {ref.color.blue.200} 23.34%, {ref.color.blue.100} 32.7%, {ref.color.blue.300} 44.31%, {ref.color.blue.200} 51.38%)",
             "type": "color"
           },
           "500": {
-            "value": "linear-gradient(223.94deg, {ref.color.blue.500} 6.7%, {ref.color.blue.400} 24.29%, {ref.color.blue.400} 33.31%, {ref.color.blue.500} 44.51%, {ref.color.blue.300} 51.34%)",
+            "value": "linear-gradient(224deg, {ref.color.blue.400} 5.11%, {ref.color.blue.300} 23.34%, {ref.color.blue.300} 32.7%, {ref.color.blue.400} 44.31%, {ref.color.blue.200} 51.38%)",
+            "type": "color"
+          },
+          "600": {
+            "value": "linear-gradient(224deg, {ref.color.blue.500} 5.11%, {ref.color.blue.400} 23.34%, {ref.color.blue.300} 32.7%, {ref.color.blue.500} 44.31%, {ref.color.blue.300} 51.38%)",
             "type": "color"
           },
           "700": {
-            "value": "linear-gradient(223.94deg, {ref.color.blue.600} 7.47%, {ref.color.blue.500} 24.75%, {ref.color.blue.400} 33.61%, {ref.color.blue.600} 44.61%, {ref.color.blue.400} 51.32%)",
+            "value": "linear-gradient(224deg, {ref.color.blue.500} 8.23%, {ref.color.blue.600} 25.2%, {ref.color.blue.400} 33.9%, {ref.color.blue.600} 44.71%, {ref.color.blue.300} 51.3%)",
             "type": "color"
           }
         },
         "red": {
           "100": {
-            "value": "linear-gradient(223.94deg, {ref.color.red.300} 4.3%, {ref.color.red.300} 22.86%, {ref.color.red.200} 32.39%, {ref.color.red.300} 44.21%, {ref.color.red.100} 51.41%)",
+            "value": "linear-gradient(224deg, {ref.color.red.200} 5.11%, {ref.color.red.200} 23.34%, {ref.color.red.100} 32.7%, {ref.color.red.200} 44.31%, {ref.color.red.100} 51.38%)",
             "type": "color"
           },
           "200": {
-            "value": "linear-gradient(223.94deg, {ref.color.red.400} 5.91%, {ref.color.red.300} 23.82%, {ref.color.red.300} 33.01%, {ref.color.red.400} 44.41%, {ref.color.red.200} 51.36%)",
+            "value": "linear-gradient(224deg, {ref.color.red.300} 5.11%, {ref.color.red.300} 23.34%, {ref.color.red.200} 32.7%, {ref.color.red.400} 44.31%, {ref.color.red.200} 51.38%)",
             "type": "color"
           },
           "500": {
-            "value": "linear-gradient(223.94deg, {ref.color.red.500} 5.11%, {ref.color.red.400} 23.34%, {ref.color.red.300} 32.7%, {ref.color.red.500} 44.31%, {ref.color.red.400} 51.38%)",
+            "value": "linear-gradient(224deg, {ref.color.red.500} 5.11%, {ref.color.red.400} 23.34%, {ref.color.red.300} 32.7%, {ref.color.red.500} 44.31%, {ref.color.red.300} 51.38%)",
+            "type": "color"
+          },
+          "600": {
+            "value": "linear-gradient(224deg, {ref.color.red.600} 5.11%, {ref.color.red.500} 23.34%, {ref.color.red.400} 32.7%, {ref.color.red.600} 44.31%, {ref.color.red.400} 51.38%)",
             "type": "color"
           },
           "700": {
-            "value": "linear-gradient(223.94deg, {ref.color.red.700} 7.47%, {ref.color.red.600} 24.75%, {ref.color.red.500} 33.61%, {ref.color.red.700} 44.61%, {ref.color.red.600} 51.32%)",
+            "value": "linear-gradient(224deg, {ref.color.red.700} 5.11%, {ref.color.red.600} 23.34%, {ref.color.red.500} 32.7%, {ref.color.red.600} 44.31%, {ref.color.red.400} 51.38%)",
             "type": "color"
           }
         },
         "cyan": {
           "100": {
-            "value": "linear-gradient(223.94deg, {ref.color.cyan.300} 4.3%, {ref.color.cyan.300} 22.86%, {ref.color.cyan.200} 32.39%, {ref.color.cyan.300} 44.21%, {ref.color.cyan.100} 51.41%)",
+            "value": "linear-gradient(224deg, {ref.color.cyan.200} 5.11%, {ref.color.cyan.200} 23.34%, {ref.color.cyan.100} 32.7%, {ref.color.cyan.200} 44.31%, {ref.color.cyan.100} 51.38%)",
             "type": "color"
           },
           "200": {
-            "value": "linear-gradient(223.94deg, {ref.color.cyan.400} 6.7%, {ref.color.cyan.300} 24.29%, {ref.color.cyan.200} 33.31%, {ref.color.cyan.400} 44.51%, {ref.color.cyan.200} 51.34%)",
+            "value": "linear-gradient(224deg, {ref.color.cyan.300} 5.11%, {ref.color.cyan.200} 23.34%, {ref.color.cyan.200} 32.7%, {ref.color.cyan.300} 44.31%, {ref.color.cyan.100} 51.38%)",
             "type": "color"
           },
           "500": {
-            "value": "linear-gradient(223.94deg, {ref.color.cyan.500} 1.77%, {ref.color.cyan.400} 21.36%, {ref.color.cyan.300} 31.41%, {ref.color.cyan.500} 43.88%, {ref.color.cyan.300} 51.5%)",
+            "value": "linear-gradient(224deg, {ref.color.cyan.400} 5.11%, {ref.color.cyan.300} 23.34%, {ref.color.cyan.300} 32.7%, {ref.color.cyan.400} 44.31%, {ref.color.cyan.300} 51.38%)",
+            "type": "color"
+          },
+          "600": {
+            "value": "linear-gradient(224deg, {ref.color.cyan.500} 5.11%, {ref.color.cyan.400} 23.34%, {ref.color.cyan.300} 32.7%, {ref.color.cyan.500} 44.31%, {ref.color.cyan.300} 51.38%)",
             "type": "color"
           },
           "700": {
-            "value": "linear-gradient(223.94deg, {ref.color.cyan.600} 1.77%, {ref.color.cyan.500} 21.36%, {ref.color.cyan.400} 31.41%, {ref.color.cyan.600} 43.88%, {ref.color.cyan.300} 51.5%)",
+            "value": "linear-gradient(224deg, {ref.color.cyan.600} 5.11%, {ref.color.cyan.500} 23.34%, {ref.color.cyan.400} 32.7%, {ref.color.cyan.600} 44.31%, {ref.color.cyan.400} 51.38%)",
             "type": "color"
           }
         }
@@ -2125,6 +2149,10 @@
     },
     "icon": {
       "size": {
+        "50": {
+          "value": "12",
+          "type": "fontSizes"
+        },
         "100": {
           "value": "16",
           "type": "fontSizes"
@@ -2359,6 +2387,20 @@
               "textCase": "{ref.typeface.textcase.none}"
             },
             "type": "typography"
+          },
+          "tiny": {
+            "value": {
+              "fontFamily": "{ref.typeface.family.sans-serif}",
+              "fontWeight": "{ref.typeface.weight.700}",
+              "lineHeight": "{ref.typeface.line-height.500}",
+              "fontSize": "{ref.typeface.size.400}",
+              "letterSpacing": "{ref.typeface.letterspace.none}",
+              "paragraphSpacing": "{ref.typeface.pgspace.base}",
+              "paragraphIndent": "0",
+              "textDecoration": "{ref.typeface.textdeco.none}",
+              "textCase": "{ref.typeface.textcase.none}"
+            },
+            "type": "typography"
           }
         }
       },
@@ -2425,12 +2467,26 @@
               "fontFamily": "{ref.typeface.family.sans-serif}",
               "fontWeight": "{ref.typeface.weight.700}",
               "lineHeight": "{ref.typeface.line-height.500}",
-              "fontSize": "{ref.typeface.size.75}",
+              "fontSize": "{ref.typeface.size.100}",
               "paragraphSpacing": "{ref.typeface.pgspace.base}",
               "letterSpacing": "{ref.typeface.letterspace.none}",
               "paragraphIndent": "0",
               "textDecoration": "{ref.typeface.textdeco.none}",
               "textCase": "{ref.typeface.textcase.none}"
+            },
+            "type": "typography"
+          },
+          "tiny": {
+            "value": {
+              "fontFamily": "{ref.typeface.family.sans-serif}",
+              "fontWeight": "{ref.typeface.weight.700}",
+              "lineHeight": "{ref.typeface.line-height.500}",
+              "paragraphSpacing": "{ref.typeface.pgspace.base}",
+              "letterSpacing": "{ref.typeface.letterspace.none}",
+              "paragraphIndent": "0",
+              "textDecoration": "{ref.typeface.textdeco.none}",
+              "textCase": "{ref.typeface.textcase.none}",
+              "fontSize": "{ref.typeface.size.75}"
             },
             "type": "typography"
           }
@@ -2735,6 +2791,20 @@
               "fontWeight": "{ref.typeface.weight.400}",
               "lineHeight": "{ref.typeface.line-height.600}",
               "fontSize": "{ref.typeface.size.75}",
+              "letterSpacing": "{ref.typeface.letterspace.none}",
+              "paragraphSpacing": "{ref.typeface.pgspace.base}",
+              "paragraphIndent": "0",
+              "textDecoration": "{ref.typeface.textdeco.none}",
+              "textCase": "{ref.typeface.textcase.none}"
+            },
+            "type": "typography"
+          },
+          "tiny": {
+            "value": {
+              "fontFamily": "{ref.typeface.family.sans-serif}",
+              "fontWeight": "{ref.typeface.weight.400}",
+              "lineHeight": "{ref.typeface.line-height.600}",
+              "fontSize": "{ref.typeface.size.50}",
               "letterSpacing": "{ref.typeface.letterspace.none}",
               "paragraphSpacing": "{ref.typeface.pgspace.base}",
               "paragraphIndent": "0",
@@ -3215,7 +3285,7 @@
     "card": {
       "vertical-card": {
         "width": {
-          "value": "265",
+          "value": "256",
           "type": "sizing"
         },
         "height": {
@@ -3548,25 +3618,63 @@
             }
           }
         }
+      },
+      "matrix-card": {
+        "width": {
+          "medium": {
+            "value": "280",
+            "type": "sizing"
+          }
+        }
+      },
+      "matrix-line": {
+        "width": {
+          "medium": {
+            "value": "8",
+            "type": "sizing"
+          }
+        }
+      },
+      "datepicker": {
+        "year": {
+          "width": {
+            "value": "362",
+            "type": "sizing"
+          },
+          "height": {
+            "value": "286",
+            "type": "sizing"
+          }
+        },
+        "month": {
+          "width": {
+            "value": "362",
+            "type": "sizing"
+          },
+          "height": {
+            "value": "296",
+            "type": "sizing"
+          }
+        }
       }
     },
     "color": {
       "blue": {
         "surface": {
           "normal": {
-            "value": "#F1F5FA",
+            "value": "#F2F7FF",
             "type": "color"
           },
           "dim": {
-            "value": "#DFE8F2",
+            "value": "#EBF1FA",
             "type": "color"
           },
           "bright": {
-            "value": "#F9FCFF",
+            "value": "#F6FAFF",
             "type": "color"
           },
           "vivid": {
-            "value": "#EDF5FF",
+            "value": "#E9F2FF",
             "type": "color"
           }
         }
@@ -3574,31 +3682,99 @@
       "orange": {
         "surface": {
           "normal": {
-            "value": "#FBF6F0",
+            "value": "#FFF7EE",
             "type": "color"
           },
           "dim": {
-            "value": "#F3EEE8",
+            "value": "#FBEFE1",
             "type": "color"
           },
           "bright": {
             "value": "#FFFCF8",
+            "type": "color"
+          },
+          "vivid": {
+            "value": "#FFF4E8",
+            "type": "color"
+          }
+        }
+      },
+      "green": {
+        "surface": {
+          "normal": {
+            "value": "#F0FCF8",
+            "type": "color"
+          },
+          "dim": {
+            "value": "#E7F6F2",
+            "type": "color"
+          },
+          "bright": {
+            "value": "#F8FEFC",
+            "type": "color"
+          },
+          "vivid": {
+            "value": "#EBFAF5",
             "type": "color"
           }
         }
       },
       "red": {
         "surface": {
+          "normal": {
+            "value": "#FBF3F3",
+            "type": "color"
+          },
+          "dim": {
+            "value": "#FBE7E7",
+            "type": "color"
+          },
           "bright": {
             "value": "#FFFAFA",
             "type": "color"
           },
+          "vivid": {
+            "value": "#FFF1F1",
+            "type": "color"
+          }
+        }
+      },
+      "purple": {
+        "surface": {
           "normal": {
-            "value": "#FCF0F0",
+            "value": "#F8F5FF",
             "type": "color"
           },
           "dim": {
-            "value": "#F2E1E1",
+            "value": "#EFEBF9",
+            "type": "color"
+          },
+          "bright": {
+            "value": "#FCFAFF",
+            "type": "color"
+          },
+          "vivid": {
+            "value": "#F5F1FF",
+            "type": "color"
+          }
+        }
+      },
+      "cyan": {
+        "surface": {
+          "normal": {
+            "value": "#EBFDFF",
+            "type": "color"
+          },
+          "dim": {
+            "value": "#E2F4F6",
+            "type": "color"
+          },
+          "bright": {
+            "value": "#F5FEFF",
+            "type": "color"
+          },
+          "vivid": {
+            "value": "#E9F9FB",
             "type": "color"
           }
         }
@@ -3659,6 +3835,18 @@
             "value": "120",
             "type": "sizing"
           }
+        }
+      }
+    },
+    "textfield": {
+      "width": {
+        "large": {
+          "value": "320",
+          "type": "sizing"
+        },
+        "medium": {
+          "value": "150",
+          "type": "sizing"
         }
       }
     }

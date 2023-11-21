@@ -1,0 +1,163 @@
+
+/**
+ * Do not edit directly
+ * Generated on Mon, 20 Nov 2023 10:37:38 GMT
+ */
+
+$agh-sys-color-primary-dim: #484CB7 !default;
+$agh-sys-color-primary-default: #6266ca !default;
+$agh-sys-color-primary-bright: #8487dc !default;
+$agh-sys-color-primary-surface: #C4C5F2 !default;
+$agh-sys-color-success-dim: #427430 !default;
+$agh-sys-color-success-default: #679257 !default;
+$agh-sys-color-success-bright: #90C07F !default;
+$agh-sys-color-success-surface: #DAF2D4 !default;
+$agh-sys-color-warning-dim: #905928 !default;
+$agh-sys-color-warning-default: #F6A358 !default;
+$agh-sys-color-warning-bright: #FBC799 !default;
+$agh-sys-color-warning-surface: #FFEAD7 !default;
+$agh-sys-color-alert-dim: #89302C !default;
+$agh-sys-color-alert-default: #DC4E48 !default;
+$agh-sys-color-alert-bright: #EC7C77 !default;
+$agh-sys-color-alert-surface: #ffdad8 !default;
+$agh-sys-color-grayscale-dim: #212121 !default;
+$agh-sys-color-grayscale-default: #4D4D4D !default;
+$agh-sys-color-grayscale-bright: #818181 !default;
+$agh-sys-color-grayscale-surface: #C7C7C7 !default;
+$agh-sys-color-grayscale-white: #FFFFFF !default;
+$agh-sys-typeface-headline-h1: 700 42px/120% Barlow !default;
+$agh-sys-typeface-headline-h2: 700 36px/120% Barlow !default;
+$agh-sys-typeface-headline-h3: 700 28px/120% Barlow !default;
+$agh-sys-typeface-title-large: 700 22px/120% Barlow !default;
+$agh-sys-typeface-title-small: 700 18px/120% Barlow !default;
+$agh-sys-typeface-label-default-large: 500 16px/120% Barlow !default;
+$agh-sys-typeface-label-default-medium: 500 14px/120% Barlow !default;
+$agh-sys-typeface-label-default-small: 500 12px/120% Barlow !default;
+$agh-sys-typeface-label-emphasize-large: 700 16px/120% Barlow !default;
+$agh-sys-typeface-label-emphasize-medium: 700 14px/120% Barlow !default;
+$agh-sys-typeface-label-emphasize-small: 700 12px/120% Barlow !default;
+$agh-sys-typeface-label-hl-large: 600 16px/120% Barlow !default;
+$agh-sys-typeface-label-hl-medium: 600 14px/120% Barlow !default;
+$agh-sys-typeface-label-hl-small: 600 12px/120% Barlow !default;
+$agh-sys-typeface-body-default-large: 400 11px/160% Barlow !default;
+$agh-sys-typeface-body-default-small: 400 10px/160% Barlow !default;
+$agh-sys-typeface-body-hl-large: 500 11px/120% Barlow !default;
+$agh-sys-typeface-body-hl-small: 500 10px/120% Barlow !default;
+$agh-sys-typeface-body-emphasize-large: 600 11px/120% Barlow !default;
+$agh-sys-typeface-body-emphasize-small: 600 10px/120% Barlow !default;
+$agh-sys-typeface-caption-large: 400 8px/120% Barlow !default;
+$agh-ref-typeface-family: Barlow !default;
+$agh-ref-typeface-icon-default: Font Awesome 6 Pro !default;
+$agh-ref-typeface-icon-custom: Font Awesome Kit 925fc120a4 !default;
+$agh-ref-typeface-icon-brands: Font Awesome 6 Brands !default;
+
+$tokens: (
+  '0': (
+    'id': '4c67ffcfed873a1dd6ce1e322d74952ab0d4b568',
+    'name': 'KPT',
+    '$figmaStyleReferences': (
+
+    ),
+    'selectedTokenSets': (
+      'Core': 'enabled'
+    ),
+    '$figmaCollectionId': 'VariableCollectionId:4657:43843',
+    '$figmaModeId': '4864:1',
+    '$figmaVariableReferences': (
+
+    )
+  ),
+  'tokenSetOrder': (
+    '0': 'Core'
+  ),
+  'sys': (
+    'color': (
+      'primary': (
+        'dim': $agh-sys-color-primary-dim,
+        'default': $agh-sys-color-primary-default,
+        'bright': $agh-sys-color-primary-bright,
+        'surface': $agh-sys-color-primary-surface
+      ),
+      'success': (
+        'dim': $agh-sys-color-success-dim,
+        'default': $agh-sys-color-success-default,
+        'bright': $agh-sys-color-success-bright,
+        'surface': $agh-sys-color-success-surface
+      ),
+      'warning': (
+        'dim': $agh-sys-color-warning-dim,
+        'default': $agh-sys-color-warning-default,
+        'bright': $agh-sys-color-warning-bright,
+        'surface': $agh-sys-color-warning-surface
+      ),
+      'alert': (
+        'dim': $agh-sys-color-alert-dim,
+        'default': $agh-sys-color-alert-default,
+        'bright': $agh-sys-color-alert-bright,
+        'surface': $agh-sys-color-alert-surface
+      ),
+      'grayscale': (
+        'dim': $agh-sys-color-grayscale-dim,
+        'default': $agh-sys-color-grayscale-default,
+        'bright': $agh-sys-color-grayscale-bright,
+        'surface': $agh-sys-color-grayscale-surface,
+        'white': $agh-sys-color-grayscale-white
+      )
+    ),
+    'typeface': (
+      'headline': (
+        'h1': $agh-sys-typeface-headline-h1,
+        'h2': $agh-sys-typeface-headline-h2,
+        'h3': $agh-sys-typeface-headline-h3
+      ),
+      'title': (
+        'large': $agh-sys-typeface-title-large,
+        'small': $agh-sys-typeface-title-small
+      ),
+      'label': (
+        'default': (
+          'large': $agh-sys-typeface-label-default-large,
+          'medium': $agh-sys-typeface-label-default-medium,
+          'small': $agh-sys-typeface-label-default-small
+        ),
+        'emphasize': (
+          'large': $agh-sys-typeface-label-emphasize-large,
+          'medium': $agh-sys-typeface-label-emphasize-medium,
+          'small': $agh-sys-typeface-label-emphasize-small
+        ),
+        'hl': (
+          'large': $agh-sys-typeface-label-hl-large,
+          'medium': $agh-sys-typeface-label-hl-medium,
+          'small': $agh-sys-typeface-label-hl-small
+        )
+      ),
+      'body': (
+        'default': (
+          'large': $agh-sys-typeface-body-default-large,
+          'small': $agh-sys-typeface-body-default-small
+        ),
+        'hl': (
+          'large': $agh-sys-typeface-body-hl-large,
+          'small': $agh-sys-typeface-body-hl-small
+        ),
+        'emphasize': (
+          'large': $agh-sys-typeface-body-emphasize-large,
+          'small': $agh-sys-typeface-body-emphasize-small
+        )
+      ),
+      'caption': (
+        'large': $agh-sys-typeface-caption-large
+      )
+    )
+  ),
+  'ref': (
+    'typeface': (
+      'family': $agh-ref-typeface-family,
+      'icon': (
+        'default': $agh-ref-typeface-icon-default,
+        'custom': $agh-ref-typeface-icon-custom,
+        'brands': $agh-ref-typeface-icon-brands
+      )
+    )
+  )
+);
