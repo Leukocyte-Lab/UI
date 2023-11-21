@@ -7,13 +7,13 @@ declare const _default: import("vue").DefineComponent<{
     disabled: {
         type: import("vue").PropType<boolean>;
     };
-    fields: {
-        type: import("vue").PropType<import("../menu/SelectMenu.model").SelectMenu.Fields>;
-        required: true;
-    };
     modelValue: {
         type: import("vue").PropType<string>;
         default: string;
+    };
+    fields: {
+        type: import("vue").PropType<import("../menu/SelectMenu.model").SelectMenu.Fields>;
+        required: true;
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (option: any) => void;
@@ -26,13 +26,13 @@ declare const _default: import("vue").DefineComponent<{
     disabled: {
         type: import("vue").PropType<boolean>;
     };
-    fields: {
-        type: import("vue").PropType<import("../menu/SelectMenu.model").SelectMenu.Fields>;
-        required: true;
-    };
     modelValue: {
         type: import("vue").PropType<string>;
         default: string;
+    };
+    fields: {
+        type: import("vue").PropType<import("../menu/SelectMenu.model").SelectMenu.Fields>;
+        required: true;
     };
 }>> & {
     onSelect?: ((option: ObjectLike) => any) | undefined;

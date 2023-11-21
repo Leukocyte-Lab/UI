@@ -20,6 +20,10 @@ declare const _default: import("vue").DefineComponent<{
     clicked: {
         type: import("vue").PropType<boolean>;
     };
+    bobble: {
+        type: import("vue").PropType<number | boolean>;
+        default: boolean;
+    };
     level: {
         type: import("vue").PropType<ButtonBox.Level>;
         default: string;
@@ -51,6 +55,10 @@ declare const _default: import("vue").DefineComponent<{
     clicked: {
         type: import("vue").PropType<boolean>;
     };
+    bobble: {
+        type: import("vue").PropType<number | boolean>;
+        default: boolean;
+    };
     level: {
         type: import("vue").PropType<ButtonBox.Level>;
         default: string;
@@ -64,6 +72,7 @@ declare const _default: import("vue").DefineComponent<{
 }, {
     variant: ButtonBox.Variant;
     disabled: boolean;
+    bobble: number | boolean;
     level: ButtonBox.Level;
     size: ButtonBox.Size;
 }, {}>;

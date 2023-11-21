@@ -12,13 +12,13 @@ declare const _default: import("vue").DefineComponent<{
         type: import("vue").PropType<boolean>;
         default: boolean;
     };
-    multiple: {
-        type: import("vue").PropType<boolean | "directory">;
-        default: boolean;
-    };
     accept: {
         type: import("vue").PropType<string | string[]>;
         default: string;
+    };
+    multiple: {
+        type: import("vue").PropType<boolean | "directory">;
+        default: boolean;
     };
     readAs: {
         type: import("vue").PropType<"text" | "formData" | "stream" | "base64" | "binary" | "buffer">;
@@ -43,13 +43,13 @@ declare const _default: import("vue").DefineComponent<{
         type: import("vue").PropType<boolean>;
         default: boolean;
     };
-    multiple: {
-        type: import("vue").PropType<boolean | "directory">;
-        default: boolean;
-    };
     accept: {
         type: import("vue").PropType<string | string[]>;
         default: string;
+    };
+    multiple: {
+        type: import("vue").PropType<boolean | "directory">;
+        default: boolean;
     };
     readAs: {
         type: import("vue").PropType<"text" | "formData" | "stream" | "base64" | "binary" | "buffer">;
@@ -65,8 +65,8 @@ declare const _default: import("vue").DefineComponent<{
     required: boolean;
     icon: string;
     disabled: boolean;
-    multiple: boolean | "directory";
     accept: string | string[];
+    multiple: boolean | "directory";
     readAs: "text" | "formData" | "stream" | "base64" | "binary" | "buffer";
 }, {}>;
 export default _default;

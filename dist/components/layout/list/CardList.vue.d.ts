@@ -15,16 +15,16 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     groupBy: {
         type: import("vue").PropType<string>;
     };
-    fields: {
-        type: import("vue").PropType<import("../../element/menu/SelectMenu.model").SelectMenu.Fields>;
-        required: true;
-    };
     modelValue: {
         type: import("vue").PropType<string>;
         default: string;
     };
     selected: {
         type: import("vue").PropType<ObjectLike | null>;
+    };
+    fields: {
+        type: import("vue").PropType<import("../../element/menu/SelectMenu.model").SelectMenu.Fields>;
+        required: true;
     };
     sortOptions: {
         type: import("vue").PropType<CardList.SortOption[]>;
@@ -52,16 +52,16 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     groupBy: {
         type: import("vue").PropType<string>;
     };
-    fields: {
-        type: import("vue").PropType<import("../../element/menu/SelectMenu.model").SelectMenu.Fields>;
-        required: true;
-    };
     modelValue: {
         type: import("vue").PropType<string>;
         default: string;
     };
     selected: {
         type: import("vue").PropType<ObjectLike | null>;
+    };
+    fields: {
+        type: import("vue").PropType<import("../../element/menu/SelectMenu.model").SelectMenu.Fields>;
+        required: true;
     };
     sortOptions: {
         type: import("vue").PropType<CardList.SortOption[]>;

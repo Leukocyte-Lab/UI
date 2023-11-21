@@ -5,6 +5,7 @@ export declare namespace ButtonBox {
         link?: string;
         disabled?: boolean;
         clicked?: boolean;
+        bobble?: boolean | number;
         variant?: Variant;
         level?: Level;
         size?: Size;

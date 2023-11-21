@@ -14,5 +14,6 @@ export declare namespace SelectMenu {
         groupBy?: string;
         label?: string;
         multiple?: boolean;
+        useSearch?: boolean;
     };
 }

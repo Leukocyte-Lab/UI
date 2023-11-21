@@ -11,16 +11,19 @@ declare const _default: import("vue").DefineComponent<{
     label: {
         type: import("vue").PropType<string>;
     };
-    fields: {
-        type: import("vue").PropType<SelectMenu.Fields>;
-        required: true;
-    };
     modelValue: {
         type: import("vue").PropType<ObjectLike | ObjectLike[]>;
     };
     multiple: {
         type: import("vue").PropType<boolean>;
         default: boolean;
+    };
+    fields: {
+        type: import("vue").PropType<SelectMenu.Fields>;
+        required: true;
+    };
+    useSearch: {
+        type: import("vue").PropType<boolean>;
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": ((option: ObjectLike) => void) & ((options: ObjectLike[]) => void);
@@ -35,16 +38,19 @@ declare const _default: import("vue").DefineComponent<{
     label: {
         type: import("vue").PropType<string>;
     };
-    fields: {
-        type: import("vue").PropType<SelectMenu.Fields>;
-        required: true;
-    };
     modelValue: {
         type: import("vue").PropType<ObjectLike | ObjectLike[]>;
     };
     multiple: {
         type: import("vue").PropType<boolean>;
         default: boolean;
+    };
+    fields: {
+        type: import("vue").PropType<SelectMenu.Fields>;
+        required: true;
+    };
+    useSearch: {
+        type: import("vue").PropType<boolean>;
     };
 }>> & {
     "onUpdate:modelValue"?: ((options: ObjectLike[]) => any) | undefined;
