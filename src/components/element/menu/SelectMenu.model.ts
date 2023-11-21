@@ -8,6 +8,7 @@ export namespace SelectMenu {
     icon?: string;
     disabled?: string;
   };
+
   export type Props = {
     options: ObjectLike[];
     fields: Fields;
@@ -15,5 +16,6 @@ export namespace SelectMenu {
     groupBy?: string;
     label?: string;
     multiple?: boolean;
+    useSearch?: boolean;
   };
 }
