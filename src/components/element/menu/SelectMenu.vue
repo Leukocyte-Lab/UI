@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { computedEager, useResizeObserver } from '@vueuse/core';
-import { flatMap, fromPairs, groupBy, map, omit, toPairs } from 'lodash-es';
+import { filter, flatMap, fromPairs, groupBy, map, omit, toPairs } from 'lodash-es';
 import { Icon } from '@iconify/vue/offline';
 
 import { signal } from '@/shared/libs/signal';
 import { parser } from '@/shared/libs/parser';
 import { selector } from '@/shared/libs/selector';
 
+import TextField from '@/components/element/textfield/TextField.vue';
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
 
@@ -25,6 +26,7 @@ const emits = defineEmits<{
 }>();
 
 const wrapperRef$ = ref<HTMLElement>();
+const search = ref('');
 
 const groups = computedEager(() =>
   fromPairs(
@@ -33,6 +35,9 @@ const groups = computedEager(() =>
       options.map((option) =>
         signal<ObjectLike>({
           ...option,
+          matched:
+            String(selector(option, props.fields.key)).includes(search.value) ||
+            String(selector(option, props.fields.title)).includes(search.value),
           selected: Boolean(
             props.multiple
               ? map(props.modelValue, props.fields.key).includes(selector(option, props.fields.key))
@@ -115,6 +120,9 @@ onMounted(() => {
         </template>
       </header>
     </template>
+    <template v-if="props.useSearch">
+      <TextField v-model="search" :class="$style['menu-search']" type="search" />
+    </template>
     <div
       ref="wrapperRef$"
       :class="[
@@ -137,51 +145,56 @@ onMounted(() => {
             <label :class="$style['menu-group-label']" name="">{{ group }}</label>
           </template>
           <template v-for="(option, index) in options" :key="`option-${index}`">
-            <div
-              :class="[
-                $style['menu-option'],
-                $style['behavior'],
-                selector(option(), props.fields.disabled)
-                  ? [$style['disabled']]
-                  : $style['clickable'],
-                {
-                  [$style['selected']]: option().selected,
-                  [$style['multiple']]: props.multiple
-                }
-              ]"
-              @click="selector(option(), props.fields.disabled) ? null : onSelect(option)"
-            >
-              <template v-if="props.multiple">
-                <Icon
-                  :class="$style['menu-option-icon']"
-                  :icon="option().selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
-                />
-              </template>
-              <template v-if="props.fields.icon">
-                <Icon
-                  :class="$style['menu-option-icon']"
-                  :icon="String(selector(option(), props.fields.icon))"
-                />
-              </template>
-              <div :class="$style['menu-option-group']">
-                <template v-if="!props.fields.title">
-                  <p :class="$style['menu-field']">
-                    {{ selector(option(), props.fields.key) }}
-                  </p>
+            <template v-if="search !== '' ? option().matched : true">
+              <div
+                :class="[
+                  $style['menu-option'],
+                  $style['behavior'],
+                  selector(option(), props.fields.disabled)
+                    ? [$style['disabled']]
+                    : $style['clickable'],
+                  {
+                    [$style['selected']]: option().selected,
+                    [$style['multiple']]: props.multiple
+                  }
+                ]"
+                @click="selector(option(), props.fields.disabled) ? null : onSelect(option)"
+              >
+                <template v-if="props.multiple">
+                  <Icon
+                    :class="$style['menu-option-icon']"
+                    :icon="option().selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
+                  />
                 </template>
-                <template
-                  v-for="field in omit(props.fields, ['key', 'icon', 'disabled'])"
-                  :key="`option-field-${field}`"
-                >
-                  <template v-if="field">
+                <template v-if="props.fields.icon">
+                  <Icon
+                    :class="$style['menu-option-icon']"
+                    :icon="String(selector(option(), props.fields.icon))"
+                  />
+                </template>
+                <div :class="$style['menu-option-group']">
+                  <template v-if="!props.fields.title">
                     <p :class="$style['menu-field']">
-                      {{ parser(option(), field) }}
+                      {{ selector(option(), props.fields.key) }}
                     </p>
                   </template>
-                </template>
+                  <template
+                    v-for="field in omit(props.fields, ['key', 'icon', 'disabled'])"
+                    :key="`option-field-${field}`"
+                  >
+                    <template v-if="field">
+                      <p :class="$style['menu-field']">
+                        {{ parser(option(), field) }}
+                      </p>
+                    </template>
+                  </template>
+                </div>
               </div>
-            </div>
+            </template>
           </template>
+          <div :class="$style['menu-group-placeholder']">
+            <p>No Data</p>
+          </div>
         </div>
       </template>
     </div>
@@ -240,6 +253,12 @@ onMounted(() => {
     }
   }
 
+  &-search {
+    width: 100%;
+    height: 28px; // TODO: Missing token
+    margin-bottom: var(--agh-ref-spacing-400);
+  }
+
   &-wrapper {
     @include scrollbar.use($offset: var(--agh-ref-spacing-300));
 
@@ -263,6 +282,10 @@ onMounted(() => {
     gap: var(--agh-ref-spacing-200);
     border: transparent solid var(--agh-ref-border-width-50);
     border-radius: var(--agh-ref-border-radius-400);
+
+    & + .menu-group-placeholder {
+      display: none;
+    }
 
     &.disabled {
       opacity: var(--agh-ref-opacity-300);
@@ -345,6 +368,11 @@ onMounted(() => {
       margin-bottom: var(--agh-ref-spacing-100);
       color: var(--agh-ref-color-grayscale-600);
       font: var(--agh-sys-typeface-label-hl-small);
+    }
+
+    &-placeholder {
+      color: var(--agh-ref-color-grayscale-600);
+      font: var(--agh-sys-typeface-label-default-large);
     }
   }
 }

@@ -94,6 +94,12 @@ SingleSelectMenu.args = {
   }
 };
 
+export const SingleSelectMenuWithSearch = Template.bind({});
+SingleSelectMenuWithSearch.args = {
+  ...SingleSelectMenu.args,
+  useSearch: true
+};
+
 export const SingleWithSubtitleSelectMenu = Template.bind({});
 SingleWithSubtitleSelectMenu.args = {
   ...DefaultSelectMenu.args,
@@ -138,6 +144,12 @@ MultiSelectMenu.args = {
   ],
   label: 'Playbook',
   multiple: true
+};
+
+export const MultiSelectMenuWithSearch = Template.bind({});
+MultiSelectMenuWithSearch.args = {
+  ...MultiSelectMenu.args,
+  useSearch: true
 };
 
 export const MultiWithSubtitleSelectMenu = Template.bind({});
@@ -214,6 +226,12 @@ GroupOverflowWithSubtitleMultiSelectMenu.args = {
   ],
   multiple: true,
   groupBy: 'category'
+};
+
+export const GroupOverflowWithSubtitleMultiSelectWithSearchMenu = Template.bind({});
+GroupOverflowWithSubtitleMultiSelectWithSearchMenu.args = {
+  ...GroupOverflowWithSubtitleMultiSelectMenu.args,
+  useSearch: true
 };
 
 export const IconWithSubtitleSelectMenu = Template.bind({});

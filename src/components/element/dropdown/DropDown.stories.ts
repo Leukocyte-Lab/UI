@@ -91,6 +91,12 @@ DefaultDropDown.args = {
   }
 };
 
+export const DefaultDropDownWithSearch = Template.bind({});
+DefaultDropDownWithSearch.args = {
+  ...DefaultDropDown.args,
+  useSearch: true
+};
+
 export const MultiDropDown = Template.bind({});
 MultiDropDown.args = {
   ...DefaultDropDown.args,
@@ -98,10 +104,22 @@ MultiDropDown.args = {
   multiple: true
 };
 
+export const MultiDropDownWithSearch = Template.bind({});
+MultiDropDownWithSearch.args = {
+  ...MultiDropDown.args,
+  useSearch: true
+};
+
 export const LargeDropDown = Template.bind({});
 LargeDropDown.args = {
   ...DefaultDropDown.args,
   size: 'large'
+};
+
+export const LargeDropDownWithSearch = Template.bind({});
+LargeDropDownWithSearch.args = {
+  ...LargeDropDown.args,
+  useSearch: true
 };
 
 export const WithSubtitleDropDown = Template.bind({});
@@ -112,6 +130,12 @@ WithSubtitleDropDown.args = {
     title: '{{ $.name }}',
     content: '{{ $.recentlyUsed | date : yyyy/MM/dd HH:mm }}'
   }
+}
+
+export const WithSubtitleDropDownWithSearch = Template.bind({});
+WithSubtitleDropDownWithSearch.args = {
+  ...WithSubtitleDropDown.args,
+  useSearch: true
 }
 
 export const DisabledDropDown = Template.bind({});

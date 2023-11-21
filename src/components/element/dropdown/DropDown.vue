@@ -55,6 +55,7 @@ const closeMenu = signal(true);
       :level="props.level"
       :size="props.size"
       :variant="props.size === 'small' ? 'rounded' : 'rect'"
+      :bobble="props.multiple ? selected?.length ?? false : false"
       :class="[$style['dropdown-button'], $style[size]]"
       @click="closeMenu.update((state) => !state)"
       type="search"
@@ -66,6 +67,7 @@ const closeMenu = signal(true);
         :label="props.label"
         :fields="props.fields"
         :multiple="props.multiple"
+        :use-search="props.useSearch"
         v-model="selected"
       />
     </template>
