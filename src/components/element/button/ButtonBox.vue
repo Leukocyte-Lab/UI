@@ -9,6 +9,7 @@ import type { ButtonBox } from '@/components/element/button/ButtonBox.model';
 
 const props = withDefaults(defineProps<ButtonBox.Props>(), {
   disabled: false,
+  bobble: false,
   variant: 'rounded',
   level: 'primary',
   size: 'small'
@@ -51,6 +52,22 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
   >
     <template v-if="props.label">
       <span :class="[$style['button-content']]">{{ props.label }}</span>
+    </template>
+    <template v-if="props.bobble">
+      <span
+        :class="[
+          $style['button-bobble'],
+          $style[typeof props.bobble],
+          $style[
+            typeof props.bobble === 'boolean' ||
+            !['rounded', 'rect', 'text'].includes(props.variant)
+              ? 'dot'
+              : 'badge'
+          ]
+        ]"
+      >
+        <template v-if="props.bobble !== true">{{ props.bobble }}</template>
+      </span>
     </template>
     <template v-if="props.icon">
       <span :class="[$style['button-icon']]">
@@ -143,6 +160,14 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 
       #{$self}-icon {
         font-size: var(--button-icon-size, var(--agh-ref-spacing-600));
+      }
+
+      #{$self}-bobble {
+        &.dot {
+          top: auto;
+          bottom: 0;
+          right: 0;
+        }
       }
     }
 
@@ -293,6 +318,12 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       #{$self}-icon {
         font-size: var(--button-icon-size, var(--agh-ref-icon-size-200));
       }
+
+      #{$self}-bobble {
+        &.badge {
+          border-radius: var(--agh-ref-border-radius-200);
+        }
+      }
     }
 
     &.rounded,
@@ -356,7 +387,10 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       width: var(--agh-ref-spacing-900);
       height: var(--agh-ref-spacing-900);
       justify-content: flex-start;
-      transition: padding 0.3s ease-in, width 0.3s ease-in-out, opacity 0.3s ease-in;
+      transition:
+        padding 0.3s ease-in,
+        width 0.3s ease-in-out,
+        opacity 0.3s ease-in;
       max-width: var(--button-max-width, fit-content);
 
       &:hover {
@@ -374,7 +408,10 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         width: 0;
         opacity: 0;
         white-space: nowrap;
-        transition: padding 0.3s ease-in, width 0.3s ease-in-out, opacity 0.3s ease-in;
+        transition:
+          padding 0.3s ease-in,
+          width 0.3s ease-in-out,
+          opacity 0.3s ease-in;
         will-change: padding, width, opacity;
         pointer-events: none;
       }
@@ -410,13 +447,20 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       #{$self}-icon {
         font-size: var(--button-icon-size, var(--agh-ref-icon-size-100));
       }
+
+      #{$self}-bobble {
+        &.badge {
+          order: -1;
+        }
+      }
     }
 
     &.disabled {
       box-shadow: none !important;
 
       #{$self}-content,
-      #{$self}-icon {
+      #{$self}-icon,
+      #{$self}-bobble {
         opacity: var(--button-disabled-opacity);
       }
     }
@@ -427,6 +471,36 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     font: var(--button-font);
     font-weight: var(--button-font-weight);
     filter: var(--button-text-shadow);
+  }
+
+  &-bobble {
+    border-radius: 50%;
+    background-color: var(--agh-ref-color-blue-100);
+    color: var(--agh-ref-color-blue-500);
+
+    &.dot {
+      position: absolute;
+      top: calc(var(--bobble-size) / 2 * -1);
+      right: calc(var(--bobble-size) / 2 * -1);
+    }
+
+    &.boolean {
+      --bobble-size: var(--agh-ref-spacing-100);
+
+      height: var(--bobble-size);
+      width: var(--bobble-size);
+    }
+
+    &.number {
+      --bobble-size: var(--agh-ref-spacing-500);
+
+      display: flex;
+      place-content: center;
+      place-items: center;
+      height: var(--bobble-size);
+      width: var(--bobble-size);
+      font: var(--agh-sys-typeface-label-hl-tiny);
+    }
   }
 
   &-icon {
