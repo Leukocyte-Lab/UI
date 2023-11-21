@@ -12,5 +12,6 @@ export namespace DropDown {
     level?: ButtonBoxNS.Level;
     size?: ButtonBoxNS.Size;
     multiple?: boolean;
+    useSearch?: boolean;
   };
 }
