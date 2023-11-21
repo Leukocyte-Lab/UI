@@ -192,6 +192,9 @@ onMounted(() => {
               </div>
             </template>
           </template>
+          <div :class="$style['menu-group-placeholder']">
+            <p>No Data</p>
+          </div>
         </div>
       </template>
     </div>
@@ -252,6 +255,7 @@ onMounted(() => {
 
   &-search {
     width: 100%;
+    height: 28px; // TODO: Missing token
     margin-bottom: var(--agh-ref-spacing-400);
   }
 
@@ -278,6 +282,10 @@ onMounted(() => {
     gap: var(--agh-ref-spacing-200);
     border: transparent solid var(--agh-ref-border-width-50);
     border-radius: var(--agh-ref-border-radius-400);
+
+    & + .menu-group-placeholder {
+      display: none;
+    }
 
     &.disabled {
       opacity: var(--agh-ref-opacity-300);
@@ -360,6 +368,11 @@ onMounted(() => {
       margin-bottom: var(--agh-ref-spacing-100);
       color: var(--agh-ref-color-grayscale-600);
       font: var(--agh-sys-typeface-label-hl-small);
+    }
+
+    &-placeholder {
+      color: var(--agh-ref-color-grayscale-600);
+      font: var(--agh-sys-typeface-label-default-large);
     }
   }
 }
