@@ -1,4 +1,4 @@
-import { last, flatMap, join, uniq } from 'lodash-es';
+import { last, flatMap, join, uniq, take } from 'lodash-es';
 import { formatInTimeZone, getTimezoneOffset } from 'date-fns-tz';
 import XRegExp from 'xregexp';
 
@@ -114,6 +114,9 @@ export const parser = <T extends ObjectLike = ObjectLike>(
                   break;
                 case 'join':
                   result = join(data, params?.[0]);
+                  break;
+                case 'take':
+                  result = take(data, Number(params?.[0]));
                   break;
                 case 'last':
                   result = last(data);
