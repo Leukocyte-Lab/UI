@@ -280,7 +280,10 @@ const isBetween = (day: DatetimePicker.DateEntity, selectDate: DatetimePicker.Se
   day.timestamp > selectDate.start?.timestamp &&
   day.timestamp < selectDate.end?.timestamp;
 
-const handleClickDayButton = (day: DatetimePicker.DateEntity, enableHoverRange) => {
+const handleClickDayButton = (
+  day: DatetimePicker.DateEntity,
+  enableHoverRange: { start: boolean; end: boolean }
+) => {
   if (props.type === 'single') {
     console.log(1);
     selectDate.value.start = day;
@@ -482,8 +485,8 @@ watch(
                 @click="
                   () =>
                     handleClickDayButton(day, {
-                      start: tempDate.start && isEqual(day, tempDate.start),
-                      end: tempDate.end && isEqual(day, tempDate.end)
+                      start: tempDate.start ? isEqual(day, tempDate.start) : false,
+                      end: tempDate.end ? isEqual(day, tempDate.end) : false
                     })
                 "
               ></ButtonBox>
