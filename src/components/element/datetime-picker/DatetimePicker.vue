@@ -35,6 +35,10 @@ const tempDate = ref<DatetimePicker.SelectDate>({
   end: undefined
 });
 
+const enableHoverStartRange = ref(false);
+
+const enableHoverEndRange = ref(false);
+
 const selectTime = ref('');
 
 const dropdownActiveType = ref<DatetimePicker.DropdownActiveType>();
@@ -213,7 +217,8 @@ const initCalender = () => {
     const firstDayOfTheMonth = calenderEntity.value.month.getDay(1);
     const prevMonth = getPreviousMonth();
     const nextMonth = getNextMonth();
-    const totalLastMonthFinalDays = firstDayOfTheMonth.dayNumber - 1;
+    const totalLastMonthFinalDays =
+      firstDayOfTheMonth.dayNumber - 1 >= 0 ? firstDayOfTheMonth.dayNumber - 1 : 6;
     const totalDays = calenderEntity.value.month.numberOfDays + totalLastMonthFinalDays;
     const monthList = Array.from({ length: totalDays });
 
@@ -275,21 +280,33 @@ const isBetween = (day: DatetimePicker.DateEntity, selectDate: DatetimePicker.Se
   day.timestamp > selectDate.start?.timestamp &&
   day.timestamp < selectDate.end?.timestamp;
 
-const handleClickDayButton = (day: DatetimePicker.DateEntity) => {
+const handleClickDayButton = (day: DatetimePicker.DateEntity, enableHoverRange) => {
   if (props.type === 'single') {
+    console.log(1);
     selectDate.value.start = day;
     emits('update:modelValue', day.date);
     emits('update:start', new Date(day.year, day.monthNumber - 1, day.currentDate, 0, 0));
     emits('update:end', new Date(day.year, day.monthNumber - 1, day.currentDate, 23, 59));
+  } else if (enableHoverRange.end) {
+    enableHoverEndRange.value = !enableHoverEndRange.value;
+  } else if (enableHoverRange.start) {
+    enableHoverStartRange.value = !enableHoverStartRange.value;
   } else if (selectDate.value.start && day?.timestamp > selectDate.value.start?.timestamp) {
+    enableHoverEndRange.value = false;
+    enableHoverStartRange.value = false;
+
     selectDate.value.end = day;
     tempDate.value.end = day;
+
     emits('update:end', day.date);
   } else {
     selectDate.value.start = day;
     tempDate.value.start = day;
+    enableHoverStartRange.value = false;
+    enableHoverEndRange.value = false;
     emits('update:start', day.date);
   }
+
   calenderEntity.value.goToDate(day?.monthNumber, day?.year);
 };
 
@@ -300,12 +317,12 @@ const handleConfirm = () => {
 const handleHoverDayButton = (day: DatetimePicker.DateEntity) => {
   if (props.type === 'single' || !selectDate.value.start) return;
 
-  if (day?.timestamp > selectDate.value.start?.timestamp) {
+  if (day?.timestamp > selectDate.value.start?.timestamp && enableHoverEndRange.value) {
     selectDate.value.end = day;
   } else if (day?.timestamp < selectDate.value.start?.timestamp && !selectDate.value.end) {
     selectDate.value.end = selectDate.value.start;
     selectDate.value.start = day;
-  } else {
+  } else if (enableHoverStartRange.value) {
     selectDate.value.start = day;
   }
 };
@@ -431,16 +448,18 @@ watch(
                 $style.wrapper,
                 $style.flex,
                 $style.vertical,
-                selectDate.start &&
+                type === 'multiple' &&
+                  selectDate.start &&
                   selectDate.end &&
                   selectDate.start?.timestamp !== selectDate.end.timestamp &&
                   isEqual(day, selectDate.start) &&
                   $style['item-start'],
-                selectDate.end &&
+                type === 'multiple' &&
+                  selectDate.end &&
                   selectDate.start?.timestamp !== selectDate.end.timestamp &&
                   isEqual(day, selectDate.end) &&
                   $style['item-end'],
-                isBetween(day, selectDate) && $style['item-duration']
+                type === 'multiple' && isBetween(day, selectDate) && $style['item-duration']
               ]"
             >
               <ButtonBox
@@ -448,7 +467,10 @@ watch(
                   $style['day'],
                   day.monthNumber === calenderEntity.month.monthNumber && $style['day-current'],
                   selectDate.start && isEqual(day, selectDate.start) && $style['day-start'],
-                  selectDate.end && isEqual(day, selectDate.end) && $style['day-end'],
+                  type === 'multiple' &&
+                    selectDate.end &&
+                    isEqual(day, selectDate.end) &&
+                    $style['day-end'],
                   selectDate.start &&
                     isEqual(day, selectDate.start) &&
                     type === 'multiple' &&
@@ -457,7 +479,13 @@ watch(
                 ]"
                 :label="String(day?.currentDate)"
                 variant="text"
-                @click="() => handleClickDayButton(day)"
+                @click="
+                  () =>
+                    handleClickDayButton(day, {
+                      start: tempDate.start && isEqual(day, tempDate.start),
+                      end: tempDate.end && isEqual(day, tempDate.end)
+                    })
+                "
               ></ButtonBox>
             </div>
           </template>
