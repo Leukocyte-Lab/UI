@@ -8,6 +8,7 @@ import { signal } from '@/shared/libs/signal';
 import { parser } from '@/shared/libs/parser';
 import { selector } from '@/shared/libs/selector';
 
+import TextField from '@/components/element/textfield/TextField.vue';
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
 
@@ -25,23 +26,34 @@ const emits = defineEmits<{
 }>();
 
 const wrapperRef$ = ref<HTMLElement>();
+const search = ref('');
 
 const groups = computedEager(() =>
   fromPairs(
-    toPairs(groupBy(props.options, props.groupBy ?? '')).map(([group, options]) => [
-      group === 'undefined' ? '' : group,
-      options.map((option) =>
-        signal<ObjectLike>({
-          ...option,
-          selected: Boolean(
-            props.multiple
-              ? map(props.modelValue, props.fields.key).includes(selector(option, props.fields.key))
-              : selector(option, props.fields.key) ===
-                  selector(props.modelValue as ObjectLike, props.fields.key)
+    toPairs(groupBy(props.options, props.groupBy ?? ''))
+      .map(([group, options]) => [
+        group === 'undefined' ? '' : group,
+        options
+          .map((option) =>
+            signal<ObjectLike>({
+              ...option,
+              selected: Boolean(
+                props.multiple
+                  ? map(props.modelValue, props.fields.key).includes(
+                      selector(option, props.fields.key)
+                    )
+                  : selector(option, props.fields.key) ===
+                      selector(props.modelValue as ObjectLike, props.fields.key)
+              )
+            })
           )
-        })
-      )
-    ])
+          .filter(
+            (option) =>
+              String(selector(option(), props.fields.key)).includes(search.value) ||
+              String(selector(option(), props.fields.title)).includes(search.value)
+          ) ?? []
+      ])
+      .filter(([, options]) => options.length > 0) as [string, Signal<ObjectLike>[]][]
   )
 );
 
@@ -114,6 +126,9 @@ onMounted(() => {
           />
         </template>
       </header>
+    </template>
+    <template v-if="props.useSearch">
+      <TextField v-model="search" :class="$style['menu-search']" type="search" />
     </template>
     <div
       ref="wrapperRef$"
@@ -238,6 +253,11 @@ onMounted(() => {
     > .button {
       font: var(--agh-sys-typeface-label-hl-medium);
     }
+  }
+
+  &-search {
+    width: 100%;
+    margin-bottom: var(--agh-ref-spacing-400);
   }
 
   &-wrapper {
