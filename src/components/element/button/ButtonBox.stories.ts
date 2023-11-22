@@ -62,7 +62,8 @@ DefaultRoundedButtonBox.args = {
   variant: 'rounded',
   level: 'primary',
   size: 'small',
-  disabled: false
+  disabled: false,
+  loading: false
 };
 
 export const PrimaryRoundedButtonBox = Template.bind({});

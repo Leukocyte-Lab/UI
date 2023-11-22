@@ -9,6 +9,7 @@ export namespace ButtonBox {
     variant?: Variant;
     level?: Level;
     size?: Size;
+    loading?: boolean;
   };
 
   export type Variant = 'rounded' | 'square' | 'text-square' | 'circle' | 'rect' | 'extendable-rect' | 'text' | 'file';
