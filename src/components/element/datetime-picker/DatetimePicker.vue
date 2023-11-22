@@ -35,6 +35,10 @@ const tempDate = ref<DatetimePicker.SelectDate>({
   end: undefined
 });
 
+const enableHoverStartRange = ref(false);
+
+const enableHoverEndRange = ref(false);
+
 const selectTime = ref('');
 
 const dropdownActiveType = ref<DatetimePicker.DropdownActiveType>();
@@ -213,7 +217,8 @@ const initCalender = () => {
     const firstDayOfTheMonth = calenderEntity.value.month.getDay(1);
     const prevMonth = getPreviousMonth();
     const nextMonth = getNextMonth();
-    const totalLastMonthFinalDays = firstDayOfTheMonth.dayNumber - 1;
+    const totalLastMonthFinalDays =
+      firstDayOfTheMonth.dayNumber - 1 >= 0 ? firstDayOfTheMonth.dayNumber - 1 : 6;
     const totalDays = calenderEntity.value.month.numberOfDays + totalLastMonthFinalDays;
     const monthList = Array.from({ length: totalDays });
 
@@ -275,21 +280,35 @@ const isBetween = (day: DatetimePicker.DateEntity, selectDate: DatetimePicker.Se
   day.timestamp > selectDate.start?.timestamp &&
   day.timestamp < selectDate.end?.timestamp;
 
-const handleClickDayButton = (day: DatetimePicker.DateEntity) => {
+const handleClickDayButton = (
+  day: DatetimePicker.DateEntity,
+  enableHoverRange: { start: boolean; end: boolean }
+) => {
   if (props.type === 'single') {
     selectDate.value.start = day;
     emits('update:modelValue', day.date);
     emits('update:start', new Date(day.year, day.monthNumber - 1, day.currentDate, 0, 0));
     emits('update:end', new Date(day.year, day.monthNumber - 1, day.currentDate, 23, 59));
+  } else if (enableHoverRange.end) {
+    enableHoverEndRange.value = !enableHoverEndRange.value;
+  } else if (enableHoverRange.start) {
+    enableHoverStartRange.value = !enableHoverStartRange.value;
   } else if (selectDate.value.start && day?.timestamp > selectDate.value.start?.timestamp) {
+    enableHoverEndRange.value = false;
+    enableHoverStartRange.value = false;
+
     selectDate.value.end = day;
     tempDate.value.end = day;
+
     emits('update:end', day.date);
   } else {
     selectDate.value.start = day;
     tempDate.value.start = day;
+    enableHoverStartRange.value = false;
+    enableHoverEndRange.value = false;
     emits('update:start', day.date);
   }
+
   calenderEntity.value.goToDate(day?.monthNumber, day?.year);
 };
 
@@ -300,12 +319,12 @@ const handleConfirm = () => {
 const handleHoverDayButton = (day: DatetimePicker.DateEntity) => {
   if (props.type === 'single' || !selectDate.value.start) return;
 
-  if (day?.timestamp > selectDate.value.start?.timestamp) {
+  if (day?.timestamp > selectDate.value.start?.timestamp && enableHoverEndRange.value) {
     selectDate.value.end = day;
   } else if (day?.timestamp < selectDate.value.start?.timestamp && !selectDate.value.end) {
     selectDate.value.end = selectDate.value.start;
     selectDate.value.start = day;
-  } else {
+  } else if (enableHoverStartRange.value) {
     selectDate.value.start = day;
   }
 };
@@ -384,27 +403,21 @@ watch(
         <div :class="[$style['item'], $style.wrapper, $style.flex, $style.horizontal]">
           <ButtonBox
             :class="[$style['select'], dropdownActiveType === 'year' && $style['selected']]"
-            variant="text"
             :label="String(calenderEntity.year)"
-            @click="toggleDropdown('year')"
-          ></ButtonBox>
-          <Icon
-            :class="[$style['icon'], dropdownActiveType === 'year' && $style['selected']]"
             :icon="`fa6-solid:angle-${dropdownActiveType === 'year' ? 'up' : 'down'}`"
-          ></Icon>
+            @click="toggleDropdown('year')"
+            variant="text"
+          ></ButtonBox>
         </div>
 
         <div :class="[$style['item'], $style.wrapper, $style.flex, $style.horizontal]">
           <ButtonBox
             :class="[$style['select'], dropdownActiveType === 'month' && $style['selected']]"
-            variant="text"
             :label="calenderEntity.month.monthShort"
-            @click="toggleDropdown('month')"
-          ></ButtonBox>
-          <Icon
-            :class="[$style['icon'], dropdownActiveType === 'month' && $style['selected']]"
             :icon="`fa6-solid:angle-${dropdownActiveType === 'month' ? 'up' : 'down'}`"
-          ></Icon>
+            @click="toggleDropdown('month')"
+            variant="text"
+          ></ButtonBox>
         </div>
       </div>
 
@@ -417,7 +430,7 @@ watch(
     </header>
 
     <template v-if="!dropdownActiveType">
-      <div>
+      <div :class="$style['calendar']">
         <div :class="$style['week']">
           <p v-for="item in calenderEntity.weekDays" :key="item">{{ item }}</p>
         </div>
@@ -431,16 +444,18 @@ watch(
                 $style.wrapper,
                 $style.flex,
                 $style.vertical,
-                selectDate.start &&
+                type === 'multiple' &&
+                  selectDate.start &&
                   selectDate.end &&
                   selectDate.start?.timestamp !== selectDate.end.timestamp &&
                   isEqual(day, selectDate.start) &&
                   $style['item-start'],
-                selectDate.end &&
+                type === 'multiple' &&
+                  selectDate.end &&
                   selectDate.start?.timestamp !== selectDate.end.timestamp &&
                   isEqual(day, selectDate.end) &&
                   $style['item-end'],
-                isBetween(day, selectDate) && $style['item-duration']
+                type === 'multiple' && isBetween(day, selectDate) && $style['item-duration']
               ]"
             >
               <ButtonBox
@@ -448,7 +463,10 @@ watch(
                   $style['day'],
                   day.monthNumber === calenderEntity.month.monthNumber && $style['day-current'],
                   selectDate.start && isEqual(day, selectDate.start) && $style['day-start'],
-                  selectDate.end && isEqual(day, selectDate.end) && $style['day-end'],
+                  type === 'multiple' &&
+                    selectDate.end &&
+                    isEqual(day, selectDate.end) &&
+                    $style['day-end'],
                   selectDate.start &&
                     isEqual(day, selectDate.start) &&
                     type === 'multiple' &&
@@ -457,7 +475,13 @@ watch(
                 ]"
                 :label="String(day?.currentDate)"
                 variant="text"
-                @click="() => handleClickDayButton(day)"
+                @click="
+                  () =>
+                    handleClickDayButton(day, {
+                      start: tempDate.start ? isEqual(day, tempDate.start) : false,
+                      end: tempDate.end ? isEqual(day, tempDate.end) : false
+                    })
+                "
               ></ButtonBox>
             </div>
           </template>
@@ -568,8 +592,11 @@ watch(
 
 <style lang="scss" module scoped>
 @use '@/assets/styles/modules/wrapper.module' as wrapper;
+@use '@/assets/styles/modules/scrollbar.module' as scrollbar;
 
 .date-picker {
+  --day-size: 50px; // TODO: Missing token
+
   background-color: var(--agh-ref-color-white-gradient-500);
   padding: var(--agh-ref-spacing-500);
   gap: var(--agh-ref-spacing-200);
@@ -591,10 +618,17 @@ watch(
       align-items: center;
       gap: var(--agh-ref-spacing-500);
       color: var(--agh-ref-color-grayscale-1000);
+
       font: var(--agh-sys-typeface-label-hl-large);
       .item {
         align-items: center;
         gap: var(--agh-ref-spacing-100);
+
+        .select,
+        .selected {
+          flex-direction: row;
+        }
+
         .select {
           color: var(--agh-ref-color-grayscale-1000);
           font: var(--agh-sys-typeface-label-hl-large);
@@ -611,23 +645,32 @@ watch(
     }
   }
 
+  .calendar {
+    padding: 0 var(--agh-ref-spacing-75);
+  }
+
   .week {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, var(--day-size));
+    grid-template-rows: repeat(auto-fit, var(--day-size));
+
     p {
+      padding: var(--agh-ref-spacing-200) var(--agh-ref-spacing-75);
       text-align: center;
       color: var(--agh-ref-color-grayscale-500);
       font: var(--agh-sys-typeface-label-default-large);
-      padding: var(--agh-ref-spacing-200);
     }
   }
   .days-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, var(--day-size));
+    grid-template-rows: repeat(auto-fit, var(--day-size));
 
     .item {
       place-items: center;
       pointer-events: auto;
+      width: 100%;
+      height: 100%;
 
       &-duration {
         &::before {
@@ -706,9 +749,12 @@ watch(
   }
 
   .month-list {
+    @include scrollbar.use();
+
     gap: var(--agh-ref-spacing-200);
     height: var(--agh-sys-gadget-datepicker-year-height);
-    width: var(--agh-sys-gadget-datepicker-year-width);
+    width: calc(var(--agh-sys-gadget-datepicker-year-width) - var(--agh-ref-spacing-300));
+    padding-right: var(--agh-ref-spacing-300);
     overflow: auto;
 
     .item {
@@ -731,11 +777,16 @@ watch(
     }
   }
   .years-grid {
+    @include scrollbar.use();
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     overflow: auto;
     height: var(--agh-sys-gadget-datepicker-year-height);
-    width: var(--agh-sys-gadget-datepicker-year-width);
+    width: calc(var(--agh-sys-gadget-datepicker-year-width) - var(--agh-ref-spacing-300));
+    padding-right: var(--agh-ref-spacing-300);
+    gap: var(--agh-ref-spacing-100);
+
     .container {
       justify-content: center;
 
