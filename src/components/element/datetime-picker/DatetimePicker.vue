@@ -404,27 +404,21 @@ watch(
         <div :class="[$style['item'], $style.wrapper, $style.flex, $style.horizontal]">
           <ButtonBox
             :class="[$style['select'], dropdownActiveType === 'year' && $style['selected']]"
-            variant="text"
             :label="String(calenderEntity.year)"
-            @click="toggleDropdown('year')"
-          ></ButtonBox>
-          <Icon
-            :class="[$style['icon'], dropdownActiveType === 'year' && $style['selected']]"
             :icon="`fa6-solid:angle-${dropdownActiveType === 'year' ? 'up' : 'down'}`"
-          ></Icon>
+            @click="toggleDropdown('year')"
+            variant="text"
+          ></ButtonBox>
         </div>
 
         <div :class="[$style['item'], $style.wrapper, $style.flex, $style.horizontal]">
           <ButtonBox
             :class="[$style['select'], dropdownActiveType === 'month' && $style['selected']]"
-            variant="text"
             :label="calenderEntity.month.monthShort"
-            @click="toggleDropdown('month')"
-          ></ButtonBox>
-          <Icon
-            :class="[$style['icon'], dropdownActiveType === 'month' && $style['selected']]"
             :icon="`fa6-solid:angle-${dropdownActiveType === 'month' ? 'up' : 'down'}`"
-          ></Icon>
+            @click="toggleDropdown('month')"
+            variant="text"
+          ></ButtonBox>
         </div>
       </div>
 
