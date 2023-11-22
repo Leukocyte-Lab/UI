@@ -2,6 +2,7 @@
 import { Icon } from '@iconify/vue/offline';
 
 import BaseLink from '@/components/base/BaseLink.vue';
+import BasePoly from '@/components/base/BasePoly.vue';
 
 import { useEventDebounceSignal } from '@/shared/libs/event';
 
@@ -12,7 +13,8 @@ const props = withDefaults(defineProps<ButtonBox.Props>(), {
   bobble: false,
   variant: 'rounded',
   level: 'primary',
-  size: 'small'
+  size: 'small',
+  loading: false
 });
 
 const emits = defineEmits<{
@@ -20,7 +22,7 @@ const emits = defineEmits<{
 }>();
 
 const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
-  if (props.disabled) {
+  if (props.disabled || props.loading) {
     event.preventDefault();
     event.stopPropagation();
   } else {
@@ -74,12 +76,28 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         <Icon :icon="props.icon" />
       </span>
     </template>
+
+    <template v-if="props.loading">
+      <BasePoly :class="[$style['button-loading-icon'], $style[props.size]]" viewBox="0 0 16 16">
+        <template #path>
+          <path
+            d="M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM2.4 8C2.4 11.0928 4.90721 13.6 8 13.6C11.0928 13.6 13.6 11.0928 13.6 8C13.6 4.90721 11.0928 2.4 8 2.4C4.90721 2.4 2.4 4.90721 2.4 8Z"
+            fill="#145BC8"
+          />
+          <path
+            d="M8 1.2C8 0.537258 8.54024 -0.00921593 9.19554 0.0898279C10.457 0.280494 11.6608 0.771147 12.7023 1.52787C14.0691 2.52089 15.0864 3.92112 15.6085 5.52787C16.1305 7.13462 16.1305 8.8654 15.6084 10.4721C15.2106 11.6965 14.5252 12.801 13.6167 13.6968C13.1448 14.1621 12.3865 14.0375 11.9969 13.5013C11.6074 12.9652 11.7387 12.2216 12.1797 11.7269C12.6931 11.1512 13.0849 10.4723 13.3259 9.7305C13.6914 8.60578 13.6914 7.39423 13.3259 6.26951C12.9605 5.14478 12.2483 4.16462 11.2916 3.46951C10.6606 3.01106 9.94456 2.69212 9.19086 2.52808C8.54328 2.38714 8 1.86274 8 1.2Z"
+            fill="white"
+          />
+        </template>
+      </BasePoly>
+    </template>
   </BaseLink>
 </template>
 
 <style module scoped lang="scss">
 @use '@/assets/styles/modules/behavior.module' as behavior;
 @use '@/assets/styles/modules/metallic.module' as metallic;
+@import '@/assets/styles/libs/animate';
 
 .button {
   $self: &;
@@ -471,6 +489,23 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     font: var(--button-font);
     font-weight: var(--button-font-weight);
     filter: var(--button-text-shadow);
+  }
+
+  &-loading {
+    &-icon {
+      --bg-fill: var(--agh-ref-color-blue-400);
+      flex-shrink: 0;
+      animation: rotate 1.5s linear infinite;
+
+      &.large {
+        width: var(--agh-sys-gadget-progress-circle-width-small);
+        height: var(--agh-sys-gadget-progress-circle-width-small);
+      }
+      &.small {
+        width: var(--agh-sys-gadget-progress-circle-width-tiny);
+        height: var(--agh-sys-gadget-progress-circle-width-tiny);
+      }
+    }
   }
 
   &-bobble {
