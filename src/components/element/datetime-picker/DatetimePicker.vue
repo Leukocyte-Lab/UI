@@ -754,7 +754,8 @@ watch(
 
     gap: var(--agh-ref-spacing-200);
     height: var(--agh-sys-gadget-datepicker-year-height);
-    width: var(--agh-sys-gadget-datepicker-year-width);
+    width: calc(var(--agh-sys-gadget-datepicker-year-width) - var(--agh-ref-spacing-300));
+    padding-right: var(--agh-ref-spacing-300);
     overflow: auto;
 
     .item {
@@ -783,9 +784,9 @@ watch(
     grid-template-columns: repeat(3, 1fr);
     overflow: auto;
     height: var(--agh-sys-gadget-datepicker-year-height);
-    width: var(--agh-sys-gadget-datepicker-year-width);
-
-
+    width: calc(var(--agh-sys-gadget-datepicker-year-width) - var(--agh-ref-spacing-300));
+    padding-right: var(--agh-ref-spacing-300);
+    gap: var(--agh-ref-spacing-100);
 
     .container {
       justify-content: center;
