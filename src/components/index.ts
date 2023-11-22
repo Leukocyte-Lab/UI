@@ -19,6 +19,9 @@ import LineChart from './element/chart/LineChart.vue';
 import MatrixChart from './element/chart/MatrixChart.vue';
 import RadarChart from './element/chart/RadarChart.vue';
 
+// datetime
+import DatetimePicker from './element/datetime-picker/DatetimePicker.vue';
+
 // dropdown
 import DropDown from './element/dropdown/DropDown.vue';
 
@@ -77,6 +80,9 @@ export {
   LineChart,
   MatrixChart,
   RadarChart,
+
+  // datetime
+  DatetimePicker,
 
   // dropdown
   DropDown,
