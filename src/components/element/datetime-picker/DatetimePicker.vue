@@ -285,7 +285,6 @@ const handleClickDayButton = (
   enableHoverRange: { start: boolean; end: boolean }
 ) => {
   if (props.type === 'single') {
-    console.log(1);
     selectDate.value.start = day;
     emits('update:modelValue', day.date);
     emits('update:start', new Date(day.year, day.monthNumber - 1, day.currentDate, 0, 0));
