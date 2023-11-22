@@ -437,7 +437,7 @@ watch(
     </header>
 
     <template v-if="!dropdownActiveType">
-      <div>
+      <div :class="$style['calendar']">
         <div :class="$style['week']">
           <p v-for="item in calenderEntity.weekDays" :key="item">{{ item }}</p>
         </div>
@@ -599,8 +599,11 @@ watch(
 
 <style lang="scss" module scoped>
 @use '@/assets/styles/modules/wrapper.module' as wrapper;
+@use '@/assets/styles/modules/scrollbar.module' as scrollbar;
 
 .date-picker {
+  --day-size: 50px; // TODO: Missing token
+
   background-color: var(--agh-ref-color-white-gradient-500);
   padding: var(--agh-ref-spacing-500);
   gap: var(--agh-ref-spacing-200);
@@ -622,10 +625,17 @@ watch(
       align-items: center;
       gap: var(--agh-ref-spacing-500);
       color: var(--agh-ref-color-grayscale-1000);
+
       font: var(--agh-sys-typeface-label-hl-large);
       .item {
         align-items: center;
         gap: var(--agh-ref-spacing-100);
+
+        .select,
+        .selected {
+          flex-direction: row;
+        }
+
         .select {
           color: var(--agh-ref-color-grayscale-1000);
           font: var(--agh-sys-typeface-label-hl-large);
@@ -642,23 +652,32 @@ watch(
     }
   }
 
+  .calendar {
+    padding: 0 var(--agh-ref-spacing-75);
+  }
+
   .week {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, var(--day-size));
+    grid-template-rows: repeat(auto-fit, var(--day-size));
+
     p {
+      padding: var(--agh-ref-spacing-200) var(--agh-ref-spacing-75);
       text-align: center;
       color: var(--agh-ref-color-grayscale-500);
       font: var(--agh-sys-typeface-label-default-large);
-      padding: var(--agh-ref-spacing-200);
     }
   }
   .days-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, var(--day-size));
+    grid-template-rows: repeat(auto-fit, var(--day-size));
 
     .item {
       place-items: center;
       pointer-events: auto;
+      width: 100%;
+      height: 100%;
 
       &-duration {
         &::before {
@@ -737,6 +756,8 @@ watch(
   }
 
   .month-list {
+    @include scrollbar.use();
+
     gap: var(--agh-ref-spacing-200);
     height: var(--agh-sys-gadget-datepicker-year-height);
     width: var(--agh-sys-gadget-datepicker-year-width);
@@ -762,11 +783,16 @@ watch(
     }
   }
   .years-grid {
+    @include scrollbar.use();
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     overflow: auto;
     height: var(--agh-sys-gadget-datepicker-year-height);
     width: var(--agh-sys-gadget-datepicker-year-width);
+
+
+
     .container {
       justify-content: center;
 
