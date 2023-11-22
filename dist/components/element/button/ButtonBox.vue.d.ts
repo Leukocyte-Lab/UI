@@ -32,6 +32,10 @@ declare const _default: import("vue").DefineComponent<{
         type: import("vue").PropType<ButtonBox.Size>;
         default: string;
     };
+    loading: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     click: (event: MouseEvent) => void;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
@@ -67,6 +71,10 @@ declare const _default: import("vue").DefineComponent<{
         type: import("vue").PropType<ButtonBox.Size>;
         default: string;
     };
+    loading: {
+        type: import("vue").PropType<boolean>;
+        default: boolean;
+    };
 }>> & {
     onClick?: ((event: MouseEvent) => any) | undefined;
 }, {
@@ -75,5 +83,6 @@ declare const _default: import("vue").DefineComponent<{
     bobble: number | boolean;
     level: ButtonBox.Level;
     size: ButtonBox.Size;
+    loading: boolean;
 }, {}>;
 export default _default;
