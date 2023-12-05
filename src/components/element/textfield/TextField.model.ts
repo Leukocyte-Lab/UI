@@ -1,3 +1,4 @@
+import type { EventSignalOptions } from '@/shared/libs/event';
 import type { InvalidMessage } from '@/shared/libs/validation';
 
 export namespace TextField {
@@ -23,7 +24,13 @@ export namespace TextField {
     tabindex?: number;
     inputmode?: InputMode;
     invalidMessage?: Partial<InvalidMessage>;
+    eventSignalOptions?: EventSignalOptions;
     icon?: string;
     iconAlign?: 'left' | 'right';
+  }
+
+  export type Emits = {
+    (e: 'update:modelValue', value: string): void;
+    (e: 'validation', value: ValidityState): void;
   }
 }
