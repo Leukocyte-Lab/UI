@@ -33,7 +33,7 @@ const { onTrigger } = useEventDebounceSignal(
       emits('update:modelValue', (event.target as HTMLInputElement).value);
     }
   },
-  {
+  props.eventSignalOptions ?? {
     flush: 'post'
   }
 );
