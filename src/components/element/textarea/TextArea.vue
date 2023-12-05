@@ -20,9 +20,7 @@ const props = withDefaults(defineProps<TextArea.Props>(), {
   iconAlign: 'right'
 });
 
-const emits = defineEmits<{
-  (e: 'update:modelValue', value: string): void;
-}>();
+const emits = defineEmits<TextArea.Emits>();
 
 const { onTrigger } = useEventDebounceSignal(
   (event) => {
@@ -30,7 +28,7 @@ const { onTrigger } = useEventDebounceSignal(
       event.preventDefault();
       event.stopPropagation();
     } else {
-      computeErrMsg();
+      checkValidity();
       emits('update:modelValue', (event.target as HTMLInputElement).value);
     }
   },
@@ -42,7 +40,7 @@ const { onTrigger } = useEventDebounceSignal(
 const inputRef$ = ref<HTMLInputElement>();
 const errMsg = signal('');
 
-const computeErrMsg = () =>
+const checkValidity = () => {
   errMsg.set(
     inputRef$.value
       ? inputRef$.value?.validity.valid
@@ -52,8 +50,13 @@ const computeErrMsg = () =>
       : ''
   );
 
+  if (inputRef$.value?.validity) {
+    emits('validation', inputRef$.value.validity)
+  }
+};
+
 onMounted(() => {
-  computeErrMsg();
+  checkValidity();
 });
 </script>
 

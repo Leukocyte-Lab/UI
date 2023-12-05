@@ -28,4 +28,9 @@ export namespace TextField {
     icon?: string;
     iconAlign?: 'left' | 'right';
   }
+
+  export type Emits = {
+    (e: 'update:modelValue', value: string): void;
+    (e: 'validation', value: ValidityState): void;
+  }
 }

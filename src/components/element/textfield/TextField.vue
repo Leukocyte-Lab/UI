@@ -18,9 +18,7 @@ const props = withDefaults(defineProps<TextField.Props>(), {
   iconAlign: 'right'
 });
 
-const emits = defineEmits<{
-  (e: 'update:modelValue', value: string): void;
-}>();
+const emits = defineEmits<TextField.Emits>();
 
 const { onTrigger } = useEventDebounceSignal(
   (event) => {
@@ -29,7 +27,7 @@ const { onTrigger } = useEventDebounceSignal(
       event.stopPropagation();
     } else {
       focused.set(true);
-      computeErrMsg();
+      checkValidity();
       emits('update:modelValue', (event.target as HTMLInputElement).value);
     }
   },
@@ -42,7 +40,7 @@ const inputRef$ = ref<HTMLInputElement>();
 const errMsg = signal('');
 const focused = signal(props.modelValue !== '');
 
-const computeErrMsg = () =>
+const checkValidity = () => {
   errMsg.set(
     inputRef$.value
       ? inputRef$.value?.validity.valid
@@ -52,8 +50,13 @@ const computeErrMsg = () =>
       : ''
   );
 
+  if (inputRef$.value?.validity) {
+    emits('validation', inputRef$.value.validity)
+  }
+}
+
 onMounted(() => {
-  computeErrMsg();
+  checkValidity();
 });
 </script>
 
