@@ -19,4 +19,9 @@ export namespace TextArea {
     invalidMessage?: Partial<InvalidMessage>;
     eventSignalOptions?: EventSignalOptions;
   }
+
+  export type Emits = {
+    (e: 'update:modelValue', value: string): void;
+    (e: 'validation', value: ValidityState): void;
+  }
 }
