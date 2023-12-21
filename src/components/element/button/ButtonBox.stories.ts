@@ -36,10 +36,16 @@ export default {
       options: ['primary', 'secondary'],
       defaultValue: 'primary'
     },
+    color: {
+      control: 'radio',
+      description: 'Button color (optional)',
+      options: ['general', 'danger'],
+      defaultValue: 'primary'
+    },
     size: {
       control: 'radio',
       description: 'Button size (optional)',
-      options: ['small', 'large'],
+      options: ['small', 'large', 'huge'],
       defaultValue: 'primary'
     },
     onClick: { action: 'clicked' }
@@ -62,6 +68,7 @@ DefaultRoundedButtonBox.args = {
   variant: 'rounded',
   level: 'primary',
   size: 'small',
+  color: 'danger',
   disabled: false,
   loading: false
 };
