@@ -1,3 +1,4 @@
+import type { EventSignalOptions } from '../../../shared/libs/event';
 import type { InvalidMessage } from '../../../shared/libs/validation';
 export declare namespace TextField {
     type InputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
@@ -21,7 +22,12 @@ export declare namespace TextField {
         tabindex?: number;
         inputmode?: InputMode;
         invalidMessage?: Partial<InvalidMessage>;
+        eventSignalOptions?: EventSignalOptions;
         icon?: string;
         iconAlign?: 'left' | 'right';
+    };
+    type Emits = {
+        (e: 'update:modelValue', value: string): void;
+        (e: 'validation', value: ValidityState): void;
     };
 }

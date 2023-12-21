@@ -18,4 +18,8 @@ export declare namespace TextArea {
         invalidMessage?: Partial<InvalidMessage>;
         eventSignalOptions?: EventSignalOptions;
     };
+    type Emits = {
+        (e: 'update:modelValue', value: string): void;
+        (e: 'validation', value: ValidityState): void;
+    };
 }

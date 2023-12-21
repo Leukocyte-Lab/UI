@@ -51,6 +51,7 @@ declare const _default: import("vue").DefineComponent<{
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (value: string) => void;
+    validation: (value: ValidityState) => void;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     required: {
         type: import("vue").PropType<boolean>;
@@ -104,6 +105,7 @@ declare const _default: import("vue").DefineComponent<{
     };
 }>> & {
     "onUpdate:modelValue"?: ((value: string) => any) | undefined;
+    onValidation?: ((value: ValidityState) => any) | undefined;
 }, {
     required: boolean;
     spellcheck: boolean;

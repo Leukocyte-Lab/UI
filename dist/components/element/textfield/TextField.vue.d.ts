@@ -63,12 +63,16 @@ declare const _default: import("vue").DefineComponent<{
     invalidMessage: {
         type: import("vue").PropType<Partial<import("../../../shared/libs/validation").InvalidMessage>>;
     };
+    eventSignalOptions: {
+        type: import("vue").PropType<import("../../../shared/libs/event").EventSignalOptions>;
+    };
     iconAlign: {
         type: import("vue").PropType<"left" | "right">;
         default: string;
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (value: string) => void;
+    validation: (value: ValidityState) => void;
 }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     type: {
         type: import("vue").PropType<TextField.Type>;
@@ -133,12 +137,16 @@ declare const _default: import("vue").DefineComponent<{
     invalidMessage: {
         type: import("vue").PropType<Partial<import("../../../shared/libs/validation").InvalidMessage>>;
     };
+    eventSignalOptions: {
+        type: import("vue").PropType<import("../../../shared/libs/event").EventSignalOptions>;
+    };
     iconAlign: {
         type: import("vue").PropType<"left" | "right">;
         default: string;
     };
 }>> & {
     "onUpdate:modelValue"?: ((value: string) => any) | undefined;
+    onValidation?: ((value: ValidityState) => any) | undefined;
 }, {
     type: TextField.Type;
     required: boolean;
