@@ -45,7 +45,7 @@ export default {
     size: {
       control: 'radio',
       description: 'Button size (optional)',
-      options: ['small', 'large', 'huge'],
+      options: ['small', 'medium', 'large', 'huge'],
       defaultValue: 'primary'
     },
     onClick: { action: 'clicked' }
@@ -67,8 +67,8 @@ DefaultRoundedButtonBox.args = {
   icon: 'fa6-solid:arrow-right',
   variant: 'rounded',
   level: 'primary',
-  size: 'small',
-  color: 'danger',
+  size: 'medium',
+  color: 'general',
   disabled: false,
   loading: false
 };

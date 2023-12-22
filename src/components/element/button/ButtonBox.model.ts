@@ -23,7 +23,7 @@ export namespace ButtonBox {
     | 'text'
     | 'file';
   export type Level = 'primary' | 'secondary';
-  export type Size = 'small' | 'large' | 'huge';
+  export type Size = 'small' | 'medium' | 'large' | 'huge';
   export type Color = 'general' | 'danger';
 
   export type Props = BaseProps;
