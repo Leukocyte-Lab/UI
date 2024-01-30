@@ -1,23 +1,30 @@
-export const cssVariables = (url: string) => {
+export const cssVariables = (initializer: () => Promise<any>) => {
   return {
-    styleTag: null as any,
+    get styleTag() {
+      return document.head.querySelector('style[data-id="theme-variables"]');
+    },
+    set styleTag(element) {
+      this.styleTag?.remove();
+      if (element) {
+        element.setAttribute('data-id', 'theme-variables');
+        element.setAttribute('type', 'text/css');
+        document.head.appendChild(element);
+      }
+    },
     innerStyles: '',
 
     use: async function () {
-      if (!this.styleTag?.innerHTML) {
-        this.styleTag = document.createElement('link');
-        this.styleTag.setAttribute('id', 'theme-variables');
-        this.styleTag.setAttribute('type', 'text/css');
-        this.styleTag.setAttribute('rel', 'stylesheet');
-        this.styleTag.setAttribute('href', url);
+      this.innerStyles = await initializer().then((module) => module.default);
 
-        document.head.appendChild(this.styleTag);
-        return;
+      if (!this.styleTag?.innerHTML) {
+        this.styleTag = document.createElement('style');
       }
 
-      this.styleTag.innerHTML = this.innerStyles;
+      if (this.styleTag?.innerHTML !== this.innerStyles) {
+        this.styleTag.innerHTML = this.innerStyles;
+      }
     },
-    unuse: function () {
+    unuse: async function () {
       if (this.styleTag) {
         this.styleTag.innerHTML = '';
       }

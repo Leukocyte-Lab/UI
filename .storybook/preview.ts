@@ -12,8 +12,12 @@ addCollection(FontAwesomeSolid.icons);
 addCollection(FontAwesomeRegular.icons);
 addCollection(FontAwesomeBrands.icons);
 
-const metallicLightTheme = cssVariables('../theme/Metallic-Bright/css/variables.css');
-const metallicDarkTheme = cssVariables('../theme/Metallic-Dark/css/variables.css');
+const MetallicLightTheme = cssVariables(
+  () => import('@leukocyte-lab/theme/metallic/bright/variables.css?inline')
+);
+const MetallicDarkTheme = cssVariables(
+  () => import('@leukocyte-lab/theme/metallic/dark/variables.css?inline')
+);
 
 const preview: Preview = {
   parameters: {
@@ -21,8 +25,8 @@ const preview: Preview = {
     layout: 'centered',
     cssVariables: {
       files: {
-        'Light Theme': metallicLightTheme,
-        'Dark Theme': metallicDarkTheme
+        'Light Theme': MetallicLightTheme,
+        'Dark Theme': MetallicDarkTheme
       },
       defaultTheme: 'Light Theme'
     }
