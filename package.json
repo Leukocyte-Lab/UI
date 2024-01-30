@@ -24,9 +24,6 @@
     "lint:stylelint": "stylelint 'src/**/*.{css,scss,sass,vue}' --fix"
   },
   "dependencies": {
-    "@iconify-json/fa6-brands": "^1.1.18",
-    "@iconify-json/fa6-regular": "^1.1.18",
-    "@iconify-json/fa6-solid": "^1.1.20",
     "@iconify/vue": "^4.1.1",
     "vue": "^3.4.15"
   },
@@ -34,17 +31,17 @@
     "./shared": {
       "import": "./dist/ui.shared.es.js",
       "require": "./dist/ui.shared.cjs.js",
-      "types": "./dist/shared/index.d.ts"
+      "types": "./dist/src/shared/index.d.ts"
     },
     "./component": {
       "import": "./dist/ui.component.es.js",
       "require": "./dist/ui.component.cjs.js",
-      "types": "./dist/components/index.d.ts"
+      "types": "./dist/src/components/index.d.ts"
     },
     "./middleware": {
       "import": "./dist/ui.middleware.es.js",
       "require": "./dist/ui.middleware.cjs.js",
-      "types": "./dist/middleware/index.d.ts"
+      "types": "./dist/src/middleware/index.d.ts"
     },
     "./styles/": "./dist/styles/",
     "./style.css": "./dist/style.css"
@@ -53,6 +50,9 @@
     "dist/*"
   ],
   "devDependencies": {
+    "@iconify-json/fa6-brands": "^1.1.18",
+    "@iconify-json/fa6-regular": "^1.1.18",
+    "@iconify-json/fa6-solid": "^1.1.20",
     "@etchteam/storybook-addon-css-variables-theme": "^2.0.6",
     "@leukocyte-lab/theme": "^1.1.0",
     "@rushstack/eslint-patch": "^1.7.2",
