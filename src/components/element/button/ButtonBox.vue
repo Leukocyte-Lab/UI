@@ -179,11 +179,39 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       flex-direction: row;
       justify-content: center;
       align-items: center;
+      padding: var(--agh-ref-spacing-100);
+
+      @each $class, $font-token, $icon-token in $font-size {
+        &.#{$class} {
+          --button-size: var(--button-icon-size, calc(#{$icon-token} * 1.5));
+
+          &,
+          #{$self}-content {
+            font-size: var(--button-icon-size, #{$icon-token});
+          }
+
+          @if $class == 'small' {
+            --button-size: var(--button-icon-size, #{$icon-token});
+          } @else if $class == 'huge' {
+            #{$self}-content {
+              font-size: var(--button-icon-size, calc(#{$icon-token} * 0.75));
+            }
+          }
+        }
+      }
+
+      &,
+      #{$self}-content {
+        font: var(--button-font, var(--agh-sys-typeface-label-default-medium));
+      }
 
       #{$self}-icon {
         display: flex;
         justify-content: center;
         align-items: center;
+        font-size: var(--button-size);
+        width: var(--button-size);
+        height: var(--button-size);
       }
 
       #{$self}-content {
@@ -191,31 +219,13 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         position: absolute;
         justify-content: flex-end;
         align-items: center;
-        width: calc(var(--agh-ref-spacing-600) * 3);
+        width: calc(var(--button-size) * 4);
         height: fit-content;
         right: calc(100% + var(--button-size) / 2);
         color: var(--agh-ref-color-grayscale-1100);
         text-align: right;
-        font: var(--agh-sys-typeface-label-default-medium);
+        font: var(--button-font, var(--agh-sys-typeface-label-default-medium));
         filter: none;
-      }
-
-      padding: var(--agh-ref-spacing-100);
-
-      &,
-      #{$self}-content {
-        font: var(--button-font, var(--agh-sys-typeface-label-default-medium));
-      }
-
-      #{$self}-content {
-        font: var(--button-font, var(--agh-sys-typeface-label-default-medium));
-        width: calc(var(--button-size) * 4);
-      }
-
-      #{$self}-icon {
-        font-size: var(--button-size);
-        width: var(--button-size);
-        height: var(--button-size);
       }
 
       &.small {
@@ -593,29 +603,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 
           #{$self}-icon {
             font-size: var(--button-icon-size, #{$icon-token});
-          }
-        }
-      }
-    }
-
-    &.circle,
-    &.square,
-    &.text-square {
-      @each $class, $font-token, $icon-token in $font-size {
-        &.#{$class} {
-          --button-size: var(--button-icon-size, calc(#{$icon-token} * 1.5));
-
-          &,
-          #{$self}-content {
-            font-size: var(--button-icon-size, #{$icon-token});
-          }
-
-          @if $class == 'small' {
-            --button-size: var(--button-icon-size, #{$icon-token});
-          } @else if $class == 'huge' {
-            #{$self}-content {
-              font-size: var(--button-icon-size, calc(#{$icon-token} * 0.75));
-            }
           }
         }
       }
