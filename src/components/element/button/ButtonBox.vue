@@ -514,6 +514,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
   &-loading {
     &-icon {
       --bg-fill: var(--agh-ref-color-blue-400);
+
       flex-shrink: 0;
       animation: rotate 1.5s linear infinite;
 
@@ -521,6 +522,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         width: var(--agh-sys-gadget-progress-circle-width-small);
         height: var(--agh-sys-gadget-progress-circle-width-small);
       }
+
       &.small {
         width: var(--agh-sys-gadget-progress-circle-width-tiny);
         height: var(--agh-sys-gadget-progress-circle-width-tiny);

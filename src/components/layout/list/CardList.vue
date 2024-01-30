@@ -16,6 +16,8 @@ import {
 import { computedEager, useResizeObserver } from '@vueuse/core';
 import { vOnClickOutside } from '@vueuse/components';
 
+import type { VNode } from 'vue';
+
 import { signal } from '@/shared/libs/signal';
 
 import BaseList from '@/components/base/BaseList.vue';
@@ -34,9 +36,9 @@ defineSlots<{
     item: CardList.Props['items'][number];
     index: number;
     selected: boolean;
-  }) => JSX.Element;
-  footer?: (props: {}) => JSX.Element;
-  placeholder?: (props: {}) => JSX.Element;
+  }) => VNode;
+  footer?: (props: {}) => VNode;
+  placeholder?: (props: {}) => VNode;
 }>();
 
 const props = withDefaults(defineProps<CardList.Props>(), {
@@ -114,7 +116,7 @@ const filters = computed({
 
 const localSelected = ref<ObjectLike | undefined>();
 const selected = computed({
-  get: () => props.selected !== undefined ? props.selected : localSelected.value,
+  get: () => (props.selected !== undefined ? props.selected : localSelected.value),
   set: (value) => {
     if (value) {
       emits('update:selected', value);

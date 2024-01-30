@@ -606,6 +606,7 @@ watch(
   header {
     align-items: center;
     justify-content: space-between;
+
     .button {
       color: var(--agh-ref-color-grayscale-600);
       border: var(--agh-ref-color-grayscale-250) solid var(--agh-ref-border-width-50);
@@ -614,12 +615,13 @@ watch(
       border-radius: var(--agh-ref-border-radius-300);
       font-size: var(--agh-ref-icon-size-200);
     }
+
     .label {
       align-items: center;
       gap: var(--agh-ref-spacing-500);
       color: var(--agh-ref-color-grayscale-1000);
-
       font: var(--agh-sys-typeface-label-hl-large);
+
       .item {
         align-items: center;
         gap: var(--agh-ref-spacing-100);
@@ -661,6 +663,7 @@ watch(
       font: var(--agh-sys-typeface-label-default-large);
     }
   }
+
   .days-grid {
     display: grid;
     grid-template-columns: repeat(7, var(--day-size));
@@ -697,6 +700,7 @@ watch(
           z-index: -1;
         }
       }
+
       &-end {
         &::before {
           content: '';
@@ -735,6 +739,7 @@ watch(
           color: var(--agh-ref-color-grayscale-100);
           background-color: var(--agh-ref-color-cyan-500);
         }
+
         &-start {
           color: var(--agh-ref-color-grayscale-100);
           background-color: var(--agh-ref-color-cyan-500);
@@ -749,7 +754,7 @@ watch(
   }
 
   .month-list {
-    @include scrollbar.use();
+    @include scrollbar.use;
 
     gap: var(--agh-ref-spacing-200);
     height: var(--agh-sys-gadget-datepicker-year-height);
@@ -770,14 +775,16 @@ watch(
         border-color: var(--agh-ref-color-blue-300);
         background-color: var(--agh-sys-color-blue-surface-dim);
       }
+
       &-active {
         border-color: var(--agh-ref-color-blue-300);
         background-color: var(--agh-sys-color-blue-surface-dim);
       }
     }
   }
+
   .years-grid {
-    @include scrollbar.use();
+    @include scrollbar.use;
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -789,17 +796,19 @@ watch(
 
     .container {
       justify-content: center;
-
       width: 100%;
+
       .item {
         border-radius: var(--agh-ref-border-radius-900);
         padding: var(--agh-ref-spacing-75) var(--agh-ref-spacing-300);
         color: var(--agh-ref-color-grayscale-900);
         font: var(--agh-sys-typeface-label-default-large);
+
         &:hover {
           color: var(--agh-ref-color-grayscale-100);
           background-color: var(--agh-ref-color-cyan-500);
         }
+
         &-active {
           color: var(--agh-ref-color-grayscale-100);
           background-color: var(--agh-ref-color-cyan-500);
@@ -807,13 +816,16 @@ watch(
       }
     }
   }
+
   .time {
     align-items: center;
     justify-content: space-between;
     margin-top: var(--agh-ref-spacing-200);
+
     .label {
       color: var(--agh-ref-color-grayscale-900);
       font: var(--agh-sys-typeface-label-hl-large);
+
       &-container {
         align-items: center;
         gap: var(--agh-ref-spacing-100);
@@ -827,6 +839,7 @@ watch(
 
     &-multiple {
       text-align: center;
+
       .description {
         font: var(--agh-sys-typeface-label-default-large);
         color: var(--agh-ref-color-grayscale-600);
@@ -836,6 +849,7 @@ watch(
 
   .footer {
     gap: var(--agh-ref-spacing-300);
+
     .button {
       width: 100%;
     }
