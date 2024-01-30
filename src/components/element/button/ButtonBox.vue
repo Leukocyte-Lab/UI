@@ -125,11 +125,13 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 
     &.rounded {
       @include metallic.box($has-stroke: true);
+
       --box-border-width: var(--agh-ref-border-width-50);
       --box-box-shadow: var(--agh-sys-effects-shadow-gadget);
       --box-box-shadow-clicked: var(--agh-sys-effects-inner-shadow-button-small);
       --button-text-shadow: var(--agh-sys-effects-shadow-gadget-filter);
       --box-border-radius: var(--agh-ref-border-radius-900);
+
       gap: var(--agh-ref-spacing-200);
       display: flex;
       flex-direction: row;
@@ -142,6 +144,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         align-items: center;
       }
     }
+
     &.square {
       @include metallic.box($has-stroke: false);
 
@@ -155,6 +158,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       --box-box-shadow-clicked: var(--agh-sys-effects-inner-shadow-button-small);
       --button-text-shadow: var(--agh-sys-effects-shadow-gadget-filter);
       --box-border-radius: var(--agh-ref-border-radius-400);
+
       padding: var(--agh-ref-spacing-100);
       #{$self}-icon {
         width: var(--agh-ref-spacing-600);
@@ -163,6 +167,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         justify-content: center;
         align-items: center;
       }
+
       #{$self}-content {
         display: none;
         position: absolute;
@@ -176,6 +181,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         font: var(--agh-sys-typeface-label-default-medium);
         filter: none;
       }
+
       &:hover,
       &:focus-visible {
         #{$self}-content {
@@ -183,6 +189,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         }
       }
     }
+
     &.text-square {
       @include metallic.box($has-stroke: false);
 
@@ -197,6 +204,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       --box-box-shadow-clicked: var(--agh-sys-effects-inner-shadow-button-small);
       --button-text-shadow: var(--agh-sys-effects-shadow-gadget-filter);
       --box-border-radius: var(--agh-ref-border-radius-400);
+
       padding: var(--agh-ref-spacing-100);
 
       #{$self}-icon {
@@ -206,6 +214,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         justify-content: center;
         align-items: center;
       }
+
       #{$self}-content {
         position: absolute;
         justify-content: flex-end;
@@ -219,8 +228,10 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         filter: none;
       }
     }
+
     &.circle {
       @include metallic.box($has-stroke: false);
+
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -253,6 +264,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         justify-content: center;
         align-items: center;
       }
+
       #{$self}-bobble {
         &.dot {
           top: auto;
@@ -260,6 +272,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
           right: 0;
         }
       }
+
       &:hover,
       &:focus-visible {
         #{$self}-content {
@@ -267,8 +280,10 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         }
       }
     }
+
     &.rect {
       @include metallic.box($has-stroke: true);
+
       --box-border-width: var(--agh-ref-border-width-50);
       --box-box-shadow: var(--agh-sys-effects-shadow-gadget);
       --box-box-shadow-clicked: var(--agh-sys-effects-inner-shadow-button-small);
@@ -294,8 +309,10 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         }
       }
     }
+
     &.extendable-rect {
       @include metallic.box($has-stroke: true);
+
       --box-border-width: var(--agh-ref-border-width-50);
       --box-box-shadow: var(--agh-sys-effects-shadow-gadget);
       --box-box-shadow-clicked: var(--agh-sys-effects-inner-shadow-button-small);
@@ -326,6 +343,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
           padding-right: var(--agh-ref-spacing-100);
           pointer-events: auto;
         }
+
         &.small {
           padding: var(--agh-ref-spacing-50) var(--agh-ref-spacing-300);
         }
@@ -420,6 +438,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       &-icon {
         flex-shrink: 0;
         animation: rotate 1.5s linear infinite;
+
         .main-progress {
           fill: #d9d9d9;
         }
@@ -437,6 +456,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
           width: var(--agh-sys-gadget-progress-circle-width-tiny);
           height: var(--agh-sys-gadget-progress-circle-width-tiny);
         }
+
         &.large {
           width: var(--agh-sys-gadget-progress-circle-width-tiny);
           height: var(--agh-sys-gadget-progress-circle-width-tiny);
@@ -462,7 +482,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     @each $color in $colors {
       &.#{$color} {
         --box-fill-gradient: var(--agh-ref-color-blue-gradient-500);
-
         --box-fill-gradient-hover: var(--agh-ref-color-blue-gradient-200);
         --box-fill-gradient-clicked: var(--agh-ref-color-blue-gradient-700);
         --box-fill-disabled: color-mix(
@@ -497,6 +516,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
           &:not(.secondary) {
             --box-border-gradient-hover: var(--agh-ref-color-border-#{$color}-200);
           }
+
           --box-text-color: var(--agh-ref-color-grayscale-100);
           --box-text-color-disabled: var(--agh-ref-color-#{$color}-600);
           --button-disabled-opacity: var(--agh-ref-opacity-300);
@@ -536,6 +556,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
                 -moz-text-fill-color: initial;
                 filter: none;
               }
+
               &.rounded {
                 --box-fill-disabled: color-mix(
                   in srgb,
@@ -594,6 +615,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
               #{$self}-icon {
                 color: var(--agh-ref-color-#{$color}-400);
               }
+
               &.disabled {
                 #{$self}-icon {
                   filter: none;
@@ -611,6 +633,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
                 .main-progress {
                   fill: #d9d9d9;
                 }
+
                 .sub-progress {
                   fill: var(--agh-ref-color-#{$color}-500);
                 }
@@ -629,6 +652,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
     }
   }
+
   &-content {
     font: var(--button-font);
     font-weight: var(--button-font-weight);
