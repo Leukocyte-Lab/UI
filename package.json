@@ -7,7 +7,7 @@
     "url": "https://github.com/Leukocyte-Lab/UI.git"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "storybook dev -p 6006 --no-open",
     "postinstall": "pnpm run setup-git-hooks",
     "setup-git-hooks": "git config core.hooksPath .githooks",
     "build": "vite build",
@@ -21,8 +21,7 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "run-p lint:eslint lint:stylelint",
     "lint:eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "lint:stylelint": "stylelint 'src/**/*.{css,scss,sass,vue}' --fix",
-    "storybook": "storybook dev -p 6006"
+    "lint:stylelint": "stylelint 'src/**/*.{css,scss,sass,vue}' --fix"
   },
   "dependencies": {
     "@iconify-json/fa6-brands": "^1.1.18",
