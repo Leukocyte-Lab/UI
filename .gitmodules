@@ -1,4 +1,0 @@
-[submodule "theme"]
-	path = theme
-	url = git@github.com:Leukocyte-Lab/Design-Tokens
-	branch = release
