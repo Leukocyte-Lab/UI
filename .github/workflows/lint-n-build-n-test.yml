@@ -9,14 +9,14 @@ on:
     branches:
       - main
       - develop
-      - "releases/**"
+      - 'releases/**'
     tags:
-      - "**"
+      - '**'
   pull_request:
     branches:
       - main
       - develop
-      - "releases/**"
+      - 'releases/**'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -56,6 +56,10 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
+      - name: 🔑 Login GitHub Private Registry
+        run: |
+          pnpm config set '//npm.pkg.github.com/:_authToken' "${{secrets.GITHUB_TOKEN}}"
 
       - name: 📦 Install Dependencies
         run: pnpm install
@@ -102,6 +106,10 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
+      - name: 🔑 Login GitHub Private Registry
+        run: |
+          pnpm config set '//npm.pkg.github.com/:_authToken' "${{secrets.GITHUB_TOKEN}}"
 
       - name: 📦 Install Dependencies
         run: pnpm install

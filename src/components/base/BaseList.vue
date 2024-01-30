@@ -3,11 +3,12 @@ import { computedEager } from '@vueuse/core';
 import { fromPairs, toPairs, groupBy } from 'lodash-es';
 
 import type { BaseList } from '@/components/base/BaseList.model';
+import type { VNode } from 'vue';
 
 defineSlots<{
-  default: (props: { item: BaseList.Props['items'][number]; index: number }) => JSX.Element;
-  group?: (props: { group: string | number; items: BaseList.Props['items'] }) => JSX.Element;
-  placeholder?: (props: {}) => JSX.Element;
+  default: (props: { item: BaseList.Props['items'][number]; index: number }) => VNode;
+  group?: (props: { group: string | number; items: BaseList.Props['items'] }) => VNode;
+  placeholder?: (props: {}) => VNode;
 }>();
 
 const props = defineProps<BaseList.Props>();

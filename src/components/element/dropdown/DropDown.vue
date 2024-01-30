@@ -14,7 +14,7 @@ import type { ObjectLike } from '@/shared/types/object';
 const props = withDefaults(defineProps<DropDown.Props>(), {
   items: () => [],
   level: 'primary',
-  size: 'small',
+  size: 'medium',
   multiple: false
 });
 
@@ -54,7 +54,7 @@ const closeMenu = signal(true);
       :clicked="!closeMenu()"
       :level="props.level"
       :size="props.size"
-      :variant="props.size === 'small' ? 'rounded' : 'rect'"
+      :variant="props.size === 'medium' ? 'rounded' : 'rect'"
       :bobble="props.multiple ? selected?.length ?? false : false"
       :class="[$style['dropdown-button'], $style[size]]"
       @click="closeMenu.update((state) => !state)"

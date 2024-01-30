@@ -16,7 +16,7 @@ pnpm install
 ### Compile and Hot-Reload for Development
 
 ```sh
-pnpm run storybook
+pnpm run dev
 ```
 
 ### Type-Check & Lint
