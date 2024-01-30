@@ -18,9 +18,11 @@
     window.LOGLEVEL = 'info';
     window.FRAMEWORK_OPTIONS = {};
     window.CHANNEL_OPTIONS = {};
-    window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false};
+    window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false,"disallowImplicitActionsInRenderV8":false};
     window.STORIES = [{"titlePrefix":"","directory":"./src","files":"**/*.mdx","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.mdx)$"},{"titlePrefix":"","directory":"./src","files":"**/*.stories.@(js|jsx|ts|tsx)","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|ts|tsx))$"}];
     window.DOCS_OPTIONS = {"defaultName":"Docs","autodocs":"tag"};
+
+    
 
     // We do this so that "module && module.hot" etc. in Storybook source code
     // doesn't fail (it will simply be disabled)
@@ -400,14 +402,10 @@
 
   #storybook-root {
     position: relative;
-    resize: both;
-    overflow: auto;
-    height: fit-content;
-    width: fit-content;
   }
 </style>
 
-  <script type="module" crossorigin src="./assets/iframe-f0d5f569.js"></script>
+  <script type="module" crossorigin src="./assets/iframe-oWCYAE-n.js"></script>
 </head>
 
 <body>
@@ -501,8 +499,6 @@
 
   <div id="storybook-root"></div>
   <div id="storybook-docs"></div>
-  
-  
 </body>
 
 </html>
