@@ -25,6 +25,9 @@ devDependencies:
   '@etchteam/storybook-addon-css-variables-theme':
     specifier: ^2.0.6
     version: 2.0.6(react-dom@18.2.0)(react@18.2.0)
+  '@leukocyte-lab/theme':
+    specifier: ^1.1.0
+    version: 1.1.0
   '@rushstack/eslint-patch':
     specifier: ^1.7.2
     version: 1.7.2
@@ -2164,6 +2167,10 @@ packages:
 
   /@juggle/resize-observer@3.4.0:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
+    dev: true
+
+  /@leukocyte-lab/theme@1.1.0:
+    resolution: {integrity: sha512-9l12yWKUw5IKPUL6gWD356R5BAEKdoT/odCUo9vXTokwBsiSaOqBo0VP4DsKF2uizEBTE5Ptx1cDp1Fv15AAJA==, tarball: https://npm.pkg.github.com/download/@leukocyte-lab/theme/1.1.0/2b852ebe01968d11b8b82efea70260ae00dfc5cb}
     dev: true
 
   /@mdx-js/react@2.3.0(react@18.2.0):
