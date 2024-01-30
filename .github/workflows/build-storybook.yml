@@ -56,6 +56,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      - name: 🔑 Login GitHub Private Registry
+        run: |
+          pnpm config set '//npm.pkg.github.com/:_authToken' "${{secrets.GITHUB_TOKEN}}"
+
       - name: 📦 Install Dependencies
         run: pnpm install
 
