@@ -15,7 +15,7 @@
     "build:prod": "run-p build",
     "build:type": "vue-tsc --noEmit false --declaration --emitDeclarationOnly -p tsconfig.app.json --composite false --outDir dist && tsc-alias -p tsconfig.app.json --outDir dist",
     "build:assets": "cp -r ./src/assets/styles ./dist",
-    "build:storybook": "VITE_STORYBOOK=true storybook build && cp -r theme/ storybook-static/theme",
+    "build:storybook": "VITE_STORYBOOK=true storybook build",
     "preview": "vite preview",
     "test:unit": "vitest",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
