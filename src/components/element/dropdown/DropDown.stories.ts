@@ -100,6 +100,38 @@ DefaultDropDown.args = {
   level: 'primary'
 };
 
+export const SecondaryDropDown = Template.bind({});
+SecondaryDropDown.args = {
+  ...DefaultDropDown.args,
+  level: 'secondary'
+};
+
+export const TertiaryDropDown = Template.bind({});
+TertiaryDropDown.args = {
+  ...DefaultDropDown.args,
+  level: 'tertiary'
+};
+
+export const RectDropDown = Template.bind({});
+RectDropDown.args = {
+  ...DefaultDropDown.args,
+  variant: 'rect'
+};
+
+export const SecondaryRectDropDown = Template.bind({});
+SecondaryRectDropDown.args = {
+  ...DefaultDropDown.args,
+  variant: 'rect',
+  level: 'secondary'
+};
+
+export const TertiaryRectDropDown = Template.bind({});
+TertiaryRectDropDown.args = {
+  ...DefaultDropDown.args,
+  variant: 'rect',
+  level: 'tertiary'
+};
+
 export const DefaultDropDownWithSearch = Template.bind({});
 DefaultDropDownWithSearch.args = {
   ...DefaultDropDown.args,
@@ -123,6 +155,43 @@ export const LargeDropDown = Template.bind({});
 LargeDropDown.args = {
   ...DefaultDropDown.args,
   size: 'large'
+};
+
+export const LargeSecondaryDropDown = Template.bind({});
+LargeSecondaryDropDown.args = {
+  ...DefaultDropDown.args,
+  size: 'large',
+  level: 'secondary'
+};
+
+export const LargeTertiaryDropDown = Template.bind({});
+LargeTertiaryDropDown.args = {
+  ...DefaultDropDown.args,
+  size: 'large',
+  level: 'tertiary'
+};
+
+export const LargeRectDropDown = Template.bind({});
+LargeRectDropDown.args = {
+  ...DefaultDropDown.args,
+  size: 'large',
+  variant: 'rect'
+};
+
+export const LargeRectSecondaryDropDown = Template.bind({});
+LargeRectSecondaryDropDown.args = {
+  ...DefaultDropDown.args,
+  size: 'large',
+  variant: 'rect',
+  level: 'secondary'
+};
+
+export const LargeRectTertiaryDropDown = Template.bind({});
+LargeRectTertiaryDropDown.args = {
+  ...DefaultDropDown.args,
+  size: 'large',
+  variant: 'rect',
+  level: 'tertiary'
 };
 
 export const LargeDropDownWithSearch = Template.bind({});
