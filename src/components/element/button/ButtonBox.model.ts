@@ -6,25 +6,50 @@ export namespace ButtonBox {
     disabled?: boolean;
     clicked?: boolean;
     bobble?: boolean | number;
-    color?: Color;
-    variant?: Variant;
-    level?: Level;
-    size?: Size;
+    color?: keyof typeof Color;
+    variant?: keyof typeof Variant;
+    level?: keyof typeof Level;
+    size?: keyof typeof Size;
+    mode?: keyof typeof Mode;
     loading?: boolean;
   };
 
-  export type Variant =
-    | 'rounded'
-    | 'square'
-    | 'text-square'
-    | 'circle'
-    | 'rect'
-    | 'extendable-rect'
-    | 'text'
-    | 'file';
-  export type Level = 'primary' | 'secondary';
-  export type Size = 'small' | 'medium' | 'large' | 'huge';
-  export type Color = 'general' | 'danger';
+  export enum Variant {
+    'rounded' = 'rounded',
+    'square' = 'square',
+    'text-square' = 'text-square',
+    'circle' = 'circle',
+    'rect' = 'rect',
+    'extendable-rect' = 'extendable-rect',
+    'text' = 'text',
+    'file' = 'file'
+  }
+
+  export enum Level {
+    'primary' = 'primary',
+    'secondary' = 'secondary'
+  }
+
+  export enum Size {
+    'small' = 'small',
+    'medium' = 'medium',
+    'large' = 'large',
+    'huge' = 'huge'
+  }
+
+  export enum Color {
+    'purple' = 'purple',
+    'blue' = 'blue',
+    'cyan' = 'cyan',
+    'green' = 'green',
+    'orange' = 'orange',
+    'red' = 'red'
+  }
+
+  export enum Mode {
+    'normal' = 'normal',
+    'danger' = 'danger'
+  }
 
   export type Props = BaseProps;
 }

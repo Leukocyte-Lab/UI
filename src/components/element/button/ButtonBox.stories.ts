@@ -37,10 +37,16 @@ export default {
       defaultValue: 'primary'
     },
     color: {
-      control: 'radio',
+      control: 'select',
       description: 'Button color (optional)',
-      options: ['general', 'danger'],
-      defaultValue: 'primary'
+      options: ['purple', 'blue', 'cyan', 'green', 'orange', 'red'],
+      defaultValue: 'blue'
+    },
+    mode: {
+      control: 'radio',
+      description: 'Button mode (optional)',
+      options: ['normal', 'danger'],
+      defaultValue: 'normal'
     },
     size: {
       control: 'radio',
@@ -68,7 +74,8 @@ DefaultRoundedButtonBox.args = {
   variant: 'rounded',
   level: 'primary',
   size: 'medium',
-  color: 'general',
+  color: 'blue',
+  mode: 'normal',
   disabled: false,
   loading: false
 };
