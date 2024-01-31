@@ -27,14 +27,19 @@ const colorMap = {
   danger: 'red'
 };
 
-const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
-  if (props.disabled || props.loading) {
-    event.preventDefault();
-    event.stopPropagation();
-  } else {
-    emits('click', event);
+const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
+  (event) => {
+    if (props.disabled || props.loading) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      emits('click', event);
+    }
+  },
+  props.eventSignalOptions ?? {
+    flush: 'pre'
   }
-});
+);
 </script>
 
 <template>

@@ -1,3 +1,5 @@
+import type { EventSignalOptions } from '@/shared/libs/event';
+
 export namespace ButtonBox {
   export type BaseProps = {
     label?: string;
@@ -12,6 +14,7 @@ export namespace ButtonBox {
     size?: keyof typeof Size;
     mode?: keyof typeof Mode;
     loading?: boolean;
+    eventSignalOptions?: EventSignalOptions;
   };
 
   export enum Variant {
@@ -52,4 +55,8 @@ export namespace ButtonBox {
   }
 
   export type Props = BaseProps;
+
+  export type Emits = {
+    (e: 'click', event: MouseEvent): void;
+  }
 }
