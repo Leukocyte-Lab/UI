@@ -16,16 +16,22 @@ export default {
       description: 'DropDown value, use by `v-model`.'
     },
     level: {
-      control: 'radio',
-      description: 'Button level (optional)',
-      options: ['primary', 'secondary'],
+      control: 'select',
+      description: 'Dropdown level (optional)',
+      options: ['primary', 'secondary', 'tertiary'],
       defaultValue: 'primary'
+    },
+    variant: {
+      control: 'radio',
+      description: 'Dropdown variant (optional)',
+      options: ['rounded', 'rect'],
+      defaultValue: 'rounded'
     },
     size: {
       control: 'radio',
-      description: 'Button size (optional)',
-      options: ['small', 'large'],
-      defaultValue: 'primary'
+      description: 'Dropdown size (optional)',
+      options: ['small', 'medium', 'large', 'huge'],
+      defaultValue: 'medium'
     },
     disabled: {
       control: 'boolean',
@@ -42,7 +48,7 @@ const Template: StoryFn<typeof DropDown> = (args) => ({
   setup() {
     return { args };
   },
-  template: '<DropDown v-model="args.modelValue" v-bind="args" />'
+  template: '<DropDown v-model="args.modelValue" v-bind="args" style="width: 420px;" />'
 });
 
 export const DefaultDropDown = Template.bind({});
@@ -87,8 +93,11 @@ DefaultDropDown.args = {
     title: '{{ $.name }}'
   },
   modelValue: {
-    name: 'APT-38',
-  }
+    name: 'APT-38'
+  },
+  variant: 'rounded',
+  size: 'medium',
+  level: 'primary'
 };
 
 export const DefaultDropDownWithSearch = Template.bind({});
@@ -130,13 +139,13 @@ WithSubtitleDropDown.args = {
     title: '{{ $.name }}',
     content: '{{ $.recentlyUsed | date : yyyy/MM/dd HH:mm }}'
   }
-}
+};
 
 export const WithSubtitleDropDownWithSearch = Template.bind({});
 WithSubtitleDropDownWithSearch.args = {
   ...WithSubtitleDropDown.args,
   useSearch: true
-}
+};
 
 export const DisabledDropDown = Template.bind({});
 DisabledDropDown.args = {
