@@ -7,7 +7,7 @@ export namespace ButtonBox {
     link?: string;
     disabled?: boolean;
     clicked?: boolean;
-    bobble?: boolean | number;
+    bobble?: boolean | number | string;
     color?: keyof typeof Color;
     variant?: keyof typeof Variant;
     level?: keyof typeof Level;

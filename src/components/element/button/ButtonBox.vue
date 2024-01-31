@@ -74,6 +74,10 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
         :class="[
           $style['button-bobble'],
           $style[typeof props.bobble],
+          {
+            [$style['capsule']]:
+              typeof props.bobble !== 'boolean' && String(props.bobble).length > 2
+          },
           $style[
             typeof props.bobble === 'boolean' ||
             !['rounded', 'rect', 'text'].includes(props.variant)
@@ -558,6 +562,28 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
           order: -1;
         }
       }
+
+      &.small,
+      &.medium {
+        #{$self}-bobble {
+          &.dot {
+            top: -50%;
+            right: -50%;
+            z-index: 0;
+          }
+        }
+      }
+
+      &.large,
+      &.huge {
+        #{$self}-bobble {
+          &.dot {
+            top: -25%;
+            right: -25%;
+            z-index: 0;
+          }
+        }
+      }
     }
 
     &.disabled {
@@ -674,7 +700,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
           white
         );
         --box-text-color: var(--agh-ref-color-grayscale-100);
-        --box-text-color-disabled: var(--agh-ref-color-blue-600);
+        --box-text-color-disabled: var(--agh-ref-color-#{$color}-600);
         --button-disabled-opacity: var(--agh-ref-opacity-300);
 
         &.large,
@@ -717,10 +743,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
         &:not(.secondary, .tertiary) {
           --box-border-gradient-hover: var(--agh-ref-color-border-#{$color}-200);
         }
-
-        --box-text-color: var(--agh-ref-color-grayscale-100);
-        --box-text-color-disabled: var(--agh-ref-color-#{$color}-600);
-        --button-disabled-opacity: var(--agh-ref-opacity-300);
 
         &.text {
           color: var(--agh-ref-color-#{$color}-500);
@@ -828,6 +850,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
           &.rect,
           &.extendable-rect {
             --box-fill-disabled: var(--agh-ref-color-grayscale-200);
+
             &.disabled {
               &,
               #{$self}-content,
@@ -949,23 +972,31 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
   }
 
   &-bobble {
-    border-radius: 50%;
+    border-radius: var(--agh-ref-border-radius-900);
     background-color: var(--button-bobble-background-color);
     color: var(--button-bobble-color);
 
     &.dot {
       position: absolute;
-      top: calc(var(--bobble-size) / 2 * -1);
-      right: calc(var(--bobble-size) / 2 * -1);
+    }
+
+    &.capsule {
+      padding: 0 var(--agh-ref-spacing-100);
     }
 
     &.boolean {
-      --bobble-size: var(--agh-ref-spacing-100);
+      --bobble-size: var(--agh-ref-spacing-200);
 
       height: var(--bobble-size);
       width: var(--bobble-size);
+
+      &.dot {
+        top: calc(var(--bobble-size) / 4 * -1);
+        right: calc(var(--bobble-size) / 4 * -1);
+      }
     }
 
+    &.string,
     &.number {
       --bobble-size: var(--agh-ref-spacing-500);
 
@@ -973,8 +1004,13 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
       place-content: center;
       place-items: center;
       height: var(--bobble-size);
-      width: var(--bobble-size);
+      min-width: var(--bobble-size);
       font: var(--agh-sys-typeface-label-hl-tiny);
+
+      &.dot {
+        top: calc(var(--bobble-size) / 2 * -1);
+        right: calc(var(--bobble-size) / 2 * -1);
+      }
     }
   }
 
