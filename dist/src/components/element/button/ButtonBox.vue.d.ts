@@ -1,31 +1,34 @@
-import type { ButtonBox } from '../../../components/element/button/ButtonBox.model';
+import { ButtonBox } from '../../../components/element/button/ButtonBox.model';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps>, {
-    disabled: boolean;
-    bobble: boolean;
     variant: string;
     level: string;
     size: string;
     color: string;
+    mode: string;
+    disabled: boolean;
+    bobble: boolean;
     loading: boolean;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     click: (event: MouseEvent) => void;
 }, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<ButtonBox.BaseProps>, {
-    disabled: boolean;
-    bobble: boolean;
     variant: string;
     level: string;
     size: string;
     color: string;
+    mode: string;
+    disabled: boolean;
+    bobble: boolean;
     loading: boolean;
 }>>> & {
     onClick?: ((event: MouseEvent) => any) | undefined;
 }, {
-    color: ButtonBox.Color;
-    variant: ButtonBox.Variant;
+    mode: "normal" | "danger";
+    color: "cyan" | "blue" | "green" | "orange" | "red" | "purple";
+    variant: "circle" | "rect" | "text" | "rounded" | "square" | "text-square" | "extendable-rect" | "file";
     disabled: boolean;
-    bobble: number | boolean;
-    level: ButtonBox.Level;
-    size: ButtonBox.Size;
+    bobble: string | number | boolean;
+    level: "primary" | "secondary" | "tertiary";
+    size: "small" | "medium" | "large" | "huge";
     loading: boolean;
 }, {}>;
 export default _default;

@@ -3,6 +3,7 @@ import type { ObjectLike } from '../../../shared/types/object';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<DropDown.Props>, {
     items: () => never[];
     level: string;
+    variant: string;
     size: string;
     multiple: boolean;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
@@ -10,14 +11,16 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
 }, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<DropDown.Props>, {
     items: () => never[];
     level: string;
+    variant: string;
     size: string;
     multiple: boolean;
 }>>> & {
     "onUpdate:modelValue"?: ((options: ObjectLike[]) => any) | undefined;
 }, {
     items: ObjectLike[];
-    level: import("../button/ButtonBox.model").ButtonBox.Level;
-    size: import("../button/ButtonBox.model").ButtonBox.Size;
+    variant: "rect" | "rounded";
+    level: "primary" | "secondary" | "tertiary";
+    size: "small" | "medium" | "large" | "huge";
     multiple: boolean;
 }, {}>;
 export default _default;

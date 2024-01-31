@@ -8,9 +8,14 @@ export declare namespace DropDown {
         items?: ObjectLike[];
         label?: string;
         disabled?: boolean;
-        level?: ButtonBoxNS.Level;
-        size?: ButtonBoxNS.Size;
+        level?: keyof typeof ButtonBoxNS.Level;
+        size?: keyof typeof ButtonBoxNS.Size;
+        variant?: keyof typeof Variant;
         multiple?: boolean;
         useSearch?: boolean;
     };
+    enum Variant {
+        'rounded' = "rounded",
+        'rect' = "rect"
+    }
 }

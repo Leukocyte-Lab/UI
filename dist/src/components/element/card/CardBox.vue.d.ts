@@ -21,11 +21,11 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     radius: string;
     color: CardBox.Color;
     variant: CardBox.Variant;
+    active: boolean;
     clickable: boolean;
     hasStroke: boolean;
     strokeWeight: CardBox.StrokeWeight;
     purpose: CardBox.Purpose;
-    active: boolean;
 }, {}>, {
     default?(_: {}): any;
 }>;
