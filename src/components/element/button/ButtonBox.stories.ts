@@ -33,7 +33,7 @@ export default {
     level: {
       control: 'radio',
       description: 'Button level (optional)',
-      options: ['primary', 'secondary'],
+      options: ['primary', 'secondary', 'tertiary'],
       defaultValue: 'primary'
     },
     color: {

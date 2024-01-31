@@ -30,7 +30,8 @@ export namespace ButtonBox {
 
   export enum Level {
     'primary' = 'primary',
-    'secondary' = 'secondary'
+    'secondary' = 'secondary',
+    'tertiary' = 'tertiary'
   }
 
   export enum Size {
@@ -58,5 +59,5 @@ export namespace ButtonBox {
 
   export type Emits = {
     (e: 'click', event: MouseEvent): void;
-  }
+  };
 }

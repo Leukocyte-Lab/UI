@@ -546,7 +546,11 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
       gap: var(--agh-ref-spacing-100);
 
       &.disabled {
-        color: var(--agh-ref-color-grayscale-400);
+        &,
+        #{$self}-content,
+        #{$self}-icon {
+          color: var(--agh-ref-color-grayscale-400) !important;
+        }
       }
 
       #{$self}-bobble {
@@ -559,19 +563,12 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
     &.disabled {
       box-shadow: none !important;
 
-      &.primary {
+      &.primary,
+      &.tertiary {
         #{$self}-content,
         #{$self}-icon,
         #{$self}-bobble {
           filter: none;
-        }
-
-        &:not(.extendable-rect) {
-          #{$self}-content,
-          #{$self}-icon,
-          #{$self}-bobble {
-            opacity: var(--button-disabled-opacity);
-          }
         }
 
         &.extendable-rect {
@@ -584,6 +581,31 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
             #{$self}-content {
               opacity: var(--button-disabled-opacity);
             }
+          }
+        }
+      }
+
+      &.primary {
+        &:not(.extendable-rect, .text) {
+          #{$self}-content,
+          #{$self}-icon,
+          #{$self}-bobble {
+            opacity: var(--button-disabled-opacity);
+          }
+        }
+      }
+
+      &.tertiary {
+        &:not(.extendable-rect, .text) {
+          #{$self}-content {
+            opacity: var(--button-disabled-opacity);
+          }
+        }
+
+        &:not(.extendable-rect, .text, .square, .text-square, .circle) {
+          #{$self}-icon,
+          #{$self}-bobble {
+            opacity: var(--button-disabled-opacity);
           }
         }
       }
@@ -679,15 +701,20 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
 
         &:not(
             .rounded.secondary,
+            .rounded.tertiary,
             .rect.secondary,
+            .rect.tertiary,
             .square.secondary,
+            .square.tertiary,
             .text-square.secondary,
-            .circle.secondary
+            .text-square.tertiary,
+            .circle.secondary,
+            .circle.tertiary
           ) {
           --box-border-gradient: var(--agh-ref-color-border-#{$color}-500);
         }
 
-        &:not(.secondary) {
+        &:not(.secondary, .tertiary) {
           --box-border-gradient-hover: var(--agh-ref-color-border-#{$color}-200);
         }
 
@@ -706,9 +733,14 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
           &.clicked {
             color: var(--agh-ref-color-#{$color}-600);
           }
+
+          &.disabled {
+            color: var(--agh-ref-color-grayscale-400);
+          }
         }
 
-        &.secondary {
+        &.secondary,
+        &.tertiary {
           --box-fill-gradient: var(--agh-ref-color-white-gradient-500);
           --box-fill-gradient-hover: linear-gradient(
             var(--agh-sys-color-#{$color}-surface-normal),
@@ -717,50 +749,27 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
           --box-fill-gradient-clicked: var(--agh-ref-color-white-gradient-500);
           --box-border-gradient: var(--agh-ref-color-border-white-500);
 
-          &:not(.rounded, .rect, .square, .text-square, .circle) {
-            &:not(.disabled) {
+          &:not(.disabled) {
+            &:not(.rounded, .rect, .square, .text-square, .circle, .text) {
               @include metallic.box($has-stroke: true);
             }
-          }
 
-          &.disabled {
-            @include metallic.box($has-stroke: false);
-
-            #{$self}-content,
-            #{$self}-icon {
-              color: var(--agh-ref-color-grayscale-400);
-              background-image: none !important;
-              -webkit-text-fill-color: initial !important;
-              -moz-text-fill-color: initial !important;
-              filter: none !important;
-            }
-
-            &.rounded,
-            &.rect,
-            &.extendable-rect {
-              --box-fill-disabled: var(--agh-ref-color-grayscale-200);
-
-              &,
-              #{$self}-content,
-              #{$self}-icon {
-                color: var(--agh-ref-color-grayscale-400);
+            &:not(.square, .text-square, .circle, .text) {
+              #{$self}-content {
+                background-image: var(--agh-ref-color-#{$color}-gradient-500);
+                background-size: 100%;
+                -webkit-background-clip: text;
+                -moz-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -moz-text-fill-color: transparent;
               }
             }
-          }
 
-          &:not(.square, .text-square, .circle) {
-            #{$self}-content {
-              background-image: var(--agh-ref-color-#{$color}-gradient-500);
-              background-size: 100%;
-              -webkit-background-clip: text;
-              -moz-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              -moz-text-fill-color: transparent;
+            &:not(.text, .square, .text-square, .circle) {
+              #{$self}-icon {
+                color: var(--agh-ref-color-#{$color}-500);
+              }
             }
-          }
-
-          #{$self}-icon {
-            color: var(--agh-ref-color-#{$color}-500);
           }
 
           &.square,
@@ -775,20 +784,14 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
               var(--agh-sys-color-#{$color}-surface-dim),
               var(--agh-sys-color-#{$color}-surface-dim)
             );
-            --box-fill-disabled: var(--agh-ref-color-grayscale-150);
+            --box-fill-disabled: color-mix(
+              in srgb,
+              var(--agh-ref-color-#{$color}-100) calc(100% * var(--agh-ref-opacity-300)),
+              white
+            );
 
             #{$self}-icon {
               color: var(--agh-ref-color-#{$color}-400);
-            }
-
-            &.disabled {
-              #{$self}-icon {
-                color: color-mix(
-                  in srgb,
-                  var(--agh-ref-color-grayscale-400) calc(100% * var(--agh-ref-opacity-800)),
-                  white
-                );
-              }
             }
           }
 
@@ -800,6 +803,131 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
 
               .sub-progress {
                 fill: var(--agh-ref-color-#{$color}-500);
+              }
+            }
+          }
+        }
+
+        &.secondary {
+          &.disabled {
+            &:not(.text) {
+              @include metallic.box($has-stroke: false);
+
+              #{$self}-content,
+              #{$self}-icon {
+                color: var(--agh-ref-color-grayscale-400);
+                background-image: none !important;
+                -webkit-text-fill-color: initial !important;
+                -moz-text-fill-color: initial !important;
+                filter: none !important;
+              }
+            }
+          }
+
+          &.rounded,
+          &.rect,
+          &.extendable-rect {
+            --box-fill-disabled: var(--agh-ref-color-grayscale-200);
+            &.disabled {
+              &,
+              #{$self}-content,
+              #{$self}-icon {
+                color: var(--agh-ref-color-grayscale-400);
+              }
+            }
+          }
+
+          &.square,
+          &.text-square,
+          &.circle {
+            &.disabled {
+              #{$self}-icon {
+                color: color-mix(
+                  in srgb,
+                  var(--agh-ref-color-#{$color}-600) calc(100% * var(--agh-ref-opacity-300)),
+                  white
+                );
+              }
+            }
+          }
+        }
+
+        &.tertiary {
+          &.rounded,
+          &.rect,
+          &.extendable-rect {
+            &:not(.disabled) {
+              --box-fill-gradient: none;
+              --box-border-gradient: none;
+              --box-box-shadow: none;
+              --box-box-shadow-clicked: none;
+              --box-fill-gradient-hover: linear-gradient(
+                var(--agh-sys-color-#{$color}-surface-normal),
+                var(--agh-sys-color-#{$color}-surface-normal)
+              );
+              --box-fill-gradient-clicked: linear-gradient(
+                var(--agh-sys-color-#{$color}-surface-vivid),
+                var(--agh-sys-color-#{$color}-surface-vivid)
+              );
+              --box-fill-disabled: var(--agh-ref-color-#{$color}-200);
+
+              border: var(--box-border-width) solid var(--agh-ref-color-#{$color}-500);
+              color: var(--agh-ref-color-#{$color}-500);
+            }
+          }
+
+          &:not(.text, .disabled) {
+            #{$self}-content {
+              background-image: none !important;
+              -webkit-text-fill-color: initial !important;
+              -moz-text-fill-color: initial !important;
+              filter: none !important;
+            }
+
+            #{$self}-content,
+            #{$self}-icon {
+              color: var(--agh-ref-color-#{$color}-500);
+              filter: none;
+            }
+          }
+
+          &.square,
+          &.text-square,
+          &.circle {
+            --box-fill-gradient: none;
+            --box-border-gradient: none;
+            --box-fill-disabled: var(--agh-ref-color-grayscale-150);
+            --box-box-shadow: none;
+            --box-fill-gradient-hover: linear-gradient(
+              var(--agh-ref-color-grayscale-250),
+              var(--agh-ref-color-grayscale-250)
+            );
+
+            border: var(--agh-ref-border-width-50) solid var(--agh-ref-color-grayscale-250);
+
+            &:hover,
+            &:focus-visible,
+            &.clicked,
+            &.active,
+            &.disabled {
+              border-color: transparent;
+            }
+
+            #{$self}-content,
+            #{$self}-icon {
+              color: var(--agh-ref-color-grayscale-600);
+            }
+
+            &.clicked,
+            &.active {
+              #{$self}-icon {
+                color: var(--agh-ref-color-#{$color}-300);
+              }
+            }
+
+            &.disabled {
+              #{$self}-icon {
+                color: var(--agh-ref-color-grayscale-300);
               }
             }
           }
