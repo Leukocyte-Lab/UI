@@ -28,6 +28,11 @@ defineSlots<{
 }>();
 
 const wrapperRef$ = ref<HTMLElement>();
+const graph = ref<{
+  nodes: Map<Flow.Entity.Node.Model['id'], Flow.Entity.Node.Model>;
+  edges: Map<Flow.Entity.Edge.Model['id'], Flow.Entity.Edge.Model>;
+}>();
+
 const wrapperBoundingBox = reactive(useElementSize(wrapperRef$));
 
 const scale = computed({
@@ -38,6 +43,40 @@ const scale = computed({
     scale.value = value;
   }
 });
+
+const calcReactiveViewportSize = (dimension: 'width' | 'height') =>
+  Math.max(
+    ((nodes, axis: keyof Vec2) =>
+      Object.values(groupBy(nodes, axis)).reduce((size, nodes) => {
+        size += Math.max(...map(nodes, `boundingBox.${dimension}`));
+        return size;
+      }, 0))([...(graph.value?.nodes.values() ?? [])], dimension === 'width' ? 'x' : 'y'),
+    wrapperBoundingBox[dimension]
+  );
+
+const calcAbsoluteViewportSize = (dimension: 'width' | 'height') =>
+  Math.max(
+    Math.abs(
+      ((nodes, axis: keyof Vec2) =>
+        ((node) => (node?.position[axis] ?? 0) + (node?.boundingBox[dimension] ?? 0))(
+          maxBy(nodes, `position.${axis}`)
+        ) -
+        ((node) => (node?.position[axis] ?? 0) + (node?.boundingBox[dimension] ?? 0))(
+          minBy(nodes, `position.${axis}`)
+        ))([...(graph.value?.nodes.values() ?? [])], dimension === 'width' ? 'x' : 'y')
+    ),
+    wrapperBoundingBox[dimension]
+  );
+
+const viewportBoundingBox = computed(
+  () =>
+    Object.fromEntries(
+      (['width', 'height'] as const).map((dimension) => [
+        dimension,
+        props.autoLayout ? calcReactiveViewportSize(dimension) : calcAbsoluteViewportSize(dimension)
+      ])
+    ) as Record<'width' | 'height', number>
+);
 </script>
 
 <template>
