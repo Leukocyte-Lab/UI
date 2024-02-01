@@ -33,8 +33,8 @@ const createNode = () => {
           y: props.positionY ?? 0
         }
       : {
-          x: NaN,
-          y: NaN
+          x: 0,
+          y: 0
         },
     relativePosition: props.relative
       ? props.position ?? {
@@ -70,9 +70,10 @@ onMounted(() => {
 
 <template>
   <Container
+    :x="node?.position.x"
+    :y="node?.position.y"
     :width="boundingBox.width"
     :height="boundingBox.height"
-    :pivot="0.5"
     :position="node?.position"
   >
     <template v-if="debugOptions?.showBoundingBox">
@@ -85,6 +86,25 @@ onMounted(() => {
             graphics.endFill();
           }
         "
+      />
+      <Text
+        :style="{
+          fontSize: 10,
+          fontFamily: 'monospace',
+          whiteSpace: 'pre',
+          padding: 10,
+          leading: 1.2,
+          breakWords: true,
+          trim: true
+        }"
+        :text="`
+          #${props.id}
+
+          x: ${node?.position.x}
+          y: ${node?.position.y}
+          width: ${boundingBox.width}
+          height: ${boundingBox.height}
+        `"
       />
     </template>
     <External>
@@ -99,6 +119,9 @@ onMounted(() => {
             [$style['debugger--show-bounding-box']]: debugOptions?.showBoundingBox
           }
         ]"
+        :style="{
+          transform: `translate3d(${node?.position.x ?? 0}px, ${node?.position.y ?? 0}px, 0)`
+        }"
       >
         <slot />
       </div>
@@ -118,7 +141,9 @@ onMounted(() => {
 
       &.debugger {
         &--show-bounding-box {
-          opacity: 0.1;
+          &:not(:hover) {
+            opacity: 0.1;
+          }
         }
       }
     }
