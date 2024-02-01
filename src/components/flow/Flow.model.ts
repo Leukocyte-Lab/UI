@@ -98,6 +98,8 @@ export namespace Flow {
           width: number;
           height: number;
           scale: number;
+          gap?: Vec2 | number;
+          autoLayout?: boolean;
           debugOptions?: UI.Debugger.Options;
         }
       }
