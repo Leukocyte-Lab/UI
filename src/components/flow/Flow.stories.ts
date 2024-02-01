@@ -85,11 +85,11 @@ const Template: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
     return { args };
   },
   template: `
-    <div style="width: 800px; height: 640px; padding: 2rem; resize: both; overflow: hidden;">
+    <div style="width: 1920px; height: 1080px; padding: 32px; resize: both; overflow: hidden; box-sizing: content-box;">
       <FlowKit.Screen.Window v-bind="args">
         <template v-for="node in args.graph">
           <FlowKit.Layout.Node v-bind="node">
-            <CardBox data-demo-content>
+            <CardBox data-demo-content style="width: 240px; height: 120px;">
               <p>#{{ node.id }}</p>
               <h1>{{ node.name }}</h1>
             </CardBox>
@@ -118,70 +118,70 @@ Flow.args = {
       id: 'node-01',
       name: 'Node 01',
       to: ['node-02', 'node-04'],
-      positionX: 0,
+      position: { x: 0, y: -0.5 },
       relative: true
     },
     {
       id: 'node-02',
       name: 'Node 02',
       to: ['node-03', 'node-05'],
-      positionX: 0,
+      position: { x: 0, y: 0.5 },
       relative: true
     },
     {
       id: 'node-03',
       name: 'Node 03',
       to: ['node-01', 'node-02'],
-      positionX: 1,
+      position: { x: 1, y: 0 },
       relative: true
     },
     {
       id: 'node-04',
       name: 'Node 04',
       to: ['node-01', 'node-02', 'node-03', 'node-05'],
-      positionX: 1,
+      position: { x: 1, y: -1 },
       relative: true
     },
     {
       id: 'node-05',
       name: 'Node 05',
       to: ['node-02', 'node-06'],
-      positionX: 1,
+      position: { x: 1, y: 1 },
       relative: true
     },
     {
       id: 'node-06',
       name: 'Node 06',
       to: ['node-2', 'node-07', 'node-08', 'node-09', 'node-10'],
-      positionX: 2,
+      position: { x: 2, y: 0 },
       relative: true
     },
     {
       id: 'node-07',
       name: 'Node 07',
       to: ['node-02'],
-      positionX: 3,
+      position: { x: 3, y: -1.5 },
       relative: true
     },
     {
       id: 'node-08',
       name: 'Node 08',
       to: ['node-02'],
-      positionX: 3,
+      position: { x: 3, y: -0.5 },
       relative: true
     },
     {
       id: 'node-09',
       name: 'Node 09',
       to: ['node-01', 'node-02', 'node-10'],
-      positionX: 3,
+      position: { x: 3, y: 0.5 },
       relative: true
     },
     {
       id: 'node-10',
       name: 'Node 10',
       to: ['node-02', 'node-09'],
-      positionX: 4,
+      position: { x: 3, y: 1.5 },
       relative: true
     }
   ]
