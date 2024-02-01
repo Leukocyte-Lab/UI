@@ -3,14 +3,13 @@
 import { computed, ref, reactive } from 'vue';
 import { isClient, useElementSize } from '@vueuse/core';
 import { Application } from 'vue3-pixi';
-import { groupBy, maxBy, minBy, map } from 'lodash-es';
 
 import type { VNode } from 'vue';
 
 import { FlowKit } from '@/components/flow';
 import { Flow } from '@/components/flow/Flow.model';
 
-import type { Vec2 } from '@/shared/types/vector';
+import { uuid } from '@/shared/libs/uuid';
 
 const props = withDefaults(defineProps<Flow.UI.Screen.Window.Props>(), {
   devtools: false,
@@ -28,10 +27,6 @@ defineSlots<{
 }>();
 
 const wrapperRef$ = ref<HTMLElement>();
-const graph = ref<{
-  nodes: Map<Flow.Entity.Node.Model['id'], Flow.Entity.Node.Model>;
-  edges: Map<Flow.Entity.Edge.Model['id'], Flow.Entity.Edge.Model>;
-}>();
 
 const wrapperBoundingBox = reactive(useElementSize(wrapperRef$));
 
@@ -43,50 +38,17 @@ const scale = computed({
     scale.value = value;
   }
 });
-
-const calcReactiveViewportSize = (dimension: 'width' | 'height') =>
-  Math.max(
-    ((nodes, axis: keyof Vec2) =>
-      Object.values(groupBy(nodes, axis)).reduce((size, nodes) => {
-        size += Math.max(...map(nodes, `boundingBox.${dimension}`));
-        return size;
-      }, 0))([...(graph.value?.nodes.values() ?? [])], dimension === 'width' ? 'x' : 'y'),
-    wrapperBoundingBox[dimension]
-  );
-
-const calcAbsoluteViewportSize = (dimension: 'width' | 'height') =>
-  Math.max(
-    Math.abs(
-      ((nodes, axis: keyof Vec2) =>
-        ((node) => (node?.position[axis] ?? 0) + (node?.boundingBox[dimension] ?? 0))(
-          maxBy(nodes, `position.${axis}`)
-        ) -
-        ((node) => (node?.position[axis] ?? 0) + (node?.boundingBox[dimension] ?? 0))(
-          minBy(nodes, `position.${axis}`)
-        ))([...(graph.value?.nodes.values() ?? [])], dimension === 'width' ? 'x' : 'y')
-    ),
-    wrapperBoundingBox[dimension]
-  );
-
-const viewportBoundingBox = computed(
-  () =>
-    Object.fromEntries(
-      (['width', 'height'] as const).map((dimension) => [
-        dimension,
-        props.autoLayout ? calcReactiveViewportSize(dimension) : calcAbsoluteViewportSize(dimension)
-      ])
-    ) as Record<'width' | 'height', number>
-);
 </script>
 
 <template>
-  <div ref="wrapperRef$" :class="$style['flow-container']">
+  <div :id="`flow-${uuid()}`" ref="wrapperRef$" :class="$style['flow-container']">
     <Application
       :class="$style['flow-viewport']"
       :width="wrapperBoundingBox.width"
       :height="wrapperBoundingBox.height"
       :background-alpha="0"
       :resolution="4"
+      :antialias="true"
       :power-preference="acceleration"
       :resize-to="wrapperRef$"
     >
@@ -94,11 +56,11 @@ const viewportBoundingBox = computed(
         <FlowKit.Helper.DevTool />
       </template>
       <FlowKit.Screen.Viewport
-        ref="viewportRef$"
-        :width="viewportBoundingBox.width"
-        :height="viewportBoundingBox.height"
+        :width="wrapperBoundingBox.width"
+        :height="wrapperBoundingBox.height"
         :scale="scale"
         :debug-options="props.debugOptions"
+        :auto-layout="props.autoLayout"
       >
         <slot />
       </FlowKit.Screen.Viewport>
