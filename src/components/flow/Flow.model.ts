@@ -1,5 +1,8 @@
 import type { Vec2 } from '@/shared/types/vector';
 import type { InjectionKey, Ref } from 'vue';
+import type { Cursor } from 'pixi.js';
+
+import type { Signal } from '@/shared/libs/signal';
 
 export namespace Flow {
   export namespace Entity {
@@ -17,6 +20,7 @@ export namespace Flow {
       export interface Model {
         id: string;
         position: Vec2;
+        offset: Vec2;
         relativePosition?: Vec2;
         edges: Map<Edge.Model['id'], Edge.Model>;
         boundingBox: BoundingBox.Model;
@@ -98,8 +102,10 @@ export namespace Flow {
           width: number;
           height: number;
           scale: number;
+          cursorMode: Signal<Cursor>;
           gap?: Vec2 | number;
           autoLayout?: boolean;
+          initialScale?: UI.Widget.Zoom.Props['initialScale'];
           debugOptions?: UI.Debugger.Options;
         }
       }

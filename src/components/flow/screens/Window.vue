@@ -5,11 +5,13 @@ import { isClient, useElementSize } from '@vueuse/core';
 import { Application } from 'vue3-pixi';
 
 import type { VNode } from 'vue';
+import type { Cursor } from 'pixi.js';
 
 import { FlowKit } from '@/components/flow';
 import { Flow } from '@/components/flow/Flow.model';
 
 import { uuid } from '@/shared/libs/uuid';
+import { signal } from '@/shared/libs/signal';
 
 const props = withDefaults(defineProps<Flow.UI.Screen.Window.Props>(), {
   devtools: false,
@@ -27,6 +29,7 @@ defineSlots<{
 }>();
 
 const wrapperRef$ = ref<HTMLElement>();
+const cursorMode = signal<Cursor>('default');
 
 const wrapperBoundingBox = reactive(useElementSize(wrapperRef$));
 
@@ -41,7 +44,11 @@ const scale = computed({
 </script>
 
 <template>
-  <div :id="`flow-${uuid()}`" ref="wrapperRef$" :class="$style['flow-container']">
+  <div
+    :id="`flow-${uuid()}`"
+    ref="wrapperRef$"
+    :class="[$style['flow-container'], $style.behavior, $style[cursorMode()]]"
+  >
     <Application
       :class="$style['flow-viewport']"
       :width="wrapperBoundingBox.width"
@@ -61,6 +68,8 @@ const scale = computed({
         :scale="scale"
         :debug-options="props.debugOptions"
         :auto-layout="props.autoLayout"
+        :initial-scale="props.initialScale"
+        :cursor-mode="cursorMode"
       >
         <slot />
       </FlowKit.Screen.Viewport>
@@ -78,6 +87,8 @@ const scale = computed({
 </style>
 
 <style module scoped lang="scss">
+@use '@/assets/styles/modules/behavior.module' as behavior;
+
 .flow {
   &-container {
     display: flex;

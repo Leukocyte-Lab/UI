@@ -8,9 +8,9 @@ import type { VNode } from 'vue';
 
 import { Flow } from '../Flow.model';
 
-const props = withDefaults(defineProps<Flow.UI.Layout.Node.Props>(), {});
-
 const debugOptions = inject(Flow.UI.Debugger.InjectionKey);
+
+const props = withDefaults(defineProps<Flow.UI.Layout.Node.Props>(), {});
 
 const edges = computedInject(Flow.Entity.Edge.InjectionKey, (edges) => edges?.value);
 const nodes = computedInject(Flow.Entity.Node.InjectionKey, (nodes) => nodes?.value);
@@ -36,6 +36,10 @@ const createNode = () => {
           x: 0,
           y: 0
         },
+    offset: {
+      x: 0,
+      y: 0
+    },
     relativePosition: props.relative
       ? props.position ?? {
           x: props.positionX ?? 0,
@@ -102,6 +106,8 @@ onMounted(() => {
 
           x: ${node?.position.x}
           y: ${node?.position.y}
+          offset-x: ${node?.offset.x}
+          offset-y: ${node?.offset.y}
           width: ${boundingBox.width}
           height: ${boundingBox.height}
         `"
@@ -120,7 +126,7 @@ onMounted(() => {
           }
         ]"
         :style="{
-          transform: `translate3d(${node?.position.x ?? 0}px, ${node?.position.y ?? 0}px, 0)`
+          transform: `translate3d(${(node?.position.x ?? 0) + (node?.offset.x ?? 0)}px, ${(node?.position.y ?? 0) + (node?.offset.y ?? 0)}px, 0.000001px)`
         }"
       >
         <slot />
@@ -138,6 +144,8 @@ onMounted(() => {
       position: absolute !important;
       width: fit-content;
       height: fit-content;
+      transition: transform 0.1s linear;
+      will-change: transform;
 
       &.debugger {
         &--show-bounding-box {

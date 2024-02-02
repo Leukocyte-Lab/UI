@@ -4,7 +4,7 @@ import CardBox from '../../components/element/card/CardBox.vue';
 import type { Meta, StoryFn } from '@storybook/vue3';
 
 export default {
-  title: 'Components / Flow',
+  title: 'Components / Graph / FlowKit',
   component: FlowKit.Screen.Window,
   tags: ['autodocs'],
   argTypes: {
@@ -85,7 +85,7 @@ const Template: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
     return { args };
   },
   template: `
-    <div style="width: 1920px; height: 1080px; padding: 32px; resize: both; overflow: hidden; box-sizing: content-box;">
+    <div style="width: 800px; height: 640px; padding: 32px; resize: both; overflow: hidden; box-sizing: content-box;">
       <FlowKit.Screen.Window v-bind="args">
         <template v-for="node in args.graph">
           <FlowKit.Layout.Node v-bind="node">
