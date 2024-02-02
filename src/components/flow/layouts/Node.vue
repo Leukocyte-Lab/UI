@@ -122,6 +122,7 @@ onMounted(() => {
           $style.flex,
           $style.vertical,
           {
+            [$style.panning]: node?.isPanning,
             [$style['debugger--show-bounding-box']]: debugOptions?.showBoundingBox
           }
         ]"
@@ -146,6 +147,10 @@ onMounted(() => {
       height: fit-content;
       transition: transform 0.1s linear;
       will-change: transform;
+
+      &.panning {
+        pointer-events: none;
+      }
 
       &.debugger {
         &--show-bounding-box {

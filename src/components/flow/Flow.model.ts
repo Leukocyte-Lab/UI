@@ -24,6 +24,7 @@ export namespace Flow {
         relativePosition?: Vec2;
         edges: Map<Edge.Model['id'], Edge.Model>;
         boundingBox: BoundingBox.Model;
+        isPanning?: boolean;
       }
     }
 
