@@ -121,8 +121,16 @@ const handlePan = ($event: FederatedMouseEvent | FederatedPointerEvent) => {
     if (panning.value && viewportRef$.value) {
       const stage = viewportRef$.value;
 
-      stage.position.x += $event.movementX;
-      stage.position.y += $event.movementY;
+      stage.position.x = Math$.clamp(
+        stage.position.x + $event.movementX,
+        props.width * -1,
+        (viewportBoundingBox.value.width - props.width) / 4
+      );
+      stage.position.y = Math$.clamp(
+        stage.position.y + $event.movementY,
+        (props.height - viewportBoundingBox.value.height) / 4,
+        (viewportBoundingBox.value.height - props.height) / 4
+      );
 
       stageOffset.value = {
         x: stage.position.x,
