@@ -29,6 +29,9 @@ defineSlots<{
 }>();
 
 const wrapperRef$ = ref<HTMLElement>();
+const viewportRef$ = ref<{
+  panning: boolean;
+}>();
 const cursorMode = signal<Cursor>('default');
 
 const wrapperBoundingBox = reactive(useElementSize(wrapperRef$));
@@ -63,6 +66,7 @@ const scale = computed({
         <FlowKit.Helper.DevTool />
       </template>
       <FlowKit.Screen.Viewport
+        ref="viewportRef$"
         :width="wrapperBoundingBox.width"
         :height="wrapperBoundingBox.height"
         :scale="scale"
@@ -75,7 +79,7 @@ const scale = computed({
       </FlowKit.Screen.Viewport>
     </Application>
     <template v-if="props.toolbar">
-      <FlowKit.Layout.Toolbar />
+      <FlowKit.Layout.Toolbar :disabled="viewportRef$?.panning" />
     </template>
   </div>
 </template>

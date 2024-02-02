@@ -59,6 +59,7 @@ export namespace Flow {
         export interface Props {
           position?: Position;
           direction?: 'horizontal' | 'vertical';
+          disabled?: boolean;
         }
       }
 

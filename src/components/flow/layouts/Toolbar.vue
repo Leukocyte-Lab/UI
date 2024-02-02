@@ -17,7 +17,10 @@ const props = withDefaults(defineProps<Flow.UI.Layout.Toolbar.Props>(), {
       $style.wrapper,
       $style.flex,
       $style[props.direction],
-      $style[props.position]
+      $style[props.position],
+      {
+        [$style.disabled]: props.disabled
+      }
     ]"
   >
     <ButtonBox icon="fa6-solid:arrows-up-down-left-right" variant="square" level="secondary" />
@@ -37,6 +40,11 @@ const props = withDefaults(defineProps<Flow.UI.Layout.Toolbar.Props>(), {
     place-content: center;
     place-items: center;
     z-index: 1000;
+
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.2;
+    }
 
     $vertical: 'top' 'center' 'bottom';
     $horizontal: 'left' 'center' 'right';

@@ -179,7 +179,8 @@ defineSlots<{
 
 defineExpose({
   nodes,
-  edges
+  edges,
+  panning
 });
 
 provide(Flow.Entity.Node.InjectionKey, nodes);
