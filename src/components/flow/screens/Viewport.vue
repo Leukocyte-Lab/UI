@@ -1,17 +1,17 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { computed, provide, ref, onMounted } from 'vue';
-import { watchDebounced } from '@vueuse/core';
-import { useApplication } from 'vue3-pixi';
+import { usePageLeave, watchDebounced } from '@vueuse/core';
 import { groupBy, maxBy, minBy, map } from 'lodash-es';
 
 import type { Ref, VNode } from 'vue';
 
 import { Flow } from '@/components/flow/Flow.model';
 
+import { Math$ } from '@/shared';
+
 import type { Vec2 } from '@/shared/types/vector';
 import type { ContainerInst } from 'vue3-pixi';
-import { Rectangle } from 'pixi.js';
 import type { FederatedMouseEvent } from 'pixi.js';
 import type { FederatedPointerEvent } from 'pixi.js';
 
@@ -19,15 +19,14 @@ const props = withDefaults(defineProps<Flow.UI.Screen.Viewport.Props>(), {
   scale: 1,
   gap: () => ({
     x: 80,
-    y: 24
+    y: 48
   })
 });
 
-const app = useApplication();
 const nodes: Ref<Map<Flow.Entity.Node.Model['id'], Flow.Entity.Node.Model>> = ref(new Map());
 const edges: Ref<Map<Flow.Entity.Edge.Model['id'], Flow.Entity.Edge.Model>> = ref(new Map());
-const mousePosition = ref<Vec2>({ x: 0, y: 0 });
 const panning = ref(false);
+const pageLeave = usePageLeave();
 const viewportRef$ = ref<ContainerInst>();
 
 const offset = computed<Vec2>(() => ({
@@ -147,7 +146,10 @@ onMounted(() => {
 watchDebounced(
   nodes,
   (nodes) => {
-    nodes.forEach((node) => (nodes.get(node.id)!.position = calcNodePosition(node)));
+    nodes.forEach((node) => {
+      nodes.get(node.id)!.position = calcNodePosition(node);
+      nodes.get(node.id)!.isPanning = panning.value;
+    });
     resizeStage();
   },
   { deep: true, debounce: 100, maxWait: 500 }
@@ -159,6 +161,16 @@ watchDebounced(
     nodes.value?.forEach((node) => (nodes.value!.get(node.id)!.offset = offset));
   },
   { deep: true, debounce: 10, maxWait: 500 }
+);
+
+watchDebounced(
+  pageLeave,
+  (state) => {
+    if (state) {
+      panning.value = false;
+    }
+  },
+  { debounce: 100, maxWait: 500 }
 );
 
 defineSlots<{
@@ -183,7 +195,6 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
     @mousedown="handlePan"
     @mouseup="handlePan"
     @mousemove="handlePan"
-    @mouseout="handlePan"
   >
     <Graphics
       @render="
