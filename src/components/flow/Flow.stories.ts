@@ -111,7 +111,7 @@ Flow.args = {
   initialScale: 1,
   acceleration: 'high-performance',
   debugOptions: {
-    showBoundingBox: true
+    showBoundingBox: false
   },
   graph: [
     {
