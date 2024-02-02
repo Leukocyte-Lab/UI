@@ -177,17 +177,20 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
     @mousemove="handlePan"
     @mouseout="handlePan"
   >
+    <Graphics
+      @render="
+        (graphics) => {
+          graphics.clear();
+          graphics.beginFill(
+            debugOptions?.showBoundingBox ? '0x56f071' : '0xffffff',
+            debugOptions?.showBoundingBox ? 1 : 0.0001
+          );
+          graphics.drawRect(stageOffset.x * -1, stageOffset.y * -1, props.width, props.height);
+          graphics.endFill();
+        }
+      "
+    />
     <template v-if="debugOptions?.showBoundingBox">
-      <Graphics
-        @render="
-          (graphics) => {
-            graphics.clear();
-            graphics.beginFill(0x56f071);
-            graphics.drawRect(stageOffset.x * -1, stageOffset.y * -1, props.width, props.height);
-            graphics.endFill();
-          }
-        "
-      />
       <Text
         :x="stageOffset.x * -1"
         :y="stageOffset.y * -1"
