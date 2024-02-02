@@ -12,8 +12,6 @@ import { Math$ } from '@/shared';
 
 import type { Vec2 } from '@/shared/types/vector';
 import type { ContainerInst } from 'vue3-pixi';
-import type { FederatedMouseEvent } from 'pixi.js';
-import type { FederatedPointerEvent } from 'pixi.js';
 
 const props = withDefaults(defineProps<Flow.UI.Screen.Viewport.Props>(), {
   scale: 1,
@@ -25,7 +23,7 @@ const props = withDefaults(defineProps<Flow.UI.Screen.Viewport.Props>(), {
 
 const nodes: Ref<Map<Flow.Entity.Node.Model['id'], Flow.Entity.Node.Model>> = ref(new Map());
 const edges: Ref<Map<Flow.Entity.Edge.Model['id'], Flow.Entity.Edge.Model>> = ref(new Map());
-const panning = ref(false);
+const isPanning = ref<boolean | 'ready'>(false);
 const pageLeave = usePageLeave();
 const viewportRef$ = ref<ContainerInst>();
 
@@ -102,31 +100,49 @@ const resizeStage = () => {
   }
 };
 
-const handlePan = ($event: FederatedMouseEvent | FederatedPointerEvent) => {
+const handlePan = ($event: MouseEvent) => {
   if (
     $event.type === 'pointerup' ||
     $event.type === 'mouseup' ||
     $event.type === 'pointerout' ||
     $event.type === 'mouseout'
   ) {
-    panning.value = false;
-
+    isPanning.value = false;
     props.cursorMode.set('default');
   } else if ($event.type === 'pointerdown' || $event.type === 'mousedown') {
-    panning.value = true;
-
+    isPanning.value = 'ready';
     props.cursorMode.set('move');
   } else if ($event.type === 'pointermove' || $event.type === 'mousemove') {
-    if (panning.value && viewportRef$.value) {
-      const stage = viewportRef$.value;
+    const stage = viewportRef$.value;
+    const movement = {
+      x: $event.movementX * (props.width / document.documentElement.clientWidth),
+      y: $event.movementY * (props.height / document.documentElement.clientHeight)
+    };
 
+    if (
+      Math$.Vector.delta(
+        {
+          x: 0,
+          y: 0
+        },
+        {
+          x: movement.x,
+          y: movement.y
+        }
+      ) > 5 &&
+      isPanning.value === 'ready'
+    ) {
+      isPanning.value = true;
+    }
+
+    if (isPanning.value === true && stage) {
       stage.position.x = Math$.clamp(
-        stage.position.x + $event.movementX,
+        stage.position.x + movement.x,
         props.width * -1,
         (viewportBoundingBox.value.width - props.width) / 4
       );
       stage.position.y = Math$.clamp(
-        stage.position.y + $event.movementY,
+        stage.position.y + movement.y,
         (props.height - viewportBoundingBox.value.height) / 4,
         (viewportBoundingBox.value.height - props.height) / 4
       );
@@ -139,8 +155,18 @@ const handlePan = ($event: FederatedMouseEvent | FederatedPointerEvent) => {
   }
 };
 
+const handleGlobalEvents = () => {
+  document.addEventListener('mouseup', handlePan);
+  document.addEventListener('pointerup', handlePan);
+  document.addEventListener('mousedown', handlePan);
+  document.addEventListener('pointerdown', handlePan);
+  document.addEventListener('mousemove', handlePan);
+  document.addEventListener('pointermove', handlePan);
+};
+
 onMounted(() => {
   resizeStage();
+  handleGlobalEvents();
 });
 
 watchDebounced(
@@ -148,7 +174,7 @@ watchDebounced(
   (nodes) => {
     nodes.forEach((node) => {
       nodes.get(node.id)!.position = calcNodePosition(node);
-      nodes.get(node.id)!.isPanning = panning.value;
+      nodes.get(node.id)!.isPanning = Boolean(isPanning.value);
     });
     resizeStage();
   },
@@ -167,10 +193,10 @@ watchDebounced(
   pageLeave,
   (state) => {
     if (state) {
-      panning.value = false;
+      isPanning.value = false;
     }
   },
-  { debounce: 100, maxWait: 500 }
+  { debounce: 10, maxWait: 500 }
 );
 
 defineSlots<{
@@ -180,7 +206,7 @@ defineSlots<{
 defineExpose({
   nodes,
   edges,
-  panning
+  isPanning
 });
 
 provide(Flow.Entity.Node.InjectionKey, nodes);
@@ -193,9 +219,6 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
     ref="viewportRef$"
     :width="viewportBoundingBox.width"
     :height="viewportBoundingBox.height"
-    @mousedown="handlePan"
-    @mouseup="handlePan"
-    @mousemove="handlePan"
   >
     <Graphics
       @render="

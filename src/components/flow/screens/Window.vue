@@ -30,7 +30,7 @@ defineSlots<{
 
 const wrapperRef$ = ref<HTMLElement>();
 const viewportRef$ = ref<{
-  panning: boolean;
+  isPanning: boolean | 'ready';
 }>();
 const cursorMode = signal<Cursor>('default');
 
@@ -79,7 +79,7 @@ const scale = computed({
       </FlowKit.Screen.Viewport>
     </Application>
     <template v-if="props.toolbar">
-      <FlowKit.Layout.Toolbar :disabled="viewportRef$?.panning" />
+      <FlowKit.Layout.Toolbar :disabled="viewportRef$?.isPanning === true" />
     </template>
   </div>
 </template>
