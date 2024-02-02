@@ -36,6 +36,7 @@ const props = withDefaults(defineProps<Flow.UI.Layout.Toolbar.Props>(), {
     position: absolute !important;
     place-content: center;
     place-items: center;
+    z-index: 1000;
 
     $vertical: 'top' 'center' 'bottom';
     $horizontal: 'left' 'center' 'right';
@@ -46,10 +47,10 @@ const props = withDefaults(defineProps<Flow.UI.Layout.Toolbar.Props>(), {
           @if $position == 'center' {
             left: 0;
             width: 100%;
-
           } @else {
             #{$position}: 0;
           }
+
           #{$direction}: 0;
         }
       }
