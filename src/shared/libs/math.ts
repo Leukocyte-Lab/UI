@@ -11,6 +11,7 @@ export type MathProxy = Math & {
     ) => UseVector extends true ? Vector<T> : number;
     add: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
     minus: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
+    middle: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
     clamp: <T extends string>(value: Vector<T>, min: Vector<T>, max: Vector<T>) => Vector<T>;
   };
   deg: (rad: number) => number;
@@ -91,6 +92,13 @@ const VectorDeltaHandler = {
             axis,
             Math$.clamp(value[axis as T], min[axis as T], max[axis as T])
           ]) as [T, number][]
+        ) as Vector<T>;
+    }
+
+    if (prop === 'middle') {
+      return <T extends string>(a: Vector<T>, b: Vector<T>): Vector<T> =>
+        fromPairs(
+          Object.keys(a).map((axis) => [axis, (a[axis as T] + b[axis as T]) / 2]) as [T, number][]
         ) as Vector<T>;
     }
 
