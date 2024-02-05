@@ -179,7 +179,7 @@ const handleMovement = (movement: Vec2) => {
     const clamped = {
       x: Math$.clamp(
         origin.x,
-        props.width * -1,
+        props.width - viewportBoundingBox.value.width,
         (viewportBoundingBox.value.width - props.width) / 4
       ),
       y: Math$.clamp(
@@ -207,7 +207,7 @@ const handleMovement = (movement: Vec2) => {
       stage.position = {
         x: Math$.clamp(
           origin.x,
-          props.width * -1 - overMoveThreshold,
+          props.width - viewportBoundingBox.value.width - overMoveThreshold,
           (viewportBoundingBox.value.width - props.width) / 4 + overMoveThreshold
         ),
         y: Math$.clamp(
@@ -306,6 +306,7 @@ defineExpose({
 provide(Flow.Entity.Node.InjectionKey, nodes);
 provide(Flow.Entity.Edge.InjectionKey, edges);
 provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
+provide(Flow.UI.Screen.Viewport.Size, viewportBoundingBox);
 </script>
 
 <template>

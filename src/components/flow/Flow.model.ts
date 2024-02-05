@@ -35,7 +35,7 @@ export namespace Flow {
       export interface Model {
         id: `${Node.Model['id']}->${Node.Model['id']}`;
         from: Node.Model;
-        to: Map<Node.Model['id'], Node.Model>;
+        to?: Node.Model;
       }
     }
   }
@@ -46,6 +46,7 @@ export namespace Flow {
 
       export interface Options {
         showBoundingBox?: boolean;
+        showControlPoint?: boolean;
       }
     }
 
@@ -74,6 +75,14 @@ export namespace Flow {
           relative?: boolean;
         }
       }
+
+      export namespace Edge {
+        export interface Props {
+          edge: Entity.Edge.Model;
+          radius?: number;
+          arrowSize?: number;
+        }
+      }
     }
 
     export namespace Widget {
@@ -100,6 +109,10 @@ export namespace Flow {
       }
 
       export namespace Viewport {
+        export const Size: InjectionKey<Ref<Pick<Props, 'width' | 'height'>>> = Symbol(
+          'Flow.UI.Screen.Viewport.Size'
+        );
+
         export interface Props {
           width: number;
           height: number;

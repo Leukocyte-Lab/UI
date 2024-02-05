@@ -7,6 +7,7 @@ import { computedInject, useElementSize } from '@vueuse/core';
 import type { VNode } from 'vue';
 
 import { Flow } from '../Flow.model';
+import { FlowKit } from '..';
 
 const debugOptions = inject(Flow.UI.Debugger.InjectionKey);
 
@@ -48,7 +49,11 @@ const createNode = () => {
       : undefined,
     boundingBox,
     get edges() {
-      return new Map([...(edges.value ?? [])].filter(([, edge]) => edge.from.id === props.id));
+      return new Map(
+        [...(edges.value ?? [])].filter(
+          ([, edge]) => edge.from.id === props.id || edge.to?.id === props.id
+        )
+      );
     }
   };
 
@@ -59,7 +64,7 @@ const createNode = () => {
       id: `${props.id}->${nodeId}`,
       from: node,
       get to() {
-        return new Map([...(nodes.value ?? [])].filter(([, node]) => node.id === nodeId));
+        return nodes.value?.get(nodeId);
       }
     };
 
@@ -73,13 +78,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Container
-    :x="node?.position.x"
-    :y="node?.position.y"
-    :width="boundingBox.width"
-    :height="boundingBox.height"
-    :position="node?.position"
-  >
+  <Container :position="node?.position">
     <template v-if="debugOptions?.showBoundingBox">
       <Graphics
         @render="
@@ -112,6 +111,11 @@ onMounted(() => {
           height: ${boundingBox.height}
         `"
       />
+    </template>
+    <template v-for="[id, edge] in node?.edges" :key="id">
+      <template v-if="edge.from.id === node?.id">
+        <FlowKit.Layout.Edge :edge="edge" />
+      </template>
     </template>
     <External>
       <div

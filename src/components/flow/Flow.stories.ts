@@ -65,7 +65,8 @@ export default {
       control: 'object',
       description: 'Debugger option for dev & test (optional)',
       defaultValue: {
-        showBoundingBox: false
+        showBoundingBox: false,
+        showControlPoint: false
       }
     },
     graph: {
@@ -85,7 +86,7 @@ const Template: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
     return { args };
   },
   template: `
-    <div style="width: 800px; height: 640px; padding: 32px; resize: both; overflow: hidden; box-sizing: content-box;">
+    <div style="width: 1366px; height: 768px; padding: 32px; resize: both; overflow: hidden; box-sizing: content-box;">
       <FlowKit.Screen.Window v-bind="args">
         <template v-for="node in args.graph">
           <FlowKit.Layout.Node v-bind="node">
@@ -111,13 +112,14 @@ Flow.args = {
   initialScale: 1,
   acceleration: 'high-performance',
   debugOptions: {
-    showBoundingBox: false
+    showBoundingBox: false,
+    showControlPoint: false
   },
   graph: [
     {
       id: 'node-01',
       name: 'Node 01',
-      to: ['node-02', 'node-04'],
+      to: ['node-02', 'node-03', 'node-04', 'node-07'],
       position: { x: 0, y: -0.5 },
       relative: true
     },
@@ -152,14 +154,14 @@ Flow.args = {
     {
       id: 'node-06',
       name: 'Node 06',
-      to: ['node-2', 'node-07', 'node-08', 'node-09', 'node-10'],
+      to: ['node-02', 'node-07', 'node-08', 'node-09', 'node-10'],
       position: { x: 2, y: 0 },
       relative: true
     },
     {
       id: 'node-07',
       name: 'Node 07',
-      to: ['node-02'],
+      to: ['node-02', 'node-04'],
       position: { x: 3, y: -1.5 },
       relative: true
     },
