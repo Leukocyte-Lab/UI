@@ -40,8 +40,13 @@ const props = withDefaults(defineProps<Flow.UI.Layout.Toolbar.Props>(), {
     place-content: center;
     place-items: center;
     z-index: 1000;
+    transition:
+      filter 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
+    will-change: filter, opacity;
 
     &.disabled {
+      filter: grayscale(1);
       pointer-events: none;
       opacity: 0.2;
     }
