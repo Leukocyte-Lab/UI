@@ -24,6 +24,7 @@ const props = withDefaults(defineProps<Flow.UI.Screen.Viewport.Props>(), {
 const nodes: Ref<Map<Flow.Entity.Node.Model['id'], Flow.Entity.Node.Model>> = ref(new Map());
 const edges: Ref<Map<Flow.Entity.Edge.Model['id'], Flow.Entity.Edge.Model>> = ref(new Map());
 const isPanning = ref<boolean | 'ready'>(false);
+const bufferedMovement = ref<Vec2>({ x: 0, y: 0 });
 const pageLeave = usePageLeave();
 const viewportRef$ = ref<ContainerInst>();
 
@@ -107,6 +108,18 @@ const handlePan = ($event: MouseEvent) => {
     $event.type === 'pointerout' ||
     $event.type === 'mouseout'
   ) {
+    const bufferedMovementDistance = Math$.Vector.delta(
+      {
+        x: 0,
+        y: 0
+      },
+      bufferedMovement.value
+    );
+
+    if (bufferedMovementDistance > 1) {
+      handleTailingMovement();
+    }
+
     isPanning.value = false;
     props.cursorMode.set('default');
   } else if ($event.type === 'pointerdown' || $event.type === 'mousedown') {
@@ -119,39 +132,120 @@ const handlePan = ($event: MouseEvent) => {
       y: $event.movementY * (props.height / document.documentElement.clientHeight)
     };
 
-    if (
-      Math$.Vector.delta(
+    if (isPanning.value === 'ready') {
+      const instantMovementDistance = Math$.Vector.delta(
         {
           x: 0,
           y: 0
         },
+        movement
+      );
+      const bufferedMovementDistance = Math$.Vector.delta(
         {
-          x: movement.x,
-          y: movement.y
-        }
-      ) > 5 &&
-      isPanning.value === 'ready'
-    ) {
-      isPanning.value = true;
+          x: 0,
+          y: 0
+        },
+        bufferedMovement.value
+      );
+
+      if (instantMovementDistance > 5 || bufferedMovementDistance > 5) {
+        isPanning.value = true;
+        bufferedMovement.value = {
+          x: 0,
+          y: 0
+        };
+      } else {
+        bufferedMovement.value = Math$.Vector.add(bufferedMovement.value, movement);
+      }
     }
 
     if (isPanning.value === true && stage) {
-      stage.position.x = Math$.clamp(
-        stage.position.x + movement.x,
+      bufferedMovement.value = movement;
+
+      handleMovement(movement);
+    }
+  }
+};
+
+const handleMovement = (movement: Vec2) => {
+  const stage = viewportRef$.value;
+  const overMoveThreshold = 20;
+
+  if (stage) {
+    const origin = {
+      x: stage.position.x + movement.x,
+      y: stage.position.y + movement.y
+    };
+    const clamped = {
+      x: Math$.clamp(
+        origin.x,
         props.width * -1,
         (viewportBoundingBox.value.width - props.width) / 4
-      );
-      stage.position.y = Math$.clamp(
-        stage.position.y + movement.y,
+      ),
+      y: Math$.clamp(
+        origin.y,
         (props.height - viewportBoundingBox.value.height) / 4,
         (viewportBoundingBox.value.height - props.height) / 4
-      );
+      )
+    };
 
-      stageOffset.value = {
-        x: stage.position.x,
-        y: stage.position.y
-      };
+    if (Math$.Vector.delta(origin, clamped) > 0) {
+      bufferedMovement.value = Math$.Vector.clamp(
+        Math$.Vector.delta(clamped, origin, true),
+        {
+          x: -overMoveThreshold,
+          y: -overMoveThreshold
+        },
+        {
+          x: overMoveThreshold,
+          y: overMoveThreshold
+        }
+      );
     }
+
+    if (Math$.Vector.delta(origin, clamped) > 10) {
+      stage.position = {
+        x: Math$.clamp(
+          origin.x,
+          props.width * -1 - overMoveThreshold,
+          (viewportBoundingBox.value.width - props.width) / 4 + overMoveThreshold
+        ),
+        y: Math$.clamp(
+          origin.y,
+          (props.height - viewportBoundingBox.value.height) / 4 - overMoveThreshold,
+          (viewportBoundingBox.value.height - props.height) / 4 + overMoveThreshold
+        )
+      };
+    } else {
+      stage.position = origin;
+    }
+
+    stageOffset.value = stage.position;
+  }
+};
+
+const handleTailingMovement = () => {
+  const bufferedMovementDistance = Math$.Vector.delta(
+    {
+      x: 0,
+      y: 0
+    },
+    bufferedMovement.value
+  );
+
+  if (bufferedMovementDistance > 0.1) {
+    bufferedMovement.value = {
+      x: bufferedMovement.value.x * 0.9,
+      y: bufferedMovement.value.y * 0.9
+    };
+
+    const stage = viewportRef$.value;
+
+    if (stage) {
+      handleMovement(bufferedMovement.value);
+    }
+
+    requestAnimationFrame(handleTailingMovement);
   }
 };
 
