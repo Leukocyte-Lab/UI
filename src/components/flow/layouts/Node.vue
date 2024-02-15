@@ -149,8 +149,6 @@ onMounted(() => {
       position: absolute !important;
       width: fit-content;
       height: fit-content;
-      transition: transform 0.1s linear;
-      will-change: transform;
 
       &.panning {
         pointer-events: none;

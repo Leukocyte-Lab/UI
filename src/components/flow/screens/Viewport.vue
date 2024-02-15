@@ -2,16 +2,17 @@
 <script setup lang="ts">
 import { computed, provide, ref, onMounted } from 'vue';
 import { usePageLeave, watchDebounced } from '@vueuse/core';
+import { onTick } from 'vue3-pixi';
 import { groupBy, maxBy, minBy, map } from 'lodash-es';
 
 import type { Ref, VNode } from 'vue';
+import type { ContainerInst } from 'vue3-pixi';
 
 import { Flow } from '@/components/flow/Flow.model';
 
 import { Math$ } from '@/shared';
 
 import type { Vec2 } from '@/shared/types/vector';
-import type { ContainerInst } from 'vue3-pixi';
 
 const props = withDefaults(defineProps<Flow.UI.Screen.Viewport.Props>(), {
   scale: 1,
@@ -169,7 +170,7 @@ const handlePan = ($event: MouseEvent) => {
 
 const handleMovement = (movement: Vec2) => {
   const stage = viewportRef$.value;
-  const overMoveThreshold = 20;
+  const overMoveThreshold = 50;
 
   if (stage) {
     const origin = {
@@ -203,7 +204,7 @@ const handleMovement = (movement: Vec2) => {
       );
     }
 
-    if (Math$.Vector.delta(origin, clamped) > 10) {
+    if (Math$.Vector.delta(origin, clamped) > overMoveThreshold) {
       stage.position = {
         x: Math$.clamp(
           origin.x,
@@ -233,10 +234,10 @@ const handleTailingMovement = () => {
     bufferedMovement.value
   );
 
-  if (bufferedMovementDistance > 0.1) {
+  if (bufferedMovementDistance > 0.01) {
     bufferedMovement.value = {
-      x: bufferedMovement.value.x * 0.9,
-      y: bufferedMovement.value.y * 0.9
+      x: bufferedMovement.value.x * 0.1,
+      y: bufferedMovement.value.y * 0.1
     };
 
     const stage = viewportRef$.value;
@@ -263,17 +264,13 @@ onMounted(() => {
   handleGlobalEvents();
 });
 
-watchDebounced(
-  nodes,
-  (nodes) => {
-    nodes.forEach((node) => {
-      nodes.get(node.id)!.position = calcNodePosition(node);
-      nodes.get(node.id)!.isPanning = Boolean(isPanning.value);
-    });
-    resizeStage();
-  },
-  { deep: true, debounce: 100, maxWait: 500 }
-);
+onTick(() => {
+  nodes.value.forEach((node) => {
+    nodes.value.get(node.id)!.position = calcNodePosition(node);
+    nodes.value.get(node.id)!.isPanning = Boolean(isPanning.value);
+  });
+  resizeStage();
+});
 
 watchDebounced(
   stageOffset,
