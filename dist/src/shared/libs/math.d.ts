@@ -2,9 +2,13 @@ import type { Vector } from '../../shared/types/vector';
 export type MathProxy = Math & {
     ARC_BASE: number;
     Vector: {
-        delta: <T extends string>(a: Vector<T>, b: Vector<T>, useVector?: boolean) => number | Vector<T>;
+        delta: <T extends string, UseVector extends boolean = false>(a: Vector<T>, b: Vector<T>, useVector?: UseVector) => UseVector extends true ? Vector<T> : number;
         add: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
         minus: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
+        times: <T extends string>(a: Vector<T>, b: number | Vector<T>) => Vector<T>;
+        divide: <T extends string>(a: Vector<T>, b: Vector<T>, scalar?: boolean) => Vector<T>;
+        middle: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
+        clamp: <T extends string>(value: Vector<T>, min: Vector<T>, max: Vector<T>) => Vector<T>;
     };
     deg: (rad: number) => number;
     rad: (deg: number) => number;
