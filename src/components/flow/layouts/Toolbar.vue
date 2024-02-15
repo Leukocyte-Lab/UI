@@ -36,6 +36,7 @@ const props = withDefaults(defineProps<Flow.UI.Layout.Toolbar.Props>(), {
     --wrapper-gap: var(--agh-ref-spacing-300);
 
     display: inline-flex !important;
+    padding: var(--agh-ref-spacing-400);
     position: absolute !important;
     place-content: center;
     place-items: center;

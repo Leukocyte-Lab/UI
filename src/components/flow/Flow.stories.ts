@@ -86,7 +86,7 @@ const Template: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
     return { args };
   },
   template: `
-    <div style="width: 800px; height: 720px; padding: 32px; resize: both; overflow: hidden; box-sizing: content-box;">
+    <div style="width: 800px; height: 720px; padding: 32px; box-sizing: content-box;">
       <FlowKit.Screen.Window v-bind="args">
         <template v-for="node in args.graph">
           <FlowKit.Layout.Node v-bind="node">
