@@ -203,7 +203,7 @@ const handleMovement = (movement: Vec2) => {
       )
     };
 
-    if (Math$.Vector.delta(origin, clamped) > 0) {
+    if (Math$.Vector.delta(origin, clamped) > 0.01) {
       bufferedMovement.value = Math$.Vector.clamp(
         Math$.Vector.delta(clamped, origin, true),
         {
@@ -215,6 +215,8 @@ const handleMovement = (movement: Vec2) => {
           y: overMoveThreshold
         }
       );
+    } else {
+      bufferedMovement.value = Math$.Vector.times(movement, 9);
     }
 
     if (Math$.Vector.delta(origin, clamped) > overMoveThreshold) {
@@ -272,17 +274,20 @@ const handleGlobalEvents = () => {
   document.addEventListener('pointermove', handlePan);
 };
 
-onMounted(() => {
-  resizeStage();
-  handleGlobalEvents();
-});
-
-onTick(() => {
+const nodeCalcOnTick = () => {
   nodes.value.forEach((node) => {
     nodes.value.get(node.id)!.position = calcNodePosition(node);
     nodes.value.get(node.id)!.isPanning = Boolean(isPanning.value);
   });
   resizeStage();
+
+  requestAnimationFrame(nodeCalcOnTick);
+};
+
+onMounted(() => {
+  resizeStage();
+  handleGlobalEvents();
+  nodeCalcOnTick();
 });
 
 watchDebounced(
@@ -367,4 +372,3 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
     <slot />
   </Container>
 </template>
-
