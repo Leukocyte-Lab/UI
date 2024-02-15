@@ -4,10 +4,17 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
 
+import { compilerOptions, transformAssetUrls } from 'vue3-pixi/compiler';
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [
-    Vue()
+    Vue({
+      template: {
+        compilerOptions,
+        transformAssetUrls
+      }
+    })
   ],
   resolve: {
     alias: {
@@ -20,7 +27,7 @@ export default defineConfig(({ mode }) => ({
       entry: {
         shared: resolve(__dirname, 'src/shared/index.ts'),
         component: resolve(__dirname, 'src/components/index.ts'),
-        middleware: resolve(__dirname, 'src/middleware/index.ts'),
+        middleware: resolve(__dirname, 'src/middleware/index.ts')
       },
       name: 'UI',
       // the proper extensions will be added
@@ -37,6 +44,6 @@ export default defineConfig(({ mode }) => ({
     }
   },
   test: {
-    environment: "jsdom"
+    environment: 'jsdom'
   }
 }));

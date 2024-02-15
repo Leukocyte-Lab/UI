@@ -4,13 +4,16 @@ import { fromPairs } from 'lodash-es';
 export type MathProxy = Math & {
   ARC_BASE: number;
   Vector: {
-    delta: <T extends string>(
+    delta: <T extends string, UseVector extends boolean = false>(
       a: Vector<T>,
       b: Vector<T>,
-      useVector?: boolean
-    ) => number | Vector<T>;
+      useVector?: UseVector
+    ) => UseVector extends true ? Vector<T> : number;
     add: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
     minus: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
+    divide: <T extends string>(a: Vector<T>, b: Vector<T>, scalar?: boolean) => Vector<T>;
+    middle: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
+    clamp: <T extends string>(value: Vector<T>, min: Vector<T>, max: Vector<T>) => Vector<T>;
   };
   deg: (rad: number) => number;
   rad: (deg: number) => number;
@@ -44,14 +47,10 @@ const delta = <T extends string>(
   b: Vector<T>,
   useVector = false
 ): number | Vector<T> => {
-  const matrix = Object.keys(a).map((axis) =>
-    deltaAxis(a, b, axis as T, useVector)
-  );
+  const matrix = Object.keys(a).map((axis) => deltaAxis(a, b, axis as T, useVector));
 
   return useVector
-    ? (fromPairs(
-        matrix.map((value, index) => [Object.keys(a)[index], value])
-      ) as Vector<T>)
+    ? (fromPairs(matrix.map((value, index) => [Object.keys(a)[index], value])) as Vector<T>)
     : Math.pow(
         matrix.reduce((acc, curr) => acc + Math.pow(curr, matrix.length), 0),
         1 / matrix.length
@@ -76,20 +75,41 @@ const VectorDeltaHandler = {
     if (prop === 'add') {
       return <T extends string>(a: Vector<T>, b: Vector<T>): Vector<T> =>
         fromPairs(
-          Object.keys(a).map((axis) => [axis, a[axis as T] + b[axis as T]]) as [
-            T,
-            number
-          ][]
+          Object.keys(a).map((axis) => [axis, a[axis as T] + b[axis as T]]) as [T, number][]
         ) as Vector<T>;
     }
 
     if (prop === 'minus') {
       return <T extends string>(a: Vector<T>, b: Vector<T>): Vector<T> =>
         fromPairs(
-          Object.keys(a).map((axis) => [axis, a[axis as T] - b[axis as T]]) as [
-            T,
-            number
-          ][]
+          Object.keys(a).map((axis) => [axis, a[axis as T] - b[axis as T]]) as [T, number][]
+        ) as Vector<T>;
+    }
+
+    if (prop === 'divide') {
+      return <T extends string>(a: Vector<T>, b: Vector<T>, scalar = false): Vector<T> =>
+        fromPairs(
+          Object.keys(a).map((axis) => [
+            axis,
+            ((num) => (scalar ? Math.abs(num) : num))(a[axis as T] / b[axis as T])
+          ]) as [T, number][]
+        ) as Vector<T>;
+    }
+
+    if (prop === 'clamp') {
+      return <T extends string>(value: Vector<T>, min: Vector<T>, max: Vector<T>): Vector<T> =>
+        fromPairs(
+          Object.keys(value).map((axis) => [
+            axis,
+            Math$.clamp(value[axis as T], min[axis as T], max[axis as T])
+          ]) as [T, number][]
+        ) as Vector<T>;
+    }
+
+    if (prop === 'middle') {
+      return <T extends string>(a: Vector<T>, b: Vector<T>): Vector<T> =>
+        fromPairs(
+          Object.keys(a).map((axis) => [axis, (a[axis as T] + b[axis as T]) / 2]) as [T, number][]
         ) as Vector<T>;
     }
 
@@ -103,22 +123,17 @@ const Math$: MathProxy = new Proxy<MathProxy>(Math as MathProxy, {
     if (prop === 'Vector') return new Proxy({}, VectorDeltaHandler);
     if (prop === 'deg') return (rad: number): number => rad * (180 / Math.PI);
     if (prop === 'rad') return (deg: number): number => deg * (Math.PI / 180);
-    if (prop === 'gcd')
-      return (a: number, b: number): number => (!b ? a : Math$.gcd(b, a % b));
-    if (prop === 'lcm')
-      return (a: number, b: number): number => (a * b) / Math$.gcd(a, b);
+    if (prop === 'gcd') return (a: number, b: number): number => (!b ? a : Math$.gcd(b, a % b));
+    if (prop === 'lcm') return (a: number, b: number): number => (a * b) / Math$.gcd(a, b);
     if (prop === 'clamp')
       return (value: number, min: number, max: number): number =>
         Math.min(Math.max(value, min), max);
     if (prop === 'round')
       return (value: number, precision = 0): number =>
         Math.round(value * 10 ** precision) / 10 ** precision;
-    if (prop === 'cot')
-      return (x: number): number => 1 / Math.tan(x);
-    if (prop === 'sec')
-      return (x: number): number => 1 / Math.cos(x);
-    if (prop === 'csc')
-      return (x: number): number => 1 / Math.sin(x);
+    if (prop === 'cot') return (x: number): number => 1 / Math.tan(x);
+    if (prop === 'sec') return (x: number): number => 1 / Math.cos(x);
+    if (prop === 'csc') return (x: number): number => 1 / Math.sin(x);
     return Reflect.get(target, prop, receiver);
   }
 });
