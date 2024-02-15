@@ -368,4 +368,3 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
   </Container>
 </template>
 
-<style module scoped lang="scss"></style>

@@ -9,6 +9,3 @@
   </div>
 </template>
 
-<style module scoped lang="scss">
-
-</style>

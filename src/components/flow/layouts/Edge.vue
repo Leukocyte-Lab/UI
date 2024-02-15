@@ -296,4 +296,3 @@ const mouseHandler = ($event: MouseEvent) => {
   <Graphics @render="drawPath" @mouseover="mouseHandler" @mouseleave="mouseHandler" />
 </template>
 
-<style module scoped lang="scss"></style>
