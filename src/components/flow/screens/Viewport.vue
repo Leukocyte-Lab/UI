@@ -17,7 +17,7 @@ import type { Vec2 } from '@/shared/types/vector';
 const props = withDefaults(defineProps<Flow.UI.Screen.Viewport.Props>(), {
   scale: 1,
   gap: () => ({
-    x: 80,
+    x: 120,
     y: 48
   })
 });
@@ -45,7 +45,7 @@ const calcReactiveViewportSize = (dimension: 'width' | 'height') =>
         (size, nodes, index) =>
           size +
           Math.max(...map(nodes, `boundingBox.${dimension}`)) +
-          (index === 0 ? 0 : Number(props.gap) || (props.gap as Vec2)[axis]),
+          (index === 0 ? 2 : 1) * (Number(props.gap) || (props.gap as Vec2)[axis]),
         0
       ))([...(nodes.value?.values() ?? [])], dimension === 'width' ? 'x' : 'y'),
     props[dimension]
@@ -73,6 +73,19 @@ const viewportBoundingBox = computed(
         props.autoLayout ? calcReactiveViewportSize(dimension) : calcAbsoluteViewportSize(dimension)
       ])
     ) as Record<'width' | 'height', number>
+);
+
+const nodeBoundary = computed(() =>
+  ((coord) => ({
+    min: {
+      x: minBy(coord, 'x')?.x ?? 0,
+      y: minBy(coord, 'y')?.y ?? 0
+    },
+    max: {
+      x: maxBy(coord, 'x')?.x ?? 0,
+      y: maxBy(coord, 'y')?.y ?? 0
+    }
+  }))([...(nodes.value?.values() ?? [])].map((node) => node.position))
 );
 
 const calcNodePosition = (node: Flow.Entity.Node.Model): Vec2 => ({
@@ -302,8 +315,9 @@ defineExpose({
 
 provide(Flow.Entity.Node.InjectionKey, nodes);
 provide(Flow.Entity.Edge.InjectionKey, edges);
-provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
 provide(Flow.UI.Screen.Viewport.Size, viewportBoundingBox);
+provide(Flow.UI.Screen.Viewport.NodeBoundary, nodeBoundary);
+provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
 </script>
 
 <template>

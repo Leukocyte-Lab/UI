@@ -22,7 +22,14 @@ const viewportBoundingBox = computedInject(
     height: 0
   })
 );
-
+const nodeBoundary = computedInject(
+  Flow.UI.Screen.Viewport.NodeBoundary,
+  (boundary) => boundary?.value,
+  toRef({
+    min: { x: 0, y: 0 },
+    max: { x: 0, y: 0 }
+  })
+);
 const props = withDefaults(defineProps<Flow.UI.Layout.Edge.Props>(), {
   radius: 16,
   arrowSize: 5
@@ -55,7 +62,15 @@ const drawPath = (g: GraphicsInst) => {
   g.moveTo(startPoint.value.x, startPoint.value.y);
 
   const mid = Math$.Vector.middle(endPoint.value, startPoint.value);
-  const delta = Math$.Vector.minus(endPoint.value, startPoint.value);
+  const boundaryDelta = Math$.Vector.delta(nodeBoundary.value.min, nodeBoundary.value.max, true);
+  const scale = Math$.Vector.minus(
+    { x: 1, y: 1 },
+    Math$.Vector.divide(
+      Math$.Vector.delta(props.edge.to?.position ?? { x: 0, y: 0 }, nodeBoundary.value.min, true),
+      boundaryDelta,
+      true
+    )
+  );
 
   if (ray.value.x > 0) {
     g.lineTo(Math.max(mid.x - props.radius, 0), startPoint.value.y);
@@ -70,67 +85,109 @@ const drawPath = (g: GraphicsInst) => {
     g.lineTo(endPoint.value.x, endPoint.value.y);
     drawArrow(g, endPoint.value);
   } else if (ray.value.x < 0) {
-    g.lineTo(startPoint.value.x + props.radius * 0, startPoint.value.y);
+    g.lineTo(
+      startPoint.value.x + props.radius * scale.x + props.radius * (1 + (scale.y * -Math.E) / 2),
+      startPoint.value.y
+    );
     g.quadraticCurveTo(
-      startPoint.value.x + props.radius,
+      startPoint.value.x +
+        props.radius * (1 + scale.x) +
+        props.radius * (1 + (scale.y * -Math.E) / 2),
       startPoint.value.y,
-      startPoint.value.x + props.radius,
+      startPoint.value.x +
+        props.radius * (1 + scale.x) +
+        props.radius * (1 + (scale.y * -Math.E) / 2),
       startPoint.value.y + props.radius * (ray.value.y > 0 ? -1 : 1)
     );
     g.lineTo(
-      startPoint.value.x + props.radius,
+      startPoint.value.x +
+        props.radius * (1 + scale.x) +
+        props.radius * (1 + (scale.y * -Math.E) / 2),
       startPoint.value.y -
         props.edge.from.position.y +
-        (ray.value.y > 0 ? -startPoint.value.y : viewportBoundingBox.value.height * (2 / 3)) -
-        props.radius * (ray.value.y > 0 ? -1 : 1)
+        (ray.value.y > 0 ? -startPoint.value.y : nodeBoundary.value.max.y * 1.15) * scale.x -
+        props.radius * (ray.value.y > 0 ? -1 : 1) +
+        props.radius * (1 + (scale.y * -Math.PI) / 2)
     );
     g.quadraticCurveTo(
-      startPoint.value.x + props.radius,
+      startPoint.value.x +
+        props.radius * (1 + scale.x) +
+        props.radius * (1 + (scale.y * -Math.E) / 2),
       startPoint.value.y -
         props.edge.from.position.y +
-        (ray.value.y > 0 ? -startPoint.value.y : viewportBoundingBox.value.height * (2 / 3)),
-      startPoint.value.x,
+        (ray.value.y > 0 ? -startPoint.value.y : nodeBoundary.value.max.y * 1.15) * scale.x +
+        props.radius * (1 + (scale.y * -Math.PI) / 2),
+      startPoint.value.x + props.radius * scale.x + props.radius * (1 + (scale.y * -Math.E) / 2),
       startPoint.value.y -
         props.edge.from.position.y +
-        (ray.value.y > 0 ? -startPoint.value.y : viewportBoundingBox.value.height * (2 / 3))
+        (ray.value.y > 0 ? -startPoint.value.y : nodeBoundary.value.max.y * 1.15) * scale.x +
+        props.radius * (1 + (scale.y * -Math.PI) / 2)
     );
     g.lineTo(
-      endPoint.value.x - props.radius,
+      endPoint.value.x - props.radius * (1 + scale.y),
       startPoint.value.y -
         props.edge.from.position.y +
-        (ray.value.y > 0 ? -startPoint.value.y : viewportBoundingBox.value.height * (2 / 3))
+        (ray.value.y > 0 ? -startPoint.value.y : nodeBoundary.value.max.y * 1.15) * scale.x +
+        props.radius * (1 + (scale.y * -Math.PI) / 2)
     );
     g.quadraticCurveTo(
-      endPoint.value.x - props.radius * 2,
+      endPoint.value.x - props.radius * (2 + scale.y),
       startPoint.value.y -
         props.edge.from.position.y +
-        (ray.value.y > 0 ? -startPoint.value.y : viewportBoundingBox.value.height * (2 / 3)),
-      endPoint.value.x - props.radius * 2,
+        (ray.value.y > 0 ? -startPoint.value.y : nodeBoundary.value.max.y * 1.15) * scale.x +
+        props.radius * (1 + (scale.y * -Math.PI) / 2),
+      endPoint.value.x - props.radius * (2 + scale.y),
       startPoint.value.y -
         props.edge.from.position.y +
-        (ray.value.y > 0 ? -startPoint.value.y : viewportBoundingBox.value.height * (2 / 3)) +
-        props.radius * (ray.value.y > 0 ? 1 : -1)
+        (ray.value.y > 0 ? -startPoint.value.y : nodeBoundary.value.max.y * 1.15) * scale.x +
+        props.radius * (ray.value.y > 0 ? 1 : -1) +
+        props.radius * (1 + (scale.y * -Math.PI) / 2)
     );
     g.lineTo(
-      endPoint.value.x - props.radius * 2,
+      endPoint.value.x - props.radius * (2 + scale.y),
       endPoint.value.y + props.radius * (ray.value.y > 0 ? -1 : 1)
     );
     g.quadraticCurveTo(
-      endPoint.value.x - props.radius * 2,
+      endPoint.value.x - props.radius * (2 + scale.y),
       endPoint.value.y,
-      endPoint.value.x - props.radius,
+      endPoint.value.x - props.radius * (1 + scale.y),
       endPoint.value.y
     );
     g.lineTo(endPoint.value.x, endPoint.value.y);
     drawArrow(g, endPoint.value);
   } else {
-    // g.quadraticCurveTo(
-    //   startPoint.value.x + props.radius,
-    //   startPoint.value.y,
-    //   startPoint.value.x + props.radius,
-    //   startPoint.value.y + props.radius * (ray.value.y > 0 ? -1 : 1)
-    // );
-    // g.lineTo(startPoint.value.x + props.radius, delta.y * -1);
+    g.lineTo(startPoint.value.x + props.radius * ((1 + scale.y * -Math.E) / 2), startPoint.value.y);
+    g.quadraticCurveTo(
+      startPoint.value.x + props.radius + props.radius * ((1 + scale.y * -Math.E) / 2),
+      startPoint.value.y,
+      startPoint.value.x + props.radius + props.radius * ((1 + scale.y * -Math.E) / 2),
+      startPoint.value.y + props.radius * (ray.value.y > 0 ? 1 : -1)
+    );
+    g.lineTo(
+      startPoint.value.x + props.radius + props.radius * ((1 + scale.y * -Math.E) / 2),
+      ray.value.y - props.radius * 2 * (ray.value.y > 0 ? 1 : 0)
+    );
+    g.quadraticCurveTo(
+      startPoint.value.x + props.radius + props.radius * ((1 + scale.y * -Math.E) / 2),
+      ray.value.y - props.radius,
+      startPoint.value.x + props.radius * ((1 + scale.y * -Math.E) / 2),
+      ray.value.y - props.radius
+    );
+    g.lineTo(endPoint.value.x, ray.value.y - props.radius);
+    g.quadraticCurveTo(
+      endPoint.value.x - props.radius,
+      ray.value.y - props.radius,
+      endPoint.value.x - props.radius,
+      ray.value.y
+    );
+    g.lineTo(endPoint.value.x - props.radius, endPoint.value.y - props.radius);
+    g.quadraticCurveTo(
+      endPoint.value.x - props.radius,
+      endPoint.value.y,
+      endPoint.value.x,
+      endPoint.value.y
+    );
+    drawArrow(g, endPoint.value);
   }
 
   g.endFill();

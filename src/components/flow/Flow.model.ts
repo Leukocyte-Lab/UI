@@ -112,6 +112,9 @@ export namespace Flow {
         export const Size: InjectionKey<Ref<Pick<Props, 'width' | 'height'>>> = Symbol(
           'Flow.UI.Screen.Viewport.Size'
         );
+        export const NodeBoundary: InjectionKey<Ref<Record<'min' | 'max', Vec2>>> = Symbol(
+          'Flow.UI.Screen.Viewport.NodeBoundary'
+        );
 
         export interface Props {
           width: number;
