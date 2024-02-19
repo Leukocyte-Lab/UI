@@ -155,34 +155,40 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
     }
 
-    $stroke-sets: (
-        'class': 'bold',
-        'weight': var(--agh-ref-border-width-200)
-      ),
-      (
-        'class': 'normal',
-        'weight': var(--agh-ref-border-width-100)
-      ),
-      (
-        'class': 'thin',
-        'weight': var(--agh-ref-border-width-50)
-      );
-
-    @each $strokeSet in $stroke-sets {
-      &.stroke-#{map.get($strokeSet, 'class')} {
-        --box-border-width: #{map.get($strokeSet, 'weight')};
-      }
-    }
-
     &.purpose {
       &-box {
         --box-box-shadow: var(--agh-sys-effects-shadow-card);
-        --box-border-width: var(--agh-ref-border-width-100);
       }
 
       &-container {
         --box-box-shadow: var(--agh-sys-effects-shadow-container);
-        --box-border-width: var(--agh-ref-border-width-200);
+      }
+    }
+
+    $stroke-sets: (
+        'class': 'bold',
+        'weight': 200
+      ),
+      (
+        'class': 'normal',
+        'weight': 100
+      ),
+      (
+        'class': 'thin',
+        'weight': 50
+      );
+
+    @each $strokeSet in $stroke-sets {
+      &.stroke-#{map.get($strokeSet, 'class')} {
+        &.purpose {
+          &-box {
+            --box-border-width: var(--agh-ref-border-width-#{map.get($strokeSet, 'weight')});
+          }
+
+          &-container {
+            --box-border-width: var(--agh-ref-border-width-#{map.get($strokeSet, 'weight') * 2});
+          }
+        }
       }
     }
   }
