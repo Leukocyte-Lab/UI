@@ -186,6 +186,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
     @each $strokeSet in $stroke-sets {
       &.stroke-#{map.get($strokeSet, 'class')} {
         &.purpose {
+          /* stylelint-disable custom-property-pattern */
           &-box {
             --box-border-width: var(--agh-ref-border-width-#{map.get($strokeSet, 'weight')});
           }
@@ -193,6 +194,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
           &-container {
             --box-border-width: var(--agh-ref-border-width-#{map.get($strokeSet, 'weight') * 2});
           }
+          /* stylelint-enable custom-property-pattern */
         }
       }
     }
