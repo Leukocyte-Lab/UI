@@ -2,12 +2,21 @@ import { Flow } from '../Flow.model';
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<Flow.UI.Layout.Edge.Props>, {
     radius: number;
     arrowSize: number;
+    strokeWidth: number;
+    strokeColor: number;
+    strokeOpacity: number;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<Flow.UI.Layout.Edge.Props>, {
     radius: number;
     arrowSize: number;
+    strokeWidth: number;
+    strokeColor: number;
+    strokeOpacity: number;
 }>>>, {
     radius: number;
     arrowSize: number;
+    strokeWidth: string | number;
+    strokeColor: string | number;
+    strokeOpacity: string | number;
 }, {}>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;

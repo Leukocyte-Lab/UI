@@ -49,10 +49,11 @@ export declare namespace Flow {
                 }
             }
             namespace Node {
-                interface Props {
+                interface Props extends Pick<Edge.Props, 'radius' | 'arrowSize' | 'strokeWidth' | 'strokeColor' | 'strokeOpacity'> {
                     id: string;
                     name: string;
                     to?: Entity.Node.Model['id'][];
+                    active?: boolean;
                     position?: Vec2;
                     positionX?: number;
                     positionY?: number;
@@ -64,6 +65,9 @@ export declare namespace Flow {
                     edge: Entity.Edge.Model;
                     radius?: number;
                     arrowSize?: number;
+                    strokeWidth?: string | number;
+                    strokeColor?: string | number;
+                    strokeOpacity?: string | number;
                 }
             }
         }

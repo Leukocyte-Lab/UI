@@ -409,30 +409,57 @@ export declare const FlowKit: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
-            edge: {
-                type: import("vue").PropType<import("./Flow.model").Flow.Entity.Edge.Model>;
-                required: true;
-            };
             arrowSize: {
                 type: import("vue").PropType<number>;
                 default: number;
+            };
+            strokeWidth: {
+                type: import("vue").PropType<string | number>;
+                default: number;
+            };
+            strokeColor: {
+                type: import("vue").PropType<string | number>;
+                default: number;
+            };
+            strokeOpacity: {
+                type: import("vue").PropType<string | number>;
+                default: number;
+            };
+            edge: {
+                type: import("vue").PropType<import("./Flow.model").Flow.Entity.Edge.Model>;
+                required: true;
             };
         }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
             radius: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
-            edge: {
-                type: import("vue").PropType<import("./Flow.model").Flow.Entity.Edge.Model>;
-                required: true;
-            };
             arrowSize: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
+            strokeWidth: {
+                type: import("vue").PropType<string | number>;
+                default: number;
+            };
+            strokeColor: {
+                type: import("vue").PropType<string | number>;
+                default: number;
+            };
+            strokeOpacity: {
+                type: import("vue").PropType<string | number>;
+                default: number;
+            };
+            edge: {
+                type: import("vue").PropType<import("./Flow.model").Flow.Entity.Edge.Model>;
+                required: true;
+            };
         }>>, {
             radius: number;
             arrowSize: number;
+            strokeWidth: string | number;
+            strokeColor: string | number;
+            strokeOpacity: string | number;
         }, {}>;
         Node: {
             new (...args: any[]): import("vue").CreateComponentPublicInstance<Readonly<import("vue").ExtractPropTypes<{
@@ -443,17 +470,35 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                radius: {
+                    type: import("vue").PropType<number>;
+                };
+                active: {
+                    type: import("vue").PropType<boolean>;
+                };
                 name: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                arrowSize: {
+                    type: import("vue").PropType<number>;
+                };
+                strokeWidth: {
+                    type: import("vue").PropType<string | number>;
+                };
+                strokeColor: {
+                    type: import("vue").PropType<string | number>;
+                };
+                strokeOpacity: {
+                    type: import("vue").PropType<string | number>;
+                };
                 position: {
                     type: import("vue").PropType<import("../../shared").Vec2>;
                 };
-                positionY: {
+                positionX: {
                     type: import("vue").PropType<number>;
                 };
-                positionX: {
+                positionY: {
                     type: import("vue").PropType<number>;
                 };
                 relative: {
@@ -467,17 +512,35 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                radius: {
+                    type: import("vue").PropType<number>;
+                };
+                active: {
+                    type: import("vue").PropType<boolean>;
+                };
                 name: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                arrowSize: {
+                    type: import("vue").PropType<number>;
+                };
+                strokeWidth: {
+                    type: import("vue").PropType<string | number>;
+                };
+                strokeColor: {
+                    type: import("vue").PropType<string | number>;
+                };
+                strokeOpacity: {
+                    type: import("vue").PropType<string | number>;
+                };
                 position: {
                     type: import("vue").PropType<import("../../shared").Vec2>;
                 };
-                positionY: {
+                positionX: {
                     type: import("vue").PropType<number>;
                 };
-                positionX: {
+                positionY: {
                     type: import("vue").PropType<number>;
                 };
                 relative: {
@@ -498,17 +561,35 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                radius: {
+                    type: import("vue").PropType<number>;
+                };
+                active: {
+                    type: import("vue").PropType<boolean>;
+                };
                 name: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                arrowSize: {
+                    type: import("vue").PropType<number>;
+                };
+                strokeWidth: {
+                    type: import("vue").PropType<string | number>;
+                };
+                strokeColor: {
+                    type: import("vue").PropType<string | number>;
+                };
+                strokeOpacity: {
+                    type: import("vue").PropType<string | number>;
+                };
                 position: {
                     type: import("vue").PropType<import("../../shared").Vec2>;
                 };
-                positionY: {
+                positionX: {
                     type: import("vue").PropType<number>;
                 };
-                positionX: {
+                positionY: {
                     type: import("vue").PropType<number>;
                 };
                 relative: {
@@ -526,17 +607,35 @@ export declare const FlowKit: {
                 type: import("vue").PropType<string>;
                 required: true;
             };
+            radius: {
+                type: import("vue").PropType<number>;
+            };
+            active: {
+                type: import("vue").PropType<boolean>;
+            };
             name: {
                 type: import("vue").PropType<string>;
                 required: true;
             };
+            arrowSize: {
+                type: import("vue").PropType<number>;
+            };
+            strokeWidth: {
+                type: import("vue").PropType<string | number>;
+            };
+            strokeColor: {
+                type: import("vue").PropType<string | number>;
+            };
+            strokeOpacity: {
+                type: import("vue").PropType<string | number>;
+            };
             position: {
                 type: import("vue").PropType<import("../../shared").Vec2>;
             };
-            positionY: {
+            positionX: {
                 type: import("vue").PropType<number>;
             };
-            positionX: {
+            positionY: {
                 type: import("vue").PropType<number>;
             };
             relative: {

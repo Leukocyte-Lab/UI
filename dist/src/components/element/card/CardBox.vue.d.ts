@@ -6,7 +6,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     clickable: boolean;
     strokeWeight: string;
     purpose: string;
-    radius: string;
     active: boolean;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<CardBox.BaseProps>, {
     variant: string;
@@ -15,10 +14,8 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     clickable: boolean;
     strokeWeight: string;
     purpose: string;
-    radius: string;
     active: boolean;
 }>>>, {
-    radius: string;
     color: CardBox.Color;
     variant: CardBox.Variant;
     active: boolean;
