@@ -78,7 +78,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Container :position="node?.position">
+  <Container :position="node?.position" :z-index="props.active ? 10000 : 1">
     <template v-if="debugOptions?.showBoundingBox">
       <Graphics
         @render="
@@ -114,7 +114,14 @@ onMounted(() => {
     </template>
     <template v-for="[id, edge] in node?.edges" :key="id">
       <template v-if="edge.from.id === node?.id">
-        <FlowKit.Layout.Edge :edge="edge" />
+        <FlowKit.Layout.Edge
+          :edge="edge"
+          :radius="props.radius"
+          :arrow-size="props.arrowSize"
+          :stroke-width="props.strokeWidth"
+          :stroke-color="props.strokeColor"
+          :stroke-opacity="props.strokeOpacity"
+        />
       </template>
     </template>
     <External>

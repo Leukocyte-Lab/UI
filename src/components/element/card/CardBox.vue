@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 import BaseLink from '@/components/base/BaseLink.vue';
 
 import { useEventDebounceSignal } from '@/shared/libs/event';
@@ -12,9 +14,12 @@ const props = withDefaults(defineProps<CardBox.Props>(), {
   clickable: false,
   strokeWeight: 'normal',
   purpose: 'box',
-  radius: 'var(--agh-ref-border-radius-300)',
   active: false
 });
+
+const radius = computed(
+  () => props.radius ?? `var(--agh-ref-border-radius-${props.purpose === 'box' ? 300 : 500})`
+);
 
 const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
   if (!props.clickable) {
@@ -56,7 +61,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
   $self: &;
 
   &-container {
-    --box-border-radius: v-bind('props.radius');
+    --box-border-radius: v-bind('radius');
 
     position: relative;
     width: fit-content;
@@ -155,34 +160,42 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
     }
 
-    $stroke-sets: (
-        'class': 'bold',
-        'weight': var(--agh-ref-border-width-200)
-      ),
-      (
-        'class': 'normal',
-        'weight': var(--agh-ref-border-width-100)
-      ),
-      (
-        'class': 'thin',
-        'weight': var(--agh-ref-border-width-50)
-      );
-
-    @each $strokeSet in $stroke-sets {
-      &.stroke-#{map.get($strokeSet, 'class')} {
-        --box-border-width: #{map.get($strokeSet, 'weight')};
-      }
-    }
-
     &.purpose {
       &-box {
         --box-box-shadow: var(--agh-sys-effects-shadow-card);
-        --box-border-width: var(--agh-ref-border-width-100);
       }
 
       &-container {
         --box-box-shadow: var(--agh-sys-effects-shadow-container);
-        --box-border-width: var(--agh-ref-border-width-200);
+      }
+    }
+
+    $stroke-sets: (
+        'class': 'bold',
+        'weight': 200
+      ),
+      (
+        'class': 'normal',
+        'weight': 100
+      ),
+      (
+        'class': 'thin',
+        'weight': 50
+      );
+
+    @each $strokeSet in $stroke-sets {
+      &.stroke-#{map.get($strokeSet, 'class')} {
+        &.purpose {
+          /* stylelint-disable custom-property-pattern */
+          &-box {
+            --box-border-width: var(--agh-ref-border-width-#{map.get($strokeSet, 'weight')});
+          }
+
+          &-container {
+            --box-border-width: var(--agh-ref-border-width-#{map.get($strokeSet, 'weight') * 2});
+          }
+          /* stylelint-enable custom-property-pattern */
+        }
       }
     }
   }

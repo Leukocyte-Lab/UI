@@ -41,8 +41,8 @@ export default {
     },
     radius: {
       control: 'string',
-      description: 'Card radius (optional)',
-      defaultValue: 'var(--agh-ref-border-radius-300)'
+      description:
+        'Card radius (optional), default `var(--agh-ref-border-radius-500)` when `purpose` is `container`, otherwise `var(--agh-ref-border-radius-300)`'
     },
     clickable: {
       control: 'boolean',
@@ -77,13 +77,12 @@ DefaultCardBox.args = {
   color: 'default',
   hasStroke: true,
   clickable: false,
-  strokeWeight: 'normal',
-  radius: 'var(--agh-ref-border-radius-300)'
+  strokeWeight: 'normal'
 };
 
 export const MetallicDefaultCardBox = Template.bind({});
 MetallicDefaultCardBox.args = {
-  ...DefaultCardBox.args,
+  ...DefaultCardBox.args
 };
 
 export const FlatDefaultCardBox = Template.bind({});

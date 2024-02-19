@@ -90,7 +90,7 @@ const Template: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
       <FlowKit.Screen.Window v-bind="args">
         <template v-for="node in args.graph">
           <FlowKit.Layout.Node v-bind="node">
-            <CardBox data-demo-content style="width: 240px; height: 120px;">
+            <CardBox data-demo-content :style="{width: '240px', height: '120px'}">
               <p>#{{ node.id }}</p>
               <h1>{{ node.name }}</h1>
             </CardBox>
@@ -101,8 +101,37 @@ const Template: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
   `
 });
 
-export const Flow = Template.bind({});
-Flow.args = {
+const ActiveTemplate: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
+  components: {
+    'FlowKit.Screen.Window': FlowKit.Screen.Window,
+    'FlowKit.Layout.Node': FlowKit.Layout.Node,
+    CardBox
+  },
+  setup() {
+    return { args };
+  },
+  template: `
+    <div style="width: 800px; height: 720px; padding: 32px; box-sizing: content-box;">
+      <FlowKit.Screen.Window v-bind="args">
+        <template v-for="node in args.graph">
+          <FlowKit.Layout.Node
+            v-bind="node"
+            :active="node.id === 'node-05'"
+            :stroke-color="node.id === 'node-05' ? 'var(--agh-ref-color-cyan-500)' : 'var(--agh-ref-color-grayscale-600)'"
+            :stroke-width="node.id === 'node-05' ? 'var(--agh-ref-border-width-100)' : 1"
+          >
+            <CardBox data-demo-content :style="{width: '240px', height: '120px', outline: node.id === 'node-05' ? 'var(--agh-ref-border-width-200) solid var(--agh-ref-color-cyan-500)' : none}">
+              <p>#{{ node.id }}</p>
+              <h1>{{ node.name }}</h1>
+            </CardBox>
+          </FlowKit.Layout.Node>
+        </template>
+      </FlowKit.Screen.Window>
+    </div>
+  `
+});
+
+const args = {
   devtools: true,
   toolbar: true,
   toolbarPosition: 'bottom-right',
@@ -188,3 +217,9 @@ Flow.args = {
     }
   ]
 };
+
+export const Flow = Template.bind({});
+Flow.args = args;
+
+export const ActiveFlow = ActiveTemplate.bind({});
+ActiveFlow.args = args;

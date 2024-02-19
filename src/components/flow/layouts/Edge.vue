@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, inject, toRef } from 'vue';
-import { computedInject } from '@vueuse/core';
-import { LINE_CAP, LINE_JOIN } from 'pixi.js';
+import { computed, inject, toRef, ref, onBeforeUnmount } from 'vue';
+import { computedInject, useMutationObserver } from '@vueuse/core';
+import { Color, LINE_CAP, LINE_JOIN } from 'pixi.js';
 
 import type { GraphicsInst } from 'vue3-pixi';
 
@@ -14,14 +14,6 @@ import { signal } from '@/shared/libs/signal';
 import type { Vec2 } from '@/shared/types/vector';
 
 const debugOptions = inject(Flow.UI.Debugger.InjectionKey);
-const viewportBoundingBox = computedInject(
-  Flow.UI.Screen.Viewport.Size,
-  (size) => size?.value,
-  toRef({
-    width: 0,
-    height: 0
-  })
-);
 const nodeBoundary = computedInject(
   Flow.UI.Screen.Viewport.NodeBoundary,
   (boundary) => boundary?.value,
@@ -30,10 +22,18 @@ const nodeBoundary = computedInject(
     max: { x: 0, y: 0 }
   })
 );
+
 const props = withDefaults(defineProps<Flow.UI.Layout.Edge.Props>(), {
   radius: 16,
-  arrowSize: 5
+  arrowSize: 5,
+  strokeWidth: 1,
+  strokeColor: 0x000000,
+  strokeOpacity: 1
 });
+
+const strokeColor = ref(new Color(0x000000));
+const strokeOpacity = ref(0);
+const strokeWidth = ref(1);
 
 const showInspectInfo = signal(false);
 
@@ -45,16 +45,48 @@ const startPoint = computed<Vec2>(() => ({
   y: props.edge.from.boundingBox.height / 2
 }));
 const endPoint = computed<Vec2>(() => ({
-  x: ray.value.x ?? 0,
+  x: (ray.value.x ?? 0) - props.radius / 4,
   y: (ray.value.y ?? 0) + (props.edge.to?.boundingBox.height ?? 0) / 2
 }));
+
+const tokenStyleObserver = useMutationObserver(
+  document.head,
+  () => {
+    strokeColor.value = new Color(
+      `${props.strokeColor}`.startsWith('var(--')
+        ? globalThis
+            .getComputedStyle(document.documentElement)
+            .getPropertyValue(`${props.strokeColor}`.replace(/^var\((.+)\)$/, '$1')) || 0x000000
+        : props.strokeColor
+    );
+    strokeOpacity.value = Number(
+      `${props.strokeOpacity}`.startsWith('var(--')
+        ? globalThis
+            .getComputedStyle(document.documentElement)
+            .getPropertyValue(`${props.strokeOpacity}`.replace(/^var\((.+)\)$/, '$1'))
+        : props.strokeOpacity ?? strokeColor.value.alpha
+    );
+    strokeWidth.value = parseFloat(
+      String(
+        `${props.strokeWidth}`.startsWith('var(--')
+          ? globalThis
+              .getComputedStyle(document.documentElement)
+              .getPropertyValue(`${props.strokeWidth}`.replace(/^var\((.+)\)$/, '$1'))
+          : props.strokeWidth ?? 1
+      )
+    );
+  },
+  {
+    childList: true
+  }
+);
 
 const drawPath = (g: GraphicsInst) => {
   g.clear();
   g.lineStyle({
-    width: 1,
-    color: 0x000000,
-    alpha: 1,
+    width: strokeWidth.value,
+    color: strokeColor.value.toHex(),
+    alpha: strokeOpacity.value,
     alignment: 0.5,
     cap: LINE_CAP.ROUND,
     join: LINE_JOIN.ROUND
@@ -207,6 +239,10 @@ const mouseHandler = ($event: MouseEvent) => {
     showInspectInfo.set(false);
   }
 };
+
+onBeforeUnmount(() => {
+  tokenStyleObserver.stop();
+});
 </script>
 
 <template>
@@ -295,4 +331,3 @@ const mouseHandler = ($event: MouseEvent) => {
   </template>
   <Graphics @render="drawPath" @mouseover="mouseHandler" @mouseleave="mouseHandler" />
 </template>
-
