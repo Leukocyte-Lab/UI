@@ -328,6 +328,8 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
 <template>
   <Container
     ref="viewportRef$"
+    :sortable-children="true"
+    :sort-dirty="true"
     :width="viewportBoundingBox.width"
     :height="viewportBoundingBox.height"
   >
