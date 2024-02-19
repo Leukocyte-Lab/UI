@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 import BaseLink from '@/components/base/BaseLink.vue';
 
 import { useEventDebounceSignal } from '@/shared/libs/event';
@@ -12,9 +14,12 @@ const props = withDefaults(defineProps<CardBox.Props>(), {
   clickable: false,
   strokeWeight: 'normal',
   purpose: 'box',
-  radius: 'var(--agh-ref-border-radius-300)',
   active: false
 });
+
+const radius = computed(
+  () => props.radius ?? `var(--agh-ref-border-radius-${props.purpose === 'box' ? 300 : 500})`
+);
 
 const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
   if (!props.clickable) {
@@ -56,7 +61,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
   $self: &;
 
   &-container {
-    --box-border-radius: v-bind('props.radius');
+    --box-border-radius: v-bind('radius');
 
     position: relative;
     width: fit-content;
