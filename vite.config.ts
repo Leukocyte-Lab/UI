@@ -27,7 +27,8 @@ export default defineConfig(({ mode }) => ({
       entry: {
         shared: resolve(__dirname, 'src/shared/index.ts'),
         component: resolve(__dirname, 'src/components/index.ts'),
-        middleware: resolve(__dirname, 'src/middleware/index.ts')
+        flow: resolve(__dirname, 'src/components/flow/index.ts'),
+        middleware: resolve(__dirname, 'src/middleware/index.ts'),
       },
       name: 'UI',
       // the proper extensions will be added
