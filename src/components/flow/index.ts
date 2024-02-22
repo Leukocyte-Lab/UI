@@ -5,6 +5,8 @@ import Edge from '@/components/flow/layouts/Edge.vue';
 import Node from '@/components/flow/layouts/Node.vue';
 import DevTool from '@/components/flow/helpers/DevTool.vue';
 
+export type { Flow } from '@/components/flow/Flow.model';
+
 export const FlowKit = {
   Screen: {
     Window,

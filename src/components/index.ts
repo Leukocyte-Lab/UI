@@ -29,10 +29,6 @@ import DropDown from './element/dropdown/DropDown.vue';
 import InnerShadowDeco from '@/components/effect/InnerShadowDeco.vue';
 import RoundEffect from '@/components/effect/RoundEffect.vue';
 
-// flow
-import { FlowKit } from '@/components/flow';
-import type { Flow } from '@/components/flow/Flow.model';
-
 // file
 import FileUploader from './element/file/FileUploader.vue';
 
@@ -98,9 +94,6 @@ export {
   // file
   FileUploader,
 
-  // flow
-  FlowKit,
-
   // icon
   LoadingIcon,
 
@@ -127,9 +120,4 @@ export {
 
   // exclusive
   AttackMatrix
-};
-
-export type {
-  // flow
-  Flow
 };
