@@ -1,1 +1,0 @@
-import{a as i,g as e,m as s,k as o}from"./_mapToArray-5TYfOcUK.js";function u(t,r){return i(r,function(a){return[a,t[a]]})}function f(t){var r=-1,a=Array(t.size);return t.forEach(function(n){a[++r]=[n,n]}),a}var T="[object Map]",c="[object Set]";function g(t){return function(r){var a=e(r);return a==T?s(r):a==c?f(r):u(r,t(r))}}var m=g(o);export{m as t};
