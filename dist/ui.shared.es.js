@@ -1,19 +1,17 @@
-import { H as n, M as p, N as U, S as c, U as l, c as u, p as m, b as x, s as D, u as b, a as d } from "./parser-Sn6g4_I3.js";
-import "vue";
-import "./i18n.service-qhV3M78j.js";
-const t = (s, a) => s ?? a;
+import { H as n, M as r, N as U, S as c, U as i, c as l, p as u, b as p, s as x, u as D, a as b } from "./parser-DcmpGuup.js";
+const e = (s, a) => s ?? a;
 export {
   n as Hex2UUID,
-  p as Math$,
+  r as Math$,
   U as NilUUID,
   c as String$,
-  l as UUID2Hex,
-  u as computed,
-  m as parser,
-  x as selector,
-  D as signal,
-  b as useEventDebounceSignal,
-  t as useFallback,
-  d as uuid
+  i as UUID2Hex,
+  l as computed,
+  u as parser,
+  p as selector,
+  x as signal,
+  D as useEventDebounceSignal,
+  e as useFallback,
+  b as uuid
 };
 //# sourceMappingURL=ui.shared.es.js.map

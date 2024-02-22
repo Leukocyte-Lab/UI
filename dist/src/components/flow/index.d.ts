@@ -1,3 +1,4 @@
+export type { Flow } from '../../components/flow/Flow.model';
 export declare const FlowKit: {
     Screen: {
         Window: {
@@ -11,7 +12,7 @@ export declare const FlowKit: {
                     default: boolean;
                 };
                 debugOptions: {
-                    type: import("vue").PropType<import("./Flow.model").Flow.UI.Debugger.Options>;
+                    type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
                 };
                 devtools: {
                     type: import("vue").PropType<boolean>;
@@ -26,7 +27,7 @@ export declare const FlowKit: {
                     default: boolean;
                 };
                 toolbarPosition: {
-                    type: import("vue").PropType<import("./Flow.model").Flow.UI.Layout.Toolbar.Position>;
+                    type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position>;
                     default: string;
                 };
                 toolbarDirection: {
@@ -47,7 +48,7 @@ export declare const FlowKit: {
                     default: boolean;
                 };
                 debugOptions: {
-                    type: import("vue").PropType<import("./Flow.model").Flow.UI.Debugger.Options>;
+                    type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
                 };
                 devtools: {
                     type: import("vue").PropType<boolean>;
@@ -62,7 +63,7 @@ export declare const FlowKit: {
                     default: boolean;
                 };
                 toolbarPosition: {
-                    type: import("vue").PropType<import("./Flow.model").Flow.UI.Layout.Toolbar.Position>;
+                    type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position>;
                     default: string;
                 };
                 toolbarDirection: {
@@ -79,7 +80,7 @@ export declare const FlowKit: {
                 devtools: boolean;
                 toolbar: boolean;
                 zoomable: boolean;
-                toolbarPosition: import("./Flow.model").Flow.UI.Layout.Toolbar.Position;
+                toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
                 toolbarDirection: "vertical" | "horizontal";
                 acceleration: WebGLPowerPreference;
             }, true, {}, {}, {
@@ -99,7 +100,7 @@ export declare const FlowKit: {
                     default: boolean;
                 };
                 debugOptions: {
-                    type: import("vue").PropType<import("./Flow.model").Flow.UI.Debugger.Options>;
+                    type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
                 };
                 devtools: {
                     type: import("vue").PropType<boolean>;
@@ -114,7 +115,7 @@ export declare const FlowKit: {
                     default: boolean;
                 };
                 toolbarPosition: {
-                    type: import("vue").PropType<import("./Flow.model").Flow.UI.Layout.Toolbar.Position>;
+                    type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position>;
                     default: string;
                 };
                 toolbarDirection: {
@@ -131,7 +132,7 @@ export declare const FlowKit: {
                 devtools: boolean;
                 toolbar: boolean;
                 zoomable: boolean;
-                toolbarPosition: import("./Flow.model").Flow.UI.Layout.Toolbar.Position;
+                toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
                 toolbarDirection: "vertical" | "horizontal";
                 acceleration: WebGLPowerPreference;
             }>;
@@ -148,7 +149,7 @@ export declare const FlowKit: {
                 default: boolean;
             };
             debugOptions: {
-                type: import("vue").PropType<import("./Flow.model").Flow.UI.Debugger.Options>;
+                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
             };
             devtools: {
                 type: import("vue").PropType<boolean>;
@@ -163,7 +164,7 @@ export declare const FlowKit: {
                 default: boolean;
             };
             toolbarPosition: {
-                type: import("vue").PropType<import("./Flow.model").Flow.UI.Layout.Toolbar.Position>;
+                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position>;
                 default: string;
             };
             toolbarDirection: {
@@ -180,7 +181,7 @@ export declare const FlowKit: {
             devtools: boolean;
             toolbar: boolean;
             zoomable: boolean;
-            toolbarPosition: import("./Flow.model").Flow.UI.Layout.Toolbar.Position;
+            toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
             toolbarDirection: "vertical" | "horizontal";
             acceleration: WebGLPowerPreference;
         }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
@@ -227,11 +228,11 @@ export declare const FlowKit: {
                     type: import("vue").PropType<boolean>;
                 };
                 debugOptions: {
-                    type: import("vue").PropType<import("./Flow.model").Flow.UI.Debugger.Options>;
+                    type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
                 };
             }>>, {
-                nodes: import("vue").Ref<Map<string, import("./Flow.model").Flow.Entity.Node.Model>>;
-                edges: import("vue").Ref<Map<`${string}->${string}`, import("./Flow.model").Flow.Entity.Edge.Model>>;
+                nodes: import("vue").Ref<Map<string, import("../../components/flow/Flow.model").Flow.Entity.Node.Model>>;
+                edges: import("vue").Ref<Map<`${string}->${string}`, import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>>;
                 isPanning: import("vue").Ref<boolean | "ready">;
             }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
                 height: {
@@ -265,7 +266,7 @@ export declare const FlowKit: {
                     type: import("vue").PropType<boolean>;
                 };
                 debugOptions: {
-                    type: import("vue").PropType<import("./Flow.model").Flow.UI.Debugger.Options>;
+                    type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
                 };
             }>>, {
                 gap: number | import("../../shared").Vec2;
@@ -309,11 +310,11 @@ export declare const FlowKit: {
                     type: import("vue").PropType<boolean>;
                 };
                 debugOptions: {
-                    type: import("vue").PropType<import("./Flow.model").Flow.UI.Debugger.Options>;
+                    type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
                 };
             }>>, {
-                nodes: import("vue").Ref<Map<string, import("./Flow.model").Flow.Entity.Node.Model>>;
-                edges: import("vue").Ref<Map<`${string}->${string}`, import("./Flow.model").Flow.Entity.Edge.Model>>;
+                nodes: import("vue").Ref<Map<string, import("../../components/flow/Flow.model").Flow.Entity.Node.Model>>;
+                edges: import("vue").Ref<Map<`${string}->${string}`, import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>>;
                 isPanning: import("vue").Ref<boolean | "ready">;
             }, {}, {}, {}, {
                 gap: number | import("../../shared").Vec2;
@@ -354,11 +355,11 @@ export declare const FlowKit: {
                 type: import("vue").PropType<boolean>;
             };
             debugOptions: {
-                type: import("vue").PropType<import("./Flow.model").Flow.UI.Debugger.Options>;
+                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
             };
         }>>, {
-            nodes: import("vue").Ref<Map<string, import("./Flow.model").Flow.Entity.Node.Model>>;
-            edges: import("vue").Ref<Map<`${string}->${string}`, import("./Flow.model").Flow.Entity.Edge.Model>>;
+            nodes: import("vue").Ref<Map<string, import("../../components/flow/Flow.model").Flow.Entity.Node.Model>>;
+            edges: import("vue").Ref<Map<`${string}->${string}`, import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>>;
             isPanning: import("vue").Ref<boolean | "ready">;
         }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
             gap: number | import("../../shared").Vec2;
@@ -381,7 +382,7 @@ export declare const FlowKit: {
                 type: import("vue").PropType<boolean>;
             };
             position: {
-                type: import("vue").PropType<import("./Flow.model").Flow.UI.Layout.Toolbar.Position>;
+                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position>;
                 default: string;
             };
             direction: {
@@ -393,7 +394,7 @@ export declare const FlowKit: {
                 type: import("vue").PropType<boolean>;
             };
             position: {
-                type: import("vue").PropType<import("./Flow.model").Flow.UI.Layout.Toolbar.Position>;
+                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position>;
                 default: string;
             };
             direction: {
@@ -401,7 +402,7 @@ export declare const FlowKit: {
                 default: string;
             };
         }>>, {
-            position: import("./Flow.model").Flow.UI.Layout.Toolbar.Position;
+            position: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
             direction: "vertical" | "horizontal";
         }, {}>;
         Edge: import("vue").DefineComponent<{
@@ -426,7 +427,7 @@ export declare const FlowKit: {
                 default: number;
             };
             edge: {
-                type: import("vue").PropType<import("./Flow.model").Flow.Entity.Edge.Model>;
+                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>;
                 required: true;
             };
         }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
@@ -451,7 +452,7 @@ export declare const FlowKit: {
                 default: number;
             };
             edge: {
-                type: import("vue").PropType<import("./Flow.model").Flow.Entity.Edge.Model>;
+                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>;
                 required: true;
             };
         }>>, {
