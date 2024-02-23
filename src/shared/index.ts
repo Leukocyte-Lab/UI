@@ -6,6 +6,7 @@ import { useEventDebounceSignal } from './libs/event';
 import { signal, computed } from './libs/signal';
 import Math$ from './libs/math';
 import String$ from './libs/string';
+import Map$ from './libs/map';
 import uuid, { NilUUID, Hex2UUID, UUID2Hex } from './libs/uuid';
 import { selector } from './libs/selector';
 import { parser } from './libs/parser';
@@ -14,6 +15,7 @@ import { parser } from './libs/parser';
 import type { UUID, HexUUID } from './libs/uuid';
 import type { EventSignalOptions } from './libs/event';
 import type { Signal } from './libs/signal';
+import type { MapProxy } from './libs/map';
 import type { Callback, EventCallback } from './types/callback';
 import type { HasUUID, HasHexUUID, HasID } from './types/id';
 import type { ObjectLike } from './types/object';
@@ -42,6 +44,7 @@ export {
   computed,
   Math$,
   String$,
+  Map$,
   uuid,
   NilUUID,
   Hex2UUID,
@@ -78,6 +81,7 @@ export type {
   MustHas,
   Writeable,
   MaybeArray,
+  MapProxy,
   UUID,
   HexUUID
 };
