@@ -56,6 +56,9 @@ import SwitchButton from './element/switch/SwitchButton.vue';
 // list
 import CardList from './layout/list/CardList.vue';
 
+// tab-group
+import TabGroup from './layout/tab/TabGroup.vue';
+
 // exclusive
 import AttackMatrix from './exclusive/AttackMatrix.vue';
 
@@ -117,6 +120,9 @@ export {
   // layout
   // list
   CardList,
+
+  // tab-group
+  TabGroup,
 
   // exclusive
   AttackMatrix
