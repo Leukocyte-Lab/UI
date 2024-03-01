@@ -5,6 +5,7 @@ import { Icon } from '@iconify/vue/offline';
 import type { VNode } from 'vue';
 
 import type { TabGroup } from '@/components/layout/tab/TabGroup.model';
+import { useElementSize } from '@vueuse/core';
 
 const slots = defineSlots<{
   [key: TabGroup.Tab.Model['id']]: (props: {
@@ -35,17 +36,29 @@ const selected = defineModel<TabGroup.Tab.Model>({
   }
 });
 
+const tabRefs$ = ref<HTMLElement[]>([]);
+
 const _selected = ref<TabGroup.Tab.Model | undefined>(undefined);
+const oldIndex = ref<number | null>(null);
+
 const selectedIndex = computed(() =>
   selected.value ? [...tabs.value.keys()].indexOf(selected.value.id) ?? 0 : 0
 );
-const oldIndex = ref<number | null>(null);
 const animateDirection = computed(() =>
   (oldIndex.value ?? selectedIndex.value) <= selectedIndex.value ? 'left' : 'right'
 );
-
 const tabs = computed(() =>
   Array.isArray(props.tabs) ? new Map(props.tabs.map((tab) => [tab.id, tab])) : props.tabs
+);
+const decoBarWidth = computed(() =>
+  tabRefs$.value[selectedIndex.value]
+    ? useElementSize(tabRefs$.value[selectedIndex.value]).width.value
+    : 0
+);
+const decoBarOffset = computed(() =>
+  tabRefs$.value
+    .slice(0, selectedIndex.value)
+    .reduce((acc, tab) => acc + useElementSize(tab).width.value, 0)
 );
 
 const selectTab = (tab: TabGroup.Tab.Model) => {
@@ -66,6 +79,7 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
     >
       <template v-for="[id, tab] in tabs" :key="id">
         <div
+          ref="tabRefs$"
           :class="[
             $style['tab-group'],
             $style.wrapper,
@@ -109,6 +123,15 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
 @use '@/assets/styles/modules/transition.module' as transition;
 
 .tab-group {
+  &-container {
+    &,
+    *,
+    *::before,
+    &::after {
+      box-sizing: border-box;
+    }
+  }
+
   &-wrapper {
     --wrapper-gap: 0;
 
@@ -133,6 +156,21 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
         --default-border-color: #{list.nth($default, 2)};
       }
     }
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: calc(v-bind('decoBarOffset') * 1px);
+      width: calc(v-bind('decoBarWidth') * 1px);
+      height: var(--agh-ref-border-width-100);
+      background-color: var(--highlight-border-color);
+      z-index: 1;
+      transition:
+        width 0.2s cubic-bezier(0.075, 0.82, 0.165, 1),
+        left 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+      will-change: width, left;
+    }
   }
 
   &-viewport {
@@ -148,8 +186,6 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
   place-items: center;
 
   &.active {
-    border-color: var(--highlight-border-color);
-
     &,
     p,
     .icon {
@@ -161,6 +197,8 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
   p,
   .icon {
     color: var(--agh-ref-color-grayscale-600);
+    transition: color ease-in-out 0.1s;
+    will-change: color;
   }
 
   p {
