@@ -22,5 +22,6 @@ import TextArea from './element/textarea/TextArea.vue';
 import TextField from './element/textfield/TextField.vue';
 import SwitchButton from './element/switch/SwitchButton.vue';
 import CardList from './layout/list/CardList.vue';
+import TabGroup from './layout/tab/TabGroup.vue';
 import AttackMatrix from './exclusive/AttackMatrix.vue';
-export { BaseLink, BaseList, BasePoly, BadgeBox, ButtonBox, CardBox, DoughnutChart, LineChart, MatrixChart, RadarChart, DatetimePicker, DropDown, InnerShadowDeco, RoundEffect, FileUploader, LoadingIcon, SelectMenu, ProgressBar, ProgressCircle, SearchBar, TextArea, TextField, SwitchButton, CardList, AttackMatrix };
+export { BaseLink, BaseList, BasePoly, BadgeBox, ButtonBox, CardBox, DoughnutChart, LineChart, MatrixChart, RadarChart, DatetimePicker, DropDown, InnerShadowDeco, RoundEffect, FileUploader, LoadingIcon, SelectMenu, ProgressBar, ProgressCircle, SearchBar, TextArea, TextField, SwitchButton, CardList, TabGroup, AttackMatrix };

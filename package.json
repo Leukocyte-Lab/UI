@@ -21,6 +21,11 @@
       "require": "./dist/ui.component.cjs.js",
       "types": "./dist/src/components/index.d.ts"
     },
+    "./flow": {
+      "import": "./dist/ui.flow.es.js",
+      "require": "./dist/ui.flow.cjs.js",
+      "types": "./dist/src/flow/index.d.ts"
+    },
     "./middleware": {
       "import": "./dist/ui.middleware.es.js",
       "require": "./dist/ui.middleware.cjs.js",
