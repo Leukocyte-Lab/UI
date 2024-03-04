@@ -41,7 +41,7 @@
     "./flow": {
       "import": "./dist/ui.flow.es.js",
       "require": "./dist/ui.flow.cjs.js",
-      "types": "./dist/src/flow/index.d.ts"
+      "types": "./dist/src/components/flow/index.d.ts"
     },
     "./middleware": {
       "import": "./dist/ui.middleware.es.js",
