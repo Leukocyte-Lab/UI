@@ -59,6 +59,9 @@ import CardList from './layout/list/CardList.vue';
 // tab-group
 import TabGroup from './layout/tab/TabGroup.vue';
 
+// timeline
+import Timeline from './layout/timeline/Timeline.vue';
+
 // exclusive
 import AttackMatrix from './exclusive/AttackMatrix.vue';
 
@@ -123,6 +126,9 @@ export {
 
   // tab-group
   TabGroup,
+
+  // timeline
+  Timeline,
 
   // exclusive
   AttackMatrix
