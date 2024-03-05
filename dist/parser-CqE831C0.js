@@ -1,5 +1,5 @@
 import { shallowRef as Dt, triggerRef as et, computed as tt } from "vue";
-import { u as Ft } from "./i18n.service-CTxaRhXo.js";
+import { u as Ft } from "./i18n.service-4W5HT8k4.js";
 const rt = (u) => {
   const D = Dt(u), e = () => D.value;
   return e.set = (t) => {
@@ -5519,4 +5519,4 @@ export {
   Nr as y,
   he as z
 };
-//# sourceMappingURL=parser-DcmpGuup.js.map
+//# sourceMappingURL=parser-CqE831C0.js.map

@@ -1,0 +1,42 @@
+class i extends Map {
+  constructor(r) {
+    super(r);
+  }
+  find(r, s) {
+    for (const [e, t] of this)
+      if (r.call(s, t, e, this))
+        return [e, t];
+  }
+  findKey(r, s) {
+    for (const [e, t] of this)
+      if (r.call(s, t, e, this))
+        return e;
+  }
+  findValue(r, s) {
+    for (const [e, t] of this)
+      if (r.call(s, t, e, this))
+        return t;
+  }
+  toArray(r) {
+    switch (r) {
+      case "entries":
+        return Array.from(this.entries());
+      case "keys":
+        return Array.from(this.keys());
+      case "values":
+        return Array.from(this.values());
+      default:
+        return Array.from(this.entries());
+    }
+  }
+  toObject() {
+    return Object.fromEntries(this.entries());
+  }
+  static fromObject(r) {
+    return new i(Object.entries(r));
+  }
+}
+export {
+  i as M
+};
+//# sourceMappingURL=map-Bg5_votD.js.map
