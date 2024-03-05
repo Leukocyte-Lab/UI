@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, inject, toRef, ref, onBeforeUnmount } from 'vue';
+import { computed, inject, toRef, ref, onBeforeUnmount, onMounted } from 'vue';
 import { computedInject, useMutationObserver } from '@vueuse/core';
 import { Color, LINE_CAP, LINE_JOIN } from 'pixi.js';
 
@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<Flow.UI.Layout.Edge.Props>(), {
 });
 
 const strokeColor = ref(new Color(0x000000));
-const strokeOpacity = ref(0);
+const strokeOpacity = ref(1);
 const strokeWidth = ref(1);
 
 const showInspectInfo = signal(false);
@@ -49,37 +49,31 @@ const endPoint = computed<Vec2>(() => ({
   y: (ray.value.y ?? 0) + (props.edge.to?.boundingBox.height ?? 0) / 2
 }));
 
-const tokenStyleObserver = useMutationObserver(
-  document.head,
-  () => {
-    strokeColor.value = new Color(
-      `${props.strokeColor}`.startsWith('var(--')
+const fetchToken = () => {
+  strokeColor.value = new Color(
+    `${props.strokeColor}`.startsWith('var(--')
+      ? globalThis
+          .getComputedStyle(document.documentElement)
+          .getPropertyValue(`${props.strokeColor}`.replace(/^var\((.+)\)$/, '$1')) || 0x000000
+      : props.strokeColor
+  );
+  strokeOpacity.value = Number(
+    `${props.strokeOpacity}`.startsWith('var(--')
+      ? globalThis
+          .getComputedStyle(document.documentElement)
+          .getPropertyValue(`${props.strokeOpacity}`.replace(/^var\((.+)\)$/, '$1'))
+      : props.strokeOpacity ?? strokeColor.value.alpha
+  );
+  strokeWidth.value = parseFloat(
+    String(
+      `${props.strokeWidth}`.startsWith('var(--')
         ? globalThis
             .getComputedStyle(document.documentElement)
-            .getPropertyValue(`${props.strokeColor}`.replace(/^var\((.+)\)$/, '$1')) || 0x000000
-        : props.strokeColor
-    );
-    strokeOpacity.value = Number(
-      `${props.strokeOpacity}`.startsWith('var(--')
-        ? globalThis
-            .getComputedStyle(document.documentElement)
-            .getPropertyValue(`${props.strokeOpacity}`.replace(/^var\((.+)\)$/, '$1'))
-        : props.strokeOpacity ?? strokeColor.value.alpha
-    );
-    strokeWidth.value = parseFloat(
-      String(
-        `${props.strokeWidth}`.startsWith('var(--')
-          ? globalThis
-              .getComputedStyle(document.documentElement)
-              .getPropertyValue(`${props.strokeWidth}`.replace(/^var\((.+)\)$/, '$1'))
-          : props.strokeWidth ?? 1
-      )
-    );
-  },
-  {
-    childList: true
-  }
-);
+            .getPropertyValue(`${props.strokeWidth}`.replace(/^var\((.+)\)$/, '$1'))
+        : props.strokeWidth ?? 1
+    )
+  );
+};
 
 const drawPath = (g: GraphicsInst) => {
   g.clear();
@@ -239,6 +233,14 @@ const mouseHandler = ($event: MouseEvent) => {
     showInspectInfo.set(false);
   }
 };
+
+const tokenStyleObserver = useMutationObserver(document.head, fetchToken, {
+  childList: true
+});
+
+onMounted(() => {
+  fetchToken();
+})
 
 onBeforeUnmount(() => {
   tokenStyleObserver.stop();
