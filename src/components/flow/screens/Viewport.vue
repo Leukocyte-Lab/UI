@@ -41,13 +41,28 @@ const stageOffset = ref<Vec2>({
 const calcReactiveViewportSize = (dimension: 'width' | 'height') =>
   Math.max(
     ((nodes, axis: keyof Vec2) =>
-      Object.values(groupBy(nodes, `relativePosition.${axis}`)).reduce(
-        (size, nodes, index) =>
-          size +
-          Math.max(...map(nodes, `boundingBox.${dimension}`)) +
-          (index === 0 ? 2 : 1) * (Number(props.gap) || (props.gap as Vec2)[axis]),
-        0
-      ))([...(nodes.value?.values() ?? [])], dimension === 'width' ? 'x' : 'y'),
+      dimension === 'width'
+        ? nodes.reduce(
+            (size: number, nodes: Flow.Entity.Node.Model[], index: number): number =>
+              size +
+              Math.max(...map(nodes, `boundingBox.${dimension}`)) +
+              (index === 0 ? 2 : 1) * (Number(props.gap) || (props.gap as Vec2)[axis]),
+            0
+          )
+        : Math.max(
+            ...nodes.map((nodes) =>
+              nodes.reduce(
+                (size: number, node: Flow.Entity.Node.Model, index: number): number =>
+                  size +
+                  node.boundingBox[dimension] +
+                  (index === 0 ? 2 : 1) * (Number(props.gap) || (props.gap as Vec2)[axis]),
+                dimension === 'height' ? 2 * (Number(props.gap) || (props.gap as Vec2)[axis]) : 0
+              )
+            )
+          ))(
+      Object.values(groupBy([...(nodes.value?.values() ?? [])], 'relativePosition.x')),
+      dimension === 'width' ? 'x' : 'y'
+    ),
     props[dimension]
   );
 
@@ -191,15 +206,11 @@ const handleMovement = (movement: Vec2) => {
       y: stage.position.y + movement.y
     };
     const clamped = {
-      x: Math$.clamp(
-        origin.x,
-        props.width - viewportBoundingBox.value.width,
-        (viewportBoundingBox.value.width - props.width) / 4
-      ),
+      x: Math$.clamp(origin.x, props.width - viewportBoundingBox.value.width, 0),
       y: Math$.clamp(
         origin.y,
-        (props.height - viewportBoundingBox.value.height) / 4,
-        (viewportBoundingBox.value.height - props.height) / 4
+        (props.height - viewportBoundingBox.value.height) / 2,
+        (viewportBoundingBox.value.height - props.height) / 2
       )
     };
 
@@ -224,12 +235,12 @@ const handleMovement = (movement: Vec2) => {
         x: Math$.clamp(
           origin.x,
           props.width - viewportBoundingBox.value.width - overMoveThreshold,
-          (viewportBoundingBox.value.width - props.width) / 4 + overMoveThreshold
+          overMoveThreshold
         ),
         y: Math$.clamp(
           origin.y,
-          (props.height - viewportBoundingBox.value.height) / 4 - overMoveThreshold,
-          (viewportBoundingBox.value.height - props.height) / 4 + overMoveThreshold
+          (props.height - viewportBoundingBox.value.height) / 2 - overMoveThreshold,
+          (viewportBoundingBox.value.height - props.height) / 2 + overMoveThreshold
         )
       };
     } else {
