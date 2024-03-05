@@ -265,7 +265,7 @@ onBeforeUpdate(() => {
     place-items: center;
     overflow-x: scroll;
 
-    @include scrollbar.use();
+    @include scrollbar.use;
 
     > .anchor {
       overflow-anchor: auto;
