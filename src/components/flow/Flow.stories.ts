@@ -116,11 +116,11 @@ const ActiveTemplate: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
         <template v-for="node in args.graph">
           <FlowKit.Layout.Node
             v-bind="node"
-            :active="node.id === 'node-05'"
-            :stroke-color="node.id === 'node-05' ? 'var(--agh-ref-color-cyan-500)' : 'var(--agh-ref-color-grayscale-600)'"
-            :stroke-width="node.id === 'node-05' ? 'var(--agh-ref-border-width-100)' : 1"
+            :active="node.id === args.activeNodeId"
+            :stroke-color="node.id === args.activeNodeId ? 'var(--agh-ref-color-cyan-500)' : 'var(--agh-ref-color-grayscale-600)'"
+            :stroke-width="node.id === args.activeNodeId ? 'var(--agh-ref-border-width-100)' : 1"
           >
-            <CardBox data-demo-content :style="{width: '240px', height: '120px', outline: node.id === 'node-05' ? 'var(--agh-ref-border-width-200) solid var(--agh-ref-color-cyan-500)' : ''}">
+            <CardBox data-demo-content :style="{width: '240px', height: '120px', outline: node.id === args.activeNodeId ? 'var(--agh-ref-border-width-200) solid var(--agh-ref-color-cyan-500)' : ''}">
               <p>#{{ node.id }}</p>
               <h1>{{ node.name }}</h1>
             </CardBox>
@@ -222,4 +222,4 @@ export const Flow = Template.bind({});
 Flow.args = args;
 
 export const ActiveFlow = ActiveTemplate.bind({});
-ActiveFlow.args = args;
+ActiveFlow.args = { ...args, activeNodeId: 'node-06' };
