@@ -287,18 +287,29 @@ const handleGlobalEvents = () => {
 
 const nodeCalcOnTick = () => {
   nodes.value.forEach((node) => {
-    nodes.value.get(node.id)!.position = calcNodePosition(node);
-    nodes.value.get(node.id)!.isPanning = Boolean(isPanning.value);
+    const newPosition = calcNodePosition(node);
+
+    if (
+      isPanning.value ||
+      Math$.Vector.delta(Math$.Vector.ORIGIN_2D, bufferedMovement.value) > 0 ||
+      !isEqual(node.position, newPosition)
+    ) {
+      nodes.value.get(node.id)!.position = newPosition;
+      resizeStage();
+    }
+
+    if (node.isPanning !== isPanning.value) {
+      nodes.value.get(node.id)!.isPanning = Boolean(isPanning.value);
+    }
   });
-  resizeStage();
 
   requestAnimationFrame(nodeCalcOnTick);
 };
 
 onMounted(() => {
   resizeStage();
-  handleGlobalEvents();
   nodeCalcOnTick();
+  handleGlobalEvents();
 });
 
 watchDebounced(
