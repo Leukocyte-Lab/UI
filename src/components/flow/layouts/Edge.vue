@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, inject, toRef, ref, onBeforeUnmount, onMounted } from 'vue';
+import { computed, inject, toRef, ref, onBeforeUnmount, onBeforeUpdate } from 'vue';
 import { computedInject, useMutationObserver } from '@vueuse/core';
 import { Color, LINE_CAP, LINE_JOIN } from 'pixi.js';
 
@@ -238,9 +238,9 @@ const tokenStyleObserver = useMutationObserver(document.head, fetchToken, {
   childList: true
 });
 
-onMounted(() => {
+onBeforeUpdate(() => {
   fetchToken();
-})
+});
 
 onBeforeUnmount(() => {
   tokenStyleObserver.stop();
