@@ -1,5 +1,6 @@
-import type { Vector } from '@/shared/types/vector';
 import { fromPairs } from 'lodash-es';
+
+import type { Vector, Vec2, Vec3, Vec4 } from '@/shared/types/vector';
 
 export type MathProxy = Math & {
   ARC_BASE: number;
@@ -15,6 +16,10 @@ export type MathProxy = Math & {
     divide: <T extends string>(a: Vector<T>, b: Vector<T>, scalar?: boolean) => Vector<T>;
     middle: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
     clamp: <T extends string>(value: Vector<T>, min: Vector<T>, max: Vector<T>) => Vector<T>;
+
+    ORIGIN_2D: Vec2;
+    ORIGIN_3D: Vec3;
+    ORIGIN_4D: Vec4;
   };
   deg: (rad: number) => number;
   rad: (deg: number) => number;
@@ -53,13 +58,19 @@ const delta = <T extends string>(
   return useVector
     ? (fromPairs(matrix.map((value, index) => [Object.keys(a)[index], value])) as Vector<T>)
     : Math.pow(
-        matrix.reduce((acc, curr) => acc + Math.pow(curr, matrix.length), 0),
-        1 / matrix.length
-      );
+      matrix.reduce((acc, curr) => acc + Math.pow(curr, matrix.length), 0),
+      1 / matrix.length
+    );
 };
 
 const VectorDeltaHandler = {
   get: (target: {}, prop: string, receiver: any) => {
+    if (/^ORIGIN_/.test(prop)) {
+      return fromPairs(
+        ['x', 'y', 'z', 'w'].slice(0, Number(prop.replace(/^ORIGIN_(\d)D/, '$1'))).map((axis) => [axis, 0]) as [string, number][]
+      ) as Vector<string>;
+    }
+
     if (/^delta/.test(prop)) {
       return <T extends string>(
         a: Vector<T>,
