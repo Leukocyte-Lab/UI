@@ -2,8 +2,7 @@
 <script setup lang="ts">
 import { computed, provide, ref, onMounted } from 'vue';
 import { usePageLeave, watchDebounced } from '@vueuse/core';
-import { onTick } from 'vue3-pixi';
-import { groupBy, maxBy, minBy, map } from 'lodash-es';
+import { groupBy, maxBy, minBy, map, isEqual } from 'lodash-es';
 
 import type { Ref, VNode } from 'vue';
 import type { ContainerInst } from 'vue3-pixi';
@@ -125,8 +124,8 @@ const resizeStage = () => {
   const stage = viewportRef$.value;
 
   if (stage) {
-    stage.scale.x = 1 * (Number(props.initialScale) || 1);
-    stage.scale.y = 1 * (Number(props.initialScale) || 1);
+    stage.scale.x = Number(props.initialScale) || 1;
+    stage.scale.y = Number(props.initialScale) || 1;
   }
 };
 
@@ -138,10 +137,7 @@ const handlePan = ($event: MouseEvent) => {
     $event.type === 'mouseout'
   ) {
     const bufferedMovementDistance = Math$.Vector.delta(
-      {
-        x: 0,
-        y: 0
-      },
+      Math$.Vector.ORIGIN_2D,
       bufferedMovement.value
     );
 
@@ -162,27 +158,15 @@ const handlePan = ($event: MouseEvent) => {
     };
 
     if (isPanning.value === 'ready') {
-      const instantMovementDistance = Math$.Vector.delta(
-        {
-          x: 0,
-          y: 0
-        },
-        movement
-      );
+      const instantMovementDistance = Math$.Vector.delta(Math$.Vector.ORIGIN_2D, movement);
       const bufferedMovementDistance = Math$.Vector.delta(
-        {
-          x: 0,
-          y: 0
-        },
+        Math$.Vector.ORIGIN_2D,
         bufferedMovement.value
       );
 
       if (instantMovementDistance > 5 || bufferedMovementDistance > 5) {
         isPanning.value = true;
-        bufferedMovement.value = {
-          x: 0,
-          y: 0
-        };
+        bufferedMovement.value = Math$.Vector.ORIGIN_2D;
       } else {
         bufferedMovement.value = Math$.Vector.add(bufferedMovement.value, movement);
       }
@@ -253,10 +237,7 @@ const handleMovement = (movement: Vec2) => {
 
 const handleTailingMovement = () => {
   const bufferedMovementDistance = Math$.Vector.delta(
-    {
-      x: 0,
-      y: 0
-    },
+    Math$.Vector.ORIGIN_2D,
     bufferedMovement.value
   );
 
@@ -273,6 +254,9 @@ const handleTailingMovement = () => {
     }
 
     requestAnimationFrame(handleTailingMovement);
+  } else {
+    handleMovement(bufferedMovement.value);
+    bufferedMovement.value = Math$.Vector.ORIGIN_2D;
   }
 };
 
