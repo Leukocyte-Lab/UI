@@ -46,6 +46,18 @@ export default {
     "onUpdate:range": {
       action: 'update:range',
       description: 'Emitted when the range is updated'
+    },
+    "onUpdate:duration": {
+      action: 'update:duration',
+      description: 'Emitted when the duration is updated'
+    },
+    "onUpdate:focused": {
+      action: 'update:focused',
+      description: 'Emitted when the focused events are updated'
+    },
+    "onUpdate:focused.array": {
+      action: 'update:focused.array',
+      description: 'Emitted when the focused events are updated'
     }
   }
 } satisfies Meta<typeof Timeline>;
