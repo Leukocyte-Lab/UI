@@ -222,6 +222,7 @@ onBeforeUpdate(() => {
       var(--agh-ref-color-grayscale-100),
       var(--agh-ref-color-grayscale-100)
     ) !important;
+    --box-fill-gradient-hover: var(--box-fill-gradient) !important;
     --timeline-width: calc(v-bind('timelineWidth') * 1px);
 
     padding: var(--agh-ref-spacing-500) var(--agh-ref-spacing-600);
