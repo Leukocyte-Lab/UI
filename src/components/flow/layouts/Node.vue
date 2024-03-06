@@ -11,7 +11,11 @@ import { FlowKit } from '..';
 
 const debugOptions = inject(Flow.UI.Debugger.InjectionKey);
 
-const props = withDefaults(defineProps<Flow.UI.Layout.Node.Props>(), {});
+const props = withDefaults(defineProps<Flow.UI.Layout.Node.Props>(), {
+  activeEdgesOn: 'from',
+  active: false,
+  blur: false
+});
 
 const edges = computedInject(Flow.Entity.Edge.InjectionKey, (edges) => edges?.value);
 const nodes = computedInject(Flow.Entity.Node.InjectionKey, (nodes) => nodes?.value);
@@ -118,6 +122,14 @@ onMounted(() => {
           :edge="edge"
           :radius="props.radius"
           :arrow-size="props.arrowSize"
+          :active="
+            props.activeEdgesOn === 'to' || props.activeEdgesOn === 'both'
+              ? (props.activeNodeId !== undefined && edge.to?.id === props.activeNodeId) ||
+                (props.activeEdgesOn === 'both' ? props.active : false)
+              : props.active
+          "
+          :blur="props.blur"
+          :priority="props.priority"
           :stroke-width="props.strokeWidth"
           :stroke-color="props.strokeColor"
           :stroke-opacity="props.strokeOpacity"

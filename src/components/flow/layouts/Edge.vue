@@ -25,10 +25,7 @@ const nodeBoundary = computedInject(
 
 const props = withDefaults(defineProps<Flow.UI.Layout.Edge.Props>(), {
   radius: 16,
-  arrowSize: 5,
-  strokeWidth: 1,
-  strokeColor: 0x000000,
-  strokeOpacity: 1
+  arrowSize: 5
 });
 
 const strokeColor = ref(new Color(0x000000));
@@ -49,28 +46,54 @@ const endPoint = computed<Vec2>(() => ({
   y: (ray.value.y ?? 0) + (props.edge.to?.boundingBox.height ?? 0) / 2
 }));
 
+const extraStrokeOptionsFromProps = <
+  P extends keyof Pick<Flow.UI.Layout.Edge.Props, 'strokeColor' | 'strokeOpacity' | 'strokeWidth'>
+>(
+  key: P
+) =>
+  ((value) =>
+    Array.isArray(value)
+      ? props.priority === 'blur-first'
+        ? props.blur
+          ? value[2]
+          : props.active
+            ? value[1]
+            : value[0]
+        : props.active
+          ? value[1]
+          : props.blur
+            ? value[2]
+            : value[0]
+      : value)(props[key]);
+
 const fetchToken = () => {
+  const options = {
+    strokeColor: extraStrokeOptionsFromProps('strokeColor'),
+    strokeOpacity: extraStrokeOptionsFromProps('strokeOpacity'),
+    strokeWidth: extraStrokeOptionsFromProps('strokeWidth')
+  };
+
   strokeColor.value = new Color(
-    `${props.strokeColor}`.startsWith('var(--')
+    `${options.strokeColor}`.startsWith('var(--')
       ? globalThis
           .getComputedStyle(document.documentElement)
-          .getPropertyValue(`${props.strokeColor}`.replace(/^var\((.+)\)$/, '$1')) || 0x000000
-      : props.strokeColor
+          .getPropertyValue(`${options.strokeColor}`.replace(/^var\((.+)\)$/, '$1')) || 0x000000
+      : options.strokeColor
   );
   strokeOpacity.value = Number(
-    `${props.strokeOpacity}`.startsWith('var(--')
+    `${options.strokeOpacity}`.startsWith('var(--')
       ? globalThis
           .getComputedStyle(document.documentElement)
-          .getPropertyValue(`${props.strokeOpacity}`.replace(/^var\((.+)\)$/, '$1'))
-      : props.strokeOpacity ?? strokeColor.value.alpha
+          .getPropertyValue(`${options.strokeOpacity}`.replace(/^var\((.+)\)$/, '$1'))
+      : options.strokeOpacity ?? strokeColor.value.alpha
   );
   strokeWidth.value = parseFloat(
     String(
-      `${props.strokeWidth}`.startsWith('var(--')
+      `${options.strokeWidth}`.startsWith('var(--')
         ? globalThis
             .getComputedStyle(document.documentElement)
-            .getPropertyValue(`${props.strokeWidth}`.replace(/^var\((.+)\)$/, '$1'))
-        : props.strokeWidth ?? 1
+            .getPropertyValue(`${options.strokeWidth}`.replace(/^var\((.+)\)$/, '$1'))
+        : options.strokeWidth ?? 1
     )
   );
 };
