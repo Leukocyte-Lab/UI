@@ -96,7 +96,7 @@ const fetchToken = () => {
       ? globalThis
           .getComputedStyle(document.documentElement)
           .getPropertyValue(`${options.strokeColor}`.replace(/^var\((.+)\)$/, '$1')) || 0x000000
-      : options.strokeColor
+      : options.strokeColor || strokeColor.value.toHex()
   );
   strokeOpacity.value = Number(
     `${options.strokeOpacity}`.startsWith('var(--')
