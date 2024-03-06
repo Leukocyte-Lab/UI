@@ -109,8 +109,6 @@ const { onTrigger } = useEventDebounceSignal(
     });
     emits('update:duration', new Date(clipDuration.value));
 
-    console.log(x.value, timelineWidth.value, timelineDuration.value)
-
     const focusedEvent = events.value
       .filter(
         ({ event }) =>
