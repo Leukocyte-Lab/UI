@@ -13,6 +13,16 @@ export interface MapProxy<K extends string | number | symbol, V> extends Map<K, 
   ): T | undefined;
   findValue(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): V | undefined;
 
+  map<U extends string | number | symbol, S>(
+    callbackfn: (value: V, key: K, map: Map<K, V>) => [U, S],
+    thisArg?: any
+  ): MapProxy<U, S>;
+
+  filter(
+    predicate: (value: V, key: K, map: Map<K, V>) => unknown,
+    thisArg?: any
+  ): MapProxy<K, V>;
+
   toArray<R extends 'entries' | 'keys' | 'values'>(
     returnType?: R
   ): R extends 'entries' ? [K, V][] : R extends 'keys' ? K[] : V[];
@@ -23,7 +33,7 @@ class MapProxyInstance<K extends string | number | symbol, V>
   extends Map<K, V>
   implements MapProxy<K, V>
 {
-  constructor(entries?: readonly (readonly [K, V])[] | null) {
+  constructor(entries?: Map<K, V> | readonly (readonly [K, V])[] | null) {
     super(entries);
   }
 
@@ -86,6 +96,35 @@ class MapProxyInstance<K extends string | number | symbol, V>
     return undefined;
   }
 
+  public map<U extends string | number | symbol, S>(
+    callbackfn: (value: V, key: K, map: Map<K, V>) => [U, S],
+    thisArg?: any
+  ): MapProxy<U, S> {
+    const result = new MapProxyInstance<U, S>();
+
+    for (const [key, value] of this) {
+      const [newKey, newValue] = callbackfn.call(thisArg, value, key, this);
+      result.set(newKey, newValue);
+    }
+
+    return result;
+  }
+
+  public filter(
+    predicate: (value: V, key: K, map: Map<K, V>) => unknown,
+    thisArg?: any
+  ): MapProxy<K, V> {
+    const result = new MapProxyInstance<K, V>();
+
+    for (const [key, value] of this) {
+      if (predicate.call(thisArg, value, key, this)) {
+        result.set(key, value);
+      }
+    }
+
+    return result;
+  }
+
   public toArray<R extends 'entries'>(returnType?: R): [K, V][];
   public toArray<R extends 'keys'>(returnType: R): K[];
   public toArray<R extends 'values'>(returnType: R): V[];
@@ -109,7 +148,7 @@ class MapProxyInstance<K extends string | number | symbol, V>
   public static fromObject<T>(
     iterable: IterableObjectLike<T>
   ): MapProxyInstance<string | number | symbol, T> {
-    return new MapProxyInstance(Object.entries(iterable));
+    return new MapProxyInstance<string | number | symbol, T>(Object.entries(iterable));
   }
 }
 

@@ -88,11 +88,11 @@ const clipDuration = computed<number>(() =>
     }
   )
 );
-const currentView = computed(() => ({
-  startTime: startTime.value + (x.value / width.value) * timelineDuration.value,
-  endTime: startTime.value + (x.value / width.value + 1) * timelineDuration.value
-}));
 const timelineWidth = computed(() => (timelineDuration.value / clipDuration.value) * width.value);
+const currentView = computed(() => ({
+  startTime: startTime.value + (x.value / timelineWidth.value) * timelineDuration.value,
+  endTime: startTime.value + ((x.value + width.value) / timelineWidth.value) * timelineDuration.value
+}));
 
 const startFollow = () => {
   wrapperRef$.value?.scrollTo({
@@ -103,14 +103,30 @@ const startFollow = () => {
 
 const { onTrigger } = useEventDebounceSignal(
   () => {
-    emits(
-      'update:range',
-      {
-        start: new Date(currentView.value.startTime),
-        end: new Date(currentView.value.endTime)
-      },
-      new Date(clipDuration.value)
-    );
+    emits('update:range', {
+      start: new Date(currentView.value.startTime),
+      end: new Date(currentView.value.endTime)
+    });
+    emits('update:duration', new Date(clipDuration.value));
+
+    console.log(x.value, timelineWidth.value, timelineDuration.value)
+
+    const focusedEvent = events.value
+      .filter(
+        ({ event }) =>
+          !(
+            Number(event.range.start ?? 0) <= Number(currentView.value.startTime ?? 0) &&
+            Number(event.range.end ?? 0) <= Number(currentView.value.startTime ?? 0)
+          ) &&
+          !(
+            Number(event.range.start ?? 0) >= Number(currentView.value.endTime ?? 0) &&
+            Number(event.range.end ?? 0) >= Number(currentView.value.endTime ?? 0)
+          )
+      )
+      .map(({ event }) => [event.id, event]);
+
+    emits('update:focused', focusedEvent);
+    emits('update:focused.array', focusedEvent.toArray('values'));
   },
   props.eventSignalOptions ?? {
     flush: 'post',
@@ -206,6 +222,7 @@ onBeforeUpdate(() => {
       var(--agh-ref-color-grayscale-100),
       var(--agh-ref-color-grayscale-100)
     ) !important;
+    --box-fill-gradient-hover: var(--box-fill-gradient) !important;
     --timeline-width: calc(v-bind('timelineWidth') * 1px);
 
     padding: var(--agh-ref-spacing-500) var(--agh-ref-spacing-600);

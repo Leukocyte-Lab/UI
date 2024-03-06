@@ -88,6 +88,9 @@ export namespace Timeline {
   } & Clip.Options;
 
   export type Emits = {
-    (event: 'update:range', range: Range.Model, duration: Date): void;
+    (event: 'update:range', range: Range.Model): void;
+    (event: 'update:duration', duration: Date): void;
+    (event: 'update:focused', events: Dictionary<Event.Model, 'id'>): void;
+    (event: 'update:focused.array', events: Event.Model[]): void;
   }
 }
