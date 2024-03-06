@@ -9,11 +9,17 @@ import type { VNode } from 'vue';
 import { Flow } from '../Flow.model';
 import { FlowKit } from '..';
 
+import Map$ from '@/shared/libs/map';
+
 const debugOptions = inject(Flow.UI.Debugger.InjectionKey);
 
-const props = withDefaults(defineProps<Flow.UI.Layout.Node.Props>(), {});
+const props = withDefaults(defineProps<Flow.UI.Layout.Node.Props>(), {
+  activeEdgesOn: 'from',
+  active: false,
+  blur: false
+});
 
-const edges = computedInject(Flow.Entity.Edge.InjectionKey, (edges) => edges?.value);
+const allEdges = computedInject(Flow.Entity.Edge.InjectionKey, (edges) => edges?.value);
 const nodes = computedInject(Flow.Entity.Node.InjectionKey, (nodes) => nodes?.value);
 
 defineSlots<{
@@ -24,6 +30,22 @@ const wrapperRef$ = ref<HTMLElement>();
 const boundingBox = reactive(useElementSize(wrapperRef$));
 
 const node = computed(() => nodes.value?.get(props.id));
+const edges = computed(
+  () =>
+    new Map$(
+      [...(node.value?.edges ?? [])].map(([id, edge]) => [
+        id,
+        {
+          ...edge,
+          active:
+            props.activeEdgesOn === 'to' || props.activeEdgesOn === 'both'
+              ? (props.activeNodeId !== undefined && edge.to?.id === props.activeNodeId) ||
+                (props.activeEdgesOn === 'both' ? props.active : false)
+              : props.active
+        }
+      ])
+    )
+);
 
 const createNode = () => {
   const node: Flow.Entity.Node.Model = {
@@ -50,7 +72,7 @@ const createNode = () => {
     boundingBox,
     get edges() {
       return new Map(
-        [...(edges.value ?? [])].filter(
+        [...(allEdges.value ?? [])].filter(
           ([, edge]) => edge.from.id === props.id || edge.to?.id === props.id
         )
       );
@@ -68,7 +90,7 @@ const createNode = () => {
       }
     };
 
-    edges.value?.set(edge.id, edge);
+    allEdges.value?.set(edge.id, edge);
   });
 };
 
@@ -78,8 +100,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <Container :position="node?.position" :z-index="props.active ? 10000 : 1">
-    <template v-if="debugOptions?.showBoundingBox">
+  <template v-if="debugOptions?.showBoundingBox">
+    <Container :position="node?.position">
       <Graphics
         @render="
           (graphics) => {
@@ -111,40 +133,45 @@ onMounted(() => {
           height: ${boundingBox.height}
         `"
       />
-    </template>
-    <template v-for="[id, edge] in node?.edges" :key="id">
-      <template v-if="edge.from.id === node?.id">
+    </Container>
+  </template>
+  <template v-for="[id, edge] in edges" :key="id">
+    <template v-if="edge.from.id === node?.id">
+      <Container :position="node?.position" :z-index="edge.active ? 10000 : 0">
         <FlowKit.Layout.Edge
           :edge="edge"
           :radius="props.radius"
           :arrow-size="props.arrowSize"
+          :active="edge.active"
+          :blur="props.blur"
+          :priority="props.priority"
           :stroke-width="props.strokeWidth"
           :stroke-color="props.strokeColor"
           :stroke-opacity="props.strokeOpacity"
         />
-      </template>
+      </Container>
     </template>
-    <External>
-      <div
-        ref="wrapperRef$"
-        :class="[
-          $style['flow-node-container'],
-          $style.wrapper,
-          $style.flex,
-          $style.vertical,
-          {
-            [$style.panning]: node?.isPanning,
-            [$style['debugger--show-bounding-box']]: debugOptions?.showBoundingBox
-          }
-        ]"
-        :style="{
-          transform: `translate3d(${(node?.position.x ?? 0) + (node?.offset.x ?? 0)}px, ${(node?.position.y ?? 0) + (node?.offset.y ?? 0)}px, 0.000001px)`
-        }"
-      >
-        <slot />
-      </div>
-    </External>
-  </Container>
+  </template>
+  <External>
+    <div
+      ref="wrapperRef$"
+      :class="[
+        $style['flow-node-container'],
+        $style.wrapper,
+        $style.flex,
+        $style.vertical,
+        {
+          [$style.panning]: node?.isPanning,
+          [$style['debugger--show-bounding-box']]: debugOptions?.showBoundingBox
+        }
+      ]"
+      :style="{
+        transform: `translate3d(${(node?.position.x ?? 0) + (node?.offset.x ?? 0)}px, ${(node?.position.y ?? 0) + (node?.offset.y ?? 0)}px, 0.000001px)`
+      }"
+    >
+      <slot />
+    </div>
+  </External>
 </template>
 
 <style module lang="scss">

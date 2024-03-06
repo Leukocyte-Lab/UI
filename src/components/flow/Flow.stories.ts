@@ -116,11 +116,21 @@ const ActiveTemplate: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
         <template v-for="node in args.graph">
           <FlowKit.Layout.Node
             v-bind="node"
-            :active="node.id === 'node-05'"
-            :stroke-color="node.id === 'node-05' ? 'var(--agh-ref-color-cyan-500)' : 'var(--agh-ref-color-grayscale-600)'"
-            :stroke-width="node.id === 'node-05' ? 'var(--agh-ref-border-width-100)' : 1"
+            :active="node.id === args.activeNodeId"
+            :active-node-id="args.activeNodeId"
+            :stroke-color="['var(--agh-ref-color-grayscale-600)', 'var(--agh-ref-color-cyan-500)']"
+            :stroke-width="['var(--agh-ref-border-width-50)', 'var(--agh-ref-border-width-100)']"
+            active-edges-on="both"
           >
-            <CardBox data-demo-content :style="{width: '240px', height: '120px', outline: node.id === 'node-05' ? 'var(--agh-ref-border-width-200) solid var(--agh-ref-color-cyan-500)' : none}">
+            <CardBox
+              :style="{
+                width: '240px',
+                height: '120px',
+                outline: node.id === args.activeNodeId ? 'var(--agh-ref-border-width-200) solid var(--agh-ref-color-cyan-500)' : ''
+              }"
+              @click="args.activeNodeId = node.id"
+              data-demo-content
+            >
               <p>#{{ node.id }}</p>
               <h1>{{ node.name }}</h1>
             </CardBox>
@@ -155,14 +165,14 @@ const args = {
     {
       id: 'node-02',
       name: 'Node 02',
-      to: ['node-03', 'node-05'],
+      to: ['node-03', 'node-04', 'node-05', 'node-06', 'node-10', 'node-11', 'node-12'],
       position: { x: 0, y: 0.5 },
       relative: true
     },
     {
       id: 'node-03',
       name: 'Node 03',
-      to: ['node-01', 'node-02'],
+      to: ['node-01', 'node-02', 'node-04', 'node-06'],
       position: { x: 1, y: 0 },
       relative: true
     },
@@ -183,36 +193,49 @@ const args = {
     {
       id: 'node-06',
       name: 'Node 06',
-      to: ['node-02', 'node-07', 'node-08', 'node-09', 'node-10'],
-      position: { x: 2, y: 0 },
+      to: ['node-02', 'node-07', 'node-08', 'node-09', 'node-10', 'node-11'],
+      position: { x: 2, y: 0.5 },
       relative: true
     },
     {
       id: 'node-07',
       name: 'Node 07',
       to: ['node-02', 'node-04'],
-      position: { x: 3, y: -1.5 },
+      position: { x: 2, y: -0.5 },
       relative: true
     },
     {
       id: 'node-08',
       name: 'Node 08',
       to: ['node-02'],
-      position: { x: 3, y: -0.5 },
+      position: { x: 3, y: -1.5 },
       relative: true
     },
     {
       id: 'node-09',
       name: 'Node 09',
       to: ['node-01', 'node-02', 'node-10'],
-      position: { x: 3, y: 0.5 },
+      position: { x: 3, y: -0.5 },
       relative: true
     },
     {
       id: 'node-10',
       name: 'Node 10',
       to: ['node-02', 'node-09'],
+      position: { x: 3, y: 0.5 },
+      relative: true
+    },
+    {
+      id: 'node-11',
+      name: 'Node 11',
+      to: ['node-02', 'node-04', 'node-06', 'node-09', 'node-01', 'node-12'],
       position: { x: 3, y: 1.5 },
+      relative: true
+    },
+    {
+      id: 'node-12',
+      name: 'Node 12',
+      position: { x: 4, y: 0 },
       relative: true
     }
   ]
@@ -222,4 +245,4 @@ export const Flow = Template.bind({});
 Flow.args = args;
 
 export const ActiveFlow = ActiveTemplate.bind({});
-ActiveFlow.args = args;
+ActiveFlow.args = { ...args, activeNodeId: 'node-06' };

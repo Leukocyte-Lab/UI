@@ -2,8 +2,7 @@
 <script setup lang="ts">
 import { computed, provide, ref, onMounted } from 'vue';
 import { usePageLeave, watchDebounced } from '@vueuse/core';
-import { onTick } from 'vue3-pixi';
-import { groupBy, maxBy, minBy, map } from 'lodash-es';
+import { groupBy, maxBy, minBy, map, isEqual } from 'lodash-es';
 
 import type { Ref, VNode } from 'vue';
 import type { ContainerInst } from 'vue3-pixi';
@@ -22,21 +21,26 @@ const props = withDefaults(defineProps<Flow.UI.Screen.Viewport.Props>(), {
   })
 });
 
+const pageLeave = usePageLeave();
+
 const nodes: Ref<Map<Flow.Entity.Node.Model['id'], Flow.Entity.Node.Model>> = ref(new Map());
 const edges: Ref<Map<Flow.Entity.Edge.Model['id'], Flow.Entity.Edge.Model>> = ref(new Map());
 const isPanning = ref<boolean | 'ready'>(false);
 const bufferedMovement = ref<Vec2>({ x: 0, y: 0 });
-const pageLeave = usePageLeave();
 const viewportRef$ = ref<ContainerInst>();
+const stageOffset = ref<Vec2>({
+  x: 0,
+  y: 0
+});
 
 const offset = computed<Vec2>(() => ({
   x: props.initialScale === 'cover' ? (props.width - viewportBoundingBox.value.width) / 2 : 0,
   y: props.initialScale !== 'contain' ? (props.height - viewportBoundingBox.value.height) / 2 : 0
 }));
-const stageOffset = ref<Vec2>({
-  x: 0,
-  y: 0
-});
+const gap = computed<Vec2>(() => ({
+  x: Number(props.gap) || (props.gap as Vec2).x,
+  y: Number(props.gap) || (props.gap as Vec2).y
+}));
 
 const calcReactiveViewportSize = (dimension: 'width' | 'height') =>
   Math.max(
@@ -46,17 +50,15 @@ const calcReactiveViewportSize = (dimension: 'width' | 'height') =>
             (size: number, nodes: Flow.Entity.Node.Model[], index: number): number =>
               size +
               Math.max(...map(nodes, `boundingBox.${dimension}`)) +
-              (index === 0 ? 2 : 1) * (Number(props.gap) || (props.gap as Vec2)[axis]),
+              (index === 0 ? 2 : 1) * gap.value[axis],
             0
           )
         : Math.max(
             ...nodes.map((nodes) =>
               nodes.reduce(
                 (size: number, node: Flow.Entity.Node.Model, index: number): number =>
-                  size +
-                  node.boundingBox[dimension] +
-                  (index === 0 ? 2 : 1) * (Number(props.gap) || (props.gap as Vec2)[axis]),
-                dimension === 'height' ? 2 * (Number(props.gap) || (props.gap as Vec2)[axis]) : 0
+                  size + node.boundingBox[dimension] + (index === 0 ? 2 : 1) * gap.value[axis],
+                dimension === 'height' ? 2 * gap.value[axis] : 0
               )
             )
           ))(
@@ -106,16 +108,14 @@ const nodeBoundary = computed(() =>
 const calcNodePosition = (node: Flow.Entity.Node.Model): Vec2 => ({
   x:
     (props.autoLayout
-      ? (node.relativePosition?.x ?? node.position.x) *
-        (node.boundingBox.width + (Number(props.gap) || (props.gap as Vec2).x))
+      ? (node.relativePosition?.x ?? node.position.x) * (node.boundingBox.width + gap.value.x)
       : node.position.x) +
     node.boundingBox.width / 2 +
     (offset.value?.x ?? 0),
   y:
     (props.autoLayout
       ? (viewportBoundingBox.value?.height ?? 0) / 2 +
-        (node.relativePosition?.y ?? node.position.y) *
-          (node.boundingBox.height + (Number(props.gap) || (props.gap as Vec2).y))
+        (node.relativePosition?.y ?? node.position.y) * (node.boundingBox.height + gap.value.y)
       : node.position.y) -
     node.boundingBox.height / 2 +
     (offset.value?.y ?? 0)
@@ -125,8 +125,8 @@ const resizeStage = () => {
   const stage = viewportRef$.value;
 
   if (stage) {
-    stage.scale.x = 1 * (Number(props.initialScale) || 1);
-    stage.scale.y = 1 * (Number(props.initialScale) || 1);
+    stage.scale.x = Number(props.initialScale) || 1;
+    stage.scale.y = Number(props.initialScale) || 1;
   }
 };
 
@@ -138,10 +138,7 @@ const handlePan = ($event: MouseEvent) => {
     $event.type === 'mouseout'
   ) {
     const bufferedMovementDistance = Math$.Vector.delta(
-      {
-        x: 0,
-        y: 0
-      },
+      Math$.Vector.ORIGIN_2D,
       bufferedMovement.value
     );
 
@@ -162,27 +159,15 @@ const handlePan = ($event: MouseEvent) => {
     };
 
     if (isPanning.value === 'ready') {
-      const instantMovementDistance = Math$.Vector.delta(
-        {
-          x: 0,
-          y: 0
-        },
-        movement
-      );
+      const instantMovementDistance = Math$.Vector.delta(Math$.Vector.ORIGIN_2D, movement);
       const bufferedMovementDistance = Math$.Vector.delta(
-        {
-          x: 0,
-          y: 0
-        },
+        Math$.Vector.ORIGIN_2D,
         bufferedMovement.value
       );
 
       if (instantMovementDistance > 5 || bufferedMovementDistance > 5) {
         isPanning.value = true;
-        bufferedMovement.value = {
-          x: 0,
-          y: 0
-        };
+        bufferedMovement.value = Math$.Vector.ORIGIN_2D;
       } else {
         bufferedMovement.value = Math$.Vector.add(bufferedMovement.value, movement);
       }
@@ -253,10 +238,7 @@ const handleMovement = (movement: Vec2) => {
 
 const handleTailingMovement = () => {
   const bufferedMovementDistance = Math$.Vector.delta(
-    {
-      x: 0,
-      y: 0
-    },
+    Math$.Vector.ORIGIN_2D,
     bufferedMovement.value
   );
 
@@ -273,6 +255,9 @@ const handleTailingMovement = () => {
     }
 
     requestAnimationFrame(handleTailingMovement);
+  } else {
+    handleMovement(bufferedMovement.value);
+    bufferedMovement.value = Math$.Vector.ORIGIN_2D;
   }
 };
 
@@ -287,18 +272,29 @@ const handleGlobalEvents = () => {
 
 const nodeCalcOnTick = () => {
   nodes.value.forEach((node) => {
-    nodes.value.get(node.id)!.position = calcNodePosition(node);
-    nodes.value.get(node.id)!.isPanning = Boolean(isPanning.value);
+    const newPosition = calcNodePosition(node);
+
+    if (
+      isPanning.value ||
+      Math$.Vector.delta(Math$.Vector.ORIGIN_2D, bufferedMovement.value) > 0 ||
+      !isEqual(node.position, newPosition)
+    ) {
+      nodes.value.get(node.id)!.position = newPosition;
+      resizeStage();
+    }
+
+    if (node.isPanning !== isPanning.value) {
+      nodes.value.get(node.id)!.isPanning = Boolean(isPanning.value);
+    }
   });
-  resizeStage();
 
   requestAnimationFrame(nodeCalcOnTick);
 };
 
 onMounted(() => {
   resizeStage();
-  handleGlobalEvents();
   nodeCalcOnTick();
+  handleGlobalEvents();
 });
 
 watchDebounced(
@@ -331,7 +327,9 @@ defineExpose({
 
 provide(Flow.Entity.Node.InjectionKey, nodes);
 provide(Flow.Entity.Edge.InjectionKey, edges);
+provide(Flow.UI.Screen.Viewport.Gap, gap);
 provide(Flow.UI.Screen.Viewport.Size, viewportBoundingBox);
+provide(Flow.UI.Screen.Viewport.Offset, offset);
 provide(Flow.UI.Screen.Viewport.NodeBoundary, nodeBoundary);
 provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
 </script>
