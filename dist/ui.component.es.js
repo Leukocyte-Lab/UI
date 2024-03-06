@@ -3641,7 +3641,7 @@ const ji = (t) => (ue("data-v-ff1bcc12"), t = t(), ce(), t), Si = ["onClick"], T
   emits: ["update:range", "update:duration", "update:focused", "update:focused.array"],
   setup(t, { emit: l }) {
     Ge((z) => ({
-      "4c68dc56": w.value
+      "3f180e88": w.value
     }));
     const e = t, s = l, n = N(), { width: r } = ve(n), { timestamp: f, pause: d, resume: m } = gl({
       controls: !0,
@@ -3696,7 +3696,7 @@ const ji = (t) => (ue("data-v-ff1bcc12"), t = t(), ce(), t), Si = ["onClick"], T
         s("update:range", {
           start: new Date(h.value.startTime),
           end: new Date(h.value.endTime)
-        }), s("update:duration", new Date(v.value)), console.log(u.value, w.value, $.value);
+        }), s("update:duration", new Date(v.value));
         const z = k.value.filter(
           ({ event: V }) => !(Number(V.range.start ?? 0) <= Number(h.value.startTime ?? 0) && Number(V.range.end ?? 0) <= Number(h.value.startTime ?? 0)) && !(Number(V.range.start ?? 0) >= Number(h.value.endTime ?? 0) && Number(V.range.end ?? 0) >= Number(h.value.endTime ?? 0))
         ).map(({ event: V }) => [V.id, V]);
@@ -3817,7 +3817,7 @@ const ji = (t) => (ue("data-v-ff1bcc12"), t = t(), ce(), t), Si = ["onClick"], T
   "timeline-tick": "_timeline-tick_n8d35_180"
 }, Id = {
   $style: qd
-}, b1 = /* @__PURE__ */ W(jd, [["__cssModules", Id], ["__scopeId", "data-v-6f36f7a6"]]), Pd = /* @__PURE__ */ R({
+}, b1 = /* @__PURE__ */ W(jd, [["__cssModules", Id], ["__scopeId", "data-v-99540d44"]]), Pd = /* @__PURE__ */ R({
   __name: "AttackMatrix",
   props: {
     items: {},
