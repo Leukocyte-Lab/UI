@@ -142,6 +142,12 @@ export namespace Flow {
         export const NodeBoundary: InjectionKey<Ref<Record<'min' | 'max', Vec2>>> = Symbol(
           'Flow.UI.Screen.Viewport.NodeBoundary'
         );
+        export const Gap: InjectionKey<Ref<Vec2>> = Symbol(
+          'Flow.UI.Screen.Viewport.Gap'
+        );
+        export const Offset: InjectionKey<Ref<Vec2>> = Symbol(
+          'Flow.UI.Screen.Viewport.Offset'
+        );
 
         export interface Props {
           width: number;
