@@ -88,11 +88,11 @@ const clipDuration = computed<number>(() =>
     }
   )
 );
-const currentView = computed(() => ({
-  startTime: startTime.value + (x.value / width.value) * timelineDuration.value,
-  endTime: startTime.value + (x.value / width.value + 1) * timelineDuration.value
-}));
 const timelineWidth = computed(() => (timelineDuration.value / clipDuration.value) * width.value);
+const currentView = computed(() => ({
+  startTime: startTime.value + (x.value / timelineWidth.value) * timelineDuration.value,
+  endTime: startTime.value + ((x.value + width.value) / timelineWidth.value) * timelineDuration.value
+}));
 
 const startFollow = () => {
   wrapperRef$.value?.scrollTo({
