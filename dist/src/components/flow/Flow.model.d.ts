@@ -2,6 +2,7 @@ import type { Vec2 } from '../../shared/types/vector';
 import type { InjectionKey, Ref } from 'vue';
 import type { Cursor } from 'pixi.js';
 import type { Signal } from '../../shared/libs/signal';
+import type { Dictionary } from '../../shared/types/map';
 export declare namespace Flow {
     namespace Entity {
         namespace BoundingBox {
@@ -11,19 +12,19 @@ export declare namespace Flow {
             }
         }
         namespace Node {
-            const InjectionKey: InjectionKey<Ref<Map<Model['id'], Model>>>;
+            const InjectionKey: InjectionKey<Ref<Dictionary<Model, 'id'>>>;
             interface Model {
                 id: string;
                 position: Vec2;
                 offset: Vec2;
                 relativePosition?: Vec2;
-                edges: Map<Edge.Model['id'], Edge.Model>;
+                edges: Dictionary<Edge.Model, 'id'>;
                 boundingBox: BoundingBox.Model;
                 isPanning?: boolean;
             }
         }
         namespace Edge {
-            const InjectionKey: InjectionKey<Ref<Map<Model['id'], Model>>>;
+            const InjectionKey: InjectionKey<Ref<Dictionary<Model, 'id'>>>;
             interface Model {
                 id: `${Node.Model['id']}->${Node.Model['id']}`;
                 from: Node.Model;
@@ -49,26 +50,52 @@ export declare namespace Flow {
                 }
             }
             namespace Node {
-                interface Props extends Pick<Edge.Props, 'radius' | 'arrowSize' | 'strokeWidth' | 'strokeColor' | 'strokeOpacity'> {
-                    id: string;
-                    name: string;
+                type Props = {
+                    id: Entity.Node.Model['id'];
+                    name?: string;
                     to?: Entity.Node.Model['id'][];
-                    active?: boolean;
                     position?: Vec2;
                     positionX?: number;
                     positionY?: number;
                     relative?: boolean;
-                }
+                } & ({
+                    activeEdgesOn?: 'from';
+                    activeNodeId?: never;
+                } | {
+                    activeEdgesOn: 'to' | 'both';
+                    activeNodeId: Entity.Node.Model['id'];
+                }) & Pick<Edge.Props, 'radius' | 'arrowSize' | 'strokeWidth' | 'strokeColor' | 'strokeOpacity' | 'active' | 'blur' | 'priority'>;
             }
             namespace Edge {
-                interface Props {
+                type Props = {
                     edge: Entity.Edge.Model;
                     radius?: number;
                     arrowSize?: number;
+                } & (({
+                    active?: boolean;
+                    blur?: boolean;
+                    priority?: never;
+                } & ({
                     strokeWidth?: string | number;
                     strokeColor?: string | number;
                     strokeOpacity?: string | number;
-                }
+                } | {
+                    strokeWidth?: [string | number, string | number];
+                    strokeColor?: [string | number, string | number];
+                    strokeOpacity?: [string | number, string | number];
+                })) | ({
+                    active: boolean;
+                    blur: boolean;
+                    priority?: `${'active' | 'blur'}-first`;
+                } & ({
+                    strokeWidth?: string | number;
+                    strokeColor?: string | number;
+                    strokeOpacity?: string | number;
+                } | {
+                    strokeWidth?: [string | number, string | number, string | number];
+                    strokeColor?: [string | number, string | number, string | number];
+                    strokeOpacity?: [string | number, string | number, string | number];
+                })));
             }
         }
         namespace Widget {
@@ -95,6 +122,8 @@ export declare namespace Flow {
             namespace Viewport {
                 const Size: InjectionKey<Ref<Pick<Props, 'width' | 'height'>>>;
                 const NodeBoundary: InjectionKey<Ref<Record<'min' | 'max', Vec2>>>;
+                const Gap: InjectionKey<Ref<Vec2>>;
+                const Offset: InjectionKey<Ref<Vec2>>;
                 interface Props {
                     width: number;
                     height: number;

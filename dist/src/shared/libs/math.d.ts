@@ -1,4 +1,4 @@
-import type { Vector } from '../../shared/types/vector';
+import type { Vector, Vec2, Vec3, Vec4 } from '../../shared/types/vector';
 export type MathProxy = Math & {
     ARC_BASE: number;
     Vector: {
@@ -9,6 +9,9 @@ export type MathProxy = Math & {
         divide: <T extends string>(a: Vector<T>, b: Vector<T>, scalar?: boolean) => Vector<T>;
         middle: <T extends string>(a: Vector<T>, b: Vector<T>) => Vector<T>;
         clamp: <T extends string>(value: Vector<T>, min: Vector<T>, max: Vector<T>) => Vector<T>;
+        ORIGIN_2D: Vec2;
+        ORIGIN_3D: Vec3;
+        ORIGIN_4D: Vec4;
     };
     deg: (rad: number) => number;
     rad: (deg: number) => number;

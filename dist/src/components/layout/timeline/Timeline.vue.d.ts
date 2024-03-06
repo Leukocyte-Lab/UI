@@ -6,7 +6,10 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     basis: number;
     title: string;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    "update:range": (range: Timeline.Range.Model, duration: Date) => void;
+    "update:range": (range: Timeline.Range.Model) => void;
+    "update:duration": (duration: Date) => void;
+    "update:focused": (events: import("../../../shared/types/map").Dictionary<Timeline.Event.Model, "id">) => void;
+    "update:focused.array": (events: Timeline.Event.Model[]) => void;
 }, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     events: import("../../../shared/types/map").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
     follow?: boolean | undefined;
@@ -432,7 +435,10 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     basis: number;
     title: string;
 }>>> & {
-    "onUpdate:range"?: ((range: Timeline.Range.Model, duration: Date) => any) | undefined;
+    "onUpdate:range"?: ((range: Timeline.Range.Model) => any) | undefined;
+    "onUpdate:duration"?: ((duration: Date) => any) | undefined;
+    "onUpdate:focused"?: ((events: import("../../../shared/types/map").Dictionary<Timeline.Event.Model, "id">) => any) | undefined;
+    "onUpdate:focused.array"?: ((events: Timeline.Event.Model[]) => any) | undefined;
 }, {
     title: string;
     follow: boolean;

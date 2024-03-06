@@ -1,6 +1,48 @@
 import type { VNode } from 'vue';
 import { Flow } from '../Flow.model';
-declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<Flow.UI.Layout.Node.Props>, {}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<Flow.UI.Layout.Node.Props>, {}>>>, {}, {}>, Readonly<{
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<Flow.UI.Layout.Node.Props>, {
+    activeEdgesOn: string;
+    active: boolean;
+    blur: boolean;
+}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+    id: string;
+    name?: string | undefined;
+    to?: string[] | undefined;
+    position?: import("../../../shared").Vec2 | undefined;
+    positionX?: number | undefined;
+    positionY?: number | undefined;
+    relative?: boolean | undefined;
+} & {
+    activeEdgesOn?: "from" | undefined;
+    activeNodeId?: undefined;
+} & Pick<Flow.UI.Layout.Edge.Props, "radius" | "blur" | "active" | "arrowSize" | "strokeWidth" | "strokeColor" | "strokeOpacity" | "priority">>, {
+    activeEdgesOn: string;
+    active: boolean;
+    blur: boolean;
+}>>> | Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+    id: string;
+    name?: string | undefined;
+    to?: string[] | undefined;
+    position?: import("../../../shared").Vec2 | undefined;
+    positionX?: number | undefined;
+    positionY?: number | undefined;
+    relative?: boolean | undefined;
+} & {
+    activeEdgesOn: "to" | "both";
+    activeNodeId: string;
+} & Pick<Flow.UI.Layout.Edge.Props, "radius" | "blur" | "active" | "arrowSize" | "strokeWidth" | "strokeColor" | "strokeOpacity" | "priority">>, {
+    activeEdgesOn: string;
+    active: boolean;
+    blur: boolean;
+}>>>, {
+    blur: boolean;
+    active: boolean;
+    activeEdgesOn: "from";
+} | {
+    blur: boolean;
+    active: boolean;
+    activeEdgesOn: "to" | "both";
+}, {}>, Readonly<{
     default: () => VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>;
