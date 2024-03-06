@@ -120,7 +120,7 @@ const ActiveTemplate: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
             :stroke-color="node.id === 'node-05' ? 'var(--agh-ref-color-cyan-500)' : 'var(--agh-ref-color-grayscale-600)'"
             :stroke-width="node.id === 'node-05' ? 'var(--agh-ref-border-width-100)' : 1"
           >
-            <CardBox data-demo-content :style="{width: '240px', height: '120px', outline: node.id === 'node-05' ? 'var(--agh-ref-border-width-200) solid var(--agh-ref-color-cyan-500)' : none}">
+            <CardBox data-demo-content :style="{width: '240px', height: '120px', outline: node.id === 'node-05' ? 'var(--agh-ref-border-width-200) solid var(--agh-ref-color-cyan-500)' : ''}">
               <p>#{{ node.id }}</p>
               <h1>{{ node.name }}</h1>
             </CardBox>
