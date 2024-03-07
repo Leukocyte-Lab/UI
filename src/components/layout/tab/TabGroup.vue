@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { useElementSize } from '@vueuse/core';
 import { Icon } from '@iconify/vue/offline';
 
 import type { VNode } from 'vue';
 
 import type { TabGroup } from '@/components/layout/tab/TabGroup.model';
-import { useElementSize } from '@vueuse/core';
 
 const slots = defineSlots<{
   [key: TabGroup.Tab.Model['id']]: (props: {
