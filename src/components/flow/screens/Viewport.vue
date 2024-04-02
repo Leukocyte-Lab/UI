@@ -28,6 +28,10 @@ const edges: Ref<Map<Flow.Entity.Edge.Model['id'], Flow.Entity.Edge.Model>> = re
 const isPanning = ref<boolean | 'ready'>(false);
 const bufferedMovement = ref<Vec2>({ x: 0, y: 0 });
 const viewportRef$ = ref<ContainerInst>();
+const viewportOffset = ref<Vec2>({
+  x: 0,
+  y: 0
+});
 const stageOffset = ref<Vec2>({
   x: 0,
   y: 0
@@ -233,6 +237,10 @@ const handleMovement = (movement: Vec2) => {
     }
 
     stageOffset.value = stage.position;
+    viewportOffset.value = {
+      x: stage.position.x,
+      y: stage.position.y
+    };
   }
 };
 
@@ -264,8 +272,6 @@ const handleTailingMovement = () => {
 const handleGlobalEvents = () => {
   document.addEventListener('mouseup', handlePan);
   document.addEventListener('pointerup', handlePan);
-  document.addEventListener('mousedown', handlePan);
-  document.addEventListener('pointerdown', handlePan);
   document.addEventListener('mousemove', handlePan);
   document.addEventListener('pointermove', handlePan);
 };
@@ -341,44 +347,53 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
     :sort-dirty="true"
     :width="viewportBoundingBox.width"
     :height="viewportBoundingBox.height"
+    @mousedown="handlePan"
+    @pointerdown="handlePan"
   >
-    <Graphics
-      @render="
-        (graphics) => {
-          graphics.clear();
-          graphics.beginFill(
-            debugOptions?.showBoundingBox ? '0x56f071' : '0xffffff',
-            debugOptions?.showBoundingBox ? 1 : 0.0001
-          );
-          graphics.drawRect(stageOffset.x * -1, stageOffset.y * -1, props.width, props.height);
-          graphics.endFill();
-        }
-      "
-    />
-    <template v-if="debugOptions?.showBoundingBox">
-      <Text
-        :x="stageOffset.x * -1"
-        :y="stageOffset.y * -1"
-        :style="{
-          fontSize: 10,
-          fontFamily: 'monospace',
-          whiteSpace: 'pre',
-          padding: 10,
-          leading: 1.2,
-          breakWords: true,
-          trim: true
-        }"
-        :text="`
+    <template v-if="viewportRef$">
+      <Graphics
+        @render="
+          (graphics) => {
+            graphics.clear();
+            graphics.beginFill(
+              debugOptions?.showBoundingBox ? '0x56f071' : '0xffffff',
+              debugOptions?.showBoundingBox ? 1 : 0.0001
+            );
+            graphics.drawRect(
+              viewportOffset.x * -1,
+              viewportOffset.y * -1,
+              props.width,
+              props.height
+            );
+            graphics.endFill();
+          }
+        "
+      />
+      <template v-if="debugOptions?.showBoundingBox">
+        <Text
+          :x="viewportOffset.x * -1"
+          :y="viewportOffset.y * -1"
+          :style="{
+            fontSize: 10,
+            fontFamily: 'monospace',
+            whiteSpace: 'pre',
+            padding: 10,
+            leading: 1.2,
+            breakWords: true,
+            trim: true
+          }"
+          :text="`
           #stage-interactive-area
 
           offset-x: ${offset.x}
           offset-y: ${offset.y}
-          stage-offset-x: ${stageOffset.x}
-          stage-offset-y: ${stageOffset.y}
+          stage-offset-x: ${viewportOffset.x}
+          stage-offset-y: ${viewportOffset.y}
           width: ${props.width}
           height: ${props.height}
         `"
-      />
+        />
+      </template>
     </template>
     <slot />
   </Container>
