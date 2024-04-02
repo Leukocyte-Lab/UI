@@ -162,6 +162,7 @@ onMounted(() => {
         position: absolute;
         color: var(--agh-ref-color-grayscale-500);
         padding: var(--agh-ref-spacing-100) var(--agh-ref-spacing-200);
+        box-sizing: content-box !important;
       }
     }
   }
