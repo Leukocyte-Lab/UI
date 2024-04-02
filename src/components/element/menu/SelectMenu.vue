@@ -211,9 +211,9 @@ onMounted(() => {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    width: var(--agh-sys-gadget-searchbar-width-small);
+    width: var(--agh-sys-list-dropdown-small);
     height: fit-content;
-    max-height: calc(var(--agh-sys-gadget-searchbar-width-small) * 2);
+    max-height: calc(var(--agh-sys-list-dropdown-small) * 2);
     padding: 0 var(--agh-ref-spacing-100);
     box-shadow: var(--agh-sys-effects-shadow-pop-up);
     overflow: hidden;
@@ -260,7 +260,7 @@ onMounted(() => {
   }
 
   &-wrapper {
-    @include scrollbar.use($offset: var(--agh-ref-spacing-300));
+    @include scrollbar.use($offset: var(--agh-ref-spacing-200));
 
     position: relative;
     display: flex;
@@ -269,7 +269,7 @@ onMounted(() => {
 
     &.overflowed {
       border-right: var(--agh-ref-border-width-200) solid transparent;
-      padding-right: var(--agh-ref-spacing-400);
+      padding-right: var(--agh-ref-spacing-200);
     }
   }
 
@@ -357,7 +357,7 @@ onMounted(() => {
     }
 
     &:last-child {
-      margin-bottom: var(--agh-ref-spacing-100);
+      margin-bottom: calc(var(--agh-ref-spacing-100) - var(--box-border-width));
 
       &.classify {
         margin-bottom: var(--agh-ref-spacing-300);

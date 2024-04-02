@@ -79,7 +79,7 @@ watch(selected, onSelect);
     position: relative;
     display: flex;
     flex-direction: column;
-    width: var(--agh-sys-gadget-searchbar-width-small);
+    width: var(--agh-sys-gadget-searchbar-width-large);
   }
 
   &--input {
