@@ -567,7 +567,7 @@ const nt = /* @__PURE__ */ U({
       ],
       "aria-disabled": t.disabled,
       "aria-label": t.label,
-      onClick: A(l)
+      onClickCapture: A(l)
     }, t.disabled ? { disabled: "", ...o.$attrs } : o.$attrs, {
       role: "button",
       tabindex: "0"
@@ -619,7 +619,7 @@ const nt = /* @__PURE__ */ U({
         }, 8, ["class"])) : L("", !0)
       ]),
       _: 1
-    }, 16, ["link", "class", "aria-disabled", "aria-label", "onClick"]));
+    }, 16, ["link", "class", "aria-disabled", "aria-label", "onClickCapture"]));
   }
 }), ot = "_behavior_15p2x_1", st = "_clickable_15p2x_1", rt = "_disabled_15p2x_4", lt = "_draggable_15p2x_7", at = "_move_15p2x_7", it = "_loading_15p2x_10", ct = "_rounded_15p2x_14", ut = "_circle_15p2x_14", dt = "_square_15p2x_14", pt = "_rect_15p2x_14", ft = "_purple_15p2x_14", _t = "_secondary_15p2x_14", bt = "_text_15p2x_14", mt = "_tertiary_15p2x_14", vt = "_blue_15p2x_14", gt = "_cyan_15p2x_14", ht = "_green_15p2x_14", yt = "_orange_15p2x_14", xt = "_red_15p2x_14", wt = "_clicked_15p2x_22", kt = "_small_15p2x_153", Ct = "_medium_15p2x_156", $t = "_large_15p2x_159", At = "_huge_15p2x_162", Et = "_dot_15p2x_300", St = "_badge_15p2x_375", Ot = "_primary_15p2x_551", Mt = "_rotate_15p2x_1", Tt = "_active_15p2x_835", Dt = "_capsule_15p2x_1929", Rt = "_boolean_15p2x_1932", qt = "_string_15p2x_1941", Ft = "_number_15p2x_1941", Lt = {
   behavior: ot,
@@ -669,7 +669,7 @@ const nt = /* @__PURE__ */ U({
   "step-rotate": "_step-rotate_15p2x_1"
 }, Pt = {
   $style: Lt
-}, tn = /* @__PURE__ */ de(nt, [["__cssModules", Pt], ["__scopeId", "data-v-91889466"]]);
+}, tn = /* @__PURE__ */ de(nt, [["__cssModules", Pt], ["__scopeId", "data-v-d7193093"]]);
 export {
   tt as B,
   Ye as _,
@@ -693,4 +693,4 @@ export {
   Ge as r,
   Yt as u
 };
-//# sourceMappingURL=ButtonBox-ByEq7SsQ.js.map
+//# sourceMappingURL=ButtonBox-55MHD3CR.js.map

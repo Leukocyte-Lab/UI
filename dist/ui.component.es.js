@@ -1,4 +1,4 @@
-import { d as vt, b as Dt, a as Lt, c as _l, e as vl, g as nt, _ as Vt, f as W, u as ve, B as Ae, h as He, i as ot, j as Y, k as hl, l as ml, m as yl, n as gl, o as $l } from "./ButtonBox-ByEq7SsQ.js";
+import { d as vt, b as Dt, a as Lt, c as _l, e as vl, g as nt, _ as Vt, f as W, u as ve, B as Ae, h as He, i as ot, j as Y, k as hl, l as ml, m as yl, n as gl, o as $l } from "./ButtonBox-55MHD3CR.js";
 import { defineComponent as R, openBlock as p, createElementBlock as b, Fragment as S, renderSlot as ne, createCommentVNode as D, renderList as N, unref as a, useCssVars as Ge, createBlock as H, normalizeClass as o, withCtx as x, toDisplayString as O, createTextVNode as qt, computed as F, reactive as bl, watchEffect as wl, ref as q, createVNode as L, createElementVNode as c, pushScopeId as ue, popScopeId as ce, toRefs as $e, onMounted as he, mergeProps as Nt, watch as oe, withDirectives as lt, normalizeStyle as It, onUpdated as kl, withKeys as Ne, mergeModels as zl, useSlots as Cl, useModel as Ml, Transition as jl, onBeforeUpdate as Sl } from "vue";
 import { k as Se, l as Be, m as Tl, n as Pt, o as Et, q as Al, r as Bl, t as Ol, v as We, w as Dl, x as rt, y as Ll, z as xt, A as Vl, B as ql, C as Nl, D as ht, E as mt, F as Ze, G as Fe, I as Ye, J as Il, K as Pl, i as Te, L as El, O as xl, P as _e, Q as Fl, e as Rl, f as Ft, R as Ul, T as Hl, V as yt, W as Gl, X as Wl, Y as Rt, Z as it, _ as Zl, $ as Yl, a0 as Xl, a1 as Xe, a2 as Ut, a3 as Jl, j as gt, a4 as Ql, a5 as Kl, a6 as Re, u as Oe, p as le, a7 as Me, a8 as Ht, a9 as ie, M as A, d as J, s as X, aa as ze, S as es, a as ts } from "./parser-81rB9sCH.js";
 import { l as G, m as $t, n as Pe, o as st, b as je, f as ls, t as Gt, p as ss, i as as } from "./i18n.service-4W5HT8k4.js";
@@ -557,7 +557,7 @@ const Cn = /* @__PURE__ */ R({
   },
   setup(t) {
     Ge((r) => ({
-      "23e77dfd": e.value
+      "527e7e68": e.value
     }));
     const l = t, e = F(
       () => l.radius ?? `var(--agh-ref-border-radius-${l.purpose === "box" ? 300 : 500})`
@@ -580,13 +580,13 @@ const Cn = /* @__PURE__ */ R({
           [r.$style.clicked]: a(s)() && l.clickable || l.active
         }
       ]),
-      onClick: a(n)
+      onClickPassive: a(n)
     }, {
       default: x(() => [
         ne(r.$slots, "default", {}, void 0, !0)
       ]),
       _: 3
-    }, 8, ["link", "class", "onClick"]));
+    }, 8, ["link", "class", "onClickPassive"]));
   }
 }), On = "_behavior_pb9oa_1", Dn = "_clickable_pb9oa_1", Ln = "_disabled_pb9oa_4", Vn = "_draggable_pb9oa_7", qn = "_move_pb9oa_7", Nn = "_loading_pb9oa_10", In = "_metallic_pb9oa_14", Pn = "_flat_pb9oa_14", En = "_clicked_pb9oa_22", xn = "_dash_pb9oa_105", Fn = "_purpose_pb9oa_477", Rn = {
   behavior: On,
@@ -615,7 +615,7 @@ const Cn = /* @__PURE__ */ R({
   "stroke-thin": "_stroke-thin_pb9oa_503"
 }, Un = {
   $style: Rn
-}, ae = /* @__PURE__ */ W(Bn, [["__cssModules", Un], ["__scopeId", "data-v-ad023d43"]]), Je = ({
+}, ae = /* @__PURE__ */ W(Bn, [["__cssModules", Un], ["__scopeId", "data-v-73b221a6"]]), Je = ({
   type: t,
   axises: l,
   data: e
