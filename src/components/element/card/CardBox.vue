@@ -45,7 +45,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
         [$style['clicked']]: (triggered() && props.clickable) || props.active
       }
     ]"
-    @click="onTrigger"
+    @click.passive.="onTrigger"
   >
     <!-- @slot Use this default card slot -->
     <slot />

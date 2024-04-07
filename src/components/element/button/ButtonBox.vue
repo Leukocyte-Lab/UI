@@ -61,7 +61,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
     ]"
     :aria-disabled="props.disabled"
     :aria-label="props.label"
-    @click="onTrigger"
+    @click.capture="onTrigger"
     v-bind="props.disabled ? { disabled: '', ...$attrs } : $attrs"
     role="button"
     tabindex="0"
