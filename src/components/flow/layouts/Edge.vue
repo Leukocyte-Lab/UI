@@ -296,23 +296,25 @@ const drawPath = (g: GraphicsInst) => {
       g.lineTo(endPoint.value.x, endPoint.value.y);
     } else {
       if (ray.value.y !== 0) {
+        const radius = Math.min(Math.abs(ray.value.y) / 2, props.radius);
+
         const firstTurnPoint = {
-          x: Math.max(mid.x, 0) - props.radius * ((0.5 - fromScale.y) * -Math.E),
+          x: Math.max(mid.x, 0) - radius * ((0.5 - fromScale.y) * -Math.E) - (props.radius - radius),
           y: startPoint.value.y
         };
 
-        g.lineTo(firstTurnPoint.x - props.radius, firstTurnPoint.y);
+        g.lineTo(firstTurnPoint.x - radius, firstTurnPoint.y);
         g.quadraticCurveTo(
           firstTurnPoint.x,
           firstTurnPoint.y,
           firstTurnPoint.x,
-          startPoint.value.y + props.radius * (ray.value.y > 0 ? 1 : -1)
+          startPoint.value.y + radius * (ray.value.y > 0 ? 1 : -1)
         );
-        g.lineTo(firstTurnPoint.x, endPoint.value.y - props.radius * (ray.value.y > 0 ? 1 : -1));
+        g.lineTo(firstTurnPoint.x, endPoint.value.y - radius * (ray.value.y > 0 ? 1 : -1));
         g.quadraticCurveTo(
           firstTurnPoint.x,
           endPoint.value.y,
-          firstTurnPoint.x + props.radius,
+          firstTurnPoint.x + radius,
           endPoint.value.y
         );
         g.lineTo(endPoint.value.x, endPoint.value.y);
