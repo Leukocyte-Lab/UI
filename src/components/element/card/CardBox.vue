@@ -23,7 +23,7 @@ const radius = computed(
 
 const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
   if (!props.clickable) {
-    event.preventDefault();
+    event.stopPropagation();
   }
 });
 </script>

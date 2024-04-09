@@ -68,11 +68,14 @@ const filterFields = {
 };
 
 const filterOptions = computedEager<CardList.FilterOption[]>(() =>
-  flatMap(
-    (props.filterOptions ?? []).map((option) =>
-      uniq(map(props.items, option.field)).map((value) => ({ ...option, value }))
+  (props.filterOptions ?? [])
+    .map((option) =>
+      uniq(option.multi ? option.options : map(props.items, option.field)).map((value) => ({
+        ...option,
+        value
+      }))
     )
-  )
+    .flat()
 );
 
 const localSearch = ref<string>(props.modelValue ?? '');
@@ -171,7 +174,9 @@ const computeItems = () => {
         ...map(groupBy(filters.value, 'field'), (filters) =>
           flatMap(
             filters.map((rule) =>
-              sortedItems.filter((item) => isMatch(item, { [rule.field]: rule.value }))
+              rule.multi
+                ? sortedItems.filter((item) => item[rule.field]?.includes(rule.value))
+                : sortedItems.filter((item) => isMatch(item, { [rule.field]: rule.value }))
             )
           )
         ),

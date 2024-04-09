@@ -12,11 +12,20 @@ export namespace CardList {
     icon: string;
   };
 
-  export type FilterOption = {
-    field: string;
-    label: string;
-    value?: ValueOf<ObjectLike>;
-  };
+  export type FilterOption =
+    | {
+        field: string;
+        label: string;
+        multi?: false;
+        value?: ValueOf<ObjectLike>;
+      }
+    | {
+        field: string;
+        label: string;
+        multi: true;
+        options: string[];
+        value?: ValueOf<ObjectLike>;
+      };
 
   export type Props = BaseList.Props & {
     fields: SelectMenu.Fields;

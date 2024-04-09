@@ -82,6 +82,7 @@ DefaultCardList.args = {
       description:
         'APT-38 is a threat group that has been attributed to the North Korean government.',
       category: 'APT Group Simulation Data',
+      types: ['APT Group', 'Simulation Data'],
       recentlyUsed: '2021-01-07T00:00:00Z',
       installed: 'Installed'
     },
@@ -89,6 +90,7 @@ DefaultCardList.args = {
       name: 'APT-39',
       description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
       category: 'APT Group Simulation Data',
+      types: ['APT Group', 'Simulation Data'],
       recentlyUsed: '2021-01-02T00:00:00Z',
       installed: 'Installed'
     },
@@ -96,6 +98,7 @@ DefaultCardList.args = {
       name: 'APT-40',
       description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
       category: 'APT Group Simulation Data',
+      types: ['APT Group', 'Simulation Data'],
       recentlyUsed: '2021-01-01T00:00:00Z',
       installed: 'Not Install'
     },
@@ -104,6 +107,7 @@ DefaultCardList.args = {
       description:
         'Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
       category: 'Technique Simulation Data',
+      types: ['Technique', 'Simulation Data'],
       recentlyUsed: '2021-01-03T00:00:00Z',
       installed: 'Installed'
     },
@@ -112,6 +116,7 @@ DefaultCardList.args = {
       description:
         'Apache is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
       category: 'Technique Simulation Data',
+      types: ['Technique', 'Simulation Data'],
       recentlyUsed: '2021-01-04T00:00:00Z',
       installed: 'Not Install'
     }
@@ -167,4 +172,25 @@ export const SimpleCardList = Template.bind({});
 SimpleCardList.args = {
   ...DefaultCardList.args,
   groupBy: undefined
-}
+};
+
+export const MultiFilterCardList = Template.bind({});
+MultiFilterCardList.args = {
+  ...DefaultCardList.args,
+  filterOptions: [
+    {
+      field: 'types',
+      label: 'Playbook Type',
+      multi: 'intersection',
+      options: ['APT Group', 'Technique', 'Simulation Data']
+    },
+    {
+      field: 'category',
+      label: 'Category'
+    },
+    {
+      field: 'installed',
+      label: 'Installation Status'
+    }
+  ]
+};
