@@ -33,7 +33,7 @@ function Nc(i) {
   const e = ao.includes(t), r = t.startsWith(oo) && ao.includes(t.slice(oo.length));
   return e || r;
 }
-var hr = /* @__PURE__ */ ((i) => (i[i.WEBGL_LEGACY = 0] = "WEBGL_LEGACY", i[i.WEBGL = 1] = "WEBGL", i[i.WEBGL2 = 2] = "WEBGL2", i))(hr || {}), al = /* @__PURE__ */ ((i) => (i[i.UNKNOWN = 0] = "UNKNOWN", i[i.WEBGL = 1] = "WEBGL", i[i.CANVAS = 2] = "CANVAS", i))(al || {}), On = /* @__PURE__ */ ((i) => (i[i.COLOR = 16384] = "COLOR", i[i.DEPTH = 256] = "DEPTH", i[i.STENCIL = 1024] = "STENCIL", i))(On || {}), z = /* @__PURE__ */ ((i) => (i[i.NORMAL = 0] = "NORMAL", i[i.ADD = 1] = "ADD", i[i.MULTIPLY = 2] = "MULTIPLY", i[i.SCREEN = 3] = "SCREEN", i[i.OVERLAY = 4] = "OVERLAY", i[i.DARKEN = 5] = "DARKEN", i[i.LIGHTEN = 6] = "LIGHTEN", i[i.COLOR_DODGE = 7] = "COLOR_DODGE", i[i.COLOR_BURN = 8] = "COLOR_BURN", i[i.HARD_LIGHT = 9] = "HARD_LIGHT", i[i.SOFT_LIGHT = 10] = "SOFT_LIGHT", i[i.DIFFERENCE = 11] = "DIFFERENCE", i[i.EXCLUSION = 12] = "EXCLUSION", i[i.HUE = 13] = "HUE", i[i.SATURATION = 14] = "SATURATION", i[i.COLOR = 15] = "COLOR", i[i.LUMINOSITY = 16] = "LUMINOSITY", i[i.NORMAL_NPM = 17] = "NORMAL_NPM", i[i.ADD_NPM = 18] = "ADD_NPM", i[i.SCREEN_NPM = 19] = "SCREEN_NPM", i[i.NONE = 20] = "NONE", i[i.SRC_OVER = 0] = "SRC_OVER", i[i.SRC_IN = 21] = "SRC_IN", i[i.SRC_OUT = 22] = "SRC_OUT", i[i.SRC_ATOP = 23] = "SRC_ATOP", i[i.DST_OVER = 24] = "DST_OVER", i[i.DST_IN = 25] = "DST_IN", i[i.DST_OUT = 26] = "DST_OUT", i[i.DST_ATOP = 27] = "DST_ATOP", i[i.ERASE = 26] = "ERASE", i[i.SUBTRACT = 28] = "SUBTRACT", i[i.XOR = 29] = "XOR", i))(z || {}), oe = /* @__PURE__ */ ((i) => (i[i.POINTS = 0] = "POINTS", i[i.LINES = 1] = "LINES", i[i.LINE_LOOP = 2] = "LINE_LOOP", i[i.LINE_STRIP = 3] = "LINE_STRIP", i[i.TRIANGLES = 4] = "TRIANGLES", i[i.TRIANGLE_STRIP = 5] = "TRIANGLE_STRIP", i[i.TRIANGLE_FAN = 6] = "TRIANGLE_FAN", i))(oe || {}), P = /* @__PURE__ */ ((i) => (i[i.RGBA = 6408] = "RGBA", i[i.RGB = 6407] = "RGB", i[i.RG = 33319] = "RG", i[i.RED = 6403] = "RED", i[i.RGBA_INTEGER = 36249] = "RGBA_INTEGER", i[i.RGB_INTEGER = 36248] = "RGB_INTEGER", i[i.RG_INTEGER = 33320] = "RG_INTEGER", i[i.RED_INTEGER = 36244] = "RED_INTEGER", i[i.ALPHA = 6406] = "ALPHA", i[i.LUMINANCE = 6409] = "LUMINANCE", i[i.LUMINANCE_ALPHA = 6410] = "LUMINANCE_ALPHA", i[i.DEPTH_COMPONENT = 6402] = "DEPTH_COMPONENT", i[i.DEPTH_STENCIL = 34041] = "DEPTH_STENCIL", i))(P || {}), Sr = /* @__PURE__ */ ((i) => (i[i.TEXTURE_2D = 3553] = "TEXTURE_2D", i[i.TEXTURE_CUBE_MAP = 34067] = "TEXTURE_CUBE_MAP", i[i.TEXTURE_2D_ARRAY = 35866] = "TEXTURE_2D_ARRAY", i[i.TEXTURE_CUBE_MAP_POSITIVE_X = 34069] = "TEXTURE_CUBE_MAP_POSITIVE_X", i[i.TEXTURE_CUBE_MAP_NEGATIVE_X = 34070] = "TEXTURE_CUBE_MAP_NEGATIVE_X", i[i.TEXTURE_CUBE_MAP_POSITIVE_Y = 34071] = "TEXTURE_CUBE_MAP_POSITIVE_Y", i[i.TEXTURE_CUBE_MAP_NEGATIVE_Y = 34072] = "TEXTURE_CUBE_MAP_NEGATIVE_Y", i[i.TEXTURE_CUBE_MAP_POSITIVE_Z = 34073] = "TEXTURE_CUBE_MAP_POSITIVE_Z", i[i.TEXTURE_CUBE_MAP_NEGATIVE_Z = 34074] = "TEXTURE_CUBE_MAP_NEGATIVE_Z", i))(Sr || {}), $ = /* @__PURE__ */ ((i) => (i[i.UNSIGNED_BYTE = 5121] = "UNSIGNED_BYTE", i[i.UNSIGNED_SHORT = 5123] = "UNSIGNED_SHORT", i[i.UNSIGNED_SHORT_5_6_5 = 33635] = "UNSIGNED_SHORT_5_6_5", i[i.UNSIGNED_SHORT_4_4_4_4 = 32819] = "UNSIGNED_SHORT_4_4_4_4", i[i.UNSIGNED_SHORT_5_5_5_1 = 32820] = "UNSIGNED_SHORT_5_5_5_1", i[i.UNSIGNED_INT = 5125] = "UNSIGNED_INT", i[i.UNSIGNED_INT_10F_11F_11F_REV = 35899] = "UNSIGNED_INT_10F_11F_11F_REV", i[i.UNSIGNED_INT_2_10_10_10_REV = 33640] = "UNSIGNED_INT_2_10_10_10_REV", i[i.UNSIGNED_INT_24_8 = 34042] = "UNSIGNED_INT_24_8", i[i.UNSIGNED_INT_5_9_9_9_REV = 35902] = "UNSIGNED_INT_5_9_9_9_REV", i[i.BYTE = 5120] = "BYTE", i[i.SHORT = 5122] = "SHORT", i[i.INT = 5124] = "INT", i[i.FLOAT = 5126] = "FLOAT", i[i.FLOAT_32_UNSIGNED_INT_24_8_REV = 36269] = "FLOAT_32_UNSIGNED_INT_24_8_REV", i[i.HALF_FLOAT = 36193] = "HALF_FLOAT", i))($ || {}), L = /* @__PURE__ */ ((i) => (i[i.FLOAT = 0] = "FLOAT", i[i.INT = 1] = "INT", i[i.UINT = 2] = "UINT", i))(L || {}), ye = /* @__PURE__ */ ((i) => (i[i.NEAREST = 0] = "NEAREST", i[i.LINEAR = 1] = "LINEAR", i))(ye || {}), Ee = /* @__PURE__ */ ((i) => (i[i.CLAMP = 33071] = "CLAMP", i[i.REPEAT = 10497] = "REPEAT", i[i.MIRRORED_REPEAT = 33648] = "MIRRORED_REPEAT", i))(Ee || {}), ue = /* @__PURE__ */ ((i) => (i[i.OFF = 0] = "OFF", i[i.POW2 = 1] = "POW2", i[i.ON = 2] = "ON", i[i.ON_MANUAL = 3] = "ON_MANUAL", i))(ue || {}), Dt = /* @__PURE__ */ ((i) => (i[i.NPM = 0] = "NPM", i[i.UNPACK = 1] = "UNPACK", i[i.PMA = 2] = "PMA", i[i.NO_PREMULTIPLIED_ALPHA = 0] = "NO_PREMULTIPLIED_ALPHA", i[i.PREMULTIPLY_ON_UPLOAD = 1] = "PREMULTIPLY_ON_UPLOAD", i[i.PREMULTIPLIED_ALPHA = 2] = "PREMULTIPLIED_ALPHA", i))(Dt || {}), ne = /* @__PURE__ */ ((i) => (i[i.NO = 0] = "NO", i[i.YES = 1] = "YES", i[i.AUTO = 2] = "AUTO", i[i.BLEND = 0] = "BLEND", i[i.CLEAR = 1] = "CLEAR", i[i.BLIT = 2] = "BLIT", i))(ne || {}), Na = /* @__PURE__ */ ((i) => (i[i.AUTO = 0] = "AUTO", i[i.MANUAL = 1] = "MANUAL", i))(Na || {}), Ut = /* @__PURE__ */ ((i) => (i.LOW = "lowp", i.MEDIUM = "mediump", i.HIGH = "highp", i))(Ut || {}), mt = /* @__PURE__ */ ((i) => (i[i.NONE = 0] = "NONE", i[i.SCISSOR = 1] = "SCISSOR", i[i.STENCIL = 2] = "STENCIL", i[i.SPRITE = 3] = "SPRITE", i[i.COLOR = 4] = "COLOR", i))(mt || {}), ft = /* @__PURE__ */ ((i) => (i[i.NONE = 0] = "NONE", i[i.LOW = 2] = "LOW", i[i.MEDIUM = 4] = "MEDIUM", i[i.HIGH = 8] = "HIGH", i))(ft || {}), he = /* @__PURE__ */ ((i) => (i[i.ELEMENT_ARRAY_BUFFER = 34963] = "ELEMENT_ARRAY_BUFFER", i[i.ARRAY_BUFFER = 34962] = "ARRAY_BUFFER", i[i.UNIFORM_BUFFER = 35345] = "UNIFORM_BUFFER", i))(he || {});
+var hr = /* @__PURE__ */ ((i) => (i[i.WEBGL_LEGACY = 0] = "WEBGL_LEGACY", i[i.WEBGL = 1] = "WEBGL", i[i.WEBGL2 = 2] = "WEBGL2", i))(hr || {}), al = /* @__PURE__ */ ((i) => (i[i.UNKNOWN = 0] = "UNKNOWN", i[i.WEBGL = 1] = "WEBGL", i[i.CANVAS = 2] = "CANVAS", i))(al || {}), On = /* @__PURE__ */ ((i) => (i[i.COLOR = 16384] = "COLOR", i[i.DEPTH = 256] = "DEPTH", i[i.STENCIL = 1024] = "STENCIL", i))(On || {}), z = /* @__PURE__ */ ((i) => (i[i.NORMAL = 0] = "NORMAL", i[i.ADD = 1] = "ADD", i[i.MULTIPLY = 2] = "MULTIPLY", i[i.SCREEN = 3] = "SCREEN", i[i.OVERLAY = 4] = "OVERLAY", i[i.DARKEN = 5] = "DARKEN", i[i.LIGHTEN = 6] = "LIGHTEN", i[i.COLOR_DODGE = 7] = "COLOR_DODGE", i[i.COLOR_BURN = 8] = "COLOR_BURN", i[i.HARD_LIGHT = 9] = "HARD_LIGHT", i[i.SOFT_LIGHT = 10] = "SOFT_LIGHT", i[i.DIFFERENCE = 11] = "DIFFERENCE", i[i.EXCLUSION = 12] = "EXCLUSION", i[i.HUE = 13] = "HUE", i[i.SATURATION = 14] = "SATURATION", i[i.COLOR = 15] = "COLOR", i[i.LUMINOSITY = 16] = "LUMINOSITY", i[i.NORMAL_NPM = 17] = "NORMAL_NPM", i[i.ADD_NPM = 18] = "ADD_NPM", i[i.SCREEN_NPM = 19] = "SCREEN_NPM", i[i.NONE = 20] = "NONE", i[i.SRC_OVER = 0] = "SRC_OVER", i[i.SRC_IN = 21] = "SRC_IN", i[i.SRC_OUT = 22] = "SRC_OUT", i[i.SRC_ATOP = 23] = "SRC_ATOP", i[i.DST_OVER = 24] = "DST_OVER", i[i.DST_IN = 25] = "DST_IN", i[i.DST_OUT = 26] = "DST_OUT", i[i.DST_ATOP = 27] = "DST_ATOP", i[i.ERASE = 26] = "ERASE", i[i.SUBTRACT = 28] = "SUBTRACT", i[i.XOR = 29] = "XOR", i))(z || {}), oe = /* @__PURE__ */ ((i) => (i[i.POINTS = 0] = "POINTS", i[i.LINES = 1] = "LINES", i[i.LINE_LOOP = 2] = "LINE_LOOP", i[i.LINE_STRIP = 3] = "LINE_STRIP", i[i.TRIANGLES = 4] = "TRIANGLES", i[i.TRIANGLE_STRIP = 5] = "TRIANGLE_STRIP", i[i.TRIANGLE_FAN = 6] = "TRIANGLE_FAN", i))(oe || {}), P = /* @__PURE__ */ ((i) => (i[i.RGBA = 6408] = "RGBA", i[i.RGB = 6407] = "RGB", i[i.RG = 33319] = "RG", i[i.RED = 6403] = "RED", i[i.RGBA_INTEGER = 36249] = "RGBA_INTEGER", i[i.RGB_INTEGER = 36248] = "RGB_INTEGER", i[i.RG_INTEGER = 33320] = "RG_INTEGER", i[i.RED_INTEGER = 36244] = "RED_INTEGER", i[i.ALPHA = 6406] = "ALPHA", i[i.LUMINANCE = 6409] = "LUMINANCE", i[i.LUMINANCE_ALPHA = 6410] = "LUMINANCE_ALPHA", i[i.DEPTH_COMPONENT = 6402] = "DEPTH_COMPONENT", i[i.DEPTH_STENCIL = 34041] = "DEPTH_STENCIL", i))(P || {}), Sr = /* @__PURE__ */ ((i) => (i[i.TEXTURE_2D = 3553] = "TEXTURE_2D", i[i.TEXTURE_CUBE_MAP = 34067] = "TEXTURE_CUBE_MAP", i[i.TEXTURE_2D_ARRAY = 35866] = "TEXTURE_2D_ARRAY", i[i.TEXTURE_CUBE_MAP_POSITIVE_X = 34069] = "TEXTURE_CUBE_MAP_POSITIVE_X", i[i.TEXTURE_CUBE_MAP_NEGATIVE_X = 34070] = "TEXTURE_CUBE_MAP_NEGATIVE_X", i[i.TEXTURE_CUBE_MAP_POSITIVE_Y = 34071] = "TEXTURE_CUBE_MAP_POSITIVE_Y", i[i.TEXTURE_CUBE_MAP_NEGATIVE_Y = 34072] = "TEXTURE_CUBE_MAP_NEGATIVE_Y", i[i.TEXTURE_CUBE_MAP_POSITIVE_Z = 34073] = "TEXTURE_CUBE_MAP_POSITIVE_Z", i[i.TEXTURE_CUBE_MAP_NEGATIVE_Z = 34074] = "TEXTURE_CUBE_MAP_NEGATIVE_Z", i))(Sr || {}), V = /* @__PURE__ */ ((i) => (i[i.UNSIGNED_BYTE = 5121] = "UNSIGNED_BYTE", i[i.UNSIGNED_SHORT = 5123] = "UNSIGNED_SHORT", i[i.UNSIGNED_SHORT_5_6_5 = 33635] = "UNSIGNED_SHORT_5_6_5", i[i.UNSIGNED_SHORT_4_4_4_4 = 32819] = "UNSIGNED_SHORT_4_4_4_4", i[i.UNSIGNED_SHORT_5_5_5_1 = 32820] = "UNSIGNED_SHORT_5_5_5_1", i[i.UNSIGNED_INT = 5125] = "UNSIGNED_INT", i[i.UNSIGNED_INT_10F_11F_11F_REV = 35899] = "UNSIGNED_INT_10F_11F_11F_REV", i[i.UNSIGNED_INT_2_10_10_10_REV = 33640] = "UNSIGNED_INT_2_10_10_10_REV", i[i.UNSIGNED_INT_24_8 = 34042] = "UNSIGNED_INT_24_8", i[i.UNSIGNED_INT_5_9_9_9_REV = 35902] = "UNSIGNED_INT_5_9_9_9_REV", i[i.BYTE = 5120] = "BYTE", i[i.SHORT = 5122] = "SHORT", i[i.INT = 5124] = "INT", i[i.FLOAT = 5126] = "FLOAT", i[i.FLOAT_32_UNSIGNED_INT_24_8_REV = 36269] = "FLOAT_32_UNSIGNED_INT_24_8_REV", i[i.HALF_FLOAT = 36193] = "HALF_FLOAT", i))(V || {}), L = /* @__PURE__ */ ((i) => (i[i.FLOAT = 0] = "FLOAT", i[i.INT = 1] = "INT", i[i.UINT = 2] = "UINT", i))(L || {}), ye = /* @__PURE__ */ ((i) => (i[i.NEAREST = 0] = "NEAREST", i[i.LINEAR = 1] = "LINEAR", i))(ye || {}), Ee = /* @__PURE__ */ ((i) => (i[i.CLAMP = 33071] = "CLAMP", i[i.REPEAT = 10497] = "REPEAT", i[i.MIRRORED_REPEAT = 33648] = "MIRRORED_REPEAT", i))(Ee || {}), ue = /* @__PURE__ */ ((i) => (i[i.OFF = 0] = "OFF", i[i.POW2 = 1] = "POW2", i[i.ON = 2] = "ON", i[i.ON_MANUAL = 3] = "ON_MANUAL", i))(ue || {}), Dt = /* @__PURE__ */ ((i) => (i[i.NPM = 0] = "NPM", i[i.UNPACK = 1] = "UNPACK", i[i.PMA = 2] = "PMA", i[i.NO_PREMULTIPLIED_ALPHA = 0] = "NO_PREMULTIPLIED_ALPHA", i[i.PREMULTIPLY_ON_UPLOAD = 1] = "PREMULTIPLY_ON_UPLOAD", i[i.PREMULTIPLIED_ALPHA = 2] = "PREMULTIPLIED_ALPHA", i))(Dt || {}), ne = /* @__PURE__ */ ((i) => (i[i.NO = 0] = "NO", i[i.YES = 1] = "YES", i[i.AUTO = 2] = "AUTO", i[i.BLEND = 0] = "BLEND", i[i.CLEAR = 1] = "CLEAR", i[i.BLIT = 2] = "BLIT", i))(ne || {}), Na = /* @__PURE__ */ ((i) => (i[i.AUTO = 0] = "AUTO", i[i.MANUAL = 1] = "MANUAL", i))(Na || {}), Ut = /* @__PURE__ */ ((i) => (i.LOW = "lowp", i.MEDIUM = "mediump", i.HIGH = "highp", i))(Ut || {}), mt = /* @__PURE__ */ ((i) => (i[i.NONE = 0] = "NONE", i[i.SCISSOR = 1] = "SCISSOR", i[i.STENCIL = 2] = "STENCIL", i[i.SPRITE = 3] = "SPRITE", i[i.COLOR = 4] = "COLOR", i))(mt || {}), ft = /* @__PURE__ */ ((i) => (i[i.NONE = 0] = "NONE", i[i.LOW = 2] = "LOW", i[i.MEDIUM = 4] = "MEDIUM", i[i.HIGH = 8] = "HIGH", i))(ft || {}), he = /* @__PURE__ */ ((i) => (i[i.ELEMENT_ARRAY_BUFFER = 34963] = "ELEMENT_ARRAY_BUFFER", i[i.ARRAY_BUFFER = 34962] = "ARRAY_BUFFER", i[i.UNIFORM_BUFFER = 35345] = "UNIFORM_BUFFER", i))(he || {});
 const Lc = {
   /**
    * Creates a canvas element of the given size.
@@ -594,7 +594,7 @@ hs.exports;
         D = w(D / g);
       return w(J + (g + 1) * D / (D + c));
     }
-    function O(D) {
+    function N(D) {
       var B = [], Z = D.length, J, et = 0, yt = p, ct = f, _t, St, Ot, Tt, it, dt, pt, Zt, Qt;
       for (_t = D.lastIndexOf(m), _t < 0 && (_t = 0), St = 0; St < _t; ++St)
         D.charCodeAt(St) >= 128 && x("not-basic"), B.push(D.charCodeAt(St));
@@ -605,7 +605,7 @@ hs.exports;
       }
       return C(B);
     }
-    function V(D) {
+    function H(D) {
       var B, Z, J, et, yt, ct, _t, St, Ot, Tt, it, dt = [], pt, Zt, Qt, Xr;
       for (D = M(D), pt = D.length, B = p, Z = 0, yt = f, ct = 0; ct < pt; ++ct)
         it = D[ct], it < 128 && dt.push(R(it));
@@ -626,12 +626,12 @@ hs.exports;
     }
     function W(D) {
       return S(D, function(B) {
-        return y.test(B) ? O(B.slice(4).toLowerCase()) : B;
+        return y.test(B) ? N(B.slice(4).toLowerCase()) : B;
       });
     }
     function ht(D) {
       return S(D, function(B) {
-        return v.test(B) ? "xn--" + V(B) : B;
+        return v.test(B) ? "xn--" + H(B) : B;
       });
     }
     if (a = {
@@ -652,8 +652,8 @@ hs.exports;
         decode: M,
         encode: C
       },
-      decode: O,
-      encode: V,
+      decode: N,
+      encode: H,
       toASCII: ht,
       toUnicode: W
     }, r && s)
@@ -1124,10 +1124,10 @@ var $n = sf, Go = $n.custom, Ho = bl(Go) ? Go : null, pf = function i(t, e, r, s
     return "[Circular]";
   function d(E, I, G) {
     if (I && (s = ff.call(s), s.push(I)), G) {
-      var O = {
+      var N = {
         depth: n.depth
       };
-      return Be(n, "quoteStyle") && (O.quoteStyle = n.quoteStyle), i(E, O, r + 1, s);
+      return Be(n, "quoteStyle") && (N.quoteStyle = n.quoteStyle), i(E, N, r + 1, s);
     }
     return i(E, n, r + 1, s);
   }
@@ -1639,8 +1639,8 @@ var wl = Hr, $r = tf, Df = pf, Ff = yi, Ii = wl("%WeakMap%", !0), Pi = wl("%Map%
     }
     typeof b.get(nn) > "u" && (_ = 0);
   }
-  if (typeof h == "function" ? v = h(e, v) : v instanceof Date ? v = c(v) : r === "comma" && me(v) && (v = Zi.maybeMap(v, function(O) {
-    return O instanceof Date ? c(O) : O;
+  if (typeof h == "function" ? v = h(e, v) : v instanceof Date ? v = c(v) : r === "comma" && me(v) && (v = Zi.maybeMap(v, function(N) {
+    return N instanceof Date ? c(N) : N;
   })), v === null) {
     if (n)
       return o && !p ? o(e, Ct.encoder, m, "key", d) : e;
@@ -1983,10 +1983,10 @@ we.prototype.parse = function(i, t, e) {
     }
   var G = o.indexOf("#");
   G !== -1 && (this.hash = o.substr(G), o = o.slice(0, G));
-  var O = o.indexOf("?");
-  if (O !== -1 ? (this.search = o.substr(O), this.query = o.substr(O + 1), t && (this.query = Yn.parse(this.query)), o = o.slice(0, O)) : t && (this.search = "", this.query = {}), o && (this.pathname = o), Ir[u] && this.hostname && !this.pathname && (this.pathname = "/"), this.pathname || this.search) {
-    var M = this.pathname || "", V = this.search || "";
-    this.path = M + V;
+  var N = o.indexOf("?");
+  if (N !== -1 ? (this.search = o.substr(N), this.query = o.substr(N + 1), t && (this.query = Yn.parse(this.query)), o = o.slice(0, N)) : t && (this.search = "", this.query = {}), o && (this.pathname = o), Ir[u] && this.hostname && !this.pathname && (this.pathname = "/"), this.pathname || this.search) {
+    var M = this.pathname || "", H = this.search || "";
+    this.path = M + H;
   }
   return this.href = this.format(), this;
 };
@@ -3847,7 +3847,7 @@ const am = {
     t = t || new Float32Array(e * r * 4);
     const n = new Bs(t, { width: e, height: r, ...s == null ? void 0 : s.resourceOptions });
     let a, o;
-    return t instanceof Float32Array ? (a = P.RGBA, o = $.FLOAT) : t instanceof Int32Array ? (a = P.RGBA_INTEGER, o = $.INT) : t instanceof Uint32Array ? (a = P.RGBA_INTEGER, o = $.UNSIGNED_INT) : t instanceof Int16Array ? (a = P.RGBA_INTEGER, o = $.SHORT) : t instanceof Uint16Array ? (a = P.RGBA_INTEGER, o = $.UNSIGNED_SHORT) : t instanceof Int8Array ? (a = P.RGBA, o = $.BYTE) : (a = P.RGBA, o = $.UNSIGNED_BYTE), n.internal = !0, new yr(n, Object.assign({}, am, { type: o, format: a }, s));
+    return t instanceof Float32Array ? (a = P.RGBA, o = V.FLOAT) : t instanceof Int32Array ? (a = P.RGBA_INTEGER, o = V.INT) : t instanceof Uint32Array ? (a = P.RGBA_INTEGER, o = V.UNSIGNED_INT) : t instanceof Int16Array ? (a = P.RGBA_INTEGER, o = V.SHORT) : t instanceof Uint16Array ? (a = P.RGBA_INTEGER, o = V.UNSIGNED_SHORT) : t instanceof Int8Array ? (a = P.RGBA, o = V.BYTE) : (a = P.RGBA, o = V.UNSIGNED_BYTE), n.internal = !0, new yr(n, Object.assign({}, am, { type: o, format: a }, s));
   }
   /**
    * Adds a BaseTexture to the global BaseTextureCache. This cache is shared across the whole PIXI object.
@@ -3921,7 +3921,7 @@ ea.defaultOptions = {
    * @type {PIXI.TYPES}
    * @default PIXI.TYPES.UNSIGNED_BYTE
    */
-  type: $.UNSIGNED_BYTE
+  type: V.UNSIGNED_BYTE
 }, /** Global number of the texture batch, used by multi-texture renderers. */
 ea._globalBatch = 0;
 let X = ea;
@@ -3990,7 +3990,7 @@ class ps {
    * @param [instance=false] - Whether the geometry is instanced.
    * @param [divisor=1] - Divisor to use when doing instanced rendering
    */
-  constructor(t, e = 0, r = !1, s = $.FLOAT, n, a, o, h = 1) {
+  constructor(t, e = 0, r = !1, s = V.FLOAT, n, a, o, h = 1) {
     this.buffer = t, this.size = e, this.normalized = r, this.type = s, this.stride = n, this.start = a, this.instance = o, this.divisor = h;
   }
   /** Destroys the Attribute. */
@@ -4217,7 +4217,7 @@ class Ll extends ke {
    *        is updated every frame, `true` doesn't change frame-to-frame.
    */
   constructor(t = !1) {
-    super(), this._buffer = new ut(null, t, !1), this._indexBuffer = new ut(null, t, !0), this.addAttribute("aVertexPosition", this._buffer, 2, !1, $.FLOAT).addAttribute("aTextureCoord", this._buffer, 2, !1, $.FLOAT).addAttribute("aColor", this._buffer, 4, !0, $.UNSIGNED_BYTE).addAttribute("aTextureId", this._buffer, 1, !0, $.FLOAT).addIndex(this._indexBuffer);
+    super(), this._buffer = new ut(null, t, !1), this._indexBuffer = new ut(null, t, !0), this.addAttribute("aVertexPosition", this._buffer, 2, !1, V.FLOAT).addAttribute("aTextureCoord", this._buffer, 2, !1, V.FLOAT).addAttribute("aColor", this._buffer, 4, !0, V.UNSIGNED_BYTE).addAttribute("aTextureId", this._buffer, 1, !0, V.FLOAT).addIndex(this._indexBuffer);
   }
 }
 const ms = Math.PI * 2, dm = 180 / Math.PI, fm = Math.PI / 180;
@@ -6719,7 +6719,7 @@ class ha {
       height: this.height,
       mipmap: ue.OFF,
       format: P.DEPTH_COMPONENT,
-      type: $.UNSIGNED_SHORT
+      type: V.UNSIGNED_SHORT
     }), this.dirtyId++, this.dirtyFormat++, this;
   }
   /** Enable depth on the frame buffer. */
@@ -7005,7 +7005,7 @@ function Ni(i) {
   }, i.emit = function() {
   };
 }
-class N extends gi {
+class O extends gi {
   /**
    * @param baseTexture - The base texture source to create the texture from
    * @param frame - The rectangle frame of the texture to show
@@ -7016,7 +7016,7 @@ class N extends gi {
    * @param borders - Default borders used for 9-slice scaling. See {@link PIXI.NineSlicePlane}
    */
   constructor(t, e, r, s, n, a, o) {
-    if (super(), this.noFrame = !1, e || (this.noFrame = !0, e = new j(0, 0, 1, 1)), t instanceof N && (t = t.baseTexture), this.baseTexture = t, this._frame = e, this.trim = s, this.valid = !1, this.destroyed = !1, this._uvs = gh, this.uvMatrix = null, this.orig = r || e, this._rotate = Number(n || 0), n === !0)
+    if (super(), this.noFrame = !1, e || (this.noFrame = !0, e = new j(0, 0, 1, 1)), t instanceof O && (t = t.baseTexture), this.baseTexture = t, this._frame = e, this.trim = s, this.valid = !1, this.destroyed = !1, this._uvs = gh, this.uvMatrix = null, this.orig = r || e, this._rotate = Number(n || 0), n === !0)
       this._rotate = 2;
     else if (this._rotate % 2 !== 0)
       throw new Error("attempt to use diamond-shaped UVs. If you are sure, set rotation manually");
@@ -7055,11 +7055,11 @@ class N extends gi {
     if (this.baseTexture) {
       if (t) {
         const { resource: e } = this.baseTexture;
-        e != null && e.url && ee[e.url] && N.removeFromCache(e.url), this.baseTexture.destroy();
+        e != null && e.url && ee[e.url] && O.removeFromCache(e.url), this.baseTexture.destroy();
       }
       this.baseTexture.off("loaded", this.onBaseTextureUpdated, this), this.baseTexture.off("update", this.onBaseTextureUpdated, this), this.baseTexture = null;
     }
-    this._frame = null, this._uvs = null, this.trim = null, this.orig = null, this.valid = !1, N.removeFromCache(this), this.textureCacheIds = null, this.destroyed = !0, this.emit("destroyed", this), this.removeAllListeners();
+    this._frame = null, this._uvs = null, this.trim = null, this.orig = null, this.valid = !1, O.removeFromCache(this), this.textureCacheIds = null, this.destroyed = !0, this.emit("destroyed", this), this.removeAllListeners();
   }
   /**
    * Creates a new texture object that acts the same as this one.
@@ -7067,7 +7067,7 @@ class N extends gi {
    */
   clone() {
     var s;
-    const t = this._frame.clone(), e = this._frame === this.orig ? t : this.orig.clone(), r = new N(
+    const t = this._frame.clone(), e = this._frame === this.orig ? t : this.orig.clone(), r = new O(
       this.baseTexture,
       !this.noFrame && t,
       e,
@@ -7116,7 +7116,7 @@ class N extends gi {
     let a = ee[n];
     if (s && r && !a)
       throw new Error(`The cacheId "${n}" does not exist in TextureCache.`);
-    return !a && !(t instanceof X) ? (e.resolution || (e.resolution = Ae(t)), a = new N(new X(t, e)), a.baseTexture.cacheId = n, X.addToCache(a.baseTexture, n), N.addToCache(a, n)) : !a && t instanceof X && (a = new N(t), N.addToCache(a, n)), a;
+    return !a && !(t instanceof X) ? (e.resolution || (e.resolution = Ae(t)), a = new O(new X(t, e)), a.baseTexture.cacheId = n, X.addToCache(a.baseTexture, n), O.addToCache(a, n)) : !a && t instanceof X && (a = new O(t), O.addToCache(a, n)), a;
   }
   /**
    * Useful for loading textures via URLs. Use instead of `Texture.from` because
@@ -7127,7 +7127,7 @@ class N extends gi {
    * @returns - A Promise that resolves to a Texture.
    */
   static fromURL(t, e) {
-    const r = Object.assign({ autoLoad: !1 }, e == null ? void 0 : e.resourceOptions), s = N.from(t, Object.assign({ resourceOptions: r }, e), !1), n = s.baseTexture.resource;
+    const r = Object.assign({ autoLoad: !1 }, e == null ? void 0 : e.resourceOptions), s = O.from(t, Object.assign({ resourceOptions: r }, e), !1), n = s.baseTexture.resource;
     return s.baseTexture.valid ? Promise.resolve(s) : n.load().then(() => Promise.resolve(s));
   }
   /**
@@ -7149,7 +7149,7 @@ class N extends gi {
    * @returns - The resulting new BaseTexture
    */
   static fromBuffer(t, e, r, s) {
-    return new N(X.fromBuffer(t, e, r, s));
+    return new O(X.fromBuffer(t, e, r, s));
   }
   /**
    * Create a texture from a source and add to the cache.
@@ -7166,8 +7166,8 @@ class N extends gi {
       resolution: Ae(e)
     }, s)), { resource: a } = n;
     a instanceof Xl && (a.url = e);
-    const o = new N(n);
-    return r || (r = e), X.addToCache(o.baseTexture, r), N.addToCache(o, r), r !== e && (X.addToCache(o.baseTexture, e), N.addToCache(o, e)), o.baseTexture.valid ? Promise.resolve(o) : new Promise((h) => {
+    const o = new O(n);
+    return r || (r = e), X.addToCache(o.baseTexture, r), O.addToCache(o, r), r !== e && (X.addToCache(o.baseTexture, e), O.addToCache(o, e)), o.baseTexture.valid ? Promise.resolve(o) : new Promise((h) => {
       o.baseTexture.once("loaded", () => h(o));
     });
   }
@@ -7248,18 +7248,18 @@ class N extends gi {
   }
   /** An empty texture, used often to not have to create multiple empty textures. Can not be destroyed. */
   static get EMPTY() {
-    return N._EMPTY || (N._EMPTY = new N(new X()), Ni(N._EMPTY), Ni(N._EMPTY.baseTexture)), N._EMPTY;
+    return O._EMPTY || (O._EMPTY = new O(new X()), Ni(O._EMPTY), Ni(O._EMPTY.baseTexture)), O._EMPTY;
   }
   /** A white texture of 16x16 size, used for graphics and other things Can not be destroyed. */
   static get WHITE() {
-    if (!N._WHITE) {
+    if (!O._WHITE) {
       const t = U.ADAPTER.createCanvas(16, 16), e = t.getContext("2d");
-      t.width = 16, t.height = 16, e.fillStyle = "white", e.fillRect(0, 0, 16, 16), N._WHITE = new N(X.from(t)), Ni(N._WHITE), Ni(N._WHITE.baseTexture);
+      t.width = 16, t.height = 16, e.fillStyle = "white", e.fillRect(0, 0, 16, 16), O._WHITE = new O(X.from(t)), Ni(O._WHITE), Ni(O._WHITE.baseTexture);
     }
-    return N._WHITE;
+    return O._WHITE;
   }
 }
-class lr extends N {
+class lr extends O {
   /**
    * @param baseRenderTexture - The base texture object that this texture uses.
    * @param frame - The rectangle frame of the texture to show.
@@ -9597,7 +9597,7 @@ let Qe = ti;
 k.add(Qe);
 class xn {
   constructor(t) {
-    this.texture = t, this.width = -1, this.height = -1, this.dirtyId = -1, this.dirtyStyleId = -1, this.mipmap = !1, this.wrapMode = 33071, this.type = $.UNSIGNED_BYTE, this.internalFormat = P.RGBA, this.samplerType = 0;
+    this.texture = t, this.width = -1, this.height = -1, this.dirtyId = -1, this.dirtyStyleId = -1, this.mipmap = !1, this.wrapMode = 33071, this.type = V.UNSIGNED_BYTE, this.internalFormat = P.RGBA, this.samplerType = 0;
   }
 }
 function lg(i) {
@@ -9675,7 +9675,7 @@ function lg(i) {
 function ug(i) {
   let t;
   return "WebGL2RenderingContext" in globalThis && i instanceof globalThis.WebGL2RenderingContext ? t = {
-    [$.UNSIGNED_BYTE]: {
+    [V.UNSIGNED_BYTE]: {
       [P.RGBA]: i.RGBA8,
       [P.RGB]: i.RGB8,
       [P.RG]: i.RG8,
@@ -9688,7 +9688,7 @@ function ug(i) {
       [P.LUMINANCE]: i.LUMINANCE,
       [P.LUMINANCE_ALPHA]: i.LUMINANCE_ALPHA
     },
-    [$.BYTE]: {
+    [V.BYTE]: {
       [P.RGBA]: i.RGBA8_SNORM,
       [P.RGB]: i.RGB8_SNORM,
       [P.RG]: i.RG8_SNORM,
@@ -9698,85 +9698,85 @@ function ug(i) {
       [P.RG_INTEGER]: i.RG8I,
       [P.RED_INTEGER]: i.R8I
     },
-    [$.UNSIGNED_SHORT]: {
+    [V.UNSIGNED_SHORT]: {
       [P.RGBA_INTEGER]: i.RGBA16UI,
       [P.RGB_INTEGER]: i.RGB16UI,
       [P.RG_INTEGER]: i.RG16UI,
       [P.RED_INTEGER]: i.R16UI,
       [P.DEPTH_COMPONENT]: i.DEPTH_COMPONENT16
     },
-    [$.SHORT]: {
+    [V.SHORT]: {
       [P.RGBA_INTEGER]: i.RGBA16I,
       [P.RGB_INTEGER]: i.RGB16I,
       [P.RG_INTEGER]: i.RG16I,
       [P.RED_INTEGER]: i.R16I
     },
-    [$.UNSIGNED_INT]: {
+    [V.UNSIGNED_INT]: {
       [P.RGBA_INTEGER]: i.RGBA32UI,
       [P.RGB_INTEGER]: i.RGB32UI,
       [P.RG_INTEGER]: i.RG32UI,
       [P.RED_INTEGER]: i.R32UI,
       [P.DEPTH_COMPONENT]: i.DEPTH_COMPONENT24
     },
-    [$.INT]: {
+    [V.INT]: {
       [P.RGBA_INTEGER]: i.RGBA32I,
       [P.RGB_INTEGER]: i.RGB32I,
       [P.RG_INTEGER]: i.RG32I,
       [P.RED_INTEGER]: i.R32I
     },
-    [$.FLOAT]: {
+    [V.FLOAT]: {
       [P.RGBA]: i.RGBA32F,
       [P.RGB]: i.RGB32F,
       [P.RG]: i.RG32F,
       [P.RED]: i.R32F,
       [P.DEPTH_COMPONENT]: i.DEPTH_COMPONENT32F
     },
-    [$.HALF_FLOAT]: {
+    [V.HALF_FLOAT]: {
       [P.RGBA]: i.RGBA16F,
       [P.RGB]: i.RGB16F,
       [P.RG]: i.RG16F,
       [P.RED]: i.R16F
     },
-    [$.UNSIGNED_SHORT_5_6_5]: {
+    [V.UNSIGNED_SHORT_5_6_5]: {
       [P.RGB]: i.RGB565
     },
-    [$.UNSIGNED_SHORT_4_4_4_4]: {
+    [V.UNSIGNED_SHORT_4_4_4_4]: {
       [P.RGBA]: i.RGBA4
     },
-    [$.UNSIGNED_SHORT_5_5_5_1]: {
+    [V.UNSIGNED_SHORT_5_5_5_1]: {
       [P.RGBA]: i.RGB5_A1
     },
-    [$.UNSIGNED_INT_2_10_10_10_REV]: {
+    [V.UNSIGNED_INT_2_10_10_10_REV]: {
       [P.RGBA]: i.RGB10_A2,
       [P.RGBA_INTEGER]: i.RGB10_A2UI
     },
-    [$.UNSIGNED_INT_10F_11F_11F_REV]: {
+    [V.UNSIGNED_INT_10F_11F_11F_REV]: {
       [P.RGB]: i.R11F_G11F_B10F
     },
-    [$.UNSIGNED_INT_5_9_9_9_REV]: {
+    [V.UNSIGNED_INT_5_9_9_9_REV]: {
       [P.RGB]: i.RGB9_E5
     },
-    [$.UNSIGNED_INT_24_8]: {
+    [V.UNSIGNED_INT_24_8]: {
       [P.DEPTH_STENCIL]: i.DEPTH24_STENCIL8
     },
-    [$.FLOAT_32_UNSIGNED_INT_24_8_REV]: {
+    [V.FLOAT_32_UNSIGNED_INT_24_8_REV]: {
       [P.DEPTH_STENCIL]: i.DEPTH32F_STENCIL8
     }
   } : t = {
-    [$.UNSIGNED_BYTE]: {
+    [V.UNSIGNED_BYTE]: {
       [P.RGBA]: i.RGBA,
       [P.RGB]: i.RGB,
       [P.ALPHA]: i.ALPHA,
       [P.LUMINANCE]: i.LUMINANCE,
       [P.LUMINANCE_ALPHA]: i.LUMINANCE_ALPHA
     },
-    [$.UNSIGNED_SHORT_5_6_5]: {
+    [V.UNSIGNED_SHORT_5_6_5]: {
       [P.RGB]: i.RGB
     },
-    [$.UNSIGNED_SHORT_4_4_4_4]: {
+    [V.UNSIGNED_SHORT_4_4_4_4]: {
       [P.RGBA]: i.RGBA
     },
-    [$.UNSIGNED_SHORT_5_5_5_1]: {
+    [V.UNSIGNED_SHORT_5_5_5_1]: {
       [P.RGBA]: i.RGBA
     }
   }, t;
@@ -9865,7 +9865,7 @@ class hu {
   }
   initTextureType(t, e) {
     var r;
-    e.internalFormat = ((r = this.internalFormats[t.type]) == null ? void 0 : r[t.format]) ?? t.format, e.samplerType = this.samplerTypes[e.internalFormat] ?? L.FLOAT, this.webGLVersion === 2 && t.type === $.HALF_FLOAT ? e.type = this.gl.HALF_FLOAT : e.type = t.type;
+    e.internalFormat = ((r = this.internalFormats[t.type]) == null ? void 0 : r[t.format]) ?? t.format, e.samplerType = this.samplerTypes[e.internalFormat] ?? L.FLOAT, this.webGLVersion === 2 && t.type === V.HALF_FLOAT ? e.type = this.gl.HALF_FLOAT : e.type = t.type;
   }
   /**
    * Update a texture
@@ -12652,7 +12652,7 @@ class de extends Ft {
       this,
       t ? t.defaultAnchor.x : 0,
       t ? t.defaultAnchor.y : 0
-    ), this._texture = null, this._width = 0, this._height = 0, this._tintColor = new tt(16777215), this._tintRGB = null, this.tint = 16777215, this.blendMode = z.NORMAL, this._cachedTint = 16777215, this.uvs = null, this.texture = t || N.EMPTY, this.vertexData = new Float32Array(8), this.vertexTrimmedData = null, this._transformID = -1, this._textureID = -1, this._transformTrimmedID = -1, this._textureTrimmedID = -1, this.indices = Eg, this.pluginName = "batch", this.isSprite = !0, this._roundPixels = U.ROUND_PIXELS;
+    ), this._texture = null, this._width = 0, this._height = 0, this._tintColor = new tt(16777215), this._tintRGB = null, this.tint = 16777215, this.blendMode = z.NORMAL, this._cachedTint = 16777215, this.uvs = null, this.texture = t || O.EMPTY, this.vertexData = new Float32Array(8), this.vertexTrimmedData = null, this._transformID = -1, this._textureID = -1, this._transformTrimmedID = -1, this._textureTrimmedID = -1, this.indices = Eg, this.pluginName = "batch", this.isSprite = !0, this._roundPixels = U.ROUND_PIXELS;
   }
   /** When the texture is updated, this event will fire to update the scale and frame. */
   _onTextureUpdate() {
@@ -12752,7 +12752,7 @@ class de extends Ft {
    * @returns The newly created sprite
    */
   static from(t, e) {
-    const r = t instanceof N ? t : N.from(t, e);
+    const r = t instanceof O ? t : O.from(t, e);
     return new de(r);
   }
   /**
@@ -12833,7 +12833,7 @@ class de extends Ft {
     return this._texture;
   }
   set texture(t) {
-    this._texture !== t && (this._texture && this._texture.off("update", this._onTextureUpdate, this), this._texture = t || N.EMPTY, this._cachedTint = 16777215, this._textureID = -1, this._textureTrimmedID = -1, t && (t.baseTexture.valid ? this._onTextureUpdate() : t.once("update", this._onTextureUpdate, this)));
+    this._texture !== t && (this._texture && this._texture.off("update", this._onTextureUpdate, this), this._texture = t || O.EMPTY, this._cachedTint = 16777215, this._textureID = -1, this._textureTrimmedID = -1, t && (t.baseTexture.valid ? this._onTextureUpdate() : t.once("update", this._onTextureUpdate, this)));
   }
 }
 const bu = new rt();
@@ -12926,7 +12926,7 @@ st.prototype._initCachedDisplayObject = function(i) {
     resolution: r,
     multisample: this.cacheAsBitmapMultisample ?? i.multisample
   }), l = `cacheAsBitmap_${or()}`;
-  this._cacheData.textureCacheId = l, X.addToCache(h.baseTexture, l), N.addToCache(h, l);
+  this._cacheData.textureCacheId = l, X.addToCache(h.baseTexture, l), O.addToCache(h, l);
   const u = this.transform.localTransform.copyTo(bu).invert().translate(-e.x, -e.y);
   this.render = this._cacheData.originalRender, i.render(this, { renderTexture: h, clear: !0, transform: u, skipUpdateTransform: !1 }), i.framebuffer.blit(), i.projection.transform = o, i.renderTexture.bind(s, n, a), this.render = this._renderCached, this.updateTransform = this.displayObjectUpdateTransform, this.calculateBounds = this._calculateCachedBounds, this.getLocalBounds = this._getCachedLocalBounds, this._mask = null, this.filterArea = null, this.alpha = t;
   const c = new de(h);
@@ -12948,7 +12948,7 @@ st.prototype._initCachedDisplayObjectCanvas = function(i) {
     height: t.height,
     resolution: n
   }), o = `cacheAsBitmap_${or()}`;
-  this._cacheData.textureCacheId = o, X.addToCache(a.baseTexture, o), N.addToCache(a, o);
+  this._cacheData.textureCacheId = o, X.addToCache(a.baseTexture, o), O.addToCache(a, o);
   const h = bu;
   this.transform.localTransform.copyTo(h), h.invert(), h.tx -= t.x, h.ty -= t.y, this.renderCanvas = this._cacheData.originalRenderCanvas, i.render(this, { renderTexture: a, clear: !0, transform: h, skipUpdateTransform: !1 }), i.canvasContext.activeContext = r, i._projTransform = s, this.renderCanvas = this._renderCachedCanvas, this.updateTransform = this.displayObjectUpdateTransform, this.calculateBounds = this._calculateCachedBounds, this.getLocalBounds = this._getCachedLocalBounds, this._mask = null, this.filterArea = null, this.alpha = e;
   const l = new de(a);
@@ -12961,7 +12961,7 @@ st.prototype._getCachedLocalBounds = function() {
   return this._cacheData.sprite.getLocalBounds(null);
 };
 st.prototype._destroyCachedDisplayObject = function() {
-  this._cacheData.sprite._texture.destroy(!0), this._cacheData.sprite = null, X.removeFromCache(this._cacheData.textureCacheId), N.removeFromCache(this._cacheData.textureCacheId), this._cacheData.textureCacheId = null;
+  this._cacheData.sprite._texture.destroy(!0), this._cacheData.sprite = null, X.removeFromCache(this._cacheData.textureCacheId), O.removeFromCache(this._cacheData.textureCacheId), this._cacheData.textureCacheId = null;
 };
 st.prototype._cacheAsBitmapDestroy = function(i) {
   this.cacheAsBitmap = !1, this.destroy(i);
@@ -16535,10 +16535,10 @@ class Jg {
       this._cacheMap.set(o, a);
     }), n.forEach((o) => {
       this._cache.has(o) && this._cache.get(o) !== e && console.warn("[Cache] already has key:", o), this._cache.set(o, s[o]);
-    }), e instanceof N) {
+    }), e instanceof O) {
       const o = e;
       r.forEach((h) => {
-        o.baseTexture !== N.EMPTY.baseTexture && X.addToCache(o.baseTexture, h), N.addToCache(o, h);
+        o.baseTexture !== O.EMPTY.baseTexture && X.addToCache(o.baseTexture, h), O.addToCache(o, h);
       });
     }
   }
@@ -16868,7 +16868,7 @@ class yy {
 const Ch = new yy();
 function xi(i, t, e) {
   i.resource.internal = !0;
-  const r = new N(i), s = () => {
+  const r = new O(i), s = () => {
     delete t.promiseCache[e], tr.has(e) && tr.remove(e);
   };
   return r.baseTexture.once("destroyed", () => {
@@ -17710,7 +17710,7 @@ const Le = new Iy();
 k.handleByList(F.LoadParser, Le.loader.parsers).handleByList(F.ResolveParser, Le.resolver.parsers).handleByList(F.CacheParser, Le.cache.parsers).handleByList(F.DetectionParser, Le.detections);
 const Py = {
   extension: F.CacheParser,
-  test: (i) => Array.isArray(i) && i.every((t) => t instanceof N),
+  test: (i) => Array.isArray(i) && i.every((t) => t instanceof O),
   getCacheableAssets: (i, t) => {
     const e = {};
     return i.forEach((r) => {
@@ -18146,12 +18146,12 @@ const Mh = [171, 75, 84, 88, 32, 49, 49, 187, 13, 10, 26, 10], i_ = 67305985, Ht
   NUMBER_OF_MIPMAP_LEVELS: 56,
   BYTES_OF_KEY_VALUE_DATA: 60
 }, Ea = 64, Bh = {
-  [$.UNSIGNED_BYTE]: 1,
-  [$.UNSIGNED_SHORT]: 2,
-  [$.INT]: 4,
-  [$.UNSIGNED_INT]: 4,
-  [$.FLOAT]: 4,
-  [$.HALF_FLOAT]: 8
+  [V.UNSIGNED_BYTE]: 1,
+  [V.UNSIGNED_SHORT]: 2,
+  [V.INT]: 4,
+  [V.UNSIGNED_INT]: 4,
+  [V.FLOAT]: 4,
+  [V.HALF_FLOAT]: 8
 }, s_ = {
   [P.RGBA]: 4,
   [P.RGB]: 3,
@@ -18161,9 +18161,9 @@ const Mh = [171, 75, 84, 88, 32, 49, 49, 187, 13, 10, 26, 10], i_ = 67305985, Ht
   [P.LUMINANCE_ALPHA]: 2,
   [P.ALPHA]: 1
 }, n_ = {
-  [$.UNSIGNED_SHORT_4_4_4_4]: 2,
-  [$.UNSIGNED_SHORT_5_5_5_1]: 2,
-  [$.UNSIGNED_SHORT_5_6_5]: 2
+  [V.UNSIGNED_SHORT_4_4_4_4]: 2,
+  [V.UNSIGNED_SHORT_5_5_5_1]: 2,
+  [V.UNSIGNED_SHORT_5_6_5]: 2
 };
 function a_(i, t, e = !1) {
   const r = new DataView(t);
@@ -18187,9 +18187,9 @@ function a_(i, t, e = !1) {
   for (let E = 0; E < f; E++) {
     const I = r.getUint32(C, s);
     let G = C + 4;
-    for (let O = 0; O < c; O++) {
-      let V = _[O];
-      V || (V = _[O] = new Array(f)), V[E] = {
+    for (let N = 0; N < c; N++) {
+      let H = _[N];
+      H || (H = _[N] = new Array(f)), H[E] = {
         levelID: E,
         // don't align mipWidth when texture not compressed! (glType not zero)
         levelWidth: f > 1 || n !== 0 ? x : S,
@@ -18202,15 +18202,15 @@ function a_(i, t, e = !1) {
   return n !== 0 ? {
     uncompressed: _.map((E) => {
       let I = E[0].levelBuffer, G = !1;
-      return n === $.FLOAT ? I = new Float32Array(
+      return n === V.FLOAT ? I = new Float32Array(
         E[0].levelBuffer.buffer,
         E[0].levelBuffer.byteOffset,
         E[0].levelBuffer.byteLength / 4
-      ) : n === $.UNSIGNED_INT ? (G = !0, I = new Uint32Array(
+      ) : n === V.UNSIGNED_INT ? (G = !0, I = new Uint32Array(
         E[0].levelBuffer.buffer,
         E[0].levelBuffer.byteOffset,
         E[0].levelBuffer.byteLength / 4
-      )) : n === $.INT && (G = !0, I = new Int32Array(
+      )) : n === V.INT && (G = !0, I = new Int32Array(
         E[0].levelBuffer.buffer,
         E[0].levelBuffer.byteOffset,
         E[0].levelBuffer.byteLength / 4
@@ -18886,8 +18886,8 @@ function __(i, t) {
   const n = i.lineStyle, a = new K(r[0], r[1]), o = new K(r[r.length - 2], r[r.length - 1]), h = e.type !== At.POLY || e.closeStroke, l = Math.abs(a.x - o.x) < s && Math.abs(a.y - o.y) < s;
   if (h) {
     r = r.slice(), l && (r.pop(), r.pop(), o.set(r[r.length - 2], r[r.length - 1]));
-    const V = (a.x + o.x) * 0.5, W = (o.y + a.y) * 0.5;
-    r.unshift(V, W), r.push(V, W);
+    const H = (a.x + o.x) * 0.5, W = (o.y + a.y) * 0.5;
+    r.unshift(H, W), r.push(H, W);
   }
   const u = t.points, c = r.length / 2;
   let d = r.length;
@@ -18910,8 +18910,8 @@ function __(i, t) {
     v + A * I,
     b + x * I
   );
-  for (let V = 1; V < c - 1; ++V) {
-    v = r[(V - 1) * 2], b = r[(V - 1) * 2 + 1], _ = r[V * 2], g = r[V * 2 + 1], w = r[(V + 1) * 2], R = r[(V + 1) * 2 + 1], A = -(b - g), x = v - _, M = Math.sqrt(A * A + x * x), A /= M, x /= M, A *= p, x *= p, T = -(g - R), S = _ - w, M = Math.sqrt(T * T + S * S), T /= M, S /= M, T *= p, S *= p;
+  for (let H = 1; H < c - 1; ++H) {
+    v = r[(H - 1) * 2], b = r[(H - 1) * 2 + 1], _ = r[H * 2], g = r[H * 2 + 1], w = r[(H + 1) * 2], R = r[(H + 1) * 2 + 1], A = -(b - g), x = v - _, M = Math.sqrt(A * A + x * x), A /= M, x /= M, A *= p, x *= p, T = -(g - R), S = _ - w, M = Math.sqrt(T * T + S * S), T /= M, S /= M, T *= p, S *= p;
     const W = _ - v, ht = b - g, D = _ - w, B = R - g, Z = W * D + ht * B, J = ht * D - B * W, et = J < 0;
     if (Math.abs(J) < 1e-3 * Math.abs(Z)) {
       u.push(
@@ -19091,9 +19091,9 @@ function __(i, t) {
     u,
     !1
   ) + 2 : n.cap === be.SQUARE && (d += Oh(_, g, A, x, E, I, !1, u)));
-  const G = t.indices, O = Ur.epsilon * Ur.epsilon;
-  for (let V = f; V < d + f - 2; ++V)
-    v = u[V * 2], b = u[V * 2 + 1], _ = u[(V + 1) * 2], g = u[(V + 1) * 2 + 1], w = u[(V + 2) * 2], R = u[(V + 2) * 2 + 1], !(Math.abs(v * (g - R) + _ * (R - b) + w * (b - g)) < O) && G.push(V, V + 1, V + 2);
+  const G = t.indices, N = Ur.epsilon * Ur.epsilon;
+  for (let H = f; H < d + f - 2; ++H)
+    v = u[H * 2], b = u[H * 2 + 1], _ = u[(H + 1) * 2], g = u[(H + 1) * 2 + 1], w = u[(H + 2) * 2], R = u[(H + 2) * 2 + 1], !(Math.abs(v * (g - R) + _ * (R - b) + w * (b - g)) < N) && G.push(H, H + 1, H + 2);
 }
 function v_(i, t) {
   let e = 0;
@@ -19495,7 +19495,7 @@ Nu.BATCHABLE_SIZE = 100;
 let x_ = Nu;
 class ks {
   constructor() {
-    this.color = 16777215, this.alpha = 1, this.texture = N.WHITE, this.matrix = null, this.visible = !1, this.reset();
+    this.color = 16777215, this.alpha = 1, this.texture = O.WHITE, this.matrix = null, this.visible = !1, this.reset();
   }
   /** Clones the object */
   clone() {
@@ -19504,7 +19504,7 @@ class ks {
   }
   /** Reset */
   reset() {
-    this.color = 16777215, this.alpha = 1, this.texture = N.WHITE, this.matrix = null, this.visible = !1;
+    this.color = 16777215, this.alpha = 1, this.texture = O.WHITE, this.matrix = null, this.visible = !1;
   }
   /** Destroy and don't use after this. */
   destroy() {
@@ -19611,7 +19611,7 @@ const Sn = {}, wa = class is extends Ft {
   lineTextureStyle(t) {
     const e = {
       width: 0,
-      texture: N.WHITE,
+      texture: O.WHITE,
       color: t != null && t.texture ? 16777215 : 0,
       matrix: null,
       alignment: 0.5,
@@ -19756,7 +19756,7 @@ const Sn = {}, wa = class is extends Ft {
    * @returns - This Graphics object. Suitable for chaining method calls
    */
   beginFill(t = 0, e) {
-    return this.beginTextureFill({ texture: N.WHITE, color: t, alpha: e });
+    return this.beginTextureFill({ texture: O.WHITE, color: t, alpha: e });
   }
   /**
    * Normalize the color input from options for line style or fill
@@ -19778,7 +19778,7 @@ const Sn = {}, wa = class is extends Ft {
    */
   beginTextureFill(t) {
     const e = {
-      texture: N.WHITE,
+      texture: O.WHITE,
       color: 16777215,
       matrix: null
     };
@@ -20276,7 +20276,7 @@ class Gs extends ke {
   constructor(t, e, r) {
     super();
     const s = new ut(t), n = new ut(e, !0), a = new ut(r, !0, !0);
-    this.addAttribute("aVertexPosition", s, 2, !1, $.FLOAT).addAttribute("aTextureCoord", n, 2, !1, $.FLOAT).addIndex(a), this._updateId = -1;
+    this.addAttribute("aVertexPosition", s, 2, !1, V.FLOAT).addAttribute("aTextureCoord", n, 2, !1, V.FLOAT).addIndex(a), this._updateId = -1;
   }
   /**
    * If the vertex position is updated.
@@ -20495,7 +20495,7 @@ class Gu extends kr {
    * @param verticesY - The number of vertices in the y-axis
    */
   constructor(t, e, r) {
-    const s = new w_(t.width, t.height, e, r), n = new fi(N.WHITE);
+    const s = new w_(t.width, t.height, e, r), n = new fi(O.WHITE);
     super(s, n), this.texture = t, this.autoResize = !0;
   }
   /**
@@ -20531,7 +20531,7 @@ class S_ extends Gu {
    */
   constructor(t, e, r, s, n) {
     var a, o, h, l;
-    super(N.WHITE, 4, 4), this._origWidth = t.orig.width, this._origHeight = t.orig.height, this._width = this._origWidth, this._height = this._origHeight, this._leftWidth = e ?? ((a = t.defaultBorders) == null ? void 0 : a.left) ?? Xi, this._rightWidth = s ?? ((o = t.defaultBorders) == null ? void 0 : o.right) ?? Xi, this._topHeight = r ?? ((h = t.defaultBorders) == null ? void 0 : h.top) ?? Xi, this._bottomHeight = n ?? ((l = t.defaultBorders) == null ? void 0 : l.bottom) ?? Xi, this.texture = t;
+    super(O.WHITE, 4, 4), this._origWidth = t.orig.width, this._origHeight = t.orig.height, this._width = this._origWidth, this._height = this._origHeight, this._leftWidth = e ?? ((a = t.defaultBorders) == null ? void 0 : a.left) ?? Xi, this._rightWidth = s ?? ((o = t.defaultBorders) == null ? void 0 : o.right) ?? Xi, this._topHeight = r ?? ((h = t.defaultBorders) == null ? void 0 : h.top) ?? Xi, this._bottomHeight = n ?? ((l = t.defaultBorders) == null ? void 0 : l.bottom) ?? Xi, this.texture = t;
   }
   textureUpdated() {
     this._textureID = this.shader.texture._updateID, this._refresh();
@@ -20618,7 +20618,7 @@ class C_ extends kr {
    * @param {Uint16Array} [indices] - if you want to specify the indices
    * @param drawMode - the drawMode, can be any of the Mesh.DRAW_MODES consts
    */
-  constructor(t = N.EMPTY, e, r, s, n) {
+  constructor(t = O.EMPTY, e, r, s, n) {
     const a = new Gs(e, r, s);
     a.getBuffer("aVertexPosition").static = !1;
     const o = new fi(t);
@@ -20751,7 +20751,7 @@ class kh {
         attributeName: n.attributeName,
         size: n.size,
         uploadFunction: n.uploadFunction,
-        type: n.type || $.FLOAT,
+        type: n.type || V.FLOAT,
         offset: n.offset
       }, e[s] ? this.dynamicProperties.push(n) : this.staticProperties.push(n);
     }
@@ -20782,7 +20782,7 @@ class kh {
         o.attributeName,
         this.dynamicBuffer,
         0,
-        o.type === $.UNSIGNED_BYTE,
+        o.type === V.UNSIGNED_BYTE,
         o.type,
         this.dynamicStride * 4,
         o.offset * 4
@@ -20794,7 +20794,7 @@ class kh {
         o.attributeName,
         this.staticBuffer,
         0,
-        o.type === $.UNSIGNED_BYTE,
+        o.type === V.UNSIGNED_BYTE,
         o.type,
         this.staticStride * 4,
         o.offset * 4
@@ -20814,7 +20814,7 @@ class kh {
         t,
         e,
         r,
-        n.type === $.UNSIGNED_BYTE ? this.dynamicDataUint32 : this.dynamicData,
+        n.type === V.UNSIGNED_BYTE ? this.dynamicDataUint32 : this.dynamicData,
         this.dynamicStride,
         n.offset
       );
@@ -20834,7 +20834,7 @@ class kh {
         t,
         e,
         r,
-        n.type === $.UNSIGNED_BYTE ? this.staticDataUint32 : this.staticData,
+        n.type === V.UNSIGNED_BYTE ? this.staticDataUint32 : this.staticData,
         this.staticStride,
         n.offset
       );
@@ -20918,7 +20918,7 @@ class Hu extends Ls {
       {
         attributeName: "aColor",
         size: 1,
-        type: $.UNSIGNED_BYTE,
+        type: V.UNSIGNED_BYTE,
         uploadFunction: this.uploadTint,
         offset: 0
       }
@@ -21060,7 +21060,7 @@ var Hs = /* @__PURE__ */ ((i) => (i[i.LINEAR_VERTICAL = 0] = "LINEAR_VERTICAL", 
 const Wi = {
   // TextMetrics requires getImageData readback for measuring fonts.
   willReadFrequently: !0
-}, ie = class H {
+}, ie = class $ {
   /**
    * Checking that we can use modern canvas 2D API.
    *
@@ -21070,10 +21070,10 @@ const Wi = {
    * @see https://developer.chrome.com/origintrials/#/view_trial/3585991203293757441
    */
   static get experimentalLetterSpacingSupported() {
-    let t = H._experimentalLetterSpacingSupported;
+    let t = $._experimentalLetterSpacingSupported;
     if (t !== void 0) {
       const e = U.ADAPTER.getCanvasRenderingContext2D().prototype;
-      t = H._experimentalLetterSpacingSupported = "letterSpacing" in e || "textLetterSpacing" in e;
+      t = $._experimentalLetterSpacingSupported = "letterSpacing" in e || "textLetterSpacing" in e;
     }
     return t;
   }
@@ -21099,23 +21099,23 @@ const Wi = {
    * @param canvas - optional specification of the canvas to use for measuring.
    * @returns Measured width and height of the text.
    */
-  static measureText(t, e, r, s = H._canvas) {
+  static measureText(t, e, r, s = $._canvas) {
     r = r ?? e.wordWrap;
-    const n = e.toFontString(), a = H.measureFont(n);
+    const n = e.toFontString(), a = $.measureFont(n);
     a.fontSize === 0 && (a.fontSize = e.fontSize, a.ascent = e.fontSize);
     const o = s.getContext("2d", Wi);
     o.font = n;
-    const h = (r ? H.wordWrap(t, e, s) : t).split(/(?:\r\n|\r|\n)/), l = new Array(h.length);
+    const h = (r ? $.wordWrap(t, e, s) : t).split(/(?:\r\n|\r|\n)/), l = new Array(h.length);
     let u = 0;
     for (let p = 0; p < h.length; p++) {
-      const m = H._measureText(h[p], e.letterSpacing, o);
+      const m = $._measureText(h[p], e.letterSpacing, o);
       l[p] = m, u = Math.max(u, m);
     }
     let c = u + e.strokeThickness;
     e.dropShadow && (c += e.dropShadowDistance);
     const d = e.lineHeight || a.fontSize + e.strokeThickness;
     let f = Math.max(d, a.fontSize + e.strokeThickness * 2) + e.leading + (h.length - 1) * (d + e.leading);
-    return e.dropShadow && (f += e.dropShadowDistance), new H(
+    return e.dropShadow && (f += e.dropShadowDistance), new $(
       t,
       e,
       c,
@@ -21129,9 +21129,9 @@ const Wi = {
   }
   static _measureText(t, e, r) {
     let s = !1;
-    H.experimentalLetterSpacingSupported && (H.experimentalLetterSpacing ? (r.letterSpacing = `${e}px`, r.textLetterSpacing = `${e}px`, s = !0) : (r.letterSpacing = "0px", r.textLetterSpacing = "0px"));
+    $.experimentalLetterSpacingSupported && ($.experimentalLetterSpacing ? (r.letterSpacing = `${e}px`, r.textLetterSpacing = `${e}px`, s = !0) : (r.letterSpacing = "0px", r.textLetterSpacing = "0px"));
     let n = r.measureText(t).width;
-    return n > 0 && (s ? n -= e : n += (H.graphemeSegmenter(t).length - 1) * e), n;
+    return n > 0 && (s ? n -= e : n += ($.graphemeSegmenter(t).length - 1) * e), n;
   }
   /**
    * Applies newlines to a string to have it optimally fit into the horizontal
@@ -21141,53 +21141,53 @@ const Wi = {
    * @param canvas - optional specification of the canvas to use for measuring.
    * @returns New string with new lines applied where required
    */
-  static wordWrap(t, e, r = H._canvas) {
+  static wordWrap(t, e, r = $._canvas) {
     const s = r.getContext("2d", Wi);
     let n = 0, a = "", o = "";
-    const h = /* @__PURE__ */ Object.create(null), { letterSpacing: l, whiteSpace: u } = e, c = H.collapseSpaces(u), d = H.collapseNewlines(u);
+    const h = /* @__PURE__ */ Object.create(null), { letterSpacing: l, whiteSpace: u } = e, c = $.collapseSpaces(u), d = $.collapseNewlines(u);
     let f = !c;
-    const p = e.wordWrapWidth + l, m = H.tokenize(t);
+    const p = e.wordWrapWidth + l, m = $.tokenize(t);
     for (let y = 0; y < m.length; y++) {
       let v = m[y];
-      if (H.isNewline(v)) {
+      if ($.isNewline(v)) {
         if (!d) {
-          o += H.addLine(a), f = !c, a = "", n = 0;
+          o += $.addLine(a), f = !c, a = "", n = 0;
           continue;
         }
         v = " ";
       }
       if (c) {
-        const _ = H.isBreakingSpace(v), g = H.isBreakingSpace(a[a.length - 1]);
+        const _ = $.isBreakingSpace(v), g = $.isBreakingSpace(a[a.length - 1]);
         if (_ && g)
           continue;
       }
-      const b = H.getFromCache(v, l, h, s);
+      const b = $.getFromCache(v, l, h, s);
       if (b > p)
-        if (a !== "" && (o += H.addLine(a), a = "", n = 0), H.canBreakWords(v, e.breakWords)) {
-          const _ = H.wordWrapSplit(v);
+        if (a !== "" && (o += $.addLine(a), a = "", n = 0), $.canBreakWords(v, e.breakWords)) {
+          const _ = $.wordWrapSplit(v);
           for (let g = 0; g < _.length; g++) {
             let w = _[g], R = w, A = 1;
             for (; _[g + A]; ) {
               const T = _[g + A];
-              if (!H.canBreakChars(R, T, v, g, e.breakWords))
+              if (!$.canBreakChars(R, T, v, g, e.breakWords))
                 w += T;
               else
                 break;
               R = T, A++;
             }
             g += A - 1;
-            const x = H.getFromCache(w, l, h, s);
-            x + n > p && (o += H.addLine(a), f = !1, a = "", n = 0), a += w, n += x;
+            const x = $.getFromCache(w, l, h, s);
+            x + n > p && (o += $.addLine(a), f = !1, a = "", n = 0), a += w, n += x;
           }
         } else {
-          a.length > 0 && (o += H.addLine(a), a = "", n = 0);
+          a.length > 0 && (o += $.addLine(a), a = "", n = 0);
           const _ = y === m.length - 1;
-          o += H.addLine(v, !_), f = !1, a = "", n = 0;
+          o += $.addLine(v, !_), f = !1, a = "", n = 0;
         }
       else
-        b + n > p && (f = !1, o += H.addLine(a), a = "", n = 0), (a.length > 0 || !H.isBreakingSpace(v) || f) && (a += v, n += b);
+        b + n > p && (f = !1, o += $.addLine(a), a = "", n = 0), (a.length > 0 || !$.isBreakingSpace(v) || f) && (a += v, n += b);
     }
-    return o += H.addLine(a, !1), o;
+    return o += $.addLine(a, !1), o;
   }
   /**
    * Convienience function for logging each line added during the wordWrap method.
@@ -21196,7 +21196,7 @@ const Wi = {
    * @returns A formatted line
    */
   static addLine(t, e = !0) {
-    return t = H.trimRight(t), t = e ? `${t}
+    return t = $.trimRight(t), t = e ? `${t}
 ` : t, t;
   }
   /**
@@ -21209,7 +21209,7 @@ const Wi = {
    */
   static getFromCache(t, e, r, s) {
     let n = r[t];
-    return typeof n != "number" && (n = H._measureText(t, e, s) + e, r[t] = n), n;
+    return typeof n != "number" && (n = $._measureText(t, e, s) + e, r[t] = n), n;
   }
   /**
    * Determines whether we should collapse breaking spaces.
@@ -21237,7 +21237,7 @@ const Wi = {
       return "";
     for (let e = t.length - 1; e >= 0; e--) {
       const r = t[e];
-      if (!H.isBreakingSpace(r))
+      if (!$.isBreakingSpace(r))
         break;
       t = t.slice(0, -1);
     }
@@ -21249,7 +21249,7 @@ const Wi = {
    * @returns True if newline, False otherwise.
    */
   static isNewline(t) {
-    return typeof t != "string" ? !1 : H._newlines.includes(t.charCodeAt(0));
+    return typeof t != "string" ? !1 : $._newlines.includes(t.charCodeAt(0));
   }
   /**
    * Determines if char is a breaking whitespace.
@@ -21262,7 +21262,7 @@ const Wi = {
    * @returns True if whitespace, False otherwise.
    */
   static isBreakingSpace(t, e) {
-    return typeof t != "string" ? !1 : H._breakingSpaces.includes(t.charCodeAt(0));
+    return typeof t != "string" ? !1 : $._breakingSpaces.includes(t.charCodeAt(0));
   }
   /**
    * Splits a string into words, breaking-spaces and newLine characters
@@ -21276,7 +21276,7 @@ const Wi = {
       return e;
     for (let s = 0; s < t.length; s++) {
       const n = t[s], a = t[s + 1];
-      if (H.isBreakingSpace(n, a) || H.isNewline(n)) {
+      if ($.isBreakingSpace(n, a) || $.isNewline(n)) {
         r !== "" && (e.push(r), r = ""), e.push(n);
         continue;
       }
@@ -21325,7 +21325,7 @@ const Wi = {
    * @see TextMetrics.graphemeSegmenter
    */
   static wordWrapSplit(t) {
-    return H.graphemeSegmenter(t);
+    return $.graphemeSegmenter(t);
   }
   /**
    * Calculates the ascent, descent and fontSize of a given font-style
@@ -21333,19 +21333,19 @@ const Wi = {
    * @returns Font properties object
    */
   static measureFont(t) {
-    if (H._fonts[t])
-      return H._fonts[t];
+    if ($._fonts[t])
+      return $._fonts[t];
     const e = {
       ascent: 0,
       descent: 0,
       fontSize: 0
-    }, r = H._canvas, s = H._context;
+    }, r = $._canvas, s = $._context;
     s.font = t;
-    const n = H.METRICS_STRING + H.BASELINE_SYMBOL, a = Math.ceil(s.measureText(n).width);
-    let o = Math.ceil(s.measureText(H.BASELINE_SYMBOL).width);
-    const h = Math.ceil(H.HEIGHT_MULTIPLIER * o);
-    if (o = o * H.BASELINE_MULTIPLIER | 0, a === 0 || h === 0)
-      return H._fonts[t] = e, e;
+    const n = $.METRICS_STRING + $.BASELINE_SYMBOL, a = Math.ceil(s.measureText(n).width);
+    let o = Math.ceil(s.measureText($.BASELINE_SYMBOL).width);
+    const h = Math.ceil($.HEIGHT_MULTIPLIER * o);
+    if (o = o * $.BASELINE_MULTIPLIER | 0, a === 0 || h === 0)
+      return $._fonts[t] = e, e;
     r.width = a, r.height = h, s.fillStyle = "#f00", s.fillRect(0, 0, a, h), s.font = t, s.textBaseline = "alphabetic", s.fillStyle = "#000", s.fillText(n, 0, o);
     const l = s.getImageData(0, 0, a, h).data, u = l.length, c = a * 4;
     let d = 0, f = 0, p = !1;
@@ -21371,14 +21371,14 @@ const Wi = {
       else
         break;
     }
-    return e.descent = d - o, e.fontSize = e.ascent + e.descent, H._fonts[t] = e, e;
+    return e.descent = d - o, e.fontSize = e.ascent + e.descent, $._fonts[t] = e, e;
   }
   /**
    * Clear font metrics in metrics cache.
    * @param {string} [font] - font name. If font name not set then clear cache for all fonts.
    */
   static clearMetrics(t = "") {
-    t ? delete H._fonts[t] : H._fonts = {};
+    t ? delete $._fonts[t] : $._fonts = {};
   }
   /**
    * Cached canvas element for measuring text
@@ -21387,26 +21387,26 @@ const Wi = {
    */
   static get _canvas() {
     var t;
-    if (!H.__canvas) {
+    if (!$.__canvas) {
       let e;
       try {
         const r = new OffscreenCanvas(0, 0);
         if ((t = r.getContext("2d", Wi)) != null && t.measureText)
-          return H.__canvas = r, r;
+          return $.__canvas = r, r;
         e = U.ADAPTER.createCanvas();
       } catch {
         e = U.ADAPTER.createCanvas();
       }
-      e.width = e.height = 10, H.__canvas = e;
+      e.width = e.height = 10, $.__canvas = e;
     }
-    return H.__canvas;
+    return $.__canvas;
   }
   /**
    * TODO: this should be private, but isn't because of backward compat, will fix later.
    * @ignore
    */
   static get _context() {
-    return H.__context || (H.__context = H._canvas.getContext("2d", Wi)), H.__context;
+    return $.__context || ($.__context = $._canvas.getContext("2d", Wi)), $.__context;
   }
 };
 ie.METRICS_STRING = "|ÉqÅ", /** Baseline symbol for calculate font metrics. */
@@ -21935,7 +21935,7 @@ const F_ = {
   constructor(t, e, r) {
     let s = !1;
     r || (r = U.ADAPTER.createCanvas(), s = !0), r.width = 3, r.height = 3;
-    const n = N.from(r);
+    const n = O.from(r);
     n.orig = new j(), n.trim = new j(), super(n), this._ownCanvas = s, this.canvas = r, this.context = r.getContext("2d", {
       // required for trimming to work without warnings
       willReadFrequently: !0
@@ -22203,7 +22203,7 @@ function N_(i, t) {
   let e = !1;
   if ((r = i == null ? void 0 : i._textures) != null && r.length) {
     for (let s = 0; s < i._textures.length; s++)
-      if (i._textures[s] instanceof N) {
+      if (i._textures[s] instanceof O) {
         const n = i._textures[s].baseTexture;
         t.includes(n) || (t.push(n), e = !0);
       }
@@ -22218,7 +22218,7 @@ function L_(i, t) {
   return !1;
 }
 function U_(i, t) {
-  if (i._texture && i._texture instanceof N) {
+  if (i._texture && i._texture instanceof O) {
     const e = i._texture.baseTexture;
     return t.includes(e) || t.push(e), !0;
   }
@@ -22397,7 +22397,7 @@ class Cs extends de {
    * @param {boolean} [autoUpdate=true] - Whether to use Ticker.shared to auto update animation time.
    */
   constructor(t, e = !0) {
-    super(t[0] instanceof N ? t[0] : t[0].texture), this._textures = null, this._durations = null, this._autoUpdate = e, this._isConnectedToTicker = !1, this.animationSpeed = 1, this.loop = !0, this.updateAnchor = !1, this.onComplete = null, this.onFrameChange = null, this.onLoop = null, this._currentTime = 0, this._playing = !1, this._previousFrame = null, this.textures = t;
+    super(t[0] instanceof O ? t[0] : t[0].texture), this._textures = null, this._durations = null, this._autoUpdate = e, this._isConnectedToTicker = !1, this.animationSpeed = 1, this.loop = !0, this.updateAnchor = !1, this.onComplete = null, this.onFrameChange = null, this.onLoop = null, this._currentTime = 0, this._playing = !1, this._previousFrame = null, this.textures = t;
   }
   /** Stops the AnimatedSprite. */
   stop() {
@@ -22466,7 +22466,7 @@ class Cs extends de {
   static fromFrames(t) {
     const e = [];
     for (let r = 0; r < t.length; ++r)
-      e.push(N.from(t[r]));
+      e.push(O.from(t[r]));
     return new Cs(e);
   }
   /**
@@ -22477,7 +22477,7 @@ class Cs extends de {
   static fromImages(t) {
     const e = [];
     for (let r = 0; r < t.length; ++r)
-      e.push(N.from(t[r]));
+      e.push(O.from(t[r]));
     return new Cs(e);
   }
   /**
@@ -22494,7 +22494,7 @@ class Cs extends de {
     return this._textures;
   }
   set textures(t) {
-    if (t[0] instanceof N)
+    if (t[0] instanceof O)
       this._textures = t, this._durations = null;
     else {
       this._textures = [], this._durations = [];
@@ -22632,7 +22632,7 @@ class Ja extends de {
    * @returns {PIXI.TilingSprite} The newly created texture
    */
   static from(t, e) {
-    const r = t instanceof N ? t : N.from(t, e);
+    const r = t instanceof O ? t : O.from(t, e);
     return new Ja(
       r,
       e.width,
@@ -22814,9 +22814,9 @@ k.add(Yu);
 const qu = class si {
   /** @ignore */
   constructor(t, e, r) {
-    this.linkedSheets = [], (t instanceof X || t instanceof N) && (t = { texture: t, data: e, resolutionFilename: r });
+    this.linkedSheets = [], (t instanceof X || t instanceof O) && (t = { texture: t, data: e, resolutionFilename: r });
     const { texture: s, data: n, resolutionFilename: a = null, cachePrefix: o = "" } = t;
-    this.cachePrefix = o, this._texture = s instanceof N ? s : null, this.baseTexture = s instanceof X ? s : this._texture.baseTexture, this.textures = {}, this.animations = {}, this.data = n;
+    this.cachePrefix = o, this._texture = s instanceof O ? s : null, this.baseTexture = s instanceof X ? s : this._texture.baseTexture, this.textures = {}, this.animations = {}, this.data = n;
     const h = this.baseTexture.resource;
     this.resolution = this._updateResolution(a || (h ? h.url : null)), this._frames = this.data.frames, this._frameKeys = Object.keys(this._frames), this._batchIndex = 0, this._callback = null;
   }
@@ -22874,7 +22874,7 @@ const qu = class si {
           Math.floor(n.spriteSourceSize.y) / this.resolution,
           Math.floor(a.w) / this.resolution,
           Math.floor(a.h) / this.resolution
-        )), this.textures[s] = new N(
+        )), this.textures[s] = new O(
           this.baseTexture,
           o,
           u,
@@ -22882,7 +22882,7 @@ const qu = class si {
           n.rotated ? 2 : 0,
           n.anchor,
           n.borders
-        ), N.addToCache(this.textures[s], this.cachePrefix + s.toString());
+        ), O.addToCache(this.textures[s], this.cachePrefix + s.toString());
       }
       e++;
     }
@@ -23294,7 +23294,7 @@ const Re = class se {
         yOffset: _,
         xAdvance: g,
         kerning: {},
-        texture: new N(
+        texture: new O(
           l[f].baseTexture,
           w
         ),
@@ -23336,7 +23336,7 @@ const Re = class se {
         throw new Error("Unrecognized data format for font.");
       s = a.parse(t);
     }
-    e instanceof N && (e = [e]);
+    e instanceof O && (e = [e]);
     const n = new se(s, e, r);
     return se.available[n.font] = n, n;
   }
@@ -23407,7 +23407,7 @@ const Re = class se {
     let p = 0, m = 0, y, v, b, _ = 0;
     const g = [];
     for (let R = 0; R < u.length; R++) {
-      y || (y = U.ADAPTER.createCanvas(), y.width = o, y.height = h, v = y.getContext("2d"), b = new X(y, { resolution: a, ...l }), g.push(new N(b)), f.page.push({
+      y || (y = U.ADAPTER.createCanvas(), y.width = o, y.height = h, v = y.getContext("2d"), b = new X(y, { resolution: a, ...l }), g.push(new O(b)), f.page.push({
         id: g.length - 1,
         file: ""
       }));
@@ -23584,14 +23584,14 @@ const $h = [], Vh = [], zh = [], Qu = class Ju extends Ft {
       if (!G)
         continue;
       d && G.kerning[d] && (s.x += G.kerning[d]);
-      const O = zh.pop() || {
-        texture: N.EMPTY,
+      const N = zh.pop() || {
+        texture: O.EMPTY,
         line: 0,
         charCode: 0,
         prevSpaces: 0,
         position: new K()
       };
-      O.texture = G.texture, O.line = m, O.charCode = I, O.position.x = Math.round(s.x + G.xOffset + this._letterSpacing / 2), O.position.y = Math.round(s.y + G.yOffset), O.prevSpaces = g, n.push(O), f = O.position.x + Math.max(G.xAdvance - G.xOffset, G.texture.orig.width), s.x += G.xAdvance + this._letterSpacing, _ = Math.max(_, G.yOffset + G.texture.height), d = I, y !== -1 && u > 0 && s.x > u && (++b, Pr(n, 1 + y - b, 1 + C - y), C = y, y = -1, a.push(v), o.push(n.length > 0 ? n[n.length - 1].prevSpaces : 0), p = Math.max(p, v), m++, s.x = 0, s.y += t.lineHeight, d = null, g = 0);
+      N.texture = G.texture, N.line = m, N.charCode = I, N.position.x = Math.round(s.x + G.xOffset + this._letterSpacing / 2), N.position.y = Math.round(s.y + G.yOffset), N.prevSpaces = g, n.push(N), f = N.position.x + Math.max(G.xAdvance - G.xOffset, G.texture.orig.width), s.x += G.xAdvance + this._letterSpacing, _ = Math.max(_, G.yOffset + G.texture.height), d = I, y !== -1 && u > 0 && s.x > u && (++b, Pr(n, 1 + y - b, 1 + C - y), C = y, y = -1, a.push(v), o.push(n.length > 0 ? n[n.length - 1].prevSpaces : 0), p = Math.max(p, v), m++, s.x = 0, s.y += t.lineHeight, d = null, g = 0);
     }
     const w = l[l.length - 1];
     w !== "\r" && w !== `
@@ -23608,13 +23608,13 @@ const $h = [], Vh = [], zh = [], Qu = class Ju extends Ft {
       if (!x[I]) {
         let G = c.pop();
         if (!G) {
-          const V = new Gs();
+          const H = new Gs();
           let W, ht;
-          t.distanceFieldType === "none" ? (W = new fi(N.EMPTY), ht = z.NORMAL) : (W = new fi(
-            N.EMPTY,
+          t.distanceFieldType === "none" ? (W = new fi(O.EMPTY), ht = z.NORMAL) : (W = new fi(
+            O.EMPTY,
             { program: xe.from(r0, e0), uniforms: { uFWidth: 0 } }
           ), ht = z.NORMAL_NPM);
-          const D = new kr(V, W);
+          const D = new kr(H, W);
           D.blendMode = ht, G = {
             index: 0,
             indexCount: 0,
@@ -23628,8 +23628,8 @@ const $h = [], Vh = [], zh = [], Qu = class Ju extends Ft {
           };
         }
         G.index = 0, G.indexCount = 0, G.vertexCount = 0, G.uvsCount = 0, G.total = 0;
-        const { _textureCache: O } = this;
-        O[I] = O[I] || new N(E.baseTexture), G.mesh.texture = O[I], G.mesh.tint = this._tintColor.value, T.push(G), x[I] = G;
+        const { _textureCache: N } = this;
+        N[I] = N[I] || new O(E.baseTexture), G.mesh.texture = N[I], G.mesh.tint = this._tintColor.value, T.push(G), x[I] = G;
       }
       x[I].total++;
     }
@@ -23643,9 +23643,9 @@ const $h = [], Vh = [], zh = [], Qu = class Ju extends Ft {
       if (!(((M = E.indices) == null ? void 0 : M.length) > 6 * I) || E.vertices.length < kr.BATCHABLE_SIZE * 2)
         E.vertices = new Float32Array(4 * 2 * I), E.uvs = new Float32Array(4 * 2 * I), E.indices = new Uint16Array(6 * I);
       else {
-        const G = E.total, O = E.vertices;
-        for (let V = G * 4 * 2; V < O.length; V++)
-          O[V] = 0;
+        const G = E.total, N = E.vertices;
+        for (let H = G * 4 * 2; H < N.length; H++)
+          N[H] = 0;
       }
       E.mesh.size = 6 * I;
     }
@@ -23653,21 +23653,21 @@ const $h = [], Vh = [], zh = [], Qu = class Ju extends Ft {
       const E = n[C];
       let I = E.position.x + R[E.line] * (this._align === "justify" ? E.prevSpaces : 1);
       this._roundPixels && (I = Math.round(I));
-      const G = I * r, O = E.position.y * r, V = E.texture, W = x[V.baseTexture.uid], ht = V.frame, D = V._uvs, B = W.index++;
-      W.indices[B * 6 + 0] = 0 + B * 4, W.indices[B * 6 + 1] = 1 + B * 4, W.indices[B * 6 + 2] = 2 + B * 4, W.indices[B * 6 + 3] = 0 + B * 4, W.indices[B * 6 + 4] = 2 + B * 4, W.indices[B * 6 + 5] = 3 + B * 4, W.vertices[B * 8 + 0] = G, W.vertices[B * 8 + 1] = O, W.vertices[B * 8 + 2] = G + ht.width * r, W.vertices[B * 8 + 3] = O, W.vertices[B * 8 + 4] = G + ht.width * r, W.vertices[B * 8 + 5] = O + ht.height * r, W.vertices[B * 8 + 6] = G, W.vertices[B * 8 + 7] = O + ht.height * r, W.uvs[B * 8 + 0] = D.x0, W.uvs[B * 8 + 1] = D.y0, W.uvs[B * 8 + 2] = D.x1, W.uvs[B * 8 + 3] = D.y1, W.uvs[B * 8 + 4] = D.x2, W.uvs[B * 8 + 5] = D.y2, W.uvs[B * 8 + 6] = D.x3, W.uvs[B * 8 + 7] = D.y3;
+      const G = I * r, N = E.position.y * r, H = E.texture, W = x[H.baseTexture.uid], ht = H.frame, D = H._uvs, B = W.index++;
+      W.indices[B * 6 + 0] = 0 + B * 4, W.indices[B * 6 + 1] = 1 + B * 4, W.indices[B * 6 + 2] = 2 + B * 4, W.indices[B * 6 + 3] = 0 + B * 4, W.indices[B * 6 + 4] = 2 + B * 4, W.indices[B * 6 + 5] = 3 + B * 4, W.vertices[B * 8 + 0] = G, W.vertices[B * 8 + 1] = N, W.vertices[B * 8 + 2] = G + ht.width * r, W.vertices[B * 8 + 3] = N, W.vertices[B * 8 + 4] = G + ht.width * r, W.vertices[B * 8 + 5] = N + ht.height * r, W.vertices[B * 8 + 6] = G, W.vertices[B * 8 + 7] = N + ht.height * r, W.uvs[B * 8 + 0] = D.x0, W.uvs[B * 8 + 1] = D.y0, W.uvs[B * 8 + 2] = D.x1, W.uvs[B * 8 + 3] = D.y1, W.uvs[B * 8 + 4] = D.x2, W.uvs[B * 8 + 5] = D.y2, W.uvs[B * 8 + 6] = D.x3, W.uvs[B * 8 + 7] = D.y3;
     }
     this._textWidth = p * r, this._textHeight = (s.y + t.lineHeight) * r;
     for (const C in x) {
       const E = x[C];
       if (this.anchor.x !== 0 || this.anchor.y !== 0) {
-        let V = 0;
+        let H = 0;
         const W = this._textWidth * this.anchor.x, ht = this._textHeight * this.anchor.y;
         for (let D = 0; D < E.total; D++)
-          E.vertices[V++] -= W, E.vertices[V++] -= ht, E.vertices[V++] -= W, E.vertices[V++] -= ht, E.vertices[V++] -= W, E.vertices[V++] -= ht, E.vertices[V++] -= W, E.vertices[V++] -= ht;
+          E.vertices[H++] -= W, E.vertices[H++] -= ht, E.vertices[H++] -= W, E.vertices[H++] -= ht, E.vertices[H++] -= W, E.vertices[H++] -= ht, E.vertices[H++] -= W, E.vertices[H++] -= ht;
       }
       this._maxLineHeight = _ * r;
-      const I = E.mesh.geometry.getBuffer("aVertexPosition"), G = E.mesh.geometry.getBuffer("aTextureCoord"), O = E.mesh.geometry.getIndex();
-      I.data = E.vertices, G.data = E.uvs, O.data = E.indices, I.update(), G.update(), O.update();
+      const I = E.mesh.geometry.getBuffer("aVertexPosition"), G = E.mesh.geometry.getBuffer("aTextureCoord"), N = E.mesh.geometry.getIndex();
+      I.data = E.vertices, G.data = E.uvs, N.data = E.indices, I.update(), G.update(), N.update();
     }
     for (let C = 0; C < n.length; C++)
       zh.push(n[C]);
@@ -23839,7 +23839,7 @@ const $h = [], Vh = [], zh = [], Qu = class Ju extends Ft {
     for (const s of this._activePagesMeshData)
       this.removeChild(s.mesh);
     this._activePagesMeshData = [], r.filter((s) => e[s.mesh.texture.baseTexture.uid]).forEach((s) => {
-      s.mesh.texture = N.EMPTY;
+      s.mesh.texture = O.EMPTY;
     });
     for (const s in e)
       e[s].destroy(), delete e[s];
@@ -24161,8 +24161,8 @@ const Yi = class br extends de {
    *        will convert the TextStyle to an HTMLTextStyle and will no longer be linked.
    */
   constructor(t = "", e = {}) {
-    super(N.EMPTY), this._text = null, this._style = null, this._autoResolution = !0, this.localStyleID = -1, this.dirty = !1, this._updateID = 0, this.ownsStyle = !1;
-    const r = new Image(), s = N.from(r, {
+    super(O.EMPTY), this._text = null, this._style = null, this._autoResolution = !0, this.localStyleID = -1, this.dirty = !1, this._updateID = 0, this.ownsStyle = !1;
+    const r = new Image(), s = O.from(r, {
       scaleMode: U.SCALE_MODE,
       resourceOptions: {
         autoLoad: !1
@@ -24394,7 +24394,7 @@ function sc(i, t = {}) {
     i.baseTexture[e] = t[e];
 }
 function Ce(i) {
-  return typeof i == "string" ? N.from(i) : i;
+  return typeof i == "string" ? O.from(i) : i;
 }
 function u0(i) {
   return Object.keys(i || {}).some((t) => t.startsWith("on"));
@@ -24808,10 +24808,10 @@ function W0(i) {
 }
 function j0(i) {
   return i = i.replace(/\\n/g, `
-`), i ? new bi(i) : new ac(N.EMPTY);
+`), i ? new bi(i) : new ac(O.EMPTY);
 }
 function Y0() {
-  return new ac(N.EMPTY);
+  return new ac(O.EMPTY);
 }
 function q0(i) {
   i.destroy();
@@ -25778,17 +25778,17 @@ const xv = ["id"], bv = /* @__PURE__ */ Yt({
           !0
         )
       ), T = {
-        x: ((O) => Math.abs(O) < e.value.x ? c.value.y > 0 ? 1 : -1 : O > 0 ? 1 : -1)(
+        x: ((N) => Math.abs(N) < e.value.x ? c.value.y > 0 ? 1 : -1 : N > 0 ? 1 : -1)(
           a.edge.from.position.x + d.value.x - r.value.width / 2
         ),
-        y: ((O) => Math.abs(O) < e.value.y ? c.value.y > 0 ? 1 : -1 : O > 0 ? 1 : -1)(
+        y: ((N) => Math.abs(N) < e.value.y ? c.value.y > 0 ? 1 : -1 : N > 0 ? 1 : -1)(
           a.edge.from.position.y + d.value.y - r.value.height / 2
         )
       }, S = {
-        x: ((O) => Math.abs(O) < e.value.x ? c.value.y > 0 ? 1 : -1 : O > 0 ? 1 : -1)(
+        x: ((N) => Math.abs(N) < e.value.x ? c.value.y > 0 ? 1 : -1 : N > 0 ? 1 : -1)(
           ((E = a.edge.to) == null ? void 0 : E.position.x) ?? 0 - r.value.width / 2
         ),
-        y: ((O) => Math.abs(O) < e.value.y ? c.value.y > 0 ? 1 : -1 : O > 0 ? 1 : -1)(
+        y: ((N) => Math.abs(N) < e.value.y ? c.value.y > 0 ? 1 : -1 : N > 0 ? 1 : -1)(
           ((I = a.edge.to) == null ? void 0 : I.position.y) ?? 0 + (((G = a.edge.to) == null ? void 0 : G.boundingBox.height) ?? 0 / 2) - r.value.height / 2
         )
       }, M = {
@@ -25797,22 +25797,22 @@ const xv = ["id"], bv = /* @__PURE__ */ Yt({
       };
       if (c.value.x > 0) {
         if (c.value.x - a.edge.from.boundingBox.width > e.value.x) {
-          const O = {
+          const N = {
             x: d.value.x + e.value.x / 2 - a.radius / 8 - a.radius * ((0.5 - A.y) * -Math.E),
             y: d.value.y
           };
-          g.lineTo(O.x - a.radius, d.value.y), g.quadraticCurveTo(
-            O.x,
+          g.lineTo(N.x - a.radius, d.value.y), g.quadraticCurveTo(
+            N.x,
             d.value.y,
-            O.x,
+            N.x,
             d.value.y + a.radius * T.y
           ), g.lineTo(
-            O.x,
+            N.x,
             M.y + (r.value.height / 2 - e.value.y) * T.y - a.radius * (4 - (-1.5 + (A.x + (A.y > 0.5 ? A.y - 0.5 : A.y) * S.y * T.y) * Math.PI / Math.LOG2E)) * T.y
           ), g.quadraticCurveTo(
-            O.x,
+            N.x,
             M.y + (r.value.height / 2 - e.value.y) * T.y - a.radius * (3 - (-1.5 + (A.x + (A.y > 0.5 ? A.y - 0.5 : A.y) * S.y * T.y) * Math.PI / Math.LOG2E)) * T.y,
-            O.x + a.radius,
+            N.x + a.radius,
             M.y + (r.value.height / 2 - e.value.y) * T.y - a.radius * (3 - (-1.5 + (A.x + (A.y > 0.5 ? A.y - 0.5 : A.y) * S.y * T.y) * Math.PI / Math.LOG2E)) * T.y
           ), g.lineTo(
             f.value.x - a.radius * (2 + (1 - x.y * T.y) * x.x),
@@ -25832,19 +25832,19 @@ const xv = ["id"], bv = /* @__PURE__ */ Yt({
             f.value.y
           ), g.lineTo(f.value.x, f.value.y);
         } else if (c.value.y !== 0) {
-          const O = {
-            x: Math.max(w.x, 0) - a.radius * ((0.5 - A.y) * -Math.E),
+          const N = Math.min(Math.abs(c.value.y) / 2, a.radius), H = {
+            x: Math.max(w.x, 0) - N * ((0.5 - A.y) * -Math.E) - (a.radius - N),
             y: d.value.y
           };
-          g.lineTo(O.x - a.radius, O.y), g.quadraticCurveTo(
-            O.x,
-            O.y,
-            O.x,
-            d.value.y + a.radius * (c.value.y > 0 ? 1 : -1)
-          ), g.lineTo(O.x, f.value.y - a.radius * (c.value.y > 0 ? 1 : -1)), g.quadraticCurveTo(
-            O.x,
+          g.lineTo(H.x - N, H.y), g.quadraticCurveTo(
+            H.x,
+            H.y,
+            H.x,
+            d.value.y + N * (c.value.y > 0 ? 1 : -1)
+          ), g.lineTo(H.x, f.value.y - N * (c.value.y > 0 ? 1 : -1)), g.quadraticCurveTo(
+            H.x,
             f.value.y,
-            O.x + a.radius,
+            H.x + N,
             f.value.y
           ), g.lineTo(f.value.x, f.value.y);
         } else
