@@ -13,6 +13,7 @@ export declare namespace DropDown {
         variant?: keyof typeof Variant;
         multiple?: boolean;
         useSearch?: boolean;
+        placeholder?: string;
     };
     enum Variant {
         'rounded' = "rounded",
