@@ -49,7 +49,11 @@ const closeMenu = signal(true);
     <ButtonBox
       :disabled="props.disabled"
       :label="
-        props.multiple ? props.label : selector(props.modelValue, props.fields.key) ?? props.label
+        props.multiple
+          ? (selected?.length ?? 0) > 0
+            ? props.label ?? props.placeholder
+            : props.placeholder ?? props.label
+          : selector(props.modelValue, props.fields.key) ?? props.label ?? props.placeholder
       "
       :icon="closeMenu() ? 'fa6-solid:chevron-down' : 'fa6-solid:chevron-up'"
       :clicked="!closeMenu()"
@@ -59,7 +63,6 @@ const closeMenu = signal(true);
       :bobble="props.multiple ? selected?.length ?? false : false"
       :class="[$style['dropdown-button'], $style[size]]"
       @click="closeMenu.update((state) => !state)"
-      type="search"
     />
     <template v-if="items.length > 0 && !closeMenu()">
       <SelectMenu

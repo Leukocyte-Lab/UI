@@ -14,6 +14,7 @@ export namespace DropDown {
     variant?: keyof typeof Variant;
     multiple?: boolean;
     useSearch?: boolean;
+    placeholder?: string;
   };
 
   export enum Variant {
