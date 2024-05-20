@@ -15,6 +15,7 @@ export namespace DropDown {
     multiple?: boolean;
     useSearch?: boolean;
     placeholder?: string;
+    groupBy?: string;
   };
 
   export enum Variant {

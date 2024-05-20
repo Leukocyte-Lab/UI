@@ -76,6 +76,7 @@ const closeMenu = signal(true);
         :fields="props.fields"
         :multiple="props.multiple"
         :use-search="props.useSearch"
+        :group-by="props.groupBy"
         v-model="selected"
       />
     </template>
