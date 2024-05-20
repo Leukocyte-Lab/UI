@@ -15,6 +15,18 @@ export default {
       control: 'object',
       description: 'DropDown value, use by `v-model`.'
     },
+    label: {
+      control: 'text',
+      description: 'DropDown label (optional)'
+    },
+    placeholder: {
+      control: 'text',
+      description: 'DropDown placeholder (optional)'
+    },
+    groupBy: {
+      control: 'text',
+      description: 'DropDown groupBy (optional)'
+    },
     level: {
       control: 'select',
       description: 'Dropdown level (optional)',
@@ -138,6 +150,18 @@ DefaultDropDownWithSearch.args = {
   useSearch: true
 };
 
+export const DefaultGroupDropDown = Template.bind({});
+DefaultGroupDropDown.args = {
+  ...DefaultDropDown.args,
+  groupBy: 'category'
+};
+
+export const DefaultGroupDropDownWithSearch = Template.bind({});
+DefaultGroupDropDownWithSearch.args = {
+  ...DefaultDropDownWithSearch.args,
+  groupBy: 'category'
+};
+
 export const MultiDropDown = Template.bind({});
 MultiDropDown.args = {
   ...DefaultDropDown.args,
@@ -149,6 +173,18 @@ export const MultiDropDownWithSearch = Template.bind({});
 MultiDropDownWithSearch.args = {
   ...MultiDropDown.args,
   useSearch: true
+};
+
+export const MultiGroupDropDown = Template.bind({});
+MultiGroupDropDown.args = {
+  ...MultiDropDown.args,
+  groupBy: 'category'
+};
+
+export const MultiGroupDropDownWithSearch = Template.bind({});
+MultiGroupDropDownWithSearch.args = {
+  ...MultiDropDownWithSearch.args,
+  groupBy: 'category'
 };
 
 export const LargeDropDown = Template.bind({});
