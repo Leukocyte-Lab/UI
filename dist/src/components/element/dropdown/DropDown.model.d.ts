@@ -14,6 +14,7 @@ export declare namespace DropDown {
         multiple?: boolean;
         useSearch?: boolean;
         placeholder?: string;
+        groupBy?: string;
     };
     enum Variant {
         'rounded' = "rounded",
