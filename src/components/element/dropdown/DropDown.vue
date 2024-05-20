@@ -6,6 +6,7 @@ import SelectMenu from '@/components/element/menu/SelectMenu.vue';
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 
 import { selector } from '@/shared/libs/selector';
+import { parser } from '@/shared/libs/parser';
 import { signal } from '@/shared/libs/signal';
 
 import type { DropDown } from '@/components/element/dropdown/DropDown.model';
@@ -53,10 +54,10 @@ const closeMenu = signal(true);
           ? (selected?.length ?? 0) > 0
             ? props.label ?? props.placeholder
             : props.placeholder ?? props.label
-          : selector(props.modelValue, props.fields.title) ??
-            selector(props.modelValue, props.fields.key) ??
-            props.label ??
-            props.placeholder
+          : (props.fields.title &&
+              (parser(props.modelValue, props.fields.title) ||
+                selector(props.modelValue, props.fields.title))) ||
+            (selector(props.modelValue, props.fields.key) ?? props.label ?? props.placeholder)
       "
       :icon="closeMenu() ? 'fa6-solid:chevron-down' : 'fa6-solid:chevron-up'"
       :clicked="!closeMenu()"
@@ -75,6 +76,7 @@ const closeMenu = signal(true);
         :fields="props.fields"
         :multiple="props.multiple"
         :use-search="props.useSearch"
+        :group-by="props.groupBy"
         v-model="selected"
       />
     </template>
