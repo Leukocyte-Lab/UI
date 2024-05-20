@@ -53,7 +53,10 @@ const closeMenu = signal(true);
           ? (selected?.length ?? 0) > 0
             ? props.label ?? props.placeholder
             : props.placeholder ?? props.label
-          : selector(props.modelValue, props.fields.key) ?? props.label ?? props.placeholder
+          : selector(props.modelValue, props.fields.title) ??
+            selector(props.modelValue, props.fields.key) ??
+            props.label ??
+            props.placeholder
       "
       :icon="closeMenu() ? 'fa6-solid:chevron-down' : 'fa6-solid:chevron-up'"
       :clicked="!closeMenu()"
