@@ -31,6 +31,7 @@ import type {
   Nullable,
   ValueOf
 } from './types/optional';
+import type { Dictionary } from './types/map';
 import type { MustDefined, MustHas, Writeable, MaybeArray } from './types/utils';
 import type { Vector, Vec2, Vec3, Vec4 } from './types/vector';
 
@@ -73,6 +74,7 @@ export type {
   Optional,
   Nullable,
   ValueOf,
+  Dictionary,
   Vector,
   Vec2,
   Vec3,

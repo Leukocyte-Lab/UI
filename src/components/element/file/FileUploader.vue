@@ -45,6 +45,9 @@ const acceptStr = computedEager(() =>
         .reduce((str, ext, index, arr) => `${str}${index < arr.length - 1 ? ', ' : ' or '}${ext}`)
     : 'All Files'
 );
+const placeholder = computedEager(
+  () => props.placeholder ?? `Drag ${props.multiple ? 'files' : 'a file'} here or click to browse`
+);
 
 const { open, onChange } = useFileDialog({
   accept: accept.value,
@@ -265,7 +268,7 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
         radius="var(--agh-ref-border-radius-300)"
       >
         <Icon :class="$style.icon" :icon="props.icon" />
-        <h1>Click to Upload, or Drag and Drop</h1>
+        <h1>{{ placeholder }}</h1>
         <p>{{ acceptStr }}</p>
       </CardBox>
     </template>
@@ -295,12 +298,12 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
                   payload.status() === 'progressing'
                     ? 'fa6-solid:upload'
                     : payload.status() === 'failed'
-                    ? 'fa6-solid:circle-xmark'
-                    : payload.status() === 'succeeded'
-                    ? 'fa6-solid:circle-check'
-                    : payload.status() === 'aborted'
-                    ? 'fa6-solid:circle-stop'
-                    : props.icon
+                      ? 'fa6-solid:circle-xmark'
+                      : payload.status() === 'succeeded'
+                        ? 'fa6-solid:circle-check'
+                        : payload.status() === 'aborted'
+                          ? 'fa6-solid:circle-stop'
+                          : props.icon
                 "
               />
             </div>

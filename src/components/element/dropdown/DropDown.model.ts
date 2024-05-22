@@ -11,15 +11,10 @@ export namespace DropDown {
     disabled?: boolean;
     level?: keyof typeof ButtonBoxNS.Level;
     size?: keyof typeof ButtonBoxNS.Size;
-    variant?: keyof typeof Variant;
+    variant?: keyof typeof ButtonBoxNS.Variant;
     multiple?: boolean;
     useSearch?: boolean;
     placeholder?: string;
     groupBy?: string;
   };
-
-  export enum Variant {
-    'rounded' = 'rounded',
-    'rect' = 'rect'
-  }
 }

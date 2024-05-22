@@ -2,6 +2,7 @@ import type { Signal } from '@/shared/libs/signal';
 
 export namespace FileUploader {
   export interface Props {
+    placeholder?: string;
     icon?: string;
     required?: boolean;
     disabled?: boolean;
