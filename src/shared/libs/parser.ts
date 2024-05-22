@@ -66,7 +66,7 @@ export const parser = <T extends ObjectLike = ObjectLike>(
           const pipe = XRegExp.exec(groups?.tailing ?? '', pipeRegExp)?.groups;
           const data = selector<any>(datasets, groups?.selector);
 
-          let result = data;
+          let result = data ?? '';
 
           try {
             if (pipe) {
