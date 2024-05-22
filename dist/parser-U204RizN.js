@@ -5436,7 +5436,7 @@ const Qe = m.build("[^\\{\\}]*", {}, "gmx"), sE = m.build("[^\\|\\(\\)\\{\\}: 	]
   (...e) => {
     var C;
     const t = Y0(e), F = (C = m.exec((t == null ? void 0 : t.tailing) ?? "", lE)) == null ? void 0 : C.groups, r = H0(u, t == null ? void 0 : t.selector);
-    let n = r;
+    let n = r ?? "";
     try {
       if (F) {
         const a = ((F == null ? void 0 : F.args) ?? "").trim().split(/\s:\s/), A = rt();
@@ -5574,4 +5574,4 @@ export {
   q as y,
   kr as z
 };
-//# sourceMappingURL=parser-81rB9sCH.js.map
+//# sourceMappingURL=parser-U204RizN.js.map

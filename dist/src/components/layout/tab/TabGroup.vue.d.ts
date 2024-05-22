@@ -7,7 +7,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: string;
     };
     tabs: {
-        type: import("vue").PropType<import("../../../shared/types/map").Dictionary<TabGroup.Tab.Model, "id"> | TabGroup.Tab.Model[]>;
+        type: import("vue").PropType<import("../../../shared").Dictionary<TabGroup.Tab.Model, "id"> | TabGroup.Tab.Model[]>;
         required: true;
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
@@ -17,7 +17,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         default: string;
     };
     tabs: {
-        type: import("vue").PropType<import("../../../shared/types/map").Dictionary<TabGroup.Tab.Model, "id"> | TabGroup.Tab.Model[]>;
+        type: import("vue").PropType<import("../../../shared").Dictionary<TabGroup.Tab.Model, "id"> | TabGroup.Tab.Model[]>;
         required: true;
     };
 }>>, {

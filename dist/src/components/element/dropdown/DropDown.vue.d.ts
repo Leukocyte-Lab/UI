@@ -18,7 +18,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     "onUpdate:modelValue"?: ((options: ObjectLike[]) => any) | undefined;
 }, {
     items: ObjectLike[];
-    variant: "rect" | "rounded";
+    variant: "circle" | "rect" | "text" | "rounded" | "square" | "text-square" | "extendable-rect" | "file";
     level: "primary" | "secondary" | "tertiary";
     size: "small" | "medium" | "large" | "huge";
     multiple: boolean;
