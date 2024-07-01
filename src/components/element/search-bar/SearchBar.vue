@@ -9,6 +9,7 @@ import { signal } from '@/shared/libs/signal';
 
 import type { SearchBar } from './SearchBar.model';
 import type { ObjectLike } from '@/shared/types/object';
+import { useSearch } from '@/shared/libs/search';
 
 const props = withDefaults(defineProps<SearchBar.Props>(), {
   items: () => [],
@@ -42,9 +43,10 @@ const onSelect = (option?: ObjectLike) => {
 };
 
 const computeFilteredItems = (value: string) => {
-  filteredItems.set(
-    props.items?.filter((item) => String(selector(item, props.fields.key)).includes(value)) ?? []
-  );
+  if (props.fields.searchKeys) {
+    const { results } = useSearch(props.items, value, props.fields.searchKeys);
+    filteredItems.set((results.value as ObjectLike[]) ?? []);
+  }
 };
 
 watch(search, computeFilteredItems);
