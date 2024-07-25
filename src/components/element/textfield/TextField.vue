@@ -51,9 +51,9 @@ const checkValidity = () => {
   );
 
   if (inputRef$.value?.validity) {
-    emits('validation', inputRef$.value.validity)
+    emits('validation', inputRef$.value.validity);
   }
-}
+};
 
 onMounted(() => {
   checkValidity();
@@ -93,11 +93,16 @@ onMounted(() => {
       :value="props.modelValue"
       @input="onTrigger"
     />
-    <template v-if="type === 'search' || props.icon">
+    <template v-if="type === 'search'">
       <Icon
-        :class="[$style['textfield-icon'], $style['icon']]"
-        :icon="props.icon || type === 'search' ? 'fa6-solid:magnifying-glass' : ''"
+        :class="[$style['textfield-icon-search'], $style['icon']]"
+        :icon="type === 'search' ? 'fa6-solid:magnifying-glass' : ''"
       />
+    </template>
+    <template v-if="props.icon">
+      <div :class="[$style['textfield-icon'], $style['icon']]" @click="props.iconClick">
+        <Icon :icon="props.icon ?? ''" />
+      </div>
     </template>
     <template v-if="errMsg() && focused()">
       <div :class="[$style['textfield-msg']]">
@@ -159,10 +164,14 @@ onMounted(() => {
 
     > .textfield {
       &-icon {
+        color: var(--agh-ref-color-grayscale-700);
         position: absolute;
-        color: var(--agh-ref-color-grayscale-500);
         padding: var(--agh-ref-spacing-100) var(--agh-ref-spacing-200);
         box-sizing: content-box !important;
+        cursor: pointer;
+        &-search {
+          color: var(--agh-ref-color-grayscale-500);
+        }
       }
     }
   }
