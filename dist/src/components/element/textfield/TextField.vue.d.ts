@@ -7,7 +7,9 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     spellcheck: boolean;
     autocomplete: string;
     iconAlign: string;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+}>, {
+    checkValidity: () => void;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (value: string) => void;
     validation: (value: ValidityState) => void;
 }, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<TextField.Props>, {

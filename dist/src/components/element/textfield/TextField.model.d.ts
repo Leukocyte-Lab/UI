@@ -1,3 +1,4 @@
+import type { Callback } from '../../../shared/types/callback';
 import type { EventSignalOptions } from '../../../shared/libs/event';
 import type { InvalidMessage } from '../../../shared/libs/validation';
 export declare namespace TextField {
@@ -27,7 +28,7 @@ export declare namespace TextField {
         eventSignalOptions?: EventSignalOptions;
         icon?: string;
         iconAlign?: 'left' | 'right';
-        iconClick?: void;
+        iconClick?: Callback;
     };
     type Emits = {
         (e: 'update:modelValue', value: string): void;
