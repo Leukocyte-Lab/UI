@@ -22,7 +22,7 @@ export default {
     'onUpdate:modelValue': {
       action: 'search'
     },
-    'onSelect': {
+    onSelect: {
       action: 'selected'
     }
   }
@@ -59,23 +59,27 @@ DefaultSearchBar.args = {
       recentlyUsed: '2021-01-01T00:00:00Z'
     },
     {
-      name: 'Nginx Techniques',
+      name: 'Nginx test Techniques',
       description:
         'Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
       category: 'Technique Simulation Data',
       recentlyUsed: '2021-01-01T00:00:00Z'
     },
     {
-      name: 'Apache Techniques',
+      name: 'Apache test Techniques',
       description:
         'Apache is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
       category: 'Technique Simulation Data',
+      framework: {
+        technique: 'T1012s'
+      },
       recentlyUsed: '2021-01-01T00:00:00Z'
     }
   ],
   fields: {
     key: 'name',
-    title: '{{ $.name }}'
+    title: '{{ $.name }}',
+    searchKeys: ['name', 'category']
   }
 };
 

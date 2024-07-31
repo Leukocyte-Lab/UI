@@ -184,7 +184,7 @@ onMounted(() => {
                   >
                     <template v-if="field">
                       <p :class="$style['menu-field']">
-                        {{ parser(option(), field) }}
+                        {{ parser(option(), String(field)) }}
                       </p>
                     </template>
                   </template>
