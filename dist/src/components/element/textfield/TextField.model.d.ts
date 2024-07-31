@@ -16,6 +16,8 @@ export declare namespace TextField {
         autofocus?: boolean;
         maxlength?: number;
         minlength?: number;
+        min?: number;
+        max?: number;
         pattern?: string;
         size?: number;
         spellcheck?: boolean;
@@ -25,6 +27,7 @@ export declare namespace TextField {
         eventSignalOptions?: EventSignalOptions;
         icon?: string;
         iconAlign?: 'left' | 'right';
+        iconClick?: void;
     };
     type Emits = {
         (e: 'update:modelValue', value: string): void;

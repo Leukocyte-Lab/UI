@@ -7,6 +7,8 @@ import Map$ from './libs/map';
 import uuid, { NilUUID, Hex2UUID, UUID2Hex } from './libs/uuid';
 import { selector } from './libs/selector';
 import { parser } from './libs/parser';
+import { promoteInvalidMessage } from './libs/validation';
+import type { InvalidMessage } from './libs/validation';
 import type { UUID, HexUUID } from './libs/uuid';
 import type { EventSignalOptions } from './libs/event';
 import type { Signal } from './libs/signal';
@@ -18,5 +20,5 @@ import type { AtLeastOne, AtLeastOneOptional, OneOf, OnlyOne, OnlyOneByKey, Only
 import type { Dictionary } from './types/map';
 import type { MustDefined, MustHas, Writeable, MaybeArray } from './types/utils';
 import type { Vector, Vec2, Vec3, Vec4 } from './types/vector';
-export { useFallback, useEventDebounceSignal, signal, computed, Math$, String$, Map$, uuid, NilUUID, Hex2UUID, UUID2Hex, selector, parser };
-export type { Callback, EventCallback, Signal, EventSignalOptions, HasUUID, HasHexUUID, HasID, AtLeastOne, AtLeastOneOptional, ObjectLike, OptionalObject, OneOf, OnlyOne, OnlyOneByKey, OnlyOneOf, Optional, Nullable, ValueOf, Dictionary, Vector, Vec2, Vec3, Vec4, MustDefined, MustHas, Writeable, MaybeArray, MapProxy, UUID, HexUUID };
+export { useFallback, useEventDebounceSignal, signal, computed, Math$, String$, Map$, uuid, NilUUID, Hex2UUID, UUID2Hex, selector, parser, promoteInvalidMessage };
+export type { InvalidMessage, Callback, EventCallback, Signal, EventSignalOptions, HasUUID, HasHexUUID, HasID, AtLeastOne, AtLeastOneOptional, ObjectLike, OptionalObject, OneOf, OnlyOne, OnlyOneByKey, OnlyOneOf, Optional, Nullable, ValueOf, Dictionary, Vector, Vec2, Vec3, Vec4, MustDefined, MustHas, Writeable, MaybeArray, MapProxy, UUID, HexUUID };

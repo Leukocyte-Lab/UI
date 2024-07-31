@@ -2,6 +2,7 @@ import type { ObjectLike } from '../../../shared/types/object';
 export declare namespace SelectMenu {
     type Fields = {
         key: string;
+        searchKeys?: string[];
         title?: string;
         content?: string;
         icon?: string;
