@@ -82,10 +82,12 @@ defineExpose({
         <template v-if="props.label">
           <p :class="[$style['textfield-label--value']]">{{ props.label }}</p>
         </template>
-        <p :class="[$style['textfield-label--notation']]">
-          <Icon :class="$style.icon" icon="fa6-solid:asterisk" />
-          <span>Required</span>
-        </p>
+        <template v-if="required">
+          <p :class="[$style['textfield-label--notation']]">
+            <Icon :class="$style.icon" icon="fa6-solid:asterisk" />
+            <span>Required</span>
+          </p>
+        </template>
       </label>
     </template>
     <input
