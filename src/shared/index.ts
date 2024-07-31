@@ -11,6 +11,8 @@ import uuid, { NilUUID, Hex2UUID, UUID2Hex } from './libs/uuid';
 import { selector } from './libs/selector';
 import { parser } from './libs/parser';
 
+import type { InvalidMessage } from './libs/validation';
+
 // types
 import type { UUID, HexUUID } from './libs/uuid';
 import type { EventSignalOptions } from './libs/event';
@@ -55,6 +57,9 @@ export {
 };
 
 export type {
+  // libs
+  InvalidMessage,
+
   // types
   Callback,
   EventCallback,
