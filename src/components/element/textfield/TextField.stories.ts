@@ -122,6 +122,18 @@ DefaultTextField.args = {
   type: 'text'
 };
 
+export const IconTextField = Template.bind({});
+IconTextField.args = {
+  placeholder: 'Placeholder',
+  modelValue: 'Default Value',
+  required: false,
+  disabled: false,
+  readonly: false,
+  icon: 'fa6-solid:rotate-left',
+  type: 'text',
+  iconClick: () => console.log('test')
+};
+
 export const EmptyRequiredTextField = Template.bind({});
 EmptyRequiredTextField.args = {
   placeholder: 'Placeholder',
@@ -179,7 +191,7 @@ InvalidWithCustomErrorMessageTextField.args = {
 
 export const SearchTextField = Template.bind({});
 SearchTextField.args = {
-  type: 'search',
+  type: 'search'
 };
 
 export const DisabledSearchTextField = Template.bind({});

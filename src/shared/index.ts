@@ -10,6 +10,9 @@ import Map$ from './libs/map';
 import uuid, { NilUUID, Hex2UUID, UUID2Hex } from './libs/uuid';
 import { selector } from './libs/selector';
 import { parser } from './libs/parser';
+import { promoteInvalidMessage } from './libs/validation';
+
+import type { InvalidMessage } from './libs/validation';
 
 // types
 import type { UUID, HexUUID } from './libs/uuid';
@@ -51,10 +54,14 @@ export {
   Hex2UUID,
   UUID2Hex,
   selector,
-  parser
+  parser,
+  promoteInvalidMessage
 };
 
 export type {
+  // libs
+  InvalidMessage,
+
   // types
   Callback,
   EventCallback,
