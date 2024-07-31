@@ -60,7 +60,10 @@ onMounted(() => {
 });
 
 defineExpose({
-  checkValidity
+  checkValidity,
+  focused,
+  errMsg,
+  inputRef$
 });
 </script>
 
