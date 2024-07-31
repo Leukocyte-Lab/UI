@@ -9,6 +9,9 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     iconAlign: string;
 }>, {
     checkValidity: () => void;
+    focused: import("../../../shared/libs/signal").Signal<boolean>;
+    errMsg: import("../../../shared/libs/signal").Signal<string>;
+    inputRef$: import("vue").Ref<HTMLInputElement | undefined>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (value: string) => void;
     validation: (value: ValidityState) => void;
