@@ -95,7 +95,7 @@ onMounted(() => {
     />
     <template v-if="type === 'search'">
       <Icon
-        :class="[$style['textfield-icon-search'], $style['icon']]"
+        :class="[$style['textfield-icon'], $style['textfield-icon-search'], $style['icon']]"
         :icon="type === 'search' ? 'fa6-solid:magnifying-glass' : ''"
       />
     </template>
