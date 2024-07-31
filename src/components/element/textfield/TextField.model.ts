@@ -1,9 +1,31 @@
+import type { Callback } from '@/shared/types/callback';
 import type { EventSignalOptions } from '@/shared/libs/event';
 import type { InvalidMessage } from '@/shared/libs/validation';
 
 export namespace TextField {
-  export type InputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
-  export type Type = 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search' | 'date' | 'time' | 'datetime-local' | 'month' | 'week' | 'color';
+  export type InputMode =
+    | 'none'
+    | 'text'
+    | 'decimal'
+    | 'numeric'
+    | 'tel'
+    | 'search'
+    | 'email'
+    | 'url';
+  export type Type =
+    | 'text'
+    | 'password'
+    | 'email'
+    | 'number'
+    | 'tel'
+    | 'url'
+    | 'search'
+    | 'date'
+    | 'time'
+    | 'datetime-local'
+    | 'month'
+    | 'week'
+    | 'color';
 
   export type Props = {
     modelValue?: string;
@@ -29,7 +51,7 @@ export namespace TextField {
     eventSignalOptions?: EventSignalOptions;
     icon?: string;
     iconAlign?: 'left' | 'right';
-    iconClick?: void;
+    iconClick?: Callback;
   };
 
   export type Emits = {

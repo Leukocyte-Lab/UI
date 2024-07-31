@@ -58,6 +58,10 @@ const checkValidity = () => {
 onMounted(() => {
   checkValidity();
 });
+
+defineExpose({
+  checkValidity
+});
 </script>
 
 <template>
