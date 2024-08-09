@@ -1,8 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/vue3';
+
 import ProgressBar from './ProgressBar.vue';
 
-import type { Meta, StoryFn } from '@storybook/vue3';
-
-export default {
+const meta: Meta<typeof ProgressBar> = {
   title: 'Components / Progress / ProgressBar',
   component: ProgressBar,
   tags: ['autodocs'],
@@ -21,24 +21,22 @@ export default {
       description: 'The thickness of the progress bar.'
     }
   }
-} satisfies Meta<typeof ProgressBar>;
-
-const Template: StoryFn<typeof ProgressBar> = (args) => ({
-  components: { ProgressBar },
-  setup() {
-    return { args };
-  },
-  template: '<ProgressBar v-bind="args" style="width: 480px; height: 24px;" />'
-});
-
-export const DefaultProgressBar = Template.bind({});
-DefaultProgressBar.args = {
-  value: 0.75,
-  variant: 'concave'
 };
 
-export const ConvexProgressBar = Template.bind({});
-ConvexProgressBar.args = {
-  value: 0.75,
-  variant: 'convex'
+export default meta;
+
+type ProgressBar$ = StoryObj<typeof ProgressBar>;
+
+export const DefaultProgressBar: ProgressBar$ = {
+  args: {
+    value: 0.75,
+    variant: 'concave'
+  }
+};
+
+export const ConvexProgressBar: ProgressBar$ = {
+  args: {
+    value: 0.75,
+    variant: 'convex'
+  }
 };

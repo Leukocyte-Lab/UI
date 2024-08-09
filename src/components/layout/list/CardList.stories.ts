@@ -74,123 +74,132 @@ const Template: StoryFn<typeof CardList> = (args) => ({
   </CardList>`
 });
 
-export const DefaultCardList = Template.bind({});
-DefaultCardList.args = {
-  items: [
-    {
-      name: 'APT-38',
-      description:
-        'APT-38 is a threat group that has been attributed to the North Korean government.',
-      category: 'APT Group Simulation Data',
-      types: ['APT Group', 'Simulation Data'],
-      recentlyUsed: '2021-01-07T00:00:00Z',
-      installed: 'Installed'
+export const DefaultCardList = {
+  render: Template,
+
+  args: {
+    items: [
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        types: ['APT Group', 'Simulation Data'],
+        recentlyUsed: '2021-01-07T00:00:00Z',
+        installed: 'Installed'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        types: ['APT Group', 'Simulation Data'],
+        recentlyUsed: '2021-01-02T00:00:00Z',
+        installed: 'Installed'
+      },
+      {
+        name: 'APT-40',
+        description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+        category: 'APT Group Simulation Data',
+        types: ['APT Group', 'Simulation Data'],
+        recentlyUsed: '2021-01-01T00:00:00Z',
+        installed: 'Not Install'
+      },
+      {
+        name: 'Nginx Techniques',
+        description:
+          'Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+        category: 'Technique Simulation Data',
+        types: ['Technique', 'Simulation Data'],
+        recentlyUsed: '2021-01-03T00:00:00Z',
+        installed: 'Installed'
+      },
+      {
+        name: 'Apache Techniques',
+        description:
+          'Apache is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+        category: 'Technique Simulation Data',
+        types: ['Technique', 'Simulation Data'],
+        recentlyUsed: '2021-01-04T00:00:00Z',
+        installed: 'Not Install'
+      }
+    ],
+    fields: {
+      key: 'name',
+      title: '{{ $.name }}'
     },
-    {
-      name: 'APT-39',
-      description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
-      category: 'APT Group Simulation Data',
-      types: ['APT Group', 'Simulation Data'],
-      recentlyUsed: '2021-01-02T00:00:00Z',
-      installed: 'Installed'
-    },
-    {
-      name: 'APT-40',
-      description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
-      category: 'APT Group Simulation Data',
-      types: ['APT Group', 'Simulation Data'],
-      recentlyUsed: '2021-01-01T00:00:00Z',
-      installed: 'Not Install'
-    },
-    {
-      name: 'Nginx Techniques',
-      description:
-        'Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
-      category: 'Technique Simulation Data',
-      types: ['Technique', 'Simulation Data'],
-      recentlyUsed: '2021-01-03T00:00:00Z',
-      installed: 'Installed'
-    },
-    {
-      name: 'Apache Techniques',
-      description:
-        'Apache is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
-      category: 'Technique Simulation Data',
-      types: ['Technique', 'Simulation Data'],
-      recentlyUsed: '2021-01-04T00:00:00Z',
-      installed: 'Not Install'
-    }
-  ],
-  fields: {
-    key: 'name',
-    title: '{{ $.name }}'
-  },
-  sortOptions: [
-    {
-      label: 'Sort by Time',
-      detail: 'Latest First',
-      direction: 'desc',
-      field: 'recentlyUsed',
-      icon: 'fa6-solid:arrow-down-wide-short'
-    },
-    {
-      label: 'Sort by Time',
-      detail: 'Oldest First',
-      direction: 'asc',
-      field: 'recentlyUsed',
-      icon: 'fa6-solid:arrow-up-wide-short'
-    },
-    {
-      label: 'Sort by Name',
-      detail: 'Ascending (A to Z)',
-      direction: 'asc',
-      field: 'name',
-      icon: 'fa6-solid:arrow-down-a-z'
-    },
-    {
-      label: 'Sort by Name',
-      detail: 'Descending (Z to A)',
-      direction: 'desc',
-      field: 'name',
-      icon: 'fa6-solid:arrow-up-z-a'
-    }
-  ],
-  filterOptions: [
-    {
-      field: 'category',
-      label: 'Category'
-    },
-    {
-      field: 'installed',
-      label: 'Installation Status'
-    }
-  ],
-  groupBy: 'installed'
+    sortOptions: [
+      {
+        label: 'Sort by Time',
+        detail: 'Latest First',
+        direction: 'desc',
+        field: 'recentlyUsed',
+        icon: 'fa6-solid:arrow-down-wide-short'
+      },
+      {
+        label: 'Sort by Time',
+        detail: 'Oldest First',
+        direction: 'asc',
+        field: 'recentlyUsed',
+        icon: 'fa6-solid:arrow-up-wide-short'
+      },
+      {
+        label: 'Sort by Name',
+        detail: 'Ascending (A to Z)',
+        direction: 'asc',
+        field: 'name',
+        icon: 'fa6-solid:arrow-down-a-z'
+      },
+      {
+        label: 'Sort by Name',
+        detail: 'Descending (Z to A)',
+        direction: 'desc',
+        field: 'name',
+        icon: 'fa6-solid:arrow-up-z-a'
+      }
+    ],
+    filterOptions: [
+      {
+        field: 'category',
+        label: 'Category'
+      },
+      {
+        field: 'installed',
+        label: 'Installation Status'
+      }
+    ],
+    groupBy: 'installed'
+  }
 };
 
-export const SimpleCardList = Template.bind({});
-SimpleCardList.args = {
-  ...DefaultCardList.args,
-  groupBy: undefined
+export const SimpleCardList = {
+  render: Template,
+
+  args: {
+    ...DefaultCardList.args,
+    groupBy: undefined
+  }
 };
 
-export const MultiFilterCardList = Template.bind({});
-MultiFilterCardList.args = {
-  ...DefaultCardList.args,
-  filterOptions: [
-    {
-      field: 'types',
-      label: 'Playbook Type',
-      multi: 'intersection',
-      options: ['APT Group', 'Technique', 'Simulation Data']
-    },
-    {
-      field: 'category',
-      label: 'Category'
-    },
-    {
-      field: 'installed',
-      label: 'Installation Status'
-    }
-  ]
+export const MultiFilterCardList = {
+  render: Template,
+
+  args: {
+    ...DefaultCardList.args,
+    filterOptions: [
+      {
+        field: 'types',
+        label: 'Playbook Type',
+        multi: 'intersection',
+        options: ['APT Group', 'Technique', 'Simulation Data']
+      },
+      {
+        field: 'category',
+        label: 'Category'
+      },
+      {
+        field: 'installed',
+        label: 'Installation Status'
+      }
+    ]
+  }
 };

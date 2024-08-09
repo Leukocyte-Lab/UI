@@ -1,8 +1,13 @@
+import { fn } from '@storybook/test';
+import { omit } from 'lodash-es';
+
+import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
+
+import bindArgs from '@/../.storybook/helpers/bind-args';
+
 import TextArea from './TextArea.vue';
 
-import type { Meta, StoryFn } from '@storybook/vue3';
-
-export default {
+const meta: Meta<typeof TextArea> = {
   title: 'Components / Element / TextArea',
   component: TextArea,
   tags: ['autodocs'],
@@ -10,10 +15,6 @@ export default {
     modelValue: {
       control: 'text',
       description: 'TextArea value, use by `v-model`.'
-    },
-    label: {
-      control: 'text',
-      description: 'TextArea label (optional)'
     },
     name: {
       control: 'text',
@@ -69,41 +70,77 @@ export default {
       control: 'object',
       description: 'TextArea invalid message (optional)'
     },
-    'onUpdate:modelValue': { action: 'update' }
+    'onUpdate:modelValue': { action: 'update' },
+    'onValidation': { action: 'validation' }
+  },
+  args: {
+    'onUpdate:modelValue': fn(),
+    onValidation: fn()
   }
-} satisfies Meta<typeof TextArea>;
+};
+
+export default meta;
+
+type TextArea$ = StoryObj<typeof TextArea>;
 
 const Template: StoryFn<typeof TextArea> = (args) => ({
   components: { TextArea },
   setup() {
     return { args };
   },
-  template: '<TextArea v-model="args.modelValue" v-bind="args" />'
+  template: `
+    <TextArea
+      ${bindArgs(omit(
+    args,
+    [
+      'eventSignalOptions',
+      'invalidMessage',
+      'modelValue',
+      'onUpdate:modelValue',
+      'onValidation',
+    ]
+  ))}
+      v-model="args.modelValue"
+      @validation="args.onValidation"
+    />
+  `
 });
 
-export const DefaultTextArea = Template.bind({});
-DefaultTextArea.args = {
-  placeholder: 'Placeholder',
-  modelValue: 'Default Value',
-  required: false,
-  disabled: false,
-  readonly: false
+export const DefaultTextArea: TextArea$ = {
+  render: Template,
+
+  args: {
+    placeholder: 'Placeholder',
+    modelValue: 'Default Value',
+    required: false,
+    disabled: false,
+    readonly: false
+  }
 };
 
-export const PlaceholderTextArea = Template.bind({});
-PlaceholderTextArea.args = {
-  ...DefaultTextArea.args,
-  modelValue: ''
+export const PlaceholderTextArea: TextArea$ = {
+  render: Template,
+
+  args: {
+    ...DefaultTextArea.args,
+    modelValue: ''
+  }
 };
 
-export const InvalidTextArea = Template.bind({});
-InvalidTextArea.args = {
-  modelValue: '',
-  required: true
+export const InvalidTextArea: TextArea$ = {
+  render: Template,
+
+  args: {
+    modelValue: '',
+    required: true
+  }
 };
 
-export const DisabledTextArea = Template.bind({});
-DisabledTextArea.args = {
-  modelValue: 'Default Value',
-  disabled: true
+export const DisabledTextArea: TextArea$ = {
+  render: Template,
+
+  args: {
+    modelValue: 'Default Value',
+    disabled: true
+  }
 };

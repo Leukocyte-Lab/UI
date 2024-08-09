@@ -241,8 +241,12 @@ const args = {
   ]
 };
 
-export const Flow = Template.bind({});
-Flow.args = args;
+export const Flow = {
+  render: Template,
+  args: args
+};
 
-export const ActiveFlow = ActiveTemplate.bind({});
-ActiveFlow.args = { ...args, activeNodeId: 'node-06' };
+export const ActiveFlow = {
+  render: ActiveTemplate,
+  args: { ...args, activeNodeId: 'node-06' }
+};

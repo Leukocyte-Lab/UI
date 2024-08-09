@@ -1,8 +1,13 @@
+import { omit } from 'lodash-es';
+
+import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
+
+import bindArgs from '@/../.storybook/helpers/bind-args';
+
 import TextField from './TextField.vue';
+import { fn } from '@storybook/test';
 
-import type { Meta, StoryFn } from '@storybook/vue3';
-
-export default {
+const meta: Meta<typeof TextField> = {
   title: 'Components / Element / TextField',
   component: TextField,
   tags: ['autodocs'],
@@ -99,115 +104,174 @@ export default {
       control: 'object',
       description: 'TextField invalid message (optional)'
     },
-    'onUpdate:modelValue': { action: 'update' }
+    'onUpdate:modelValue': { action: 'update' },
+    'onValidation': { action: 'validation' }
+  },
+  args: {
+    'onUpdate:modelValue': fn(),
+    onValidation: fn()
   }
-} satisfies Meta<typeof TextField>;
+};
+
+export default meta;
+
+type TextField$ = StoryObj<typeof TextField>;
 
 const Template: StoryFn<typeof TextField> = (args) => ({
   components: { TextField },
   setup() {
     return { args };
   },
-  template: '<TextField v-model="args.modelValue" v-bind="args" />'
+  template: `
+  <TextField
+    ${bindArgs(omit(
+    args,
+    [
+      'eventSignalOptions',
+      'invalidMessage',
+      'modelValue',
+      'onUpdate:modelValue',
+      'onValidation',
+      'onIconClick'
+    ]
+  ))}
+    v-model="args.modelValue"
+  />`
 });
 
-export const DefaultTextField = Template.bind({});
-DefaultTextField.args = {
-  placeholder: 'Placeholder',
-  modelValue: 'Default Value',
-  label: 'Label',
-  required: false,
-  disabled: false,
-  readonly: false,
-  type: 'text'
-};
+export const DefaultTextField: TextField$ = {
+  render: Template,
 
-export const IconTextField = Template.bind({});
-IconTextField.args = {
-  placeholder: 'Placeholder',
-  modelValue: 'Default Value',
-  required: false,
-  disabled: false,
-  readonly: false,
-  icon: 'fa6-solid:rotate-left',
-  type: 'text',
-  iconClick: () => console.log('test')
-};
-
-export const EmptyRequiredTextField = Template.bind({});
-EmptyRequiredTextField.args = {
-  placeholder: 'Placeholder',
-  modelValue: '',
-  label: 'Label',
-  required: true,
-  disabled: false,
-  readonly: false,
-  type: 'text'
-};
-
-export const NoLabelTextField = Template.bind({});
-NoLabelTextField.args = {
-  placeholder: 'Placeholder',
-  modelValue: 'Default Value',
-  required: false,
-  disabled: false,
-  readonly: false,
-  type: 'text'
-};
-
-export const NoLabelRequiredTextField = Template.bind({});
-NoLabelRequiredTextField.args = {
-  placeholder: 'Placeholder',
-  modelValue: 'Default Value',
-  required: true,
-  disabled: false,
-  readonly: false,
-  type: 'text'
-};
-
-export const DisabledTextField = Template.bind({});
-DisabledTextField.args = {
-  modelValue: 'Default Value',
-  disabled: true
-};
-
-export const InvalidTextField = Template.bind({});
-InvalidTextField.args = {
-  modelValue: '256.256.256.256',
-  pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
-  required: true
-};
-
-export const InvalidWithCustomErrorMessageTextField = Template.bind({});
-InvalidWithCustomErrorMessageTextField.args = {
-  modelValue: '256.256.256.256',
-  pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
-  required: true,
-  invalidMessage: {
-    patternMismatch: 'Invalid IP Address',
-    valueMissing: 'IP Address is required'
+  args: {
+    placeholder: 'Placeholder',
+    modelValue: 'Default Value',
+    label: 'Label',
+    required: false,
+    disabled: false,
+    readonly: false,
+    type: 'text'
   }
 };
 
-export const SearchTextField = Template.bind({});
-SearchTextField.args = {
-  type: 'search'
+export const IconTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    placeholder: 'Placeholder',
+    modelValue: 'Default Value',
+    required: false,
+    disabled: false,
+    readonly: false,
+    icon: 'fa6-solid:rotate-left',
+    type: 'text',
+    iconClick: () => console.log('test')
+  }
 };
 
-export const DisabledSearchTextField = Template.bind({});
-DisabledSearchTextField.args = {
-  ...SearchTextField.args,
-  disabled: true
+export const EmptyRequiredTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    placeholder: 'Placeholder',
+    modelValue: '',
+    label: 'Label',
+    required: true,
+    disabled: false,
+    readonly: false,
+    type: 'text'
+  }
 };
 
-export const FindTextField = Template.bind({});
-FindTextField.args = {
-  type: 'search',
-  iconAlign: 'left'
+export const NoLabelTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    placeholder: 'Placeholder',
+    modelValue: 'Default Value',
+    required: false,
+    disabled: false,
+    readonly: false,
+    type: 'text'
+  }
 };
 
-export const DisabledFindTextField = Template.bind({});
-DisabledFindTextField.args = {
-  ...FindTextField.args,
-  disabled: true
+export const NoLabelRequiredTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    placeholder: 'Placeholder',
+    modelValue: 'Default Value',
+    required: true,
+    disabled: false,
+    readonly: false,
+    type: 'text'
+  }
+};
+
+export const DisabledTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    modelValue: 'Default Value',
+    disabled: true
+  }
+};
+
+export const InvalidTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    modelValue: '256.256.256.256',
+    pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
+    required: true
+  }
+};
+
+export const InvalidWithCustomErrorMessageTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    modelValue: '256.256.256.256',
+    pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
+    required: true,
+    invalidMessage: {
+      patternMismatch: 'Invalid IP Address',
+      valueMissing: 'IP Address is required'
+    }
+  }
+};
+
+export const SearchTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    type: 'search'
+  }
+};
+
+export const DisabledSearchTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    ...SearchTextField.args,
+    disabled: true
+  }
+};
+
+export const FindTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    type: 'search',
+    iconAlign: 'left'
+  }
+};
+
+export const DisabledFindTextField: TextField$ = {
+  render: Template,
+
+  args: {
+    ...FindTextField.args,
+    disabled: true
+  }
 };
