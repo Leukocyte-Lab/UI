@@ -11,31 +11,31 @@ export default {
       control: {
         type: 'object'
       },
-      description: 'The events to display on the timeline',
+      description: 'The events to display on the timeline'
     },
     follow: {
       control: {
         type: 'boolean'
       },
-      description: 'Whether the timeline should follow the last event (Optional)',
+      description: 'Whether the timeline should follow the last event (Optional)'
     },
     running: {
       control: {
         type: 'boolean'
       },
-      description: 'Whether the timeline is running (Optional)',
+      description: 'Whether the timeline is running (Optional)'
     },
     start: {
       control: {
         type: 'date'
       },
-      description: 'The start of the timeline (Optional)',
+      description: 'The start of the timeline (Optional)'
     },
     end: {
       control: {
         type: 'date'
       },
-      description: 'The end of the timeline (Optional)',
+      description: 'The end of the timeline (Optional)'
     },
     title: {
       control: {
@@ -43,19 +43,19 @@ export default {
       },
       description: 'The title of the timeline (Optional)'
     },
-    "onUpdate:range": {
+    'onUpdate:range': {
       action: 'update:range',
       description: 'Emitted when the range is updated'
     },
-    "onUpdate:duration": {
+    'onUpdate:duration': {
       action: 'update:duration',
       description: 'Emitted when the duration is updated'
     },
-    "onUpdate:focused": {
+    'onUpdate:focused': {
       action: 'update:focused',
       description: 'Emitted when the focused events are updated'
     },
-    "onUpdate:focused.array": {
+    'onUpdate:focused.array': {
       action: 'update:focused.array',
       description: 'Emitted when the focused events are updated'
     }
@@ -264,7 +264,7 @@ Default.args = {
     {
       id: 'event-28',
       range: {
-        start: new Date('2024-02-01T01:15:26Z'),
+        start: new Date('2024-02-01T01:15:26Z')
       }
     }
   ]

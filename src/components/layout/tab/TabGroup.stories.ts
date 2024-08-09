@@ -77,7 +77,7 @@ DefaultTabGroup.args = {
     { id: 'tab-3', name: 'Tab 3', content: 'Tab 3 content' }
   ],
   modelValue: { id: 'tab-1', name: 'Tab 1', content: 'Tab 1 content' }
-}
+};
 
 export const DefaultTabGroupWithoutParentModel = SelfHostedTemplate.bind({});
 DefaultTabGroupWithoutParentModel.args = {
@@ -86,7 +86,7 @@ DefaultTabGroupWithoutParentModel.args = {
     { id: 'tab-2', name: 'Tab 2', content: 'Tab 2 content' },
     { id: 'tab-3', name: 'Tab 3', content: 'Tab 3 content' }
   ]
-}
+};
 
 export const DefaultTabGroupWithIcon = Template.bind({});
 DefaultTabGroupWithIcon.args = {
@@ -96,15 +96,15 @@ DefaultTabGroupWithIcon.args = {
     { id: 'tab-3', name: 'Settings', icon: 'fa6-solid:gears', content: 'Tab 3 content' }
   ],
   modelValue: { id: 'tab-1', name: 'Reminder', icon: 'fa6-solid:list', content: 'Tab 1 content' }
-}
+};
 
 export const SecondaryTabGroup = Template.bind({});
 SecondaryTabGroup.args = {
   ...DefaultTabGroupWithIcon.args,
   level: 'secondary'
-}
+};
 
 export const DefaultTabGroupWithSlot = UseSlotTemplate.bind({});
 DefaultTabGroupWithSlot.args = {
   ...DefaultTabGroupWithIcon.args
-}
+};
