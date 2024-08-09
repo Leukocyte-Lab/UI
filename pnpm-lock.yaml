@@ -36,6 +36,12 @@ importers:
       '@rushstack/eslint-patch':
         specifier: ^1.7.2
         version: 1.7.2
+      '@storybook/addon-a11y':
+        specifier: ^8.2.8
+        version: 8.2.8(storybook@8.2.8(@babel/preset-env@7.25.3(@babel/core@7.25.2)))
+      '@storybook/addon-actions':
+        specifier: ^8.2.8
+        version: 8.2.8(storybook@8.2.8(@babel/preset-env@7.25.3(@babel/core@7.25.2)))
       '@storybook/addon-essentials':
         specifier: ^8.2.8
         version: 8.2.8(storybook@8.2.8(@babel/preset-env@7.25.3(@babel/core@7.25.2)))
@@ -1500,6 +1506,11 @@ packages:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
 
+  '@storybook/addon-a11y@8.2.8':
+    resolution: {integrity: sha512-pUjTjJjoP/52hoB2BGqWmGPOUpM1YwEKsYJmY4ki3qJo/ehau+mMlal9xY9/mxafYFkYbrWvHoVSLxSRBxt3yg==}
+    peerDependencies:
+      storybook: ^8.2.8
+
   '@storybook/addon-actions@8.2.8':
     resolution: {integrity: sha512-dyajqsMNAUktpi7aiml0Fsm4ey8Nh2YwRyTDuTJZ1iJFcFyARqfr5iKH4/qElq80y0FYXGgGRJB+dKJsCdefLw==}
     peerDependencies:
@@ -2155,6 +2166,10 @@ packages:
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
+
+  axe-core@4.10.0:
+    resolution: {integrity: sha512-Mr2ZakwQ7XUAjp7pAwQWRhhK8mQQ6JAaNWSjmjxil0R8BPioMtQsTLOolGYkji1rcL++3dCqZA3zWqpT+9Ew6g==}
+    engines: {node: '>=4'}
 
   babel-core@7.0.0-bridge.0:
     resolution: {integrity: sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg==}
@@ -6293,6 +6308,12 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
+  '@storybook/addon-a11y@8.2.8(storybook@8.2.8(@babel/preset-env@7.25.3(@babel/core@7.25.2)))':
+    dependencies:
+      '@storybook/addon-highlight': 8.2.8(storybook@8.2.8(@babel/preset-env@7.25.3(@babel/core@7.25.2)))
+      axe-core: 4.10.0
+      storybook: 8.2.8(@babel/preset-env@7.25.3(@babel/core@7.25.2))
+
   '@storybook/addon-actions@8.2.8(storybook@8.2.8(@babel/preset-env@7.25.3(@babel/core@7.25.2)))':
     dependencies:
       '@storybook/global': 5.0.0
@@ -7185,6 +7206,8 @@ snapshots:
   available-typed-arrays@1.0.7:
     dependencies:
       possible-typed-array-names: 1.0.0
+
+  axe-core@4.10.0: {}
 
   babel-core@7.0.0-bridge.0(@babel/core@7.25.2):
     dependencies:
