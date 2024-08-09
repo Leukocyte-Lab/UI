@@ -21,7 +21,6 @@ const MetallicDarkTheme = cssVariables(
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     layout: 'centered',
     cssVariables: {
       files: {

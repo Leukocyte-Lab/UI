@@ -26,29 +26,29 @@ export default {
     readAs: {
       control: 'select',
       options: ['formData', 'stream', 'base64', 'binary', 'buffer', 'text'],
-      description: 'Read file as (optional)',
+      description: 'Read file as (optional)'
     },
     icon: {
       control: 'text',
       description: 'FileUploader icon (optional)'
     },
-    'onUpload': {
+    onUpload: {
       action: 'onUpload',
       description: 'File upload start'
     },
-    'onSuccess': {
+    onSuccess: {
       action: 'onSuccess',
       description: 'File upload success'
     },
-    'onAbort': {
+    onAbort: {
       action: 'onAbort',
       description: 'File upload abort'
     },
-    'onDelete': {
+    onDelete: {
       action: 'onDelete',
       description: 'File upload delete'
     },
-    'onError': {
+    onError: {
       action: 'onError',
       description: 'File upload error'
     }

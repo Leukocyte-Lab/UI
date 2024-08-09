@@ -87,7 +87,7 @@ DefaultTextArea.args = {
   modelValue: 'Default Value',
   required: false,
   disabled: false,
-  readonly: false,
+  readonly: false
 };
 
 export const PlaceholderTextArea = Template.bind({});

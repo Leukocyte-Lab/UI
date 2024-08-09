@@ -6,14 +6,13 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    '@etchteam/storybook-addon-css-variables-theme'
+    '@etchteam/storybook-addon-css-variables-theme',
+    '@chromatic-com/storybook'
   ],
   framework: {
     name: '@storybook/vue3-vite',
     options: {}
   },
-  docs: {
-    autodocs: 'tag'
-  }
+  docs: {}
 };
 export default config;
