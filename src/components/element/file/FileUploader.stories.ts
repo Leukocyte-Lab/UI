@@ -1,8 +1,10 @@
+import { fn } from '@storybook/test';
+
+import type { Meta, StoryObj } from '@storybook/vue3';
+
 import FileUploader from './FileUploader.vue';
 
-import type { Meta, StoryFn } from '@storybook/vue3';
-
-export default {
+const meta: Meta<typeof FileUploader> = {
   title: 'Components / Element / FileUploader',
   component: FileUploader,
   tags: ['autodocs'],
@@ -16,7 +18,7 @@ export default {
       description: 'FileUploader disabled (optional)'
     },
     accept: {
-      control: 'array',
+      control: 'object',
       description: 'Accept file type(s) (optional)'
     },
     multiple: {
@@ -52,32 +54,38 @@ export default {
       action: 'onError',
       description: 'File upload error'
     }
-  }
-} satisfies Meta<typeof FileUploader>;
-
-const Template: StoryFn<typeof FileUploader> = (args) => ({
-  components: { FileUploader },
-  setup() {
-    return { args };
   },
-  template: '<FileUploader v-bind="args" style="width: 1200px; height: 320px;" />'
-});
-
-export const DefaultFileUploader = Template.bind({});
-DefaultFileUploader.args = {
-  accept: '*',
-  multiple: false,
-  readAs: 'formData'
+  args: {
+    onUpload: fn(),
+    onSuccess: fn(),
+    onAbort: fn(),
+    onDelete: fn(),
+    onError: fn()
+  }
 };
 
-export const MultiFileUploader = Template.bind({});
-MultiFileUploader.args = {
-  ...DefaultFileUploader.args,
-  multiple: true
+export default meta;
+
+type FileUploader$ = StoryObj<typeof FileUploader>;
+
+export const DefaultFileUploader: FileUploader$ = {
+  args: {
+    accept: '*',
+    multiple: false,
+    readAs: 'formData'
+  }
 };
 
-export const LimitedFileUploader = Template.bind({});
-LimitedFileUploader.args = {
-  ...MultiFileUploader.args,
-  accept: ['jpg', 'jpeg', 'png', 'svg']
+export const MultiFileUploader: FileUploader$ = {
+  args: {
+    ...DefaultFileUploader.args,
+    multiple: true
+  }
+};
+
+export const LimitedFileUploader: FileUploader$ = {
+  args: {
+    ...MultiFileUploader.args,
+    accept: ['jpg', 'jpeg', 'png', 'svg']
+  }
 };
