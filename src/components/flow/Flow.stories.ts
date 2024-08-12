@@ -68,10 +68,6 @@ export default {
         showBoundingBox: false,
         showControlPoint: false
       }
-    },
-    graph: {
-      control: 'object',
-      description: 'Graph for demo purpose (not really used in production)'
     }
   }
 } satisfies Meta<typeof FlowKit.Screen.Window>;
