@@ -36,3 +36,9 @@ export const computed = <T>(getter: ComputedGetter<T>): (() => T) => {
 
   return () => state.value;
 };
+
+export const toggleSignal = (signal: Signal<boolean>): void => signal.update((value) => !value);
+
+export const debug = <T>(signal: Signal<T>) => {
+  return signal[SIGNAL_DEBUG_INSPECTION];
+};
