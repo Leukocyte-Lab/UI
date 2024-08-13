@@ -68,10 +68,6 @@ export default {
         showBoundingBox: false,
         showControlPoint: false
       }
-    },
-    graph: {
-      control: 'object',
-      description: 'Graph for demo purpose (not really used in production)'
     }
   }
 } satisfies Meta<typeof FlowKit.Screen.Window>;
@@ -241,8 +237,12 @@ const args = {
   ]
 };
 
-export const Flow = Template.bind({});
-Flow.args = args;
+export const Flow = {
+  render: Template,
+  args: args
+};
 
-export const ActiveFlow = ActiveTemplate.bind({});
-ActiveFlow.args = { ...args, activeNodeId: 'node-06' };
+export const ActiveFlow = {
+  render: ActiveTemplate,
+  args: { ...args, activeNodeId: 'node-06' }
+};

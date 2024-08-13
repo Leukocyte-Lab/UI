@@ -1,8 +1,10 @@
+import { fn } from '@storybook/test';
+
+import type { Meta, StoryObj } from '@storybook/vue3';
+
 import ButtonBox from './ButtonBox.vue';
 
-import type { Meta, StoryFn } from '@storybook/vue3';
-
-export default {
+const meta: Meta<typeof ButtonBox> = {
   title: 'Components / Element / ButtonBox',
   component: ButtonBox,
   tags: ['autodocs'],
@@ -63,328 +65,365 @@ export default {
       control: 'text',
       description: 'Button bobble, boolean, string or number (optional)'
     },
-    onClick: { action: 'clicked' }
-  }
-} satisfies Meta<typeof ButtonBox>;
-
-const Template: StoryFn<typeof ButtonBox> = (args) => ({
-  components: { ButtonBox },
-  setup() {
-    return { args };
+    onClick: {
+      action: 'onClick',
+      description: 'Button click event'
+    }
   },
-  template: '<ButtonBox v-bind="args" />'
-});
-
-export const DefaultRoundedButtonBox = Template.bind({});
-DefaultRoundedButtonBox.args = {
-  label: 'Button',
-  link: 'https://ui.argushack.com',
-  icon: 'fa6-solid:arrow-right',
-  variant: 'rounded',
-  level: 'primary',
-  size: 'medium',
-  color: 'blue',
-  mode: 'normal',
-  disabled: false,
-  loading: false
+  args: {
+    onClick: fn()
+  }
 };
 
-export const PrimaryRoundedButtonBox = Template.bind({});
-PrimaryRoundedButtonBox.args = {
-  label: 'View Docs',
-  level: 'primary',
-  variant: 'rounded',
-  icon: ''
+export default meta;
+
+type ButtonBox$ = StoryObj<typeof ButtonBox>;
+
+export const DefaultRoundedButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Button',
+    link: 'https://ui.argushack.com',
+    icon: 'fa6-solid:arrow-right',
+    variant: 'rounded',
+    level: 'primary',
+    size: 'medium',
+    color: 'blue',
+    mode: 'normal',
+    disabled: false,
+    loading: false
+  }
 };
 
-export const SecondaryRoundedButtonBox = Template.bind({});
-SecondaryRoundedButtonBox.args = {
-  label: 'View Docs',
-  level: 'secondary',
-  variant: 'rounded',
-  icon: ''
+export const PrimaryRoundedButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'primary',
+    variant: 'rounded'
+  }
 };
 
-export const TertiaryRoundedButtonBox = Template.bind({});
-TertiaryRoundedButtonBox.args = {
-  label: 'View Docs',
-  level: 'tertiary',
-  variant: 'rounded',
-  icon: ''
+export const SecondaryRoundedButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'secondary',
+    variant: 'rounded'
+  }
 };
 
-export const PrimaryRoundedWithIconButtonBox = Template.bind({});
-PrimaryRoundedWithIconButtonBox.args = {
-  label: 'View Docs',
-  level: 'primary',
-  variant: 'rounded',
-  icon: 'fa6-solid:angle-right'
+export const TertiaryRoundedButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'tertiary',
+    variant: 'rounded'
+  }
 };
 
-export const SecondaryRoundedWithIconButtonBox = Template.bind({});
-SecondaryRoundedWithIconButtonBox.args = {
-  label: 'View Docs',
-  level: 'secondary',
-  variant: 'rounded',
-  icon: 'fa6-solid:angle-right'
+export const PrimaryRoundedWithIconButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'primary',
+    variant: 'rounded',
+    icon: 'fa6-solid:angle-right'
+  }
 };
 
-export const TertiaryRoundedWithIconButtonBox = Template.bind({});
-TertiaryRoundedWithIconButtonBox.args = {
-  label: 'View Docs',
-  level: 'tertiary',
-  variant: 'rounded',
-  icon: 'fa6-solid:angle-right'
+export const SecondaryRoundedWithIconButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'secondary',
+    variant: 'rounded',
+    icon: 'fa6-solid:angle-right'
+  }
 };
 
-export const PrimaryRoundedWithLoadingButtonBox = Template.bind({});
-PrimaryRoundedWithLoadingButtonBox.args = {
-  label: 'View Docs',
-  level: 'primary',
-  variant: 'rounded',
-  loading: true
+export const TertiaryRoundedWithIconButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'tertiary',
+    variant: 'rounded',
+    icon: 'fa6-solid:angle-right'
+  }
 };
 
-export const SecondaryRoundedWithLoadingButtonBox = Template.bind({});
-SecondaryRoundedWithLoadingButtonBox.args = {
-  label: 'View Docs',
-  level: 'secondary',
-  variant: 'rounded',
-  loading: true
+export const PrimaryRoundedWithLoadingButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'primary',
+    variant: 'rounded',
+    loading: true
+  }
 };
 
-export const TertiaryRoundedWithLoadingButtonBox = Template.bind({});
-TertiaryRoundedWithLoadingButtonBox.args = {
-  label: 'View Docs',
-  level: 'tertiary',
-  variant: 'rounded',
-  loading: true
+export const SecondaryRoundedWithLoadingButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'secondary',
+    variant: 'rounded',
+    loading: true
+  }
 };
 
-export const PrimaryRoundedWithDotButtonBox = Template.bind({});
-PrimaryRoundedWithDotButtonBox.args = {
-  label: 'View Docs',
-  level: 'primary',
-  variant: 'rounded',
-  bobble: true
+export const TertiaryRoundedWithLoadingButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'tertiary',
+    variant: 'rounded',
+    loading: true
+  }
 };
 
-export const PrimaryRoundedWithBobbleButtonBox = Template.bind({});
-PrimaryRoundedWithBobbleButtonBox.args = {
-  label: 'View Docs',
-  level: 'primary',
-  variant: 'rounded',
-  bobble: 3
+export const PrimaryRoundedWithDotButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'primary',
+    variant: 'rounded',
+    bobble: true
+  }
 };
 
-export const SecondaryRoundedWithBobbleButtonBox = Template.bind({});
-SecondaryRoundedWithBobbleButtonBox.args = {
-  label: 'View Docs',
-  level: 'secondary',
-  variant: 'rounded',
-  bobble: '9+'
+export const PrimaryRoundedWithBobbleButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'primary',
+    variant: 'rounded',
+    bobble: 3
+  }
 };
 
-export const TertiaryRoundedWithBobbleButtonBox = Template.bind({});
-TertiaryRoundedWithBobbleButtonBox.args = {
-  label: 'View Docs',
-  level: 'tertiary',
-  variant: 'rounded',
-  bobble: 'New'
+export const SecondaryRoundedWithBobbleButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'secondary',
+    variant: 'rounded',
+    bobble: '9+'
+  }
 };
 
-export const PrimaryRectButtonBox = Template.bind({});
-PrimaryRectButtonBox.args = {
-  label: 'Back to Project',
-  icon: 'fa6-solid:door-closed',
-  variant: 'rect',
-  level: 'primary'
+export const TertiaryRoundedWithBobbleButtonBox: ButtonBox$ = {
+  args: {
+    label: 'View Docs',
+    level: 'tertiary',
+    variant: 'rounded',
+    bobble: 'New'
+  }
 };
 
-export const SecondaryRectButtonBox = Template.bind({});
-SecondaryRectButtonBox.args = {
-  label: 'Back to Project',
-  icon: 'fa6-solid:door-closed',
-  variant: 'rect',
-  level: 'secondary'
+export const PrimaryRectButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Back to Project',
+    icon: 'fa6-solid:door-closed',
+    variant: 'rect',
+    level: 'primary'
+  }
 };
 
-export const TertiaryRectButtonBox = Template.bind({});
-TertiaryRectButtonBox.args = {
-  label: 'Back to Project',
-  icon: 'fa6-solid:door-closed',
-  variant: 'rect',
-  level: 'tertiary'
+export const SecondaryRectButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Back to Project',
+    icon: 'fa6-solid:door-closed',
+    variant: 'rect',
+    level: 'secondary'
+  }
 };
 
-export const PrimaryRectWithDotButtonBox = Template.bind({});
-PrimaryRectWithDotButtonBox.args = {
-  label: 'Select Coupon',
-  icon: 'fa6-solid:angle-down',
-  variant: 'rect',
-  level: 'primary',
-  bobble: true
+export const TertiaryRectButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Back to Project',
+    icon: 'fa6-solid:door-closed',
+    variant: 'rect',
+    level: 'tertiary'
+  }
 };
 
-export const PrimaryRectWithBobbleButtonBox = Template.bind({});
-PrimaryRectWithBobbleButtonBox.args = {
-  label: 'Select Coupon',
-  icon: 'fa6-solid:angle-down',
-  variant: 'rect',
-  level: 'primary',
-  bobble: 3
+export const PrimaryRectWithDotButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Select Coupon',
+    icon: 'fa6-solid:angle-down',
+    variant: 'rect',
+    level: 'primary',
+    bobble: true
+  }
 };
 
-export const SecondaryRectWithBobbleButtonBox = Template.bind({});
-SecondaryRectWithBobbleButtonBox.args = {
-  label: 'Select Coupon',
-  icon: 'fa6-solid:angle-down',
-  variant: 'rect',
-  level: 'secondary',
-  bobble: '99+'
+export const PrimaryRectWithBobbleButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Select Coupon',
+    icon: 'fa6-solid:angle-down',
+    variant: 'rect',
+    level: 'primary',
+    bobble: 3
+  }
 };
 
-export const TertiaryRectWithBobbleButtonBox = Template.bind({});
-TertiaryRectWithBobbleButtonBox.args = {
-  label: 'Select Coupon',
-  icon: 'fa6-solid:angle-down',
-  variant: 'rect',
-  level: 'tertiary',
-  bobble: 'New'
+export const SecondaryRectWithBobbleButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Select Coupon',
+    icon: 'fa6-solid:angle-down',
+    variant: 'rect',
+    level: 'secondary',
+    bobble: '99+'
+  }
 };
 
-export const ExtendableRectButtonBox = Template.bind({});
-ExtendableRectButtonBox.args = {
-  label: 'Back to Project',
-  icon: 'fa6-solid:door-closed',
-  variant: 'extendable-rect',
-  level: 'primary'
+export const TertiaryRectWithBobbleButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Select Coupon',
+    icon: 'fa6-solid:angle-down',
+    variant: 'rect',
+    level: 'tertiary',
+    bobble: 'New'
+  }
 };
 
-export const TextButtonBox = Template.bind({});
-TextButtonBox.args = {
-  label: 'Mark as read',
-  icon: 'fa6-solid:check-double',
-  variant: 'text'
+export const ExtendableRectButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Back to Project',
+    icon: 'fa6-solid:door-closed',
+    variant: 'extendable-rect',
+    level: 'primary'
+  }
 };
 
-export const TextButtonWithDotBox = Template.bind({});
-TextButtonWithDotBox.args = {
-  icon: 'fa6-solid:filter',
-  variant: 'text',
-  bobble: true
+export const TextButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Mark as read',
+    icon: 'fa6-solid:check-double',
+    variant: 'text'
+  }
 };
 
-export const TextButtonWithBobbleBox = Template.bind({});
-TextButtonWithBobbleBox.args = {
-  label: 'Mark as read',
-  icon: 'fa6-solid:check-double',
-  variant: 'text',
-  bobble: '99+'
+export const TextButtonWithDotBox: ButtonBox$ = {
+  args: {
+    icon: 'fa6-solid:filter',
+    variant: 'text',
+    bobble: true
+  }
 };
 
-export const PrimarySquareButtonBox = Template.bind({});
-PrimarySquareButtonBox.args = {
-  label: 'Full Report Download',
-  icon: 'fa6-solid:file-arrow-down',
-  variant: 'square',
-  level: 'primary'
+export const TextButtonWithBobbleBox: ButtonBox$ = {
+  args: {
+    label: 'Mark as read',
+    icon: 'fa6-solid:check-double',
+    variant: 'text',
+    bobble: '99+'
+  }
 };
 
-export const SecondarySquareButtonBox = Template.bind({});
-SecondarySquareButtonBox.args = {
-  label: 'Full Report Download',
-  icon: 'fa6-solid:file-arrow-down',
-  variant: 'square',
-  level: 'secondary'
+export const PrimarySquareButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Full Report Download',
+    icon: 'fa6-solid:file-arrow-down',
+    variant: 'square',
+    level: 'primary'
+  }
 };
 
-export const TertiarySquareButtonBox = Template.bind({});
-TertiarySquareButtonBox.args = {
-  label: 'Full Report Download',
-  icon: 'fa6-solid:file-arrow-down',
-  variant: 'square',
-  level: 'tertiary'
+export const SecondarySquareButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Full Report Download',
+    icon: 'fa6-solid:file-arrow-down',
+    variant: 'square',
+    level: 'secondary'
+  }
 };
 
-export const PrimarySquareWithBobbleButtonBox = Template.bind({});
-PrimarySquareWithBobbleButtonBox.args = {
-  label: 'Full Report Download',
-  icon: 'fa6-solid:file-arrow-down',
-  variant: 'square',
-  level: 'primary',
-  bobble: 3
+export const TertiarySquareButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Full Report Download',
+    icon: 'fa6-solid:file-arrow-down',
+    variant: 'square',
+    level: 'tertiary'
+  }
 };
 
-export const SecondarySquareWithBobbleButtonBox = Template.bind({});
-SecondarySquareWithBobbleButtonBox.args = {
-  label: 'Full Report Download',
-  icon: 'fa6-solid:file-arrow-down',
-  variant: 'square',
-  level: 'secondary',
-  bobble: '9+'
+export const PrimarySquareWithBobbleButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Full Report Download',
+    icon: 'fa6-solid:file-arrow-down',
+    variant: 'square',
+    level: 'primary',
+    bobble: 3
+  }
 };
 
-export const TertiarySquareWithBobbleButtonBox = Template.bind({});
-TertiarySquareWithBobbleButtonBox.args = {
-  label: 'Full Report Download',
-  icon: 'fa6-solid:file-arrow-down',
-  variant: 'square',
-  level: 'tertiary',
-  bobble: 10
+export const SecondarySquareWithBobbleButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Full Report Download',
+    icon: 'fa6-solid:file-arrow-down',
+    variant: 'square',
+    level: 'secondary',
+    bobble: '9+'
+  }
 };
 
-export const PrimarySquareWithDotButtonBox = Template.bind({});
-PrimarySquareWithDotButtonBox.args = {
-  label: 'Full Report Download',
-  icon: 'fa6-solid:file-arrow-down',
-  variant: 'square',
-  level: 'primary',
-  bobble: true
+export const TertiarySquareWithBobbleButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Full Report Download',
+    icon: 'fa6-solid:file-arrow-down',
+    variant: 'square',
+    level: 'tertiary',
+    bobble: 10
+  }
 };
 
-export const SecondarySquareWithDotButtonBox = Template.bind({});
-SecondarySquareWithDotButtonBox.args = {
-  label: 'Full Report Download',
-  icon: 'fa6-solid:file-arrow-down',
-  variant: 'square',
-  level: 'secondary',
-  bobble: true
+export const PrimarySquareWithDotButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Full Report Download',
+    icon: 'fa6-solid:file-arrow-down',
+    variant: 'square',
+    level: 'primary',
+    bobble: true
+  }
 };
 
-export const TertiarySquareWithDotButtonBox = Template.bind({});
-TertiarySquareWithDotButtonBox.args = {
-  label: 'Full Report Download',
-  icon: 'fa6-solid:file-arrow-down',
-  variant: 'square',
-  level: 'tertiary',
-  bobble: true
+export const SecondarySquareWithDotButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Full Report Download',
+    icon: 'fa6-solid:file-arrow-down',
+    variant: 'square',
+    level: 'secondary',
+    bobble: true
+  }
 };
 
-export const TextSquareButtonBox = Template.bind({});
-TextSquareButtonBox.args = {
-  label: 'Full Report Download',
-  icon: 'fa6-solid:file-arrow-down',
-  variant: 'text-square'
+export const TertiarySquareWithDotButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Full Report Download',
+    icon: 'fa6-solid:file-arrow-down',
+    variant: 'square',
+    level: 'tertiary',
+    bobble: true
+  }
 };
 
-export const PrimaryCircleButtonBox = Template.bind({});
-PrimaryCircleButtonBox.args = {
-  icon: 'fa6-solid:plus',
-  variant: 'circle',
-  level: 'primary'
+export const TextSquareButtonBox: ButtonBox$ = {
+  args: {
+    label: 'Full Report Download',
+    icon: 'fa6-solid:file-arrow-down',
+    variant: 'text-square'
+  }
 };
 
-export const SecondaryCircleButtonBox = Template.bind({});
-SecondaryCircleButtonBox.args = {
-  icon: 'fa6-solid:plus',
-  variant: 'circle',
-  level: 'secondary'
+export const PrimaryCircleButtonBox: ButtonBox$ = {
+  args: {
+    icon: 'fa6-solid:plus',
+    variant: 'circle',
+    level: 'primary'
+  }
 };
 
-export const TertiaryCircleButtonBox = Template.bind({});
-TertiaryCircleButtonBox.args = {
-  icon: 'fa6-solid:plus',
-  variant: 'circle',
-  level: 'tertiary'
+export const SecondaryCircleButtonBox: ButtonBox$ = {
+  args: {
+    icon: 'fa6-solid:plus',
+    variant: 'circle',
+    level: 'secondary'
+  }
+};
+
+export const TertiaryCircleButtonBox: ButtonBox$ = {
+  args: {
+    icon: 'fa6-solid:plus',
+    variant: 'circle',
+    level: 'tertiary'
+  }
 };
