@@ -86,7 +86,7 @@ const Template: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
       <FlowKit.Screen.Window v-bind="args">
         <template v-for="node in args.graph">
           <FlowKit.Layout.Node v-bind="node">
-            <CardBox data-demo-content :style="{width: '240px', height: '120px'}">
+            <CardBox data-demo-content :style="{width: '240px', height: '120px', padding: '1em', placeContent: 'center', placeItems: 'center'}">
               <p>#{{ node.id }}</p>
               <h1>{{ node.name }}</h1>
             </CardBox>
@@ -122,10 +122,12 @@ const ActiveTemplate: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
               :style="{
                 width: '240px',
                 height: '120px',
+                padding: '1em',
+                placeContent: 'center',
+                placeItems: 'center',
                 outline: node.id === args.activeNodeId ? 'var(--agh-ref-border-width-200) solid var(--agh-ref-color-cyan-500)' : ''
               }"
               @click="args.activeNodeId = node.id"
-              data-demo-content
             >
               <p>#{{ node.id }}</p>
               <h1>{{ node.name }}</h1>

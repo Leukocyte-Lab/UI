@@ -132,7 +132,7 @@ const Template: StoryFn<typeof TextField> = (args) => ({
       'modelValue',
       'onUpdate:modelValue',
       'onValidation',
-      'onIconClick'
+      'iconClick'
     ]
   ))}
     v-model="args.modelValue"
