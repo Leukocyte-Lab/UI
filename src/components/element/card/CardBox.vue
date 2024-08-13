@@ -30,6 +30,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
 <template>
   <BaseLink
     ref="wrapperRef$"
+    @click.passive="onTrigger"
     :class="[
       $style['card-container'],
       $style['behavior'],
@@ -44,7 +45,6 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       }
     ]"
     :link="props.link"
-    @click.passive.="onTrigger"
   >
     <!-- @slot Use this default card slot -->
     <slot />
