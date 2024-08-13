@@ -9,7 +9,7 @@ export type Signal<T> = {
   set: (value: T) => void;
   update: (updater: (value: T) => T) => void;
   mutate: (mutator: (value: T) => void) => void;
-  [SIGNAL_DEBUG_INSPECTION]?: ShallowRef<T>;
+  [SIGNAL_DEBUG_INSPECTION]: ShallowRef<T>;
 };
 
 export const signal = <T>(initialValue: T): Signal<T> => {
