@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import pluginPromise from 'eslint-plugin-promise';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import storybookPlugin from 'eslint-plugin-storybook';
 import vue from 'eslint-plugin-vue';
 import ts from 'typescript-eslint';
 import { includeIgnoreFile } from '@eslint/compat';
@@ -48,6 +49,9 @@ export default [
       'vue/max-attributes-per-line': ['error', { singleline: 5 }]
     }
   },
+
+  // storybook
+  ...storybookPlugin.configs['flat/recommended'],
 
   // Sort imports
   {
