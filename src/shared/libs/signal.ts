@@ -6,10 +6,10 @@ const SIGNAL_DEBUG_INSPECTION = Symbol('SIGNAL_DEBUG_INSPECTION');
 
 export type Signal<T> = {
   (): DeepReadonly<T>;
-  set: (value: T) => void;
-  update: (updater: (value: T) => T) => void;
-  mutate: (mutator: (value: T) => void) => void;
-  [SIGNAL_DEBUG_INSPECTION]: ShallowRef<T>;
+  readonly set: (value: T) => void;
+  readonly update: (updater: (value: T) => T) => void;
+  readonly mutate: (mutator: (value: T) => void) => void;
+  readonly [SIGNAL_DEBUG_INSPECTION]: ShallowRef<T>;
 };
 
 export const signal = <T>(initialValue: T): Signal<T> => {
