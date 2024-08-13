@@ -343,12 +343,12 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
 <template>
   <Container
     ref="viewportRef$"
-    :sortable-children="true"
-    :sort-dirty="true"
-    :width="viewportBoundingBox.width"
-    :height="viewportBoundingBox.height"
     @mousedown="handlePan"
     @pointerdown="handlePan"
+    :height="viewportBoundingBox.height"
+    :sort-dirty="true"
+    :sortable-children="true"
+    :width="viewportBoundingBox.width"
   >
     <template v-if="viewportRef$">
       <Graphics
@@ -371,8 +371,6 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
       />
       <template v-if="debugOptions?.showBoundingBox">
         <Text
-          :x="viewportOffset.x * -1"
-          :y="viewportOffset.y * -1"
           :style="{
             fontSize: 10,
             fontFamily: 'monospace',
@@ -392,6 +390,8 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
           width: ${props.width}
           height: ${props.height}
         `"
+          :x="viewportOffset.x * -1"
+          :y="viewportOffset.y * -1"
         />
       </template>
     </template>

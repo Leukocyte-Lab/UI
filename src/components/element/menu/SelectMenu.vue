@@ -112,11 +112,11 @@ onMounted(() => {
         </h1>
         <template v-if="props.multiple">
           <ButtonBox
-            :class="$style['button']"
-            :label="'Clear Selection'"
-            :icon="'fa6-solid:eraser'"
-            :variant="'text'"
             @click="clickSelection()"
+            :class="$style['button']"
+            :icon="'fa6-solid:eraser'"
+            :label="'Clear Selection'"
+            :variant="'text'"
           />
         </template>
       </header>
@@ -148,6 +148,7 @@ onMounted(() => {
           <template v-for="(option, index) in options" :key="`option-${index}`">
             <template v-if="search !== '' ? option().matched : true">
               <div
+                @click="selector(option(), props.fields.disabled) ? null : onSelect(option)"
                 :class="[
                   $style['menu-option'],
                   $style['behavior'],
@@ -159,7 +160,6 @@ onMounted(() => {
                     [$style['multiple']]: props.multiple
                   }
                 ]"
-                @click="selector(option(), props.fields.disabled) ? null : onSelect(option)"
               >
                 <template v-if="props.multiple">
                   <Icon

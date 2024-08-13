@@ -8,10 +8,10 @@ const props = defineProps<{
 <template>
   <svg
     :class="$style['poly-wrapper']"
-    :width="props.width"
     :height="props.height"
-    preserveAspectRatio="xMinYMin"
+    :width="props.width"
     color-profile="sRGB"
+    preserveAspectRatio="xMinYMin"
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>

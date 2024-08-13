@@ -11,8 +11,8 @@ const props = withDefaults(defineProps<BadgeBox.Props>(), {
 
 <template>
   <BaseLink
-    :link="props.link"
     :class="[$style['badge-container'], $style[props.variant], $style[`color-${props.color}`]]"
+    :link="props.link"
   >
     <template v-if="props.label">
       <label :class="$style['badge-label']">

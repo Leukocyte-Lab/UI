@@ -130,7 +130,6 @@ onMounted(() => {
         <g v-html="bgFill()" />
         <mask id="chart-area-bg-mask">
           <path
-            :d="bgPolyPath"
             :class="[
               $style['chart-area'],
               $style['radar'],
@@ -139,13 +138,13 @@ onMounted(() => {
                 [$style['round']]: props.options.round
               }
             ]"
+            :d="bgPolyPath"
             fill="#fff"
           />
         </mask>
       </template>
       <template #path>
         <path
-          :d="bgPolyPath"
           :class="[
             $style['chart-area'],
             $style['radar'],
@@ -154,18 +153,22 @@ onMounted(() => {
               [$style['round']]: props.options.round
             }
           ]"
+          :d="bgPolyPath"
         />
         <g
           id="chart-group-axises"
           :class="[$style['chart-group-axises']]"
           mask="url(#chart-area-bg-mask)"
         >
-          <path :d="axisPath" :class="[$style['chart-axis'], $style['radar'], $style['path']]" />
+          <path :class="[$style['chart-axis'], $style['radar'], $style['path']]" :d="axisPath" />
         </g>
         <template v-if="axises">
           <g :class="[$style['chart-group-axises-label']]">
             <template v-for="metric in axises.x.metrics" :key="metric.value">
               <foreignObject
+                :class="[$style['chart-axis'], $style['radar'], $style['label-wrapper']]"
+                :height="radius / 3"
+                :width="radius"
                 :x="
                   center.x +
                     radius * Math$.cos(Math$.rad(metric.normalized * 360 - 90)) -
@@ -180,12 +183,8 @@ onMounted(() => {
                     radius * 1.1 * Math$.sin(Math$.rad(metric.normalized * 360 - 90)) -
                     radius / 6
                 "
-                :height="radius / 3"
-                :width="radius"
-                :class="[$style['chart-axis'], $style['radar'], $style['label-wrapper']]"
               >
                 <p
-                  class="font-bold"
                   :class="[
                     $style['chart-axis'],
                     $style['radar'],
@@ -201,6 +200,7 @@ onMounted(() => {
                         ? $style['box-align--left']
                         : $style['box-align--right']
                   ]"
+                  class="font-bold"
                 >
                   {{ metric.value }}
                 </p>
@@ -212,12 +212,12 @@ onMounted(() => {
           <template v-for="plot in plotPolyPaths" :key="plot.label">
             <g :class="[$style['chart-area'], $style['radar'], $style['plot']]">
               <path
-                :d="plot.path"
                 :class="[
                   {
                     [$style['round']]: props.options.round
                   }
                 ]"
+                :d="plot.path"
               />
             </g>
           </template>
@@ -265,6 +265,7 @@ onMounted(() => {
                   r="5"
                 />
                 <foreignObject
+                  :class="[$style['chart-area'], $style['legend-container']]"
                   :x="
                     center.x +
                       radius *
@@ -280,7 +281,6 @@ onMounted(() => {
                   "
                   height="200"
                   width="260"
-                  :class="[$style['chart-area'], $style['legend-container']]"
                 >
                   <CardBox
                     :class="[$style['chart-area'], $style['legend-wrapper']]"

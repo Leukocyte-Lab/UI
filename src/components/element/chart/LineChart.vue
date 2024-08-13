@@ -127,30 +127,30 @@ const plotPolyPaths = computedEager(() =>
       <template #defs />
       <template #path>
         <g id="chart-group-axises" :class="[$style['chart-group-axises']]">
-          <path :d="axisPath" :class="[$style['chart-axis'], $style['line'], $style['path']]" />
+          <path :class="[$style['chart-axis'], $style['line'], $style['path']]" :d="axisPath" />
         </g>
         <template v-if="axises && width && height">
           <g :class="[$style['chart-group-axises-label']]">
             <template v-if="axises.x && axises.x.metrics">
               <template v-for="(metric, index) in axises.x.metrics" :key="`axis-x--${index}`">
                 <text
-                  :x="metric.normalized * (width - props.options.offset.x) + props.options.offset.x"
-                  :y="height - props.options.offset.y + 20"
                   :class="[$style['chart-axis'], $style['label']]"
                   :text-anchor="
                     index === 0 ? 'start' : index === axises.x.metrics.length - 1 ? 'end' : 'middle'
                   "
+                  :x="metric.normalized * (width - props.options.offset.x) + props.options.offset.x"
+                  :y="height - props.options.offset.y + 20"
                 >
                   <template
                     v-for="(text, index) in (metric.value ?? '').toString().split('\n')"
                     :key="index"
                   >
                     <tspan
+                      :dy="`${index * 1.2}em`"
                       :x="
                         metric.normalized * (width - props.options.offset.x) +
                           props.options.offset.x
                       "
-                      :dy="`${index * 1.2}em`"
                     >
                       {{ text }}
                     </tspan>
@@ -161,9 +161,9 @@ const plotPolyPaths = computedEager(() =>
             <template v-if="axises.y && axises.y.metrics">
               <template v-for="(metric, index) in axises.y.metrics" :key="`axis-y--${index}`">
                 <text
+                  :class="[$style['chart-axis'], $style['label']]"
                   :x="props.options.offset.x - 10"
                   :y="(1 - metric.normalized) * (height - props.options.offset.y) + 5"
-                  :class="[$style['chart-axis'], $style['label']]"
                   text-anchor="end"
                 >
                   <template
@@ -172,7 +172,7 @@ const plotPolyPaths = computedEager(() =>
                   >
                     <template v-if="textGroup.length > 1">
                       <template v-for="(text, index) in textGroup" :key="index">
-                        <tspan :x="props.options.offset.x - 10" :dy="`${index * 0.5 - 0.5}em`">
+                        <tspan :dy="`${index * 0.5 - 0.5}em`" :x="props.options.offset.x - 10">
                           {{ text }}
                         </tspan>
                       </template>
@@ -221,6 +221,7 @@ const plotPolyPaths = computedEager(() =>
                   r="5"
                 />
                 <foreignObject
+                  :class="[$style['chart-area'], $style['legend-container']]"
                   :x="
                     plot.x.normalized * (width - props.options.offset.x) +
                       props.options.offset.x +
@@ -232,7 +233,6 @@ const plotPolyPaths = computedEager(() =>
                   "
                   height="220"
                   width="280"
-                  :class="[$style['chart-area'], $style['legend-container']]"
                 >
                   <CardBox
                     :class="[$style['chart-area'], $style['legend-wrapper']]"

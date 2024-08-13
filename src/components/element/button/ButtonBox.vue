@@ -43,7 +43,9 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
 
 <template>
   <BaseLink
-    :link="props.link"
+    @click.capture="onTrigger"
+    :aria-disabled="props.disabled"
+    :aria-label="props.label"
     :class="[
       $style['button-container'],
       $style['behavior'],
@@ -57,12 +59,10 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
         [$style['clicked']]: props.clicked || triggered()
       }
     ]"
-    :aria-disabled="props.disabled"
-    :aria-label="props.label"
+    :link="props.link"
     v-bind="props.disabled ? { disabled: '', ...$attrs } : $attrs"
     role="button"
     tabindex="0"
-    @click.capture="onTrigger"
   >
     <template v-if="props.label">
       <span :class="[$style['button-content']]">{{ props.label }}</span>
@@ -101,8 +101,8 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
             d="M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM2.4 8C2.4 11.0928 4.90721 13.6 8 13.6C11.0928 13.6 13.6 11.0928 13.6 8C13.6 4.90721 11.0928 2.4 8 2.4C4.90721 2.4 2.4 4.90721 2.4 8Z"
           />
           <path
-            d="M8 1.2C8 0.537258 8.54024 -0.00921593 9.19554 0.0898279C10.457 0.280494 11.6608 0.771147 12.7023 1.52787C14.0691 2.52089 15.0864 3.92112 15.6085 5.52787C16.1305 7.13462 16.1305 8.8654 15.6084 10.4721C15.2106 11.6965 14.5252 12.801 13.6167 13.6968C13.1448 14.1621 12.3865 14.0375 11.9969 13.5013C11.6074 12.9652 11.7387 12.2216 12.1797 11.7269C12.6931 11.1512 13.0849 10.4723 13.3259 9.7305C13.6914 8.60578 13.6914 7.39423 13.3259 6.26951C12.9605 5.14478 12.2483 4.16462 11.2916 3.46951C10.6606 3.01106 9.94456 2.69212 9.19086 2.52808C8.54328 2.38714 8 1.86274 8 1.2Z"
             :class="$style['sub-progress']"
+            d="M8 1.2C8 0.537258 8.54024 -0.00921593 9.19554 0.0898279C10.457 0.280494 11.6608 0.771147 12.7023 1.52787C14.0691 2.52089 15.0864 3.92112 15.6085 5.52787C16.1305 7.13462 16.1305 8.8654 15.6084 10.4721C15.2106 11.6965 14.5252 12.801 13.6167 13.6968C13.1448 14.1621 12.3865 14.0375 11.9969 13.5013C11.6074 12.9652 11.7387 12.2216 12.1797 11.7269C12.6931 11.1512 13.0849 10.4723 13.3259 9.7305C13.6914 8.60578 13.6914 7.39423 13.3259 6.26951C12.9605 5.14478 12.2483 4.16462 11.2916 3.46951C10.6606 3.01106 9.94456 2.69212 9.19086 2.52808C8.54328 2.38714 8 1.86274 8 1.2Z"
           />
         </template>
       </BasePoly>

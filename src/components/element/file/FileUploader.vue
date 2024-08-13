@@ -251,6 +251,7 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
   >
     <template v-if="isOverDropZone || files.size === 0">
       <CardBox
+        @click="open"
         :class="[
           $style['uploader-drop-area'],
           $style.wrapper,
@@ -262,9 +263,8 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
             [$style.active]: isOverDropZone
           }
         ]"
-        variant="dash"
         radius="var(--agh-ref-border-radius-300)"
-        @click="open"
+        variant="dash"
       >
         <Icon :class="$style.icon" :icon="props.icon" />
         <h1>{{ placeholder }}</h1>
@@ -288,8 +288,8 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
           <CardBox
             :class="[$style['uploader-file-card'], $style.wrapper, $style.flex, $style.horizontal]"
             :has-stroke="false"
-            variant="flat"
             radius="var(--agh-ref-border-radius-400)"
+            variant="flat"
           >
             <div :class="[$style.icon, $style[payload.status()]]">
               <Icon
@@ -335,18 +335,18 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
             </template>
             <template v-if="payload.status() === 'succeeded'">
               <ButtonBox
+                @click="payload.delete()"
                 :class="$style.button"
                 icon="fa6-solid:trash"
                 variant="text"
-                @click="payload.delete()"
               />
             </template>
             <template v-else>
               <ButtonBox
+                @click="payload.abort()"
                 :class="$style.button"
                 icon="fa6-solid:xmark"
                 variant="text"
-                @click="payload.abort()"
               />
             </template>
           </CardBox>
