@@ -77,8 +77,11 @@ export default [
               '^' // any
             ],
             [
-              '^@/', // internal
-              '^\\.' // local
+              '^@/' // internal
+            ],
+            [
+              '^\\.\\w', // relative local
+              '^\\.\\.\\w' // relative local
             ],
             [
               '^.*\u0000$' // internal types (0 at end)
