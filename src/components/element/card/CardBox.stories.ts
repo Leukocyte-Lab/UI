@@ -70,8 +70,9 @@ const Template: StoryFn<typeof CardBox> = (args) => ({
   },
   template: `
   <CardBox ${bindArgs(args)}>
-    <div style="padding: 0 1em;">
+    <div style="padding: 1em;">
       <h1>This is a CardBox</h1>
+      <br />
       <p>Put something inside the slot to see it !</p>
     </div>
   </CardBox>

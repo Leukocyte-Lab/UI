@@ -65,7 +65,7 @@ const Template: StoryFn<typeof CardList> = (args) => ({
   },
   template: `<CardList v-model="args.modelValue" v-bind="args" style="width: 472px; height: 720px;" >
     <template v-slot="slotProps">
-      <div data-demo-content>
+      <div style="padding: 1em;">
         <h1>{{ slotProps.item.name }}</h1>
         <br />
         <p>{{ slotProps.item.category }}</p>
