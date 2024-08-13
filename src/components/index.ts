@@ -1,3 +1,6 @@
+// Global CSS
+import '@/assets/styles/main.scss';
+
 // base
 // effect
 import BaseLink from './base/BaseLink.vue';
