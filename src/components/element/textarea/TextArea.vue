@@ -2,11 +2,10 @@
 import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
 
-import { useEventDebounceSignal } from '@/shared/libs/event';
-import { promoteInvalidMessage } from '@/shared/libs/validation';
-import { signal } from '@/shared/libs/signal';
-
 import CardBox from '@/components/element/card/CardBox.vue';
+import { useEventDebounceSignal } from '@/shared/libs/event';
+import { signal } from '@/shared/libs/signal';
+import { promoteInvalidMessage } from '@/shared/libs/validation';
 
 import type { TextArea } from '@/components/element/textarea/TextArea.model';
 
@@ -63,19 +62,19 @@ onMounted(() => {
 <template>
   <CardBox
     :class="[$style['textarea-container']]"
-    variant="flat"
     radius="var(--agh-ref-border-radius-400)"
+    variant="flat"
   >
     <textarea
       ref="inputRef$"
+      @input="onTrigger"
       :class="[$style['textarea-input']]"
       v-bind="props"
       :value="props.modelValue"
-      @input="onTrigger"
     />
 
     <template v-if="errMsg()">
-      <label :for="props.name" :class="[$style['textarea-label']]">
+      <label :class="[$style['textarea-label']]" :for="props.name">
         <Icon :class="[$style['textarea-label--icon']]" :icon="'fa6-solid:circle-xmark'" />
         <span :class="[$style['textarea-label--value']]">{{ errMsg() }}</span>
       </label>

@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { onMounted, ref, toRefs, computed } from 'vue';
-import { computedEager, useCssVar, useResizeObserver } from '@vueuse/core';
 import { delay } from 'lodash-es';
+import { computed,onMounted, ref, toRefs } from 'vue';
+import { computedEager, useCssVar, useResizeObserver } from '@vueuse/core';
+
+import { useChart } from './chart';
 
 import Math$ from '@/shared/libs/math';
 import { signal } from '@/shared/libs/signal';
 
 import type { Chart } from '@/components/element/chart/chart.model';
-import { useChart } from './chart';
 
 const props = defineProps<Chart.Props>();
 
@@ -72,24 +73,24 @@ onMounted(() => {
 <template>
   <div ref="containerRef$" :class="$style['chart-container']">
     <div
+      v-for="(item, index) in formatDatasets"
+      :key="index"
       :class="[
         $style['matrix-container'],
         columnNum && index % columnNum !== 0 && $style['matrix-container-border']
       ]"
-      v-for="(item, index) in formatDatasets"
-      :key="index"
     >
       <label :class="$style['label']">
         {{ item.x.value }}
       </label>
       <div :class="$style['box-container']">
         <div
+          v-for="i in TotalCells"
+          :key="i"
           :class="[
             $style['square'],
             i <= item.y.normalized ? $style['square-cyan'] : $style['square-grayscale']
           ]"
-          v-for="i in TotalCells"
-          :key="i"
         />
       </div>
     </div>

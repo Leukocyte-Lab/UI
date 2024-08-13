@@ -1,13 +1,12 @@
 <script setup lang="ts">
+import { delay } from 'lodash-es';
 import { onMounted, ref } from 'vue';
 import { computedEager, useCssVar, useElementSize } from '@vueuse/core';
-import { delay } from 'lodash-es';
-
-import Math$ from '@/shared/libs/math';
-import { signal } from '@/shared/libs/signal';
 
 import BasePoly from '@/components/base/BasePoly.vue';
 import InnerShadowDeco from '@/components/effect/InnerShadowDeco.vue';
+import Math$ from '@/shared/libs/math';
+import { signal } from '@/shared/libs/signal';
 
 import type { Progress } from '@/components/element/progress/progress.model';
 import type { Vector } from '@/shared/types/vector';
@@ -71,8 +70,8 @@ onMounted(() => {
           :r="radius - props.thickness / 2"
         />
         <mask id="progress-groove-mask">
-          <use href="#progress-groove-outer" fill="#fff" />
-          <use href="#progress-groove-inner" fill="#000" />
+          <use fill="#fff" href="#progress-groove-outer" />
+          <use fill="#000" href="#progress-groove-inner" />
         </mask>
       </template>
       <template #path>
@@ -84,8 +83,8 @@ onMounted(() => {
             :cx="center.x"
             :cy="center.y"
             :r="radius"
-            :stroke-dashoffset="(props.value + 0.25) * radiant"
             :stroke-dasharray="`${props.value * radiant} ${(1 - props.value) * radiant}`"
+            :stroke-dashoffset="(props.value + 0.25) * radiant"
             :stroke-width="props.thickness"
             fill="transparent"
           />

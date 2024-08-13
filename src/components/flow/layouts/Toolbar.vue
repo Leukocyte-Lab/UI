@@ -23,8 +23,8 @@ const props = withDefaults(defineProps<Flow.UI.Layout.Toolbar.Props>(), {
       }
     ]"
   >
-    <ButtonBox icon="fa6-solid:arrows-up-down-left-right" variant="square" level="secondary" />
-    <ButtonBox icon="fa6-solid:expand" variant="square" level="secondary" />
+    <ButtonBox icon="fa6-solid:arrows-up-down-left-right" level="secondary" variant="square" />
+    <ButtonBox icon="fa6-solid:expand" level="secondary" variant="square" />
   </div>
 </template>
 

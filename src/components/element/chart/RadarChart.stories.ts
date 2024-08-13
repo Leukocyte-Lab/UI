@@ -1,6 +1,6 @@
-import RadarChart from './RadarChart.vue';
-
 import type { Meta, StoryObj } from '@storybook/vue3';
+
+import RadarChart from './RadarChart.vue';
 
 const meta: Meta<typeof RadarChart> = {
   title: 'Components / Chart / RadarChart',

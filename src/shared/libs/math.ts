@@ -1,6 +1,6 @@
 import { fromPairs } from 'lodash-es';
 
-import type { Vector, Vec2, Vec3, Vec4 } from '@/shared/types/vector';
+import type { Vec2, Vec3, Vec4, Vector } from '@/shared/types/vector';
 
 export type MathProxy = Math & {
   ARC_BASE: number;
@@ -64,7 +64,7 @@ const delta = <T extends string>(
 };
 
 const VectorDeltaHandler = {
-  get: (target: {}, prop: string, receiver: any) => {
+  get: (target: object, prop: string, receiver: unknown) => {
     if (/^ORIGIN_/.test(prop)) {
       return fromPairs(
         ['x', 'y', 'z', 'w'].slice(0, Number(prop.replace(/^ORIGIN_(\d)D/, '$1'))).map((axis) => [axis, 0]) as [string, number][]

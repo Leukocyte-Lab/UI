@@ -2,9 +2,9 @@ import { pick } from 'lodash-es';
 
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
-
 import DropDown from './DropDown.vue';
+
+import bindArgs from '@/../.storybook/helpers/bind-args';
 
 const meta: Meta<typeof DropDown> = {
   title: 'Components / Element / DropDown',

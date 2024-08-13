@@ -27,8 +27,8 @@ const { onTrigger } = useEventDebounceSignal(
 </script>
 
 <template>
-  <div :class="[$style['switch'], props.modelValue && $style['switch_active']]" @click="onTrigger">
-    <div :class="[$style['slider'], props.modelValue && $style['slider_active']]"></div>
+  <div @click="onTrigger" :class="[$style['switch'], props.modelValue && $style['switch_active']]">
+    <div :class="[$style['slider'], props.modelValue && $style['slider_active']]" />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
-import type { Callback } from '@/shared/types/callback';
 import type { EventSignalOptions } from '@/shared/libs/event';
 import type { InvalidMessage } from '@/shared/libs/validation';
+import type { Callback } from '@/shared/types/callback';
 
 export namespace TextField {
   export type InputMode =

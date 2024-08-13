@@ -3,13 +3,12 @@ import { computed, ref, watch } from 'vue';
 
 import SelectMenu from '@/components/element/menu/SelectMenu.vue';
 import TextField from '@/components/element/textfield/TextField.vue';
-
+import { useSearch } from '@/shared/libs/search';
 import { selector } from '@/shared/libs/selector';
 import { signal } from '@/shared/libs/signal';
 
 import type { SearchBar } from './SearchBar.model';
 import type { ObjectLike } from '@/shared/types/object';
-import { useSearch } from '@/shared/libs/search';
 
 const props = withDefaults(defineProps<SearchBar.Props>(), {
   items: () => [],
@@ -57,19 +56,19 @@ watch(selected, onSelect);
   <div :class="$style['search-bar--container']">
     <TextField
       v-model="search"
-      :class="$style['search-bar--input']"
-      :disabled="props.disabled"
+      @blur="closeMenu.set(true)"
       @click="closeMenu.set(false)"
       @focus="closeMenu.set(false)"
-      @blur="closeMenu.set(true)"
+      :class="$style['search-bar--input']"
+      :disabled="props.disabled"
       type="search"
     />
     <template v-if="search && filteredItems().length > 0 && !closeMenu()">
       <SelectMenu
-        :class="$style['search-bar--menu']"
-        :options="filteredItems()"
-        :fields="props.fields"
         v-model="selected"
+        :class="$style['search-bar--menu']"
+        :fields="props.fields"
+        :options="filteredItems()"
       />
     </template>
   </div>

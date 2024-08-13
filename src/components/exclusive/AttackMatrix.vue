@@ -11,22 +11,32 @@ const props = withDefaults(defineProps<AttackMatrix.Props>(), {
 
 <template>
   <div :class="[$style['matrix'], props.disabled && $style['matrix-disabled']]">
-    <div :class="$style['line']"></div>
+    <div :class="$style['line']" />
     <div :class="$style['container']">
-      <div :class="$style['card']" v-for="(item, index) in props.items" :key="index">
+      <div v-for="(item, index) in props.items" :key="index" :class="$style['card']">
         <div :class="$style['body']">
-          <div :class="$style['title']">{{ item.label }}</div>
-          <div :class="$style['description']">{{ item.description }}</div>
+          <div :class="$style['title']">
+            {{ item.label }}
+          </div>
+          <div :class="$style['description']">
+            {{ item.description }}
+          </div>
         </div>
-        <div :class="$style['detected']" v-if="props.showDetected">
+        <div v-if="props.showDetected" :class="$style['detected']">
           <div :class="$style['label']">
             <Icon icon="fa6-solid:user" />
             Detected
           </div>
           <div :class="$style['fraction']">
-            <div :class="$style['numerator']">{{ item.detected?.count }}</div>
-            <div :class="$style['denominator']">/</div>
-            <div :class="$style['denominator']">{{ item.detected?.total }}</div>
+            <div :class="$style['numerator']">
+              {{ item.detected?.count }}
+            </div>
+            <div :class="$style['denominator']">
+              /
+            </div>
+            <div :class="$style['denominator']">
+              {{ item.detected?.total }}
+            </div>
           </div>
         </div>
       </div>

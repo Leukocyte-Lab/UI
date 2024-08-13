@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { computedEager, useResizeObserver } from '@vueuse/core';
 import { filter, flatMap, fromPairs, groupBy, map, omit, toPairs } from 'lodash-es';
+import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
+import { computedEager, useResizeObserver } from '@vueuse/core';
 
-import { signal } from '@/shared/libs/signal';
-import { parser } from '@/shared/libs/parser';
-import { selector } from '@/shared/libs/selector';
-
-import TextField from '@/components/element/textfield/TextField.vue';
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
+import TextField from '@/components/element/textfield/TextField.vue';
+import { parser } from '@/shared/libs/parser';
+import { selector } from '@/shared/libs/selector';
+import { signal } from '@/shared/libs/signal';
 
 import type { SelectMenu } from '@/components/element/menu/SelectMenu.model';
 import type { Signal } from '@/shared/libs/signal';
@@ -108,14 +107,16 @@ onMounted(() => {
   >
     <template v-if="props.label || props.multiple">
       <header :class="$style['menu-header']">
-        <h1 :class="$style['title']">{{ props.label }}</h1>
+        <h1 :class="$style['title']">
+          {{ props.label }}
+        </h1>
         <template v-if="props.multiple">
           <ButtonBox
-            :class="$style['button']"
-            :label="'Clear Selection'"
-            :icon="'fa6-solid:eraser'"
-            :variant="'text'"
             @click="clickSelection()"
+            :class="$style['button']"
+            :icon="'fa6-solid:eraser'"
+            :label="'Clear Selection'"
+            :variant="'text'"
           />
         </template>
       </header>
@@ -147,6 +148,7 @@ onMounted(() => {
           <template v-for="(option, index) in options" :key="`option-${index}`">
             <template v-if="search !== '' ? option().matched : true">
               <div
+                @click="selector(option(), props.fields.disabled) ? null : onSelect(option)"
                 :class="[
                   $style['menu-option'],
                   $style['behavior'],
@@ -158,7 +160,6 @@ onMounted(() => {
                     [$style['multiple']]: props.multiple
                   }
                 ]"
-                @click="selector(option(), props.fields.disabled) ? null : onSelect(option)"
               >
                 <template v-if="props.multiple">
                   <Icon

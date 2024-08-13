@@ -1,6 +1,6 @@
-import Timeline from './Timeline.vue';
-
 import type { Meta, StoryFn } from '@storybook/vue3';
+
+import Timeline from './Timeline.vue';
 
 const meta: Meta<typeof Timeline> = {
   title: 'Components / Layout / Timeline',

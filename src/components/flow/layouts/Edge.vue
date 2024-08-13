@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, inject, toRef, ref, onBeforeUnmount, onBeforeUpdate } from 'vue';
+import { Color, Graphics, LINE_CAP, LINE_JOIN } from 'pixi.js';
+import { computed, inject, onBeforeUnmount, onBeforeUpdate,ref, toRef } from 'vue';
 import { computedInject, useMutationObserver } from '@vueuse/core';
-import { Color, LINE_CAP, LINE_JOIN } from 'pixi.js';
 
 import type { GraphicsInst } from 'vue3-pixi';
 
@@ -540,19 +540,19 @@ onBeforeUnmount(() => {
 <template>
   <template v-if="debugOptions?.showControlPoint">
     <Graphics
-      :position="startPoint"
       @render="
-        (graphics) => {
+        (graphics: Graphics) => {
           graphics.clear();
           graphics.beginFill(0x3249de);
           graphics.drawCircle(0, 0, 5);
           graphics.endFill();
         }
       "
+      :position="startPoint"
     />
     <Text
-      :position="startPoint"
       :anchor-y="1"
+      :position="startPoint"
       :style="{
         fontSize: 8,
         fontFamily: 'monospace',
@@ -572,19 +572,19 @@ onBeforeUnmount(() => {
     />
     <template v-if="props.edge.to">
       <Graphics
-        :position="endPoint"
         @render="
-          (graphics) => {
+          (graphics: Graphics) => {
             graphics.clear();
             graphics.beginFill(0xf9de32);
             graphics.drawCircle(0, 0, 5);
             graphics.endFill();
           }
         "
+        :position="endPoint"
       />
       <Text
-        :position="endPoint"
         :anchor-x="1"
+        :position="endPoint"
         :style="{
           fontSize: 8,
           fontFamily: 'monospace',
@@ -621,5 +621,5 @@ onBeforeUnmount(() => {
       />
     </template>
   </template>
-  <Graphics @render="drawPath" @mouseover="mouseHandler" @mouseleave="mouseHandler" />
+  <Graphics @mouseleave="mouseHandler" @mouseover="mouseHandler" @render="drawPath" />
 </template>

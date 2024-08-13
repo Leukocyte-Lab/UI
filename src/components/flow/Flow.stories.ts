@@ -1,7 +1,7 @@
-import { FlowKit } from '.';
-import CardBox from '../../components/element/card/CardBox.vue';
-
 import type { Meta, StoryFn } from '@storybook/vue3';
+
+import CardBox from '../../components/element/card/CardBox.vue';
+import { FlowKit } from '.';
 
 export default {
   title: 'Components / Graph / FlowKit',
