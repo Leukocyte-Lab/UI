@@ -10,7 +10,7 @@ import { signal } from '@/shared/libs/signal';
 import type { SearchBar } from './SearchBar.model';
 import type { ObjectLike } from '@/shared/types/object';
 
-const props = withDefaults(defineProps<SearchBar.Props>(), {
+const props = withDefaults(defineProps<Readonly<SearchBar.Props>>(), {
   items: () => [],
   modelValue: ''
 });
@@ -68,7 +68,7 @@ watch(selected, onSelect);
         v-model="selected"
         :class="$style['search-bar--menu']"
         :fields="props.fields"
-        :options="filteredItems()"
+        :options="[...filteredItems()]"
       />
     </template>
   </div>
