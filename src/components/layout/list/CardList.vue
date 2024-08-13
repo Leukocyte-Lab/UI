@@ -216,16 +216,16 @@ watch([sort, filters, search, selected], () => {
       <template v-if="props.filterOptions && !isEmpty(props.filterOptions)">
         <div
           v-on-click-outside="() => closeFilterMenu.set(true)"
-          :class="$style['list-toolbar-tool']"
-          @keydown.esc="closeFilterMenu.set(true)"
           @keydown.enter="closeFilterMenu.set(true)"
+          @keydown.esc="closeFilterMenu.set(true)"
+          :class="$style['list-toolbar-tool']"
         >
           <ButtonBox
+            @click="toggleMenu(closeFilterMenu)"
             :class="$style['list-toolbar-button']"
             :clicked="!closeFilterMenu()"
             icon="fa6-solid:filter"
             variant="text"
-            @click="toggleMenu(closeFilterMenu)"
           />
           <template v-if="filters.length > 0">
             <span :class="$style['list-toolbar-button-deco']">
@@ -238,9 +238,9 @@ watch([sort, filters, search, selected], () => {
               :class="$style['list-toolbar-menu']"
               :fields="filterFields"
               :options="filterOptions"
-              :multiple="true"
-              label="Filter"
               group-by="label"
+              label="Filter"
+              multiple
             />
           </template>
         </div>
@@ -248,16 +248,16 @@ watch([sort, filters, search, selected], () => {
       <template v-if="props.sortOptions && !isEmpty(props.sortOptions)">
         <div
           v-on-click-outside="() => closeSortMenu.set(true)"
-          :class="$style['list-toolbar-tool']"
-          @keydown.esc="closeSortMenu.set(true)"
           @keydown.enter="closeSortMenu.set(true)"
+          @keydown.esc="closeSortMenu.set(true)"
+          :class="$style['list-toolbar-tool']"
         >
           <ButtonBox
-            :class="$style['list-toolbar-button']"
-            :icon="sort?.icon ?? 'fa6-solid:arrow-down-wide-short'"
-            :clicked="!closeSortMenu()"
-            variant="text"
             @click="toggleMenu(closeSortMenu)"
+            :class="$style['list-toolbar-button']"
+            :clicked="!closeSortMenu()"
+            :icon="sort?.icon ?? 'fa6-solid:arrow-down-wide-short'"
+            variant="text"
           />
           <template v-if="!closeSortMenu()">
             <SelectMenu
@@ -279,7 +279,7 @@ watch([sort, filters, search, selected], () => {
         }
       ]"
     >
-      <BaseList :items="items" :group-by="props.groupBy">
+      <BaseList :group-by="props.groupBy" :items="items">
         <template #placeholder>
           <!-- @slot Use this placeholder slot to display the placeholder when items are empty -->
           <slot name="placeholder" />
@@ -289,18 +289,18 @@ watch([sort, filters, search, selected], () => {
         </template>
         <template #default="slotProps">
           <CardBox
-            :class="$style['list-item']"
-            :color="slotProps.item.selected ? 'blue' : 'default'"
-            :clickable="true"
-            radius="var(--agh-ref-border-radius-400)"
             @click="onSelect(slotProps.item)"
+            :class="$style['list-item']"
+            :clickable="true"
+            :color="slotProps.item.selected ? 'blue' : 'default'"
+            radius="var(--agh-ref-border-radius-400)"
           >
             <!-- @slot Use this default slot to access item in items -->
             <slot
-              name="default"
-              :item="slotProps.item"
               :index="slotProps.index"
+              :item="slotProps.item"
               :selected="slotProps.item.selected"
+              name="default"
             />
           </CardBox>
         </template>

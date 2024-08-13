@@ -140,15 +140,15 @@ onMounted(() => {
     <template v-if="edge.from.id === node?.id">
       <Container :position="node?.position" :z-index="edge.active ? 10000 : 0">
         <FlowKit.Layout.Edge
-          :edge="edge"
-          :radius="props.radius"
-          :arrow-size="props.arrowSize"
           :active="edge.active"
+          :arrow-size="props.arrowSize"
           :blur="props.blur"
+          :edge="edge"
           :priority="props.priority"
-          :stroke-width="props.strokeWidth"
+          :radius="props.radius"
           :stroke-color="props.strokeColor"
           :stroke-opacity="props.strokeOpacity"
+          :stroke-width="props.strokeWidth"
         />
       </Container>
     </template>

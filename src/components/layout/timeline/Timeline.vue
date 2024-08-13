@@ -152,43 +152,43 @@ onBeforeUpdate(() => {
       <div :class="[$style.wrapper, $style.flex, $style.horizontal]">
         <p :class="[$style.wrapper, $style.flex, $style.vertical]">
           <span
-            data-label="date"
             v-text="parser(currentView, '{{ startTime | date : yyyy/MM/dd }}')"
+            data-label="date"
           />
           <span
-            data-label="time"
             v-text="parser(currentView, '{{ startTime | date : HH:mm:ss }}')"
+            data-label="time"
           />
         </p>
         <Icon :class="$style.icon" icon="fa6-solid:arrows-left-right" />
         <p :class="[$style.wrapper, $style.flex, $style.vertical]">
           <span
-            data-label="date"
             v-text="parser(currentView, '{{ endTime | date : yyyy/MM/dd }}')"
+            data-label="date"
           />
-          <span data-label="time" v-text="parser(currentView, '{{ endTime | date : HH:mm:ss }}')" />
+          <span v-text="parser(currentView, '{{ endTime | date : HH:mm:ss }}')" data-label="time" />
         </p>
       </div>
       <ButtonBox
+        @click="startFollow()"
         :class="$style.button"
         :disabled="x + width >= timelineWidth"
         icon="fa6-solid:forward-step"
-        variant="square"
         level="secondary"
-        @click="startFollow()"
+        variant="square"
       />
     </header>
     <div
       ref="wrapperRef$"
-      :class="[$style['timeline-wrapper'], $style.wrapper, $style.flex, $style.horizontal]"
       @scroll="onTrigger"
+      :class="[$style['timeline-wrapper'], $style.wrapper, $style.flex, $style.horizontal]"
     >
       <div :class="[$style['timeline-axis'], $style.wrapper, $style.flex, $style.horizontal]" />
       <template v-for="([timestamp, { event, duration }], index) in events" :key="`tick-${index}`">
         <div
           :id="event.id"
-          :data-label="`${parser(event.range, '{{ start | date : yyyy/MM/dd HH:mm:ss }} - {{ end | date : yyyy/MM/dd HH:mm:ss }}')}`"
           :class="$style['timeline-tick']"
+          :data-label="`${parser(event.range, '{{ start | date : yyyy/MM/dd HH:mm:ss }} - {{ end | date : yyyy/MM/dd HH:mm:ss }}')}`"
           :style="{
             left: `${((timestamp - startTime) / timelineDuration) * timelineWidth}px`,
             width: `${(duration / timelineDuration) * timelineWidth}px`

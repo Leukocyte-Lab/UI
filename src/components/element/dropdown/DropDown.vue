@@ -47,7 +47,12 @@ const closeMenu = signal(true);
     :class="[$style['dropdown-container'], $style[size]]"
   >
     <ButtonBox
+      @click="closeMenu.update((state) => !state)"
+      :bobble="props.multiple ? selected?.length ?? false : false"
+      :class="[$style['dropdown-button'], $style[size]]"
+      :clicked="!closeMenu()"
       :disabled="props.disabled"
+      :icon="closeMenu() ? 'fa6-solid:chevron-down' : 'fa6-solid:chevron-up'"
       :label="
         props.multiple
           ? (selected?.length ?? 0) > 0
@@ -58,25 +63,20 @@ const closeMenu = signal(true);
               selector(props.modelValue, props.fields.title))) ||
             (selector(props.modelValue, props.fields.key) ?? props.label ?? props.placeholder)
       "
-      :icon="closeMenu() ? 'fa6-solid:chevron-down' : 'fa6-solid:chevron-up'"
-      :clicked="!closeMenu()"
       :level="props.level"
       :size="props.size"
       :variant="props.variant"
-      :bobble="props.multiple ? selected?.length ?? false : false"
-      :class="[$style['dropdown-button'], $style[size]]"
-      @click="closeMenu.update((state) => !state)"
     />
     <template v-if="items.length > 0 && !closeMenu()">
       <SelectMenu
         v-model="selected"
         :class="$style['dropdown-menu']"
-        :options="items"
-        :label="props.label"
         :fields="props.fields"
-        :multiple="props.multiple"
-        :use-search="props.useSearch"
         :group-by="props.groupBy"
+        :label="props.label"
+        :multiple="props.multiple"
+        :options="items"
+        :use-search="props.useSearch"
       />
     </template>
   </div>

@@ -92,6 +92,7 @@ defineExpose({
     </template>
     <input
       ref="inputRef$"
+      @input="onTrigger"
       :class="[
         $style['textfield-input'],
         {
@@ -100,7 +101,6 @@ defineExpose({
       ]"
       v-bind="props"
       :value="props.modelValue"
-      @input="onTrigger"
     >
     <template v-if="type === 'search'">
       <Icon
@@ -109,7 +109,7 @@ defineExpose({
       />
     </template>
     <template v-if="props.icon">
-      <div :class="[$style['textfield-icon'], $style['icon']]" @click="props.iconClick">
+      <div @click="props.iconClick" :class="[$style['textfield-icon'], $style['icon']]">
         <Icon :icon="props.icon ?? ''" />
       </div>
     </template>

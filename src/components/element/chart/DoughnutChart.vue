@@ -121,15 +121,6 @@ const normalizedDatasets = computedEager(() =>
             <template v-for="(plot, plotIndex) in dataset.series" :key="`plot-${plotIndex}`">
               <g :class="$style['chart-area']">
                 <circle
-                  :cx="center.x"
-                  :cy="center.y"
-                  :r="radius"
-                  :stroke-dashoffset="
-                    plot.y.offset * radiant * -1 - gap * plotIndex + 0.25 * radiant
-                  "
-                  :stroke-dasharray="`${plot.y.normalized * radiant} ${
-                    (1 - plot.y.normalized) * radiant
-                  }`"
                   :class="[
                     $style['behavior'],
                     $style['chart-area'],
@@ -140,14 +131,23 @@ const normalizedDatasets = computedEager(() =>
                       [$style['round']]: props.options.round
                     }
                   ]"
+                  :cx="center.x"
+                  :cy="center.y"
+                  :r="radius"
+                  :stroke-dasharray="`${plot.y.normalized * radiant} ${
+                    (1 - plot.y.normalized) * radiant
+                  }`"
+                  :stroke-dashoffset="
+                    plot.y.offset * radiant * -1 - gap * plotIndex + 0.25 * radiant
+                  "
                   pointer-events="visibleStroke"
                 />
                 <foreignObject
+                  :class="[$style['chart-area'], $style['legend-container']]"
                   :x="center.x + radius * plot.x.label - 260 * Number(plot.x.label < 0)"
                   :y="center.y + radius * plot.y.label - 240 * Number(plot.y.label < 0)"
                   height="240"
                   width="260"
-                  :class="[$style['chart-area'], $style['legend-container']]"
                 >
                   <CardBox
                     :class="[$style['chart-area'], $style['legend-wrapper']]"

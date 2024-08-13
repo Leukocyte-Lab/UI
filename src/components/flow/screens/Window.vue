@@ -47,32 +47,32 @@ const scale = computed({
 
 <template>
   <div
-    :id="`flow-${uuid()}`"
     ref="wrapperRef$"
+    :id="`flow-${uuid()}`"
     :class="[$style['flow-container'], $style.behavior, $style[cursorMode()]]"
   >
     <Application
-      :class="$style['flow-viewport']"
-      :width="wrapperBoundingBox.width"
-      :height="wrapperBoundingBox.height"
-      :background-alpha="0"
-      :resolution="4"
       :antialias="true"
+      :background-alpha="0"
+      :class="$style['flow-viewport']"
+      :height="wrapperBoundingBox.height"
       :power-preference="acceleration"
       :resize-to="wrapperRef$"
+      :resolution="4"
+      :width="wrapperBoundingBox.width"
     >
       <template v-if="props.devtools && isClient">
         <FlowKit.Helper.DevTool />
       </template>
       <FlowKit.Screen.Viewport
         ref="viewportRef$"
-        :width="wrapperBoundingBox.width"
-        :height="wrapperBoundingBox.height"
-        :scale="scale"
-        :debug-options="props.debugOptions"
         :auto-layout="props.autoLayout"
-        :initial-scale="props.initialScale"
         :cursor-mode="cursorMode"
+        :debug-options="props.debugOptions"
+        :height="wrapperBoundingBox.height"
+        :initial-scale="props.initialScale"
+        :scale="scale"
+        :width="wrapperBoundingBox.width"
       >
         <slot />
       </FlowKit.Screen.Viewport>

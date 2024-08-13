@@ -33,11 +33,11 @@ const groups = computedEager(() =>
   <template v-for="(items, group) in groups" :key="`list-group-${group}`">
     <template v-if="group">
       <!-- @slot Use this ågroup slot to access group in grouped items -->
-      <slot name="group" :group="group" :items="items" />
+      <slot :group="group" :items="items" name="group" />
     </template>
     <template v-for="(item, index) in items" :key="`list-item-${index}`">
       <!-- @slot Use this default slot to access item in items -->
-      <slot name="default" :item="item" :index="index" />
+      <slot :index="index" :item="item" name="default" />
     </template>
   </template>
 </template>

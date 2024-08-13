@@ -70,8 +70,8 @@ onMounted(() => {
           :r="radius - props.thickness / 2"
         />
         <mask id="progress-groove-mask">
-          <use href="#progress-groove-outer" fill="#fff" />
-          <use href="#progress-groove-inner" fill="#000" />
+          <use fill="#fff" href="#progress-groove-outer" />
+          <use fill="#000" href="#progress-groove-inner" />
         </mask>
       </template>
       <template #path>
@@ -83,8 +83,8 @@ onMounted(() => {
             :cx="center.x"
             :cy="center.y"
             :r="radius"
-            :stroke-dashoffset="(props.value + 0.25) * radiant"
             :stroke-dasharray="`${props.value * radiant} ${(1 - props.value) * radiant}`"
+            :stroke-dashoffset="(props.value + 0.25) * radiant"
             :stroke-width="props.thickness"
             fill="transparent"
           />

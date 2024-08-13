@@ -56,19 +56,19 @@ watch(selected, onSelect);
   <div :class="$style['search-bar--container']">
     <TextField
       v-model="search"
+      @blur="closeMenu.set(true)"
+      @click="closeMenu.set(false)"
+      @focus="closeMenu.set(false)"
       :class="$style['search-bar--input']"
       :disabled="props.disabled"
       type="search"
-      @click="closeMenu.set(false)"
-      @focus="closeMenu.set(false)"
-      @blur="closeMenu.set(true)"
     />
     <template v-if="search && filteredItems().length > 0 && !closeMenu()">
       <SelectMenu
         v-model="selected"
         :class="$style['search-bar--menu']"
-        :options="filteredItems()"
         :fields="props.fields"
+        :options="filteredItems()"
       />
     </template>
   </div>

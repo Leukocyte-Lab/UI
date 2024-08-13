@@ -540,7 +540,6 @@ onBeforeUnmount(() => {
 <template>
   <template v-if="debugOptions?.showControlPoint">
     <Graphics
-      :position="startPoint"
       @render="
         (graphics: Graphics) => {
           graphics.clear();
@@ -549,10 +548,11 @@ onBeforeUnmount(() => {
           graphics.endFill();
         }
       "
+      :position="startPoint"
     />
     <Text
-      :position="startPoint"
       :anchor-y="1"
+      :position="startPoint"
       :style="{
         fontSize: 8,
         fontFamily: 'monospace',
@@ -572,7 +572,6 @@ onBeforeUnmount(() => {
     />
     <template v-if="props.edge.to">
       <Graphics
-        :position="endPoint"
         @render="
           (graphics: Graphics) => {
             graphics.clear();
@@ -581,10 +580,11 @@ onBeforeUnmount(() => {
             graphics.endFill();
           }
         "
+        :position="endPoint"
       />
       <Text
-        :position="endPoint"
         :anchor-x="1"
+        :position="endPoint"
         :style="{
           fontSize: 8,
           fontFamily: 'monospace',
@@ -621,5 +621,5 @@ onBeforeUnmount(() => {
       />
     </template>
   </template>
-  <Graphics @render="drawPath" @mouseover="mouseHandler" @mouseleave="mouseHandler" />
+  <Graphics @mouseleave="mouseHandler" @mouseover="mouseHandler" @render="drawPath" />
 </template>

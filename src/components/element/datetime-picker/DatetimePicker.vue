@@ -394,38 +394,38 @@ watch(
   >
     <header :class="[$style.wrapper, $style.flex, $style.horizontal]">
       <ButtonBox
+        @click="calenderEntity.goToPreviousMonth"
         :class="$style['button']"
         icon="fa6-solid:angle-left"
         variant="text"
-        @click="calenderEntity.goToPreviousMonth"
       />
       <div :class="[$style['label'], $style.wrapper, $style.flex, $style.horizontal]">
         <div :class="[$style['item'], $style.wrapper, $style.flex, $style.horizontal]">
           <ButtonBox
-            :class="[$style['select'], dropdownActiveType === 'year' && $style['selected']]"
-            :label="String(calenderEntity.year)"
-            :icon="`fa6-solid:angle-${dropdownActiveType === 'year' ? 'up' : 'down'}`"
-            variant="text"
             @click="toggleDropdown('year')"
+            :class="[$style['select'], dropdownActiveType === 'year' && $style['selected']]"
+            :icon="`fa6-solid:angle-${dropdownActiveType === 'year' ? 'up' : 'down'}`"
+            :label="String(calenderEntity.year)"
+            variant="text"
           />
         </div>
 
         <div :class="[$style['item'], $style.wrapper, $style.flex, $style.horizontal]">
           <ButtonBox
-            :class="[$style['select'], dropdownActiveType === 'month' && $style['selected']]"
-            :label="calenderEntity.month.monthShort"
-            :icon="`fa6-solid:angle-${dropdownActiveType === 'month' ? 'up' : 'down'}`"
-            variant="text"
             @click="toggleDropdown('month')"
+            :class="[$style['select'], dropdownActiveType === 'month' && $style['selected']]"
+            :icon="`fa6-solid:angle-${dropdownActiveType === 'month' ? 'up' : 'down'}`"
+            :label="calenderEntity.month.monthShort"
+            variant="text"
           />
         </div>
       </div>
 
       <ButtonBox
-        icon="fa6-solid:angle-right"
-        :class="$style['button']"
-        variant="text"
         @click="calenderEntity.goToNextMonth"
+        :class="$style['button']"
+        icon="fa6-solid:angle-right"
+        variant="text"
       />
     </header>
 
@@ -439,6 +439,8 @@ watch(
         <div :class="$style['days-grid']">
           <template v-for="day in monthDays" :key="day?.timestamp">
             <div
+              @mouseout="() => handleLeaveDayButton(day)"
+              @mouseover="() => handleHoverDayButton(day)"
               :class="[
                 $style['item'],
                 $style.wrapper,
@@ -457,10 +459,15 @@ watch(
                   $style['item-end'],
                 type === 'multiple' && isBetween(day, selectDate) && $style['item-duration']
               ]"
-              @mouseover="() => handleHoverDayButton(day)"
-              @mouseout="() => handleLeaveDayButton(day)"
             >
               <ButtonBox
+                @click="
+                  () =>
+                    handleClickDayButton(day, {
+                      start: tempDate.start ? isEqual(day, tempDate.start) : false,
+                      end: tempDate.end ? isEqual(day, tempDate.end) : false
+                    })
+                "
                 :class="[
                   $style['day'],
                   day.monthNumber === calenderEntity.month.monthNumber && $style['day-current'],
@@ -477,13 +484,6 @@ watch(
                 ]"
                 :label="String(day?.currentDate)"
                 variant="text"
-                @click="
-                  () =>
-                    handleClickDayButton(day, {
-                      start: tempDate.start ? isEqual(day, tempDate.start) : false,
-                      end: tempDate.end ? isEqual(day, tempDate.end) : false
-                    })
-                "
               />
             </div>
           </template>
@@ -504,9 +504,9 @@ watch(
 
         <TextField
           v-model="selectTime"
+          :class="$style['input']"
           pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
           placeholder="Enter Time"
-          :class="$style['input']"
         />
       </div>
       <div v-else-if="type === 'multiple' && selectDate.start" :class="$style['time-multiple']">
@@ -530,6 +530,7 @@ watch(
         <ButtonBox
           v-for="item in calenderEntity.months"
           :key="item.month"
+          @click="selectMonth = item.monthNumber"
           :class="[
             $style['item'],
             $style.wrapper,
@@ -537,9 +538,8 @@ watch(
             $style.horizontal,
             item.monthNumber === selectMonth && $style['item-active']
           ]"
-          variant="text"
           :label="item.month"
-          @click="selectMonth = item.monthNumber"
+          variant="text"
         />
       </div>
     </template>
@@ -552,6 +552,7 @@ watch(
           :class="[$style['container'], $style.wrapper, $style.flex, $style.horizontal]"
         >
           <ButtonBox
+            @click="selectYear = year"
             :class="[
               $style['item'],
               $style.wrapper,
@@ -559,9 +560,8 @@ watch(
               $style.horizontal,
               year === selectYear && $style['item-active']
             ]"
-            variant="text"
             :label="String(year)"
-            @click="selectYear = year"
+            variant="text"
           />
         </div>
       </div>
@@ -572,25 +572,25 @@ watch(
       :class="[$style['footer'], $style.wrapper, $style.flex, $style.horizontal]"
     >
       <ButtonBox
-        :class="$style['button']"
-        variant="rect"
-        label="Confirm"
         @click="handleConfirm"
+        :class="$style['button']"
+        label="Confirm"
+        variant="rect"
       />
     </div>
     <div v-else :class="[$style['footer'], $style.wrapper, $style.flex, $style.horizontal]">
       <ButtonBox
-        variant="rect"
-        level="secondary"
+        @click="handleCancelSelectyearAndMonth"
         :class="$style['button']"
         label="Cancel"
-        @click="handleCancelSelectyearAndMonth"
+        level="secondary"
+        variant="rect"
       />
       <ButtonBox
-        variant="rect"
+        @click="handleConfirmSelectYearAndMonth"
         :class="$style['button']"
         label="Confirm"
-        @click="handleConfirmSelectYearAndMonth"
+        variant="rect"
       />
     </div>
   </CardBox>
