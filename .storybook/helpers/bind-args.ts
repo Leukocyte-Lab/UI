@@ -7,7 +7,6 @@ const bindArgs = (args: object) =>
       ([key, value]) =>
         `${typeof value === 'string' ? `${key}="${value}"` : value === true ? `${key}` : `:${key}="${(value)}"`}`
     )
-    .map((arg) => (console.log(arg), arg))
     .sort((a, b) =>
       !/^.+=".+"$/.test(a) && /^.+=".+"$/.test(b)
         ? 1
