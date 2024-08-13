@@ -1,3 +1,5 @@
+import '@/assets/styles/main.scss';
+
 import cssVariablesTheme from '@etchteam/storybook-addon-css-variables-theme';
 import { addCollection } from '@iconify/vue/offline';
 import * as FontAwesomeBrands from '@iconify-json/fa6-brands';
