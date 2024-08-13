@@ -1,6 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, expectTypeOf, it } from 'vitest';
 
-import { computed, signal, toggleSignal } from '@/shared/libs/signal';
+import type { ShallowRef } from 'vue';
+
+import { computed, debug, signal, toggleSignal } from '@/shared/libs/signal';
 
 describe('signal', () => {
   const onTrigger = signal(false);
@@ -125,5 +127,39 @@ describe('map signal', () => {
       value.set('ten', 10);
     });
     expect(map()).toEqual(new Map([['seven', 7], ['eight', 8], ['nine', 9], ['ten', 10]]));
+  });
+})
+
+describe('computed', () => {
+  const onTrigger = signal(false);
+
+  it('should keep reactivity', () => {
+    const value = computed(() => onTrigger());
+    expect(value()).toBe(false);
+    onTrigger.set(true);
+    expect(value()).toBe(true);
+  });
+})
+
+describe('toggleSignal', () => {
+  const onTrigger = signal(false);
+
+  it('should toggle boolean signal', () => {
+    expect(onTrigger()).toBe(false);
+    toggleSignal(onTrigger);
+    expect(onTrigger()).toBe(true);
+  });
+})
+
+describe('debug', () => {
+  const value = signal(false);
+
+  it('should return ref', () => {
+    expectTypeOf(debug(value)).toEqualTypeOf<ShallowRef<boolean>>();
+  });
+  it('should return ref value', () => {
+    expect(debug(value).value).toBe(false);
+    value.set(true);
+    expect(debug(value).value).toBe(true);
   });
 })
