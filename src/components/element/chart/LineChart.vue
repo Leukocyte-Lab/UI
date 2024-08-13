@@ -4,10 +4,9 @@ import { computedEager, useElementSize } from '@vueuse/core';
 
 import { useChart } from './chart';
 
-import { parser } from '@/shared/libs/parser';
-
 import BasePoly from '@/components/base/BasePoly.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
+import { parser } from '@/shared/libs/parser';
 
 import type { Chart } from '@/components/element/chart/chart.model';
 
@@ -125,7 +124,7 @@ const plotPolyPaths = computedEager(() =>
 <template>
   <div ref="wrapperRef$" :class="$style['chart-container']">
     <BasePoly :height="height" :width="width">
-      <template #defs> </template>
+      <template #defs />
       <template #path>
         <g id="chart-group-axises" :class="[$style['chart-group-axises']]">
           <path :d="axisPath" :class="[$style['chart-axis'], $style['line'], $style['path']]" />
@@ -149,7 +148,7 @@ const plotPolyPaths = computedEager(() =>
                     <tspan
                       :x="
                         metric.normalized * (width - props.options.offset.x) +
-                        props.options.offset.x
+                          props.options.offset.x
                       "
                       :dy="`${index * 1.2}em`"
                     >
@@ -224,12 +223,12 @@ const plotPolyPaths = computedEager(() =>
                 <foreignObject
                   :x="
                     plot.x.normalized * (width - props.options.offset.x) +
-                    props.options.offset.x +
-                    (index === 0 ? 0 : index === dataset.series.length - 1 ? -280 : -140)
+                      props.options.offset.x +
+                      (index === 0 ? 0 : index === dataset.series.length - 1 ? -280 : -140)
                   "
                   :y="
                     (1 - plot.y.normalized) * (height - props.options.offset.y) -
-                    (plot.y.normalized > 0.5 ? 0 : plot.y.normalized < 0.5 ? 220 : 110)
+                      (plot.y.normalized > 0.5 ? 0 : plot.y.normalized < 0.5 ? 220 : 110)
                   "
                   height="220"
                   width="280"
@@ -243,7 +242,7 @@ const plotPolyPaths = computedEager(() =>
                       <h1 :class="[$style['chart-area'], $style['legend-title']]">
                         {{ parser(plot.data, props.options.title) }}
                       </h1>
-                      <hr />
+                      <hr>
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
                       <template v-if="axis && plot[axisKey]">

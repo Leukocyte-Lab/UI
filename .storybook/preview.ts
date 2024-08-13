@@ -1,12 +1,12 @@
 import cssVariablesTheme from '@etchteam/storybook-addon-css-variables-theme';
-import * as FontAwesomeSolid from '@iconify-json/fa6-solid';
-import * as FontAwesomeRegular from '@iconify-json/fa6-regular';
-import * as FontAwesomeBrands from '@iconify-json/fa6-brands';
 import { addCollection } from '@iconify/vue/offline';
-
-import { cssVariables } from './helpers/css-variables';
+import * as FontAwesomeBrands from '@iconify-json/fa6-brands';
+import * as FontAwesomeRegular from '@iconify-json/fa6-regular';
+import * as FontAwesomeSolid from '@iconify-json/fa6-solid';
 
 import type { Preview } from '@storybook/vue3';
+
+import { cssVariables } from './helpers/css-variables';
 
 addCollection(FontAwesomeSolid.icons);
 addCollection(FontAwesomeRegular.icons);

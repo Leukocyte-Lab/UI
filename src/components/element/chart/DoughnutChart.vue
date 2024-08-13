@@ -2,12 +2,11 @@
 import { ref } from 'vue';
 import { computedEager, useElementSize } from '@vueuse/core';
 
-import Math$ from '@/shared/libs/math';
-
 import { useChart } from './chart';
 
 import BasePoly from '@/components/base/BasePoly.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
+import Math$ from '@/shared/libs/math';
 
 import type { Chart } from '@/components/element/chart/chart.model';
 import type { Vector } from '@/shared/types/vector';
@@ -160,7 +159,7 @@ const normalizedDatasets = computedEager(() =>
                       >
                         <span>{{ plot.x.value }}</span>
                       </h1>
-                      <hr />
+                      <hr>
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
                       <template v-if="!/(x)/.test(axisKey) && axis && plot[axisKey]">

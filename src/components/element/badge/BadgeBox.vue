@@ -25,7 +25,9 @@ const props = withDefaults(defineProps<BadgeBox.Props>(), {
       </label>
     </template>
     <template v-if="props.content">
-      <p :class="$style['badge-content']">{{ props.content }}</p>
+      <p :class="$style['badge-content']">
+        {{ props.content }}
+      </p>
     </template>
   </BaseLink>
 </template>

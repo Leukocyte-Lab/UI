@@ -1,6 +1,6 @@
-import AttackMatrix from './AttackMatrix.vue';
-
 import type { Meta, StoryObj } from '@storybook/vue3';
+
+import AttackMatrix from './AttackMatrix.vue';
 
 const meta: Meta<typeof AttackMatrix> = {
   title: 'Components / Exclusive / AttackMatrix',

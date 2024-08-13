@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useDropZone, useFileDialog, computedEager, useResizeObserver } from '@vueuse/core';
 import { map, pick } from 'lodash-es';
+import { ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
-
-import { signal } from '@/shared/libs/signal';
-import String$ from '@/shared/libs/string';
+import { computedEager, useDropZone, useFileDialog, useResizeObserver } from '@vueuse/core';
 
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
 import ProgressBar from '@/components/element/progress/ProgressBar.vue';
+import { signal } from '@/shared/libs/signal';
+import String$ from '@/shared/libs/string';
 
 import type { FileUploader } from '@/components/element/file/FileUploader.model';
 
@@ -263,9 +262,9 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
             [$style.active]: isOverDropZone
           }
         ]"
-        @click="open"
         variant="dash"
         radius="var(--agh-ref-border-radius-300)"
+        @click="open"
       >
         <Icon :class="$style.icon" :icon="props.icon" />
         <h1>{{ placeholder }}</h1>
@@ -337,17 +336,17 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
             <template v-if="payload.status() === 'succeeded'">
               <ButtonBox
                 :class="$style.button"
-                @click="payload.delete()"
                 icon="fa6-solid:trash"
                 variant="text"
+                @click="payload.delete()"
               />
             </template>
             <template v-else>
               <ButtonBox
                 :class="$style.button"
-                @click="payload.abort()"
                 icon="fa6-solid:xmark"
                 variant="text"
+                @click="payload.abort()"
               />
             </template>
           </CardBox>

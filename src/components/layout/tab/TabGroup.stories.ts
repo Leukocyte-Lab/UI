@@ -1,6 +1,6 @@
-import TabGroup from './TabGroup.vue';
-
 import type { Meta, StoryFn } from '@storybook/vue3';
+
+import TabGroup from './TabGroup.vue';
 
 const meta: Meta<typeof TabGroup> = {
   title: 'Components / Layout / TabGroup',

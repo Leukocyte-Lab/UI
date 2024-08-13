@@ -1,14 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, provide, ref, onMounted } from 'vue';
+import { groupBy, isEqual, map, maxBy, minBy } from 'lodash-es';
+import { computed, onMounted, provide, ref } from 'vue';
 import { usePageLeave, watchDebounced } from '@vueuse/core';
-import { groupBy, maxBy, minBy, map, isEqual } from 'lodash-es';
 
+import type { Graphics } from 'pixi.js';
 import type { Ref, VNode } from 'vue';
 import type { ContainerInst } from 'vue3-pixi';
 
 import { Flow } from '@/components/flow/Flow.model';
-
 import { Math$ } from '@/shared';
 
 import type { Vec2 } from '@/shared/types/vector';
@@ -353,7 +353,7 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
     <template v-if="viewportRef$">
       <Graphics
         @render="
-          (graphics) => {
+          (graphics: Graphics) => {
             graphics.clear();
             graphics.beginFill(
               debugOptions?.showBoundingBox ? '0x56f071' : '0xffffff',

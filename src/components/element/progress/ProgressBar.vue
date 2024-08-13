@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<Progress.Props>(), {
 <template>
   <div :class="[$style['progress-container'], $style[props.variant]]">
     <div :class="[$style['progress-groove'], $style[props.variant]]">
-      <div :class="$style['progress-value']" :style="{ width: `${props.value * 100}%` }"></div>
+      <div :class="$style['progress-value']" :style="{ width: `${props.value * 100}%` }" />
     </div>
   </div>
 </template>

@@ -3,8 +3,8 @@ import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
 
 import { useEventDebounceSignal } from '@/shared/libs/event';
-import { promoteInvalidMessage } from '@/shared/libs/validation';
 import { signal } from '@/shared/libs/signal';
+import { promoteInvalidMessage } from '@/shared/libs/validation';
 
 import type { TextField } from '@/components/element/textfield/TextField.model';
 
@@ -101,7 +101,7 @@ defineExpose({
       v-bind="props"
       :value="props.modelValue"
       @input="onTrigger"
-    />
+    >
     <template v-if="type === 'search'">
       <Icon
         :class="[$style['textfield-icon'], $style['textfield-icon-search'], $style['icon']]"

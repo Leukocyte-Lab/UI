@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { computedEager } from '@vueuse/core';
 import { Icon } from '@iconify/vue/offline';
+import { computedEager } from '@vueuse/core';
 
 import BaseLink from '@/components/base/BaseLink.vue';
 import BasePoly from '@/components/base/BasePoly.vue';
-
-import { useEventDebounceSignal } from '@/shared/libs/event';
-
 import { ButtonBox } from '@/components/element/button/ButtonBox.model';
+import { useEventDebounceSignal } from '@/shared/libs/event';
 
 const props = withDefaults(defineProps<ButtonBox.Props>(), {
   variant: 'rounded',
@@ -61,10 +59,10 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
     ]"
     :aria-disabled="props.disabled"
     :aria-label="props.label"
-    @click.capture="onTrigger"
     v-bind="props.disabled ? { disabled: '', ...$attrs } : $attrs"
     role="button"
     tabindex="0"
+    @click.capture="onTrigger"
   >
     <template v-if="props.label">
       <span :class="[$style['button-content']]">{{ props.label }}</span>

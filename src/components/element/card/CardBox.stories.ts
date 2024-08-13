@@ -1,8 +1,8 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
-
 import CardBox from './CardBox.vue';
+
+import bindArgs from '@/../.storybook/helpers/bind-args';
 
 const meta: Meta<typeof CardBox> = {
   title: 'Components / Element / CardBox',

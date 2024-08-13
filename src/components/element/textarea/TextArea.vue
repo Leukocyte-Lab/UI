@@ -2,11 +2,10 @@
 import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
 
-import { useEventDebounceSignal } from '@/shared/libs/event';
-import { promoteInvalidMessage } from '@/shared/libs/validation';
-import { signal } from '@/shared/libs/signal';
-
 import CardBox from '@/components/element/card/CardBox.vue';
+import { useEventDebounceSignal } from '@/shared/libs/event';
+import { signal } from '@/shared/libs/signal';
+import { promoteInvalidMessage } from '@/shared/libs/validation';
 
 import type { TextArea } from '@/components/element/textarea/TextArea.model';
 

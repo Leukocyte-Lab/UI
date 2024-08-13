@@ -1,13 +1,12 @@
 <script setup lang="ts">
+import { delay } from 'lodash-es';
 import { onMounted, ref } from 'vue';
 import { computedEager, useCssVar, useElementSize } from '@vueuse/core';
-import { delay } from 'lodash-es';
-
-import Math$ from '@/shared/libs/math';
-import { signal } from '@/shared/libs/signal';
 
 import BasePoly from '@/components/base/BasePoly.vue';
 import InnerShadowDeco from '@/components/effect/InnerShadowDeco.vue';
+import Math$ from '@/shared/libs/math';
+import { signal } from '@/shared/libs/signal';
 
 import type { Progress } from '@/components/element/progress/progress.model';
 import type { Vector } from '@/shared/types/vector';

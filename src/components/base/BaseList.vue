@@ -1,14 +1,16 @@
 <script setup lang="ts">
+import { fromPairs, groupBy, toPairs } from 'lodash-es';
 import { computedEager } from '@vueuse/core';
-import { fromPairs, toPairs, groupBy } from 'lodash-es';
+
+import type { VNode } from 'vue';
 
 import type { BaseList } from '@/components/base/BaseList.model';
-import type { VNode } from 'vue';
+import type { EmptyObject } from '@/shared/types/object';
 
 defineSlots<{
   default: (props: { item: BaseList.Props['items'][number]; index: number }) => VNode;
   group?: (props: { group: string | number; items: BaseList.Props['items'] }) => VNode;
-  placeholder?: (props: {}) => VNode;
+  placeholder?: (props: EmptyObject) => VNode;
 }>();
 
 const props = defineProps<BaseList.Props>();

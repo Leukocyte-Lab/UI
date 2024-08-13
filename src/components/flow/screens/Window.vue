@@ -1,17 +1,16 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, ref, reactive } from 'vue';
-import { isClient, useElementSize } from '@vueuse/core';
+import { computed, reactive,ref } from 'vue';
 import { Application } from 'vue3-pixi';
+import { isClient, useElementSize } from '@vueuse/core';
 
-import type { VNode } from 'vue';
 import type { Cursor } from 'pixi.js';
+import type { VNode } from 'vue';
 
 import { FlowKit } from '@/components/flow';
 import { Flow } from '@/components/flow/Flow.model';
-
-import { uuid } from '@/shared/libs/uuid';
 import { signal } from '@/shared/libs/signal';
+import { uuid } from '@/shared/libs/uuid';
 
 const props = withDefaults(defineProps<Flow.UI.Screen.Window.Props>(), {
   devtools: false,

@@ -2,9 +2,9 @@ import { pick } from 'lodash-es';
 
 import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
-
 import SearchBar from './SearchBar.vue';
+
+import bindArgs from '@/../.storybook/helpers/bind-args';
 
 const meta: Meta<typeof SearchBar> = {
   title: 'Components / Element / SearchBar',

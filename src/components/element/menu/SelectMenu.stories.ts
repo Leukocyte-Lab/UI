@@ -2,9 +2,9 @@ import { pick } from 'lodash-es';
 
 import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
-
 import SelectMenu from './SelectMenu.vue';
+
+import bindArgs from '@/../.storybook/helpers/bind-args';
 
 
 const meta: Meta<typeof SelectMenu> = {

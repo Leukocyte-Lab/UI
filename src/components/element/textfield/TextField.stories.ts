@@ -1,11 +1,11 @@
 import { omit } from 'lodash-es';
+import { fn } from '@storybook/test';
 
 import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
-
 import TextField from './TextField.vue';
-import { fn } from '@storybook/test';
+
+import bindArgs from '@/../.storybook/helpers/bind-args';
 
 const meta: Meta<typeof TextField> = {
   title: 'Components / Element / TextField',

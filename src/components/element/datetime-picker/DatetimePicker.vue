@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { ref, computed, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { Icon } from '@iconify/vue/offline';
 
+import ButtonBox from '@/components/element/button/ButtonBox.vue';
+import CardBox from '@/components/element/card/CardBox.vue';
+import TextField from '@/components/element/textfield/TextField.vue';
 import { parser } from '@/shared/libs/parser';
 
-import CardBox from '@/components/element/card/CardBox.vue';
-import ButtonBox from '@/components/element/button/ButtonBox.vue';
-import TextField from '@/components/element/textfield/TextField.vue';
 import type { DatetimePicker } from './DatetimePicker.model';
 
 const props = withDefaults(defineProps<DatetimePicker.Props>(), {
@@ -398,16 +398,16 @@ watch(
         icon="fa6-solid:angle-left"
         variant="text"
         @click="calenderEntity.goToPreviousMonth"
-      ></ButtonBox>
+      />
       <div :class="[$style['label'], $style.wrapper, $style.flex, $style.horizontal]">
         <div :class="[$style['item'], $style.wrapper, $style.flex, $style.horizontal]">
           <ButtonBox
             :class="[$style['select'], dropdownActiveType === 'year' && $style['selected']]"
             :label="String(calenderEntity.year)"
             :icon="`fa6-solid:angle-${dropdownActiveType === 'year' ? 'up' : 'down'}`"
-            @click="toggleDropdown('year')"
             variant="text"
-          ></ButtonBox>
+            @click="toggleDropdown('year')"
+          />
         </div>
 
         <div :class="[$style['item'], $style.wrapper, $style.flex, $style.horizontal]">
@@ -415,9 +415,9 @@ watch(
             :class="[$style['select'], dropdownActiveType === 'month' && $style['selected']]"
             :label="calenderEntity.month.monthShort"
             :icon="`fa6-solid:angle-${dropdownActiveType === 'month' ? 'up' : 'down'}`"
-            @click="toggleDropdown('month')"
             variant="text"
-          ></ButtonBox>
+            @click="toggleDropdown('month')"
+          />
         </div>
       </div>
 
@@ -426,19 +426,19 @@ watch(
         :class="$style['button']"
         variant="text"
         @click="calenderEntity.goToNextMonth"
-      ></ButtonBox>
+      />
     </header>
 
     <template v-if="!dropdownActiveType">
       <div :class="$style['calendar']">
         <div :class="$style['week']">
-          <p v-for="item in calenderEntity.weekDays" :key="item">{{ item }}</p>
+          <p v-for="item in calenderEntity.weekDays" :key="item">
+            {{ item }}
+          </p>
         </div>
         <div :class="$style['days-grid']">
           <template v-for="day in monthDays" :key="day?.timestamp">
             <div
-              @mouseover="() => handleHoverDayButton(day)"
-              @mouseout="() => handleLeaveDayButton(day)"
               :class="[
                 $style['item'],
                 $style.wrapper,
@@ -457,6 +457,8 @@ watch(
                   $style['item-end'],
                 type === 'multiple' && isBetween(day, selectDate) && $style['item-duration']
               ]"
+              @mouseover="() => handleHoverDayButton(day)"
+              @mouseout="() => handleLeaveDayButton(day)"
             >
               <ButtonBox
                 :class="[
@@ -482,7 +484,7 @@ watch(
                       end: tempDate.end ? isEqual(day, tempDate.end) : false
                     })
                 "
-              ></ButtonBox>
+              />
             </div>
           </template>
         </div>
@@ -492,18 +494,22 @@ watch(
         :class="[$style['time'], $style.wrapper, $style.flex, $style.horizontal]"
       >
         <div :class="[$style['label-container'], $style.wrapper, $style.flex, $style.horizontal]">
-          <p :class="$style['label']">Time</p>
-          <p :class="$style['description']">24-hour format</p>
+          <p :class="$style['label']">
+            Time
+          </p>
+          <p :class="$style['description']">
+            24-hour format
+          </p>
         </div>
 
         <TextField
-          pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
           v-model="selectTime"
+          pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
           placeholder="Enter Time"
           :class="$style['input']"
         />
       </div>
-      <div :class="$style['time-multiple']" v-else-if="type === 'multiple' && selectDate.start">
+      <div v-else-if="type === 'multiple' && selectDate.start" :class="$style['time-multiple']">
         <p :class="$style['description']">
           {{
             `Selected Date: ${parser(
@@ -523,6 +529,7 @@ watch(
       <div :class="[$style['month-list'], $style.wrapper, $style.flex, $style.vertical]">
         <ButtonBox
           v-for="item in calenderEntity.months"
+          :key="item.month"
           :class="[
             $style['item'],
             $style.wrapper,
@@ -530,11 +537,10 @@ watch(
             $style.horizontal,
             item.monthNumber === selectMonth && $style['item-active']
           ]"
-          :key="item.month"
           variant="text"
           :label="item.month"
           @click="selectMonth = item.monthNumber"
-        ></ButtonBox>
+        />
       </div>
     </template>
 
@@ -556,7 +562,7 @@ watch(
             variant="text"
             :label="String(year)"
             @click="selectYear = year"
-          ></ButtonBox>
+          />
         </div>
       </div>
     </template>
@@ -570,7 +576,7 @@ watch(
         variant="rect"
         label="Confirm"
         @click="handleConfirm"
-      ></ButtonBox>
+      />
     </div>
     <div v-else :class="[$style['footer'], $style.wrapper, $style.flex, $style.horizontal]">
       <ButtonBox
@@ -579,13 +585,13 @@ watch(
         :class="$style['button']"
         label="Cancel"
         @click="handleCancelSelectyearAndMonth"
-      ></ButtonBox>
+      />
       <ButtonBox
         variant="rect"
         :class="$style['button']"
         label="Confirm"
         @click="handleConfirmSelectYearAndMonth"
-      ></ButtonBox>
+      />
     </div>
   </CardBox>
 </template>

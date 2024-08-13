@@ -1,5 +1,5 @@
-import type { SelectMenu as SelectMenuNS } from '@/components/element/menu/SelectMenu.model';
 import type { ButtonBox as ButtonBoxNS } from '@/components/element/button/ButtonBox.model';
+import type { SelectMenu as SelectMenuNS } from '@/components/element/menu/SelectMenu.model';
 import type { ObjectLike } from '@/shared/types/object';
 
 export namespace DropDown {

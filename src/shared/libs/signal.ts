@@ -1,4 +1,4 @@
-import { shallowRef, triggerRef, computed as _computed } from 'vue';
+import { computed as _computed,shallowRef, triggerRef } from 'vue';
 
 import type { ComputedGetter, ShallowRef } from 'vue';
 
