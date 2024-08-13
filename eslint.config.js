@@ -46,7 +46,29 @@ export default [
   {
     rules: {
       'vue/no-unused-vars': ['error', { ignorePattern: '^_' }],
-      'vue/max-attributes-per-line': ['error', { singleline: 5 }]
+      'vue/max-attributes-per-line': ['error', { singleline: 5 }],
+      'vue/attributes-order': [
+        'warn',
+        {
+          order: [
+            'DEFINITION',
+            'LIST_RENDERING',
+            'CONDITIONALS',
+            'RENDER_MODIFIERS',
+            'OTHER_DIRECTIVES',
+            'UNIQUE',
+            'GLOBAL',
+            'TWO_WAY_BINDING',
+            'EVENTS',
+            'SLOT',
+            'ATTR_DYNAMIC',
+            'CONTENT',
+            'ATTR_STATIC',
+            'ATTR_SHORTHAND_BOOL'
+          ],
+          alphabetical: true
+        }
+      ]
     }
   },
 
