@@ -2,9 +2,9 @@ import { pick } from 'lodash-es';
 
 import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
-
 import SwitchButton from './SwitchButton.vue';
+
+import bindArgs from '@/../.storybook/helpers/bind-args';
 
 const meta: Meta<typeof SwitchButton> = {
   title: 'Components / Element / SwitchButton',

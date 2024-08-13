@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, toRefs } from 'vue';
-import { computedEager, useElementSize, useCssVar } from '@vueuse/core';
 import { delay } from 'lodash-es';
-
-import Math$ from '@/shared/libs/math';
+import { computed, onMounted, ref, toRefs } from 'vue';
+import { computedEager, useCssVar,useElementSize } from '@vueuse/core';
 
 import { useChart } from './chart';
-
-import { signal } from '@/shared/libs/signal';
 
 import BasePoly from '@/components/base/BasePoly.vue';
 import RoundEffect from '@/components/effect/RoundEffect.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
+import Math$ from '@/shared/libs/math';
+import { signal } from '@/shared/libs/signal';
 
 import type { Chart } from '@/components/element/chart/chart.model';
 import type { Vector } from '@/shared/types/vector';
@@ -170,17 +168,17 @@ onMounted(() => {
               <foreignObject
                 :x="
                   center.x +
-                  radius * Math$.cos(Math$.rad(metric.normalized * 360 - 90)) -
-                  (metric.normalized % 0.5 === 0
-                    ? radius / 2
-                    : metric.normalized > 0.5
-                    ? radius
-                    : 0)
+                    radius * Math$.cos(Math$.rad(metric.normalized * 360 - 90)) -
+                    (metric.normalized % 0.5 === 0
+                      ? radius / 2
+                      : metric.normalized > 0.5
+                        ? radius
+                        : 0)
                 "
                 :y="
                   center.y +
-                  radius * 1.1 * Math$.sin(Math$.rad(metric.normalized * 360 - 90)) -
-                  radius / 6
+                    radius * 1.1 * Math$.sin(Math$.rad(metric.normalized * 360 - 90)) -
+                    radius / 6
                 "
                 :height="radius / 3"
                 :width="radius"
@@ -195,13 +193,13 @@ onMounted(() => {
                     metric.normalized % 0.5 === 0
                       ? $style['font-align--center']
                       : metric.normalized < 0.5
-                      ? $style['font-align--left']
-                      : $style['font-align--right'],
+                        ? $style['font-align--left']
+                        : $style['font-align--right'],
                     metric.normalized % 0.5 === 0
                       ? $style['box-align--center']
                       : metric.normalized < 0.5
-                      ? $style['box-align--left']
-                      : $style['box-align--right']
+                        ? $style['box-align--left']
+                        : $style['box-align--right']
                   ]"
                 >
                   {{ metric.value }}
@@ -238,13 +236,13 @@ onMounted(() => {
                   ]"
                   :cx="
                     center.x +
-                    radius *
+                      radius *
                       (0.1 + 0.8 * plot.y.normalized) *
                       Math$.cos(Math$.rad(plot.x.normalized * 360 - 90))
                   "
                   :cy="
                     center.y +
-                    radius *
+                      radius *
                       (0.1 + 0.8 * plot.y.normalized) *
                       Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
                   "
@@ -254,13 +252,13 @@ onMounted(() => {
                   :class="[$style['chart-area'], $style['radar'], $style['point'], $style['plot']]"
                   :cx="
                     center.x +
-                    radius *
+                      radius *
                       (0.1 + 0.8 * plot.y.normalized) *
                       Math$.cos(Math$.rad(plot.x.normalized * 360 - 90))
                   "
                   :cy="
                     center.y +
-                    radius *
+                      radius *
                       (0.1 + 0.8 * plot.y.normalized) *
                       Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
                   "
@@ -269,14 +267,14 @@ onMounted(() => {
                 <foreignObject
                   :x="
                     center.x +
-                    radius *
+                      radius *
                       (0.1 + 0.8 * plot.y.normalized) *
                       Math$.cos(Math$.rad(plot.x.normalized * 360 - 90)) -
-                    130
+                      130
                   "
                   :y="
                     center.y +
-                    radius *
+                      radius *
                       (0.1 + 0.8 * plot.y.normalized) *
                       Math$.sin(Math$.rad(plot.x.normalized * 360 - 90))
                   "
@@ -293,7 +291,7 @@ onMounted(() => {
                         <span>{{ plot.x.value }}</span>
                         <span :class="$style['legend-value']">{{ plot.y.value }}</span>
                       </h1>
-                      <hr />
+                      <hr>
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
                       <template v-if="!/(x|y)/.test(axisKey) && axis && plot[axisKey]">

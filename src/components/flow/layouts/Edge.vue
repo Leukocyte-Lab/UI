@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, inject, toRef, ref, onBeforeUnmount, onBeforeUpdate } from 'vue';
+import { Color, Graphics, LINE_CAP, LINE_JOIN } from 'pixi.js';
+import { computed, inject, onBeforeUnmount, onBeforeUpdate,ref, toRef } from 'vue';
 import { computedInject, useMutationObserver } from '@vueuse/core';
-import { Color, LINE_CAP, LINE_JOIN } from 'pixi.js';
 
 import type { GraphicsInst } from 'vue3-pixi';
 
@@ -542,7 +542,7 @@ onBeforeUnmount(() => {
     <Graphics
       :position="startPoint"
       @render="
-        (graphics) => {
+        (graphics: Graphics) => {
           graphics.clear();
           graphics.beginFill(0x3249de);
           graphics.drawCircle(0, 0, 5);
@@ -574,7 +574,7 @@ onBeforeUnmount(() => {
       <Graphics
         :position="endPoint"
         @render="
-          (graphics) => {
+          (graphics: Graphics) => {
             graphics.clear();
             graphics.beginFill(0xf9de32);
             graphics.drawCircle(0, 0, 5);

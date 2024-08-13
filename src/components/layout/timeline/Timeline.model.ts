@@ -1,5 +1,5 @@
-import type { Dictionary } from '@/shared/types/map';
 import type { EventSignalOptions } from '@/shared/libs/event';
+import type { Dictionary } from '@/shared/types/map';
 
 export namespace Timeline {
   export namespace Range {

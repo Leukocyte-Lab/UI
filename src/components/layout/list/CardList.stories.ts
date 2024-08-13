@@ -1,6 +1,6 @@
-import CardList from './CardList.vue';
-
 import type { Meta, StoryFn } from '@storybook/vue3';
+
+import CardList from './CardList.vue';
 
 export default {
   title: 'Components / Layout / CardList',

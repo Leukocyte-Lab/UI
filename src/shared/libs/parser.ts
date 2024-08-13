@@ -1,12 +1,12 @@
-import { last, flatMap, join, uniq, take } from 'lodash-es';
 import { formatInTimeZone, getTimezoneOffset } from 'date-fns-tz';
+import { flatMap, join, last, take,uniq } from 'lodash-es';
 import XRegExp from 'xregexp';
 
 import type { NamedGroupsArray } from 'xregexp';
 
-import { useI18n } from '@/middleware/i18n/i18n.service';
-
 import { selector } from './selector';
+
+import { useI18n } from '@/middleware/i18n/i18n.service';
 
 import type { ObjectLike } from '@/shared/types/object';
 import type { Optional } from '@/shared/types/optional';

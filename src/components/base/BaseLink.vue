@@ -22,14 +22,14 @@ const isExternal = computedEager(() =>
     v-bind="
       props.link
         ? {
-            [isExternal ? 'href' : 'to']: props.link,
-            ...(isExternal
-              ? {
-                  target: '_blank',
-                  rel: 'noopener noreferrer'
-                }
-              : {})
-          }
+          [isExternal ? 'href' : 'to']: props.link,
+          ...(isExternal
+            ? {
+              target: '_blank',
+              rel: 'noopener noreferrer'
+            }
+            : {})
+        }
         : {}
     "
   >

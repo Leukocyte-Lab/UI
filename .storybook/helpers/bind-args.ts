@@ -1,6 +1,6 @@
 import String$ from '@/shared/libs/string';
 
-const bindArgs = (args: Object) =>
+const bindArgs = (args: object) =>
   Object.entries(args)
     .map(([key, value]) => [String$.toKebabCase(key), value])
     .map(

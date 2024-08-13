@@ -2,7 +2,7 @@ import { JSONPath } from 'jsonpath-plus';
 import { get, isEmpty } from 'lodash-es';
 
 import type { ObjectLike } from '@/shared/types/object';
-import type { Optional, Nullable, ValueOf } from '@/shared/types/optional';
+import type { Nullable, Optional, ValueOf } from '@/shared/types/optional';
 
 export const selector = <T extends ObjectLike = ObjectLike>(
   datasets: Optional<T>,

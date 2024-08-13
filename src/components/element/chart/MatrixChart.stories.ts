@@ -1,6 +1,6 @@
-import MatrixChart from './MatrixChart.vue';
-
 import type { Meta, StoryObj } from '@storybook/vue3';
+
+import MatrixChart from './MatrixChart.vue';
 
 const meta: Meta<typeof MatrixChart> = {
   title: 'Components / Chart / MatrixChart',

@@ -1,6 +1,6 @@
-import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
 import { Icon } from '@iconify/vue/offline';
+import { mount } from '@vue/test-utils';
 
 import ButtonBoxComponent from './ButtonBox.vue';
 

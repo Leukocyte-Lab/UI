@@ -2,7 +2,6 @@
 import { computed } from 'vue';
 
 import BaseLink from '@/components/base/BaseLink.vue';
-
 import { useEventDebounceSignal } from '@/shared/libs/event';
 
 import type { CardBox } from '@/components/element/card/CardBox.model';

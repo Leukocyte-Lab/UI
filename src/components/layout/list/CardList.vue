@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, onMounted, onUpdated, ref, watch } from 'vue';
 import {
   filter,
   first,
@@ -13,23 +12,23 @@ import {
   orderBy,
   uniq
 } from 'lodash-es';
-import { computedEager, useResizeObserver } from '@vueuse/core';
+import { computed, onMounted, onUpdated, ref, watch } from 'vue';
 import { vOnClickOutside } from '@vueuse/components';
+import { computedEager, useResizeObserver } from '@vueuse/core';
 
 import type { VNode } from 'vue';
-
-import { signal } from '@/shared/libs/signal';
 
 import BaseList from '@/components/base/BaseList.vue';
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
-import TextField from '@/components/element/textfield/TextField.vue';
 import SelectMenu from '@/components/element/menu/SelectMenu.vue';
-
-import type { ObjectLike } from '@/shared/types/object';
-import type { Signal } from '@/shared/libs/signal';
-import type { CardList } from './CardList.model';
+import TextField from '@/components/element/textfield/TextField.vue';
 import { selector } from '@/shared/libs/selector';
+import { signal } from '@/shared/libs/signal';
+
+import type { CardList } from './CardList.model';
+import type { Signal } from '@/shared/libs/signal';
+import type { EmptyObject, ObjectLike } from '@/shared/types/object';
 
 defineSlots<{
   default: (props: {
@@ -37,8 +36,8 @@ defineSlots<{
     index: number;
     selected: boolean;
   }) => VNode;
-  footer?: (props: {}) => VNode;
-  placeholder?: (props: {}) => VNode;
+  footer?: (props: EmptyObject) => VNode;
+  placeholder?: (props: EmptyObject) => VNode;
 }>();
 
 const props = withDefaults(defineProps<CardList.Props>(), {
@@ -216,17 +215,17 @@ watch([sort, filters, search, selected], () => {
       <TextField v-model="search" :class="$style['list-toolbar-search']" type="search" />
       <template v-if="props.filterOptions && !isEmpty(props.filterOptions)">
         <div
+          v-on-click-outside="() => closeFilterMenu.set(true)"
           :class="$style['list-toolbar-tool']"
           @keydown.esc="closeFilterMenu.set(true)"
           @keydown.enter="closeFilterMenu.set(true)"
-          v-on-click-outside="() => closeFilterMenu.set(true)"
         >
           <ButtonBox
             :class="$style['list-toolbar-button']"
             :clicked="!closeFilterMenu()"
-            @click="toggleMenu(closeFilterMenu)"
             icon="fa6-solid:filter"
             variant="text"
+            @click="toggleMenu(closeFilterMenu)"
           />
           <template v-if="filters.length > 0">
             <span :class="$style['list-toolbar-button-deco']">
@@ -235,11 +234,11 @@ watch([sort, filters, search, selected], () => {
           </template>
           <template v-if="!closeFilterMenu()">
             <SelectMenu
+              v-model="filters"
               :class="$style['list-toolbar-menu']"
               :fields="filterFields"
               :options="filterOptions"
               :multiple="true"
-              v-model="filters"
               label="Filter"
               group-by="label"
             />
@@ -248,24 +247,24 @@ watch([sort, filters, search, selected], () => {
       </template>
       <template v-if="props.sortOptions && !isEmpty(props.sortOptions)">
         <div
+          v-on-click-outside="() => closeSortMenu.set(true)"
           :class="$style['list-toolbar-tool']"
           @keydown.esc="closeSortMenu.set(true)"
           @keydown.enter="closeSortMenu.set(true)"
-          v-on-click-outside="() => closeSortMenu.set(true)"
         >
           <ButtonBox
             :class="$style['list-toolbar-button']"
             :icon="sort?.icon ?? 'fa6-solid:arrow-down-wide-short'"
             :clicked="!closeSortMenu()"
-            @click="toggleMenu(closeSortMenu)"
             variant="text"
+            @click="toggleMenu(closeSortMenu)"
           />
           <template v-if="!closeSortMenu()">
             <SelectMenu
+              v-model="sort"
               :class="$style['list-toolbar-menu']"
               :fields="sortFields"
               :options="props.sortOptions"
-              v-model="sort"
             />
           </template>
         </div>
@@ -285,16 +284,16 @@ watch([sort, filters, search, selected], () => {
           <!-- @slot Use this placeholder slot to display the placeholder when items are empty -->
           <slot name="placeholder" />
         </template>
-        <template v-slot:group="slotProps">
+        <template #group="slotProps">
           <label :class="$style['list-item-label']">{{ slotProps.group }}</label>
         </template>
-        <template v-slot="slotProps">
+        <template #default="slotProps">
           <CardBox
             :class="$style['list-item']"
             :color="slotProps.item.selected ? 'blue' : 'default'"
             :clickable="true"
-            @click="onSelect(slotProps.item)"
             radius="var(--agh-ref-border-radius-400)"
+            @click="onSelect(slotProps.item)"
           >
             <!-- @slot Use this default slot to access item in items -->
             <slot

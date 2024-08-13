@@ -1,6 +1,8 @@
-import { ref } from 'vue';
 import { describe, expect, it } from 'vitest';
+import { ref } from 'vue';
+
 import { useSearch } from '../search';
+
 import type { MapProxy, ObjectLike, Optional } from '@/shared';
 
 const mockArrayData = [

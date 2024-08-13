@@ -1,13 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref, onMounted, reactive, computed, inject } from 'vue';
+import { computed, inject,onMounted, reactive, ref } from 'vue';
 import { External } from 'vue3-pixi';
 import { computedInject, useElementSize } from '@vueuse/core';
 
+import type { Graphics } from 'pixi.js';
 import type { VNode } from 'vue';
 
-import { Flow } from '../Flow.model';
 import { FlowKit } from '..';
+import { Flow } from '../Flow.model';
 
 import Map$ from '@/shared/libs/map';
 
@@ -104,7 +105,7 @@ onMounted(() => {
     <Container :position="node?.position">
       <Graphics
         @render="
-          (graphics) => {
+          (graphics: Graphics) => {
             graphics.clear();
             graphics.beginFill(0xde3249);
             graphics.drawRect(0, 0, boundingBox.width, boundingBox.height);

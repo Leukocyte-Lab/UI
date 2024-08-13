@@ -1,9 +1,9 @@
-import Window from '@/components/flow/screens/Window.vue';
-import Viewport from '@/components/flow/screens/Viewport.vue';
-import Toolbar from '@/components/flow/layouts/Toolbar.vue';
+import DevTool from '@/components/flow/helpers/DevTool.vue';
 import Edge from '@/components/flow/layouts/Edge.vue';
 import Node from '@/components/flow/layouts/Node.vue';
-import DevTool from '@/components/flow/helpers/DevTool.vue';
+import Toolbar from '@/components/flow/layouts/Toolbar.vue';
+import Viewport from '@/components/flow/screens/Viewport.vue';
+import Window from '@/components/flow/screens/Window.vue';
 
 export type { Flow } from '@/components/flow/Flow.model';
 

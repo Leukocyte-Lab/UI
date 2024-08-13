@@ -1,11 +1,11 @@
-import { fn } from '@storybook/test';
 import { omit } from 'lodash-es';
+import { fn } from '@storybook/test';
 
 import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
-
 import TextArea from './TextArea.vue';
+
+import bindArgs from '@/../.storybook/helpers/bind-args';
 
 const meta: Meta<typeof TextArea> = {
   title: 'Components / Element / TextArea',

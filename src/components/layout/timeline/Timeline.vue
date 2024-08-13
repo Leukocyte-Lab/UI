@@ -1,18 +1,17 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, onBeforeUpdate, ref } from 'vue';
-import { useTimestamp, useElementSize, useScroll } from '@vueuse/core';
 import { orderBy } from 'lodash-es';
+import { computed, onBeforeUpdate, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
+import { useElementSize, useScroll,useTimestamp } from '@vueuse/core';
 
 import type { DefineProps } from 'vue';
 
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
-
-import { parser } from '@/shared/libs/parser';
 import { useEventDebounceSignal } from '@/shared/libs/event';
 import Map$ from '@/shared/libs/map';
+import { parser } from '@/shared/libs/parser';
 
 import type { Timeline } from './Timeline.model';
 
@@ -173,10 +172,10 @@ onBeforeUpdate(() => {
       <ButtonBox
         :class="$style.button"
         :disabled="x + width >= timelineWidth"
-        @click="startFollow()"
         icon="fa6-solid:forward-step"
         variant="square"
         level="secondary"
+        @click="startFollow()"
       />
     </header>
     <div

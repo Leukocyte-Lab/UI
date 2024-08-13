@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { useElementSize } from '@vueuse/core';
 import { Icon } from '@iconify/vue/offline';
+import { useElementSize } from '@vueuse/core';
 
 import type { VNode } from 'vue';
 
@@ -110,7 +110,7 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
         mode="out-in"
         appear
       >
-        <slot :name="selected.id" :tab="selected" :id="selected.id" :index="selectedIndex" />
+        <slot :id="selected.id" :name="selected.id" :tab="selected" :index="selectedIndex" />
       </Transition>
     </template>
   </div>

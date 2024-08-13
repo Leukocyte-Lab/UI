@@ -2,11 +2,10 @@
 import { computed } from 'vue';
 import { vOnClickOutside } from '@vueuse/components';
 
-import SelectMenu from '@/components/element/menu/SelectMenu.vue';
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
-
-import { selector } from '@/shared/libs/selector';
+import SelectMenu from '@/components/element/menu/SelectMenu.vue';
 import { parser } from '@/shared/libs/parser';
+import { selector } from '@/shared/libs/selector';
 import { signal } from '@/shared/libs/signal';
 
 import type { DropDown } from '@/components/element/dropdown/DropDown.model';
@@ -44,8 +43,8 @@ const closeMenu = signal(true);
 
 <template>
   <div
-    :class="[$style['dropdown-container'], $style[size]]"
     v-on-click-outside="() => closeMenu.set(true)"
+    :class="[$style['dropdown-container'], $style[size]]"
   >
     <ButtonBox
       :disabled="props.disabled"
@@ -55,8 +54,8 @@ const closeMenu = signal(true);
             ? props.label ?? props.placeholder
             : props.placeholder ?? props.label
           : (props.fields.title &&
-              (parser(props.modelValue, props.fields.title) ||
-                selector(props.modelValue, props.fields.title))) ||
+            (parser(props.modelValue, props.fields.title) ||
+              selector(props.modelValue, props.fields.title))) ||
             (selector(props.modelValue, props.fields.key) ?? props.label ?? props.placeholder)
       "
       :icon="closeMenu() ? 'fa6-solid:chevron-down' : 'fa6-solid:chevron-up'"
@@ -70,6 +69,7 @@ const closeMenu = signal(true);
     />
     <template v-if="items.length > 0 && !closeMenu()">
       <SelectMenu
+        v-model="selected"
         :class="$style['dropdown-menu']"
         :options="items"
         :label="props.label"
@@ -77,7 +77,6 @@ const closeMenu = signal(true);
         :multiple="props.multiple"
         :use-search="props.useSearch"
         :group-by="props.groupBy"
-        v-model="selected"
       />
     </template>
   </div>
