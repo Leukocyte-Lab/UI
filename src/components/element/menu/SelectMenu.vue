@@ -292,7 +292,7 @@ onMounted(() => {
       opacity: var(--agh-ref-opacity-300);
     }
 
-    &:not(.disabled) {
+    &:not(.disabled, .selected) {
       &:hover,
       &.hover {
         background-color: var(--agh-ref-color-grayscale-200);
