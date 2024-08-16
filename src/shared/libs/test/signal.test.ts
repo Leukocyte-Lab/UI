@@ -20,7 +20,6 @@ describe('signal', () => {
   it('should update value', () => {
     onTrigger.update((value) => {
       expect(value).toBe(true);
-      console.log(onTrigger);
       return !value;
     });
     expect(onTrigger()).toBe(false);
