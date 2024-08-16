@@ -7,7 +7,6 @@ import Map$ from '@/shared/libs/map';
 
 import type { Callback } from '@/shared/types/callback';
 import type { GetterFn } from '@/shared/types/fn';
-import type { Dictionary } from '@/shared/types/map';
 import type { ObjectLike } from '@/shared/types/object';
 
 export namespace Search {
@@ -23,7 +22,7 @@ export namespace Search {
         strict?: never;
       }
     | {
-        phraseSearch: true;
+        phraseSearch?: true;
         strict?: boolean;
       }
   );
@@ -34,129 +33,132 @@ export namespace Search {
   };
 }
 
-function useSearch<T extends string | number>(args: {
+function useSearch<T extends string | number>(args?: {
   datasets?: MaybeRef<T[]>;
-  initQuery?: MaybeRef<string>;
+  query?: MaybeRef<string>;
   getters?: never;
-  options?: Search.Options;
+  options?: MaybeRef<Search.Options>;
 }): {
   query: Ref<string>;
   result: ComputedRef<T[]>;
 } & Search.BaseExpose;
-function useSearch<T extends string | number>(args: {
-  datasets?: MaybeRef<Map<unknown, T>>;
-  initQuery?: MaybeRef<string>;
+function useSearch<T extends string | number, K extends string | number | symbol>(args?: {
+  datasets?: MaybeRef<Map<K, T>>;
+  query?: MaybeRef<string>;
   getters?: never;
-  options?: Search.Options;
+  options?: MaybeRef<Search.Options>;
 }): {
   query: Ref<string>;
-  result: ComputedRef<Map<unknown, T>>;
+  result: ComputedRef<Map<K, T>>;
 } & Search.BaseExpose;
-function useSearch<T extends ObjectLike>(args: {
+function useSearch<T extends ObjectLike>(args?: {
   datasets?: MaybeRef<T[]>;
-  initQuery?: MaybeRef<string>;
-  getters?: Search.ValuesGetter<T, string>[];
-  options?: Search.Options;
+  query?: MaybeRef<string>;
+  getters?: MaybeRef<Search.ValuesGetter<T, string>[]>;
+  options?: MaybeRef<Search.Options>;
 }): {
   query: Ref<string>;
   result: ComputedRef<T[]>;
 } & Search.BaseExpose;
-function useSearch<T extends ObjectLike>(args: {
-  datasets?: MaybeRef<Dictionary<T, keyof T>>;
-  initQuery?: MaybeRef<string>;
-  getters?: Search.ValuesGetter<T, string>[];
-  options?: Search.Options;
+function useSearch<T extends ObjectLike, K extends string | number | symbol>(args?: {
+  datasets?: MaybeRef<Map<K, T>>;
+  query?: MaybeRef<string>;
+  getters?: MaybeRef<Search.ValuesGetter<T, string>[]>;
+  options?: MaybeRef<Search.Options>;
 }): {
   query: Ref<string>;
-  result: ComputedRef<Dictionary<T, keyof T>>;
+  result: ComputedRef<Map<K, T>>;
 } & Search.BaseExpose;
-function useSearch<T extends Search.AcceptableValue>({
+function useSearch<T extends Search.AcceptableValue, K extends string | number | symbol>({
   datasets,
-  initQuery,
+  query,
   getters,
-  options = {
+  options
+}: {
+  datasets?: MaybeRef<T[]> | MaybeRef<Map<K, T>>;
+  query?: MaybeRef<string>;
+  getters?: MaybeRef<Search.ValuesGetter<T, string>[]>;
+  options?: MaybeRef<Search.Options>;
+} = {}): {
+  query: Ref<string>;
+  result: ComputedRef<T[] | Map<K, T>>;
+} & Search.BaseExpose {
+  const $query = toRef(query || '');
+  const $datasets = computed(() => toValue(datasets) ?? []);
+  const $getters = computed(() => toValue(getters) ?? ['']);
+  const $options = computed(() => ({
     caseSensitive: false,
     phraseSearch: true,
-    strict: false
-  }
-}: {
-  datasets?: MaybeRef<T[]> | MaybeRef<Dictionary<T, keyof T>>;
-  initQuery?: MaybeRef<string>;
-  getters?: Search.ValuesGetter<T, string>[];
-  options?: Search.Options;
-}): {
-  query: Ref<string>;
-  result: ComputedRef<T[] | Dictionary<T, keyof T>>;
-} & Search.BaseExpose {
-  const query = toRef(initQuery || '');
-  const data = computed(() => toValue(datasets) ?? []);
+    strict: false,
+    ...toValue(options)
+  }));
 
   const result = computed(() => {
-    if (!query.value) {
-      return data.value;
+    if (!$query.value) {
+      return $datasets.value;
     } else {
       const res = (
-        Array.isArray(data.value)
-          ? new Map$(data.value.map((payload, index) => [index, payload]))
-          : new Map$(data.value)
+        Array.isArray($datasets.value)
+          ? new Map$($datasets.value.map((data, index) => [index, data]))
+          : new Map$($datasets.value)
       )
-        .map((payload, key) => [
+        .map((data, key) => [
           key,
           {
-            payload,
-            values: (getters ?? ['']).map((getter) => valuesGetter(payload, getter, true))
+            data,
+            values: $getters.value.map((getter) => valuesGetter(data, getter, true))
           }
         ])
-        .map(({ payload, values }, key) => [
+        .map(({ data, values }, key) => [
           key,
           {
-            payload,
+            data,
             matched: values
               .filter((value) => value !== null && value !== undefined)
               .map((value) => search(value))
           }
         ])
         .filter(({ matched }) => matched.some(Boolean))
-        .map(({ payload, matched }, key) => [
+        .map(({ data, matched }, key) => [
           key,
           {
-            payload,
+            data,
             weight: matched.map(Number).join('')
           }
         ]);
 
       const sorted = Array.from(res).sort(([, a], [, b]) => b.weight.localeCompare(a.weight));
 
-      return Array.isArray(data.value)
-        ? sorted.map(([, { payload }]) => payload)
-        : new Map(sorted.map(([key, { payload }]) => [key, payload])) as Dictionary<T, keyof T>;
+      return Array.isArray($datasets.value)
+        ? sorted.map(([, { data }]) => data)
+        : (new Map(sorted.map(([key, { data }]) => [key, data])) as Map<K, T>);
     }
   });
 
   const handleCase = (value: string) =>
-    (options?.caseSensitive ? value : value.toLocaleLowerCase()).trim();
+    ($options.value?.caseSensitive ? value : value.toLocaleLowerCase()).trim();
 
   const search = (value: string) => {
-    if (options.phraseSearch) {
-      const queryPhrases = handleCase(query.value).split(' ');
+    if ($options.value.phraseSearch) {
+      const queryPhrases = handleCase($query.value).split(' ');
       const valuePhrases = handleCase(value)
         .replace(/-|_|\b|\t|\v|\r|\\/gm, ' ')
         .split(' ');
 
-      return queryPhrases[options.strict ? 'every' : 'some']((phrase) =>
+      return queryPhrases[$options.value.strict ? 'every' : 'some']((phrase) =>
         valuePhrases.includes(phrase)
       );
     } else {
-      return value.includes(query.value);
+      return value.includes($query.value);
     }
   };
 
   const reset = () => {
-    query.value = '';
+    $query.value = '';
   };
 
   return {
-    query,
+    query: $query,
     result,
     reset,
     search
