@@ -95,6 +95,7 @@ export const DefaultSearchBar: SearchBar$ = {
     fields: {
       key: 'name',
       title: '{{ $.name }}',
+      content: '{{ $.category }}',
       searchKeys: ['name', 'category']
     }
   }
