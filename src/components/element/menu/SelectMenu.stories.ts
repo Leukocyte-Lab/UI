@@ -1,4 +1,5 @@
 import { pick } from 'lodash-es';
+import { fn } from '@storybook/test';
 
 import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
 
@@ -6,8 +7,13 @@ import SelectMenu from './SelectMenu.vue';
 
 import bindArgs from '@/../.storybook/helpers/bind-args';
 
+import type { SelectMenu as SelectMenuNS } from './SelectMenu.model';
 
-const meta: Meta<typeof SelectMenu> = {
+type GenericMeta<C> = Omit<Meta<C>, 'component'> & {
+  component: Record<keyof C, unknown>;
+};
+
+const meta: GenericMeta<typeof SelectMenu<SelectMenuNS.AcceptableValue>> = {
   title: 'Components / Element / Menu / SelectMenu',
   component: SelectMenu,
   tags: ['autodocs'],
@@ -21,7 +27,7 @@ const meta: Meta<typeof SelectMenu> = {
       description: 'Fields to control options displayed in the menu.'
     },
     modelValue: {
-      control: 'text',
+      control: 'object',
       description: 'SelectMenu value, use by `v-model`.'
     },
     multiple: {
@@ -31,6 +37,9 @@ const meta: Meta<typeof SelectMenu> = {
     'onUpdate:modelValue': {
       action: 'selected'
     }
+  },
+  args: {
+    'onUpdate:modelValue': fn()
   }
 };
 
@@ -118,6 +127,10 @@ export const SingleSelectMenuWithSearch: DefaultMenu$ = {
   render: Template,
   args: {
     ...SingleSelectMenu.args,
+    fields: {
+      ...SingleSelectMenu.args!.fields!,
+      searchKeys: ['name', 'description']
+    },
     useSearch: true
   }
 };
@@ -166,9 +179,6 @@ export const MultiSelectMenu: DefaultMenu$ = {
         description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
         category: 'APT Group Simulation Data',
         recentlyUsed: '2021-01-01T00:00:00Z'
-      },
-      {
-        name: 'Apache Techniques'
       }
     ],
     label: 'Playbook',
@@ -180,6 +190,10 @@ export const MultiSelectMenuWithSearch: DefaultMenu$ = {
   render: Template,
   args: {
     ...MultiSelectMenu.args,
+    fields: {
+      ...MultiSelectMenu.args!.fields!,
+      searchKeys: ['name', 'description']
+    },
     useSearch: true
   }
 };
@@ -272,6 +286,10 @@ export const GroupOverflowWithSubtitleMultiSelectWithSearchMenu: DefaultMenu$ = 
   render: Template,
   args: {
     ...GroupOverflowWithSubtitleMultiSelectMenu.args,
+    fields: {
+      ...GroupOverflowWithSubtitleMultiSelectMenu.args!.fields!,
+      searchKeys: ['name', 'description']
+    },
     useSearch: true
   }
 };
