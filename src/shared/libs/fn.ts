@@ -31,3 +31,30 @@ export const valuesGetter = <
     }
   }
 };
+
+export const booleanGetter = <
+  Options extends ObjectLike | string | number,
+  Getter extends GetterFn<boolean, [Options], Nullable> | string,
+  Nullable = false
+>(
+  options: Options,
+  getter: Getter,
+  nullable?: Nullable
+) => {
+  if (typeof getter === 'function') {
+    const res = getter(options);
+    if (res === undefined || res === null) {
+      return nullable ? res : '';
+    } else {
+      return Boolean(res);
+    }
+  } else {
+    if (typeof options === 'object' && options !== null) {
+      return (
+        Boolean(selector(options, getter))
+      );
+    } else {
+      return Boolean(options);
+    }
+  }
+};
