@@ -17,7 +17,7 @@
     "build:assets": "cp -r ./src/assets/styles ./dist",
     "build:storybook": "VITE_STORYBOOK=true storybook build",
     "preview": "vite preview",
-    "test:unit": "vitest",
+    "test:unit": "vitest --typecheck",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "run-p lint:eslint lint:stylelint",
     "lint:eslint": "eslint . --fix",
