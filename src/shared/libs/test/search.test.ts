@@ -1,6 +1,8 @@
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import { ref } from 'vue';
 
+import type { Ref } from 'vue';
+
 import { useSearch } from '@/shared/libs/search';
 
 const simpleArrayData = [
@@ -99,7 +101,7 @@ const complexMapData = new Map([
 
 describe('useSearch with simple array data', () => {
   it('should search correctly', () => {
-    const { result } = useSearch({ datasets: structuredClone(simpleArrayData), query: 'Apple' });
+    const { result } = useSearch(structuredClone(simpleArrayData), { query: 'Apple' });
 
     expect(result.value).toEqual([
       'An apple a day keeps the doctor away',
@@ -109,8 +111,7 @@ describe('useSearch with simple array data', () => {
   });
 
   it('should search correctly with case sensitive', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(simpleArrayData),
+    const { result } = useSearch(structuredClone(simpleArrayData), {
       query: 'Apple',
       options: { caseSensitive: true }
     });
@@ -122,7 +123,7 @@ describe('useSearch with simple array data', () => {
   it('should search correctly when keeps reactivity', () => {
     const datasets = ref(structuredClone(simpleArrayData));
     const query = ref('Apple');
-    const { result } = useSearch({ datasets, query });
+    const { result } = useSearch(datasets, { query });
 
     expect(result.value).toEqual([
       'An apple a day keeps the doctor away',
@@ -152,8 +153,7 @@ describe('useSearch with simple array data', () => {
 
   it('should search correctly with strict mode (reactivity)', () => {
     const options = ref({});
-    const { result } = useSearch({
-      datasets: structuredClone(simpleArrayData),
+    const { result } = useSearch(structuredClone(simpleArrayData), {
       query: 'steve jobs',
       options
     });
@@ -169,11 +169,57 @@ describe('useSearch with simple array data', () => {
     expect(result.value).toEqual(['A Windows a day keeps Steve Jobs away']);
     expectTypeOf(result.value).toEqualTypeOf<typeof simpleArrayData>();
   });
+
+  it('should handle composable query', () => {
+    const datasets = ref(structuredClone(simpleArrayData));
+    const { result, query, reset } = useSearch(datasets);
+
+    expect(result.value).toEqual(datasets.value);
+    expectTypeOf(result.value).toEqualTypeOf<typeof simpleArrayData>();
+    expect(query.value).toEqual('');
+    expectTypeOf(query).toEqualTypeOf<Ref<string>>();
+
+    query.value = 'Apple';
+
+    expect(result.value).toEqual([
+      'An apple a day keeps the doctor away',
+      'An Apple a day keeps the BSOD away'
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof simpleArrayData>();
+
+    datasets.value.push('Apple is a fruit');
+    expect(result.value).toEqual([
+      'An apple a day keeps the doctor away',
+      'An Apple a day keeps the BSOD away',
+      'Apple is a fruit'
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof simpleArrayData>();
+
+    datasets.value = ['A Windows a day keeps Steve Jobs away', 'A Windows a day keeps SRE away'];
+    expect(result.value).toEqual([]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof simpleArrayData>();
+
+    query.value = 'Windows';
+    expect(result.value).toEqual([
+      'A Windows a day keeps Steve Jobs away',
+      'A Windows a day keeps SRE away'
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof simpleArrayData>();
+
+    query.value = 'something not exists';
+    expect(result.value).toEqual([]);
+
+    reset();
+    expect(result.value).toEqual(datasets.value);
+    expectTypeOf(result.value).toEqualTypeOf<typeof simpleArrayData>();
+    expect(query.value).toEqual('');
+    expectTypeOf(query).toEqualTypeOf<Ref<string>>();
+  });
 });
 
 describe('useSearch with simple map data', () => {
   it('should search correctly', () => {
-    const { result } = useSearch({ datasets: structuredClone(simpleMapData), query: 'Apple' });
+    const { result } = useSearch(structuredClone(simpleMapData), { query: 'Apple' });
 
     expect(result.value).toEqual(
       new Map([
@@ -185,8 +231,7 @@ describe('useSearch with simple map data', () => {
   });
 
   it('should search correctly with case sensitive', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(simpleMapData),
+    const { result } = useSearch(structuredClone(simpleMapData), {
       query: 'Apple',
       options: { caseSensitive: true }
     });
@@ -200,7 +245,7 @@ describe('useSearch with simple map data', () => {
   it('should search correctly when keeps reactivity', () => {
     const datasets = ref(structuredClone(simpleMapData));
     const query = ref('Apple');
-    const { result } = useSearch({ datasets, query });
+    const { result } = useSearch(datasets, { query });
 
     expect(result.value).toEqual(
       new Map([
@@ -231,8 +276,7 @@ describe('useSearch with simple map data', () => {
 
 describe('useSearch with complex array data', () => {
   it('should search correctly', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(complexArrayData),
+    const { result } = useSearch(structuredClone(complexArrayData), {
       query: 'Apple',
       getters: ['message']
     });
@@ -256,8 +300,7 @@ describe('useSearch with complex array data', () => {
   });
 
   it('should search correctly with case sensitive', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(complexArrayData),
+    const { result } = useSearch(structuredClone(complexArrayData), {
       query: 'Apple',
       getters: ['message'],
       options: { caseSensitive: true }
@@ -274,8 +317,7 @@ describe('useSearch with complex array data', () => {
   });
 
   it('should search multi fields correctly', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(complexArrayData),
+    const { result } = useSearch(structuredClone(complexArrayData), {
       query: 'steve',
       getters: ['message', 'speaker.name']
     });
@@ -301,8 +343,7 @@ describe('useSearch with complex array data', () => {
   });
 
   it('should search multi fields with ordered correctly', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(complexArrayData),
+    const { result } = useSearch(structuredClone(complexArrayData), {
       query: 'steve',
       getters: ['speaker.name', 'message']
     });
@@ -328,8 +369,7 @@ describe('useSearch with complex array data', () => {
   });
 
   it('should search multi fields with advanced getters correctly', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(complexArrayData),
+    const { result } = useSearch(structuredClone(complexArrayData), {
       query: 'windows 113',
       getters: ['message', ({ speaker }) => String(speaker.year - 1911)]
     });
@@ -352,8 +392,7 @@ describe('useSearch with complex array data', () => {
 
 describe('useSearch with complex map data', () => {
   it('should search correctly', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(complexMapData),
+    const { result } = useSearch(structuredClone(complexMapData), {
       query: 'Apple',
       getters: ['message']
     });
@@ -385,8 +424,7 @@ describe('useSearch with complex map data', () => {
   });
 
   it('should search correctly with case sensitive', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(complexMapData),
+    const { result } = useSearch(structuredClone(complexMapData), {
       query: 'Apple',
       getters: ['message'],
       options: { caseSensitive: true }
@@ -408,8 +446,7 @@ describe('useSearch with complex map data', () => {
   });
 
   it('should search multi fields correctly', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(complexMapData),
+    const { result } = useSearch(structuredClone(complexMapData), {
       query: 'steve',
       getters: ['message', 'speaker.name']
     });
@@ -445,8 +482,7 @@ describe('useSearch with complex map data', () => {
   });
 
   it('should search multi fields with ordered correctly', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(complexMapData),
+    const { result } = useSearch(structuredClone(complexMapData), {
       query: 'steve',
       getters: ['speaker.name', 'message']
     });
@@ -483,8 +519,7 @@ describe('useSearch with complex map data', () => {
   });
 
   it('should search multi fields with advanced getters correctly', () => {
-    const { result } = useSearch({
-      datasets: structuredClone(complexMapData),
+    const { result } = useSearch(structuredClone(complexMapData), {
       query: 'windows 113',
       getters: ['message', ({ speaker }) => String(speaker.year - 1911)]
     });
