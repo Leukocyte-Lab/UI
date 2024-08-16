@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 import SelectMenu from '@/components/element/menu/SelectMenu.vue';
 import TextField from '@/components/element/textfield/TextField.vue';
+import { valuesGetter } from '@/shared/libs/fn';
 import { useSearch } from '@/shared/libs/search';
-import { selector } from '@/shared/libs/selector';
 import { signal } from '@/shared/libs/signal';
 
 import type { SearchBar } from './SearchBar.model';
@@ -26,7 +26,7 @@ const closeMenu = signal(false);
 const onSelect = (option?: ObjectLike) => {
   if (!option) return;
 
-  emits('update:modelValue', selector(option, props.fields.key));
+  emits('update:modelValue', valuesGetter(option, props.fields.key));
   emits('select', option);
   closeMenu.set(true);
 };
