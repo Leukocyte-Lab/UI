@@ -1,53 +1,81 @@
-<script setup lang="ts">
-import { filter, flatMap, fromPairs, groupBy, map, omit, toPairs } from 'lodash-es';
-import { onMounted, ref } from 'vue';
+<script setup lang="ts" generic="T extends SelectMenu.AcceptableValue">
+import { groupBy, isEqual, omit } from 'lodash-es';
+import { computed, type ModelRef, onMounted, ref, watch } from 'vue';
 import { Icon } from '@iconify/vue/offline';
-import { computedEager, useResizeObserver } from '@vueuse/core';
+import { useResizeObserver } from '@vueuse/core';
 
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
 import TextField from '@/components/element/textfield/TextField.vue';
-import { parser } from '@/shared/libs/parser';
-import { selector } from '@/shared/libs/selector';
-import { signal } from '@/shared/libs/signal';
+import { booleanGetter, valuesGetter } from '@/shared/libs/fn';
+import Map$ from '@/shared/libs/map';
+import { useSearch } from '@/shared/libs/search';
+import { signal, toggleSignal } from '@/shared/libs/signal';
 
 import type { SelectMenu } from '@/components/element/menu/SelectMenu.model';
-import type { Signal } from '@/shared/libs/signal';
-import type { ObjectLike } from '@/shared/types/object';
 
-const props = withDefaults(defineProps<SelectMenu.Props>(), {
+const TRIGGER_SYMBOL = Symbol('TRIGGER');
+
+const props = withDefaults(defineProps<SelectMenu.Props<T>>(), {
   multiple: false
 });
 
-const emits = defineEmits<{
-  (e: 'update:modelValue', option: ObjectLike): void;
-  (e: 'update:modelValue', options: ObjectLike[]): void;
-}>();
+const selection = defineModel<SelectMenu.Props<T>['modelValue']>({
+  required: true
+});
 
 const wrapperRef$ = ref<HTMLElement>();
-const search = ref('');
 
-const groups = computedEager(() =>
-  fromPairs(
-    toPairs(groupBy(props.options, props.groupBy ?? '')).map(([group, options]) => [
-      group === 'undefined' ? '' : group,
-      options.map((option) =>
-        signal<ObjectLike>({
-          ...option,
-          matched:
-            String(selector(option, props.fields.key)).includes(search.value) ||
-            String(selector(option, props.fields.title)).includes(search.value),
-          selected: Boolean(
-            props.multiple
-              ? map(props.modelValue, props.fields.key).includes(selector(option, props.fields.key))
-              : selector(option, props.fields.key) ===
-                  selector(props.modelValue as ObjectLike, props.fields.key)
-          )
-        })
-      )
-    ])
-  )
+const selectedFields = computed(
+  () =>
+    new Map(
+      [...[selection.value ?? []].flat().entries()].map(([, option]) => [
+        typeof option === 'object' && !Array.isArray(options) && !(option instanceof Map)
+          ? fieldParser(option).key
+          : option,
+        option
+      ])
+    )
 );
+const options = computed(() =>
+  Array.isArray(props.options)
+    ? new Map(props.options.map((option, index) => [index, option]))
+    : new Map(props.options)
+);
+
+const { result, query: search } = useSearch(options, {
+  getters: props.fields.searchKeys ?? []
+});
+
+const datasets = computed(() =>
+  new Map$(result.value as Map<string | number, T>)
+    .map((option, key) => [
+      key,
+      {
+        payload: option,
+        field: fieldParser(option)
+      }
+    ])
+    .map(({ payload, field }, key) => [
+      key,
+      {
+        payload,
+        field,
+        selected: signal(selectedFields.value.has(field.key))
+      } as SelectMenu.Option<T>
+    ])
+    .map((payload, key) => [
+      key,
+      {
+        get [TRIGGER_SYMBOL]() {
+          return payload.selected();
+        },
+        ...payload
+      }
+    ])
+);
+
+const groups = computed(() => groupBy(datasets.value.toArray('entries'), '[1].field.group'));
 
 const overflowed = signal(false);
 
@@ -58,33 +86,69 @@ const computeOverflowed = () => {
   }
 };
 
-const onSelect = (option: Signal<ObjectLike>) => {
-  option.update((option) => ({
-    ...option,
-    selected: !option.selected
-  }));
-
+const clearSelection = () => {
   if (props.multiple) {
-    emits(
-      'update:modelValue',
-      flatMap(
-        map(groups.value, (options) =>
-          options.map((option) => option()).filter((option) => option.selected)
-        )
-      )
-    );
+    selection.value = Array.isArray(props.options) ? [] : new Map();
   } else {
-    emits('update:modelValue', option());
+    selection.value = undefined;
   }
 };
 
-const clickSelection = () => {
-  if (props.multiple) {
-    emits('update:modelValue', []);
-  } else {
-    emits('update:modelValue', {});
-  }
+const fieldParser = (option: T): SelectMenu.Option<T>['field'] => ({
+  ...Object.fromEntries(
+    Object.entries(omit(props.fields, ['key', 'searchKeys', 'disabled'])).map(([field, getter]) => [
+      field,
+      valuesGetter(option, getter, true)
+    ])
+  ),
+  key: valuesGetter(option, props.fields.key),
+  group: props.groupBy ? (valuesGetter(option, props.groupBy, true) ?? '') : '',
+  disabled: props.fields.disabled
+    ? (booleanGetter(option, props.fields.disabled, true) ?? false) || false
+    : false
+});
+
+const switchSignals = (index: string | number, value: boolean) => {
+  datasets.value.forEach((dataset, key) =>
+    dataset.selected.set(!(Number(key === index) ^ Number(value)))
+  );
 };
+
+watch(
+  [datasets, selection],
+  ([datasets, current], [, pre]) => {
+    if (isEqual(current, pre)) {
+      return;
+    }
+
+    datasets.forEach((option, key) => {
+      if (props.multiple) {
+        if (selection.value instanceof Map) {
+          if (option.selected() && !option.field.disabled) {
+            (selection as ModelRef<Map<string | number, T>, string>).value.set(key, option.payload);
+          } else {
+            (selection as ModelRef<Map<string | number, T>, string>).value.delete(key);
+          }
+        }
+      } else {
+        if (option.selected() && !option.field.disabled) {
+          selection.value = option.payload;
+        }
+      }
+    });
+
+    if (Array.isArray(selection.value)) {
+      (selection as ModelRef<T[], string>).value = datasets
+        .filter((option) => option.selected() && !option.field.disabled)
+        .map(({ payload }, key) => [key, payload])
+        .toArray('values');
+    }
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+);
 
 useResizeObserver(wrapperRef$, computeOverflowed, {
   window
@@ -112,7 +176,7 @@ onMounted(() => {
         </h1>
         <template v-if="props.multiple">
           <ButtonBox
-            @click="clickSelection()"
+            @click="clearSelection"
             :class="$style['button']"
             :icon="'fa6-solid:eraser'"
             :label="'Clear Selection'"
@@ -133,7 +197,7 @@ onMounted(() => {
         }
       ]"
     >
-      <template v-for="(options, group) in groups" :key="group">
+      <template v-for="(group, name) in groups" :key="group">
         <div
           :class="[
             $style['menu-group'],
@@ -142,56 +206,52 @@ onMounted(() => {
             }
           ]"
         >
-          <template v-if="group">
-            <label :class="$style['menu-group-label']" name="">{{ group }}</label>
+          <template v-if="props.groupBy && name">
+            <label :class="$style['menu-group-label']">{{ name }}</label>
           </template>
-          <template v-for="(option, index) in options" :key="`option-${index}`">
-            <template v-if="search !== '' ? option().matched : true">
-              <div
-                @click="selector(option(), props.fields.disabled) ? null : onSelect(option)"
-                :class="[
-                  $style['menu-option'],
-                  $style['behavior'],
-                  selector(option(), props.fields.disabled)
-                    ? [$style['disabled']]
-                    : $style['clickable'],
-                  {
-                    [$style['selected']]: option().selected,
-                    [$style['multiple']]: props.multiple
-                  }
-                ]"
-              >
-                <template v-if="props.multiple">
-                  <Icon
-                    :class="$style['menu-option-icon']"
-                    :icon="option().selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
-                  />
+          <template v-for="[index, { selected, field }] in group" :key="`option-${index}`">
+            <div
+              @click="
+                !field.disabled &&
+                  (props.multiple ? toggleSignal(selected) : switchSignals(index, true))
+              "
+              :class="[
+                $style['menu-option'],
+                $style['behavior'],
+                field.disabled ? [$style['disabled']] : $style['clickable'],
+                {
+                  [$style['selected']]: selected(),
+                  [$style['multiple']]: props.multiple
+                }
+              ]"
+            >
+              <template v-if="props.multiple">
+                <Icon
+                  :class="$style['menu-option-icon']"
+                  :icon="selected() ? 'fa6-solid:square-check' : 'fa6-regular:square'"
+                />
+              </template>
+              <template v-if="props.fields.icon">
+                <Icon :class="$style['menu-option-icon']" :icon="field.icon ?? ''" />
+              </template>
+              <div :class="$style['menu-option-group']">
+                <template v-if="props.fields.title">
+                  <p :class="$style['menu-field']">
+                    {{ field.title }}
+                  </p>
                 </template>
-                <template v-if="props.fields.icon">
-                  <Icon
-                    :class="$style['menu-option-icon']"
-                    :icon="String(selector(option(), props.fields.icon))"
-                  />
-                </template>
-                <div :class="$style['menu-option-group']">
-                  <template v-if="!props.fields.title">
+                <template
+                  v-for="(context, key) in omit(field, ['key', 'icon', 'disabled', 'group'])"
+                  :key="`option-field-${key}`"
+                >
+                  <template v-if="context">
                     <p :class="$style['menu-field']">
-                      {{ selector(option(), props.fields.key) }}
+                      {{ context }}
                     </p>
                   </template>
-                  <template
-                    v-for="field in omit(props.fields, ['key', 'icon', 'disabled', 'searchKeys'])"
-                    :key="`option-field-${field}`"
-                  >
-                    <template v-if="field">
-                      <p :class="$style['menu-field']">
-                        {{ parser(option(), String(field)) }}
-                      </p>
-                    </template>
-                  </template>
-                </div>
+                </template>
               </div>
-            </template>
+            </div>
           </template>
           <div :class="$style['menu-group-placeholder']">
             <p>No Data</p>
