@@ -235,11 +235,6 @@ onMounted(() => {
                 <Icon :class="$style['menu-option-icon']" :icon="field.icon ?? ''" />
               </template>
               <div :class="$style['menu-option-group']">
-                <template v-if="props.fields.title">
-                  <p :class="$style['menu-field']">
-                    {{ field.title }}
-                  </p>
-                </template>
                 <template
                   v-for="(context, key) in omit(field, ['key', 'icon', 'disabled', 'group'])"
                   :key="`option-field-${key}`"
