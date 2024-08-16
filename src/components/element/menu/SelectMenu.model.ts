@@ -7,7 +7,7 @@ export namespace SelectMenu {
 
   export type ValuesGetter<T extends AcceptableValue, R> = GetterFn<R, [T], true> | string;
 
-  export type Fields<T extends AcceptableValue> = {
+  export type Fields<T extends AcceptableValue = ObjectLike> = {
     key: GetterFn<string, [T]> | string;
     searchKeys?: ValuesGetter<T, string>[];
     title?: ValuesGetter<T, string>;
@@ -16,7 +16,7 @@ export namespace SelectMenu {
     disabled?: ValuesGetter<T, boolean>;
   };
 
-  export type Option<T extends AcceptableValue> = {
+  export type Option<T extends AcceptableValue = ObjectLike> = {
     selected: Signal<boolean>;
     field: {
       key: string;
@@ -29,7 +29,7 @@ export namespace SelectMenu {
     payload: T;
   };
 
-  export type Props<T extends AcceptableValue> = {
+  export type Props<T extends AcceptableValue = ObjectLike> = {
     fields: Fields<T>;
     groupBy?: ValuesGetter<T, string>;
     label?: string;
