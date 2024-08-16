@@ -148,7 +148,7 @@ export const SingleWithSubtitleSelectMenu: DefaultMenu$ = {
     fields: {
       key: 'name',
       title: '{{ $.name }}',
-      content: '{{ $.recentlyUsed | date : yyyy/MM/dd HH:mm }}'
+      content: '{{ $.category }}'
     }
   }
 };
@@ -165,6 +165,11 @@ export const GroupWithSubtitleSingleSelectMenu: DefaultMenu$ = {
   render: Template,
   args: {
     ...SingleWithSubtitleSelectMenu.args,
+    fields: {
+      key: 'name',
+      title: '{{ $.name }}',
+      content: 'Last Used: {{ $.recentlyUsed | date : yyyy/MM/dd }}'
+    },
     groupBy: 'category'
   }
 };
@@ -216,7 +221,7 @@ export const MultiWithSubtitleSelectMenu: DefaultMenu$ = {
     fields: {
       key: 'name',
       title: '{{ $.name }}',
-      content: '{{ $.recentlyUsed | date : yyyy/MM/dd HH:mm }}'
+      content: '{{ $.category }}'
     },
     multiple: true
   }
@@ -235,6 +240,11 @@ export const GroupWithSubtitleMultiSelectMenu: DefaultMenu$ = {
   render: Template,
   args: {
     ...MultiWithSubtitleSelectMenu.args,
+    fields: {
+      key: 'name',
+      title: '{{ $.name }}',
+      content: 'Last Used: {{ $.recentlyUsed | date : yyyy/MM/dd }}'
+    },
     multiple: true,
     groupBy: 'category'
   }
@@ -277,6 +287,12 @@ export const GroupOverflowWithSubtitleMultiSelectMenu: DefaultMenu$ = {
         recentlyUsed: '2021-01-01T00:00:00Z'
       }
     ],
+
+    fields: {
+      key: 'name',
+      title: '{{ $.name }}',
+      content: 'Last Used: {{ $.recentlyUsed | date : yyyy/MM/dd }}'
+    },
     multiple: true,
     groupBy: 'category'
   }
