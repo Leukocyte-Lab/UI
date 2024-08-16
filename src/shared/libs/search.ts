@@ -35,16 +35,6 @@ export namespace Search {
   };
 }
 
-function useSearch<T extends Search.AcceptableValue, K extends string | number | symbol>(
-  datasets: MaybeRef<T[]> | MaybeRef<Map<K, T>>,
-  args?: {
-    query?: MaybeRef<string>;
-    getters?: MaybeRef<Search.ValuesGetter<T, string>[]>;
-    options?: MaybeRef<Search.Options>;
-  }
-): {
-  result: ComputedRef<T[] | Map<K, T>>;
-} & Search.BaseExpose;
 function useSearch<T extends string | number>(
   datasets: MaybeRef<T[]>,
   args?: {
@@ -84,6 +74,16 @@ function useSearch<T extends ObjectLike, K extends string | number | symbol>(
   }
 ): {
   result: ComputedRef<Map<K, T>>;
+} & Search.BaseExpose;
+function useSearch<T extends Search.AcceptableValue, K extends string | number | symbol>(
+  datasets: MaybeRef<T[]> | MaybeRef<Map<K, T>>,
+  args?: {
+    query?: MaybeRef<string>;
+    getters?: MaybeRef<Search.ValuesGetter<T, string>[]>;
+    options?: MaybeRef<Search.Options>;
+  }
+): {
+  result: ComputedRef<T[] | Map<K, T>>;
 } & Search.BaseExpose;
 function useSearch<T extends Search.AcceptableValue, K extends string | number | symbol>(
   datasets: MaybeRef<T[]> | MaybeRef<Map<K, T>>,
