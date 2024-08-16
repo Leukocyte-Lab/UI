@@ -547,3 +547,211 @@ describe('useSearch with complex map data', () => {
     expectTypeOf(result.value).toEqualTypeOf<typeof complexMapData>();
   });
 });
+
+describe('useSearch focused on phrase search', () => {
+  const datasets = [
+    {
+      name: 'APT-38',
+      description:
+        'APT-38 is a threat group that has been attributed to the North Korean government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'APT-39',
+      description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'APT-40',
+      description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'Nginx test Techniques',
+      description:
+        'Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+      category: 'Technique Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'Apache test Techniques',
+      description:
+        'Apache is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+      category: 'Technique Simulation Data',
+      framework: {
+        technique: 'T1012s'
+      },
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    }
+  ];
+
+  it('should search correctly', () => {
+    const options = ref({});
+    const { result, query } = useSearch(datasets, {
+      getters: ['name', 'category'],
+      options
+    });
+
+    query.value = 'A';
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-40',
+        description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'Apache test Techniques',
+        description:
+          'Apache is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+        category: 'Technique Simulation Data',
+        framework: {
+          technique: 'T1012s'
+        },
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'Nginx test Techniques',
+        description:
+          'Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+        category: 'Technique Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'AP';
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-40',
+        description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'Apache test Techniques',
+        description:
+          'Apache is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+        category: 'Technique Simulation Data',
+        framework: {
+          technique: 'T1012s'
+        },
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'APT';
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-40',
+        description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'APT-3';
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'APT 3';
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-40',
+        description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    options.value = { strict: true };
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+  });
+});
