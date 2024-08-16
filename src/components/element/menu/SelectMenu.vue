@@ -180,7 +180,7 @@ onMounted(() => {
                     </p>
                   </template>
                   <template
-                    v-for="field in omit(props.fields, ['key', 'icon', 'disabled'])"
+                    v-for="field in omit(props.fields, ['key', 'icon', 'disabled', 'searchKeys'])"
                     :key="`option-field-${field}`"
                   >
                     <template v-if="field">
