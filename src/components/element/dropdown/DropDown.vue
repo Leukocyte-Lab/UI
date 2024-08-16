@@ -4,6 +4,7 @@ import { vOnClickOutside } from '@vueuse/components';
 
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import SelectMenu from '@/components/element/menu/SelectMenu.vue';
+import { valuesGetter } from '@/shared/libs/fn';
 import { parser } from '@/shared/libs/parser';
 import { selector } from '@/shared/libs/selector';
 import { signal } from '@/shared/libs/signal';
@@ -48,7 +49,7 @@ const closeMenu = signal(true);
   >
     <ButtonBox
       @click="closeMenu.update((state) => !state)"
-      :bobble="props.multiple ? selected?.length ?? false : false"
+      :bobble="props.multiple ? (selected?.length ?? false) : false"
       :class="[$style['dropdown-button'], $style[size]]"
       :clicked="!closeMenu()"
       :disabled="props.disabled"
@@ -56,12 +57,16 @@ const closeMenu = signal(true);
       :label="
         props.multiple
           ? (selected?.length ?? 0) > 0
-            ? props.label ?? props.placeholder
-            : props.placeholder ?? props.label
-          : (props.fields.title &&
-            (parser(props.modelValue, props.fields.title) ||
-              selector(props.modelValue, props.fields.title))) ||
-            (selector(props.modelValue, props.fields.key) ?? props.label ?? props.placeholder)
+            ? (props.label ?? props.placeholder)
+            : (props.placeholder ?? props.label)
+          : ((props.modelValue &&
+            (props.fields.title
+              ? valuesGetter(props.modelValue, props.fields.title, true)
+              : props.fields.key
+                ? valuesGetter(props.modelValue, props.fields.key, true)
+                : undefined)) ??
+            props.label ??
+            props.placeholder)
       "
       :level="props.level"
       :size="props.size"
