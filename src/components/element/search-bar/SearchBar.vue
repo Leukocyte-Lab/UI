@@ -43,8 +43,12 @@ const onSelect = (option?: ObjectLike) => {
 
 const computeFilteredItems = (value: string) => {
   if (props.fields.searchKeys) {
-    const { results } = useSearch(props.items, value, props.fields.searchKeys);
-    filteredItems.set((results.value as ObjectLike[]) ?? []);
+    const { result } = useSearch({
+      datasets: props.items,
+      query: value,
+      getters: props.fields.searchKeys
+    });
+    filteredItems.set((result.value as ObjectLike[]) ?? []);
   }
 };
 
