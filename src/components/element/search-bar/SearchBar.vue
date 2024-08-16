@@ -19,19 +19,9 @@ const emits = defineEmits<{
   (e: 'update:modelValue', option: any): void;
   (e: 'select', option: ObjectLike): void;
 }>();
-
-const search = computed({
-  get: () => props.modelValue,
-  set: (value) => {
-    computeFilteredItems(value);
-    return emits('update:modelValue', value);
-  }
-});
-
 const selected = ref<ObjectLike>();
 
 const closeMenu = signal(false);
-const filteredItems = signal<ObjectLike[]>([]);
 
 const onSelect = (option?: ObjectLike) => {
   if (!option) return;
@@ -41,21 +31,18 @@ const onSelect = (option?: ObjectLike) => {
   closeMenu.set(true);
 };
 
-const computeFilteredItems = (value: string) => {
-  if (props.fields.searchKeys) {
-    const { results } = useSearch(props.items, value, props.fields.searchKeys);
-    filteredItems.set((results.value as ObjectLike[]) ?? []);
-  }
-};
+const { result, query } = useSearch(props.items, {
+  getters: props.fields.searchKeys ?? [],
+  options: { strict: true }
+});
 
-watch(search, computeFilteredItems);
 watch(selected, onSelect);
 </script>
 
 <template>
   <div :class="$style['search-bar--container']">
     <TextField
-      v-model="search"
+      v-model="query"
       @blur="closeMenu.set(true)"
       @click="closeMenu.set(false)"
       @focus="closeMenu.set(false)"
@@ -63,12 +50,12 @@ watch(selected, onSelect);
       :disabled="props.disabled"
       type="search"
     />
-    <template v-if="search && filteredItems().length > 0 && !closeMenu()">
+    <template v-if="query && result.length > 0 && !closeMenu()">
       <SelectMenu
         v-model="selected"
         :class="$style['search-bar--menu']"
         :fields="props.fields"
-        :options="[...filteredItems()]"
+        :options="result"
       />
     </template>
   </div>

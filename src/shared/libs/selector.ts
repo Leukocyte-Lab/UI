@@ -13,7 +13,7 @@ export const selector = <T extends ObjectLike = ObjectLike>(
     : (typeof selector === 'string' && /^\$\./.test(selector)
         ? JSONPath({
             path: selector,
-            json: datasets as unknown as any[]
+            json: datasets
           })
         : get(datasets, selector!)) ?? null;
 

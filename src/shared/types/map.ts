@@ -1,1 +1,1 @@
-export type Dictionary<T, PK extends keyof T> = Map<T[PK], T>;
+export type Dictionary<T, PK extends keyof T> = T[PK] extends string | number | symbol ? Map<T[PK], T> : never;

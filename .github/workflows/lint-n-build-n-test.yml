@@ -67,6 +67,9 @@ jobs:
       - name: 🧪 Run Linter & Build Check
         run: pnpm run build:check
 
+      - name: 🧪 Run Unit Test
+        run: pnpm vitest --run
+
   build:
     name: 🔧 Build
     runs-on: ubuntu-latest
@@ -113,9 +116,6 @@ jobs:
 
       - name: 📦 Install Dependencies
         run: pnpm install
-
-      - name: 📦 Run Unit Test
-        run: pnpm vitest --run
 
       - name: 🔧 Run Build
         run: |
