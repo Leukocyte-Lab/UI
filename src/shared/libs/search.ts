@@ -1,49 +1,166 @@
-import { isEmpty } from 'lodash-es';
-import { computed, type ComputedRef, type Ref,ref } from 'vue';
+import { computed, toRef, toValue } from 'vue';
 
-import MapProxyInstance, { type MapProxy } from './map';
-import { selector } from './selector';
+import type { ComputedRef, MaybeRef, Ref } from 'vue';
 
+import { valuesGetter } from '@/shared/libs/fn';
+import Map$ from '@/shared/libs/map';
+
+import type { Callback } from '@/shared/types/callback';
+import type { GetterFn } from '@/shared/types/fn';
+import type { Dictionary } from '@/shared/types/map';
 import type { ObjectLike } from '@/shared/types/object';
-import type { Nullable, Optional, ValueOf } from '@/shared/types/optional';
 
-export const useSearch = <T extends ObjectLike = ObjectLike>(
-  initialDatasets: Optional<T>[] | Map<any, Optional<T>>,
-  initialQuery: string,
-  initialKeys: string[]
-) => {
-  const datasets = ref(initialDatasets) as Ref<Optional<T>[]> | Ref<Map<any, Optional<T>>>;
-  const query = ref<string>(initialQuery);
-  const keys = ref<string[]>(initialKeys);
+export namespace Search {
+  export type AcceptableValue = ObjectLike | string | number;
 
-  const handlePhraseSearch = (value: string) => {
-    const phrases = query.value.toLocaleLowerCase().split(' ');
-    return phrases.every((phrase) => value.includes(phrase));
+  export type ValuesGetter<T extends AcceptableValue, R> = GetterFn<R, [T], true> | string;
+
+  export type Options = {
+    caseSensitive?: boolean;
+  } & (
+    | {
+        phraseSearch?: false;
+        strict?: never;
+      }
+    | {
+        phraseSearch: true;
+        strict?: boolean;
+      }
+  );
+
+  export type BaseExpose = {
+    reset: Callback;
+    search: (value: string) => boolean;
   };
+}
 
-  const results = computed(() => {
-    if (isEmpty(datasets.value) || isEmpty(keys.value)) {
-      return null;
-    }
+function useSearch<T extends string | number>(args: {
+  datasets?: MaybeRef<T[]>;
+  initQuery?: MaybeRef<string>;
+  getters?: never;
+  options?: Search.Options;
+}): {
+  query: Ref<string>;
+  result: ComputedRef<T[]>;
+} & Search.BaseExpose;
+function useSearch<T extends string | number>(args: {
+  datasets?: MaybeRef<Map<unknown, T>>;
+  initQuery?: MaybeRef<string>;
+  getters?: never;
+  options?: Search.Options;
+}): {
+  query: Ref<string>;
+  result: ComputedRef<Map<unknown, T>>;
+} & Search.BaseExpose;
+function useSearch<T extends ObjectLike>(args: {
+  datasets?: MaybeRef<T[]>;
+  initQuery?: MaybeRef<string>;
+  getters?: Search.ValuesGetter<T, string>[];
+  options?: Search.Options;
+}): {
+  query: Ref<string>;
+  result: ComputedRef<T[]>;
+} & Search.BaseExpose;
+function useSearch<T extends ObjectLike>(args: {
+  datasets?: MaybeRef<Dictionary<T, keyof T>>;
+  initQuery?: MaybeRef<string>;
+  getters?: Search.ValuesGetter<T, string>[];
+  options?: Search.Options;
+}): {
+  query: Ref<string>;
+  result: ComputedRef<Dictionary<T, keyof T>>;
+} & Search.BaseExpose;
+function useSearch<T extends Search.AcceptableValue>({
+  datasets,
+  initQuery,
+  getters,
+  options = {
+    caseSensitive: false,
+    phraseSearch: true,
+    strict: false
+  }
+}: {
+  datasets?: MaybeRef<T[]> | MaybeRef<Dictionary<T, keyof T>>;
+  initQuery?: MaybeRef<string>;
+  getters?: Search.ValuesGetter<T, string>[];
+  options?: Search.Options;
+}): {
+  query: Ref<string>;
+  result: ComputedRef<T[] | Dictionary<T, keyof T>>;
+} & Search.BaseExpose {
+  const query = toRef(initQuery || '');
+  const data = computed(() => toValue(datasets) ?? []);
 
-    if (datasets.value instanceof Map) {
-      const proxyData = new MapProxyInstance(datasets.value);
-
-      return proxyData.filter((data) =>
-        keys.value.some((key) =>
-          handlePhraseSearch(String(selector<T>(data, key)).toLocaleLowerCase())
-        )
-      );
+  const result = computed(() => {
+    if (!query.value) {
+      return data.value;
     } else {
-      return datasets.value.filter((data) =>
-        keys.value.some((key) =>
-          handlePhraseSearch(String(selector<T>(data, key)).toLocaleLowerCase())
-        )
-      );
+      const res = (
+        Array.isArray(data.value)
+          ? new Map$(data.value.map((payload, index) => [index, payload]))
+          : new Map$(data.value)
+      )
+        .map((payload, key) => [
+          key,
+          {
+            payload,
+            values: (getters ?? ['']).map((getter) => valuesGetter(payload, getter, true))
+          }
+        ])
+        .map(({ payload, values }, key) => [
+          key,
+          {
+            payload,
+            matched: values
+              .filter((value) => value !== null && value !== undefined)
+              .map((value) => search(value))
+          }
+        ])
+        .filter(({ matched }) => matched.some(Boolean))
+        .map(({ payload, matched }, key) => [
+          key,
+          {
+            payload,
+            weight: matched.map(Number).join('')
+          }
+        ]);
+
+      const sorted = Array.from(res).sort(([, a], [, b]) => b.weight.localeCompare(a.weight));
+
+      return Array.isArray(data.value)
+        ? sorted.map(([, { payload }]) => payload)
+        : new Map(sorted.map(([key, { payload }]) => [key, payload])) as Dictionary<T, keyof T>;
     }
   });
 
-  return {
-    results
+  const handleCase = (value: string) =>
+    (options?.caseSensitive ? value : value.toLocaleLowerCase()).trim();
+
+  const search = (value: string) => {
+    if (options.phraseSearch) {
+      const queryPhrases = handleCase(query.value).split(' ');
+      const valuePhrases = handleCase(value)
+        .replace(/-|_|\b|\t|\v|\r|\\/gm, ' ')
+        .split(' ');
+
+      return queryPhrases[options.strict ? 'every' : 'some']((phrase) =>
+        valuePhrases.includes(phrase)
+      );
+    } else {
+      return value.includes(query.value);
+    }
   };
-};
+
+  const reset = () => {
+    query.value = '';
+  };
+
+  return {
+    query,
+    result,
+    reset,
+    search
+  };
+}
+
+export { useSearch };
