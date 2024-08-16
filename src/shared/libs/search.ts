@@ -29,59 +29,64 @@ export namespace Search {
   );
 
   export type BaseExpose = {
+    query: Ref<string>;
     reset: Callback;
     search: (value: string) => boolean;
   };
 }
 
-function useSearch<T extends string | number>(args?: {
-  datasets?: MaybeRef<T[]>;
-  query?: MaybeRef<string>;
-  getters?: never;
-  options?: MaybeRef<Search.Options>;
-}): {
-  query: Ref<string>;
+function useSearch<T extends string | number>(
+  datasets: MaybeRef<T[]>,
+  args?: {
+    getters?: never;
+    query?: MaybeRef<string>;
+    options?: MaybeRef<Search.Options>;
+  }
+): {
   result: ComputedRef<T[]>;
 } & Search.BaseExpose;
-function useSearch<T extends string | number, K extends string | number | symbol>(args?: {
-  datasets?: MaybeRef<Map<K, T>>;
-  query?: MaybeRef<string>;
-  getters?: never;
-  options?: MaybeRef<Search.Options>;
-}): {
-  query: Ref<string>;
+function useSearch<T extends string | number, K extends string | number | symbol>(
+  datasets: MaybeRef<Map<K, T>>,
+  args?: {
+    getters?: never;
+    query?: MaybeRef<string>;
+    options?: MaybeRef<Search.Options>;
+  }
+): {
   result: ComputedRef<Map<K, T>>;
 } & Search.BaseExpose;
-function useSearch<T extends ObjectLike>(args?: {
-  datasets?: MaybeRef<T[]>;
-  query?: MaybeRef<string>;
-  getters?: MaybeRef<Search.ValuesGetter<T, string>[]>;
-  options?: MaybeRef<Search.Options>;
-}): {
-  query: Ref<string>;
+function useSearch<T extends ObjectLike>(
+  datasets: MaybeRef<T[]>,
+  args: {
+    getters: MaybeRef<Search.ValuesGetter<T, string>[]>;
+    query?: MaybeRef<string>;
+    options?: MaybeRef<Search.Options>;
+  }
+): {
   result: ComputedRef<T[]>;
 } & Search.BaseExpose;
-function useSearch<T extends ObjectLike, K extends string | number | symbol>(args?: {
-  datasets?: MaybeRef<Map<K, T>>;
-  query?: MaybeRef<string>;
-  getters?: MaybeRef<Search.ValuesGetter<T, string>[]>;
-  options?: MaybeRef<Search.Options>;
-}): {
-  query: Ref<string>;
+function useSearch<T extends ObjectLike, K extends string | number | symbol>(
+  datasets: MaybeRef<Map<K, T>>,
+  args: {
+    getters: MaybeRef<Search.ValuesGetter<T, string>[]>;
+    query?: MaybeRef<string>;
+    options?: MaybeRef<Search.Options>;
+  }
+): {
   result: ComputedRef<Map<K, T>>;
 } & Search.BaseExpose;
-function useSearch<T extends Search.AcceptableValue, K extends string | number | symbol>({
-  datasets,
-  query,
-  getters,
-  options
-}: {
-  datasets?: MaybeRef<T[]> | MaybeRef<Map<K, T>>;
-  query?: MaybeRef<string>;
-  getters?: MaybeRef<Search.ValuesGetter<T, string>[]>;
-  options?: MaybeRef<Search.Options>;
-} = {}): {
-  query: Ref<string>;
+function useSearch<T extends Search.AcceptableValue, K extends string | number | symbol>(
+  datasets: MaybeRef<T[]> | MaybeRef<Map<K, T>>,
+  {
+    query,
+    getters,
+    options
+  }: {
+    query?: MaybeRef<string>;
+    getters?: MaybeRef<Search.ValuesGetter<T, string>[]>;
+    options?: MaybeRef<Search.Options>;
+  } = {}
+): {
   result: ComputedRef<T[] | Map<K, T>>;
 } & Search.BaseExpose {
   const $query = toRef(query || '');
@@ -141,14 +146,16 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
     ($options.value?.caseSensitive ? value : value.toLocaleLowerCase()).trim();
 
   const search = (value: string) => {
+    const queryPhrases = handleCase($query.value).split(' ');
+
     if ($options.value.phraseSearch) {
-      const queryPhrases = handleCase($query.value).split(' ');
-      const valuePhrases = handleCase(value)
-        .replace($options.value.segmentRegexp, ' ')
-        .split(' ');
+      const valuePhrases = [
+        handleCase(value),
+        ...handleCase(value).replace($options.value.segmentRegexp, ' ').split(' ')
+      ];
 
       return queryPhrases[$options.value.strict ? 'every' : 'some']((phrase) =>
-        valuePhrases.includes(phrase)
+        valuePhrases.some((v) => v.includes(phrase))
       );
     } else {
       return value.includes($query.value);
