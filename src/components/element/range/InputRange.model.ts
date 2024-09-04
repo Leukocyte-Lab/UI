@@ -1,6 +1,6 @@
 import type { EventSignalOptions } from '@/shared/libs/event';
 
-export namespace Range {
+export namespace InputRange {
   export interface Props {
     min?: number;
     max?: number;

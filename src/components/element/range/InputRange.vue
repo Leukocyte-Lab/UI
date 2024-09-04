@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { useEventDebounceSignal } from '@/shared/libs/event';
 
-import type { Range } from './Range.model';
+import type { InputRange } from './InputRange.model';
 
-const props = withDefaults(defineProps<Range.Props>(), {
+const props = withDefaults(defineProps<InputRange.Props>(), {
   max: 100,
   min: 0,
   step: 1,
@@ -13,9 +13,9 @@ const props = withDefaults(defineProps<Range.Props>(), {
   progressColor: 'var(--agh-ref-color-cyan-400)'
 });
 
-const emits = defineEmits<Range.Emits>();
+const emits = defineEmits<InputRange.Emits>();
 
-const rangeRef$ = ref<HTMLInputElement | null>(null);
+const inputRangeRef$ = ref<HTMLInputElement | null>(null);
 
 const progress = computed(() => (Number(props.modelValue) / Number(props.max)) * 100);
 
@@ -38,7 +38,7 @@ const { onTrigger } = useEventDebounceSignal(
 
 <template>
   <input
-    ref="rangeRef$"
+    ref="inputRangeRef$"
     @input="onTrigger"
     type="range"
     v-bind="props"
@@ -51,7 +51,6 @@ const { onTrigger } = useEventDebounceSignal(
 
 <style module scoped lang="scss">
 input[type='range'] {
-  -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
   width: 100%;
@@ -73,7 +72,6 @@ input[type='range']::-webkit-slider-runnable-track {
 }
 
 input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
   appearance: none;
   background-color: v-bind(thunbColor);
   border-radius: var(--agh-ref-border-radius-900);
