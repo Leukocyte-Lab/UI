@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<InputRange.Props>(), {
   max: 100,
   min: 0,
   step: 1,
-  thunbColor: 'var(--agh-ref-color-cyan-600)',
+  thumbColor: 'var(--agh-ref-color-cyan-600)',
   trackColor: 'var(--agh-sys-color-cyan-surface-dim)',
   progressColor: 'var(--agh-ref-color-cyan-400)'
 });
@@ -73,7 +73,7 @@ input[type='range']::-webkit-slider-runnable-track {
 
 input[type='range']::-webkit-slider-thumb {
   appearance: none;
-  background-color: v-bind(thunbColor);
+  background-color: v-bind(thumbColor);
   border-radius: var(--agh-ref-border-radius-900);
   height: 32px;
   width: 13px;
@@ -87,7 +87,7 @@ input[type='range']::-moz-range-track {
 
 input[type='range']::-moz-range-thumb {
   appearance: none;
-  background-color: v-bind(thunbColor);
+  background-color: v-bind(thumbColor);
   border-radius: var(--agh-ref-border-radius-900);
   height: 32px;
   width: 13px;

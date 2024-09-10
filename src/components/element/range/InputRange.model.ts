@@ -8,7 +8,7 @@ export namespace InputRange {
     modelValue?: number;
     disabled?: boolean;
     eventSignalOptions?: EventSignalOptions;
-    thunbColor?: string;
+    thumbColor?: string;
     trackColor?: string;
     progressColor?: string;
   }
