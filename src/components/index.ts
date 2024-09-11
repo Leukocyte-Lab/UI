@@ -65,6 +65,9 @@ import Timeline from './layout/timeline/Timeline.vue';
 // exclusive
 import AttackMatrix from './exclusive/AttackMatrix.vue';
 
+// range
+import InputRange from './element/range/InputRange.vue';
+
 export {
   // base
   BaseLink,
@@ -131,5 +134,8 @@ export {
   Timeline,
 
   // exclusive
-  AttackMatrix
+  AttackMatrix,
+
+  // range
+  InputRange
 };
