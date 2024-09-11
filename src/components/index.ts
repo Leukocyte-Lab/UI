@@ -49,6 +49,9 @@ import SearchBar from './element/search-bar/SearchBar.vue';
 import TextArea from './element/textarea/TextArea.vue';
 import TextField from './element/textfield/TextField.vue';
 
+// range
+import InputRange from './element/range/InputRange.vue';
+
 // switch
 import SwitchButton from './element/switch/SwitchButton.vue';
 
@@ -116,6 +119,9 @@ export {
   // text
   TextArea,
   TextField,
+
+  // range
+  InputRange,
 
   // switch
   SwitchButton,
