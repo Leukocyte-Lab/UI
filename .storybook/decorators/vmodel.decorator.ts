@@ -3,9 +3,9 @@ import { useArgs } from '@storybook/preview-api';
 import type { Decorator } from '@storybook/vue3';
 
 
-export const fixVModel: Decorator = (story, context) => {
+export const fixVModel: Decorator = (story, ctx) => {
   const [args, updateArgs] = useArgs();
-  const { component } = context as any;
+  const { component, context } = ctx;
 
   component?.emits?.forEach((emit: string) => {
     const [, model] = emit.split(':');
@@ -19,7 +19,7 @@ export const fixVModel: Decorator = (story, context) => {
        * @see {@link https://github.com/storybookjs/storybook/blob/next/code/lib/preview-api/src/modules/store/ArgsStore.ts#L63}
        */
       const modelValue = values[0] === undefined ? null : values[0];
-      updateArgs({ [model]: modelValue });
+      context.args[model] = modelValue;
     };
   });
 
