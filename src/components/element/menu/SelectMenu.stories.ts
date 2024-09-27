@@ -1,11 +1,8 @@
-import { pick } from 'lodash-es';
 import { fn } from '@storybook/test';
 
-import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3';
 
 import SelectMenu from './SelectMenu.vue';
-
-import bindArgs from '@/../.storybook/helpers/bind-args';
 
 import type { SelectMenu as SelectMenuNS } from './SelectMenu.model';
 
@@ -71,21 +68,6 @@ const meta: GenericMeta<typeof SelectMenu<SelectMenuNS.AcceptableValue>> = {
 export default meta;
 
 type DefaultMenu$ = StoryObj<typeof SelectMenu>;
-
-const Template: StoryFn<typeof SelectMenu> = (args) => ({
-  components: { SelectMenu },
-  setup() {
-    return { args };
-  },
-  template: `
-    <SelectMenu
-      v-model="args.modelValue"
-      :options="args.options"
-      :fields="args.fields"
-      ${bindArgs(pick(args, ['groupBy', 'label', 'multiple', 'useSearch']))}
-    />
-    `
-});
 
 export const DefaultSelectMenu: DefaultMenu$ = {
   args: {

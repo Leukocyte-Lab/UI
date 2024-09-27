@@ -61,20 +61,6 @@ export default meta;
 type DropDown$ = StoryObj<typeof DropDown>;
 
 export const DefaultDropDown: DropDown$ = {
-  render: (args) => ({
-    components: { DropDown },
-    setup() {
-      return { args };
-    },
-    template: `
-      <DropDown
-        :fields="args.fields"
-        :items="args.items"
-        v-model="args.modelValue"
-        ${bindArgs(pick(args, ['variant', 'size', 'level']))}
-      />
-    `
-  }),
   args: {
     items: [
       {

@@ -5,8 +5,6 @@ import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
 
 import TextField from './TextField.vue';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
-
 const meta: Meta<typeof TextField> = {
   title: 'Components / Element / TextField',
   component: TextField,
@@ -117,31 +115,7 @@ export default meta;
 
 type TextField$ = StoryObj<typeof TextField>;
 
-const Template: StoryFn<typeof TextField> = (args) => ({
-  components: { TextField },
-  setup() {
-    return { args };
-  },
-  template: `
-  <TextField
-    ${bindArgs(omit(
-    args,
-    [
-      'eventSignalOptions',
-      'invalidMessage',
-      'modelValue',
-      'onUpdate:modelValue',
-      'onValidation',
-      'iconClick'
-    ]
-  ))}
-    v-model="args.modelValue"
-  />`
-});
-
 export const DefaultTextField: TextField$ = {
-  render: Template,
-
   args: {
     placeholder: 'Placeholder',
     modelValue: 'Default Value',
@@ -154,8 +128,6 @@ export const DefaultTextField: TextField$ = {
 };
 
 export const IconTextField: TextField$ = {
-  render: Template,
-
   args: {
     placeholder: 'Placeholder',
     modelValue: 'Default Value',
@@ -169,8 +141,6 @@ export const IconTextField: TextField$ = {
 };
 
 export const EmptyRequiredTextField: TextField$ = {
-  render: Template,
-
   args: {
     placeholder: 'Placeholder',
     modelValue: '',
@@ -183,8 +153,6 @@ export const EmptyRequiredTextField: TextField$ = {
 };
 
 export const NoLabelTextField: TextField$ = {
-  render: Template,
-
   args: {
     placeholder: 'Placeholder',
     modelValue: 'Default Value',
@@ -196,8 +164,6 @@ export const NoLabelTextField: TextField$ = {
 };
 
 export const NoLabelRequiredTextField: TextField$ = {
-  render: Template,
-
   args: {
     placeholder: 'Placeholder',
     modelValue: 'Default Value',
@@ -209,8 +175,6 @@ export const NoLabelRequiredTextField: TextField$ = {
 };
 
 export const DisabledTextField: TextField$ = {
-  render: Template,
-
   args: {
     modelValue: 'Default Value',
     disabled: true
@@ -218,8 +182,6 @@ export const DisabledTextField: TextField$ = {
 };
 
 export const InvalidTextField: TextField$ = {
-  render: Template,
-
   args: {
     modelValue: '256.256.256.256',
     pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
@@ -228,8 +190,6 @@ export const InvalidTextField: TextField$ = {
 };
 
 export const InvalidWithCustomErrorMessageTextField: TextField$ = {
-  render: Template,
-
   args: {
     modelValue: '256.256.256.256',
     pattern: '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$',
@@ -242,16 +202,12 @@ export const InvalidWithCustomErrorMessageTextField: TextField$ = {
 };
 
 export const SearchTextField: TextField$ = {
-  render: Template,
-
   args: {
     type: 'search'
   }
 };
 
 export const DisabledSearchTextField: TextField$ = {
-  render: Template,
-
   args: {
     ...SearchTextField.args,
     disabled: true
@@ -259,8 +215,6 @@ export const DisabledSearchTextField: TextField$ = {
 };
 
 export const FindTextField: TextField$ = {
-  render: Template,
-
   args: {
     type: 'search',
     iconAlign: 'left'
@@ -268,8 +222,6 @@ export const FindTextField: TextField$ = {
 };
 
 export const DisabledFindTextField: TextField$ = {
-  render: Template,
-
   args: {
     ...FindTextField.args,
     disabled: true

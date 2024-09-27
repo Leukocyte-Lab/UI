@@ -1,10 +1,8 @@
-import { pick } from 'lodash-es';
 
-import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3';
 
 import SearchBar from './SearchBar.vue';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
 
 const meta: Meta<typeof SearchBar> = {
   title: 'Components / Element / SearchBar',
@@ -36,23 +34,7 @@ export default meta;
 
 type SearchBar$ = StoryObj<typeof SearchBar>;
 
-const Template: StoryFn<typeof SearchBar> = (args) => ({
-  components: { SearchBar },
-  setup() {
-    return { args };
-  },
-  template: `
-    <SearchBar
-      v-model="args.modelValue"
-      :items="args.items"
-      :fields="args.fields"
-      ${bindArgs(pick(args, ['disabled']))}
-    />
-    `
-})
-
 export const DefaultSearchBar: SearchBar$ = {
-  render: Template,
   args: {
     items: [
       {
@@ -102,7 +84,6 @@ export const DefaultSearchBar: SearchBar$ = {
 };
 
 export const DisabledSearchBar: SearchBar$ = {
-  render: Template,
   args: {
     ...DefaultSearchBar.args,
     disabled: true

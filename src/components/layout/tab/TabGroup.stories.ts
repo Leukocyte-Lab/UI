@@ -1,3 +1,5 @@
+import { fn } from '@storybook/test';
+
 import type { Meta, StoryFn } from '@storybook/vue3';
 
 import TabGroup from './TabGroup.vue';
@@ -18,24 +20,13 @@ const meta: Meta<typeof TabGroup> = {
     'onUpdate:modelValue': {
       action: 'selected'
     }
+  },
+  args: {
+    'onUpdate:modelValue': fn()
   }
 };
 
 export default meta;
-
-const Template: StoryFn<typeof TabGroup> = (args) => ({
-  components: { TabGroup },
-  setup() {
-    return { args };
-  },
-  template: `
-    <TabGroup
-      :tabs="args.tabs"
-      :level="args.level"
-      v-model="args.modelValue"
-    />
-  `
-});
 
 const UseSlotTemplate: StoryFn<typeof TabGroup> = (args) => ({
   components: { TabGroup },
@@ -44,9 +35,7 @@ const UseSlotTemplate: StoryFn<typeof TabGroup> = (args) => ({
   },
   template: `
     <TabGroup
-      :tabs="args.tabs"
-      :level="args.level"
-      v-model="args.modelValue"
+      v-bind="args"
     >
       <template #tab-1="{ tab, id, index }">
         <div>
@@ -74,8 +63,6 @@ const UseSlotTemplate: StoryFn<typeof TabGroup> = (args) => ({
 });
 
 export const DefaultTabGroup = {
-  render: Template,
-
   args: {
     tabs: [
       { id: 'tab-1', name: 'Tab 1', content: 'Tab 1 content' },
@@ -97,8 +84,6 @@ export const DefaultTabGroupWithoutParentModel = {
 };
 
 export const DefaultTabGroupWithIcon = {
-  render: Template,
-
   args: {
     tabs: [
       { id: 'tab-1', name: 'Reminder', icon: 'fa6-solid:list', content: 'Tab 1 content' },
@@ -110,8 +95,6 @@ export const DefaultTabGroupWithIcon = {
 };
 
 export const SecondaryTabGroup = {
-  render: Template,
-
   args: {
     ...DefaultTabGroupWithIcon.args,
     level: 'secondary'
