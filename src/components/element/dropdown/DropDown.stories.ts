@@ -4,13 +4,18 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 
 import DropDown from './DropDown.vue';
 
+import type { DropDown as DropDownNS } from './DropDown.model';
 
-const meta: Meta<typeof DropDown> = {
+type GenericMeta<C> = Omit<Meta<C>, 'component'> & {
+  component: Record<keyof C, unknown>;
+};
+
+const meta: GenericMeta<typeof DropDown<DropDownNS.AcceptableValue>> = {
   title: 'Components / Element / DropDown',
   component: DropDown,
   tags: ['autodocs'],
   argTypes: {
-    items: {
+    options: {
       control: 'object',
       description: 'Data to be displayed in the menu.'
     },
@@ -51,10 +56,30 @@ const meta: Meta<typeof DropDown> = {
     disabled: {
       control: 'boolean',
       description: 'DropDown disabled (optional)'
+    },
+    useSearch: {
+      control: 'boolean',
+      description: 'Enable search functionality.'
+    },
+    showAll: {
+      if: {
+        arg: 'useSearch',
+        eq: true
+      },
+      control: 'boolean',
+      description: 'Always show all options when search is enabled.'
+    },
+    'onUpdate:modelValue': {
+      action: 'selected'
+    },
+    'onUpdate:query': {
+      action: 'search'
     }
   },
   args: {
-    'onUpdate:modelValue': fn()
+    modelValue: undefined,
+    'onUpdate:modelValue': fn(),
+    'onUpdate:query': fn()
   }
 };
 
@@ -64,7 +89,7 @@ type DropDown$ = StoryObj<typeof DropDown>;
 
 export const DefaultDropDown: DropDown$ = {
   args: {
-    items: [
+    options: [
       {
         name: 'APT-38',
         description:
@@ -104,7 +129,11 @@ export const DefaultDropDown: DropDown$ = {
       title: '{{ $.name }}'
     },
     modelValue: {
-      name: 'APT-38'
+      name: 'APT-38',
+      description:
+        'APT-38 is a threat group that has been attributed to the North Korean government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
     },
     variant: 'rounded',
     size: 'medium',
