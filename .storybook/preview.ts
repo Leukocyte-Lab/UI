@@ -8,6 +8,7 @@ import * as FontAwesomeSolid from '@iconify-json/fa6-solid';
 
 import type { Preview } from '@storybook/vue3';
 
+import { fixVModel } from './decorators/vmodel.decorator';
 import { cssVariables } from './helpers/css-variables';
 
 addCollection(FontAwesomeSolid.icons);
@@ -30,9 +31,17 @@ const preview: Preview = {
         'Dark Theme': MetallicDarkTheme
       },
       defaultTheme: 'Light Theme'
+    },
+    docs: {
+      argTypes: {
+        sort: 'requiredFirst'
+      }
     }
   },
-  decorators: [cssVariablesTheme]
+  decorators: [
+    cssVariablesTheme,
+    fixVModel
+  ]
 };
 
 export default preview;
