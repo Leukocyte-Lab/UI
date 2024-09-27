@@ -1,45 +1,60 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends DropDown.AcceptableValue">
 import { computed } from 'vue';
 import { vOnClickOutside } from '@vueuse/components';
 
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import SelectMenu from '@/components/element/menu/SelectMenu.vue';
 import { valuesGetter } from '@/shared/libs/fn';
-import { parser } from '@/shared/libs/parser';
-import { selector } from '@/shared/libs/selector';
 import { signal } from '@/shared/libs/signal';
 
 import type { DropDown } from '@/components/element/dropdown/DropDown.model';
-import type { ObjectLike } from '@/shared/types/object';
 
-const props = withDefaults(defineProps<DropDown.Props>(), {
-  items: () => [],
+const props = withDefaults(defineProps<DropDown.Props<T>>(), {
   level: 'primary',
   variant: 'rounded',
   size: 'medium',
   multiple: false
 });
 
-const emits = defineEmits<{
-  (e: 'update:modelValue', option: ObjectLike): void;
-  (e: 'update:modelValue', options: ObjectLike[]): void;
-}>();
-
-const selected = computed({
-  get: () => props.modelValue,
-  set: (value) => {
-    if (!props.multiple) {
-      closeMenu.set(true);
-    }
-
-    return emits(
-      'update:modelValue',
-      props.multiple ? (value as ObjectLike) : (value as ObjectLike[])
-    );
-  }
+const selection = defineModel<DropDown.Props<T>['modelValue']>({
+  required: true
+});
+const query = defineModel<string>('query', {
+  default: ''
 });
 
 const closeMenu = signal(true);
+
+const bobbleCount = computed(() =>
+  props.multiple && selection.value
+    ? Array.isArray(selection.value)
+      ? selection.value.length
+      : selection.value instanceof Map
+        ? selection.value.size
+        : false
+    : false
+);
+const optionsCount = computed(() =>
+  Array.isArray(props.options)
+    ? props.options.length
+    : props.options instanceof Map
+      ? props.options.size
+      : 0
+);
+const label = computed(() =>
+  props.multiple
+    ? (bobbleCount.value || 0) > 0
+      ? (props.label ?? props.placeholder)
+      : (props.placeholder ?? props.label)
+    : ((props.modelValue &&
+        (props.fields.title
+          ? valuesGetter(props.modelValue as T, props.fields.title, true)
+          : props.fields.key
+            ? valuesGetter(props.modelValue as T, props.fields.key, true)
+            : undefined)) ??
+      props.label ??
+      props.placeholder)
+);
 </script>
 
 <template>
@@ -49,38 +64,28 @@ const closeMenu = signal(true);
   >
     <ButtonBox
       @click="closeMenu.update((state) => !state)"
-      :bobble="props.multiple ? (selected?.length ?? false) : false"
+      :bobble="bobbleCount"
       :class="[$style['dropdown-button'], $style[size]]"
       :clicked="!closeMenu()"
       :disabled="props.disabled"
       :icon="closeMenu() ? 'fa6-solid:chevron-down' : 'fa6-solid:chevron-up'"
-      :label="
-        props.multiple
-          ? (selected?.length ?? 0) > 0
-            ? (props.label ?? props.placeholder)
-            : (props.placeholder ?? props.label)
-          : ((props.modelValue &&
-            (props.fields.title
-              ? valuesGetter(props.modelValue, props.fields.title, true)
-              : props.fields.key
-                ? valuesGetter(props.modelValue, props.fields.key, true)
-                : undefined)) ??
-            props.label ??
-            props.placeholder)
-      "
+      :label="label"
       :level="props.level"
       :size="props.size"
       :variant="props.variant"
     />
-    <template v-if="items.length > 0 && !closeMenu()">
+    <template v-if="selection && optionsCount > 0 && !closeMenu()">
+      <!-- @vue-ignore // ? NOTE: SelectMenu will handle generic type ? // -->
       <SelectMenu
-        v-model="selected"
+        v-model="selection"
+        v-model:query="query"
         :class="$style['dropdown-menu']"
         :fields="props.fields"
         :group-by="props.groupBy"
         :label="props.label"
         :multiple="props.multiple"
-        :options="items"
+        :options="props.options"
+        :show-all="props.showAll"
         :use-search="props.useSearch"
       />
     </template>
