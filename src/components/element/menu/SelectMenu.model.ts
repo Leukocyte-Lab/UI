@@ -33,7 +33,7 @@ export namespace SelectMenu {
     fields: Fields<T>;
     groupBy?: ValuesGetter<T, string>;
     label?: string;
-  } & ({ useSearch?: false } | { useSearch: true; showAll?: boolean }) &
+  } & ({ useSearch?: false } | { useSearch: true; showAll?: boolean; query?: string }) &
     (
       | {
           options: T[] | Map<string | number, T>;

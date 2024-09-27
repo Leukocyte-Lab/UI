@@ -23,6 +23,9 @@ const props = withDefaults(defineProps<SelectMenu.Props<T>>(), {
 const selection = defineModel<SelectMenu.Props<T>['modelValue']>({
   required: true
 });
+const searchQuery = defineModel<string>('query', {
+  default: ''
+});
 
 const wrapperRef$ = ref<HTMLElement>();
 
@@ -46,7 +49,8 @@ const selectedFields = computed(() =>
     : fieldParser(selection.value as T).key
 );
 
-const { result, query: search } = useSearch(options, {
+const { result } = useSearch(options, {
+  query: searchQuery,
   getters: props.fields.searchKeys ?? []
 });
 
@@ -182,7 +186,7 @@ onMounted(() => {
       </header>
     </template>
     <template v-if="props.useSearch">
-      <TextField v-model="search" :class="$style['menu-search']" type="search" />
+      <TextField v-model="searchQuery" :class="$style['menu-search']" type="search" />
     </template>
     <div
       ref="wrapperRef$"
