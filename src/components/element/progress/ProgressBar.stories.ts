@@ -20,6 +20,9 @@ const meta: Meta<typeof ProgressBar> = {
       control: { type: 'number', min: 0 },
       description: 'The thickness of the progress bar.'
     }
+  },
+  args: {
+    style: 'width: 240px; height: 24px;'
   }
 };
 
