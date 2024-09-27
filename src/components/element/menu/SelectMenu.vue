@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="T extends SelectMenu.AcceptableValue">
-import { groupBy, isEqual, omit } from 'lodash-es';
-import { computed, type ModelRef, onMounted, ref, watch } from 'vue';
+import { groupBy, omit } from 'lodash-es';
+import { computed, type ModelRef, onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
 import { useResizeObserver } from '@vueuse/core';
 
