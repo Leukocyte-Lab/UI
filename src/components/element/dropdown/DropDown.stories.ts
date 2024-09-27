@@ -1,10 +1,9 @@
-import { pick } from 'lodash-es';
+import { fn } from '@storybook/test';
 
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import DropDown from './DropDown.vue';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
 
 const meta: Meta<typeof DropDown> = {
   title: 'Components / Element / DropDown',
@@ -53,6 +52,9 @@ const meta: Meta<typeof DropDown> = {
       control: 'boolean',
       description: 'DropDown disabled (optional)'
     }
+  },
+  args: {
+    'onUpdate:modelValue': fn()
   }
 };
 
@@ -150,6 +152,9 @@ export const TertiaryRectDropDown: DropDown$ = {
 export const DefaultDropDownWithSearch: DropDown$ = {
   args: {
     ...DefaultDropDown.args,
+    fields: {...DefaultDropDown.args!.fields!,
+      searchKeys: ['name', 'description']
+    },
     useSearch: true
   }
 };
@@ -179,6 +184,9 @@ export const MultiDropDown: DropDown$ = {
 export const MultiDropDownWithSearch: DropDown$ = {
   args: {
     ...MultiDropDown.args,
+    fields: {...MultiDropDown.args!.fields!,
+      searchKeys: ['name', 'description']
+    },
     useSearch: true
   }
 };
@@ -249,6 +257,9 @@ export const LargeRectTertiaryDropDown: DropDown$ = {
 export const LargeDropDownWithSearch: DropDown$ = {
   args: {
     ...LargeDropDown.args,
+    fields: {...LargeDropDown.args!.fields!,
+      searchKeys: ['name', 'description']
+    },
     useSearch: true
   }
 };
@@ -267,6 +278,9 @@ export const WithSubtitleDropDown: DropDown$ = {
 export const WithSubtitleDropDownWithSearch: DropDown$ = {
   args: {
     ...WithSubtitleDropDown.args,
+    fields: {...WithSubtitleDropDown.args!.fields!,
+      searchKeys: ['name', 'description']
+    },
     useSearch: true
   }
 };
