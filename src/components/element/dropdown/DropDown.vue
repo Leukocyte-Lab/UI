@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends DropDown.AcceptableValue">
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { vOnClickOutside } from '@vueuse/components';
 
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
@@ -55,6 +55,12 @@ const label = computed(() =>
       props.label ??
       props.placeholder)
 );
+
+watch([selection, () => props.multiple], ([selection, multiple]) => {
+  if (!multiple && selection) {
+    closeMenu.set(true);
+  }
+});
 </script>
 
 <template>
