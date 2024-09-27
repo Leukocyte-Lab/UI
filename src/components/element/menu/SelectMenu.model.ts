@@ -1,4 +1,3 @@
-import type { Signal } from '@/shared/libs/signal';
 import type { GetterFn } from '@/shared/types/fn';
 import type { ObjectLike } from '@/shared/types/object';
 
@@ -17,7 +16,8 @@ export namespace SelectMenu {
   };
 
   export type Option<T extends AcceptableValue = ObjectLike> = {
-    selected: Signal<boolean>;
+    selected: boolean;
+    matched?: boolean;
     field: {
       key: string;
       title?: string;
@@ -33,27 +33,27 @@ export namespace SelectMenu {
     fields: Fields<T>;
     groupBy?: ValuesGetter<T, string>;
     label?: string;
-    useSearch?: boolean;
-  } & (
-    | {
-      options: T[] | Map<string | number, T>;
-      modelValue?: T | T[] | Map<string | number, T>;
-      multiple?: boolean;
-    }
-    | {
-        options: T[] | Map<string | number, T>;
-        modelValue?: T;
-        multiple: false;
-      }
-    | ({ multiple: true } & (
-        | {
-            options: T[];
-            modelValue?: T[];
-          }
-        | {
-            options: Map<string | number, T>;
-            modelValue?: Map<string | number, T>;
-          }
-      ))
-  );
+  } & ({ useSearch?: false } | { useSearch: true; showAll?: boolean }) &
+    (
+      | {
+          options: T[] | Map<string | number, T>;
+          modelValue?: T | T[] | Map<string | number, T>;
+          multiple?: boolean;
+        }
+      | {
+          options: T[] | Map<string | number, T>;
+          modelValue?: T;
+          multiple: false;
+        }
+      | ({ multiple: true } & (
+          | {
+              options: T[];
+              modelValue: T[];
+            }
+          | {
+              options: Map<string | number, T>;
+              modelValue: Map<string | number, T>;
+            }
+        ))
+    );
 }
