@@ -1,10 +1,8 @@
-import { pick } from 'lodash-es';
 
-import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3';
 
 import SwitchButton from './SwitchButton.vue';
 
-import bindArgs from '@/../.storybook/helpers/bind-args';
 
 const meta: Meta<typeof SwitchButton> = {
   title: 'Components / Element / SwitchButton',
@@ -16,21 +14,7 @@ export default meta;
 
 type SwitchButton$ = StoryObj<typeof SwitchButton>;
 
-const Template: StoryFn<typeof SwitchButton> = (args) => ({
-  components: { SwitchButton },
-  setup() {
-    return { args };
-  },
-  template: `
-  <SwitchButton
-    ${bindArgs(pick(args, 'disabled'))}
-    :event-signal-options="args.eventSignalOptions"
-    v-model="args.modelValue"
-  />`
-});
-
 export const DefaultSwitchButton: SwitchButton$ = {
-  render: Template,
   args: {
     modelValue: false,
     disabled: false

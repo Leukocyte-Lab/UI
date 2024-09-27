@@ -1,11 +1,8 @@
-import { omit } from 'lodash-es';
 import { fn } from '@storybook/test';
 
-import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3';
 
 import TextArea from './TextArea.vue';
-
-import bindArgs from '@/../.storybook/helpers/bind-args';
 
 const meta: Meta<typeof TextArea> = {
   title: 'Components / Element / TextArea',
@@ -83,31 +80,7 @@ export default meta;
 
 type TextArea$ = StoryObj<typeof TextArea>;
 
-const Template: StoryFn<typeof TextArea> = (args) => ({
-  components: { TextArea },
-  setup() {
-    return { args };
-  },
-  template: `
-    <TextArea
-      ${bindArgs(omit(
-    args,
-    [
-      'eventSignalOptions',
-      'invalidMessage',
-      'modelValue',
-      'onUpdate:modelValue',
-      'onValidation',
-    ]
-  ))}
-      v-model="args.modelValue"
-      @validation="args.onValidation"
-    />
-  `
-});
-
 export const DefaultTextArea: TextArea$ = {
-  render: Template,
 
   args: {
     placeholder: 'Placeholder',
@@ -119,7 +92,6 @@ export const DefaultTextArea: TextArea$ = {
 };
 
 export const PlaceholderTextArea: TextArea$ = {
-  render: Template,
 
   args: {
     ...DefaultTextArea.args,
@@ -128,7 +100,6 @@ export const PlaceholderTextArea: TextArea$ = {
 };
 
 export const InvalidTextArea: TextArea$ = {
-  render: Template,
 
   args: {
     modelValue: '',
@@ -137,7 +108,6 @@ export const InvalidTextArea: TextArea$ = {
 };
 
 export const DisabledTextArea: TextArea$ = {
-  render: Template,
 
   args: {
     modelValue: 'Default Value',
