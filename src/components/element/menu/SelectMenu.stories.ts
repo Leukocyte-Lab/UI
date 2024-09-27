@@ -34,11 +34,32 @@ const meta: GenericMeta<typeof SelectMenu<SelectMenuNS.AcceptableValue>> = {
       control: 'boolean',
       description: 'Whether the menu allows multiple selections.'
     },
+    groupBy: {
+      control: 'text',
+      description: 'Group options by a field.'
+    },
+    label: {
+      control: 'text',
+      description: 'Label for the menu.'
+    },
+    useSearch: {
+      control: 'boolean',
+      description: 'Enable search functionality.'
+    },
+    showAll: {
+      if: {
+        arg: 'useSearch',
+        eq: true
+      },
+      control: 'boolean',
+      description: 'Always show all options when search is enabled.'
+    },
     'onUpdate:modelValue': {
       action: 'selected'
     }
   },
   args: {
+    modelValue: undefined,
     'onUpdate:modelValue': fn()
   }
 };
@@ -63,7 +84,6 @@ const Template: StoryFn<typeof SelectMenu> = (args) => ({
 });
 
 export const DefaultSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     options: [
       {
@@ -111,7 +131,6 @@ export const DefaultSelectMenu: DefaultMenu$ = {
 };
 
 export const SingleSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     ...DefaultSelectMenu.args,
     modelValue: {
@@ -124,19 +143,18 @@ export const SingleSelectMenu: DefaultMenu$ = {
 };
 
 export const SingleSelectMenuWithSearch: DefaultMenu$ = {
-  render: Template,
   args: {
     ...SingleSelectMenu.args,
     fields: {
       ...SingleSelectMenu.args!.fields!,
       searchKeys: ['name', 'description']
     },
-    useSearch: true
+    useSearch: true,
+    showAll: false
   }
 };
 
 export const SingleWithSubtitleSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     ...DefaultSelectMenu.args,
     modelValue: {
@@ -154,7 +172,6 @@ export const SingleWithSubtitleSelectMenu: DefaultMenu$ = {
 };
 
 export const GroupSingleSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     ...SingleSelectMenu.args,
     groupBy: 'category'
@@ -162,7 +179,6 @@ export const GroupSingleSelectMenu: DefaultMenu$ = {
 };
 
 export const GroupWithSubtitleSingleSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     ...SingleWithSubtitleSelectMenu.args,
     fields: {
@@ -175,7 +191,6 @@ export const GroupWithSubtitleSingleSelectMenu: DefaultMenu$ = {
 };
 
 export const MultiSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     ...DefaultSelectMenu.args,
     modelValue: [
@@ -192,19 +207,18 @@ export const MultiSelectMenu: DefaultMenu$ = {
 };
 
 export const MultiSelectMenuWithSearch: DefaultMenu$ = {
-  render: Template,
   args: {
     ...MultiSelectMenu.args,
     fields: {
       ...MultiSelectMenu.args!.fields!,
       searchKeys: ['name', 'description']
     },
-    useSearch: true
+    useSearch: true,
+    showAll: false
   }
 };
 
 export const MultiWithSubtitleSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     ...MultiSelectMenu.args,
     modelValue: [
@@ -212,10 +226,14 @@ export const MultiWithSubtitleSelectMenu: DefaultMenu$ = {
         name: 'APT-40',
         description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
         category: 'APT Group Simulation Data',
-        recentlyUsed: '2021-01-01T00:00:00Z'
+        recentlyUsed: '2021-01-01T00:00:00.000Z'
       },
       {
-        name: 'Apache Techniques'
+        name: 'Apache Techniques',
+        description:
+          'Apache is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+        category: 'Technique Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00.000Z'
       }
     ],
     fields: {
@@ -228,7 +246,6 @@ export const MultiWithSubtitleSelectMenu: DefaultMenu$ = {
 };
 
 export const GroupMultiSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     ...MultiSelectMenu.args,
     multiple: true,
@@ -237,7 +254,6 @@ export const GroupMultiSelectMenu: DefaultMenu$ = {
 };
 
 export const GroupWithSubtitleMultiSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     ...MultiWithSubtitleSelectMenu.args,
     fields: {
@@ -251,7 +267,6 @@ export const GroupWithSubtitleMultiSelectMenu: DefaultMenu$ = {
 };
 
 export const GroupOverflowWithSubtitleMultiSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     ...MultiWithSubtitleSelectMenu.args,
     options: [
@@ -299,19 +314,18 @@ export const GroupOverflowWithSubtitleMultiSelectMenu: DefaultMenu$ = {
 };
 
 export const GroupOverflowWithSubtitleMultiSelectWithSearchMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     ...GroupOverflowWithSubtitleMultiSelectMenu.args,
     fields: {
       ...GroupOverflowWithSubtitleMultiSelectMenu.args!.fields!,
       searchKeys: ['name', 'description']
     },
-    useSearch: true
+    useSearch: true,
+    showAll: false
   }
 };
 
 export const IconWithSubtitleSelectMenu: DefaultMenu$ = {
-  render: Template,
   args: {
     options: [
       {
