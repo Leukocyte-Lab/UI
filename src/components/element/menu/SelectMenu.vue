@@ -10,14 +10,14 @@ import TextField from '@/components/element/textfield/TextField.vue';
 import { booleanGetter, valuesGetter } from '@/shared/libs/fn';
 import Map$ from '@/shared/libs/map';
 import { useSearch } from '@/shared/libs/search';
-import { signal, toggleSignal } from '@/shared/libs/signal';
+import { signal } from '@/shared/libs/signal';
 
 import type { SelectMenu } from '@/components/element/menu/SelectMenu.model';
 
-const TRIGGER_SYMBOL = Symbol('TRIGGER');
-
 const props = withDefaults(defineProps<SelectMenu.Props<T>>(), {
-  multiple: false
+  multiple: false,
+  useSearch: false,
+  showAll: false
 });
 
 const selection = defineModel<SelectMenu.Props<T>['modelValue']>({
@@ -26,21 +26,24 @@ const selection = defineModel<SelectMenu.Props<T>['modelValue']>({
 
 const wrapperRef$ = ref<HTMLElement>();
 
-const selectedFields = computed(
+const options = computed(
   () =>
-    new Map(
-      [...[selection.value ?? []].flat().entries()].map(([, option]) => [
-        typeof option === 'object' && !Array.isArray(options) && !(option instanceof Map)
-          ? fieldParser(option).key
-          : option,
-        option
-      ])
+    new Map$(
+      Array.isArray(props.options)
+        ? props.options.map((option, index) => [index, option])
+        : props.options
     )
 );
-const options = computed(() =>
-  Array.isArray(props.options)
-    ? new Map(props.options.map((option, index) => [index, option]))
-    : new Map(props.options)
+const selectedFields = computed(() =>
+  props.multiple
+    ? new Map$(
+        Array.isArray(selection.value)
+          ? new Map<number, T>(selection.value.map((option, index) => [index, option]))
+          : selection.value instanceof Map
+            ? new Map(selection.value)
+            : new Map<string | number, T>()
+      ).map((option, key) => [fieldParser(option).key, options])
+    : fieldParser(selection.value as T).key
 );
 
 const { result, query: search } = useSearch(options, {
@@ -48,7 +51,7 @@ const { result, query: search } = useSearch(options, {
 });
 
 const datasets = computed(() =>
-  new Map$(result.value as Map<string | number, T>)
+  options.value
     .map((option, key) => [
       key,
       {
@@ -61,21 +64,26 @@ const datasets = computed(() =>
       {
         payload,
         field,
-        selected: signal(selectedFields.value.has(field.key))
-      } as SelectMenu.Option<T>
-    ])
-    .map((payload, key) => [
-      key,
-      {
-        get [TRIGGER_SYMBOL]() {
-          return payload.selected();
+        get selected() {
+          return props.multiple && selectedFields.value instanceof Map
+            ? selectedFields.value.has(field.key)
+            : selectedFields.value === field.key;
         },
-        ...payload
-      }
+        get matched() {
+          return result.value.has(key);
+        }
+      } as SelectMenu.Option<T>
     ])
 );
 
-const groups = computed(() => groupBy(datasets.value.toArray('entries'), '[1].field.group'));
+const groups = computed(() =>
+  groupBy(
+    datasets.value
+      .filter(({ matched }) => (props.useSearch && props.showAll) || matched)
+      .toArray('entries'),
+    '[1].field.group'
+  )
+);
 
 const overflowed = signal(false);
 
@@ -108,47 +116,35 @@ const fieldParser = (option: T): SelectMenu.Option<T>['field'] => ({
     : false
 });
 
-const switchSignals = (index: string | number, value: boolean) => {
-  datasets.value.forEach((dataset, key) =>
-    dataset.selected.set(!(Number(key === index) ^ Number(value)))
-  );
-};
-
-watch(
-  [datasets, selection],
-  ([datasets, current], [, pre]) => {
-    if (isEqual(current, pre)) {
-      return;
-    }
-
-    datasets.forEach((option, key) => {
-      if (props.multiple) {
-        if (selection.value instanceof Map) {
-          if (option.selected() && !option.field.disabled) {
-            (selection as ModelRef<Map<string | number, T>, string>).value.set(key, option.payload);
-          } else {
-            (selection as ModelRef<Map<string | number, T>, string>).value.delete(key);
-          }
+const toggleSelection = (index: string | number, option: SelectMenu.Option<T>) => {
+  if (props.multiple) {
+    if (!option.field.disabled) {
+      if (props.options instanceof Map) {
+        if (!option.selected) {
+          (selection as ModelRef<Map<string | number, T>>).value.set(index, option.payload);
+        } else {
+          (selection as ModelRef<Map<string | number, T>>).value.delete(option.field.key);
         }
       } else {
-        if (option.selected() && !option.field.disabled) {
-          selection.value = option.payload;
+        if (!option.selected) {
+          (selection as ModelRef<T[]>).value = datasets.value
+            .filter((option, key) => index === key || option.selected)
+            .toArray('values')
+            .map(({ payload }) => payload);
+        } else {
+          (selection as ModelRef<T[]>).value = datasets.value
+            .filter((option, key) => index !== key && option.selected)
+            .toArray('values')
+            .map(({ payload }) => payload);
         }
       }
-    });
-
-    if (Array.isArray(selection.value)) {
-      (selection as ModelRef<T[], string>).value = datasets
-        .filter((option) => option.selected() && !option.field.disabled)
-        .map(({ payload }, key) => [key, payload])
-        .toArray('values');
     }
-  },
-  {
-    deep: true,
-    immediate: true
+  } else {
+    if (!option.field.disabled) {
+      selection.value = option.payload;
+    }
   }
-);
+};
 
 useResizeObserver(wrapperRef$, computeOverflowed, {
   window
@@ -209,18 +205,18 @@ onMounted(() => {
           <template v-if="props.groupBy && name">
             <label :class="$style['menu-group-label']">{{ name }}</label>
           </template>
-          <template v-for="[index, { selected, field }] in group" :key="`option-${index}`">
+          <template
+            v-for="[index, { selected, field, payload }] in group"
+            :key="`option-${field.key}`"
+          >
             <div
-              @click="
-                !field.disabled &&
-                  (props.multiple ? toggleSignal(selected) : switchSignals(index, true))
-              "
+              @click="!field.disabled && toggleSelection(index, { selected, field, payload })"
               :class="[
                 $style['menu-option'],
                 $style['behavior'],
                 field.disabled ? [$style['disabled']] : $style['clickable'],
                 {
-                  [$style['selected']]: selected(),
+                  [$style['selected']]: selected,
                   [$style['multiple']]: props.multiple
                 }
               ]"
@@ -228,7 +224,7 @@ onMounted(() => {
               <template v-if="props.multiple">
                 <Icon
                   :class="$style['menu-option-icon']"
-                  :icon="selected() ? 'fa6-solid:square-check' : 'fa6-regular:square'"
+                  :icon="selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
                 />
               </template>
               <template v-if="props.fields.icon">
@@ -249,7 +245,9 @@ onMounted(() => {
             </div>
           </template>
           <div :class="$style['menu-group-placeholder']">
-            <p>No Data</p>
+            <slot name="empty-placeholder">
+              <p>No Data</p>
+            </slot>
           </div>
         </div>
       </template>
