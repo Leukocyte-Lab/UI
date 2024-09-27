@@ -56,11 +56,15 @@ const meta: GenericMeta<typeof SelectMenu<SelectMenuNS.AcceptableValue>> = {
     },
     'onUpdate:modelValue': {
       action: 'selected'
+    },
+    'onUpdate:query': {
+      action: 'search'
     }
   },
   args: {
     modelValue: undefined,
-    'onUpdate:modelValue': fn()
+    'onUpdate:modelValue': fn(),
+    'onUpdate:query': fn()
   }
 };
 
@@ -149,6 +153,19 @@ export const SingleSelectMenuWithSearch: DefaultMenu$ = {
       ...SingleSelectMenu.args!.fields!,
       searchKeys: ['name', 'description']
     },
+    useSearch: true,
+    showAll: false
+  }
+};
+
+export const SingleSelectMenuWithSearchWithPredefinedQuery: DefaultMenu$ = {
+  args: {
+    ...SingleSelectMenu.args,
+    fields: {
+      ...SingleSelectMenu.args!.fields!,
+      searchKeys: ['name', 'description'],
+    },
+    query: 'apt',
     useSearch: true,
     showAll: false
   }
