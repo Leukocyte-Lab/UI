@@ -10,7 +10,7 @@ const String$ = new Proxy<StringProxy>(String as StringProxy, {
     if (prop === 'toKebabCase')
       return (str: string): string =>
         str
-          .replace(/([a-z])([A-Z])/g, '$1-$2')
+          .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
           .replace(/[\s_]+/g, '-')
           .toLowerCase();
     if (prop === 'toUpperCase' || prop === 'toLocaleUpperCase')
