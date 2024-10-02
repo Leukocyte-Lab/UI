@@ -956,7 +956,7 @@ const an = 0.5522847498307935, En = (u, D, e, t = !1) => t ? u[e] - D[e] : Math.
   }
 }), bE = new Proxy(String, {
   get(u, D, e) {
-    return D === "toKebabCase" ? (t) => t.replace(/([a-z])([A-Z])/g, "$1-$2").replace(/[\s_]+/g, "-").toLowerCase() : D === "toUpperCase" || D === "toLocaleUpperCase" ? (t, F = "every") => {
+    return D === "toKebabCase" ? (t) => t.replace(/([a-z0-9])([A-Z])/g, "$1-$2").replace(/[\s_]+/g, "-").toLowerCase() : D === "toUpperCase" || D === "toLocaleUpperCase" ? (t, F = "every") => {
       switch (F) {
         case "every":
           return t[D]();
@@ -5590,4 +5590,4 @@ export {
   F0 as y,
   q as z
 };
-//# sourceMappingURL=parser-0frWFIqQ.js.map
+//# sourceMappingURL=parser-dundSmMh.js.map
