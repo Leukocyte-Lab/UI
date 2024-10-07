@@ -109,6 +109,7 @@ watch([selection, () => props.multiple], ([selection, multiple]) => {
 
     &.large {
       width: 100%;
+      min-width: var(--agh-sys-list-dropdown-small);
 
       > .dropdown {
         &-menu,
