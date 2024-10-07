@@ -1,0 +1,1 @@
+import{s as l,k as o,r}from"./vue.esm-bundler-Cgevx0fF.js";const u=Symbol("SIGNAL_DEBUG_INSPECTION"),I=t=>{const e=l(t),a=()=>r(e).value;return a.set=s=>{e.value=s},a.update=s=>{e.value=s(e.value)},a.mutate=s=>{s(e.value),o(e)},a[u]=e,a};export{I as s};

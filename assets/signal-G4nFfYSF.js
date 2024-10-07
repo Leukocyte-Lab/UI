@@ -1,1 +1,0 @@
-import{s as l,j as r}from"./vue.esm-bundler-Dsefq1Xx.js";const o=s=>{const e=l(s),t=()=>e.value;return t.set=a=>{e.value=a},t.update=a=>{e.value=a(e.value)},t.mutate=a=>{a(e.value),r(e)},t};export{o as s};
