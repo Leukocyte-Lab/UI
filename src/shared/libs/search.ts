@@ -1,3 +1,4 @@
+import { diceCoefficient } from 'dice-coefficient';
 import { computed, toRef, toValue } from 'vue';
 
 import type { ComputedRef, MaybeRef, Ref } from 'vue';
@@ -16,22 +17,37 @@ export namespace Search {
 
   export type Options = {
     caseSensitive?: boolean;
+    limit?: number;
+    sortBy?: 'relevance' | 'default' | 'remain';
   } & (
     | {
         phraseSearch?: false;
         strict?: never;
+        segmentPattern?: never;
       }
     | {
         phraseSearch?: true;
         strict?: boolean;
         segmentPattern?: RegExp;
       }
-  );
+  ) &
+    (
+      | {
+          relevanceSearch?: false;
+          relevancePolicy?: never;
+          threshold?: never;
+        }
+      | {
+          relevanceSearch: true;
+          relevancePolicy?: 'average' | 'max' | 'min' | number[];
+          threshold?: number;
+        }
+    );
 
   export type BaseExpose = {
     query: Ref<string>;
     reset: Callback;
-    search: (value: string) => boolean;
+    search: (value: string) => boolean | number;
   };
 }
 
@@ -114,7 +130,13 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
   const $getters = computed(() => toValue(getters) ?? ['']);
   const $options = computed(() => ({
     caseSensitive: false,
-    phraseSearch: true,
+    relevanceSearch: false,
+    relevancePolicy: 'max' as const,
+    threshold:
+      Math.min(...[toValue(options)?.relevancePolicy ?? '0'].flat().filter(Boolean).map(Number)) ||
+      0.5,
+    sortBy: 'default',
+    limit: Infinity,
     strict: false,
     segmentPattern: /-|_|\t|\v|\r|\\/gm,
     ...toValue(options)
@@ -142,19 +164,49 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
             data,
             matched: values
               .filter((value) => value !== null && value !== undefined)
-              .map((value) => search(value))
+              .map((value) => search(value)),
+            relevance: values
+              .filter((value) => value !== null && value !== undefined)
+              .map((value) => diceCoefficient(value, $query.value))
+              .reduce((acc, curr) => (acc + curr >= $options.value.threshold ? curr : 0), 0)
           }
         ])
-        .filter(({ matched }) => matched.some(Boolean))
-        .map(({ data, matched }, key) => [
+        .filter(({ matched }) => $options.value.relevanceSearch || matched.some(Boolean))
+        .map(({ data, matched, relevance }, key) => [
           key,
           {
             data,
-            weight: matched.map(Number).join('')
+            weight: $options.value.relevanceSearch
+              ? typeof $options.value.relevancePolicy === 'string'
+                ? $options.value.relevancePolicy === 'average'
+                  ? matched.map(Number).reduce((acc, curr) => acc + curr, 0) /
+                    Math.max(matched.length, 1)
+                  : Math[$options.value.relevancePolicy](...matched.map(Number))
+                : matched
+                    .map(Number)
+                    .reduce(
+                      (acc, curr, index) =>
+                        acc + curr * (($options.value.relevancePolicy as number[])[index] ?? 0),
+                      0
+                    )
+              : matched.map(Number).join(''),
+            relevance
           }
-        ]);
+        ])
+        .filter(({ weight }) =>
+          $options.value.relevanceSearch ? (Number(weight) || 0) >= $options.value.threshold : true
+        );
 
-      const sorted = Array.from(res).sort(([, a], [, b]) => b.weight.localeCompare(a.weight));
+      const sorted =
+        $options.value.sortBy === 'remain'
+          ? Array.from(res)
+          : $options.value.sortBy === 'relevance'
+            ? Array.from(res).sort(([, a], [, b]) => b.relevance - a.relevance)
+            : Array.from(res).sort(([, a], [, b]) =>
+                typeof b.weight === 'number'
+                  ? b.weight - (Number(a.weight) || 0)
+                  : b.weight.localeCompare(String(a.weight))
+              );
 
       return Array.isArray($datasets.value)
         ? sorted.map(([, { data }]) => data)
@@ -165,10 +217,9 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
   const handleCase = (value: string) =>
     ($options.value?.caseSensitive ? value : value.toLocaleLowerCase()).trim();
 
-  const search = (value: string) => {
-    const queryPhrases = handleCase($query.value).split(' ');
-
+  const search = (value: string): boolean | number => {
     if ($options.value.phraseSearch) {
+      const queryPhrases = handleCase($query.value).split(' ');
       const valuePhrases = [
         handleCase(value),
         ...handleCase(value).replace($options.value.segmentPattern, ' ').split(' ')
@@ -177,6 +228,8 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
       return queryPhrases[$options.value.strict ? 'every' : 'some']((phrase) =>
         valuePhrases.some((v) => v.includes(phrase))
       );
+    } else if ($options.value.relevanceSearch) {
+      return diceCoefficient(value, $query.value);
     } else {
       return handleCase(value).includes(handleCase($query.value));
     }
