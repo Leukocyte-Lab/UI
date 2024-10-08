@@ -1,5 +1,6 @@
 import type { ButtonBox as ButtonBoxNS } from '@/components/element/button/ButtonBox.model';
 import type { SelectMenu as SelectMenuNS } from '@/components/element/menu/SelectMenu.model';
+import type { Search } from '@/shared/libs/search';
 import type { GetterFn } from '@/shared/types/fn';
 import type { ObjectLike } from '@/shared/types/object';
 
@@ -27,7 +28,10 @@ export namespace DropDown {
     fields: Fields<T>;
     groupBy?: ValuesGetter<T, string>;
     label?: string;
-  } & ({ useSearch?: false } | { useSearch: true; showAll?: boolean; query?: string }) &
+  } & (
+    | { useSearch?: false }
+    | ({ useSearch: true; showAll?: boolean; query?: string } & Search.Options)
+  ) &
     (
       | {
           options: T[] | Map<string | number, T>;

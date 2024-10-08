@@ -9,16 +9,12 @@ import CardBox from '@/components/element/card/CardBox.vue';
 import TextField from '@/components/element/textfield/TextField.vue';
 import { booleanGetter, valuesGetter } from '@/shared/libs/fn';
 import Map$ from '@/shared/libs/map';
-import { useSearch } from '@/shared/libs/search';
+import { useSearch, type Search } from '@/shared/libs/search';
 import { signal } from '@/shared/libs/signal';
 
 import type { SelectMenu } from '@/components/element/menu/SelectMenu.model';
 
-const props = withDefaults(defineProps<SelectMenu.Props<T>>(), {
-  multiple: false,
-  useSearch: false,
-  showAll: false
-});
+const props = defineProps<SelectMenu.Props<T>>();
 
 const selection = defineModel<SelectMenu.Props<T>['modelValue']>({
   required: true
@@ -51,7 +47,15 @@ const selectedFields = computed(() =>
 
 const { result } = useSearch(options, {
   query: searchQuery,
-  getters: props.fields.searchKeys ?? []
+  getters: props.fields.searchKeys ?? [],
+  options: props.useSearch
+    ? ({
+        caseSensitive: props.caseSensitive,
+        phraseSearch: props.phraseSearch,
+        strict: props.strict,
+        segmentPattern: (props as Search.Options & { phraseSearch: true }).segmentPattern
+      } as Search.Options)
+    : undefined
 });
 
 const datasets = computed(() =>
@@ -114,7 +118,7 @@ const fieldParser = (option: T): SelectMenu.Option<T>['field'] => ({
     ])
   ),
   key: valuesGetter(option, props.fields.key),
-  group: props.groupBy ? (valuesGetter(option, props.groupBy, true) ?? '') : '',
+  group: props.groupBy ? valuesGetter(option, props.groupBy, true) ?? '' : '',
   disabled: props.fields.disabled
     ? (booleanGetter(option, props.fields.disabled, true) ?? false) || false
     : false
@@ -186,7 +190,12 @@ onMounted(() => {
       </header>
     </template>
     <template v-if="props.useSearch">
-      <TextField v-model="searchQuery" :class="$style['menu-search']" type="search" />
+      <TextField
+        v-model="searchQuery"
+        :class="$style['menu-search']"
+        type="search"
+        inputmode="search"
+      />
     </template>
     <div
       ref="wrapperRef$"

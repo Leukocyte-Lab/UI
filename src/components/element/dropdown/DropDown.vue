@@ -44,16 +44,16 @@ const optionsCount = computed(() =>
 const label = computed(() =>
   props.multiple
     ? (bobbleCount.value || 0) > 0
-      ? (props.label ?? props.placeholder)
-      : (props.placeholder ?? props.label)
-    : ((props.modelValue &&
+      ? props.label ?? props.placeholder
+      : props.placeholder ?? props.label
+    : (props.modelValue &&
         (props.fields.title
           ? valuesGetter(props.modelValue as T, props.fields.title, true)
           : props.fields.key
             ? valuesGetter(props.modelValue as T, props.fields.key, true)
             : undefined)) ??
       props.label ??
-      props.placeholder)
+      props.placeholder
 );
 
 watch([selection, () => props.multiple], ([selection, multiple]) => {
@@ -85,13 +85,17 @@ watch([selection, () => props.multiple], ([selection, multiple]) => {
       <SelectMenu
         v-model="selection"
         v-model:query="query"
+        :case-sensitive="props.caseSensitive"
         :class="$style['dropdown-menu']"
         :fields="props.fields"
         :group-by="props.groupBy"
         :label="props.label"
         :multiple="props.multiple"
         :options="props.options"
+        :phrase-search="props.phraseSearch"
+        :segment-pattern="props.segmentPattern"
         :show-all="props.showAll"
+        :strict="props.strict"
         :use-search="props.useSearch"
       />
     </template>
