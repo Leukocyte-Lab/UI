@@ -24,7 +24,7 @@ export namespace Search {
     | {
         phraseSearch?: true;
         strict?: boolean;
-        segmentRegexp?: RegExp;
+        segmentPattern?: RegExp;
       }
   );
 
@@ -116,7 +116,7 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
     caseSensitive: false,
     phraseSearch: true,
     strict: false,
-    segmentRegexp: /-|_|\t|\v|\r|\\/gm,
+    segmentPattern: /-|_|\t|\v|\r|\\/gm,
     ...toValue(options)
   }));
 
@@ -171,7 +171,7 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
     if ($options.value.phraseSearch) {
       const valuePhrases = [
         handleCase(value),
-        ...handleCase(value).replace($options.value.segmentRegexp, ' ').split(' ')
+        ...handleCase(value).replace($options.value.segmentPattern, ' ').split(' ')
       ];
 
       return queryPhrases[$options.value.strict ? 'every' : 'some']((phrase) =>
