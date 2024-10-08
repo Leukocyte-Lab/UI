@@ -3,13 +3,18 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 
 import SearchBar from './SearchBar.vue';
 
+import type { SearchBar as SearchBarNS } from './SearchBar.model';
 
-const meta: Meta<typeof SearchBar> = {
+type GenericMeta<C> = Omit<Meta<C>, 'component'> & {
+  component: Record<keyof C, unknown>;
+};
+
+const meta: GenericMeta<typeof SearchBar<SearchBarNS.AcceptableValue>> = {
   title: 'Components / Element / SearchBar',
   component: SearchBar,
   tags: ['autodocs'],
   argTypes: {
-    items: {
+    options: {
       control: 'object',
       description: 'Data to be displayed in the menu.'
     },
@@ -21,11 +26,18 @@ const meta: Meta<typeof SearchBar> = {
       control: 'boolean',
       description: 'SearchBar disabled (optional)'
     },
+    autocomplete: {
+      control: 'boolean',
+      description: 'SearchBar autocomplete (optional)'
+    },
     'onUpdate:modelValue': {
+      action: 'query'
+    },
+    'onSearch': {
       action: 'search'
     },
     onSelect: {
-      action: 'selected'
+      action: 'select'
     }
   }
 };
@@ -36,7 +48,7 @@ type SearchBar$ = StoryObj<typeof SearchBar>;
 
 export const DefaultSearchBar: SearchBar$ = {
   args: {
-    items: [
+    options: [
       {
         name: 'APT-38',
         description:
@@ -80,6 +92,13 @@ export const DefaultSearchBar: SearchBar$ = {
       content: '{{ $.category }}',
       searchKeys: ['name', 'category']
     }
+  }
+};
+
+export const DefaultSearchBarWithAutoComplete: SearchBar$ = {
+  args: {
+    ...DefaultSearchBar.args,
+    autocomplete: true
   }
 };
 
