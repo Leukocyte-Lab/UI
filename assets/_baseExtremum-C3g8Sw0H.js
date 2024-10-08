@@ -1,0 +1,1 @@
+import{a as l}from"./_getNative-DtZiGuWL.js";function h(n,i){return n>i}function x(n,i){return n<i}function d(n,i,f){for(var s=-1,o=n.length;++s<o;){var e=n[s],a=i(e);if(a!=null&&(t===void 0?a===a&&!l(a):f(a,t)))var t=a,b=e}return b}export{h as a,d as b,x as c};
