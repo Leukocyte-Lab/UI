@@ -48,7 +48,7 @@ const selectedFields = computed(() =>
 
 const { result } = useSearch(options, {
   query: searchQuery,
-  getters: props.fields.searchKeys ?? [],
+  getters: props.fields.searchKeys ?? [props.fields.key, props.fields.title ?? ''].filter(Boolean),
   options: props.useSearch
     ? ({
         caseSensitive: props.caseSensitive,

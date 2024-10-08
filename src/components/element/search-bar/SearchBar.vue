@@ -39,7 +39,7 @@ const onSelect = (option?: T) => {
 
 const { result } = useSearch(options, {
   query,
-  getters: props.fields.searchKeys ?? [],
+  getters: props.fields.searchKeys ?? [props.fields.key, props.fields.title ?? ''].filter(Boolean),
   options: props.searchOptions
 });
 
