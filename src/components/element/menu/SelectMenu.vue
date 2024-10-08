@@ -210,43 +210,45 @@ onMounted(() => {
             <label :class="$style['menu-group-label']">{{ name }}</label>
           </template>
           <template
-            v-for="[index, { selected, field, payload }] in group"
+            v-for="[index, { selected, matched, field, payload }] in group"
             :key="`option-${field.key}`"
           >
-            <div
-              @click="!field.disabled && toggleSelection(index, { selected, field, payload })"
-              :class="[
-                $style['menu-option'],
-                $style['behavior'],
-                field.disabled ? [$style['disabled']] : $style['clickable'],
-                {
-                  [$style['selected']]: selected,
-                  [$style['multiple']]: props.multiple
-                }
-              ]"
-            >
-              <template v-if="props.multiple">
-                <Icon
-                  :class="$style['menu-option-icon']"
-                  :icon="selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
-                />
-              </template>
-              <template v-if="props.fields.icon">
-                <Icon :class="$style['menu-option-icon']" :icon="field.icon ?? ''" />
-              </template>
-              <div :class="$style['menu-option-group']">
-                <template
-                  v-for="(context, key) in omit(field, ['key', 'icon', 'disabled', 'group'])"
-                  :key="`option-field-${key}`"
-                >
-                  <template v-if="context">
-                    <p :class="$style['menu-field']">
-                      {{ context }}
-                    </p>
-                  </template>
+            <template v-if="matched">
+              <div
+                @click="!field.disabled && toggleSelection(index, { selected, field, payload })"
+                :class="[
+                  $style['menu-option'],
+                  $style['behavior'],
+                  field.disabled ? [$style['disabled']] : $style['clickable'],
+                  {
+                    [$style['selected']]: selected,
+                    [$style['multiple']]: props.multiple
+                  }
+                ]"
+              >
+                <template v-if="props.multiple">
+                  <Icon
+                    :class="$style['menu-option-icon']"
+                    :icon="selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
+                  />
                 </template>
+                <template v-if="props.fields.icon">
+                  <Icon :class="$style['menu-option-icon']" :icon="field.icon ?? ''" />
+                </template>
+                <div :class="$style['menu-option-group']">
+                  <template
+                    v-for="(context, key) in omit(field, ['key', 'icon', 'disabled', 'group'])"
+                    :key="`option-field-${key}`"
+                  >
+                    <template v-if="context">
+                      <p :class="$style['menu-field']">
+                        {{ context }}
+                      </p>
+                    </template>
+                  </template>
+                </div>
               </div>
-            </div>
+            </template>
           </template>
           <div :class="$style['menu-group-placeholder']">
             <slot name="empty-placeholder">
