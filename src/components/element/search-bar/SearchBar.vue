@@ -9,7 +9,6 @@ import { useSearch } from '@/shared/libs/search';
 import { signal } from '@/shared/libs/signal';
 
 import type { SearchBar } from './SearchBar.model';
-import type { ObjectLike } from '@/shared/types/object';
 
 const props = defineProps<SearchBar.Props<T>>();
 

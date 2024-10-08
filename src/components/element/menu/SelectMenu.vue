@@ -9,10 +9,11 @@ import CardBox from '@/components/element/card/CardBox.vue';
 import TextField from '@/components/element/textfield/TextField.vue';
 import { booleanGetter, valuesGetter } from '@/shared/libs/fn';
 import Map$ from '@/shared/libs/map';
-import { useSearch, type Search } from '@/shared/libs/search';
+import { useSearch } from '@/shared/libs/search';
 import { signal } from '@/shared/libs/signal';
 
 import type { SelectMenu } from '@/components/element/menu/SelectMenu.model';
+import type { Search } from '@/shared/libs/search';
 
 const props = defineProps<SelectMenu.Props<T>>();
 
@@ -118,7 +119,7 @@ const fieldParser = (option: T): SelectMenu.Option<T>['field'] => ({
     ])
   ),
   key: valuesGetter(option, props.fields.key),
-  group: props.groupBy ? valuesGetter(option, props.groupBy, true) ?? '' : '',
+  group: props.groupBy ? (valuesGetter(option, props.groupBy, true) ?? '') : '',
   disabled: props.fields.disabled
     ? (booleanGetter(option, props.fields.disabled, true) ?? false) || false
     : false
@@ -193,8 +194,8 @@ onMounted(() => {
       <TextField
         v-model="searchQuery"
         :class="$style['menu-search']"
-        type="search"
         inputmode="search"
+        type="search"
       />
     </template>
     <div

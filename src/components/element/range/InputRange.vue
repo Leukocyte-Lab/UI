@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed,ref } from 'vue';
+
 import { useEventDebounceSignal } from '@/shared/libs/event';
 
 import type { InputRange } from './InputRange.model';
@@ -40,13 +41,13 @@ const { onTrigger } = useEventDebounceSignal(
   <input
     ref="inputRangeRef$"
     @input="onTrigger"
-    type="range"
     v-bind="props"
-    :value="props.modelValue"
     :style="{
       background: `linear-gradient(to right, ${props.progressColor} ${progress}%,${props.trackColor} ${progress}%)`
     }"
-  />
+    :value="props.modelValue"
+    type="range"
+  >
 </template>
 
 <style module scoped lang="scss">

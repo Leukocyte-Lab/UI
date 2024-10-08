@@ -24,8 +24,6 @@ import DatetimePicker from './element/datetime-picker/DatetimePicker.vue';
 import DropDown from './element/dropdown/DropDown.vue';
 // file
 import FileUploader from './element/file/FileUploader.vue';
-// range
-import InputRange from './element/range/InputRange.vue';
 // icon
 import LoadingIcon from './element/icon/LoadingIcon.vue';
 // menu
@@ -33,6 +31,8 @@ import SelectMenu from './element/menu/SelectMenu.vue';
 // progress
 import ProgressBar from './element/progress/ProgressBar.vue';
 import ProgressCircle from './element/progress/ProgressCircle.vue';
+// range
+import InputRange from './element/range/InputRange.vue';
 // searchbar
 import SearchBar from './element/search-bar/SearchBar.vue';
 // switch
