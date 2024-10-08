@@ -685,7 +685,38 @@ describe('useSearch focused on phrase search', () => {
     ]);
     expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
 
+    options.value = {
+      ...options.value,
+      limit: 3
+    }
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-40',
+        description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
     query.value = 'APT';
+    options.value = {
+      ...options.value,
+      limit: Infinity
+    }
     expect(result.value).toEqual([
       {
         name: 'APT-38',
