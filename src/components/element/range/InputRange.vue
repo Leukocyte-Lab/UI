@@ -74,7 +74,7 @@ input[type='range']::-webkit-slider-runnable-track {
 
 input[type='range']::-webkit-slider-thumb {
   appearance: none;
-  background-color: v-bind(thumbColor);
+  background-color: v-bind(thumbcolor);
   border-radius: var(--agh-ref-border-radius-900);
   height: 32px;
   width: 13px;
@@ -88,7 +88,7 @@ input[type='range']::-moz-range-track {
 
 input[type='range']::-moz-range-thumb {
   appearance: none;
-  background-color: v-bind(thumbColor);
+  background-color: v-bind(thumbcolor);
   border-radius: var(--agh-ref-border-radius-900);
   height: 32px;
   width: 13px;

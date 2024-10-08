@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 import type { Ref } from 'vue';
 
-import { useSearch, type Search } from '@/shared/libs/search';
+import { type Search,useSearch } from '@/shared/libs/search';
 
 const simpleArrayData = [
   'An apple a day keeps the doctor away',
