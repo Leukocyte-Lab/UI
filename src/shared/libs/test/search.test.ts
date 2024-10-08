@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 import type { Ref } from 'vue';
 
-import { useSearch } from '@/shared/libs/search';
+import { useSearch, type Search } from '@/shared/libs/search';
 
 const simpleArrayData = [
   'An apple a day keeps the doctor away',
@@ -157,7 +157,9 @@ describe('useSearch with simple array data', () => {
   });
 
   it('should search correctly with strict mode (reactivity)', () => {
-    const options = ref({});
+    const options = ref<Search.Options>({
+      phraseSearch: true
+    });
     const { result } = useSearch(structuredClone(simpleArrayData), {
       query: 'steve jobs',
       options
@@ -376,7 +378,10 @@ describe('useSearch with complex array data', () => {
   it('should search multi fields with advanced getters correctly', () => {
     const { result } = useSearch(structuredClone(complexArrayData), {
       query: 'windows 113',
-      getters: ['message', ({ speaker }) => String(speaker.year - 1911)]
+      getters: ['message', ({ speaker }) => String(speaker.year - 1911)],
+      options: {
+        phraseSearch: true
+      }
     });
 
     expect(result.value).toEqual([
@@ -526,7 +531,10 @@ describe('useSearch with complex map data', () => {
   it('should search multi fields with advanced getters correctly', () => {
     const { result } = useSearch(structuredClone(complexMapData), {
       query: 'windows 113',
-      getters: ['message', ({ speaker }) => String(speaker.year - 1911)]
+      getters: ['message', ({ speaker }) => String(speaker.year - 1911)],
+      options: {
+        phraseSearch: true
+      }
     });
 
     expect(result.value).toEqual(
@@ -594,7 +602,9 @@ describe('useSearch focused on phrase search', () => {
   ];
 
   it('should search correctly', () => {
-    const options = ref({});
+    const options = ref<Search.Options>({
+      phraseSearch: true
+    });
     const { result, query } = useSearch(datasets, {
       getters: ['name', 'category'],
       options
@@ -741,7 +751,7 @@ describe('useSearch focused on phrase search', () => {
     ]);
     expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
 
-    options.value = { strict: true };
+    options.value = { strict: true, phraseSearch: true };
     expect(result.value).toEqual([
       {
         name: 'APT-38',
@@ -754,6 +764,204 @@ describe('useSearch focused on phrase search', () => {
         name: 'APT-39',
         description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
         category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+  });
+});
+
+describe('useSearch focused on relevance search', () => {
+  const datasets = [
+    {
+      name: 'APT-38',
+      description:
+        'APT-38 is a threat group that has been attributed to the North Korean government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'APT-39',
+      description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'APT-40',
+      description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+      category: 'APT Group Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'A Nginx Techniques',
+      description:
+        'Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+      category: 'Technique Simulation Data',
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    },
+    {
+      name: 'Apache Server Techniques',
+      description:
+        'Apache is a product that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+      category: 'Technique Simulation Data',
+      framework: {
+        technique: 'T1012s'
+      },
+      recentlyUsed: '2021-01-01T00:00:00Z'
+    }
+  ];
+
+  it('should search correctly', () => {
+    const options = ref<Search.Options>({
+      relevanceSearch: true
+    });
+    const { result, query } = useSearch(datasets, {
+      getters: ['name', 'category', 'description'],
+      options
+    });
+
+    query.value = 'A';
+    expect(result.value).toEqual([]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'AP';
+    expect(result.value).toEqual([]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'APT';
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-40',
+        description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'APT-3';
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-40',
+        description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'APT 3';
+    expect(result.value).toEqual([]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'APT-37';
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-40',
+        description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'a threat group that has been attributed to the Korean government.';
+    expect(result.value).toEqual([
+      {
+        name: 'APT-38',
+        description:
+          'APT-38 is a threat group that has been attributed to the North Korean government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-39',
+        description: 'APT-39 is a threat group that has been attributed to the Iranian government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'APT-40',
+        description: 'APT-40 is a threat group that has been attributed to the Chinese government.',
+        category: 'APT Group Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+
+    query.value = 'web server as reverse proxy load balancer';
+    expect(result.value).toEqual([
+      {
+        name: 'A Nginx Techniques',
+        description:
+          'Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+        category: 'Technique Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      }
+    ]);
+    expectTypeOf(result.value).toEqualTypeOf<typeof datasets>();
+
+    query.value = 'reverse proxy server';
+    options.value = {
+      phraseSearch: true,
+      relevanceSearch: true,
+      relevancePolicy: [1, 0, 0.64],
+      sortBy: 'relevance'
+    };
+    expect(result.value).toEqual([
+      {
+        name: 'A Nginx Techniques',
+        description:
+          'Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+        category: 'Technique Simulation Data',
+        recentlyUsed: '2021-01-01T00:00:00Z'
+      },
+      {
+        name: 'Apache Server Techniques',
+        description:
+          'Apache is a product that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.',
+        category: 'Technique Simulation Data',
+        framework: {
+          technique: 'T1012s'
+        },
         recentlyUsed: '2021-01-01T00:00:00Z'
       }
     ]);
