@@ -101,7 +101,12 @@ const complexMapData = new Map([
 
 describe('useSearch with simple array data', () => {
   it('should search correctly', () => {
-    const { result } = useSearch(structuredClone(simpleArrayData), { query: 'Apple' });
+    const { result } = useSearch(structuredClone(simpleArrayData), {
+      query: 'Apple',
+      options: {
+        phraseSearch: false
+      }
+    });
 
     expect(result.value).toEqual([
       'An apple a day keeps the doctor away',
