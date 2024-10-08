@@ -42,7 +42,7 @@ const selectedFields = computed(() =>
           : selection.value instanceof Map
             ? new Map(selection.value)
             : new Map<string | number, T>()
-      ).map((option, key) => [fieldParser(option).key, options])
+      ).map((option) => [fieldParser(option).key, options])
     : fieldParser(selection.value as T).key
 );
 
@@ -54,7 +54,11 @@ const { result } = useSearch(options, {
         caseSensitive: props.caseSensitive,
         phraseSearch: props.phraseSearch,
         strict: props.strict,
-        segmentPattern: (props as Search.Options & { phraseSearch: true }).segmentPattern
+        segmentPattern: props.segmentPattern,
+        relevanceSearch: props.relevanceSearch,
+        threshold: props.threshold,
+        sortBy: props.sortBy,
+        limit: props.limit
       } as Search.Options)
     : undefined
 });

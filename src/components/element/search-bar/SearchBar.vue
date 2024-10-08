@@ -9,6 +9,7 @@ import { useSearch } from '@/shared/libs/search';
 import { signal } from '@/shared/libs/signal';
 
 import type { SearchBar } from './SearchBar.model';
+import type { Search } from '@/shared/libs/search';
 
 const props = defineProps<SearchBar.Props<T>>();
 
@@ -40,7 +41,16 @@ const onSelect = (option?: T) => {
 const { result } = useSearch(options, {
   query,
   getters: props.fields.searchKeys ?? [props.fields.key, props.fields.title ?? ''].filter(Boolean),
-  options: props.searchOptions
+  options: {
+    caseSensitive: props.caseSensitive,
+    phraseSearch: props.phraseSearch,
+    strict: props.strict,
+    segmentPattern: props.segmentPattern,
+    relevanceSearch: props.relevanceSearch,
+    threshold: props.threshold,
+    sortBy: props.sortBy,
+    limit: props.limit
+  } as Search.Options
 });
 
 const typeRef = ref<T>(); // ? NOTE: This is used to make SelectMenu generic type work

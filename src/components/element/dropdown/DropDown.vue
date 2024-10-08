@@ -44,16 +44,16 @@ const optionsCount = computed(() =>
 const label = computed(() =>
   props.multiple
     ? (bobbleCount.value || 0) > 0
-      ? props.label ?? props.placeholder
-      : props.placeholder ?? props.label
-    : (props.modelValue &&
+      ? (props.label ?? props.placeholder)
+      : (props.placeholder ?? props.label)
+    : ((props.modelValue &&
         (props.fields.title
           ? valuesGetter(props.modelValue as T, props.fields.title, true)
           : props.fields.key
             ? valuesGetter(props.modelValue as T, props.fields.key, true)
             : undefined)) ??
       props.label ??
-      props.placeholder
+      props.placeholder)
 );
 
 watch([selection, () => props.multiple], ([selection, multiple]) => {
@@ -90,12 +90,16 @@ watch([selection, () => props.multiple], ([selection, multiple]) => {
         :fields="props.fields"
         :group-by="props.groupBy"
         :label="props.label"
+        :limit="props.limit"
         :multiple="props.multiple"
         :options="props.options"
         :phrase-search="props.phraseSearch"
+        :relevant-search="props.relevantSearch"
         :segment-pattern="props.segmentPattern"
         :show-all="props.showAll"
+        :sort-by="props.sortBy"
         :strict="props.strict"
+        :threshold="props.threshold"
         :use-search="props.useSearch"
       />
     </template>

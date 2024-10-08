@@ -30,12 +30,12 @@ export namespace SearchBar {
     | 'icon'
     | 'iconAlign'
     | 'tabindex'
-  > & {
-    fields: Fields<T>;
-    groupBy?: ValuesGetter<T, string>;
-    modelValue?: string; // query, use by `v-model`
-    searchOptions?: Search.Options;
-  } & (
+  > &
+    Search.Options & {
+      fields: Fields<T>;
+      groupBy?: ValuesGetter<T, string>;
+      modelValue?: string; // query, use by `v-model`;
+    } & (
       | {
           autocomplete?: false;
           options?: T[] | Map<string | number, T>;
