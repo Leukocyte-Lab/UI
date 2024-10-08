@@ -130,6 +130,7 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
   const $getters = computed(() => toValue(getters) ?? ['']);
   const $options = computed(() => ({
     caseSensitive: false,
+    phraseSearch: false,
     relevanceSearch: false,
     relevancePolicy: 'max' as const,
     threshold:
