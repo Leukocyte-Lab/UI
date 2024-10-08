@@ -198,7 +198,7 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
           $options.value.relevanceSearch ? (Number(weight) || 0) >= $options.value.threshold : true
         );
 
-      const sorted =
+      const result = (
         $options.value.sortBy === 'remain'
           ? Array.from(res)
           : $options.value.sortBy === 'relevance'
@@ -207,11 +207,12 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
                 typeof b.weight === 'number'
                   ? b.weight - (Number(a.weight) || 0)
                   : b.weight.localeCompare(String(a.weight))
-              );
+              )
+      ).filter((_, index) => index < $options.value.limit);
 
       return Array.isArray($datasets.value)
-        ? sorted.map(([, { data }]) => data)
-        : (new Map(sorted.map(([key, { data }]) => [key, data])) as Map<K, T>);
+        ? result.map(([, { data }]) => data)
+        : (new Map(result.map(([key, { data }]) => [key, data])) as Map<K, T>);
     }
   });
 
