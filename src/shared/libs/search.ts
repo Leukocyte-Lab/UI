@@ -178,7 +178,7 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
         valuePhrases.some((v) => v.includes(phrase))
       );
     } else {
-      return value.includes($query.value);
+      return handleCase(value).includes(handleCase($query.value));
     }
   };
 
