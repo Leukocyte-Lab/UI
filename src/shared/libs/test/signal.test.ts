@@ -63,7 +63,7 @@ describe('object signal', () => {
   });
   it('should be readonly on returned instance', () => {
     const value = datasets();
-    // @ts-expect-error - should not be able to mutate readonly object
+
     value['twelve'] = 12;
     expect(value).toEqual({ 'eight': 8, 'nine': 9, 'ten': 10, 'eleven': 11 });
     expect(datasets()).toEqual({ 'eight': 8, 'nine': 9, 'ten': 10, 'eleven': 11 });
