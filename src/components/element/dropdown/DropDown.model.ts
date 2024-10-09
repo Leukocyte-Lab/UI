@@ -28,6 +28,7 @@ export namespace DropDown {
     fields: Fields<T>;
     groupBy?: ValuesGetter<T, string>;
     label?: string;
+    persist?: boolean;
   } & (
     | { useSearch?: false }
     | ({ useSearch: true; showAll?: boolean; query?: string } & Search.Options)

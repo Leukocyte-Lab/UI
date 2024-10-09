@@ -88,7 +88,7 @@ watch([selection, () => props.multiple], ([selection, multiple]) => {
 });
 
 watch(onShowMenu, (state) => {
-  if (state) {
+  if (state && !props.persist) {
     clearSearch();
   }
 });
