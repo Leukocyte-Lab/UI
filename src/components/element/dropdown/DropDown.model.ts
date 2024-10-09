@@ -29,6 +29,7 @@ export namespace DropDown {
     groupBy?: ValuesGetter<T, string>;
     label?: string;
     persist?: boolean;
+    alterStr?: SelectMenuNS.AlterStr;
   } & (
     | { useSearch?: false }
     | ({ useSearch: true; showAll?: boolean; query?: string } & Search.Options)

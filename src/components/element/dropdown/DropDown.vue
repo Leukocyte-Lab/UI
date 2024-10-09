@@ -124,6 +124,7 @@ defineExpose({
         ref="selectMenuRef$"
         v-model="selection"
         v-model:query="query"
+        :alter-str="props.alterStr"
         :case-sensitive="props.caseSensitive"
         :class="$style['dropdown-menu']"
         :fields="props.fields"
