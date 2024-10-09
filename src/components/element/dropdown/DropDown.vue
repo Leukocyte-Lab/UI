@@ -83,7 +83,7 @@ const reset = () => {
 
 watch([selection, () => props.multiple], ([selection, multiple]) => {
   if (!multiple && selection) {
-    onShowMenu.set(true);
+    onShowMenu.set(false);
   }
 });
 
