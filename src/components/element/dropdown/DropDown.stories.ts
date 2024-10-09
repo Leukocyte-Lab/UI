@@ -128,16 +128,23 @@ export const DefaultDropDown: DropDown$ = {
       key: 'name',
       title: '{{ $.name }}'
     },
+    placeholder: 'Select an Option',
+    variant: 'rounded',
+    size: 'medium',
+    level: 'primary'
+  }
+};
+
+export const DefaultDropDownWithDefaultSelected: DropDown$ = {
+  args: {
+    ...DefaultDropDown.args,
     modelValue: {
       name: 'APT-38',
       description:
         'APT-38 is a threat group that has been attributed to the North Korean government.',
       category: 'APT Group Simulation Data',
       recentlyUsed: '2021-01-01T00:00:00Z'
-    },
-    variant: 'rounded',
-    size: 'medium',
-    level: 'primary'
+    }
   }
 };
 
@@ -206,6 +213,7 @@ export const MultiDropDown: DropDown$ = {
   args: {
     ...DefaultDropDown.args,
     label: 'Multi Select',
+    placeholder: 'Choose Options',
     multiple: true
   }
 };
