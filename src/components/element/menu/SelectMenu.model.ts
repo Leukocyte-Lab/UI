@@ -30,10 +30,16 @@ export namespace SelectMenu {
     payload: T;
   };
 
+  export type AlterStr = {
+    clearSelection?: string;
+    noData?: string;
+  }
+
   export type Props<T extends AcceptableValue = ObjectLike> = {
     fields: Fields<T>;
     groupBy?: ValuesGetter<T, string>;
     label?: string;
+    alterStr?: AlterStr;
   } & (
     | { useSearch?: false }
     | ({ useSearch: true; showAll?: boolean; query?: string; } & Search.Options)

@@ -207,7 +207,7 @@ defineExpose({
               @click="clearSelection"
               :class="$style['button']"
               :icon="'fa6-solid:eraser'"
-              :label="'Clear Selection'"
+              :label="props.alterStr?.clearSelection || 'Clear Selection'"
               :variant="'text'"
             />
           </slot>
@@ -286,7 +286,7 @@ defineExpose({
           </template>
           <div :class="$style['menu-group-placeholder']">
             <slot :group-name="name" name="empty-placeholder">
-              <p>No Data</p>
+              <p>{{ props.alterStr?.noData || 'No Data' }}</p>
             </slot>
           </div>
         </div>
