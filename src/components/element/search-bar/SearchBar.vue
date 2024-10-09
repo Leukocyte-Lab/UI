@@ -1,75 +1,94 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends SearchBar.AcceptableValue">
 import { computed, ref, watch } from 'vue';
 
 import SelectMenu from '@/components/element/menu/SelectMenu.vue';
 import TextField from '@/components/element/textfield/TextField.vue';
-
-import { selector } from '@/shared/libs/selector';
+import { Map$ } from '@/shared';
+import { valuesGetter } from '@/shared/libs/fn';
+import { useSearch } from '@/shared/libs/search';
 import { signal } from '@/shared/libs/signal';
 
 import type { SearchBar } from './SearchBar.model';
-import type { ObjectLike } from '@/shared/types/object';
-import { useSearch } from '@/shared/libs/search';
+import type { Search } from '@/shared/libs/search';
 
-const props = withDefaults(defineProps<SearchBar.Props>(), {
-  items: () => [],
-  modelValue: ''
+const props = defineProps<SearchBar.Props<T>>();
+
+const emits = defineEmits<SearchBar.Emits<T>>();
+
+const query = defineModel<string>({
+  default: ''
 });
 
-const emits = defineEmits<{
-  (e: 'update:modelValue', option: any): void;
-  (e: 'select', option: ObjectLike): void;
-}>();
-
-const search = computed({
-  get: () => props.modelValue,
-  set: (value) => {
-    computeFilteredItems(value);
-    return emits('update:modelValue', value);
-  }
-});
-
-const selected = ref<ObjectLike>();
+const options = computed(
+  () =>
+    new Map$(
+      Array.isArray(props.options)
+        ? props.options.map((option, index) => [index, option])
+        : props.options
+    )
+);
 
 const closeMenu = signal(false);
-const filteredItems = signal<ObjectLike[]>([]);
 
-const onSelect = (option?: ObjectLike) => {
+const onSelect = (option?: T) => {
   if (!option) return;
 
-  emits('update:modelValue', selector(option, props.fields.key));
+  query.value = valuesGetter(option, props.fields.title ?? props.fields.key, true) ?? '';
   emits('select', option);
   closeMenu.set(true);
 };
 
-const computeFilteredItems = (value: string) => {
-  if (props.fields.searchKeys) {
-    const { results } = useSearch(props.items, value, props.fields.searchKeys);
-    filteredItems.set((results.value as ObjectLike[]) ?? []);
-  }
-};
+const { result } = useSearch(options, {
+  query,
+  getters: props.fields.searchKeys ?? [props.fields.key, props.fields.title ?? ''].filter(Boolean),
+  options: {
+    caseSensitive: props.caseSensitive,
+    phraseSearch: props.phraseSearch,
+    strict: props.strict,
+    segmentPattern: props.segmentPattern,
+    relevanceSearch: props.relevanceSearch,
+    threshold: props.threshold,
+    sortBy: props.sortBy,
+    limit: props.limit
+  } as Search.Options
+});
 
-watch(search, computeFilteredItems);
-watch(selected, onSelect);
+const typeRef = ref<T>(); // ? NOTE: This is used to make SelectMenu generic type work
+
+watch(result, (result) => {
+  emits('search', Array.isArray(props.options) ? [...result.values()] : result);
+});
 </script>
 
 <template>
   <div :class="$style['search-bar--container']">
     <TextField
-      v-model="search"
-      :class="$style['search-bar--input']"
-      :disabled="props.disabled"
+      v-model="query"
+      @blur="closeMenu.set(true)"
       @click="closeMenu.set(false)"
       @focus="closeMenu.set(false)"
-      @blur="closeMenu.set(true)"
+      :autofocus="props.autofocus"
+      :class="$style['search-bar--input']"
+      :disabled="props.disabled"
+      :event-signal-options="props.eventSignalOptions"
+      :icon="props.icon"
+      :icon-align="props.iconAlign"
+      :placeholder="props.placeholder"
+      :readonly="props.readonly"
+      :spellcheck="props.spellcheck"
+      :tabindex="props.tabindex"
+      inputmode="search"
       type="search"
     />
-    <template v-if="search && filteredItems().length > 0 && !closeMenu()">
+    <template v-if="props.autocomplete && query && result.size > 0 && !closeMenu()">
+      <!-- @vue-ignore // ? NOTE: SelectMenu will handle generic type ? // -->
       <SelectMenu
+        @update:model-value="onSelect"
         :class="$style['search-bar--menu']"
-        :options="filteredItems()"
         :fields="props.fields"
-        v-model="selected"
+        :group-by="props.groupBy"
+        :model-value="typeRef"
+        :options="result"
       />
     </template>
   </div>

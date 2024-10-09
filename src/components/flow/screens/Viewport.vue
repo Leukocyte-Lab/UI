@@ -1,14 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, provide, ref, onMounted } from 'vue';
+import { groupBy, isEqual, map, maxBy, minBy } from 'lodash-es';
+import { computed, onMounted, provide, ref } from 'vue';
 import { usePageLeave, watchDebounced } from '@vueuse/core';
-import { groupBy, maxBy, minBy, map, isEqual } from 'lodash-es';
 
+import type { Graphics } from 'pixi.js';
 import type { Ref, VNode } from 'vue';
 import type { ContainerInst } from 'vue3-pixi';
 
 import { Flow } from '@/components/flow/Flow.model';
-
 import { Math$ } from '@/shared';
 
 import type { Vec2 } from '@/shared/types/vector';
@@ -343,17 +343,17 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
 <template>
   <Container
     ref="viewportRef$"
-    :sortable-children="true"
-    :sort-dirty="true"
-    :width="viewportBoundingBox.width"
-    :height="viewportBoundingBox.height"
     @mousedown="handlePan"
     @pointerdown="handlePan"
+    :height="viewportBoundingBox.height"
+    :sort-dirty="true"
+    :sortable-children="true"
+    :width="viewportBoundingBox.width"
   >
     <template v-if="viewportRef$">
       <Graphics
         @render="
-          (graphics) => {
+          (graphics: Graphics) => {
             graphics.clear();
             graphics.beginFill(
               debugOptions?.showBoundingBox ? '0x56f071' : '0xffffff',
@@ -371,8 +371,6 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
       />
       <template v-if="debugOptions?.showBoundingBox">
         <Text
-          :x="viewportOffset.x * -1"
-          :y="viewportOffset.y * -1"
           :style="{
             fontSize: 10,
             fontFamily: 'monospace',
@@ -392,6 +390,8 @@ provide(Flow.UI.Debugger.InjectionKey, props.debugOptions ?? {});
           width: ${props.width}
           height: ${props.height}
         `"
+          :x="viewportOffset.x * -1"
+          :y="viewportOffset.y * -1"
         />
       </template>
     </template>

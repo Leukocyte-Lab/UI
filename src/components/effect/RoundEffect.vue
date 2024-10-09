@@ -15,8 +15,8 @@ const props = defineProps<{
     <feColorMatrix
       in="blur"
       mode="matrix"
-      values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 20 -10"
       result="mask"
+      values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 20 -10"
     />
     <feComposite in="SourceGraphic" in2="mask" operator="in" />
   </filter>

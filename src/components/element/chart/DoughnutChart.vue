@@ -2,12 +2,11 @@
 import { ref } from 'vue';
 import { computedEager, useElementSize } from '@vueuse/core';
 
-import Math$ from '@/shared/libs/math';
-
 import { useChart } from './chart';
 
 import BasePoly from '@/components/base/BasePoly.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
+import Math$ from '@/shared/libs/math';
 
 import type { Chart } from '@/components/element/chart/chart.model';
 import type { Vector } from '@/shared/types/vector';
@@ -122,15 +121,6 @@ const normalizedDatasets = computedEager(() =>
             <template v-for="(plot, plotIndex) in dataset.series" :key="`plot-${plotIndex}`">
               <g :class="$style['chart-area']">
                 <circle
-                  :cx="center.x"
-                  :cy="center.y"
-                  :r="radius"
-                  :stroke-dashoffset="
-                    plot.y.offset * radiant * -1 - gap * plotIndex + 0.25 * radiant
-                  "
-                  :stroke-dasharray="`${plot.y.normalized * radiant} ${
-                    (1 - plot.y.normalized) * radiant
-                  }`"
                   :class="[
                     $style['behavior'],
                     $style['chart-area'],
@@ -141,14 +131,23 @@ const normalizedDatasets = computedEager(() =>
                       [$style['round']]: props.options.round
                     }
                   ]"
+                  :cx="center.x"
+                  :cy="center.y"
+                  :r="radius"
+                  :stroke-dasharray="`${plot.y.normalized * radiant} ${
+                    (1 - plot.y.normalized) * radiant
+                  }`"
+                  :stroke-dashoffset="
+                    plot.y.offset * radiant * -1 - gap * plotIndex + 0.25 * radiant
+                  "
                   pointer-events="visibleStroke"
                 />
                 <foreignObject
+                  :class="[$style['chart-area'], $style['legend-container']]"
                   :x="center.x + radius * plot.x.label - 260 * Number(plot.x.label < 0)"
                   :y="center.y + radius * plot.y.label - 240 * Number(plot.y.label < 0)"
                   height="240"
                   width="260"
-                  :class="[$style['chart-area'], $style['legend-container']]"
                 >
                   <CardBox
                     :class="[$style['chart-area'], $style['legend-wrapper']]"
@@ -160,7 +159,7 @@ const normalizedDatasets = computedEager(() =>
                       >
                         <span>{{ plot.x.value }}</span>
                       </h1>
-                      <hr />
+                      <hr>
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
                       <template v-if="!/(x)/.test(axisKey) && axis && plot[axisKey]">

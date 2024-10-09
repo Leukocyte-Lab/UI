@@ -1,5 +1,5 @@
 import { fromPairs, isEmpty, map, max, min, toPairs, uniq } from 'lodash-es';
-import { watchEffect, reactive, unref } from 'vue';
+import { reactive, unref,watchEffect } from 'vue';
 import { computedEager } from '@vueuse/core';
 
 import type { MaybeRef } from 'vue';
@@ -8,8 +8,8 @@ import { Math$ } from '@/shared';
 import { parser } from '@/shared/libs/parser';
 import { selector } from '@/shared/libs/selector';
 
-import type { ObjectLike } from '@/shared/types/object';
 import type { Chart } from './chart.model';
+import type { ObjectLike } from '@/shared/types/object';
 
 export const useChart = ({
   type,

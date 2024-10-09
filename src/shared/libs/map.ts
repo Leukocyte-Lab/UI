@@ -18,15 +18,17 @@ export interface MapProxy<K extends string | number | symbol, V> extends Map<K, 
     thisArg?: any
   ): MapProxy<U, S>;
 
-  filter(
-    predicate: (value: V, key: K, map: Map<K, V>) => unknown,
-    thisArg?: any
-  ): MapProxy<K, V>;
+  filter(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): MapProxy<K, V>;
 
   toArray<R extends 'entries' | 'keys' | 'values'>(
     returnType?: R
   ): R extends 'entries' ? [K, V][] : R extends 'keys' ? K[] : V[];
   toObject(): Record<K, V>;
+
+  groupBy<K extends string | number | symbol, T>(
+    items: Iterable<T>,
+    keySelector: (item: T, index: number) => K
+  ): MapProxy<K, T[]>;
 }
 
 class MapProxyInstance<K extends string | number | symbol, V>
@@ -123,6 +125,24 @@ class MapProxyInstance<K extends string | number | symbol, V>
     }
 
     return result;
+  }
+
+  public groupBy<K extends string | number | symbol, T>(
+    items: Iterable<T>,
+    keySelector: (item: T, index: number) => K
+  ): MapProxy<K, T[]> {
+    const dictionary = new MapProxyInstance<K, T[]>();
+
+    let index = 0;
+    for (const item of items) {
+      const key = keySelector(item, index);
+      const group = dictionary.get(key) ?? [];
+      group.push(item);
+      dictionary.set(key, group);
+      index++;
+    }
+
+    return dictionary;
   }
 
   public toArray<R extends 'entries'>(returnType?: R): [K, V][];

@@ -1,8 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/vue3';
+
 import LoadingIcon from './LoadingIcon.vue';
 
-import type { Meta, StoryFn } from '@storybook/vue3';
-
-export default {
+const meta: Meta<typeof LoadingIcon> = {
   title: 'Components / Icon / LoadingIcon',
   component: LoadingIcon,
   tags: ['autodocs'],
@@ -13,32 +13,48 @@ export default {
       options: ['waiting', 'loading', 'succeeded', 'failed']
     }
   }
-} satisfies Meta<typeof LoadingIcon>;
-
-const Template: StoryFn<typeof LoadingIcon> = (args) => ({
-  components: { LoadingIcon },
-  setup() {
-    return { args };
-  },
-  template: '<LoadingIcon v-bind="args" style="width: 48px; height: 48px;" />'
-});
-
-export const DefaultLoadingIcon = Template.bind({});
-DefaultLoadingIcon.args = {
-  status: 'loading'
 };
 
-export const WaitingLoadingIcon = Template.bind({});
-WaitingLoadingIcon.args = {
-  status: 'waiting'
+export default meta;
+
+type LoadingIcon$ = StoryObj<typeof LoadingIcon>;
+
+export const DefaultLoadingIcon: LoadingIcon$ = {
+  args: {
+    style: {
+      width: '48px',
+      height: '48px'
+    },
+    status: 'loading'
+  }
 };
 
-export const SucceededLoadingIcon = Template.bind({});
-SucceededLoadingIcon.args = {
-  status: 'succeeded'
+export const WaitingLoadingIcon: LoadingIcon$ = {
+  args: {
+    style: {
+      width: '48px',
+      height: '48px'
+    },
+    status: 'waiting'
+  }
 };
 
-export const FailedLoadingIcon = Template.bind({});
-FailedLoadingIcon.args = {
-  status: 'failed'
+export const SucceededLoadingIcon: LoadingIcon$ = {
+  args: {
+    style: {
+      width: '48px',
+      height: '48px'
+    },
+    status: 'succeeded'
+  }
+};
+
+export const FailedLoadingIcon: LoadingIcon$ = {
+  args: {
+    style: {
+      width: '48px',
+      height: '48px'
+    },
+    status: 'failed'
+  }
 };

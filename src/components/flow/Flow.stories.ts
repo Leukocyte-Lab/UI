@@ -1,7 +1,7 @@
-import { FlowKit } from '.';
-import CardBox from '../../components/element/card/CardBox.vue';
-
 import type { Meta, StoryFn } from '@storybook/vue3';
+
+import CardBox from '../../components/element/card/CardBox.vue';
+import { FlowKit } from '.';
 
 export default {
   title: 'Components / Graph / FlowKit',
@@ -68,10 +68,6 @@ export default {
         showBoundingBox: false,
         showControlPoint: false
       }
-    },
-    graph: {
-      control: 'object',
-      description: 'Graph for demo purpose (not really used in production)'
     }
   }
 } satisfies Meta<typeof FlowKit.Screen.Window>;
@@ -90,7 +86,7 @@ const Template: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
       <FlowKit.Screen.Window v-bind="args">
         <template v-for="node in args.graph">
           <FlowKit.Layout.Node v-bind="node">
-            <CardBox data-demo-content :style="{width: '240px', height: '120px'}">
+            <CardBox data-demo-content :style="{width: '240px', height: '120px', padding: '1em', placeContent: 'center', placeItems: 'center'}">
               <p>#{{ node.id }}</p>
               <h1>{{ node.name }}</h1>
             </CardBox>
@@ -126,10 +122,12 @@ const ActiveTemplate: StoryFn<typeof FlowKit.Screen.Window> = (args) => ({
               :style="{
                 width: '240px',
                 height: '120px',
+                padding: '1em',
+                placeContent: 'center',
+                placeItems: 'center',
                 outline: node.id === args.activeNodeId ? 'var(--agh-ref-border-width-200) solid var(--agh-ref-color-cyan-500)' : ''
               }"
               @click="args.activeNodeId = node.id"
-              data-demo-content
             >
               <p>#{{ node.id }}</p>
               <h1>{{ node.name }}</h1>
@@ -241,8 +239,12 @@ const args = {
   ]
 };
 
-export const Flow = Template.bind({});
-Flow.args = args;
+export const Flow = {
+  render: Template,
+  args: args
+};
 
-export const ActiveFlow = ActiveTemplate.bind({});
-ActiveFlow.args = { ...args, activeNodeId: 'node-06' };
+export const ActiveFlow = {
+  render: ActiveTemplate,
+  args: { ...args, activeNodeId: 'node-06' }
+};

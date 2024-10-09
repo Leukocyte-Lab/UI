@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useDropZone, useFileDialog, computedEager, useResizeObserver } from '@vueuse/core';
 import { map, pick } from 'lodash-es';
+import { ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
-
-import { signal } from '@/shared/libs/signal';
-import String$ from '@/shared/libs/string';
+import { computedEager, useDropZone, useFileDialog, useResizeObserver } from '@vueuse/core';
 
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
 import ProgressBar from '@/components/element/progress/ProgressBar.vue';
+import { signal } from '@/shared/libs/signal';
+import String$ from '@/shared/libs/string';
 
 import type { FileUploader } from '@/components/element/file/FileUploader.model';
 
@@ -252,6 +251,7 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
   >
     <template v-if="isOverDropZone || files.size === 0">
       <CardBox
+        @click="open"
         :class="[
           $style['uploader-drop-area'],
           $style.wrapper,
@@ -263,9 +263,8 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
             [$style.active]: isOverDropZone
           }
         ]"
-        @click="open"
-        variant="dash"
         radius="var(--agh-ref-border-radius-300)"
+        variant="dash"
       >
         <Icon :class="$style.icon" :icon="props.icon" />
         <h1>{{ placeholder }}</h1>
@@ -289,8 +288,8 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
           <CardBox
             :class="[$style['uploader-file-card'], $style.wrapper, $style.flex, $style.horizontal]"
             :has-stroke="false"
-            variant="flat"
             radius="var(--agh-ref-border-radius-400)"
+            variant="flat"
           >
             <div :class="[$style.icon, $style[payload.status()]]">
               <Icon
@@ -336,16 +335,16 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
             </template>
             <template v-if="payload.status() === 'succeeded'">
               <ButtonBox
-                :class="$style.button"
                 @click="payload.delete()"
+                :class="$style.button"
                 icon="fa6-solid:trash"
                 variant="text"
               />
             </template>
             <template v-else>
               <ButtonBox
-                :class="$style.button"
                 @click="payload.abort()"
+                :class="$style.button"
                 icon="fa6-solid:xmark"
                 variant="text"
               />

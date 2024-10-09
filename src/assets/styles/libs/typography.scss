@@ -1,0 +1,93 @@
+@mixin typography {
+  * {
+    font-family: Lato, 'Noto Sans TC', sans-serif;
+    text-rendering: geometricprecision;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ol,
+  ul,
+  li {
+    margin: 0;
+  }
+
+  .font {
+    $types: headline, hl, title, subtitle, label, content;
+    $sizing: large, medium, small;
+
+    @each $type in $types {
+      @each $size in $sizing {
+        &--token-#{$type}-#{$size} {
+          font: var(--agh-sys-type-#{$type}-#{$size});
+        }
+      }
+    }
+
+    @for $index from 1 through 9 {
+      &--weight-#{$index * 100} {
+        /* stylelint-disable-next-line custom-property-pattern */
+        font-weight: var(--agh-ref-typeface-weight-#{$index * 100});
+      }
+    }
+
+    &-uppercase {
+      text-transform: uppercase;
+
+      &.only-first {
+        text-transform: none;
+
+        &::first-letter {
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    &-wrap {
+      white-space: pre;
+
+      &.force-break {
+        white-space: pre-wrap;
+
+        @supports (white-space: break-spaces) {
+          white-space: break-spaces;
+        }
+      }
+    }
+
+    &-fira {
+      font-family: "Fira Code", monospace;
+    }
+
+    &-orbitron {
+      font-family: Orbitron, monospace;
+    }
+
+    &-align {
+      &--left {
+        text-align: left;
+      }
+
+      &--center {
+        text-align: center;
+      }
+
+      &--right {
+        text-align: right;
+      }
+    }
+
+    &-warp {
+      white-space: pre-wrap;
+    }
+  }
+}

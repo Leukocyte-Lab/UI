@@ -1,10 +1,11 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.ts", "src/**/*.vue", ".storybook/**/*.ts"],
-  "exclude": ["src/**/__tests__/*", "src/**/*.stories.ts"],
+  "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
+    "lib": ["ES2021", "ES2021.Intl", "ESNext", "DOM", "DOM.Iterable"],
     "paths": {
       "@/*": ["./src/*"]
     }

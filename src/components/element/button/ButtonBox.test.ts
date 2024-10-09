@@ -1,6 +1,6 @@
-import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
 import { Icon } from '@iconify/vue/offline';
+import { mount } from '@vue/test-utils';
 
 import ButtonBoxComponent from './ButtonBox.vue';
 
@@ -14,7 +14,7 @@ const testPropsStyle = (propValues: string[], propType: keyof ButtonBox.Props) =
 
       const classNames = wrapper.element.className.split(' ');
 
-      const isTestNameIncluded = classNames.some((className) => className.includes(`_${value}_`));
+      const isTestNameIncluded = classNames.some((className: string) => className.includes(`_${value}_`));
 
       expect(isTestNameIncluded).toBe(true);
 
@@ -55,7 +55,7 @@ const testPropsDisabled = (disabled: boolean) => {
     });
     const classNames = wrapper.element.className.split(' ');
 
-    const isTestNameIncluded = classNames.some((className) =>
+    const isTestNameIncluded = classNames.some((className: string) =>
       className.includes(disabled ? '_disabled_' : '_clickable_')
     );
 
@@ -88,7 +88,7 @@ const testPropsClicked = (clicked: boolean) => {
 
     const classNames = wrapper.element.className.split(' ');
 
-    const isTestNameIncluded = classNames.some((className) => className.includes(`_clicked_`));
+    const isTestNameIncluded = classNames.some((className: string) => className.includes(`_clicked_`));
 
     expect(isTestNameIncluded).toBe(clicked);
 

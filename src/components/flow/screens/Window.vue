@@ -1,17 +1,16 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed, ref, reactive } from 'vue';
-import { isClient, useElementSize } from '@vueuse/core';
+import { computed, reactive,ref } from 'vue';
 import { Application } from 'vue3-pixi';
+import { isClient, useElementSize } from '@vueuse/core';
 
-import type { VNode } from 'vue';
 import type { Cursor } from 'pixi.js';
+import type { VNode } from 'vue';
 
 import { FlowKit } from '@/components/flow';
 import { Flow } from '@/components/flow/Flow.model';
-
-import { uuid } from '@/shared/libs/uuid';
 import { signal } from '@/shared/libs/signal';
+import { uuid } from '@/shared/libs/uuid';
 
 const props = withDefaults(defineProps<Flow.UI.Screen.Window.Props>(), {
   devtools: false,
@@ -48,32 +47,32 @@ const scale = computed({
 
 <template>
   <div
-    :id="`flow-${uuid()}`"
     ref="wrapperRef$"
+    :id="`flow-${uuid()}`"
     :class="[$style['flow-container'], $style.behavior, $style[cursorMode()]]"
   >
     <Application
-      :class="$style['flow-viewport']"
-      :width="wrapperBoundingBox.width"
-      :height="wrapperBoundingBox.height"
-      :background-alpha="0"
-      :resolution="4"
       :antialias="true"
+      :background-alpha="0"
+      :class="$style['flow-viewport']"
+      :height="wrapperBoundingBox.height"
       :power-preference="acceleration"
       :resize-to="wrapperRef$"
+      :resolution="4"
+      :width="wrapperBoundingBox.width"
     >
       <template v-if="props.devtools && isClient">
         <FlowKit.Helper.DevTool />
       </template>
       <FlowKit.Screen.Viewport
         ref="viewportRef$"
-        :width="wrapperBoundingBox.width"
-        :height="wrapperBoundingBox.height"
-        :scale="scale"
-        :debug-options="props.debugOptions"
         :auto-layout="props.autoLayout"
-        :initial-scale="props.initialScale"
         :cursor-mode="cursorMode"
+        :debug-options="props.debugOptions"
+        :height="wrapperBoundingBox.height"
+        :initial-scale="props.initialScale"
+        :scale="scale"
+        :width="wrapperBoundingBox.width"
       >
         <slot />
       </FlowKit.Screen.Viewport>

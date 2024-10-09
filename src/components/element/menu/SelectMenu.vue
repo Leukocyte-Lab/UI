@@ -1,52 +1,107 @@
-<script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { computedEager, useResizeObserver } from '@vueuse/core';
-import { filter, flatMap, fromPairs, groupBy, map, omit, toPairs } from 'lodash-es';
+<script setup lang="ts" generic="T extends SelectMenu.AcceptableValue">
+import { groupBy, omit } from 'lodash-es';
+import { computed, onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
+import { useResizeObserver } from '@vueuse/core';
 
-import { signal } from '@/shared/libs/signal';
-import { parser } from '@/shared/libs/parser';
-import { selector } from '@/shared/libs/selector';
+import type { ModelRef, VNode } from 'vue';
 
-import TextField from '@/components/element/textfield/TextField.vue';
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
+import TextField from '@/components/element/textfield/TextField.vue';
+import { booleanGetter, valuesGetter } from '@/shared/libs/fn';
+import Map$ from '@/shared/libs/map';
+import { useSearch } from '@/shared/libs/search';
+import { signal } from '@/shared/libs/signal';
 
 import type { SelectMenu } from '@/components/element/menu/SelectMenu.model';
-import type { Signal } from '@/shared/libs/signal';
-import type { ObjectLike } from '@/shared/types/object';
+import type { Search } from '@/shared/libs/search';
 
-const props = withDefaults(defineProps<SelectMenu.Props>(), {
-  multiple: false
-});
-
-const emits = defineEmits<{
-  (e: 'update:modelValue', option: ObjectLike): void;
-  (e: 'update:modelValue', options: ObjectLike[]): void;
+defineSlots<{
+  'clear-selection'?: (props: { clearSelection: () => void }) => VNode;
+  'empty-placeholder'?: (props: { groupName: string | number }) => VNode;
 }>();
 
-const wrapperRef$ = ref<HTMLElement>();
-const search = ref('');
+const props = defineProps<SelectMenu.Props<T>>();
 
-const groups = computedEager(() =>
-  fromPairs(
-    toPairs(groupBy(props.options, props.groupBy ?? '')).map(([group, options]) => [
-      group === 'undefined' ? '' : group,
-      options.map((option) =>
-        signal<ObjectLike>({
-          ...option,
-          matched:
-            String(selector(option, props.fields.key)).includes(search.value) ||
-            String(selector(option, props.fields.title)).includes(search.value),
-          selected: Boolean(
-            props.multiple
-              ? map(props.modelValue, props.fields.key).includes(selector(option, props.fields.key))
-              : selector(option, props.fields.key) ===
-                  selector(props.modelValue as ObjectLike, props.fields.key)
-          )
-        })
-      )
+const selection = defineModel<SelectMenu.Props<T>['modelValue']>({
+  required: true
+});
+const searchQuery = defineModel<string>('query', {
+  default: ''
+});
+
+const wrapperRef$ = ref<HTMLElement>();
+
+const options = computed(
+  () =>
+    new Map$(
+      Array.isArray(props.options)
+        ? props.options.map((option, index) => [index, option])
+        : props.options
+    )
+);
+const selectedFields = computed(() =>
+  props.multiple
+    ? new Map$(
+        Array.isArray(selection.value)
+          ? new Map<number, T>(selection.value.map((option, index) => [index, option]))
+          : selection.value instanceof Map
+            ? new Map(selection.value)
+            : new Map<string | number, T>()
+      ).map((option) => [fieldParser(option).key, options])
+    : fieldParser(selection.value as T).key
+);
+
+const { result, reset: clearSearch } = useSearch(options, {
+  query: searchQuery,
+  getters: props.fields.searchKeys ?? [props.fields.key, props.fields.title ?? ''].filter(Boolean),
+  options: props.useSearch
+    ? ({
+        caseSensitive: props.caseSensitive,
+        phraseSearch: props.phraseSearch,
+        strict: props.strict,
+        segmentPattern: props.segmentPattern,
+        relevanceSearch: props.relevanceSearch,
+        threshold: props.threshold,
+        sortBy: props.sortBy,
+        limit: props.limit
+      } as Search.Options)
+    : undefined
+});
+
+const datasets = computed(() =>
+  options.value
+    .map((option, key) => [
+      key,
+      {
+        payload: option,
+        field: fieldParser(option)
+      }
     ])
+    .map(({ payload, field }, key) => [
+      key,
+      {
+        payload,
+        field,
+        get selected() {
+          return props.multiple && selectedFields.value instanceof Map
+            ? selectedFields.value.has(field.key)
+            : selectedFields.value === field.key;
+        },
+        get matched() {
+          return result.value.has(key);
+        }
+      } as SelectMenu.Option<T>
+    ])
+);
+
+const groups = computed(() =>
+  groupBy(
+    datasets.value
+      .filter(({ matched }) => (props.useSearch && props.showAll) || matched)
+      .toArray('entries'),
+    '[1].field.group'
   )
 );
 
@@ -59,32 +114,61 @@ const computeOverflowed = () => {
   }
 };
 
-const onSelect = (option: Signal<ObjectLike>) => {
-  option.update((option) => ({
-    ...option,
-    selected: !option.selected
-  }));
-
+const clearSelection = () => {
   if (props.multiple) {
-    emits(
-      'update:modelValue',
-      flatMap(
-        map(groups.value, (options) =>
-          options.map((option) => option()).filter((option) => option.selected)
-        )
-      )
-    );
+    selection.value = Array.isArray(props.options) ? [] : new Map();
   } else {
-    emits('update:modelValue', option());
+    selection.value = undefined;
   }
 };
 
-const clickSelection = () => {
+const fieldParser = (option: T): SelectMenu.Option<T>['field'] => ({
+  ...Object.fromEntries(
+    Object.entries(omit(props.fields, ['key', 'searchKeys', 'disabled'])).map(([field, getter]) => [
+      field,
+      valuesGetter(option, getter, true)
+    ])
+  ),
+  key: valuesGetter(option, props.fields.key),
+  group: props.groupBy ? (valuesGetter(option, props.groupBy, true) ?? '') : '',
+  disabled: props.fields.disabled
+    ? (booleanGetter(option, props.fields.disabled, true) ?? false) || false
+    : false
+});
+
+const toggleSelection = (index: string | number, option: SelectMenu.Option<T>) => {
   if (props.multiple) {
-    emits('update:modelValue', []);
+    if (!option.field.disabled) {
+      if (props.options instanceof Map) {
+        if (!option.selected) {
+          (selection as ModelRef<Map<string | number, T>>).value.set(index, option.payload);
+        } else {
+          (selection as ModelRef<Map<string | number, T>>).value.delete(option.field.key);
+        }
+      } else {
+        if (!option.selected) {
+          (selection as ModelRef<T[]>).value = datasets.value
+            .filter((option, key) => index === key || option.selected)
+            .toArray('values')
+            .map(({ payload }) => payload);
+        } else {
+          (selection as ModelRef<T[]>).value = datasets.value
+            .filter((option, key) => index !== key && option.selected)
+            .toArray('values')
+            .map(({ payload }) => payload);
+        }
+      }
+    }
   } else {
-    emits('update:modelValue', {});
+    if (!option.field.disabled) {
+      selection.value = option.payload;
+    }
   }
+};
+
+const reset = () => {
+  clearSearch();
+  clearSelection();
 };
 
 useResizeObserver(wrapperRef$, computeOverflowed, {
@@ -93,6 +177,12 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
 
 onMounted(() => {
   computeOverflowed();
+});
+
+defineExpose({
+  reset,
+  clearSearch,
+  clearSelection
 });
 </script>
 
@@ -108,20 +198,29 @@ onMounted(() => {
   >
     <template v-if="props.label || props.multiple">
       <header :class="$style['menu-header']">
-        <h1 :class="$style['title']">{{ props.label }}</h1>
+        <h1 :class="$style['title']">
+          {{ props.label }}
+        </h1>
         <template v-if="props.multiple">
-          <ButtonBox
-            :class="$style['button']"
-            :label="'Clear Selection'"
-            :icon="'fa6-solid:eraser'"
-            :variant="'text'"
-            @click="clickSelection()"
-          />
+          <slot :clear-selection="clearSelection" name="clear-selection">
+            <ButtonBox
+              @click="clearSelection"
+              :class="$style['button']"
+              :icon="'fa6-solid:eraser'"
+              :label="props.alterStr?.clearSelection || 'Clear Selection'"
+              :variant="'text'"
+            />
+          </slot>
         </template>
       </header>
     </template>
     <template v-if="props.useSearch">
-      <TextField v-model="search" :class="$style['menu-search']" type="search" />
+      <TextField
+        v-model="searchQuery"
+        :class="$style['menu-search']"
+        inputmode="search"
+        type="search"
+      />
     </template>
     <div
       ref="wrapperRef$"
@@ -132,7 +231,7 @@ onMounted(() => {
         }
       ]"
     >
-      <template v-for="(options, group) in groups" :key="group">
+      <template v-for="(group, name) in groups" :key="group">
         <div
           :class="[
             $style['menu-group'],
@@ -141,50 +240,43 @@ onMounted(() => {
             }
           ]"
         >
-          <template v-if="group">
-            <label :class="$style['menu-group-label']" name="">{{ group }}</label>
+          <template v-if="props.groupBy && name">
+            <label :class="$style['menu-group-label']">{{ name }}</label>
           </template>
-          <template v-for="(option, index) in options" :key="`option-${index}`">
-            <template v-if="search !== '' ? option().matched : true">
+          <template
+            v-for="[index, { selected, matched, field, payload }] in group"
+            :key="`option-${field.key}`"
+          >
+            <template v-if="matched">
               <div
+                @click="!field.disabled && toggleSelection(index, { selected, field, payload })"
                 :class="[
                   $style['menu-option'],
                   $style['behavior'],
-                  selector(option(), props.fields.disabled)
-                    ? [$style['disabled']]
-                    : $style['clickable'],
+                  field.disabled ? [$style['disabled']] : $style['clickable'],
                   {
-                    [$style['selected']]: option().selected,
+                    [$style['selected']]: selected,
                     [$style['multiple']]: props.multiple
                   }
                 ]"
-                @click="selector(option(), props.fields.disabled) ? null : onSelect(option)"
               >
                 <template v-if="props.multiple">
                   <Icon
                     :class="$style['menu-option-icon']"
-                    :icon="option().selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
+                    :icon="selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
                   />
                 </template>
                 <template v-if="props.fields.icon">
-                  <Icon
-                    :class="$style['menu-option-icon']"
-                    :icon="String(selector(option(), props.fields.icon))"
-                  />
+                  <Icon :class="$style['menu-option-icon']" :icon="field.icon ?? ''" />
                 </template>
                 <div :class="$style['menu-option-group']">
-                  <template v-if="!props.fields.title">
-                    <p :class="$style['menu-field']">
-                      {{ selector(option(), props.fields.key) }}
-                    </p>
-                  </template>
                   <template
-                    v-for="field in omit(props.fields, ['key', 'icon', 'disabled'])"
-                    :key="`option-field-${field}`"
+                    v-for="(context, key) in omit(field, ['key', 'icon', 'disabled', 'group'])"
+                    :key="`option-field-${key}`"
                   >
-                    <template v-if="field">
+                    <template v-if="context">
                       <p :class="$style['menu-field']">
-                        {{ parser(option(), String(field)) }}
+                        {{ context }}
                       </p>
                     </template>
                   </template>
@@ -193,7 +285,9 @@ onMounted(() => {
             </template>
           </template>
           <div :class="$style['menu-group-placeholder']">
-            <p>No Data</p>
+            <slot :group-name="name" name="empty-placeholder">
+              <p>{{ props.alterStr?.noData || 'No Data' }}</p>
+            </slot>
           </div>
         </div>
       </template>
@@ -250,6 +344,7 @@ onMounted(() => {
 
     > .button {
       font: var(--agh-sys-typeface-label-hl-medium);
+      text-align: right;
     }
   }
 
@@ -291,7 +386,7 @@ onMounted(() => {
       opacity: var(--agh-ref-opacity-300);
     }
 
-    &:not(.disabled) {
+    &:not(.disabled, .selected) {
       &:hover,
       &.hover {
         background-color: var(--agh-ref-color-grayscale-200);

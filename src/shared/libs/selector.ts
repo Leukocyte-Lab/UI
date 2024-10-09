@@ -2,7 +2,7 @@ import { JSONPath } from 'jsonpath-plus';
 import { get, isEmpty } from 'lodash-es';
 
 import type { ObjectLike } from '@/shared/types/object';
-import type { Optional, Nullable, ValueOf } from '@/shared/types/optional';
+import type { Nullable, Optional, ValueOf } from '@/shared/types/optional';
 
 export const selector = <T extends ObjectLike = ObjectLike>(
   datasets: Optional<T>,
@@ -13,7 +13,7 @@ export const selector = <T extends ObjectLike = ObjectLike>(
     : (typeof selector === 'string' && /^\$\./.test(selector)
         ? JSONPath({
             path: selector,
-            json: datasets as unknown as any[]
+            json: datasets
           })
         : get(datasets, selector!)) ?? null;
 

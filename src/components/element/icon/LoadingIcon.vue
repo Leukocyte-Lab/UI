@@ -10,23 +10,23 @@ const props = defineProps<LoadingIcon.Props>();
   <div :class="$style['icon-wrapper']">
     <BasePoly
       :class="[$style['icon-entity'], $style[props.status]]"
-      viewBox="0 0 36 36"
       shape-rendering="geometricPrecision"
+      viewBox="0 0 36 36"
     >
       <template #defs>
         <linearGradient
           id="loading-gradient"
-          x1="4.43603"
-          y1="1.76963e-07"
-          x2="31.564"
-          y2="36"
           gradientUnits="userSpaceOnUse"
+          x1="4.43603"
+          x2="31.564"
+          y1="1.76963e-07"
+          y2="36"
         >
           <stop offset="0.1003" stop-color="#CEF0F4" />
           <stop offset="0.8997" stop-color="#35BCCC" />
         </linearGradient>
         <clipPath id="clip">
-          <rect width="36" height="36" fill="white" />
+          <rect fill="white" height="36" width="36" />
         </clipPath>
       </template>
       <template #path>

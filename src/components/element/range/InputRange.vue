@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
+
 import { useEventDebounceSignal } from '@/shared/libs/event';
 
 import type { InputRange } from './InputRange.model';
@@ -40,13 +41,13 @@ const { onTrigger } = useEventDebounceSignal(
   <input
     ref="inputRangeRef$"
     @input="onTrigger"
-    type="range"
     v-bind="props"
-    :value="props.modelValue"
     :style="{
       background: `linear-gradient(to right, ${props.progressColor} ${progress}%,${props.trackColor} ${progress}%)`
     }"
-  />
+    :value="props.modelValue"
+    type="range"
+  >
 </template>
 
 <style module scoped lang="scss">
@@ -73,7 +74,7 @@ input[type='range']::-webkit-slider-runnable-track {
 
 input[type='range']::-webkit-slider-thumb {
   appearance: none;
-  background-color: v-bind(thumbColor);
+  background-color: v-bind('thumbColor');
   border-radius: var(--agh-ref-border-radius-900);
   height: 32px;
   width: 13px;
@@ -87,7 +88,7 @@ input[type='range']::-moz-range-track {
 
 input[type='range']::-moz-range-thumb {
   appearance: none;
-  background-color: v-bind(thumbColor);
+  background-color: v-bind('thumbColor');
   border-radius: var(--agh-ref-border-radius-900);
   height: 32px;
   width: 13px;

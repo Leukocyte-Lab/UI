@@ -1,84 +1,173 @@
-<script setup lang="ts">
-import { computed } from 'vue';
+<script setup lang="ts" generic="T extends DropDown.AcceptableValue">
+import { computed, ref, watch } from 'vue';
 import { vOnClickOutside } from '@vueuse/components';
 
-import SelectMenu from '@/components/element/menu/SelectMenu.vue';
-import ButtonBox from '@/components/element/button/ButtonBox.vue';
+import type { VNode } from 'vue';
+import type { ComponentExposed } from 'vue-component-type-helpers';
 
-import { selector } from '@/shared/libs/selector';
-import { parser } from '@/shared/libs/parser';
-import { signal } from '@/shared/libs/signal';
+import ButtonBox from '@/components/element/button/ButtonBox.vue';
+import SelectMenu from '@/components/element/menu/SelectMenu.vue';
+import { valuesGetter } from '@/shared/libs/fn';
+import { signal, toggleSignal } from '@/shared/libs/signal';
 
 import type { DropDown } from '@/components/element/dropdown/DropDown.model';
-import type { ObjectLike } from '@/shared/types/object';
 
-const props = withDefaults(defineProps<DropDown.Props>(), {
-  items: () => [],
+const slots = defineSlots<{
+  'clear-selection'?: (props: { clearSelection: () => void }) => VNode;
+  'empty-placeholder'?: (props: { groupName: string | number }) => VNode;
+}>();
+
+const props = withDefaults(defineProps<DropDown.Props<T>>(), {
   level: 'primary',
   variant: 'rounded',
   size: 'medium',
-  multiple: false
+  multiple: false,
+  labelShowAs: 'auto',
+  menuPosition: 'bottom-right'
 });
 
-const emits = defineEmits<{
-  (e: 'update:modelValue', option: ObjectLike): void;
-  (e: 'update:modelValue', options: ObjectLike[]): void;
-}>();
+const selection = defineModel<DropDown.Props<T>['modelValue']>({
+  required: true
+});
+const query = defineModel<string>('query', {
+  default: ''
+});
 
-const selected = computed({
-  get: () => props.modelValue,
-  set: (value) => {
-    if (!props.multiple) {
-      closeMenu.set(true);
-    }
+const selectMenuRef$ = ref<ComponentExposed<typeof SelectMenu>>();
 
-    return emits(
-      'update:modelValue',
-      props.multiple ? (value as ObjectLike) : (value as ObjectLike[])
-    );
+const onShowMenu = signal(false);
+
+const bobbleCount = computed(() =>
+  props.multiple && selection.value
+    ? Array.isArray(selection.value)
+      ? selection.value.length
+      : selection.value instanceof Map
+        ? selection.value.size
+        : false
+    : false
+);
+const optionsCount = computed(() =>
+  Array.isArray(props.options)
+    ? props.options.length
+    : props.options instanceof Map
+      ? props.options.size
+      : 0
+);
+const label = computed(() =>
+  props.labelShowAs === 'icon'
+    ? undefined
+    : (props.labelShowAs !== 'auto' ? props[props.labelShowAs] : undefined) ||
+      (props.multiple
+        ? (bobbleCount.value || 0) > 0
+          ? (props.label ?? props.placeholder)
+          : (props.placeholder ?? props.label)
+        : ((props.modelValue &&
+            (props.fields.title
+              ? valuesGetter(props.modelValue as T, props.fields.title, true)
+              : props.fields.key
+                ? valuesGetter(props.modelValue as T, props.fields.key, true)
+                : undefined)) ??
+          props.label ??
+          props.placeholder))
+);
+const icon = computed(
+  () =>
+    ((props.variant.includes('square') || props.labelShowAs === 'icon') &&
+    !props.multiple &&
+    selection.value
+      ? props.modelValue && props.fields.icon
+        ? valuesGetter(props.modelValue as T, props.fields.icon, true)
+        : undefined
+      : undefined) || (onShowMenu() ? 'fa6-solid:chevron-up' : 'fa6-solid:chevron-down')
+);
+
+const clearSearch = () => {
+  selectMenuRef$.value?.clearSearch();
+  query.value = '';
+};
+
+const clearSelection = () => {
+  selectMenuRef$.value?.clearSelection();
+  selection.value = props.multiple ? [] : undefined;
+};
+
+const reset = () => {
+  clearSearch();
+  clearSelection();
+};
+
+watch([selection, () => props.multiple], ([selection, multiple]) => {
+  if (!multiple && selection) {
+    onShowMenu.set(false);
   }
 });
 
-const closeMenu = signal(true);
+watch(onShowMenu, (state) => {
+  if (state && !props.persist) {
+    clearSearch();
+  }
+});
+
+defineExpose({
+  reset,
+  clearSearch,
+  clearSelection,
+  onShowMenu
+});
 </script>
 
 <template>
   <div
+    v-on-click-outside="() => onShowMenu.set(false)"
     :class="[$style['dropdown-container'], $style[size]]"
-    v-on-click-outside="() => closeMenu.set(true)"
   >
     <ButtonBox
+      @click="toggleSignal(onShowMenu)"
+      :bobble="bobbleCount"
+      :class="[$style['dropdown-button'], $style[size]]"
+      :clicked="onShowMenu()"
       :disabled="props.disabled"
-      :label="
-        props.multiple
-          ? (selected?.length ?? 0) > 0
-            ? props.label ?? props.placeholder
-            : props.placeholder ?? props.label
-          : (props.fields.title &&
-              (parser(props.modelValue, props.fields.title) ||
-                selector(props.modelValue, props.fields.title))) ||
-            (selector(props.modelValue, props.fields.key) ?? props.label ?? props.placeholder)
-      "
-      :icon="closeMenu() ? 'fa6-solid:chevron-down' : 'fa6-solid:chevron-up'"
-      :clicked="!closeMenu()"
+      :icon
+      :label
       :level="props.level"
       :size="props.size"
       :variant="props.variant"
-      :bobble="props.multiple ? selected?.length ?? false : false"
-      :class="[$style['dropdown-button'], $style[size]]"
-      @click="closeMenu.update((state) => !state)"
     />
-    <template v-if="items.length > 0 && !closeMenu()">
+    <template v-if="optionsCount > 0 && onShowMenu()">
+      <!-- @vue-ignore // ? NOTE: SelectMenu will handle generic type ? // -->
       <SelectMenu
-        :class="$style['dropdown-menu']"
-        :options="items"
-        :label="props.label"
+        ref="selectMenuRef$"
+        v-model="selection"
+        v-model:query="query"
+        @select:fields="selectedFields = $event"
+        :alter-str="props.alterStr"
+        :case-sensitive="props.caseSensitive"
+        :class="[$style['dropdown-menu'], $style[props.menuPosition]]"
         :fields="props.fields"
-        :multiple="props.multiple"
-        :use-search="props.useSearch"
         :group-by="props.groupBy"
-        v-model="selected"
-      />
+        :label="props.label"
+        :limit="props.limit"
+        :multiple="props.multiple"
+        :options="props.options"
+        :phrase-search="props.phraseSearch"
+        :relevant-search="props.relevantSearch"
+        :segment-pattern="props.segmentPattern"
+        :show-all="props.showAll"
+        :sort-by="props.sortBy"
+        :strict="props.strict"
+        :threshold="props.threshold"
+        :use-search="props.useSearch"
+      >
+        <template
+          v-if="slots['clear-selection']"
+          #clear-selection="{ clearSelection: clearMenuSelection }"
+        >
+          <slot :clear-selection="clearMenuSelection" name="clear-selection" />
+        </template>
+        <template v-if="slots['empty-placeholder']" #empty-placeholder="{ groupName }">
+          <slot :group-name="groupName" name="empty-placeholder" />
+        </template>
+      </SelectMenu>
     </template>
   </div>
 </template>
@@ -94,6 +183,7 @@ const closeMenu = signal(true);
 
     &.large {
       width: 100%;
+      min-width: var(--agh-sys-list-dropdown-small);
 
       > .dropdown {
         &-menu,
@@ -115,9 +205,28 @@ const closeMenu = signal(true);
 
   &-menu {
     position: absolute;
-    top: calc(100% + var(--agh-ref-spacing-200));
     z-index: 10;
     max-height: var(--dropdown-max-height, var(--agh-sys-list-dropdown-small)) !important;
+
+    &.top-left,
+    &.top-right {
+      bottom: calc(100% + var(--agh-ref-spacing-200));
+    }
+
+    &.bottom-left,
+    &.bottom-right {
+      top: calc(100% + var(--agh-ref-spacing-200));
+    }
+
+    &.top-left,
+    &.bottom-left {
+      right: 0;
+    }
+
+    &.top-right,
+    &.bottom-right {
+      left: 0;
+    }
   }
 }
 </style>

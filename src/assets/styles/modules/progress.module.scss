@@ -26,7 +26,9 @@
     overflow: hidden;
 
     &.concave {
-      padding: var(--agh-ref-spacing-75);
+      padding: var(--agh-ref-spacing-75)
+        calc(var(--agh-ref-spacing-75) - var(--agh-ref-border-width-50))
+        calc(var(--agh-ref-spacing-75) - var(--agh-ref-border-width-50)) var(--agh-ref-spacing-75);
       border: var(--agh-ref-border-width-50) solid var(--agh-ref-color-grayscale-300);
     }
   }
@@ -36,7 +38,9 @@
     stroke: var(--progress-value-fill);
     stroke-linecap: round;
     will-change: width, stroke-dasharray, stroke-dashoffset;
-    transition: width 0.3s ease-in-out, stroke-dasharray 1s ease-in-out,
+    transition:
+      width 0.3s ease-in-out,
+      stroke-dasharray 1s ease-in-out,
       stroke-dashoffset 1s ease-in-out;
     min-width: 5%;
   }

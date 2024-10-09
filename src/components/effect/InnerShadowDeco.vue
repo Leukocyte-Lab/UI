@@ -10,10 +10,10 @@ const props = defineProps<{
     id="effects--inner-shadow--deco"
     :height="props.height"
     :width="props.width"
-    x="0"
-    y="0"
     color-interpolation-filters="sRGB"
     filterUnits="userSpaceOnUse"
+    x="0"
+    y="0"
   >
     <feFlood flood-opacity="0" result="BackgroundImageFix" />
     <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />

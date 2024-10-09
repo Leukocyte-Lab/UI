@@ -1,23 +1,22 @@
+
+import type { Meta, StoryObj } from '@storybook/vue3';
+
 import SwitchButton from './SwitchButton.vue';
 
-import type { Meta, StoryFn } from '@storybook/vue3';
 
-export default {
+const meta: Meta<typeof SwitchButton> = {
   title: 'Components / Element / SwitchButton',
   component: SwitchButton,
   tags: ['autodocs']
-} satisfies Meta<typeof SwitchButton>;
+};
 
-const Template: StoryFn<typeof SwitchButton> = (args) => ({
-  components: { SwitchButton },
-  setup() {
-    return { args };
-  },
-  template: '<SwitchButton v-model="args.modelValue" v-bind="args" />'
-});
+export default meta;
 
-export const DefaultSwitchButton = Template.bind({});
-DefaultSwitchButton.args = {
-  modelValue: false,
-  disabled: false
+type SwitchButton$ = StoryObj<typeof SwitchButton>;
+
+export const DefaultSwitchButton: SwitchButton$ = {
+  args: {
+    modelValue: false,
+    disabled: false
+  }
 };

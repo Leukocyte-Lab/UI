@@ -1,10 +1,9 @@
-import { fileURLToPath, URL } from 'node:url';
 import { resolve } from 'node:path';
+import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
-import Vue from '@vitejs/plugin-vue';
-
 import { compilerOptions, transformAssetUrls } from 'vue3-pixi/compiler';
+import Vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({

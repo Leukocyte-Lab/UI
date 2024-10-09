@@ -1,8 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/vue3';
+
 import ProgressCircle from './ProgressCircle.vue';
 
-import type { Meta, StoryFn } from '@storybook/vue3';
-
-export default {
+const meta: Meta<typeof ProgressCircle> = {
   title: 'Components / Progress / ProgressCircle',
   component: ProgressCircle,
   tags: ['autodocs'],
@@ -21,24 +21,30 @@ export default {
       description: 'The thickness of the progress circle.'
     }
   }
-} satisfies Meta<typeof ProgressCircle>;
-
-const Template: StoryFn<typeof ProgressCircle> = (args) => ({
-  components: { ProgressCircle },
-  setup() {
-    return { args };
-  },
-  template: '<ProgressCircle v-bind="args" style="width: 125px; height: 125px;" />'
-});
-
-export const DefaultProgressCircle = Template.bind({});
-DefaultProgressCircle.args = {
-  value: 0.75,
-  variant: 'concave'
 };
 
-export const ConvexProgressCircle = Template.bind({});
-ConvexProgressCircle.args = {
-  value: 0.75,
-  variant: 'convex'
+export default meta;
+
+type ProgressCircle$ = StoryObj<typeof ProgressCircle>;
+
+export const DefaultProgressCircle: ProgressCircle$ = {
+  args: {
+    style: {
+      width: '125px',
+      height: '125px'
+    },
+    value: 0.75,
+    variant: 'concave'
+  }
+};
+
+export const ConvexProgressCircle: ProgressCircle$ = {
+  args: {
+    style: {
+      width: '125px',
+      height: '125px'
+    },
+    value: 0.75,
+    variant: 'convex'
+  }
 };

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { useElementSize } from '@vueuse/core';
 import { Icon } from '@iconify/vue/offline';
+import { useElementSize } from '@vueuse/core';
 
 import type { VNode } from 'vue';
 
@@ -80,6 +80,7 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
       <template v-for="[id, tab] in tabs" :key="id">
         <div
           ref="tabRefs$"
+          @click="selectTab(tab)"
           :class="[
             $style['tab-group'],
             $style.wrapper,
@@ -91,7 +92,6 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
               [$style.active]: selected?.id === id
             }
           ]"
-          @click="selectTab(tab)"
         >
           <template v-if="tab.icon">
             <Icon :class="$style.icon" :icon="tab.icon" />
@@ -103,14 +103,14 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
     <template v-if="selected">
       <Transition
         :class="$style.transition"
-        :enter-from-class="$style[`slide-${animateDirection}-enter-from`]"
         :enter-active-class="$style[`slide-${animateDirection}-enter-active`]"
-        :leave-from-class="$style[`slide-${animateDirection}-leave-from`]"
+        :enter-from-class="$style[`slide-${animateDirection}-enter-from`]"
         :leave-active-class="$style[`slide-${animateDirection}-leave-active`]"
+        :leave-from-class="$style[`slide-${animateDirection}-leave-from`]"
         mode="out-in"
         appear
       >
-        <slot :name="selected.id" :tab="selected" :id="selected.id" :index="selectedIndex" />
+        <slot :id="selected.id" :index="selectedIndex" :name="selected.id" :tab="selected" />
       </Transition>
     </template>
   </div>

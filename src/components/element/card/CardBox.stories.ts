@@ -1,8 +1,10 @@
+import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
+
 import CardBox from './CardBox.vue';
 
-import type { Meta, StoryFn } from '@storybook/vue3';
+import bindArgs from '@/../.storybook/helpers/bind-args';
 
-export default {
+const meta: Meta<typeof CardBox> = {
   title: 'Components / Element / CardBox',
   component: CardBox,
   tags: ['autodocs'],
@@ -29,20 +31,20 @@ export default {
       options: ['container', 'box'],
       defaultValue: 'box'
     },
-    hasStroke: {
-      control: 'boolean',
-      description: 'Card stroke (optional)',
-      defaultValue: true
-    },
     strokeWeight: {
       control: 'radio',
       description: 'Card stroke weight (optional)',
       options: ['bold', 'normal', 'thin']
     },
     radius: {
-      control: 'string',
+      control: 'text',
       description:
         'Card radius (optional), default `var(--agh-ref-border-radius-500)` when `purpose` is `container`, otherwise `var(--agh-ref-border-radius-300)`'
+    },
+    hasStroke: {
+      control: 'boolean',
+      description: 'Card stroke (optional)',
+      defaultValue: true
     },
     clickable: {
       control: 'boolean',
@@ -55,134 +57,179 @@ export default {
       defaultValue: false
     }
   }
-} satisfies Meta<typeof CardBox>;
+};
+
+export default meta;
+
+type CardBox$ = StoryObj<typeof CardBox>;
 
 const Template: StoryFn<typeof CardBox> = (args) => ({
   components: { CardBox },
   setup() {
     return { args };
   },
-  template: `<CardBox v-bind="args">${args.default}</CardBox>`
-});
+  template: `
+  <CardBox ${bindArgs(args)}>
+    <div style="padding: 1em;">
+      <h1>This is a CardBox</h1>
+      <br />
+      <p>Put something inside the slot to see it !</p>
+    </div>
+  </CardBox>
+  `
+})
 
-export const DefaultCardBox = Template.bind({});
-DefaultCardBox.args = {
-  default: `<div data-demo-content>
-    <h1>This is a CardBox</h1>
-    <br />
-    <p>put something in the slot to see it</p>
-  </div>`.replace(/\n/g, ''),
-  variant: 'metallic',
-  purpose: 'box',
-  color: 'default',
-  hasStroke: true,
-  clickable: false,
-  strokeWeight: 'normal'
+export const DefaultCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    variant: 'metallic',
+    purpose: 'box',
+    color: 'default',
+    hasStroke: true,
+    clickable: false,
+    strokeWeight: 'normal'
+  }
 };
 
-export const MetallicDefaultCardBox = Template.bind({});
-MetallicDefaultCardBox.args = {
-  ...DefaultCardBox.args
+export const MetallicDefaultCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...DefaultCardBox.args
+  }
 };
 
-export const FlatDefaultCardBox = Template.bind({});
-FlatDefaultCardBox.args = {
-  ...DefaultCardBox.args,
-  variant: 'flat'
+export const FlatDefaultCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...DefaultCardBox.args,
+    variant: 'flat'
+  }
 };
 
-export const DashDefaultCardBox = Template.bind({});
-DashDefaultCardBox.args = {
-  ...DefaultCardBox.args,
-  variant: 'dash'
+export const DashDefaultCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...DefaultCardBox.args,
+    variant: 'dash'
+  }
 };
 
-export const MetallicCyanCardBox = Template.bind({});
-MetallicCyanCardBox.args = {
-  ...MetallicDefaultCardBox.args,
-  color: 'cyan'
+export const MetallicCyanCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...MetallicDefaultCardBox.args,
+    color: 'cyan'
+  }
 };
 
-export const FlatCyanCardBox = Template.bind({});
-FlatCyanCardBox.args = {
-  ...FlatDefaultCardBox.args,
-  color: 'cyan'
+export const FlatCyanCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...FlatDefaultCardBox.args,
+    color: 'cyan'
+  }
 };
 
-export const DashCyanCardBox = Template.bind({});
-DashCyanCardBox.args = {
-  ...DashDefaultCardBox.args,
-  color: 'cyan'
+export const DashCyanCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...DashDefaultCardBox.args,
+    color: 'cyan'
+  }
 };
 
-export const MetallicBlueCardBox = Template.bind({});
-MetallicBlueCardBox.args = {
-  ...MetallicDefaultCardBox.args,
-  color: 'blue'
+export const MetallicBlueCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...MetallicDefaultCardBox.args,
+    color: 'blue'
+  }
 };
 
-export const FlatBlueCardBox = Template.bind({});
-FlatBlueCardBox.args = {
-  ...FlatDefaultCardBox.args,
-  color: 'blue'
+export const FlatBlueCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...FlatDefaultCardBox.args,
+    color: 'blue'
+  }
 };
 
-export const DashBlueCardBox = Template.bind({});
-DashBlueCardBox.args = {
-  ...DashDefaultCardBox.args,
-  color: 'blue'
+export const DashBlueCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...DashDefaultCardBox.args,
+    color: 'blue'
+  }
 };
 
-export const MetallicGreenCardBox = Template.bind({});
-MetallicGreenCardBox.args = {
-  ...MetallicDefaultCardBox.args,
-  color: 'green'
+export const MetallicGreenCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...MetallicDefaultCardBox.args,
+    color: 'green'
+  }
 };
 
-export const FlatGreenCardBox = Template.bind({});
-FlatGreenCardBox.args = {
-  ...FlatDefaultCardBox.args,
-  color: 'green'
+export const FlatGreenCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...FlatDefaultCardBox.args,
+    color: 'green'
+  }
 };
 
-export const DashGreenCardBox = Template.bind({});
-DashGreenCardBox.args = {
-  ...DashDefaultCardBox.args,
-  color: 'green'
+export const DashGreenCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...DashDefaultCardBox.args,
+    color: 'green'
+  }
 };
 
-export const MetallicOrangeCardBox = Template.bind({});
-MetallicOrangeCardBox.args = {
-  ...MetallicDefaultCardBox.args,
-  color: 'orange'
+export const MetallicOrangeCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...MetallicDefaultCardBox.args,
+    color: 'orange'
+  }
 };
 
-export const FlatOrangeCardBox = Template.bind({});
-FlatOrangeCardBox.args = {
-  ...FlatDefaultCardBox.args,
-  color: 'orange'
+export const FlatOrangeCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...FlatDefaultCardBox.args,
+    color: 'orange'
+  }
 };
 
-export const DashOrangeCardBox = Template.bind({});
-DashOrangeCardBox.args = {
-  ...DashDefaultCardBox.args,
-  color: 'orange'
+export const DashOrangeCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...DashDefaultCardBox.args,
+    color: 'orange'
+  }
 };
 
-export const MetallicRedCardBox = Template.bind({});
-MetallicRedCardBox.args = {
-  ...MetallicDefaultCardBox.args,
-  color: 'red'
+export const MetallicRedCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...MetallicDefaultCardBox.args,
+    color: 'red'
+  }
 };
 
-export const FlatRedCardBox = Template.bind({});
-FlatRedCardBox.args = {
-  ...FlatDefaultCardBox.args,
-  color: 'red'
+export const FlatRedCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...FlatDefaultCardBox.args,
+    color: 'red'
+  }
 };
 
-export const DashRedCardBox = Template.bind({});
-DashRedCardBox.args = {
-  ...DashDefaultCardBox.args,
-  color: 'red'
+export const DashRedCardBox: CardBox$ = {
+  render: Template,
+  args: {
+    ...DashDefaultCardBox.args,
+    color: 'red'
+  }
 };

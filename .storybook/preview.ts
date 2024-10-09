@@ -1,12 +1,15 @@
-import cssVariablesTheme from '@etchteam/storybook-addon-css-variables-theme';
-import * as FontAwesomeSolid from '@iconify-json/fa6-solid';
-import * as FontAwesomeRegular from '@iconify-json/fa6-regular';
-import * as FontAwesomeBrands from '@iconify-json/fa6-brands';
-import { addCollection } from '@iconify/vue/offline';
+import '@/assets/styles/main.scss';
 
-import { cssVariables } from './helpers/css-variables';
+import cssVariablesTheme from '@etchteam/storybook-addon-css-variables-theme';
+import { addCollection } from '@iconify/vue/offline';
+import * as FontAwesomeBrands from '@iconify-json/fa6-brands';
+import * as FontAwesomeRegular from '@iconify-json/fa6-regular';
+import * as FontAwesomeSolid from '@iconify-json/fa6-solid';
 
 import type { Preview } from '@storybook/vue3';
+
+import { fixVModel } from './decorators/vmodel.decorator';
+import { cssVariables } from './helpers/css-variables';
 
 addCollection(FontAwesomeSolid.icons);
 addCollection(FontAwesomeRegular.icons);
@@ -21,7 +24,6 @@ const MetallicDarkTheme = cssVariables(
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     layout: 'centered',
     cssVariables: {
       files: {
@@ -29,9 +31,17 @@ const preview: Preview = {
         'Dark Theme': MetallicDarkTheme
       },
       defaultTheme: 'Light Theme'
+    },
+    docs: {
+      argTypes: {
+        sort: 'requiredFirst'
+      }
     }
   },
-  decorators: [cssVariablesTheme]
+  decorators: [
+    cssVariablesTheme,
+    fixVModel
+  ]
 };
 
 export default preview;
