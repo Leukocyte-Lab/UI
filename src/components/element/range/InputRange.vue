@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed,ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { useEventDebounceSignal } from '@/shared/libs/event';
 
@@ -74,7 +74,7 @@ input[type='range']::-webkit-slider-runnable-track {
 
 input[type='range']::-webkit-slider-thumb {
   appearance: none;
-  background-color: v-bind(thumbcolor);
+  background-color: v-bind('thumbColor');
   border-radius: var(--agh-ref-border-radius-900);
   height: 32px;
   width: 13px;
@@ -88,7 +88,7 @@ input[type='range']::-moz-range-track {
 
 input[type='range']::-moz-range-thumb {
   appearance: none;
-  background-color: v-bind(thumbcolor);
+  background-color: v-bind('thumbColor');
   border-radius: var(--agh-ref-border-radius-900);
   height: 32px;
   width: 13px;
