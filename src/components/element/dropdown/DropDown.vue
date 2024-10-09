@@ -53,25 +53,28 @@ const optionsCount = computed(() =>
       ? props.options.size
       : 0
 );
-const label = computed(
-  () =>
-    (props.labelShowAs !== 'auto' ? props[props.labelShowAs] : undefined) ||
-    (props.multiple
-      ? (bobbleCount.value || 0) > 0
-        ? (props.label ?? props.placeholder)
-        : (props.placeholder ?? props.label)
-      : ((props.modelValue &&
-          (props.fields.title
-            ? valuesGetter(props.modelValue as T, props.fields.title, true)
-            : props.fields.key
-              ? valuesGetter(props.modelValue as T, props.fields.key, true)
-              : undefined)) ??
-        props.label ??
-        props.placeholder))
+const label = computed(() =>
+  props.labelShowAs === 'icon'
+    ? undefined
+    : (props.labelShowAs !== 'auto' ? props[props.labelShowAs] : undefined) ||
+      (props.multiple
+        ? (bobbleCount.value || 0) > 0
+          ? (props.label ?? props.placeholder)
+          : (props.placeholder ?? props.label)
+        : ((props.modelValue &&
+            (props.fields.title
+              ? valuesGetter(props.modelValue as T, props.fields.title, true)
+              : props.fields.key
+                ? valuesGetter(props.modelValue as T, props.fields.key, true)
+                : undefined)) ??
+          props.label ??
+          props.placeholder))
 );
 const icon = computed(
   () =>
-    (props.variant.includes('square') && !props.multiple && selection.value
+    ((props.variant.includes('square') || props.labelShowAs === 'icon') &&
+    !props.multiple &&
+    selection.value
       ? props.modelValue && props.fields.icon
         ? valuesGetter(props.modelValue as T, props.fields.icon, true)
         : undefined

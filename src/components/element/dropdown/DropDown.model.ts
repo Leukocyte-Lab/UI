@@ -30,7 +30,7 @@ export namespace DropDown {
     label?: string;
     persist?: boolean;
     alterStr?: SelectMenuNS.AlterStr;
-    labelShowAs?: 'auto' | 'label' | 'placeholder';
+    labelShowAs?: 'auto' | 'label' | 'placeholder' | 'icon';
     menuPosition?: `${'top' | 'bottom'}-${'left' | 'right'}`;
   } & (
     | { useSearch?: false }
