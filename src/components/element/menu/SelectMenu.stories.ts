@@ -324,6 +324,58 @@ export const GroupOverflowWithSubtitleMultiSelectWithSearchMenu: DefaultMenu$ = 
   }
 };
 
+export const SelectMenuWithCustomText: DefaultMenu$ = {
+  args: {
+    ...MultiWithSubtitleSelectMenu.args,
+    fields: {
+      key: 'name',
+      title: '{{ $.name }}',
+      content: 'Last Used: {{ $.recentlyUsed | date : yyyy/MM/dd }}'
+    },
+    query: 'apt',
+    multiple: true,
+    useSearch: true,
+    showAll: true,
+    groupBy: 'category',
+    alterStr: {
+      clearSelection: 'Clear All Selections',
+      noData: 'No Data Found'
+    }
+  }
+};
+
+export const SelectMenuWithCustomSlots: DefaultMenu$ = {
+  render: (args) => ({
+    components: { SelectMenu },
+    setup() {
+      return { args };
+    },
+    template: `
+      <SelectMenu v-bind="args">
+        <template #empty-placeholder="{ groupName }">
+          <div>No matched data found for group:<br /><em><strong>{{ groupName }}</strong></em></div>
+        </template>
+        <template #clear-selection="{ clearSelection }">
+          <button @click="clearSelection">Clear Selection</button>
+        </template>
+      </SelectMenu>
+    `
+  }),
+  args: {
+    ...MultiWithSubtitleSelectMenu.args,
+    fields: {
+      key: 'name',
+      title: '{{ $.name }}',
+      content: 'Last Used: {{ $.recentlyUsed | date : yyyy/MM/dd }}'
+    },
+    query: 'apt',
+    multiple: true,
+    useSearch: true,
+    showAll: true,
+    groupBy: 'category'
+  }
+};
+
 export const IconWithSubtitleSelectMenu: DefaultMenu$ = {
   args: {
     options: [
