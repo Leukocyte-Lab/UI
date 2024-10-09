@@ -23,6 +23,14 @@ const meta: GenericMeta<typeof DropDown<DropDownNS.AcceptableValue>> = {
       control: 'object',
       description: 'DropDown value, use by `v-model`.'
     },
+    query: {
+      if: {
+        arg: 'useSearch',
+        eq: true
+      },
+      control: 'text',
+      description: 'Search query.'
+    },
     label: {
       control: 'text',
       description: 'DropDown label (optional)'
@@ -56,6 +64,10 @@ const meta: GenericMeta<typeof DropDown<DropDownNS.AcceptableValue>> = {
     disabled: {
       control: 'boolean',
       description: 'DropDown disabled (optional)'
+    },
+    persist: {
+      control: 'boolean',
+      description: 'Persist query (optional)'
     },
     useSearch: {
       control: 'boolean',
@@ -238,6 +250,49 @@ export const MultiGroupDropDown: DropDown$ = {
 export const MultiGroupDropDownWithSearch: DropDown$ = {
   args: {
     ...MultiDropDownWithSearch.args,
+    groupBy: 'category'
+  }
+};
+
+export const DropDownWithCustomText: DropDown$ = {
+  args: {
+    ...MultiDropDownWithSearch.args,
+    query: 'apt',
+    useSearch: true,
+    persist: true,
+    showAll: true,
+    groupBy: 'category',
+    alterStr: {
+      clearSelection: 'Clear All',
+      noData: 'No Data Found'
+    }
+  }
+};
+
+export const DropDownWithCustomSlots: DropDown$ = {
+  render: (args) => ({
+    components: { DropDown },
+    setup() {
+      return { args };
+    },
+    template: `
+      <DropDown v-bind="args">
+        <template #empty-placeholder="{ groupName }">
+          <div>No matched data found for group:<br /><em><strong>{{ groupName }}</strong></em></div>
+        </template>
+        <template #clear-selection="{ clearSelection }">
+          <button @click="clearSelection">Clear Selection</button>
+        </template>
+      </DropDown>
+    `
+  }),
+  args: {
+    ...MultiDropDownWithSearch.args,
+    query: 'apt',
+    persist: true,
+    multiple: true,
+    useSearch: true,
+    showAll: true,
     groupBy: 'category'
   }
 };

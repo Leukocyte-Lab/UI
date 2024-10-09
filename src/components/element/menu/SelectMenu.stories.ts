@@ -27,6 +27,14 @@ const meta: GenericMeta<typeof SelectMenu<SelectMenuNS.AcceptableValue>> = {
       control: 'object',
       description: 'SelectMenu value, use by `v-model`.'
     },
+    query: {
+      if: {
+        arg: 'useSearch',
+        eq: true
+      },
+      control: 'text',
+      description: 'Search query.'
+    },
     multiple: {
       control: 'boolean',
       description: 'Whether the menu allows multiple selections.'
