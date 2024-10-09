@@ -80,7 +80,7 @@ watch([selection, () => props.multiple], ([selection, multiple]) => {
       :size="props.size"
       :variant="props.variant"
     />
-    <template v-if="selection && optionsCount > 0 && !closeMenu()">
+    <template v-if="optionsCount > 0 && !closeMenu()">
       <!-- @vue-ignore // ? NOTE: SelectMenu will handle generic type ? // -->
       <SelectMenu
         v-model="selection"
