@@ -23,7 +23,7 @@ const emits = defineEmits<ButtonBox.Emits>();
 const color = computedEager<keyof typeof ButtonBox.Color>(() =>
   props.mode === ButtonBox.Mode.danger
     ? ButtonBox.Color.red
-    : ButtonBox.Color[props.color] ?? ButtonBox.Color.blue
+    : (ButtonBox.Color[props.color] ?? ButtonBox.Color.blue)
 );
 
 const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
@@ -996,7 +996,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
 
     &.string,
     &.number {
-      --bobble-size: var(--agh-ref-spacing-500);
+      --bobble-size: var(--agh-ref-spacing-400);
 
       display: flex;
       place-content: center;
@@ -1004,6 +1004,10 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
       height: var(--bobble-size);
       min-width: var(--bobble-size);
       font: var(--agh-sys-typeface-label-hl-tiny);
+
+      &:not(.capsule) {
+        padding: var(--agh-ref-spacing-50);
+      }
 
       &.dot {
         top: calc(var(--bobble-size) / 2 * -1);
