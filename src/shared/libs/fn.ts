@@ -27,7 +27,7 @@ export const valuesGetter = <
         String(parser(options, getter) || '')
       );
     } else {
-      return String(options);
+      return String(options ?? '');
     }
   }
 };
