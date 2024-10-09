@@ -1,0 +1,26 @@
+import type { Meta, StoryObj } from '@storybook/vue3';
+import SelectMenu from './SelectMenu.vue';
+import type { SelectMenu as SelectMenuNS } from './SelectMenu.model';
+type GenericMeta<C> = Omit<Meta<C>, 'component'> & {
+    component: Record<keyof C, unknown>;
+};
+declare const meta: GenericMeta<typeof SelectMenu<SelectMenuNS.AcceptableValue>>;
+export default meta;
+type DefaultMenu$ = StoryObj<typeof SelectMenu>;
+export declare const DefaultSelectMenu: DefaultMenu$;
+export declare const SingleSelectMenu: DefaultMenu$;
+export declare const SingleSelectMenuWithSearch: DefaultMenu$;
+export declare const SingleSelectMenuWithSearchWithPredefinedQuery: DefaultMenu$;
+export declare const SingleWithSubtitleSelectMenu: DefaultMenu$;
+export declare const GroupSingleSelectMenu: DefaultMenu$;
+export declare const GroupWithSubtitleSingleSelectMenu: DefaultMenu$;
+export declare const MultiSelectMenu: DefaultMenu$;
+export declare const MultiSelectMenuWithSearch: DefaultMenu$;
+export declare const MultiWithSubtitleSelectMenu: DefaultMenu$;
+export declare const GroupMultiSelectMenu: DefaultMenu$;
+export declare const GroupWithSubtitleMultiSelectMenu: DefaultMenu$;
+export declare const GroupOverflowWithSubtitleMultiSelectMenu: DefaultMenu$;
+export declare const GroupOverflowWithSubtitleMultiSelectWithSearchMenu: DefaultMenu$;
+export declare const SelectMenuWithCustomText: DefaultMenu$;
+export declare const SelectMenuWithCustomSlots: DefaultMenu$;
+export declare const IconWithSubtitleSelectMenu: DefaultMenu$;

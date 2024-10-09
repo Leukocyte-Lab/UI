@@ -1,5 +1,4 @@
 import type { BaseList } from '../../../components/base/BaseList.model';
-import type { SelectMenu } from '../../../components/element/menu/SelectMenu.model';
 import type { ObjectLike } from '../../../shared/types/object';
 import type { ValueOf } from '../../../shared/types/optional';
 export declare namespace CardList {
@@ -9,6 +8,14 @@ export declare namespace CardList {
         direction: 'asc' | 'desc';
         field: string;
         icon: string;
+    };
+    type Fields = {
+        key: string;
+        searchKeys?: string[];
+        title?: string;
+        content?: string;
+        icon?: string;
+        disabled?: string;
     };
     type FilterOption = {
         field: string;
@@ -23,7 +30,7 @@ export declare namespace CardList {
         value?: ValueOf<ObjectLike>;
     };
     type Props = BaseList.Props & {
-        fields: SelectMenu.Fields;
+        fields: Fields;
         selected?: ObjectLike | null;
         modelValue?: string;
         sort?: SortOption;

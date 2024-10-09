@@ -1,0 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/vue3';
+import BadgeBox from './BadgeBox.vue';
+declare const meta: Meta<typeof BadgeBox>;
+export default meta;
+type BadgeBox$ = StoryObj<typeof BadgeBox>;
+export declare const DefaultBadgeBox: BadgeBox$;
+export declare const CapsuleBadgeBox: BadgeBox$;
+export declare const CapsuleLabelOnlyBadgeBox: BadgeBox$;
+export declare const CapsuleContentOnlyBadgeBox: BadgeBox$;
+export declare const TabBadgeBox: BadgeBox$;

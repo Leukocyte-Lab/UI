@@ -6,26 +6,26 @@ function F(e, t) {
     o.value = e();
   }, {
     ...t,
-    flush: (n = t == null ? void 0 : t.flush) != null ? n : "sync"
+    flush: (n = void 0) != null ? n : "sync"
   }), D(o);
 }
 function h(e) {
   return W() ? (k(e), !0) : !1;
 }
 function J() {
-  const e = /* @__PURE__ */ new Set(), t = (r) => {
-    e.delete(r);
+  const e = /* @__PURE__ */ new Set(), t = (i) => {
+    e.delete(i);
   };
   return {
-    on: (r) => {
-      e.add(r);
-      const i = () => t(r);
-      return h(i), {
-        off: i
+    on: (i) => {
+      e.add(i);
+      const r = () => t(i);
+      return h(r), {
+        off: r
       };
     },
     off: t,
-    trigger: (...r) => Promise.all(Array.from(e).map((i) => i(...r)))
+    trigger: (...i) => Promise.all(Array.from(e).map((r) => r(...i)))
   };
 }
 function w(e) {
@@ -37,46 +37,46 @@ const K = (e) => e != null, G = Object.prototype.toString, Q = (e) => G.call(e) 
 }, X = (e, t) => Object.prototype.hasOwnProperty.call(e, t), Y = /* @__PURE__ */ H();
 function H() {
   var e, t;
-  return v && ((e = window == null ? void 0 : window.navigator) == null ? void 0 : e.userAgent) && (/iP(ad|hone|od)/.test(window.navigator.userAgent) || ((t = window == null ? void 0 : window.navigator) == null ? void 0 : t.maxTouchPoints) > 2 && /iPad|Macintosh/.test(window == null ? void 0 : window.navigator.userAgent));
+  return v && ((e = window == null ? void 0 : window.navigator) == null ? void 0 : e.userAgent) && (/iP(?:ad|hone|od)/.test(window.navigator.userAgent) || ((t = window == null ? void 0 : window.navigator) == null ? void 0 : t.maxTouchPoints) > 2 && /iPad|Macintosh/.test(window == null ? void 0 : window.navigator.userAgent));
 }
 function y(e, t) {
   function n(...o) {
-    return new Promise((r, i) => {
-      Promise.resolve(e(() => t.apply(this, o), { fn: t, thisArg: this, args: o })).then(r).catch(i);
+    return new Promise((i, r) => {
+      Promise.resolve(e(() => t.apply(this, o), { fn: t, thisArg: this, args: o })).then(i).catch(r);
     });
   }
   return n;
 }
 const N = (e) => e();
 function P(e, t = {}) {
-  let n, o, r = f;
-  const i = (a) => {
-    clearTimeout(a), r(), r = f;
+  let n, o, i = f;
+  const r = (a) => {
+    clearTimeout(a), i(), i = f;
   };
   return (a) => {
     const l = w(e), s = w(t.maxWait);
-    return n && i(n), l <= 0 || s !== void 0 && s <= 0 ? (o && (i(o), o = null), Promise.resolve(a())) : new Promise((u, b) => {
-      r = t.rejectOnCancel ? b : u, s && !o && (o = setTimeout(() => {
-        n && i(n), o = null, u(a());
+    return n && r(n), l <= 0 || s !== void 0 && s <= 0 ? (o && (r(o), o = null), Promise.resolve(a())) : new Promise((u, b) => {
+      i = t.rejectOnCancel ? b : u, s && !o && (o = setTimeout(() => {
+        n && r(n), o = null, u(a());
       }, s)), n = setTimeout(() => {
-        o && i(o), o = null, u(a());
+        o && r(o), o = null, u(a());
       }, l);
     });
   };
 }
 function $(...e) {
-  let t = 0, n, o = !0, r = f, i, c, a, l, s;
+  let t = 0, n, o = !0, i = f, r, c, a, l, s;
   !j(e[0]) && typeof e[0] == "object" ? { delay: c, trailing: a = !0, leading: l = !0, rejectOnCancel: s = !1 } = e[0] : [c, a = !0, l = !0, s = !1] = e;
   const u = () => {
-    n && (clearTimeout(n), n = void 0, r(), r = f);
+    n && (clearTimeout(n), n = void 0, i(), i = f);
   };
   return (S) => {
-    const d = w(c), O = Date.now() - t, g = () => i = S();
-    return u(), d <= 0 ? (t = Date.now(), g()) : (O > d && (l || !o) ? (t = Date.now(), g()) : a && (i = new Promise((T, x) => {
-      r = s ? x : T, n = setTimeout(() => {
+    const d = w(c), O = Date.now() - t, g = () => r = S();
+    return u(), d <= 0 ? (t = Date.now(), g()) : (O > d && (l || !o) ? (t = Date.now(), g()) : a && (r = new Promise((T, x) => {
+      i = s ? x : T, n = setTimeout(() => {
         t = Date.now(), o = !0, T(g()), u();
       }, Math.max(0, d - O));
-    })), !l && !n && (n = setTimeout(() => o = !0, d)), o = !1, i);
+    })), !l && !n && (n = setTimeout(() => o = !0, d)), o = !1, r);
   };
 }
 const ee = {
@@ -85,7 +85,7 @@ const ee = {
   unmounted: "unmounted"
 };
 function q(e) {
-  return e || M();
+  return M();
 }
 function te(...e) {
   if (e.length !== 1)
@@ -99,16 +99,16 @@ function ne(e, t = 200, n = {}) {
     e
   );
 }
-function oe(e, t = 200, n = !1, o = !0, r = !1) {
+function oe(e, t = 200, n = !1, o = !0, i = !1) {
   return y(
-    $(t, n, o, r),
+    $(t, n, o, i),
     e
   );
 }
 function z(e, t, n = {}) {
   const {
     eventFilter: o = N,
-    ...r
+    ...i
   } = n;
   return I(
     e,
@@ -116,28 +116,28 @@ function z(e, t, n = {}) {
       o,
       t
     ),
-    r
+    i
   );
 }
-function re(e, t = !0, n) {
+function ie(e, t = !0, n) {
   q() ? Z(e, n) : t ? e() : E(e);
 }
-function ie(e, t = 1e3, n = {}) {
+function re(e, t = 1e3, n = {}) {
   const {
     immediate: o = !0,
-    immediateCallback: r = !1
+    immediateCallback: i = !1
   } = n;
-  let i = null;
+  let r = null;
   const c = p(!1);
   function a() {
-    i && (clearInterval(i), i = null);
+    r && (clearInterval(r), r = null);
   }
   function l() {
     c.value = !1, a();
   }
   function s() {
     const u = w(t);
-    u <= 0 || (c.value = !0, r && e(), a(), i = setInterval(e, u));
+    u <= 0 || (c.value = !0, i && e(), a(), r = setInterval(e, u));
   }
   if (o && v && s(), j(t) || typeof t == "function") {
     const u = I(t, () => {
@@ -154,15 +154,15 @@ function ie(e, t = 1e3, n = {}) {
 function ae(e, t, n = {}) {
   const {
     debounce: o = 0,
-    maxWait: r = void 0,
-    ...i
+    maxWait: i = void 0,
+    ...r
   } = n;
   return z(
     e,
     t,
     {
-      ...i,
-      eventFilter: P(o, { maxWait: r })
+      ...r,
+      eventFilter: P(o, { maxWait: i })
     }
   );
 }
@@ -184,17 +184,17 @@ const m = V({
   }
 });
 export {
-  re as a,
+  ie as a,
   w as b,
-  oe as c,
-  U as d,
-  ie as e,
-  Q as f,
-  K as g,
-  J as h,
+  ne as c,
+  oe as d,
+  U as e,
+  re as f,
+  Q as g,
+  K as h,
   v as i,
-  X as j,
-  ne as k,
+  J as j,
+  X as k,
   F as l,
   ee as m,
   f as n,
@@ -204,4 +204,4 @@ export {
   se as u,
   ae as w
 };
-//# sourceMappingURL=i18n.service-4W5HT8k4.js.map
+//# sourceMappingURL=i18n.service-BLFX03nS.js.map

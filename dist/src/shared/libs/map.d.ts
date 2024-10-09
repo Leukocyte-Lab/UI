@@ -9,6 +9,7 @@ export interface MapProxy<K extends string | number | symbol, V> extends Map<K, 
     filter(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): MapProxy<K, V>;
     toArray<R extends 'entries' | 'keys' | 'values'>(returnType?: R): R extends 'entries' ? [K, V][] : R extends 'keys' ? K[] : V[];
     toObject(): Record<K, V>;
+    groupBy<K extends string | number | symbol, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): MapProxy<K, T[]>;
 }
 declare class MapProxyInstance<K extends string | number | symbol, V> extends Map<K, V> implements MapProxy<K, V> {
     constructor(entries?: Map<K, V> | readonly (readonly [K, V])[] | null);
@@ -19,6 +20,7 @@ declare class MapProxyInstance<K extends string | number | symbol, V> extends Ma
     findValue(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): V | undefined;
     map<U extends string | number | symbol, S>(callbackfn: (value: V, key: K, map: Map<K, V>) => [U, S], thisArg?: any): MapProxy<U, S>;
     filter(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): MapProxy<K, V>;
+    groupBy<K extends string | number | symbol, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): MapProxy<K, T[]>;
     toArray<R extends 'entries'>(returnType?: R): [K, V][];
     toArray<R extends 'keys'>(returnType: R): K[];
     toArray<R extends 'values'>(returnType: R): V[];

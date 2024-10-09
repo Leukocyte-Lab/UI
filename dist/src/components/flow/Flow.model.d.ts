@@ -1,8 +1,8 @@
-import type { Vec2 } from '../../shared/types/vector';
-import type { InjectionKey, Ref } from 'vue';
 import type { Cursor } from 'pixi.js';
+import type { InjectionKey, Ref } from 'vue';
 import type { Signal } from '../../shared/libs/signal';
 import type { Dictionary } from '../../shared/types/map';
+import type { Vec2 } from '../../shared/types/vector';
 export declare namespace Flow {
     namespace Entity {
         namespace BoundingBox {

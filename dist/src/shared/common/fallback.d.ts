@@ -1,1 +1,1 @@
-export declare const useFallback: <T>(value: T | null | undefined, fallback: T) => T;
+export declare const useFallback: <T>(value: T | undefined | null, fallback: T) => T;

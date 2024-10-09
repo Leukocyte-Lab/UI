@@ -1,0 +1,17 @@
+import type { Meta, StoryObj } from '@storybook/vue3';
+import TextField from './TextField.vue';
+declare const meta: Meta<typeof TextField>;
+export default meta;
+type TextField$ = StoryObj<typeof TextField>;
+export declare const DefaultTextField: TextField$;
+export declare const IconTextField: TextField$;
+export declare const EmptyRequiredTextField: TextField$;
+export declare const NoLabelTextField: TextField$;
+export declare const NoLabelRequiredTextField: TextField$;
+export declare const DisabledTextField: TextField$;
+export declare const InvalidTextField: TextField$;
+export declare const InvalidWithCustomErrorMessageTextField: TextField$;
+export declare const SearchTextField: TextField$;
+export declare const DisabledSearchTextField: TextField$;
+export declare const FindTextField: TextField$;
+export declare const DisabledFindTextField: TextField$;

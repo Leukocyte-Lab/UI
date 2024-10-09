@@ -1,36 +1,26 @@
 import type { SearchBar } from './SearchBar.model';
-import type { ObjectLike } from '../../../shared/types/object';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<SearchBar.Props>, {
-    items: () => never[];
-    modelValue: string;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    "update:modelValue": (option: any) => void;
-    select: (option: ObjectLike) => void;
-}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<SearchBar.Props>, {
-    items: () => never[];
-    modelValue: string;
-}>>> & {
-    onSelect?: ((option: ObjectLike) => any) | undefined;
-    "onUpdate:modelValue"?: ((option: any) => any) | undefined;
-}, {
-    items: ObjectLike[];
-    modelValue: string;
-}, {}>;
+declare const _default: <T extends SearchBar.AcceptableValue>(__VLS_props: NonNullable<Awaited<typeof __VLS_setup>>["props"], __VLS_ctx?: __VLS_Prettify<Pick<NonNullable<Awaited<typeof __VLS_setup>>, "attrs" | "emit" | "slots">>, __VLS_expose?: NonNullable<Awaited<typeof __VLS_setup>>["expose"], __VLS_setup?: Promise<{
+    props: __VLS_Prettify<Pick<Partial<{}> & Omit<{
+        onSelect?: ((option: T) => any) | undefined;
+        "onUpdate:modelValue"?: ((modelValue: string) => any) | undefined;
+        onSearch?: ((option: Map<string | number, T> | T[] | undefined) => any) | undefined;
+    } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{}>> & {
+        onSelect?: ((option: T) => any) | undefined;
+        "onUpdate:modelValue"?: ((modelValue: string) => any) | undefined;
+        onSearch?: ((option: Map<string | number, T> | T[] | undefined) => any) | undefined;
+    }, never>, "onSelect" | "onUpdate:modelValue" | "onSearch"> & ({
+        modelValue?: string;
+    } & SearchBar.Props<T>)> & import("vue").PublicProps;
+    expose(exposed: import("vue").ShallowUnwrapRef<{}>): void;
+    attrs: any;
+    slots: ReturnType<() => {}>;
+    emit: SearchBar.Emits<T> & ((evt: "update:modelValue", modelValue: string) => void);
+}>) => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    [key: string]: any;
+}> & {
+    __ctx?: Awaited<typeof __VLS_setup>;
+};
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
-type __VLS_WithDefaults<P, D> = {
-    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
-        default: D[K];
-    }> : P[K];
-};
 type __VLS_Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};

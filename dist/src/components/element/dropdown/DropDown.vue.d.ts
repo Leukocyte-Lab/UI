@@ -1,43 +1,45 @@
+import type { VNode } from 'vue';
 import type { DropDown } from '../../../components/element/dropdown/DropDown.model';
-import type { ObjectLike } from '../../../shared/types/object';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<DropDown.Props>, {
-    items: () => never[];
-    level: string;
-    variant: string;
-    size: string;
-    multiple: boolean;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    "update:modelValue": ((option: ObjectLike) => void) & ((options: ObjectLike[]) => void);
-}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<DropDown.Props>, {
-    items: () => never[];
-    level: string;
-    variant: string;
-    size: string;
-    multiple: boolean;
-}>>> & {
-    "onUpdate:modelValue"?: ((options: ObjectLike[]) => any) | undefined;
-}, {
-    items: ObjectLike[];
-    variant: "circle" | "rect" | "text" | "rounded" | "square" | "text-square" | "extendable-rect" | "file";
-    level: "primary" | "secondary" | "tertiary";
-    size: "small" | "medium" | "large" | "huge";
-    multiple: boolean;
-}, {}>;
+declare const _default: <T extends DropDown.AcceptableValue>(__VLS_props: NonNullable<Awaited<typeof __VLS_setup>>["props"], __VLS_ctx?: __VLS_Prettify<Pick<NonNullable<Awaited<typeof __VLS_setup>>, "attrs" | "emit" | "slots">>, __VLS_expose?: NonNullable<Awaited<typeof __VLS_setup>>["expose"], __VLS_setup?: Promise<{
+    props: __VLS_Prettify<Pick<Partial<{}> & Omit<{
+        "onUpdate:modelValue"?: ((modelValue: T | Map<string | number, T> | T[] | undefined) => any) | undefined;
+        "onUpdate:query"?: ((query: string) => any) | undefined;
+    } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{}>> & {
+        "onUpdate:modelValue"?: ((modelValue: T | Map<string | number, T> | T[] | undefined) => any) | undefined;
+        "onUpdate:query"?: ((query: string) => any) | undefined;
+    }, never>, "onUpdate:modelValue" | "onUpdate:query"> & ({
+        modelValue: DropDown.Props<T>["modelValue"];
+        query?: string;
+    } & DropDown.Props<T>)> & import("vue").PublicProps;
+    expose(exposed: import("vue").ShallowUnwrapRef<{
+        reset: () => void;
+        clearSearch: () => void;
+        clearSelection: () => void;
+        onShowMenu: import("../../../shared/libs/signal").Signal<boolean>;
+    }>): void;
+    attrs: any;
+    slots: ReturnType<() => Readonly<{
+        'clear-selection'?: (props: {
+            clearSelection: () => void;
+        }) => VNode;
+        'empty-placeholder'?: (props: {
+            groupName: string | number;
+        }) => VNode;
+    }> & {
+        'clear-selection'?: (props: {
+            clearSelection: () => void;
+        }) => VNode;
+        'empty-placeholder'?: (props: {
+            groupName: string | number;
+        }) => VNode;
+    }>;
+    emit: ((evt: "update:modelValue", modelValue: T | Map<string | number, T> | T[] | undefined) => void) & ((evt: "update:query", query: string) => void);
+}>) => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    [key: string]: any;
+}> & {
+    __ctx?: Awaited<typeof __VLS_setup>;
+};
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
-type __VLS_WithDefaults<P, D> = {
-    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
-        default: D[K];
-    }> : P[K];
-};
 type __VLS_Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};

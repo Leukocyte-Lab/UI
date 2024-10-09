@@ -3,8 +3,12 @@ export declare const FlowKit: {
     Screen: {
         Window: {
             new (...args: any[]): import("vue").CreateComponentPublicInstance<Readonly<import("vue").ExtractPropTypes<{
+                devtools: {
+                    type: import("vue").PropType<boolean>;
+                    default: boolean;
+                };
                 initialScale: {
-                    type: import("vue").PropType<number | "contain" | "cover">;
+                    type: import("vue").PropType<number | "cover" | "contain">;
                     default: number;
                 };
                 autoLayout: {
@@ -13,10 +17,6 @@ export declare const FlowKit: {
                 };
                 debugOptions: {
                     type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
-                };
-                devtools: {
-                    type: import("vue").PropType<boolean>;
-                    default: boolean;
                 };
                 toolbar: {
                     type: import("vue").PropType<boolean>;
@@ -39,8 +39,12 @@ export declare const FlowKit: {
                     default: string;
                 };
             }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
+                devtools: {
+                    type: import("vue").PropType<boolean>;
+                    default: boolean;
+                };
                 initialScale: {
-                    type: import("vue").PropType<number | "contain" | "cover">;
+                    type: import("vue").PropType<number | "cover" | "contain">;
                     default: number;
                 };
                 autoLayout: {
@@ -49,10 +53,6 @@ export declare const FlowKit: {
                 };
                 debugOptions: {
                     type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
-                };
-                devtools: {
-                    type: import("vue").PropType<boolean>;
-                    default: boolean;
                 };
                 toolbar: {
                     type: import("vue").PropType<boolean>;
@@ -75,9 +75,9 @@ export declare const FlowKit: {
                     default: string;
                 };
             }>>, {
-                initialScale: number | "contain" | "cover";
-                autoLayout: boolean;
                 devtools: boolean;
+                initialScale: number | "cover" | "contain";
+                autoLayout: boolean;
                 toolbar: boolean;
                 zoomable: boolean;
                 toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
@@ -91,8 +91,12 @@ export declare const FlowKit: {
                 M: {};
                 Defaults: {};
             }, Readonly<import("vue").ExtractPropTypes<{
+                devtools: {
+                    type: import("vue").PropType<boolean>;
+                    default: boolean;
+                };
                 initialScale: {
-                    type: import("vue").PropType<number | "contain" | "cover">;
+                    type: import("vue").PropType<number | "cover" | "contain">;
                     default: number;
                 };
                 autoLayout: {
@@ -101,10 +105,6 @@ export declare const FlowKit: {
                 };
                 debugOptions: {
                     type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
-                };
-                devtools: {
-                    type: import("vue").PropType<boolean>;
-                    default: boolean;
                 };
                 toolbar: {
                     type: import("vue").PropType<boolean>;
@@ -127,21 +127,25 @@ export declare const FlowKit: {
                     default: string;
                 };
             }>>, {}, {}, {}, {}, {
-                initialScale: number | "contain" | "cover";
-                autoLayout: boolean;
                 devtools: boolean;
+                initialScale: number | "cover" | "contain";
+                autoLayout: boolean;
                 toolbar: boolean;
                 zoomable: boolean;
                 toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
                 toolbarDirection: "vertical" | "horizontal";
                 acceleration: WebGLPowerPreference;
             }>;
-            __isFragment?: undefined;
-            __isTeleport?: undefined;
-            __isSuspense?: undefined;
+            __isFragment?: never;
+            __isTeleport?: never;
+            __isSuspense?: never;
         } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+            devtools: {
+                type: import("vue").PropType<boolean>;
+                default: boolean;
+            };
             initialScale: {
-                type: import("vue").PropType<number | "contain" | "cover">;
+                type: import("vue").PropType<number | "cover" | "contain">;
                 default: number;
             };
             autoLayout: {
@@ -150,10 +154,6 @@ export declare const FlowKit: {
             };
             debugOptions: {
                 type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
-            };
-            devtools: {
-                type: import("vue").PropType<boolean>;
-                default: boolean;
             };
             toolbar: {
                 type: import("vue").PropType<boolean>;
@@ -176,9 +176,9 @@ export declare const FlowKit: {
                 default: string;
             };
         }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
-            initialScale: number | "contain" | "cover";
-            autoLayout: boolean;
             devtools: boolean;
+            initialScale: number | "cover" | "contain";
+            autoLayout: boolean;
             toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
@@ -186,13 +186,9 @@ export declare const FlowKit: {
             acceleration: WebGLPowerPreference;
         }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
             $slots: Readonly<{
-                default: () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
-                    [key: string]: any;
-                }>;
+                default: () => import("vue").VNode;
             }> & {
-                default: () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
-                    [key: string]: any;
-                }>;
+                default: () => import("vue").VNode;
             };
         });
         Viewport: {
@@ -213,7 +209,7 @@ export declare const FlowKit: {
                     };
                 };
                 initialScale: {
-                    type: import("vue").PropType<number | "contain" | "cover">;
+                    type: import("vue").PropType<number | "cover" | "contain">;
                 };
                 scale: {
                     type: import("vue").PropType<number>;
@@ -251,7 +247,7 @@ export declare const FlowKit: {
                     };
                 };
                 initialScale: {
-                    type: import("vue").PropType<number | "contain" | "cover">;
+                    type: import("vue").PropType<number | "cover" | "contain">;
                 };
                 scale: {
                     type: import("vue").PropType<number>;
@@ -269,7 +265,7 @@ export declare const FlowKit: {
                     type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Debugger.Options>;
                 };
             }>>, {
-                gap: number | import("../../shared").Vec2;
+                gap: import("../../shared").Vec2 | number;
                 scale: number;
             }, true, {}, {}, {
                 P: {};
@@ -295,7 +291,7 @@ export declare const FlowKit: {
                     };
                 };
                 initialScale: {
-                    type: import("vue").PropType<number | "contain" | "cover">;
+                    type: import("vue").PropType<number | "cover" | "contain">;
                 };
                 scale: {
                     type: import("vue").PropType<number>;
@@ -317,12 +313,12 @@ export declare const FlowKit: {
                 edges: import("vue").Ref<Map<`${string}->${string}`, import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>>;
                 isPanning: import("vue").Ref<boolean | "ready">;
             }, {}, {}, {}, {
-                gap: number | import("../../shared").Vec2;
+                gap: import("../../shared").Vec2 | number;
                 scale: number;
             }>;
-            __isFragment?: undefined;
-            __isTeleport?: undefined;
-            __isSuspense?: undefined;
+            __isFragment?: never;
+            __isTeleport?: never;
+            __isSuspense?: never;
         } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
             height: {
                 type: import("vue").PropType<number>;
@@ -340,7 +336,7 @@ export declare const FlowKit: {
                 };
             };
             initialScale: {
-                type: import("vue").PropType<number | "contain" | "cover">;
+                type: import("vue").PropType<number | "cover" | "contain">;
             };
             scale: {
                 type: import("vue").PropType<number>;
@@ -362,17 +358,13 @@ export declare const FlowKit: {
             edges: import("vue").Ref<Map<`${string}->${string}`, import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>>;
             isPanning: import("vue").Ref<boolean | "ready">;
         }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
-            gap: number | import("../../shared").Vec2;
+            gap: import("../../shared").Vec2 | number;
             scale: number;
         }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
             $slots: Readonly<{
-                default: () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
-                    [key: string]: any;
-                }>;
+                default: () => import("vue").VNode;
             }> & {
-                default: () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
-                    [key: string]: any;
-                }>;
+                default: () => import("vue").VNode;
             };
         });
     };
@@ -381,39 +373,39 @@ export declare const FlowKit: {
             disabled: {
                 type: import("vue").PropType<boolean>;
             };
-            position: {
-                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position>;
-                default: string;
-            };
             direction: {
                 type: import("vue").PropType<"vertical" | "horizontal">;
+                default: string;
+            };
+            position: {
+                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position>;
                 default: string;
             };
         }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
             disabled: {
                 type: import("vue").PropType<boolean>;
             };
-            position: {
-                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position>;
-                default: string;
-            };
             direction: {
                 type: import("vue").PropType<"vertical" | "horizontal">;
                 default: string;
             };
+            position: {
+                type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position>;
+                default: string;
+            };
         }>>, {
+            direction: "horizontal" | "vertical";
             position: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
-            direction: "vertical" | "horizontal";
         }, {}>;
         Edge: import("vue").DefineComponent<{
+            active: {
+                type: import("vue").PropType<boolean>;
+            };
             radius: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
             blur: {
-                type: import("vue").PropType<boolean>;
-            };
-            active: {
                 type: import("vue").PropType<boolean>;
             };
             arrowSize: {
@@ -437,14 +429,14 @@ export declare const FlowKit: {
                 required: true;
             };
         } | {
+            active: {
+                type: import("vue").PropType<boolean>;
+            };
             radius: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
             blur: {
-                type: import("vue").PropType<boolean>;
-            };
-            active: {
                 type: import("vue").PropType<boolean>;
             };
             arrowSize: {
@@ -468,15 +460,15 @@ export declare const FlowKit: {
                 required: true;
             };
         } | {
+            active: {
+                type: import("vue").PropType<boolean>;
+                required: true;
+            };
             radius: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
             blur: {
-                type: import("vue").PropType<boolean>;
-                required: true;
-            };
-            active: {
                 type: import("vue").PropType<boolean>;
                 required: true;
             };
@@ -494,22 +486,22 @@ export declare const FlowKit: {
                 type: import("vue").PropType<string | number>;
             };
             priority: {
-                type: import("vue").PropType<"blur-first" | "active-first">;
+                type: import("vue").PropType<"active-first" | "blur-first">;
             };
             edge: {
                 type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>;
                 required: true;
             };
         } | {
+            active: {
+                type: import("vue").PropType<boolean>;
+                required: true;
+            };
             radius: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
             blur: {
-                type: import("vue").PropType<boolean>;
-                required: true;
-            };
-            active: {
                 type: import("vue").PropType<boolean>;
                 required: true;
             };
@@ -527,21 +519,21 @@ export declare const FlowKit: {
                 type: import("vue").PropType<[string | number, string | number, string | number]>;
             };
             priority: {
-                type: import("vue").PropType<"blur-first" | "active-first">;
+                type: import("vue").PropType<"active-first" | "blur-first">;
             };
             edge: {
                 type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>;
                 required: true;
             };
         }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
+            active: {
+                type: import("vue").PropType<boolean>;
+            };
             radius: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
             blur: {
-                type: import("vue").PropType<boolean>;
-            };
-            active: {
                 type: import("vue").PropType<boolean>;
             };
             arrowSize: {
@@ -565,14 +557,14 @@ export declare const FlowKit: {
                 required: true;
             };
         }>> | Readonly<import("vue").ExtractPropTypes<{
+            active: {
+                type: import("vue").PropType<boolean>;
+            };
             radius: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
             blur: {
-                type: import("vue").PropType<boolean>;
-            };
-            active: {
                 type: import("vue").PropType<boolean>;
             };
             arrowSize: {
@@ -596,15 +588,15 @@ export declare const FlowKit: {
                 required: true;
             };
         }>> | Readonly<import("vue").ExtractPropTypes<{
+            active: {
+                type: import("vue").PropType<boolean>;
+                required: true;
+            };
             radius: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
             blur: {
-                type: import("vue").PropType<boolean>;
-                required: true;
-            };
-            active: {
                 type: import("vue").PropType<boolean>;
                 required: true;
             };
@@ -622,22 +614,22 @@ export declare const FlowKit: {
                 type: import("vue").PropType<string | number>;
             };
             priority: {
-                type: import("vue").PropType<"blur-first" | "active-first">;
+                type: import("vue").PropType<"active-first" | "blur-first">;
             };
             edge: {
                 type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>;
                 required: true;
             };
         }>> | Readonly<import("vue").ExtractPropTypes<{
+            active: {
+                type: import("vue").PropType<boolean>;
+                required: true;
+            };
             radius: {
                 type: import("vue").PropType<number>;
                 default: number;
             };
             blur: {
-                type: import("vue").PropType<boolean>;
-                required: true;
-            };
-            active: {
                 type: import("vue").PropType<boolean>;
                 required: true;
             };
@@ -655,7 +647,7 @@ export declare const FlowKit: {
                 type: import("vue").PropType<[string | number, string | number, string | number]>;
             };
             priority: {
-                type: import("vue").PropType<"blur-first" | "active-first">;
+                type: import("vue").PropType<"active-first" | "blur-first">;
             };
             edge: {
                 type: import("vue").PropType<import("../../components/flow/Flow.model").Flow.Entity.Edge.Model>;
@@ -683,14 +675,14 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                active: {
+                    type: import("vue").PropType<boolean>;
+                    default: boolean;
+                };
                 radius: {
                     type: import("vue").PropType<number>;
                 };
                 blur: {
-                    type: import("vue").PropType<boolean>;
-                    default: boolean;
-                };
-                active: {
                     type: import("vue").PropType<boolean>;
                     default: boolean;
                 };
@@ -713,12 +705,12 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string | number | [string | number, string | number] | [string | number, string | number, string | number]>;
                 };
                 priority: {
-                    type: import("vue").PropType<"blur-first" | "active-first">;
-                };
-                positionY: {
-                    type: import("vue").PropType<number>;
+                    type: import("vue").PropType<"active-first" | "blur-first">;
                 };
                 positionX: {
+                    type: import("vue").PropType<number>;
+                };
+                positionY: {
                     type: import("vue").PropType<number>;
                 };
                 relative: {
@@ -739,14 +731,14 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                active: {
+                    type: import("vue").PropType<boolean>;
+                    default: boolean;
+                };
                 radius: {
                     type: import("vue").PropType<number>;
                 };
                 blur: {
-                    type: import("vue").PropType<boolean>;
-                    default: boolean;
-                };
-                active: {
                     type: import("vue").PropType<boolean>;
                     default: boolean;
                 };
@@ -769,12 +761,12 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string | number | [string | number, string | number] | [string | number, string | number, string | number]>;
                 };
                 priority: {
-                    type: import("vue").PropType<"blur-first" | "active-first">;
-                };
-                positionY: {
-                    type: import("vue").PropType<number>;
+                    type: import("vue").PropType<"active-first" | "blur-first">;
                 };
                 positionX: {
+                    type: import("vue").PropType<number>;
+                };
+                positionY: {
                     type: import("vue").PropType<number>;
                 };
                 relative: {
@@ -789,7 +781,7 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
-            }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
+            }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, import("vue").VNodeProps & import("vue").AllowedComponentProps & (import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
                 to: {
                     type: import("vue").PropType<string[]>;
                 };
@@ -797,14 +789,14 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                active: {
+                    type: import("vue").PropType<boolean>;
+                    default: boolean;
+                };
                 radius: {
                     type: import("vue").PropType<number>;
                 };
                 blur: {
-                    type: import("vue").PropType<boolean>;
-                    default: boolean;
-                };
-                active: {
                     type: import("vue").PropType<boolean>;
                     default: boolean;
                 };
@@ -827,12 +819,12 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string | number | [string | number, string | number] | [string | number, string | number, string | number]>;
                 };
                 priority: {
-                    type: import("vue").PropType<"blur-first" | "active-first">;
-                };
-                positionY: {
-                    type: import("vue").PropType<number>;
+                    type: import("vue").PropType<"active-first" | "blur-first">;
                 };
                 positionX: {
+                    type: import("vue").PropType<number>;
+                };
+                positionY: {
                     type: import("vue").PropType<number>;
                 };
                 relative: {
@@ -853,14 +845,14 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                active: {
+                    type: import("vue").PropType<boolean>;
+                    default: boolean;
+                };
                 radius: {
                     type: import("vue").PropType<number>;
                 };
                 blur: {
-                    type: import("vue").PropType<boolean>;
-                    default: boolean;
-                };
-                active: {
                     type: import("vue").PropType<boolean>;
                     default: boolean;
                 };
@@ -883,12 +875,12 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string | number | [string | number, string | number] | [string | number, string | number, string | number]>;
                 };
                 priority: {
-                    type: import("vue").PropType<"blur-first" | "active-first">;
-                };
-                positionY: {
-                    type: import("vue").PropType<number>;
+                    type: import("vue").PropType<"active-first" | "blur-first">;
                 };
                 positionX: {
+                    type: import("vue").PropType<number>;
+                };
+                positionY: {
                     type: import("vue").PropType<number>;
                 };
                 relative: {
@@ -903,13 +895,13 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
-            }>>, {
-                blur: boolean;
+            }>>), {
                 active: boolean;
+                blur: boolean;
                 activeEdgesOn: "from";
             } | {
-                blur: boolean;
                 active: boolean;
+                blur: boolean;
                 activeEdgesOn: "to" | "both";
             }, true, {}, {}, {
                 P: {};
@@ -926,14 +918,14 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                active: {
+                    type: import("vue").PropType<boolean>;
+                    default: boolean;
+                };
                 radius: {
                     type: import("vue").PropType<number>;
                 };
                 blur: {
-                    type: import("vue").PropType<boolean>;
-                    default: boolean;
-                };
-                active: {
                     type: import("vue").PropType<boolean>;
                     default: boolean;
                 };
@@ -956,12 +948,12 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string | number | [string | number, string | number] | [string | number, string | number, string | number]>;
                 };
                 priority: {
-                    type: import("vue").PropType<"blur-first" | "active-first">;
-                };
-                positionY: {
-                    type: import("vue").PropType<number>;
+                    type: import("vue").PropType<"active-first" | "blur-first">;
                 };
                 positionX: {
+                    type: import("vue").PropType<number>;
+                };
+                positionY: {
                     type: import("vue").PropType<number>;
                 };
                 relative: {
@@ -982,14 +974,14 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string>;
                     required: true;
                 };
+                active: {
+                    type: import("vue").PropType<boolean>;
+                    default: boolean;
+                };
                 radius: {
                     type: import("vue").PropType<number>;
                 };
                 blur: {
-                    type: import("vue").PropType<boolean>;
-                    default: boolean;
-                };
-                active: {
                     type: import("vue").PropType<boolean>;
                     default: boolean;
                 };
@@ -1012,12 +1004,12 @@ export declare const FlowKit: {
                     type: import("vue").PropType<string | number | [string | number, string | number] | [string | number, string | number, string | number]>;
                 };
                 priority: {
-                    type: import("vue").PropType<"blur-first" | "active-first">;
-                };
-                positionY: {
-                    type: import("vue").PropType<number>;
+                    type: import("vue").PropType<"active-first" | "blur-first">;
                 };
                 positionX: {
+                    type: import("vue").PropType<number>;
+                };
+                positionY: {
                     type: import("vue").PropType<number>;
                 };
                 relative: {
@@ -1033,17 +1025,17 @@ export declare const FlowKit: {
                     required: true;
                 };
             }>>, {}, {}, {}, {}, {
-                blur: boolean;
                 active: boolean;
+                blur: boolean;
                 activeEdgesOn: "from";
             } | {
-                blur: boolean;
                 active: boolean;
+                blur: boolean;
                 activeEdgesOn: "to" | "both";
             }>;
-            __isFragment?: undefined;
-            __isTeleport?: undefined;
-            __isSuspense?: undefined;
+            __isFragment?: never;
+            __isTeleport?: never;
+            __isSuspense?: never;
         } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
             to: {
                 type: import("vue").PropType<string[]>;
@@ -1052,14 +1044,14 @@ export declare const FlowKit: {
                 type: import("vue").PropType<string>;
                 required: true;
             };
+            active: {
+                type: import("vue").PropType<boolean>;
+                default: boolean;
+            };
             radius: {
                 type: import("vue").PropType<number>;
             };
             blur: {
-                type: import("vue").PropType<boolean>;
-                default: boolean;
-            };
-            active: {
                 type: import("vue").PropType<boolean>;
                 default: boolean;
             };
@@ -1082,12 +1074,12 @@ export declare const FlowKit: {
                 type: import("vue").PropType<string | number | [string | number, string | number] | [string | number, string | number, string | number]>;
             };
             priority: {
-                type: import("vue").PropType<"blur-first" | "active-first">;
-            };
-            positionY: {
-                type: import("vue").PropType<number>;
+                type: import("vue").PropType<"active-first" | "blur-first">;
             };
             positionX: {
+                type: import("vue").PropType<number>;
+            };
+            positionY: {
                 type: import("vue").PropType<number>;
             };
             relative: {
@@ -1108,14 +1100,14 @@ export declare const FlowKit: {
                 type: import("vue").PropType<string>;
                 required: true;
             };
+            active: {
+                type: import("vue").PropType<boolean>;
+                default: boolean;
+            };
             radius: {
                 type: import("vue").PropType<number>;
             };
             blur: {
-                type: import("vue").PropType<boolean>;
-                default: boolean;
-            };
-            active: {
                 type: import("vue").PropType<boolean>;
                 default: boolean;
             };
@@ -1138,12 +1130,12 @@ export declare const FlowKit: {
                 type: import("vue").PropType<string | number | [string | number, string | number] | [string | number, string | number, string | number]>;
             };
             priority: {
-                type: import("vue").PropType<"blur-first" | "active-first">;
-            };
-            positionY: {
-                type: import("vue").PropType<number>;
+                type: import("vue").PropType<"active-first" | "blur-first">;
             };
             positionX: {
+                type: import("vue").PropType<number>;
+            };
+            positionY: {
                 type: import("vue").PropType<number>;
             };
             relative: {
@@ -1159,22 +1151,18 @@ export declare const FlowKit: {
                 required: true;
             };
         }>>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
-            blur: boolean;
             active: boolean;
+            blur: boolean;
             activeEdgesOn: "from";
         } | {
-            blur: boolean;
             active: boolean;
+            blur: boolean;
             activeEdgesOn: "to" | "both";
         }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
             $slots: Readonly<{
-                default: () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
-                    [key: string]: any;
-                }>;
+                default: () => import("vue").VNode;
             }> & {
-                default: () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
-                    [key: string]: any;
-                }>;
+                default: () => import("vue").VNode;
             };
         });
     };

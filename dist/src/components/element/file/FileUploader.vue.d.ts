@@ -1,5 +1,5 @@
 import type { FileUploader } from '../../../components/element/file/FileUploader.model';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<FileUploader.Props>, {
+declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToOption<FileUploader.Props>, {
     accept: string;
     multiple: boolean;
     disabled: boolean;
@@ -12,7 +12,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     error: (() => void) & ((filename: string) => void);
     abort: (() => void) & ((filename: string) => void);
     delete: (filenames: string) => void;
-}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<FileUploader.Props>, {
+}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<FileUploader.Props>, {
     accept: string;
     multiple: boolean;
     disabled: boolean;
@@ -30,19 +30,10 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     icon: string;
     disabled: boolean;
     multiple: boolean | "directory";
-    accept: string | string[];
-    readAs: "text" | "formData" | "stream" | "base64" | "binary" | "buffer";
+    accept: string[] | string;
+    readAs: "formData" | "stream" | "base64" | "binary" | "buffer" | "text";
 }, {}>;
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
 type __VLS_WithDefaults<P, D> = {
     [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
         default: D[K];
@@ -51,3 +42,12 @@ type __VLS_WithDefaults<P, D> = {
 type __VLS_Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_TypePropsToOption<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('vue').PropType<T[K]>;
+        required: true;
+    };
+};

@@ -1,31 +1,44 @@
+import type { VNode } from 'vue';
 import type { SelectMenu } from '../../../components/element/menu/SelectMenu.model';
-import type { ObjectLike } from '../../../shared/types/object';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<SelectMenu.Props>, {
-    multiple: boolean;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    "update:modelValue": ((option: ObjectLike) => void) & ((options: ObjectLike[]) => void);
-}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<SelectMenu.Props>, {
-    multiple: boolean;
-}>>> & {
-    "onUpdate:modelValue"?: ((options: ObjectLike[]) => any) | undefined;
-}, {
-    multiple: boolean;
-}, {}>;
+declare const _default: <T extends SelectMenu.AcceptableValue>(__VLS_props: NonNullable<Awaited<typeof __VLS_setup>>["props"], __VLS_ctx?: __VLS_Prettify<Pick<NonNullable<Awaited<typeof __VLS_setup>>, "attrs" | "emit" | "slots">>, __VLS_expose?: NonNullable<Awaited<typeof __VLS_setup>>["expose"], __VLS_setup?: Promise<{
+    props: __VLS_Prettify<Pick<Partial<{}> & Omit<{
+        "onUpdate:modelValue"?: ((modelValue: T | Map<string | number, T> | T[] | undefined) => any) | undefined;
+        "onUpdate:query"?: ((query: string) => any) | undefined;
+    } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{}>> & {
+        "onUpdate:modelValue"?: ((modelValue: T | Map<string | number, T> | T[] | undefined) => any) | undefined;
+        "onUpdate:query"?: ((query: string) => any) | undefined;
+    }, never>, "onUpdate:modelValue" | "onUpdate:query"> & ({
+        modelValue: SelectMenu.Props<T>["modelValue"];
+        query?: string;
+    } & SelectMenu.Props<T>)> & import("vue").PublicProps;
+    expose(exposed: import("vue").ShallowUnwrapRef<{
+        reset: () => void;
+        clearSearch: import("../../../shared").Callback;
+        clearSelection: () => void;
+    }>): void;
+    attrs: any;
+    slots: ReturnType<() => Readonly<{
+        'clear-selection'?: (props: {
+            clearSelection: () => void;
+        }) => VNode;
+        'empty-placeholder'?: (props: {
+            groupName: string | number;
+        }) => VNode;
+    }> & {
+        'clear-selection'?: (props: {
+            clearSelection: () => void;
+        }) => VNode;
+        'empty-placeholder'?: (props: {
+            groupName: string | number;
+        }) => VNode;
+    }>;
+    emit: ((evt: "update:modelValue", modelValue: T | Map<string | number, T> | T[] | undefined) => void) & ((evt: "update:query", query: string) => void);
+}>) => VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    [key: string]: any;
+}> & {
+    __ctx?: Awaited<typeof __VLS_setup>;
+};
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
-type __VLS_WithDefaults<P, D> = {
-    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
-        default: D[K];
-    }> : P[K];
-};
 type __VLS_Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};

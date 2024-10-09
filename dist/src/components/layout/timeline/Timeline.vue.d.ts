@@ -1,5 +1,5 @@
 import type { Timeline } from './Timeline.model';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<Timeline.Props>, {
+declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToOption<Timeline.Props>, {
     follow: boolean;
     running: boolean;
     duration: number;
@@ -8,16 +8,16 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:range": (range: Timeline.Range.Model) => void;
     "update:duration": (duration: Date) => void;
-    "update:focused": (events: import("../../../shared").Dictionary<Timeline.Event.Model, "id">) => void;
+    "update:focused": (events: Map<string, Timeline.Event.Model>) => void;
     "update:focused.array": (events: Timeline.Event.Model[]) => void;
-}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "cover";
 }>, {
@@ -26,408 +26,408 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
-    duration?: number | Date | undefined;
+    duration?: number | Date;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
-    grow?: false | undefined;
+    grow?: false;
 } & {
-    shrink?: false | undefined;
+    shrink?: false;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
-    grow?: false | undefined;
+    grow?: false;
 } & {
     shrink: "fit";
-    shrinkThreshold?: number | Date | undefined;
+    shrinkThreshold?: Date | number;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
-    grow?: false | undefined;
+    grow?: false;
 } & {
     shrink: "justify";
 } & {
-    shrinkThreshold?: Date | undefined;
-    shrinkPolicy?: "time-slice" | "time-density" | undefined;
+    shrinkThreshold?: Date;
+    shrinkPolicy?: `time-${"slice" | "density"}`;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
-    grow?: false | undefined;
+    grow?: false;
 } & {
     shrink: "justify";
 } & {
-    shrinkThreshold?: number | undefined;
-    shrinkPolicy?: "time-slice" | "time-density" | "event-slice" | "event-density" | undefined;
+    shrinkThreshold?: number;
+    shrinkPolicy?: `${"time" | "event"}-${"slice" | "density"}`;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "fill";
-    growThreshold?: number | Date | undefined;
+    growThreshold?: Date | number;
 } & {
-    shrink?: false | undefined;
+    shrink?: false;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "fill";
-    growThreshold?: number | Date | undefined;
+    growThreshold?: Date | number;
 } & {
     shrink: "fit";
-    shrinkThreshold?: number | Date | undefined;
+    shrinkThreshold?: Date | number;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "fill";
-    growThreshold?: number | Date | undefined;
+    growThreshold?: Date | number;
 } & {
     shrink: "justify";
 } & {
-    shrinkThreshold?: Date | undefined;
-    shrinkPolicy?: "time-slice" | "time-density" | undefined;
+    shrinkThreshold?: Date;
+    shrinkPolicy?: `time-${"slice" | "density"}`;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "fill";
-    growThreshold?: number | Date | undefined;
+    growThreshold?: Date | number;
 } & {
     shrink: "justify";
 } & {
-    shrinkThreshold?: number | undefined;
-    shrinkPolicy?: "time-slice" | "time-density" | "event-slice" | "event-density" | undefined;
+    shrinkThreshold?: number;
+    shrinkPolicy?: `${"time" | "event"}-${"slice" | "density"}`;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "justify";
 } & {
-    growThreshold?: Date | undefined;
-    growPolicy?: "time-slice" | "time-density" | undefined;
+    growThreshold?: Date;
+    growPolicy?: `time-${"slice" | "density"}`;
 } & {
-    shrink?: false | undefined;
+    shrink?: false;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "justify";
 } & {
-    growThreshold?: Date | undefined;
-    growPolicy?: "time-slice" | "time-density" | undefined;
+    growThreshold?: Date;
+    growPolicy?: `time-${"slice" | "density"}`;
 } & {
     shrink: "fit";
-    shrinkThreshold?: number | Date | undefined;
+    shrinkThreshold?: Date | number;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "justify";
 } & {
-    growThreshold?: Date | undefined;
-    growPolicy?: "time-slice" | "time-density" | undefined;
+    growThreshold?: Date;
+    growPolicy?: `time-${"slice" | "density"}`;
 } & {
     shrink: "justify";
 } & {
-    shrinkThreshold?: Date | undefined;
-    shrinkPolicy?: "time-slice" | "time-density" | undefined;
+    shrinkThreshold?: Date;
+    shrinkPolicy?: `time-${"slice" | "density"}`;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "justify";
 } & {
-    growThreshold?: Date | undefined;
-    growPolicy?: "time-slice" | "time-density" | undefined;
+    growThreshold?: Date;
+    growPolicy?: `time-${"slice" | "density"}`;
 } & {
     shrink: "justify";
 } & {
-    shrinkThreshold?: number | undefined;
-    shrinkPolicy?: "time-slice" | "time-density" | "event-slice" | "event-density" | undefined;
+    shrinkThreshold?: number;
+    shrinkPolicy?: `${"time" | "event"}-${"slice" | "density"}`;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "justify";
 } & {
-    growThreshold?: number | undefined;
-    growPolicy?: "time-slice" | "time-density" | "event-slice" | "event-density" | undefined;
+    growThreshold?: number;
+    growPolicy?: `${"time" | "event"}-${"slice" | "density"}`;
 } & {
-    shrink?: false | undefined;
+    shrink?: false;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "justify";
 } & {
-    growThreshold?: number | undefined;
-    growPolicy?: "time-slice" | "time-density" | "event-slice" | "event-density" | undefined;
+    growThreshold?: number;
+    growPolicy?: `${"time" | "event"}-${"slice" | "density"}`;
 } & {
     shrink: "fit";
-    shrinkThreshold?: number | Date | undefined;
+    shrinkThreshold?: Date | number;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "justify";
 } & {
-    growThreshold?: number | undefined;
-    growPolicy?: "time-slice" | "time-density" | "event-slice" | "event-density" | undefined;
+    growThreshold?: number;
+    growPolicy?: `${"time" | "event"}-${"slice" | "density"}`;
 } & {
     shrink: "justify";
 } & {
-    shrinkThreshold?: Date | undefined;
-    shrinkPolicy?: "time-slice" | "time-density" | undefined;
+    shrinkThreshold?: Date;
+    shrinkPolicy?: `time-${"slice" | "density"}`;
 }>, {
     follow: boolean;
     running: boolean;
     duration: number;
     basis: number;
     title: string;
-}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    events: import("../../../shared").Dictionary<Timeline.Event.Model, "id"> | Timeline.Event.Model[];
-    follow?: boolean | undefined;
-    title?: string | undefined;
-    running?: boolean | undefined;
-    start?: Date | undefined;
-    end?: Date | undefined;
-    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions | undefined;
+}>> | import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<{
+    events: Timeline.Event.Model[] | import("../../../shared").Dictionary<Timeline.Event.Model, "id">;
+    follow?: boolean;
+    title?: string;
+    running?: boolean;
+    start?: Date;
+    end?: Date;
+    eventSignalOptions?: import("../../../shared/libs/event").EventSignalOptions;
 } & {
     duration: "justify";
-    basis?: number | Date | undefined;
+    basis?: number | Date;
 } & {
     grow: "justify";
 } & {
-    growThreshold?: number | undefined;
-    growPolicy?: "time-slice" | "time-density" | "event-slice" | "event-density" | undefined;
+    growThreshold?: number;
+    growPolicy?: `${"time" | "event"}-${"slice" | "density"}`;
 } & {
     shrink: "justify";
 } & {
-    shrinkThreshold?: number | undefined;
-    shrinkPolicy?: "time-slice" | "time-density" | "event-slice" | "event-density" | undefined;
+    shrinkThreshold?: number;
+    shrinkPolicy?: `${"time" | "event"}-${"slice" | "density"}`;
 }>, {
     follow: boolean;
     running: boolean;
@@ -437,7 +437,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
 }>>> & {
     "onUpdate:range"?: ((range: Timeline.Range.Model) => any) | undefined;
     "onUpdate:duration"?: ((duration: Date) => any) | undefined;
-    "onUpdate:focused"?: ((events: import("../../../shared").Dictionary<Timeline.Event.Model, "id">) => any) | undefined;
+    "onUpdate:focused"?: ((events: Map<string, Timeline.Event.Model>) => any) | undefined;
     "onUpdate:focused.array"?: ((events: Timeline.Event.Model[]) => any) | undefined;
 }, {
     title: string;
@@ -547,15 +547,6 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     basis: number | Date;
 }, {}>;
 export default _default;
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToRuntimeProps<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};
 type __VLS_WithDefaults<P, D> = {
     [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
         default: D[K];
@@ -564,3 +555,12 @@ type __VLS_WithDefaults<P, D> = {
 type __VLS_Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_TypePropsToOption<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('vue').PropType<T[K]>;
+        required: true;
+    };
+};
