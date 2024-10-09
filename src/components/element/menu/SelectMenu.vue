@@ -344,6 +344,7 @@ defineExpose({
 
     > .button {
       font: var(--agh-sys-typeface-label-hl-medium);
+      text-align: right;
     }
   }
 
