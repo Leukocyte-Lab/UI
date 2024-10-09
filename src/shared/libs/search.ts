@@ -1,4 +1,5 @@
 import { diceCoefficient } from 'dice-coefficient';
+import { isUndefined, omitBy } from 'lodash-es';
 import { computed, toRef, toValue } from 'vue';
 
 import type { ComputedRef, MaybeRef, Ref } from 'vue';
@@ -140,7 +141,7 @@ function useSearch<T extends Search.AcceptableValue, K extends string | number |
     limit: Infinity,
     strict: false,
     segmentPattern: /-|_|\t|\v|\r|\\/gm,
-    ...toValue(options)
+    ...(omitBy(toValue(options), isUndefined) as Search.Options)
   }));
 
   const result = computed(() => {
