@@ -46,7 +46,7 @@ const meta: GenericMeta<typeof DropDown<DropDownNS.AcceptableValue>> = {
     labelShowAs: {
       control: 'radio',
       description: 'DropDown label show as (optional)',
-      options: ['auto', 'label', 'placeholder'],
+      options: ['auto', 'label', 'placeholder', 'icon'],
       defaultValue: 'auto'
     },
     menuPosition: {
@@ -62,9 +62,9 @@ const meta: GenericMeta<typeof DropDown<DropDownNS.AcceptableValue>> = {
       defaultValue: 'primary'
     },
     variant: {
-      control: 'radio',
+      control: 'select',
       description: 'Dropdown variant (optional)',
-      options: ['rounded', 'rect'],
+      options: ['rounded', 'rect', 'square', 'text-square', 'circle', 'extendable-rect', 'text'],
       defaultValue: 'rounded'
     },
     size: {
