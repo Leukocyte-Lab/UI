@@ -1,8 +1,10 @@
 <script setup lang="ts" generic="T extends SelectMenu.AcceptableValue">
 import { groupBy, omit } from 'lodash-es';
-import { computed, type ModelRef, onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
 import { useResizeObserver } from '@vueuse/core';
+
+import type { ModelRef, VNode } from 'vue';
 
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import CardBox from '@/components/element/card/CardBox.vue';
@@ -46,7 +48,7 @@ const selectedFields = computed(() =>
     : fieldParser(selection.value as T).key
 );
 
-const { result } = useSearch(options, {
+const { result, reset: clearSearch } = useSearch(options, {
   query: searchQuery,
   getters: props.fields.searchKeys ?? [props.fields.key, props.fields.title ?? ''].filter(Boolean),
   options: props.useSearch
@@ -159,12 +161,23 @@ const toggleSelection = (index: string | number, option: SelectMenu.Option<T>) =
   }
 };
 
+const reset = () => {
+  clearSearch();
+  clearSelection();
+};
+
 useResizeObserver(wrapperRef$, computeOverflowed, {
   window
 });
 
 onMounted(() => {
   computeOverflowed();
+});
+
+defineExpose({
+  reset,
+  clearSearch,
+  clearSelection
 });
 </script>
 
