@@ -21,7 +21,9 @@ const props = withDefaults(defineProps<DropDown.Props<T>>(), {
   level: 'primary',
   variant: 'rounded',
   size: 'medium',
-  multiple: false
+  multiple: false,
+  labelShowAs: 'auto',
+  menuPosition: 'bottom-right'
 });
 
 const selection = defineModel<DropDown.Props<T>['modelValue']>({
@@ -51,20 +53,21 @@ const optionsCount = computed(() =>
       ? props.options.size
       : 0
 );
-const label = computed(() =>
-  (props.labelShowAs && props.labelShowAs !== 'auto' ? props[props.labelShowAs] : undefined) ||
-  props.multiple
-    ? (bobbleCount.value || 0) > 0
-      ? (props.label ?? props.placeholder)
-      : (props.placeholder ?? props.label)
-    : ((props.modelValue &&
-        (props.fields.title
-          ? valuesGetter(props.modelValue as T, props.fields.title, true)
-          : props.fields.key
-            ? valuesGetter(props.modelValue as T, props.fields.key, true)
-            : undefined)) ??
-      props.label ??
-      props.placeholder)
+const label = computed(
+  () =>
+    (props.labelShowAs !== 'auto' ? props[props.labelShowAs] : undefined) ||
+    (props.multiple
+      ? (bobbleCount.value || 0) > 0
+        ? (props.label ?? props.placeholder)
+        : (props.placeholder ?? props.label)
+      : ((props.modelValue &&
+          (props.fields.title
+            ? valuesGetter(props.modelValue as T, props.fields.title, true)
+            : props.fields.key
+              ? valuesGetter(props.modelValue as T, props.fields.key, true)
+              : undefined)) ??
+        props.label ??
+        props.placeholder))
 );
 const icon = computed(
   () =>
@@ -214,12 +217,12 @@ defineExpose({
 
     &.top-left,
     &.bottom-left {
-      left: 0;
+      right: 0;
     }
 
     &.top-right,
     &.bottom-right {
-      right: 0;
+      left: 0;
     }
   }
 }
