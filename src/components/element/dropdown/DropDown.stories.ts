@@ -43,6 +43,18 @@ const meta: GenericMeta<typeof DropDown<DropDownNS.AcceptableValue>> = {
       control: 'text',
       description: 'DropDown groupBy (optional)'
     },
+    labelShowAs: {
+      control: 'radio',
+      description: 'DropDown label show as (optional)',
+      options: ['auto', 'label', 'placeholder'],
+      defaultValue: 'auto'
+    },
+    menuPosition: {
+      control: 'radio',
+      description: 'DropDown menu position (optional)',
+      options: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
+      defaultValue: 'bottom-right'
+    },
     level: {
       control: 'select',
       description: 'Dropdown level (optional)',
@@ -90,6 +102,8 @@ const meta: GenericMeta<typeof DropDown<DropDownNS.AcceptableValue>> = {
   },
   args: {
     modelValue: undefined,
+    labelShowAs: 'auto',
+    menuPosition: 'bottom-right',
     'onUpdate:modelValue': fn(),
     'onUpdate:query': fn()
   }
@@ -376,6 +390,50 @@ export const WithSubtitleDropDownWithSearch: DropDown$ = {
     useSearch: true
   }
 };
+
+export const IconWithSubtitleSelectMenu: DropDown$ = {
+  args: {
+    options: [
+      {
+        action: 'Sort by Time',
+        direction: 'Latest First',
+        icon: 'fa6-solid:arrow-down-wide-short'
+      },
+      {
+        action: 'Sort by Time',
+        direction: 'Oldest First',
+        icon: 'fa6-solid:arrow-up-wide-short'
+      },
+      {
+        action: 'Sort by Name',
+        direction: 'Ascending (A to Z)',
+        icon: 'fa6-solid:arrow-down-a-z'
+      },
+      {
+        action: 'Sort by Name',
+        direction: 'Descending (Z to A)',
+        icon: 'fa6-solid:arrow-up-z-a'
+      }
+    ],
+
+    fields: {
+      key: 'direction',
+      title: '{{ $.action }}',
+      content: '{{ $.direction }}',
+      icon: 'icon'
+    },
+
+    modelValue: {
+      action: 'Sort by Time',
+      direction: 'Latest First',
+      icon: 'fa6-solid:arrow-down-wide-short'
+    },
+    placeholder: 'Sort By',
+    variant: 'square',
+    labelShowAs: 'placeholder'
+  }
+};
+
 
 export const DisabledDropDown: DropDown$ = {
   args: {
