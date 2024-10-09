@@ -52,6 +52,7 @@ const optionsCount = computed(() =>
       : 0
 );
 const label = computed(() =>
+  (props.labelShowAs && props.labelShowAs !== 'auto' ? props[props.labelShowAs] : undefined) ||
   props.multiple
     ? (bobbleCount.value || 0) > 0
       ? (props.label ?? props.placeholder)
@@ -64,6 +65,14 @@ const label = computed(() =>
             : undefined)) ??
       props.label ??
       props.placeholder)
+);
+const icon = computed(
+  () =>
+    (props.variant.includes('square') && !props.multiple && selection.value
+      ? props.modelValue && props.fields.icon
+        ? valuesGetter(props.modelValue as T, props.fields.icon, true)
+        : undefined
+      : undefined) || (onShowMenu() ? 'fa6-solid:chevron-up' : 'fa6-solid:chevron-down')
 );
 
 const clearSearch = () => {
@@ -112,8 +121,8 @@ defineExpose({
       :class="[$style['dropdown-button'], $style[size]]"
       :clicked="onShowMenu()"
       :disabled="props.disabled"
-      :icon="onShowMenu() ? 'fa6-solid:chevron-up' : 'fa6-solid:chevron-down'"
-      :label="label"
+      :icon
+      :label
       :level="props.level"
       :size="props.size"
       :variant="props.variant"
@@ -124,9 +133,10 @@ defineExpose({
         ref="selectMenuRef$"
         v-model="selection"
         v-model:query="query"
+        @select:fields="selectedFields = $event"
         :alter-str="props.alterStr"
         :case-sensitive="props.caseSensitive"
-        :class="$style['dropdown-menu']"
+        :class="[$style['dropdown-menu'], $style[props.menuPosition]]"
         :fields="props.fields"
         :group-by="props.groupBy"
         :label="props.label"
@@ -189,9 +199,28 @@ defineExpose({
 
   &-menu {
     position: absolute;
-    top: calc(100% + var(--agh-ref-spacing-200));
     z-index: 10;
     max-height: var(--dropdown-max-height, var(--agh-sys-list-dropdown-small)) !important;
+
+    &.top-left,
+    &.top-right {
+      bottom: calc(100% + var(--agh-ref-spacing-200));
+    }
+
+    &.bottom-left,
+    &.bottom-right {
+      top: calc(100% + var(--agh-ref-spacing-200));
+    }
+
+    &.top-left,
+    &.bottom-left {
+      left: 0;
+    }
+
+    &.top-right,
+    &.bottom-right {
+      right: 0;
+    }
   }
 }
 </style>
