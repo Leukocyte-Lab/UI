@@ -17,6 +17,11 @@ import { signal } from '@/shared/libs/signal';
 import type { SelectMenu } from '@/components/element/menu/SelectMenu.model';
 import type { Search } from '@/shared/libs/search';
 
+defineSlots<{
+  'clear-selection'?: (props: { clearSelection: () => void }) => VNode;
+  'empty-placeholder'?: (props: { groupName: string | number }) => VNode;
+}>();
+
 const props = defineProps<SelectMenu.Props<T>>();
 
 const selection = defineModel<SelectMenu.Props<T>['modelValue']>({
@@ -197,13 +202,15 @@ defineExpose({
           {{ props.label }}
         </h1>
         <template v-if="props.multiple">
-          <ButtonBox
-            @click="clearSelection"
-            :class="$style['button']"
-            :icon="'fa6-solid:eraser'"
-            :label="'Clear Selection'"
-            :variant="'text'"
-          />
+          <slot :clear-selection="clearSelection" name="clear-selection">
+            <ButtonBox
+              @click="clearSelection"
+              :class="$style['button']"
+              :icon="'fa6-solid:eraser'"
+              :label="'Clear Selection'"
+              :variant="'text'"
+            />
+          </slot>
         </template>
       </header>
     </template>
@@ -278,7 +285,7 @@ defineExpose({
             </template>
           </template>
           <div :class="$style['menu-group-placeholder']">
-            <slot name="empty-placeholder">
+            <slot :group-name="name" name="empty-placeholder">
               <p>No Data</p>
             </slot>
           </div>
