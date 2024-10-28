@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { computedEager, useElementSize } from '@vueuse/core';
 
 import { useChart } from './chart';
@@ -36,7 +36,7 @@ const radius = computedEager(() =>
     Infinity
   )
 );
-const gap = computedEager(() => (props.options.round ? 30 : 15));
+const gap = computed(() => props.options.gap ?? (props.options.round ? 30 : 15));
 const radiant = computedEager(() => radius.value * 2 * Math$.PI);
 const center = computedEager<Vector<'x' | 'y'>>(() => ({
   x: width.value / 2,
