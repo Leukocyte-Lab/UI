@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { computedEager, useElementSize } from '@vueuse/core';
+import { computed, ref } from 'vue';
+import { useElementSize } from '@vueuse/core';
 
 import { useChart } from './chart';
 
@@ -29,23 +29,23 @@ const { axises, datasets } = useChart({
   axises: props.axises
 });
 
-const radius = computedEager(() =>
+const radius = computed(() =>
   Math$.clamp(
     Math$.min(width.value - props.options.offset.x, height.value - props.options.offset.y) / 2,
     0,
     Infinity
   )
 );
-const gap = computedEager(() => (props.options.round ? 30 : 15));
-const radiant = computedEager(() => radius.value * 2 * Math$.PI);
-const center = computedEager<Vector<'x' | 'y'>>(() => ({
+const gap = computed(() => props.options.gap ?? (props.options.round ? 30 : 15));
+const radiant = computed(() => radius.value * 2 * Math$.PI);
+const center = computed<Vector<'x' | 'y'>>(() => ({
   x: width.value / 2,
   y: height.value / 2
 }));
-const totals = computedEager(() =>
+const totals = computed(() =>
   datasets.value.map((dataset) => dataset.series.reduce((acc, cur) => acc + cur.y.normalized, 0))
 );
-const normalizedDatasets = computedEager(() =>
+const normalizedDatasets = computed(() =>
   datasets.value.map((dataset, index) => ({
     ...dataset,
     series: dataset.series
@@ -159,7 +159,7 @@ const normalizedDatasets = computedEager(() =>
                       >
                         <span>{{ plot.x.value }}</span>
                       </h1>
-                      <hr>
+                      <hr />
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
                       <template v-if="!/(x)/.test(axisKey) && axis && plot[axisKey]">
