@@ -72,14 +72,14 @@
 
   &-group-plots {
     & > .chart-area {
-      @for $i from 1 through 4 {
+      @for $i from 1 through 20 {
         &:nth-of-type(n + #{$i}) {
-          --plot-color: var(--chart-area-plot-fill-#{$i});
+          --plot-color: var(--chart-area-plot-fill-#{$i}, var(--chart-area-plot-fill));
         }
       }
 
-      &:nth-last-of-type(1):not(:nth-of-type(1)) {
-        --plot-color: var(--chart-area-plot-fill);
+      &:nth-last-of-type(1) {
+        --plot-color: var(--chart-area-plot-fill-last, var(--chart-area-plot-fill));
       }
     }
   }
