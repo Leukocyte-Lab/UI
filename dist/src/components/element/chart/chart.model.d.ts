@@ -31,6 +31,7 @@ export declare namespace Chart {
         radius?: number;
         grid?: 'x' | 'y' | 'xy';
         color?: string;
+        gap?: number;
     };
     type Plot = Record<string, DataType>;
     type NormalizedPlot = {

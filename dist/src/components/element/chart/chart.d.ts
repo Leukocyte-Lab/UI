@@ -408,6 +408,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -434,6 +435,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -460,6 +462,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -486,6 +489,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -512,6 +516,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -538,6 +543,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -564,6 +570,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -590,6 +597,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -616,6 +624,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -642,6 +651,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -668,6 +678,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -694,6 +705,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -720,6 +732,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -746,6 +759,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -772,6 +786,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -798,6 +813,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -824,6 +840,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -850,6 +867,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -876,6 +894,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -902,6 +921,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -928,6 +948,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -954,6 +975,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -980,6 +1002,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1006,6 +1029,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1032,6 +1056,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1058,6 +1083,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1084,6 +1110,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1110,6 +1137,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1136,6 +1164,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1162,6 +1191,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1188,6 +1218,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1214,6 +1245,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1240,6 +1272,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1266,6 +1299,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1292,6 +1326,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1318,6 +1353,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1344,6 +1380,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1370,6 +1407,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1396,6 +1434,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1422,6 +1461,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1448,6 +1488,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1474,6 +1515,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1500,6 +1542,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1526,6 +1569,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1552,6 +1596,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1578,6 +1623,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1604,6 +1650,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1630,6 +1677,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1656,6 +1704,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1682,6 +1731,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1708,6 +1758,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1734,6 +1785,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1760,6 +1812,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1786,6 +1839,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1812,6 +1866,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1838,6 +1893,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1864,6 +1920,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1890,6 +1947,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1916,6 +1974,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1942,6 +2001,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1968,6 +2028,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -1994,6 +2055,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2020,6 +2082,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2046,6 +2109,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2072,6 +2136,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2098,6 +2163,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2124,6 +2190,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2150,6 +2217,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2176,6 +2244,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2202,6 +2271,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2228,6 +2298,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2254,6 +2325,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2280,6 +2352,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2306,6 +2379,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2332,6 +2406,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2358,6 +2433,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2384,6 +2460,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2410,6 +2487,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2436,6 +2514,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2462,6 +2541,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2488,6 +2568,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2514,6 +2595,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2540,6 +2622,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2566,6 +2649,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2592,6 +2676,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2618,6 +2703,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2644,6 +2730,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2670,6 +2757,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2696,6 +2784,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2722,6 +2811,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2748,6 +2838,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2774,6 +2865,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2800,6 +2892,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
@@ -2826,6 +2919,7 @@ export declare const useChart: ({ type, axises, data }: {
                 radius?: number | undefined;
                 grid?: ("x" | "y" | "xy") | undefined;
                 color?: string | undefined;
+                gap?: number | undefined;
             } | undefined;
             sort?: ("asc" | "desc") | undefined;
             metrics?: {
