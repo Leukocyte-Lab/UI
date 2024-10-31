@@ -1,12 +1,11 @@
-// common
+
 import { useFallback } from './common/fallback';
-// libs
 import { useEventDebounceSignal } from './libs/event';
 import Map$ from './libs/map';
 import Math$ from './libs/math';
 import { parser } from './libs/parser';
 import { selector } from './libs/selector';
-import { computed, signal } from './libs/signal';
+import { computed, debug,signal, toggleSignal } from './libs/signal';
 import String$ from './libs/string';
 import uuid, { Hex2UUID, NilUUID, UUID2Hex } from './libs/uuid';
 import { promoteInvalidMessage } from './libs/validation';
@@ -14,7 +13,6 @@ import { promoteInvalidMessage } from './libs/validation';
 import type { EventSignalOptions } from './libs/event';
 import type { MapProxy } from './libs/map';
 import type { Signal } from './libs/signal';
-// types
 import type { HexUUID, UUID } from './libs/uuid';
 import type { InvalidMessage } from './libs/validation';
 import type { Callback, EventCallback, PromiseCallback } from './types/callback';
@@ -38,6 +36,7 @@ import type { Vec2, Vec3, Vec4, Vector } from './types/vector';
 
 export {
   computed,
+  debug,
   Hex2UUID,
   Map$,
   Math$,
@@ -47,9 +46,8 @@ export {
   selector,
   signal,
   String$,
-  // libs
+  toggleSignal,
   useEventDebounceSignal,
-  // common
   useFallback,
   uuid,
   UUID2Hex
@@ -58,7 +56,6 @@ export {
 export type {
   AtLeastOne,
   AtLeastOneOptional,
-  // types
   Callback,
   Dictionary,
   EventCallback,
@@ -67,7 +64,6 @@ export type {
   HasID,
   HasUUID,
   HexUUID,
-  // libs
   InvalidMessage,
   MapProxy,
   MaybeArray,
