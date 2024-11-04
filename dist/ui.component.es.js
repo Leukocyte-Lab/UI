@@ -3302,6 +3302,8 @@ const tn = ["onClick"], ln = /* @__PURE__ */ H({
     size: {},
     spellcheck: { type: Boolean, default: !1 },
     tabindex: {},
+    cols: {},
+    rows: {},
     invalidMessage: {},
     eventSignalOptions: {}
   },

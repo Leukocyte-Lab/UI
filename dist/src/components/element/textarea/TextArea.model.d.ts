@@ -15,6 +15,8 @@ export declare namespace TextArea {
         size?: number;
         spellcheck?: boolean;
         tabindex?: number;
+        cols?: number;
+        rows?: number;
         invalidMessage?: Partial<InvalidMessage>;
         eventSignalOptions?: EventSignalOptions;
     };
