@@ -18,6 +18,7 @@ import DoughnutChart from './element/chart/DoughnutChart.vue';
 import LineChart from './element/chart/LineChart.vue';
 import MatrixChart from './element/chart/MatrixChart.vue';
 import RadarChart from './element/chart/RadarChart.vue';
+import StackBarChart from './element/chart/StackBarChart.vue';
 // datetime
 import DatetimePicker from './element/datetime-picker/DatetimePicker.vue';
 // dropdown
@@ -77,6 +78,7 @@ export {
   RoundEffect,
   SearchBar,
   SelectMenu,
+  StackBarChart,
   SwitchButton,
   TabGroup,
   TextArea,

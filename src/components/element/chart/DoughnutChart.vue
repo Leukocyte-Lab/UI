@@ -159,7 +159,7 @@ const normalizedDatasets = computed(() =>
                       >
                         <span>{{ plot.x.value }}</span>
                       </h1>
-                      <hr />
+                      <hr>
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
                       <template v-if="!/(x)/.test(axisKey) && axis && plot[axisKey]">
