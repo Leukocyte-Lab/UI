@@ -6,7 +6,7 @@ export declare const useChart: ({ type, axises, data }: {
     axises: MaybeRef<Chart.Props["axises"]>;
     data: MaybeRef<ObjectLike[] | ObjectLike>;
 }) => {
-    datasets: Readonly<import("vue").Ref<{
+    datasets: import("vue").ComputedRef<{
         label?: string | undefined;
         series: {
             data: Record<string, Chart.DataType>;
@@ -387,8 +387,8 @@ export declare const useChart: ({ type, axises, data }: {
                 value?: Chart.DataType | undefined;
             } | undefined;
         }[];
-    }[]>>;
-    axises: Readonly<import("vue").Ref<{
+    }[]>;
+    axises: import("vue").ComputedRef<{
         x: {
             label: string;
             min?: (number | "auto") | undefined;
@@ -2927,5 +2927,5 @@ export declare const useChart: ({ type, axises, data }: {
                 value?: Chart.DataType | undefined;
             }[] | undefined;
         } | undefined;
-    }>>;
+    }>;
 };
