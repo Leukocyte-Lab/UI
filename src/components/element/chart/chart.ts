@@ -1,6 +1,5 @@
 import { fromPairs, isEmpty, map, max, min, toPairs, uniq } from 'lodash-es';
-import { reactive, unref,watchEffect } from 'vue';
-import { computedEager } from '@vueuse/core';
+import { computed, reactive, toValue, unref,watch,watchEffect } from 'vue';
 
 import type { MaybeRef } from 'vue';
 
@@ -26,9 +25,13 @@ export const useChart = ({
   });
 
   const getters = {
-    datasets: computedEager(() => state.datasets),
-    axises: computedEager(() => state.axises)
+    datasets: computed(() => state.datasets),
+    axises: computed(() => state.axises)
   }
+
+  const $data = computed(() => toValue(data) ?? []);
+  const $axises = computed(() => toValue(axises) ?? []);
+  const $type = computed(() => toValue(type) ?? []);
 
   const datasetParser = (data: ObjectLike[] | ObjectLike): Chart.Datasets[] => {
     if (!Array.isArray(data) || data.length === 0) {
@@ -151,13 +154,16 @@ export const useChart = ({
     };
   };
 
-  watchEffect(() => {
-    const chartData = computeChartData(unref(type), unref(axises), unref(data));
-    state.datasets = chartData.datasets;
-    state.axises = chartData.axises;
+  watch([$type, $data, $axises], () => {
+    const result = computeChartData($type.value, $axises.value, $data.value)
+    state.datasets = result.datasets;
+    state.axises = result.axises;
+  }, {
+    deep: true,
+    immediate: true
   });
 
   return {
     ...getters
-  }
+  };
 };
