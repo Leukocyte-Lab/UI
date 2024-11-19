@@ -1,5 +1,5 @@
 import { fromPairs, isEmpty, map, max, min, toPairs, uniq } from 'lodash-es';
-import { computed, reactive, toValue, unref,watch,watchEffect } from 'vue';
+import { computed, markRaw, reactive, toValue, unref,watch,watchEffect } from 'vue';
 
 import type { MaybeRef } from 'vue';
 
@@ -156,8 +156,8 @@ export const useChart = ({
 
   watch([$type, $data, $axises], () => {
     const result = computeChartData($type.value, $axises.value, $data.value)
-    state.datasets = result.datasets;
-    state.axises = result.axises;
+    state.datasets = markRaw(result.datasets);
+    state.axises = markRaw(result.axises);
   }, {
     deep: true,
     immediate: true
