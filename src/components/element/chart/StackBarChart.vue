@@ -51,7 +51,7 @@ const data = computed(() =>
               <span>{{ plot.x.value }}</span>
               <span>{{ String(plot.y.value).padStart(3, '0') }}</span>
             </h1>
-            <hr />
+            <hr>
             <ul :class="[$style.wrapper, $style.flex, $style.vertical]">
               <template v-for="(axis, axisKey) in axises" :key="axisKey">
                 <template v-if="axis && plot[axisKey] && !['x', 'y'].includes(axisKey)">
@@ -96,6 +96,7 @@ const data = computed(() =>
 </template>
 
 <style module scoped lang="scss">
+@use 'sass:list';
 @use '@/assets/styles/modules/behavior.module' as behavior;
 @use '@/assets/styles/modules/wrapper.module' as wrapper;
 
@@ -130,11 +131,12 @@ hr {
     &:empty {
       border-radius: var(--agh-ref-border-radius-200);
       background: repeating-linear-gradient(
-        90deg,
-        var(--agh-ref-color-grayscale-400) 0%,
-        var(--agh-ref-color-grayscale-400) 14.03571429%,
-        transparent 14.53571429%
-      ) repeat;
+          90deg,
+          var(--agh-ref-color-grayscale-400) 0%,
+          var(--agh-ref-color-grayscale-400) 14.0357%,
+          transparent 14.5357%
+        )
+        repeat;
       opacity: var(--agh-ref-opacity-400);
     }
   }
@@ -144,8 +146,8 @@ hr {
     $color-list: cyan, green, blue, purple, orange;
 
     @for $i from 0 through 4 {
-      @for $color-index from 1 through length($color-list) {
-        $color: nth($color-list, $color-index);
+      @for $color-index from 1 through list.length($color-list) {
+        $color: list.nth($color-list, $color-index);
 
         &:nth-child(#{$i * 5 + $color-index}) {
           --plot-accent: var(--agh-ref-color-#{$color}-#{5 - $i}00);
@@ -185,7 +187,7 @@ hr {
       z-index: 1;
       left: anchor(left);
       top: calc(anchor(bottom) + var(--agh-ref-spacing-200));
-      position-try-fallbacks: flip-block, flip-inline;
+      position-try-options: flip-block, flip-inline;
       position-try: flip-block, flip-inline;
       padding: var(--agh-ref-spacing-200) var(--agh-ref-spacing-300);
 
