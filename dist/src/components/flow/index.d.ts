@@ -31,7 +31,7 @@ export declare const FlowKit: {
                     default: string;
                 };
                 toolbarDirection: {
-                    type: import("vue").PropType<"vertical" | "horizontal">;
+                    type: import("vue").PropType<"horizontal" | "vertical">;
                     default: string;
                 };
                 acceleration: {
@@ -67,7 +67,7 @@ export declare const FlowKit: {
                     default: string;
                 };
                 toolbarDirection: {
-                    type: import("vue").PropType<"vertical" | "horizontal">;
+                    type: import("vue").PropType<"horizontal" | "vertical">;
                     default: string;
                 };
                 acceleration: {
@@ -81,7 +81,7 @@ export declare const FlowKit: {
                 toolbar: boolean;
                 zoomable: boolean;
                 toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
-                toolbarDirection: "vertical" | "horizontal";
+                toolbarDirection: "horizontal" | "vertical";
                 acceleration: WebGLPowerPreference;
             }, true, {}, {}, {
                 P: {};
@@ -119,7 +119,7 @@ export declare const FlowKit: {
                     default: string;
                 };
                 toolbarDirection: {
-                    type: import("vue").PropType<"vertical" | "horizontal">;
+                    type: import("vue").PropType<"horizontal" | "vertical">;
                     default: string;
                 };
                 acceleration: {
@@ -133,7 +133,7 @@ export declare const FlowKit: {
                 toolbar: boolean;
                 zoomable: boolean;
                 toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
-                toolbarDirection: "vertical" | "horizontal";
+                toolbarDirection: "horizontal" | "vertical";
                 acceleration: WebGLPowerPreference;
             }>;
             __isFragment?: never;
@@ -168,7 +168,7 @@ export declare const FlowKit: {
                 default: string;
             };
             toolbarDirection: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             acceleration: {
@@ -182,7 +182,7 @@ export declare const FlowKit: {
             toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
-            toolbarDirection: "vertical" | "horizontal";
+            toolbarDirection: "horizontal" | "vertical";
             acceleration: WebGLPowerPreference;
         }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
             $slots: Readonly<{
@@ -374,7 +374,7 @@ export declare const FlowKit: {
                 type: import("vue").PropType<boolean>;
             };
             direction: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             position: {
@@ -386,7 +386,7 @@ export declare const FlowKit: {
                 type: import("vue").PropType<boolean>;
             };
             direction: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             position: {

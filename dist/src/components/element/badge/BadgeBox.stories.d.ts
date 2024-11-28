@@ -5,6 +5,8 @@ export default meta;
 type BadgeBox$ = StoryObj<typeof BadgeBox>;
 export declare const DefaultBadgeBox: BadgeBox$;
 export declare const CapsuleBadgeBox: BadgeBox$;
+export declare const CapsuleBadgeBoxWithIcon: BadgeBox$;
 export declare const CapsuleLabelOnlyBadgeBox: BadgeBox$;
+export declare const CapsuleLabelOnlyBadgeBoxWithIcon: BadgeBox$;
 export declare const CapsuleContentOnlyBadgeBox: BadgeBox$;
 export declare const TabBadgeBox: BadgeBox$;

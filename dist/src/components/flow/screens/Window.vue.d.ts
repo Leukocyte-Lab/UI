@@ -30,7 +30,7 @@ declare const __VLS_component: import("vue").DefineComponent<__VLS_WithDefaults<
     toolbar: boolean;
     zoomable: boolean;
     toolbarPosition: Flow.UI.Layout.Toolbar.Position;
-    toolbarDirection: "vertical" | "horizontal";
+    toolbarDirection: "horizontal" | "vertical";
     acceleration: WebGLPowerPreference;
 }, {}>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, ReturnType<typeof __VLS_template>>;

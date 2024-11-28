@@ -24,11 +24,11 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
 }, {
     color: keyof typeof ButtonBox.Color;
     variant: keyof typeof ButtonBox.Variant;
+    mode: keyof typeof ButtonBox.Mode;
     size: keyof typeof ButtonBox.Size;
     disabled: boolean;
     bobble: boolean | number | string;
     level: keyof typeof ButtonBox.Level;
-    mode: keyof typeof ButtonBox.Mode;
     loading: boolean;
 }, {}>;
 export default _default;

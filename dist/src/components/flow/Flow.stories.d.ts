@@ -31,7 +31,7 @@ declare const _default: {
                 default: string;
             };
             toolbarDirection: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             acceleration: {
@@ -67,7 +67,7 @@ declare const _default: {
                 default: string;
             };
             toolbarDirection: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             acceleration: {
@@ -81,7 +81,7 @@ declare const _default: {
             toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.js").Flow.UI.Layout.Toolbar.Position;
-            toolbarDirection: "vertical" | "horizontal";
+            toolbarDirection: "horizontal" | "vertical";
             acceleration: WebGLPowerPreference;
         }, true, {}, {}, {
             P: {};
@@ -119,7 +119,7 @@ declare const _default: {
                 default: string;
             };
             toolbarDirection: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             acceleration: {
@@ -133,7 +133,7 @@ declare const _default: {
             toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.js").Flow.UI.Layout.Toolbar.Position;
-            toolbarDirection: "vertical" | "horizontal";
+            toolbarDirection: "horizontal" | "vertical";
             acceleration: WebGLPowerPreference;
         }>;
         __isFragment?: never;
@@ -168,7 +168,7 @@ declare const _default: {
             default: string;
         };
         toolbarDirection: {
-            type: import("vue").PropType<"vertical" | "horizontal">;
+            type: import("vue").PropType<"horizontal" | "vertical">;
             default: string;
         };
         acceleration: {
@@ -182,7 +182,7 @@ declare const _default: {
         toolbar: boolean;
         zoomable: boolean;
         toolbarPosition: import("./Flow.model.js").Flow.UI.Layout.Toolbar.Position;
-        toolbarDirection: "vertical" | "horizontal";
+        toolbarDirection: "horizontal" | "vertical";
         acceleration: WebGLPowerPreference;
     }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
         $slots: Readonly<{
@@ -284,7 +284,7 @@ export declare const Flow: {
                 default: string;
             };
             toolbarDirection: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             acceleration: {
@@ -320,7 +320,7 @@ export declare const Flow: {
                 default: string;
             };
             toolbarDirection: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             acceleration: {
@@ -334,7 +334,7 @@ export declare const Flow: {
             toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.js").Flow.UI.Layout.Toolbar.Position;
-            toolbarDirection: "vertical" | "horizontal";
+            toolbarDirection: "horizontal" | "vertical";
             acceleration: WebGLPowerPreference;
         }, true, {}, {}, {
             P: {};
@@ -372,7 +372,7 @@ export declare const Flow: {
                 default: string;
             };
             toolbarDirection: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             acceleration: {
@@ -386,7 +386,7 @@ export declare const Flow: {
             toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.js").Flow.UI.Layout.Toolbar.Position;
-            toolbarDirection: "vertical" | "horizontal";
+            toolbarDirection: "horizontal" | "vertical";
             acceleration: WebGLPowerPreference;
         }>;
         __isFragment?: never;
@@ -421,7 +421,7 @@ export declare const Flow: {
             default: string;
         };
         toolbarDirection: {
-            type: import("vue").PropType<"vertical" | "horizontal">;
+            type: import("vue").PropType<"horizontal" | "vertical">;
             default: string;
         };
         acceleration: {
@@ -435,7 +435,7 @@ export declare const Flow: {
         toolbar: boolean;
         zoomable: boolean;
         toolbarPosition: import("./Flow.model.js").Flow.UI.Layout.Toolbar.Position;
-        toolbarDirection: "vertical" | "horizontal";
+        toolbarDirection: "horizontal" | "vertical";
         acceleration: WebGLPowerPreference;
     }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
         $slots: Readonly<{
@@ -509,7 +509,7 @@ export declare const ActiveFlow: {
                 default: string;
             };
             toolbarDirection: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             acceleration: {
@@ -545,7 +545,7 @@ export declare const ActiveFlow: {
                 default: string;
             };
             toolbarDirection: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             acceleration: {
@@ -559,7 +559,7 @@ export declare const ActiveFlow: {
             toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.js").Flow.UI.Layout.Toolbar.Position;
-            toolbarDirection: "vertical" | "horizontal";
+            toolbarDirection: "horizontal" | "vertical";
             acceleration: WebGLPowerPreference;
         }, true, {}, {}, {
             P: {};
@@ -597,7 +597,7 @@ export declare const ActiveFlow: {
                 default: string;
             };
             toolbarDirection: {
-                type: import("vue").PropType<"vertical" | "horizontal">;
+                type: import("vue").PropType<"horizontal" | "vertical">;
                 default: string;
             };
             acceleration: {
@@ -611,7 +611,7 @@ export declare const ActiveFlow: {
             toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.js").Flow.UI.Layout.Toolbar.Position;
-            toolbarDirection: "vertical" | "horizontal";
+            toolbarDirection: "horizontal" | "vertical";
             acceleration: WebGLPowerPreference;
         }>;
         __isFragment?: never;
@@ -646,7 +646,7 @@ export declare const ActiveFlow: {
             default: string;
         };
         toolbarDirection: {
-            type: import("vue").PropType<"vertical" | "horizontal">;
+            type: import("vue").PropType<"horizontal" | "vertical">;
             default: string;
         };
         acceleration: {
@@ -660,7 +660,7 @@ export declare const ActiveFlow: {
         toolbar: boolean;
         zoomable: boolean;
         toolbarPosition: import("./Flow.model.js").Flow.UI.Layout.Toolbar.Position;
-        toolbarDirection: "vertical" | "horizontal";
+        toolbarDirection: "horizontal" | "vertical";
         acceleration: WebGLPowerPreference;
     }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
         $slots: Readonly<{
