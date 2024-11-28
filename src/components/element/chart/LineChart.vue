@@ -151,7 +151,7 @@ const plotPolyPaths = computed(() =>
                       :dy="`${index * 1.2}em`"
                       :x="
                         metric.normalized * (width - props.options.offset.x) +
-                        props.options.offset.x
+                          props.options.offset.x
                       "
                     >
                       {{ text }}
@@ -226,12 +226,12 @@ const plotPolyPaths = computed(() =>
                   :class="[$style['chart-area'], $style['legend-container']]"
                   :x="
                     plot.x.normalized * (width - props.options.offset.x) +
-                    props.options.offset.x +
-                    (index === 0 ? 0 : index === dataset.series.length - 1 ? -280 : -140)
+                      props.options.offset.x +
+                      (index === 0 ? 0 : index === dataset.series.length - 1 ? -280 : -140)
                   "
                   :y="
                     (1 - plot.y.normalized) * (height - props.options.offset.y) -
-                    (plot.y.normalized > 0.5 ? 0 : plot.y.normalized < 0.5 ? 220 : 110)
+                      (plot.y.normalized > 0.5 ? 0 : plot.y.normalized < 0.5 ? 220 : 110)
                   "
                   height="220"
                   width="280"
@@ -244,7 +244,7 @@ const plotPolyPaths = computed(() =>
                       <h1 :class="[$style['chart-area'], $style['legend-title']]">
                         {{ parser(plot.data, props.options.title) }}
                       </h1>
-                      <hr />
+                      <hr>
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
                       <template v-if="axis && plot[axisKey]">

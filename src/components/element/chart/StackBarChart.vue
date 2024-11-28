@@ -53,7 +53,7 @@ const data = computed(() =>
               <span>{{ plot.x.value }}</span>
               <span>{{ String(plot.y.value).padStart(3, '0') }}</span>
             </h1>
-            <hr />
+            <hr>
             <ul :class="[$style.wrapper, $style.flex, $style.vertical]">
               <template v-for="(axis, axisKey) in axises" :key="axisKey">
                 <template v-if="axis && plot[axisKey] && !['x', 'y'].includes(axisKey)">
