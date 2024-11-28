@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue/offline';
+
 import BaseLink from '@/components/base/BaseLink.vue';
 
 import type { BadgeBox } from './BadgeBox.model';
@@ -15,7 +17,10 @@ const props = withDefaults(defineProps<BadgeBox.Props>(), {
     :link="props.link"
   >
     <template v-if="props.label">
-      <label :class="$style['badge-label']">
+      <label :class="[$style['badge-label'], $style.wrapper, $style.flex, $style.horizontal]">
+        <template v-if="props.icon">
+          <Icon :class="$style.icon" :icon="props.icon" />
+        </template>
         <template v-if="props.delimiter && props.variant === 'capsule'">
           <template v-for="(text, index) in props.label.split(props.delimiter)" :key="index">
             <span>{{ text }}</span>
@@ -33,6 +38,8 @@ const props = withDefaults(defineProps<BadgeBox.Props>(), {
 </template>
 
 <style module scoped lang="scss">
+@use '@/assets/styles/modules/wrapper.module' as wrapper;
+
 .badge {
   &-container {
     position: relative;
@@ -87,6 +94,11 @@ const props = withDefaults(defineProps<BadgeBox.Props>(), {
         &-label {
           padding: var(--agh-ref-spacing-75) var(--agh-ref-spacing-300);
 
+          > .icon {
+            align-self: center;
+            margin-right: var(--agh-ref-spacing-75);
+          }
+
           &:first-child:not(:last-child) {
             background-color: var(--fill-secondary);
             color: var(--text-secondary);
@@ -95,6 +107,7 @@ const props = withDefaults(defineProps<BadgeBox.Props>(), {
           span {
             &:last-child:not(:first-child) {
               font: var(--agh-sys-typeface-label-hl-small);
+              align-self: end;
 
               &::before {
                 content: v-bind('`"${props.delimiter}"`');

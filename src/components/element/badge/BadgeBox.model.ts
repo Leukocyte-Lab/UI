@@ -5,6 +5,7 @@ export namespace BadgeBox {
   export interface Props {
     label: string;
     content?: string;
+    icon?: string;
     delimiter?: string;
     color?: Color;
     variant?: Variant;
