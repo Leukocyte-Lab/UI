@@ -92,6 +92,8 @@ const props = withDefaults(defineProps<BadgeBox.Props>(), {
         }
 
         &-label {
+          --wrapper-gap: var(--badge-box-wrapper-gap, 0);
+
           padding: var(--agh-ref-spacing-75) var(--agh-ref-spacing-300);
 
           > .icon {
