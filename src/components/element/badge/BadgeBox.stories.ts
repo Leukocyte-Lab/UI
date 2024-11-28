@@ -62,9 +62,30 @@ export const CapsuleBadgeBox: BadgeBox$ = {
   }
 };
 
+export const CapsuleBadgeBoxWithIcon: BadgeBox$ = {
+  args: {
+    label: 'T1071.001',
+    content: 'Web Protocols',
+    icon: 'fa6-solid:skull',
+    delimiter: '.',
+    variant: 'capsule',
+    color: 'purple'
+  }
+};
+
 export const CapsuleLabelOnlyBadgeBox: BadgeBox$ = {
   args: {
     label: 'T1071.001',
+    variant: 'capsule',
+    delimiter: '.',
+    color: 'purple'
+  }
+};
+
+export const CapsuleLabelOnlyBadgeBoxWithIcon: BadgeBox$ = {
+  args: {
+    label: 'T1071.001',
+    icon: 'fa6-solid:skull',
     variant: 'capsule',
     delimiter: '.',
     color: 'purple'
