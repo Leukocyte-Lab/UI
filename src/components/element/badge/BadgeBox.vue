@@ -53,22 +53,22 @@ const props = withDefaults(defineProps<BadgeBox.Props>(), {
 
     @each $color in $colors {
       &.color-#{$color} {
-        --fill-primary: var(--agh-ref-color-grayscale-200);
-        --fill-secondary: var(--agh-ref-color-grayscale-700);
-        --text-primary: var(--agh-ref-color-grayscale-700);
-        --text-secondary: var(--agh-ref-color-grayscale-100);
+        --fill-primary: var(--badge-box-fill-primary, var(--agh-ref-color-grayscale-200));
+        --fill-secondary: var(--badge-box-fill-secondary, var(--agh-ref-color-grayscale-700));
+        --text-primary: var(--badge-box-text-primary, var(--agh-ref-color-grayscale-700));
+        --text-secondary: var(--badge-box-text-secondary, var(--agh-ref-color-grayscale-100));
 
         &.tab {
-          --text-secondary: var(--agh-ref-color-grayscale-700);
+          --text-secondary: var(--badge-box-text-secondary, var(--agh-ref-color-grayscale-700));
         }
 
         @if $color != 'default' {
-          --fill-primary: var(--agh-ref-color-#{$color}-100);
-          --fill-secondary: var(--agh-ref-color-#{$color}-600);
-          --text-primary: var(--agh-ref-color-#{$color}-800);
+          --fill-primary: var(--badge-box-fill-primary, var(--agh-ref-color-#{$color}-100));
+          --fill-secondary: var(--badge-box-fill-secondary, var(--agh-ref-color-#{$color}-600));
+          --text-primary: var(--badge-box-text-primary, var(--agh-ref-color-#{$color}-800));
 
           &.tab {
-            --text-secondary: var(--agh-ref-color-#{$color}-700);
+            --text-secondary: var(--badge-box-text-secondary, var(--agh-ref-color-#{$color}-700));
           }
         }
 
