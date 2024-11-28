@@ -17,13 +17,15 @@ const props = withDefaults(defineProps<Chart.Props>(), {
   })
 });
 
+const $datasets = computed(() => props.datasets);
+const $axises = computed(() => props.axises);
 const gap = computed(() =>
   props.options.gap ? `${props.options.gap}px` : 'var(--agh-ref-spacing-25)'
 );
 const { datasets } = useChart({
   type: 'doughnut',
-  data: props.datasets,
-  axises: props.axises
+  data: $datasets,
+  axises: $axises
 });
 
 const data = computed(() =>
@@ -51,7 +53,7 @@ const data = computed(() =>
               <span>{{ plot.x.value }}</span>
               <span>{{ String(plot.y.value).padStart(3, '0') }}</span>
             </h1>
-            <hr>
+            <hr />
             <ul :class="[$style.wrapper, $style.flex, $style.vertical]">
               <template v-for="(axis, axisKey) in axises" :key="axisKey">
                 <template v-if="axis && plot[axisKey] && !['x', 'y'].includes(axisKey)">

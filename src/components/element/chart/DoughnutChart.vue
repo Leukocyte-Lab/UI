@@ -20,13 +20,14 @@ const props = withDefaults(defineProps<Chart.Props>(), {
     radius: 0
   })
 });
-
+const $datasets = computed(() => props.datasets);
+const $axises = computed(() => props.axises);
 const wrapperRef$ = ref<HTMLElement>();
 const { width, height } = useElementSize(wrapperRef$);
 const { axises, datasets } = useChart({
   type: 'doughnut',
-  data: props.datasets,
-  axises: props.axises
+  data: $datasets,
+  axises: $axises
 });
 
 const radius = computed(() =>
@@ -159,7 +160,7 @@ const normalizedDatasets = computed(() =>
                       >
                         <span>{{ plot.x.value }}</span>
                       </h1>
-                      <hr>
+                      <hr />
                     </template>
                     <template v-for="(axis, axisKey) in axises" :key="axisKey">
                       <template v-if="!/(x)/.test(axisKey) && axis && plot[axisKey]">

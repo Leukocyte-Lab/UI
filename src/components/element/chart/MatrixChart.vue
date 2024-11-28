@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { delay } from 'lodash-es';
-import { computed,onMounted, ref, toRefs } from 'vue';
-import { computedEager, useCssVar, useResizeObserver } from '@vueuse/core';
+import { computed, onMounted, ref } from 'vue';
+import { useCssVar, useResizeObserver } from '@vueuse/core';
 
 import { useChart } from './chart';
 
@@ -12,13 +12,15 @@ import type { Chart } from '@/components/element/chart/chart.model';
 
 const props = defineProps<Chart.Props>();
 
+const $datasets = computed(() => props.datasets);
+const $axises = computed(() => props.axises);
 const { axises, datasets } = useChart({
   type: 'matrix',
-  data: toRefs(props).datasets,
-  axises: toRefs(props).axises
+  data: $datasets,
+  axises: $axises
 });
 
-const TotalCells = computedEager(() => axises.value.y.step as number);
+const TotalCells = computed(() => axises.value.y.step as number);
 
 const formatDatasets = computed(() =>
   datasets.value[0].series.map((item) => {
