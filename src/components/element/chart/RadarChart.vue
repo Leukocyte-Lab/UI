@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { delay } from 'lodash-es';
-import { computed, onMounted, ref, toRefs } from 'vue';
-import { computedEager, useCssVar,useElementSize } from '@vueuse/core';
+import { computed, onMounted, ref } from 'vue';
+import { useCssVar, useElementSize } from '@vueuse/core';
 
 import { useChart } from './chart';
 
@@ -26,20 +26,23 @@ const props = withDefaults(defineProps<Chart.Props>(), {
 
 const wrapperRef$ = ref<HTMLElement>();
 const { width, height } = useElementSize(wrapperRef$);
+
+const $datasets = computed(() => props.datasets);
+const $axises = computed(() => props.axises);
 const { axises, datasets } = useChart({
   type: 'radar',
-  data: toRefs(props).datasets,
-  axises: toRefs(props).axises
+  data: $datasets,
+  axises: $axises
 });
 
-const radius = computedEager(() =>
+const radius = computed(() =>
   Math$.clamp(
     Math$.min(width.value - props.options.offset.x, height.value - props.options.offset.y) / 2,
     0,
     Infinity
   )
 );
-const center = computedEager<Vector<'x' | 'y'>>(() => ({
+const center = computed<Vector<'x' | 'y'>>(() => ({
   x: width.value / 2,
   y: height.value / 2
 }));
@@ -83,7 +86,7 @@ const plotPolyPaths = computed(() =>
     : []
 );
 
-const axisPath = computedEager(() =>
+const axisPath = computed(() =>
   radius.value > 0 && axises.value.x.metrics
     ? `M ${center.value.x} ${center.value.y}
       ${axises.value.x.metrics

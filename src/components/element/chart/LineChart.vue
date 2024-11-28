@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, toRefs } from 'vue';
-import { computedEager, useElementSize } from '@vueuse/core';
+import { computed, ref } from 'vue';
+import { useElementSize } from '@vueuse/core';
 
 import { useChart } from './chart';
 
@@ -21,15 +21,17 @@ const props = withDefaults(defineProps<Chart.Props>(), {
   })
 });
 
+const $datasets = computed(() => props.datasets);
+const $axises = computed(() => props.axises);
 const wrapperRef$ = ref<HTMLElement>();
 const { width, height } = useElementSize(wrapperRef$);
 const { axises, datasets } = useChart({
   type: 'line',
-  data: toRefs(props).datasets,
-  axises: toRefs(props).axises
+  data: $datasets,
+  axises: $axises
 });
 
-const axisPath = computedEager(() =>
+const axisPath = computed(() =>
   axises.value?.x?.metrics &&
   axises.value?.y?.metrics &&
   height.value &&
@@ -72,7 +74,7 @@ const axisPath = computedEager(() =>
     : ''
 );
 
-const plotPolyPaths = computedEager(() =>
+const plotPolyPaths = computed(() =>
   axisPath.value && datasets
     ? datasets.value.map((dataset) => ({
         ...dataset,
@@ -85,35 +87,35 @@ const plotPolyPaths = computedEager(() =>
                       props.options.offset.x
                     } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)}`
                   : props.options.curve === 'smooth'
-                  ? index === 1
-                    ? `C ${
-                        dataset.series[index - 1].x.normalized *
-                          (width.value - props.options.offset.x) +
-                        props.options.offset.x +
-                        (width.value / dataset.series.length) * props.options.radius!
-                      } ${
-                        (1 - dataset.series[index - 1].y.normalized) *
-                        (height.value - props.options.offset.y)
-                      } ${
-                        plot.x.normalized * (width.value - props.options.offset.x) +
-                        props.options.offset.x -
-                        (width.value / dataset.series.length) * props.options.radius!
-                      } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)} ${
+                    ? index === 1
+                      ? `C ${
+                          dataset.series[index - 1].x.normalized *
+                            (width.value - props.options.offset.x) +
+                          props.options.offset.x +
+                          (width.value / dataset.series.length) * props.options.radius!
+                        } ${
+                          (1 - dataset.series[index - 1].y.normalized) *
+                          (height.value - props.options.offset.y)
+                        } ${
+                          plot.x.normalized * (width.value - props.options.offset.x) +
+                          props.options.offset.x -
+                          (width.value / dataset.series.length) * props.options.radius!
+                        } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)} ${
+                          plot.x.normalized * (width.value - props.options.offset.x) +
+                          props.options.offset.x
+                        } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)}`
+                      : `S ${
+                          plot.x.normalized * (width.value - props.options.offset.x) +
+                          props.options.offset.x -
+                          (width.value / dataset.series.length) * props.options.radius!
+                        } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)} ${
+                          plot.x.normalized * (width.value - props.options.offset.x) +
+                          props.options.offset.x
+                        } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)}`
+                    : `L ${
                         plot.x.normalized * (width.value - props.options.offset.x) +
                         props.options.offset.x
                       } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)}`
-                    : `S ${
-                        plot.x.normalized * (width.value - props.options.offset.x) +
-                        props.options.offset.x -
-                        (width.value / dataset.series.length) * props.options.radius!
-                      } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)} ${
-                        plot.x.normalized * (width.value - props.options.offset.x) +
-                        props.options.offset.x
-                      } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)}`
-                  : `L ${
-                      plot.x.normalized * (width.value - props.options.offset.x) +
-                      props.options.offset.x
-                    } ${(1 - plot.y.normalized) * (height.value - props.options.offset.y)}`
               )
               .join('\n')}`
       }))

@@ -17,13 +17,15 @@ const props = withDefaults(defineProps<Chart.Props>(), {
   })
 });
 
+const $datasets = computed(() => props.datasets);
+const $axises = computed(() => props.axises);
 const gap = computed(() =>
   props.options.gap ? `${props.options.gap}px` : 'var(--agh-ref-spacing-25)'
 );
 const { datasets } = useChart({
   type: 'doughnut',
-  data: props.datasets,
-  axises: props.axises
+  data: $datasets,
+  axises: $axises
 });
 
 const data = computed(() =>
