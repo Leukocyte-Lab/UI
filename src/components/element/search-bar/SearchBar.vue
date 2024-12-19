@@ -33,14 +33,20 @@ const closeMenu = signal(false);
 const onSelect = (option?: T) => {
   if (!option) return;
 
-  query.value = valuesGetter(option, props.fields.title ?? props.fields.key, true) ?? '';
+  query.value =
+    (props.fields?.title ?? props.fields?.key)
+      ? (valuesGetter(option, props.fields?.title ?? props.fields?.key ?? '', true) ?? '')
+      : String(option);
   emits('select', option);
   closeMenu.set(true);
 };
 
 const { result } = useSearch(options, {
   query,
-  getters: props.fields.searchKeys ?? [props.fields.key, props.fields.title ?? ''].filter(Boolean),
+  getters:
+    props.fields?.searchKeys ??
+    [props.fields?.key ?? '', props.fields?.title ?? ''].filter(Boolean) ??
+    ((option: unknown) => String(option)),
   options: {
     caseSensitive: props.caseSensitive,
     phraseSearch: props.phraseSearch,

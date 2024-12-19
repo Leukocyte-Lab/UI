@@ -55,7 +55,11 @@ const selectedFields = computed(() =>
 
 const { result, reset: clearSearch } = useSearch(options, {
   query: searchQuery,
-  getters: props.fields.searchKeys ?? [props.fields.key, props.fields.title ?? ''].filter(Boolean),
+  getters:
+    props.fields?.searchKeys ??
+    ((props.fields?.key ?? props.fields?.title)
+      ? [props.fields?.key ?? '', props.fields?.title ?? ''].filter(Boolean)
+      : [(option: unknown) => String(option)]),
   options: props.useSearch
     ? ({
         caseSensitive: props.caseSensitive,
@@ -129,9 +133,9 @@ const fieldParser = (option: T): SelectMenu.Option<T>['field'] => ({
       valuesGetter(option, getter, true)
     ])
   ),
-  key: valuesGetter(option, props.fields.key),
+  key: props.fields?.key ? valuesGetter(option, props.fields.key) : String(option),
   group: props.groupBy ? (valuesGetter(option, props.groupBy, true) ?? '') : '',
-  disabled: props.fields.disabled
+  disabled: props.fields?.disabled
     ? (booleanGetter(option, props.fields.disabled, true) ?? false) || false
     : false
 });
@@ -266,19 +270,17 @@ defineExpose({
                     :icon="selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
                   />
                 </template>
-                <template v-if="props.fields.icon">
+                <template v-if="props.fields?.icon">
                   <Icon :class="$style['menu-option-icon']" :icon="field.icon ?? ''" />
                 </template>
                 <div :class="$style['menu-option-group']">
-                  <template
-                    v-for="(context, key) in omit(field, ['key', 'icon', 'disabled', 'group'])"
-                    :key="`option-field-${key}`"
-                  >
-                    <template v-if="context">
-                      <p :class="$style['menu-field']">
-                        {{ context }}
-                      </p>
-                    </template>
+                  <p :class="$style['menu-field']">
+                    {{ field.title || field.key }}
+                  </p>
+                  <template v-if="field.content">
+                    <p :class="$style['menu-field']">
+                      {{ field.content }}
+                    </p>
                   </template>
                 </div>
               </div>

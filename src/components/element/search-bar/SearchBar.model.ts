@@ -10,8 +10,8 @@ export namespace SearchBar {
   export type ValuesGetter<T extends AcceptableValue, R> = GetterFn<R, [T], true> | string;
 
   export type Fields<T extends AcceptableValue = ObjectLike> = {
-    key: GetterFn<string, [T]> | string;
-    searchKeys: ValuesGetter<T, string>[];
+    key?: GetterFn<string, [T]> | string;
+    searchKeys?: ValuesGetter<T, string>[];
     title?: ValuesGetter<T, string>;
     content?: ValuesGetter<T, string>;
     icon?: ValuesGetter<T, string>;
@@ -32,7 +32,7 @@ export namespace SearchBar {
     | 'tabindex'
   > &
     Search.Options & {
-      fields: Fields<T>;
+      fields?: Fields<T>;
       groupBy?: ValuesGetter<T, string>;
       modelValue?: string; // query, use by `v-model`;
     } & (

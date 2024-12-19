@@ -10,7 +10,7 @@ export namespace DropDown {
   export type ValuesGetter<T extends AcceptableValue, R> = GetterFn<R, [T], true> | string;
 
   export type Fields<T extends AcceptableValue = ObjectLike> = {
-    key: GetterFn<string, [T]> | string;
+    key?: GetterFn<string, [T]> | string;
     searchKeys?: ValuesGetter<T, string>[];
     title?: ValuesGetter<T, string>;
     content?: ValuesGetter<T, string>;
@@ -25,7 +25,7 @@ export namespace DropDown {
     variant?: keyof typeof ButtonBoxNS.Variant;
     placeholder?: string;
     disabled?: boolean;
-    fields: Fields<T>;
+    fields?: Fields<T>;
     groupBy?: ValuesGetter<T, string>;
     label?: string;
     persist?: boolean;

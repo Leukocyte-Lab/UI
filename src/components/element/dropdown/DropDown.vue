@@ -62,11 +62,11 @@ const label = computed(() =>
           ? (props.label ?? props.placeholder)
           : (props.placeholder ?? props.label)
         : ((props.modelValue &&
-            (props.fields.title
+            (props.fields?.title
               ? valuesGetter(props.modelValue as T, props.fields.title, true)
-              : props.fields.key
+              : props.fields?.key
                 ? valuesGetter(props.modelValue as T, props.fields.key, true)
-                : undefined)) ??
+                : String(props.modelValue))) ??
           props.label ??
           props.placeholder))
 );
@@ -75,7 +75,7 @@ const icon = computed(
     ((props.variant.includes('square') || props.labelShowAs === 'icon') &&
     !props.multiple &&
     selection.value
-      ? props.modelValue && props.fields.icon
+      ? props.modelValue && props.fields?.icon
         ? valuesGetter(props.modelValue as T, props.fields.icon, true)
         : undefined
       : undefined) || (onShowMenu() ? 'fa6-solid:chevron-up' : 'fa6-solid:chevron-down')
