@@ -124,6 +124,27 @@ export const DefaultSelectMenu: DefaultMenu$ = {
   }
 };
 
+export const SimpleArrayMenu: DefaultMenu$ = {
+  args: {
+    options: ['Option 1', 'Option 2', 'Option 3']
+  }
+};
+
+export const SimpleArrayWithMultiSelectMenu: DefaultMenu$ = {
+  args: {
+    options: ['Option 1', 'Option 2', 'Option 3'],
+    label: 'Select Options',
+    multiple: true
+  }
+};
+
+export const SimpleArrayWithSearchMenu: DefaultMenu$ = {
+  args: {
+    options: ['Option 1', 'Option 2', 'Option 3'],
+    useSearch: true
+  }
+};
+
 export const SingleSelectMenu: DefaultMenu$ = {
   args: {
     ...DefaultSelectMenu.args,

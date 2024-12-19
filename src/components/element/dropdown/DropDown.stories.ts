@@ -188,6 +188,13 @@ export const TertiaryDropDown: DropDown$ = {
   }
 };
 
+export const SimpleArrayDropDown: DropDown$ = {
+  args: {
+    options: ['Option 1', 'Option 2', 'Option 3'],
+    placeholder: 'Select an Option'
+  }
+};
+
 export const RectDropDown: DropDown$ = {
   args: {
     ...DefaultDropDown.args,
