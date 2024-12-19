@@ -19,7 +19,8 @@ import type { Search } from '@/shared/libs/search';
 
 defineSlots<{
   'clear-selection'?: (props: { clearSelection: () => void }) => VNode;
-  'empty-placeholder'?: (props: { groupName: string | number }) => VNode;
+  'empty-placeholder'?: (props: { groupName?: string | number }) => VNode;
+  'no-match-placeholder'?: (props: { groupName?: string | number }) => VNode;
 }>();
 
 const props = defineProps<SelectMenu.Props<T>>();
@@ -287,13 +288,27 @@ defineExpose({
             </template>
           </template>
           <div :class="$style['menu-group-placeholder']">
-            <slot :group-name="name" name="empty-placeholder">
-              <p>{{ props.alterStr?.noData || 'No Data' }}</p>
+            <slot :group-name="name" name="no-match-placeholder">
+              <p>{{ props.alterStr?.noMatched || 'No Matched Data' }}</p>
             </slot>
           </div>
         </div>
       </template>
     </div>
+    <template v-if="options.size === 0">
+      <div :class="$style['menu-placeholder']">
+        <slot name="empty-placeholder">
+          <p>{{ props.alterStr?.noData || 'No Data' }}</p>
+        </slot>
+      </div>
+    </template>
+    <template v-else-if="props.useSearch && !props.showAll && result.size === 0">
+      <div :class="$style['menu-placeholder']">
+        <slot name="no-match-placeholder">
+          <p>{{ props.alterStr?.noMatched || 'No Matched Data' }}</p>
+        </slot>
+      </div>
+    </template>
   </CardBox>
 </template>
 
@@ -303,6 +318,8 @@ defineExpose({
 
 .menu {
   &-container {
+    --menu-padding: var(--agh-ref-spacing-100);
+
     position: relative;
     box-sizing: border-box;
     display: flex;
@@ -310,24 +327,19 @@ defineExpose({
     width: var(--agh-sys-list-dropdown-small);
     height: fit-content;
     max-height: calc(var(--agh-sys-list-dropdown-small) * 2);
-    padding: 0 var(--agh-ref-spacing-100);
+    padding: 0 var(--menu-padding);
     box-shadow: var(--agh-sys-effects-shadow-pop-up);
     overflow: hidden;
 
     > :first-child {
-      margin-top: var(--agh-ref-spacing-100);
+      margin-top: var(--menu-padding);
     }
 
     &.classify {
-      padding: 0 var(--agh-ref-spacing-300);
+      --menu-padding: var(--agh-ref-spacing-300);
 
       > .menu-header {
-        margin-bottom: var(--agh-ref-spacing-400);
         padding: 0;
-      }
-
-      > :first-child {
-        margin-top: var(--agh-ref-spacing-300);
       }
     }
   }
@@ -337,7 +349,7 @@ defineExpose({
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--agh-ref-spacing-200);
+    margin-bottom: calc(var(--agh-ref-spacing-50) + var(--menu-padding));
     padding: var(--agh-ref-spacing-100);
 
     > .title {
@@ -353,7 +365,14 @@ defineExpose({
   &-search {
     width: 100%;
     height: 28px; // TODO: Missing token
-    margin-bottom: var(--agh-ref-spacing-400);
+    margin-bottom: calc(var(--agh-ref-spacing-50) + var(--menu-padding));
+  }
+
+  &-placeholder {
+    color: var(--agh-ref-color-grayscale-600);
+    font: var(--agh-sys-typeface-label-default-large);
+    padding: var(--menu-padding) var(--agh-ref-spacing-50);
+    margin-top: calc(var(--menu-padding) * -1);
   }
 
   &-wrapper {

@@ -33,6 +33,7 @@ export namespace SelectMenu {
   export type AlterStr = {
     clearSelection?: string;
     noData?: string;
+    noMatched?: string;
   }
 
   export type Props<T extends AcceptableValue = ObjectLike> = {
