@@ -31,6 +31,14 @@ const meta: GenericMeta<typeof DropDown<DropDownNS.AcceptableValue>> = {
       control: 'text',
       description: 'Search query.'
     },
+    newOptionValue: {
+      if: {
+        arg: 'useCreate',
+        eq: true
+      },
+      control: 'text',
+      description: 'Value for creating new option.'
+    },
     label: {
       control: 'text',
       description: 'DropDown label (optional)'
@@ -93,11 +101,25 @@ const meta: GenericMeta<typeof DropDown<DropDownNS.AcceptableValue>> = {
       control: 'boolean',
       description: 'Always show all options when search is enabled.'
     },
+    createInProgress: {
+      if: {
+        arg: 'useCreate',
+        eq: true
+      },
+      control: 'boolean',
+      description: 'Create in progress (optional)'
+    },
     'onUpdate:modelValue': {
       action: 'selected'
     },
     'onUpdate:query': {
       action: 'search'
+    },
+    'onUpdate:newOptionValue': {
+      action: 'newOptionValue'
+    },
+    'onCreate': {
+      action: 'create'
     }
   },
   args: {
@@ -105,7 +127,9 @@ const meta: GenericMeta<typeof DropDown<DropDownNS.AcceptableValue>> = {
     labelShowAs: 'auto',
     menuPosition: 'bottom-right',
     'onUpdate:modelValue': fn(),
-    'onUpdate:query': fn()
+    'onUpdate:query': fn(),
+    'onUpdate:newOptionValue': fn(),
+    'onCreate': fn()
   }
 };
 
@@ -174,6 +198,14 @@ export const DefaultDropDownWithDefaultSelected: DropDown$ = {
   }
 };
 
+export const DefaultDropDownWithCreateAbility: DropDown$ = {
+  args: {
+    ...DefaultDropDown.args,
+    useCreate: true,
+    createPlaceholder: 'Enter New Option...'
+  }
+};
+
 export const SecondaryDropDown: DropDown$ = {
   args: {
     ...DefaultDropDown.args,
@@ -215,6 +247,16 @@ export const TertiaryRectDropDown: DropDown$ = {
     ...DefaultDropDown.args,
     variant: 'rect',
     level: 'tertiary'
+  }
+};
+
+export const RectDropDownWithCreateAbility: DropDown$ = {
+  args: {
+    ...DefaultDropDown.args,
+    variant: 'rect',
+    level: 'tertiary',
+    useCreate: true,
+    createPlaceholder: 'Enter New Option...'
   }
 };
 
