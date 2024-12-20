@@ -77,6 +77,16 @@ export default meta;
 
 type DefaultMenu$ = StoryObj<typeof SelectMenu>;
 
+const createStoryRender = (template: string) => ({
+  render: (args: DefaultMenu$['args']) => ({
+    components: { SelectMenu },
+    setup() {
+      return { args };
+    },
+    template
+  })
+});
+
 export const DefaultSelectMenu: DefaultMenu$ = {
   args: {
     options: [
@@ -374,12 +384,7 @@ export const SelectMenuWithCustomText: DefaultMenu$ = {
 };
 
 export const SelectMenuWithCustomGadgetSlots: DefaultMenu$ = {
-  render: (args) => ({
-    components: { SelectMenu },
-    setup() {
-      return { args };
-    },
-    template: `
+  ...createStoryRender(`
       <SelectMenu v-bind="args">
         <template #empty-placeholder="{ groupName }">
           <div>No data here!</div>
@@ -391,8 +396,7 @@ export const SelectMenuWithCustomGadgetSlots: DefaultMenu$ = {
           <div style="padding: 16px; border: 1px dashed #888; border-radius: 8px;">No matched data found for group:<br /><em><strong>{{ groupName }}</strong></em></div>
         </template>
       </SelectMenu>
-    `
-  }),
+    `),
   args: {
     ...MultiWithSubtitleSelectMenu.args,
     fields: {
@@ -409,12 +413,7 @@ export const SelectMenuWithCustomGadgetSlots: DefaultMenu$ = {
 };
 
 export const SelectMenuWithCustomLayoutSlots: DefaultMenu$ = {
-  render: (args) => ({
-    components: { SelectMenu },
-    setup() {
-      return { args };
-    },
-    template: `
+  ...createStoryRender(`
       <SelectMenu v-bind="args">
         <template
           #header="{ selection, multiple, useSearch, searchQuery, result, label, clearSelection }"
@@ -461,8 +460,7 @@ export const SelectMenuWithCustomLayoutSlots: DefaultMenu$ = {
           <div style="padding: 16px; border: 1px dashed #888; border-radius: 8px;">No matched data found for group:<br /><em><strong>{{ groupName }}</strong></em></div>
         </template>
       </SelectMenu>
-    `
-  }),
+    `),
   args: {
     ...MultiWithSubtitleSelectMenu.args,
     fields: {
