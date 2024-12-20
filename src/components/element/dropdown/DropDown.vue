@@ -261,6 +261,7 @@ defineExpose({
           @click="createItemHandler"
           :class="$style.button"
           :clicked="props.createInProgress"
+          :disabled="createItemValidityState?.valid !== true || !newOptionValue"
           :icon="props.createInProgress ? '' : 'fa6-solid:check'"
           :loading="props.createInProgress"
           size="small"
