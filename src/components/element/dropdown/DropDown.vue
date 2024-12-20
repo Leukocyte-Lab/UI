@@ -13,8 +13,33 @@ import { signal, toggleSignal } from '@/shared/libs/signal';
 import type { DropDown } from '@/components/element/dropdown/DropDown.model';
 
 const slots = defineSlots<{
+  default?: (props: {
+    index: string | number;
+    multiple: boolean;
+    option: DropDown.Option<T>;
+    clearSelection: () => void;
+  }) => VNode;
+  header?: (props: {
+    selection: DropDown.Props<T>['modelValue'];
+    multiple: boolean;
+    useSearch?: boolean;
+    searchQuery?: string;
+    result?: Map<string | number, T>;
+    label?: string;
+    clearSelection: () => void;
+  }) => VNode;
+  footer?: (props: {
+    selection: DropDown.Props<T>['modelValue'];
+    multiple: boolean;
+    useSearch?: boolean;
+    searchQuery?: string;
+    result?: Map<string | number, T>;
+    label?: string;
+    clearSelection: () => void;
+  }) => VNode;
   'clear-selection'?: (props: { clearSelection: () => void }) => VNode;
-  'empty-placeholder'?: (props: { groupName: string | number }) => VNode;
+  'empty-placeholder'?: (props: { groupName?: string | number }) => VNode;
+  'no-match-placeholder'?: (props: { groupName?: string | number }) => VNode;
 }>();
 
 const props = withDefaults(defineProps<DropDown.Props<T>>(), {
@@ -142,6 +167,7 @@ defineExpose({
         @select:fields="selectedFields = $event"
         :alter-str="props.alterStr"
         :case-sensitive="props.caseSensitive"
+        </template>
         :class="[$style['dropdown-menu'], $style[props.menuPosition]]"
         :fields="props.fields"
         :group-by="props.groupBy"
@@ -166,6 +192,139 @@ defineExpose({
         </template>
         <template v-if="slots['empty-placeholder']" #empty-placeholder="{ groupName }">
           <slot :group-name="groupName" name="empty-placeholder" />
+        </template>
+        <template v-if="slots['no-match-placeholder']" #no-match-placeholder="{ groupName }">
+          <slot :group-name="groupName" name="no-match-placeholder" />
+        </template>
+        <template
+          v-if="slots.header"
+          #header="{ selection, multiple, useSearch, searchQuery, result, label }"
+        >
+          <slot
+            :clear-selection="clearSelection"
+            :label="label"
+            :multiple="multiple"
+            :result="result"
+            :search-query="searchQuery"
+            :selection="selection"
+            :use-search="useSearch"
+            name="header"
+          />
+        </template>
+        <template v-if="slots.default" #default="{ index, multiple, option }">
+          <slot
+            :clear-selection="clearSelection"
+            :index="index"
+            :multiple="multiple"
+            :option="option"
+          />
+        </template>
+        <template
+          v-if="slots.footer || props.useCreate"
+          #footer="{ selection, multiple, useSearch, searchQuery, result, label }"
+        >
+          <slot
+            :clear-selection="clearSelection"
+            :label="label"
+            :multiple="multiple"
+            :result="result"
+            :search-query="searchQuery"
+            :selection="selection"
+            :use-search="useSearch"
+            name="footer"
+          />
+        </template>
+        :class="[$style['dropdown-menu'], $style[props.menuPosition]]"
+        :fields="props.fields"
+        :group-by="props.groupBy"
+        :label="props.label"
+        :limit="props.limit"
+        :multiple="props.multiple"
+        :options="props.options"
+        :phrase-search="props.phraseSearch"
+        :relevant-search="props.relevantSearch"
+        :segment-pattern="props.segmentPattern"
+        :show-all="props.showAll"
+        :sort-by="props.sortBy"
+        :strict="props.strict"
+        :threshold="props.threshold"
+        :use-search="props.useSearch"
+      >
+        <template
+          v-if="slots['clear-selection']"
+          #clear-selection="{ clearSelection: clearMenuSelection }"
+        >
+          <slot :clear-selection="clearMenuSelection" name="clear-selection" />
+        </template>
+        <template v-if="slots['empty-placeholder']" #empty-placeholder="{ groupName }">
+          <slot :group-name="groupName" name="empty-placeholder" />
+        </template>
+        <template v-if="slots['no-match-placeholder']" #no-match-placeholder="{ groupName }">
+          <slot :group-name="groupName" name="no-match-placeholder" />
+        </template>
+        <template
+          v-if="slots.header"
+          #header="{ selection, multiple, useSearch, searchQuery, result, label }"
+        >
+          <slot
+            :clear-selection="clearSelection"
+            :label="label"
+            :multiple="multiple"
+            :result="result"
+            :search-query="searchQuery"
+            :selection="selection"
+            :use-search="useSearch"
+            name="header"
+          />
+        </template>
+        <template v-if="slots.default" #default="{ index, multiple, option }">
+          <slot
+            :clear-selection="clearSelection"
+            :index="index"
+            :multiple="multiple"
+            :option="option"
+          />
+        </template>
+        <template
+          v-if="slots.footer || props.useCreate"
+          #footer="{ selection, multiple, useSearch, searchQuery, result, label }"
+        >
+          <slot
+            :clear-selection="clearSelection"
+            :label="label"
+            :multiple="multiple"
+            :result="result"
+            :search-query="searchQuery"
+            :selection="selection"
+            :use-search="useSearch"
+            name="footer"
+          />
+        </template>
+        :class="[$style['dropdown-menu'], $style[props.menuPosition]]"
+        :fields="props.fields"
+        :group-by="props.groupBy"
+        :label="props.label"
+        :limit="props.limit"
+        :multiple="props.multiple"
+        :options="props.options"
+        :phrase-search="props.phraseSearch"
+        :relevant-search="props.relevantSearch"
+        :segment-pattern="props.segmentPattern"
+        :show-all="props.showAll"
+        :sort-by="props.sortBy"
+        :strict="props.strict"
+        :threshold="props.threshold"
+        :use-search="props.useSearch"
+      >
+        <template
+          v-if="slots['clear-selection']"
+          #clear-selection="{ clearSelection: clearMenuSelection }"
+        >
+          <slot :clear-selection="clearMenuSelection" name="clear-selection" />
+        </template>
+        <template v-if="slots['empty-placeholder']" #empty-placeholder="{ groupName }">
+          <slot :group-name="groupName" name="empty-placeholder" />
+        </template>
         </template>
       </SelectMenu>
     </template>
