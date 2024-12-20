@@ -396,7 +396,7 @@ defineExpose({
     --menu-padding: var(--agh-ref-spacing-100);
     --wrapper-gap: var(--menu-padding);
 
-    &:has(> header > .menu-search) {
+    &:has(> header > .menu-search):not(.classify) {
       --wrapper-gap: 0;
     }
 
@@ -422,12 +422,6 @@ defineExpose({
           & + * {
             padding-top: calc(var(--menu-padding)) !important;
           }
-        }
-      }
-
-      .menu-group {
-        &::before {
-          margin-top: var(--menu-padding);
         }
       }
     }
@@ -483,6 +477,8 @@ defineExpose({
   }
 
   &-wrapper {
+    --menu-bottom-offset: var(--box-border-width);
+
     @include scrollbar.use($offset: var(--agh-ref-spacing-200));
 
     overflow-y: auto;
@@ -492,6 +488,14 @@ defineExpose({
       border-right: calc(var(--agh-ref-border-width-200) + var(--agh-ref-spacing-200) / 2) solid
         transparent;
       padding-right: calc(var(--agh-ref-spacing-200) + var(--menu-padding));
+    }
+
+    &:has(+ *) {
+      --menu-bottom-offset: 0px;
+    }
+
+    & + * {
+      margin-top: calc(var(--wrapper-gap) * -1);
     }
   }
 
@@ -572,10 +576,10 @@ defineExpose({
     }
 
     &:last-child {
-      margin-bottom: calc(var(--agh-ref-spacing-100) - var(--box-border-width));
+      margin-bottom: calc(var(--agh-ref-spacing-100) - var(--menu-bottom-offset));
 
       &.classify {
-        margin-bottom: var(--agh-ref-spacing-300);
+        margin-bottom: calc(var(--agh-ref-spacing-300) - var(--menu-bottom-offset));
       }
     }
 
