@@ -77,6 +77,16 @@ export default meta;
 
 type DefaultMenu$ = StoryObj<typeof SelectMenu>;
 
+const createStoryRender = (template: string) => ({
+  render: (args: DefaultMenu$['args']) => ({
+    components: { SelectMenu },
+    setup() {
+      return { args };
+    },
+    template
+  })
+});
+
 export const DefaultSelectMenu: DefaultMenu$ = {
   args: {
     options: [
@@ -124,6 +134,27 @@ export const DefaultSelectMenu: DefaultMenu$ = {
   }
 };
 
+export const SimpleArrayMenu: DefaultMenu$ = {
+  args: {
+    options: ['Option 1', 'Option 2', 'Option 3']
+  }
+};
+
+export const SimpleArrayWithMultiSelectMenu: DefaultMenu$ = {
+  args: {
+    options: ['Option 1', 'Option 2', 'Option 3'],
+    label: 'Options',
+    multiple: true
+  }
+};
+
+export const SimpleArrayWithSearchMenu: DefaultMenu$ = {
+  args: {
+    options: ['Option 1', 'Option 2', 'Option 3'],
+    useSearch: true
+  }
+};
+
 export const SingleSelectMenu: DefaultMenu$ = {
   args: {
     ...DefaultSelectMenu.args,
@@ -153,7 +184,7 @@ export const SingleSelectMenuWithSearchWithPredefinedQuery: DefaultMenu$ = {
     ...SingleSelectMenu.args,
     fields: {
       ...SingleSelectMenu.args!.fields!,
-      searchKeys: ['name', 'description'],
+      searchKeys: ['name', 'description']
     },
     query: 'apt',
     useSearch: true,
@@ -352,23 +383,84 @@ export const SelectMenuWithCustomText: DefaultMenu$ = {
   }
 };
 
-export const SelectMenuWithCustomSlots: DefaultMenu$ = {
-  render: (args) => ({
-    components: { SelectMenu },
-    setup() {
-      return { args };
-    },
-    template: `
+export const SelectMenuWithCustomGadgetSlots: DefaultMenu$ = {
+  ...createStoryRender(`
       <SelectMenu v-bind="args">
         <template #empty-placeholder="{ groupName }">
-          <div>No matched data found for group:<br /><em><strong>{{ groupName }}</strong></em></div>
+          <div>No data here!</div>
         </template>
         <template #clear-selection="{ clearSelection }">
           <button @click="clearSelection">Clear Selection</button>
         </template>
+        <template #no-match-placeholder="{ groupName }">
+          <div style="padding: 16px; border: 1px dashed #888; border-radius: 8px;">No matched data found for group:<br /><em><strong>{{ groupName }}</strong></em></div>
+        </template>
       </SelectMenu>
-    `
-  }),
+    `),
+  args: {
+    ...MultiWithSubtitleSelectMenu.args,
+    fields: {
+      key: 'name',
+      title: '{{ $.name }}',
+      content: 'Last Used: {{ $.recentlyUsed | date : yyyy/MM/dd }}'
+    },
+    query: 'apt',
+    multiple: true,
+    useSearch: true,
+    showAll: true,
+    groupBy: 'category'
+  }
+};
+
+export const SelectMenuWithCustomLayoutSlots: DefaultMenu$ = {
+  ...createStoryRender(`
+      <SelectMenu v-bind="args">
+        <template
+          #header="{ selection, multiple, useSearch, searchQuery, result, label, clearSelection }"
+        >
+          <label>{{ label }}</label>
+          <p>
+            <span
+              >{{ String(selection.size ?? selection.length).padStart(2, '0') }}
+              Selected</span
+            >
+            <button @click="clearSelection">⟳</button>
+          </p>
+          <template v-if="useSearch">
+            <input v-model="args.query" type="search" placeholder="Search..." />
+          </template>
+        </template>
+        <template #default="{ option }">
+          {{ option.selected ? '😀' : '🫥' }}
+          <div>
+            <strong>{{ option.payload.name }}</strong>
+            <p>{{ option.payload.category }}</p>
+          </div>
+        </template>
+        <template #footer="{ label }">
+          <button
+            @click="args.options.push({
+              name: \`APT-\${(Math.random() * 100).toFixed(0).padStart(2, '0')}\`,
+              description: \`APT-\${(Math.random() * 100).toFixed(0)} is a threat group that has been attributed to the Chinese government.\`,
+              category: 'APT Group Simulation Data',
+              recentlyUsed: '2021-01-01T00:00:00Z'
+            })"
+            style="
+              appearance: none;
+              padding: 8px;
+              background-color: #000;
+              color: #fff;
+              border: 0;
+            "
+          >
+            Add more {{ label }}
+          </button>
+        </template>
+        <template #no-match-placeholder="{ groupName }">
+          <div style="padding: 16px; border: 1px dashed #888; border-radius: 8px;">No matched data found for group:<br /><em><strong>{{ groupName }}</strong></em></div>
+        </template>
+      </SelectMenu>
+    `),
   args: {
     ...MultiWithSubtitleSelectMenu.args,
     fields: {

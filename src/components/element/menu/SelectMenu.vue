@@ -17,9 +17,34 @@ import { signal } from '@/shared/libs/signal';
 import type { SelectMenu } from '@/components/element/menu/SelectMenu.model';
 import type { Search } from '@/shared/libs/search';
 
-defineSlots<{
+const slots = defineSlots<{
+  default?: (props: {
+    index: string | number;
+    multiple: boolean;
+    option: SelectMenu.Option<T>;
+    clearSelection: () => void;
+  }) => VNode;
+  header?: (props: {
+    selection: SelectMenu.Props<T>['modelValue'];
+    multiple: boolean;
+    useSearch?: boolean;
+    searchQuery?: string;
+    result?: Map<string | number, T>;
+    label?: string;
+    clearSelection: () => void;
+  }) => VNode;
+  footer?: (props: {
+    selection: SelectMenu.Props<T>['modelValue'];
+    multiple: boolean;
+    useSearch?: boolean;
+    searchQuery?: string;
+    result?: Map<string | number, T>;
+    label?: string;
+    clearSelection: () => void;
+  }) => VNode;
   'clear-selection'?: (props: { clearSelection: () => void }) => VNode;
-  'empty-placeholder'?: (props: { groupName: string | number }) => VNode;
+  'empty-placeholder'?: (props: { groupName?: string | number }) => VNode;
+  'no-match-placeholder'?: (props: { groupName?: string | number }) => VNode;
 }>();
 
 const props = defineProps<SelectMenu.Props<T>>();
@@ -55,7 +80,11 @@ const selectedFields = computed(() =>
 
 const { result, reset: clearSearch } = useSearch(options, {
   query: searchQuery,
-  getters: props.fields.searchKeys ?? [props.fields.key, props.fields.title ?? ''].filter(Boolean),
+  getters:
+    props.fields?.searchKeys ??
+    ((props.fields?.key ?? props.fields?.title)
+      ? [props.fields?.key ?? '', props.fields?.title ?? ''].filter(Boolean)
+      : [(option: unknown) => String(option)]),
   options: props.useSearch
     ? ({
         caseSensitive: props.caseSensitive,
@@ -129,9 +158,9 @@ const fieldParser = (option: T): SelectMenu.Option<T>['field'] => ({
       valuesGetter(option, getter, true)
     ])
   ),
-  key: valuesGetter(option, props.fields.key),
+  key: props.fields?.key ? valuesGetter(option, props.fields.key) : String(option),
   group: props.groupBy ? (valuesGetter(option, props.groupBy, true) ?? '') : '',
-  disabled: props.fields.disabled
+  disabled: props.fields?.disabled
     ? (booleanGetter(option, props.fields.disabled, true) ?? false) || false
     : false
 });
@@ -190,42 +219,69 @@ defineExpose({
   <CardBox
     :class="[
       $style['menu-container'],
+      $style.wrapper,
+      $style.flex,
+      $style.vertical,
       {
         [$style['classify']]: props.groupBy
       }
     ]"
     :radius="'var(--agh-ref-border-radius-500)'"
   >
-    <template v-if="props.label || props.multiple">
-      <header :class="$style['menu-header']">
-        <h1 :class="$style['title']">
-          {{ props.label }}
-        </h1>
-        <template v-if="props.multiple">
-          <slot :clear-selection="clearSelection" name="clear-selection">
-            <ButtonBox
-              @click="clearSelection"
-              :class="$style['button']"
-              :icon="'fa6-solid:eraser'"
-              :label="props.alterStr?.clearSelection || 'Clear Selection'"
-              :variant="'text'"
+    <template v-if="props.label || props.multiple || props.useSearch || slots.header">
+      <header
+        :class="[
+          $style['menu-header'],
+          $style.wrapper,
+          $style.flex,
+          $style.horizontal,
+          $style.wrap
+        ]"
+      >
+        <slot
+          :clear-selection="clearSelection"
+          :label="props.label"
+          :multiple="props.multiple"
+          :result
+          :search-query
+          :selection
+          :use-search="props.useSearch"
+          name="header"
+        >
+          <template v-if="props.label || props.multiple">
+            <h1 :class="$style['title']">
+              {{ props.label }}
+            </h1>
+            <template v-if="props.multiple">
+              <slot :clear-selection="clearSelection" name="clear-selection">
+                <ButtonBox
+                  @click="clearSelection"
+                  :class="$style['button']"
+                  :icon="'fa6-solid:eraser'"
+                  :label="props.alterStr?.clearSelection || 'Clear Selection'"
+                  :variant="'text'"
+                />
+              </slot>
+            </template>
+          </template>
+          <template v-if="props.useSearch">
+            <TextField
+              v-model="searchQuery"
+              :class="$style['menu-search']"
+              inputmode="search"
+              type="search"
             />
-          </slot>
-        </template>
+          </template>
+        </slot>
       </header>
-    </template>
-    <template v-if="props.useSearch">
-      <TextField
-        v-model="searchQuery"
-        :class="$style['menu-search']"
-        inputmode="search"
-        type="search"
-      />
     </template>
     <div
       ref="wrapperRef$"
       :class="[
         $style['menu-wrapper'],
+        $style.wrapper,
+        $style.flex,
+        $style.vertical,
         {
           [$style['overflowed']]: overflowed()
         }
@@ -235,6 +291,9 @@ defineExpose({
         <div
           :class="[
             $style['menu-group'],
+            $style.wrapper,
+            $style.flex,
+            $style.vertical,
             {
               [$style['classify']]: props.groupBy
             }
@@ -252,6 +311,9 @@ defineExpose({
                 @click="!field.disabled && toggleSelection(index, { selected, field, payload })"
                 :class="[
                   $style['menu-option'],
+                  $style.wrapper,
+                  $style.flex,
+                  $style.horizontal,
                   $style['behavior'],
                   field.disabled ? [$style['disabled']] : $style['clickable'],
                   {
@@ -260,121 +322,188 @@ defineExpose({
                   }
                 ]"
               >
-                <template v-if="props.multiple">
-                  <Icon
-                    :class="$style['menu-option-icon']"
-                    :icon="selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
-                  />
-                </template>
-                <template v-if="props.fields.icon">
-                  <Icon :class="$style['menu-option-icon']" :icon="field.icon ?? ''" />
-                </template>
-                <div :class="$style['menu-option-group']">
-                  <template
-                    v-for="(context, key) in omit(field, ['key', 'icon', 'disabled', 'group'])"
-                    :key="`option-field-${key}`"
-                  >
-                    <template v-if="context">
+                <slot
+                  :clear-selection="clearSelection"
+                  :index="index"
+                  :multiple="props.multiple"
+                  :option="{ selected, matched, field, payload }"
+                >
+                  <template v-if="props.multiple">
+                    <Icon
+                      :class="$style['menu-option-icon']"
+                      :icon="selected ? 'fa6-solid:square-check' : 'fa6-regular:square'"
+                    />
+                  </template>
+                  <template v-if="props.fields?.icon">
+                    <Icon :class="$style['menu-option-icon']" :icon="field.icon ?? ''" />
+                  </template>
+                  <div :class="$style['menu-option-group']">
+                    <p :class="$style['menu-field']">
+                      {{ field.title || field.key }}
+                    </p>
+                    <template v-if="field.content">
                       <p :class="$style['menu-field']">
-                        {{ context }}
+                        {{ field.content }}
                       </p>
                     </template>
-                  </template>
-                </div>
+                  </div>
+                </slot>
               </div>
             </template>
           </template>
           <div :class="$style['menu-group-placeholder']">
-            <slot :group-name="name" name="empty-placeholder">
-              <p>{{ props.alterStr?.noData || 'No Data' }}</p>
+            <slot :group-name="name" name="no-match-placeholder">
+              <p>{{ props.alterStr?.noMatched || 'No Matched Data' }}</p>
             </slot>
           </div>
         </div>
       </template>
     </div>
+    <template v-if="options.size === 0">
+      <div :class="$style['menu-placeholder']">
+        <slot name="empty-placeholder">
+          <p>{{ props.alterStr?.noData || 'No Data' }}</p>
+        </slot>
+      </div>
+    </template>
+    <template v-else-if="props.useSearch && !props.showAll && result.size === 0">
+      <div :class="$style['menu-placeholder']">
+        <slot name="no-match-placeholder">
+          <p>{{ props.alterStr?.noMatched || 'No Matched Data' }}</p>
+        </slot>
+      </div>
+    </template>
+    <slot
+      :clear-selection="clearSelection"
+      :label="props.label"
+      :multiple="props.multiple"
+      :result
+      :search-query
+      :selection
+      :use-search="props.useSearch"
+      name="footer"
+    />
   </CardBox>
 </template>
 
 <style module scoped lang="scss">
+@use '@/assets/styles/modules/wrapper.module' as wrapper;
 @use '@/assets/styles/modules/behavior.module' as behavior;
 @use '@/assets/styles/modules/scrollbar.module' as scrollbar;
 
 .menu {
   &-container {
-    position: relative;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+    --menu-padding: var(--agh-ref-spacing-100);
+    --wrapper-gap: var(--menu-padding);
+
+    &:has(> header > .menu-search):not(.classify) {
+      --wrapper-gap: 0;
+    }
+
     width: var(--agh-sys-list-dropdown-small);
     height: fit-content;
     max-height: calc(var(--agh-sys-list-dropdown-small) * 2);
-    padding: 0 var(--agh-ref-spacing-100);
     box-shadow: var(--agh-sys-effects-shadow-pop-up);
     overflow: hidden;
 
     > :first-child {
-      margin-top: var(--agh-ref-spacing-100);
+      margin-top: var(--menu-padding);
     }
 
     &.classify {
-      padding: 0 var(--agh-ref-spacing-300);
+      --menu-padding: var(--agh-ref-spacing-300);
 
       > .menu-header {
-        margin-bottom: var(--agh-ref-spacing-400);
-        padding: 0;
-      }
+        &:has(> .title) {
+          padding: var(--agh-ref-spacing-100) var(--menu-padding);
+        }
 
-      > :first-child {
-        margin-top: var(--agh-ref-spacing-300);
+        &:has(> .menu-search) {
+          & + * {
+            padding-top: calc(var(--menu-padding)) !important;
+          }
+        }
       }
     }
   }
 
   &-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--agh-ref-spacing-200);
-    padding: var(--agh-ref-spacing-100);
+    --wrapper-gap: var(--agh-ref-spacing-200);
+
+    place-items: center;
+    place-content: space-between;
+    padding: calc(var(--agh-ref-spacing-100) - var(--menu-padding)) var(--menu-padding);
+
+    &:has(> .title) {
+      padding: var(--agh-ref-spacing-100) calc(var(--menu-padding) * 2);
+
+      &:has(> .menu-search) {
+        & + * {
+          padding-top: calc(var(--menu-padding)) !important;
+        }
+      }
+    }
+
+    &:has(> .menu-search) {
+      & + * {
+        padding-top: calc(var(--agh-ref-spacing-100) + var(--menu-padding)) !important;
+      }
+    }
 
     > .title {
       font: var(--agh-sys-typeface-label-hl-large);
+      display: inline-flex;
+      width: fit-content;
     }
 
     > .button {
       font: var(--agh-sys-typeface-label-hl-medium);
+      display: inline-flex !important;
       text-align: right;
     }
   }
 
   &-search {
+    flex-shrink: 0;
     width: 100%;
     height: 28px; // TODO: Missing token
-    margin-bottom: var(--agh-ref-spacing-400);
+    margin-bottom: calc(var(--agh-ref-spacing-100) * -1);
+  }
+
+  &-placeholder {
+    color: var(--agh-ref-color-grayscale-600);
+    font: var(--agh-sys-typeface-label-default-large);
+    padding: var(--menu-padding) calc(var(--menu-padding) * 2);
   }
 
   &-wrapper {
+    --menu-bottom-offset: var(--box-border-width);
+
     @include scrollbar.use($offset: var(--agh-ref-spacing-200));
 
-    position: relative;
-    display: flex;
-    flex-direction: column;
     overflow-y: auto;
+    padding: 0 var(--menu-padding);
 
     &.overflowed {
-      border-right: var(--agh-ref-border-width-200) solid transparent;
-      padding-right: var(--agh-ref-spacing-200);
+      border-right: calc(var(--agh-ref-border-width-200) + var(--agh-ref-spacing-200) / 2) solid
+        transparent;
+      padding-right: calc(var(--agh-ref-spacing-200) + var(--menu-padding));
+    }
+
+    &:has(+ *) {
+      --menu-bottom-offset: 0px;
+    }
+
+    & + * {
+      margin-top: calc(var(--wrapper-gap) * -1);
     }
   }
 
   &-option {
-    position: relative;
-    display: flex;
-    flex-direction: row;
+    --wrapper-gap: var(--agh-ref-spacing-200);
+
     place-items: center;
     padding: var(--agh-ref-spacing-200) var(--agh-ref-spacing-300);
-    gap: var(--agh-ref-spacing-200);
     border: transparent solid var(--agh-ref-border-width-50);
     border-radius: var(--agh-ref-border-radius-400);
 
@@ -414,9 +543,7 @@ defineExpose({
     }
 
     &-group {
-      display: flex;
-      flex-direction: column;
-      gap: var(--agh-ref-spacing-50);
+      --wrapper-gap: var(--agh-ref-spacing-50);
     }
   }
 
@@ -432,15 +559,12 @@ defineExpose({
   }
 
   &-group {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: var(--agh-ref-spacing-50);
+    --wrapper-gap: var(--agh-ref-spacing-50);
 
     &::before {
       content: '';
       background-color: var(--agh-ref-color-grayscale-400);
-      margin: var(--agh-ref-spacing-400) 0;
+      margin-bottom: var(--menu-padding);
       height: var(--agh-ref-border-width-50);
       width: 100%;
     }
@@ -452,10 +576,10 @@ defineExpose({
     }
 
     &:last-child {
-      margin-bottom: calc(var(--agh-ref-spacing-100) - var(--box-border-width));
+      margin-bottom: calc(var(--agh-ref-spacing-100) - var(--menu-bottom-offset));
 
       &.classify {
-        margin-bottom: var(--agh-ref-spacing-300);
+        margin-bottom: calc(var(--agh-ref-spacing-300) - var(--menu-bottom-offset));
       }
     }
 
