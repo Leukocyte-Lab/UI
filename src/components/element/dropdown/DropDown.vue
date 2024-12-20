@@ -1,5 +1,6 @@
 <script setup lang="ts" generic="T extends DropDown.AcceptableValue">
-import { computed, ref, watch } from 'vue';
+import { pickBy } from 'lodash-es';
+import { computed, nextTick, ref, watch } from 'vue';
 import { vOnClickOutside } from '@vueuse/components';
 
 import type { VNode } from 'vue';
@@ -7,6 +8,7 @@ import type { ComponentExposed } from 'vue-component-type-helpers';
 
 import ButtonBox from '@/components/element/button/ButtonBox.vue';
 import SelectMenu from '@/components/element/menu/SelectMenu.vue';
+import TextField from '@/components/element/textfield/TextField.vue';
 import { valuesGetter } from '@/shared/libs/fn';
 import { signal, toggleSignal } from '@/shared/libs/signal';
 
@@ -51,16 +53,24 @@ const props = withDefaults(defineProps<DropDown.Props<T>>(), {
   menuPosition: 'bottom-right'
 });
 
+const emits = defineEmits<DropDown.Emits>();
+
 const selection = defineModel<DropDown.Props<T>['modelValue']>({
   required: true
 });
 const query = defineModel<string>('query', {
   default: ''
 });
+const newOptionValue = defineModel<string>('newOptionValue', {
+  default: ''
+});
 
 const selectMenuRef$ = ref<ComponentExposed<typeof SelectMenu>>();
+const textFieldRef$ = ref<ComponentExposed<typeof TextField>>();
+const createItemValidityState = ref<ValidityState>();
 
 const onShowMenu = signal(false);
+const onCreate = signal(false);
 
 const bobbleCount = computed(() =>
   props.multiple && selection.value
@@ -121,6 +131,26 @@ const reset = () => {
   clearSelection();
 };
 
+const clickOutsideHandler = () => {
+  if (props.useCreate && !props.createInProgress) {
+    onShowMenu.set(false);
+    onCreate.set(false);
+    newOptionValue.value = '';
+  } else {
+    onShowMenu.set(false);
+  }
+};
+
+const createItemHandler = () => {
+  if (createItemValidityState.value?.valid && newOptionValue.value !== '') {
+    emits('create', newOptionValue.value);
+  }
+};
+
+const createItemValidityStateHandler = (validity: ValidityState) => {
+  createItemValidityState.value = validity;
+};
+
 watch([selection, () => props.multiple], ([selection, multiple]) => {
   if (!multiple && selection) {
     onShowMenu.set(false);
@@ -133,6 +163,33 @@ watch(onShowMenu, (state) => {
   }
 });
 
+watch(
+  onCreate,
+  (state) => {
+    if (state) {
+      clearSearch();
+      onShowMenu.set(false);
+      newOptionValue.value = '';
+
+      // eslint-disable-next-line promise/catch-or-return
+      Promise.allSettled([
+        nextTick(),
+        new Promise<void>((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 100);
+        })
+      ]).finally(() => {
+        onShowMenu.set(false);
+        nextTick(() => {
+          textFieldRef$.value?.inputRef$?.focus();
+        });
+      });
+    }
+  },
+  { immediate: true, flush: 'post' }
+);
+
 defineExpose({
   reset,
   clearSearch,
@@ -143,21 +200,88 @@ defineExpose({
 
 <template>
   <div
-    v-on-click-outside="() => onShowMenu.set(false)"
-    :class="[$style['dropdown-container'], $style[size]]"
+    v-on-click-outside="clickOutsideHandler"
+    :class="[
+      $style['dropdown-container'],
+      $style.wrapper,
+      $style.behavior,
+      $style.flex,
+      $style[size],
+      {
+        [$style.extend]: props.useCreate,
+        [$style.loading]: props.useCreate && props.createInProgress
+      },
+      onCreate() ? $style.horizontal : $style.vertical
+    ]"
   >
-    <ButtonBox
-      @click="toggleSignal(onShowMenu)"
-      :bobble="bobbleCount"
-      :class="[$style['dropdown-button'], $style[size]]"
-      :clicked="onShowMenu()"
-      :disabled="props.disabled"
-      :icon
-      :label
-      :level="props.level"
-      :size="props.size"
-      :variant="props.variant"
-    />
+    <template v-if="onCreate() && props.useCreate">
+      <TextField
+        ref="textFieldRef$"
+        v-model="newOptionValue"
+        v-bind="
+          pickBy(props, [
+            'type',
+            'autocomplete',
+            'autofocus',
+            'maxlength',
+            'minlength',
+            'pattern',
+            'max',
+            'min',
+            'spellcheck',
+            'invalidMessage'
+          ])
+        "
+        @keydown.enter.capture="createItemHandler"
+        @keydown.escape="clickOutsideHandler"
+        @validation="createItemValidityStateHandler"
+        :class="$style['dropdown-textfield']"
+        :disabled="props.disabled || props.createInProgress"
+        :event-signal-options="props.eventSignalOptions ?? { flush: 'post', debounce: 100 }"
+        :placeholder="props.createPlaceholder"
+      />
+      <div
+        :class="[
+          $style['dropdown-textfield-toolbox'],
+          $style.wrapper,
+          $style.flex,
+          $style.horizontal
+        ]"
+      >
+        <ButtonBox
+          @click="clickOutsideHandler"
+          :class="$style.button"
+          :disabled="props.createInProgress"
+          icon="fa6-solid:xmark"
+          level="secondary"
+          size="small"
+          variant="square"
+        />
+        <ButtonBox
+          @click="createItemHandler"
+          :class="$style.button"
+          :clicked="props.createInProgress"
+          :icon="props.createInProgress ? '' : 'fa6-solid:check'"
+          :loading="props.createInProgress"
+          size="small"
+          variant="square"
+        />
+      </div>
+    </template>
+    <template v-else>
+      <ButtonBox
+        @click="toggleSignal(onShowMenu)"
+        :bobble="bobbleCount"
+        :class="[$style['dropdown-button'], $style[size], $style[props.variant]]"
+        :clicked="onShowMenu()"
+        :disabled="props.disabled"
+        :icon
+        :label
+        :level="props.level"
+        :size="props.size"
+        :variant="props.variant"
+      />
+    </template>
     <template v-if="optionsCount > 0 && onShowMenu()">
       <!-- @vue-ignore // ? NOTE: SelectMenu will handle generic type ? // -->
       <SelectMenu
@@ -167,7 +291,6 @@ defineExpose({
         @select:fields="selectedFields = $event"
         :alter-str="props.alterStr"
         :case-sensitive="props.caseSensitive"
-        </template>
         :class="[$style['dropdown-menu'], $style[props.menuPosition]]"
         :fields="props.fields"
         :group-by="props.groupBy"
@@ -233,98 +356,20 @@ defineExpose({
             :use-search="useSearch"
             name="footer"
           />
-        </template>
-        :class="[$style['dropdown-menu'], $style[props.menuPosition]]"
-        :fields="props.fields"
-        :group-by="props.groupBy"
-        :label="props.label"
-        :limit="props.limit"
-        :multiple="props.multiple"
-        :options="props.options"
-        :phrase-search="props.phraseSearch"
-        :relevant-search="props.relevantSearch"
-        :segment-pattern="props.segmentPattern"
-        :show-all="props.showAll"
-        :sort-by="props.sortBy"
-        :strict="props.strict"
-        :threshold="props.threshold"
-        :use-search="props.useSearch"
-      >
-        <template
-          v-if="slots['clear-selection']"
-          #clear-selection="{ clearSelection: clearMenuSelection }"
-        >
-          <slot :clear-selection="clearMenuSelection" name="clear-selection" />
-        </template>
-        <template v-if="slots['empty-placeholder']" #empty-placeholder="{ groupName }">
-          <slot :group-name="groupName" name="empty-placeholder" />
-        </template>
-        <template v-if="slots['no-match-placeholder']" #no-match-placeholder="{ groupName }">
-          <slot :group-name="groupName" name="no-match-placeholder" />
-        </template>
-        <template
-          v-if="slots.header"
-          #header="{ selection, multiple, useSearch, searchQuery, result, label }"
-        >
-          <slot
-            :clear-selection="clearSelection"
-            :label="label"
-            :multiple="multiple"
-            :result="result"
-            :search-query="searchQuery"
-            :selection="selection"
-            :use-search="useSearch"
-            name="header"
-          />
-        </template>
-        <template v-if="slots.default" #default="{ index, multiple, option }">
-          <slot
-            :clear-selection="clearSelection"
-            :index="index"
-            :multiple="multiple"
-            :option="option"
-          />
-        </template>
-        <template
-          v-if="slots.footer || props.useCreate"
-          #footer="{ selection, multiple, useSearch, searchQuery, result, label }"
-        >
-          <slot
-            :clear-selection="clearSelection"
-            :label="label"
-            :multiple="multiple"
-            :result="result"
-            :search-query="searchQuery"
-            :selection="selection"
-            :use-search="useSearch"
-            name="footer"
-          />
-        </template>
-        :class="[$style['dropdown-menu'], $style[props.menuPosition]]"
-        :fields="props.fields"
-        :group-by="props.groupBy"
-        :label="props.label"
-        :limit="props.limit"
-        :multiple="props.multiple"
-        :options="props.options"
-        :phrase-search="props.phraseSearch"
-        :relevant-search="props.relevantSearch"
-        :segment-pattern="props.segmentPattern"
-        :show-all="props.showAll"
-        :sort-by="props.sortBy"
-        :strict="props.strict"
-        :threshold="props.threshold"
-        :use-search="props.useSearch"
-      >
-        <template
-          v-if="slots['clear-selection']"
-          #clear-selection="{ clearSelection: clearMenuSelection }"
-        >
-          <slot :clear-selection="clearMenuSelection" name="clear-selection" />
-        </template>
-        <template v-if="slots['empty-placeholder']" #empty-placeholder="{ groupName }">
-          <slot :group-name="groupName" name="empty-placeholder" />
-        </template>
+          <template v-if="props.useCreate">
+            <ButtonBox
+              @click="onCreate.set(true)"
+              :class="[
+                $style.button,
+                {
+                  [$style.active]: onCreate()
+                }
+              ]"
+              :label="props.alterStr?.create || 'Add New'"
+              icon="fa6-solid:plus"
+              variant="text"
+            />
+          </template>
         </template>
       </SelectMenu>
     </template>
@@ -332,23 +377,38 @@ defineExpose({
 </template>
 
 <style module scoped lang="scss">
+@use '@/assets/styles/modules/wrapper.module' as wrapper;
+@use '@/assets/styles/modules/behavior.module' as behavior;
+
 .dropdown {
   &-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+    --wrapper-gap: var(--agh-ref-spacing-200);
+
     width: fit-content;
     height: fit-content;
+    place-items: center;
 
-    &.large {
+    &.large,
+    &.extend {
       width: 100%;
       min-width: var(--agh-sys-list-dropdown-small);
 
       > .dropdown {
         &-menu,
-        &-button {
+        &-button,
+        &-textfield {
           width: 100%;
         }
+
+        &-button {
+          justify-content: space-between;
+        }
+      }
+    }
+
+    &.loading {
+      > * {
+        pointer-events: none;
       }
     }
   }
@@ -357,13 +417,31 @@ defineExpose({
     width: fit-content;
     padding: var(--agh-ref-spacing-50) var(--agh-ref-spacing-200);
 
-    &.large {
-      justify-content: space-between;
+    &.rect {
+      padding: var(--agh-ref-spacing-200) var(--agh-ref-spacing-300);
+    }
+  }
+
+  &-textfield {
+    :deep(input) {
+      border-radius: var(--agh-ref-border-radius-400);
+      padding: var(--agh-ref-spacing-200) var(--agh-ref-spacing-300);
+      color: var(--agh-ref-color-blue-500);
+      font: var(
+        --button-font,
+        var(--dropdown-textfield-font, var(--agh-sys-typeface-label-hl-medium))
+      );
+      padding-right: calc(var(--agh-ref-spacing-200) * 3 + var(--agh-ref-spacing-600) * 2);
+    }
+
+    &-toolbox {
+      position: absolute !important;
+      right: var(--agh-ref-spacing-200);
     }
   }
 
   &-menu {
-    position: absolute;
+    position: absolute !important;
     z-index: 10;
     max-height: var(--dropdown-max-height, var(--agh-sys-list-dropdown-small)) !important;
 
@@ -385,6 +463,25 @@ defineExpose({
     &.top-right,
     &.bottom-right {
       left: 0;
+    }
+
+    .button {
+      width: 100%;
+      padding: calc(var(--agh-ref-spacing-300) - var(--agh-ref-border-width-50))
+        calc(var(--menu-padding) + var(--agh-ref-spacing-300));
+      place-content: start;
+      border-top: var(--agh-ref-border-width-50) solid var(--agh-ref-color-grayscale-500);
+
+      &:hover {
+        border-color: transparent;
+        background-color: var(--agh-ref-color-blue-500) !important;
+        color: var(--agh-ref-color-grayscale-100) !important;
+      }
+
+      &.active {
+        background-color: var(--agh-ref-color-blue-600) !important;
+        color: var(--agh-ref-color-grayscale-100) !important;
+      }
     }
   }
 }
