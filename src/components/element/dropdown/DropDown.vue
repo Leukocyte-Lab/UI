@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends DropDown.AcceptableValue">
-import { pickBy } from 'lodash-es';
+import { pick } from 'lodash-es';
 import { computed, nextTick, ref, watch } from 'vue';
 import { vOnClickOutside } from '@vueuse/components';
 
@@ -53,7 +53,7 @@ const props = withDefaults(defineProps<DropDown.Props<T>>(), {
   menuPosition: 'bottom-right'
 });
 
-const emits = defineEmits<DropDown.Emits>();
+const emits = defineEmits<DropDown.Emits<T>>();
 
 const selection = defineModel<DropDown.Props<T>['modelValue']>({
   required: true
@@ -71,6 +71,7 @@ const createItemValidityState = ref<ValidityState>();
 
 const onShowMenu = signal(false);
 const onCreate = signal(false);
+const onCreateInProgress = signal(false);
 
 const bobbleCount = computed(() =>
   props.multiple && selection.value
@@ -132,7 +133,7 @@ const reset = () => {
 };
 
 const clickOutsideHandler = () => {
-  if (props.useCreate && !props.createInProgress) {
+  if (props.useCreate && !onCreateInProgress()) {
     onShowMenu.set(false);
     onCreate.set(false);
     newOptionValue.value = '';
@@ -143,7 +144,32 @@ const clickOutsideHandler = () => {
 
 const createItemHandler = () => {
   if (createItemValidityState.value?.valid && newOptionValue.value !== '') {
-    emits('create', newOptionValue.value);
+    onCreateInProgress.set(true);
+    emits(
+      'create',
+      newOptionValue.value,
+      // onFinish
+      (option) => {
+        reset();
+        onShowMenu.set(false);
+        onCreate.set(false);
+        onCreateInProgress.set(false);
+        newOptionValue.value = '';
+        selection.value = option;
+      },
+      // onError
+      () => {
+        onCreateInProgress.set(false);
+        setTimeout(() => {
+          textFieldRef$.value?.inputRef$?.focus();
+          textFieldRef$.value?.inputRef$?.dispatchEvent(
+            new Event('input', {
+              bubbles: true
+            })
+          );
+        }, 100);
+      }
+    );
   }
 };
 
@@ -190,6 +216,18 @@ watch(
   { immediate: true, flush: 'post' }
 );
 
+watch(
+  () => props.useCreate && props.createInProgress,
+  (state) => {
+    if (state !== undefined) {
+      onCreateInProgress.set(state);
+    }
+  },
+  {
+    immediate: true
+  }
+);
+
 defineExpose({
   reset,
   clearSearch,
@@ -209,7 +247,7 @@ defineExpose({
       $style[size],
       {
         [$style.extend]: props.useCreate,
-        [$style.loading]: props.useCreate && props.createInProgress
+        [$style.loading]: props.useCreate && onCreateInProgress()
       },
       onCreate() ? $style.horizontal : $style.vertical
     ]"
@@ -219,7 +257,7 @@ defineExpose({
         ref="textFieldRef$"
         v-model="newOptionValue"
         v-bind="
-          pickBy(props, [
+          pick(props as DropDown.TextFieldInheritProps, [
             'type',
             'autocomplete',
             'autofocus',
@@ -236,8 +274,8 @@ defineExpose({
         @keydown.escape="clickOutsideHandler"
         @validation="createItemValidityStateHandler"
         :class="$style['dropdown-textfield']"
-        :disabled="props.disabled || props.createInProgress"
-        :event-signal-options="props.eventSignalOptions ?? { flush: 'post', debounce: 100 }"
+        :disabled="props.disabled || onCreateInProgress()"
+        :event-signal-options="props.eventSignalOptions ?? { flush: 'sync', debounce: 100 }"
         :placeholder="props.createPlaceholder"
       />
       <div
@@ -251,7 +289,7 @@ defineExpose({
         <ButtonBox
           @click="clickOutsideHandler"
           :class="$style.button"
-          :disabled="props.createInProgress"
+          :disabled="onCreateInProgress()"
           icon="fa6-solid:xmark"
           level="secondary"
           size="small"
@@ -260,10 +298,10 @@ defineExpose({
         <ButtonBox
           @click="createItemHandler"
           :class="$style.button"
-          :clicked="props.createInProgress"
+          :clicked="onCreateInProgress()"
           :disabled="createItemValidityState?.valid !== true || !newOptionValue"
-          :icon="props.createInProgress ? '' : 'fa6-solid:check'"
-          :loading="props.createInProgress"
+          :icon="onCreateInProgress() ? '' : 'fa6-solid:check'"
+          :loading="onCreateInProgress()"
           size="small"
           variant="square"
         />

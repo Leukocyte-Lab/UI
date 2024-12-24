@@ -23,6 +23,20 @@ export namespace DropDown {
     create?: string;
   };
 
+  export type TextFieldInheritProps = Omit<
+    TextFieldNS.Props,
+    | 'type'
+    | 'modelValue'
+    | 'label'
+    | 'placeholder'
+    | 'disabled'
+    | 'readonly'
+    | 'required'
+    | 'name'
+    | 'size'
+    | 'icon'
+  >;
+
   export type Option<T extends AcceptableValue = ObjectLike> = SelectMenuNS.Option<T>;
   export type Props<T extends AcceptableValue = ObjectLike> = {
     level?: keyof typeof ButtonBoxNS.Level;
@@ -43,19 +57,12 @@ export namespace DropDown {
   ) &
     (
       | { useCreate?: false }
-      | ({ useCreate: true; createPlaceholder?: string; type?: Exclude<TextFieldNS.Type, 'password' | 'search'>; createInProgress?: boolean } & Omit<
-          TextFieldNS.Props,
-          | 'type'
-          | 'modelValue'
-          | 'label'
-          | 'placeholder'
-          | 'disabled'
-          | 'readonly'
-          | 'required'
-          | 'name'
-          | 'size'
-          | 'icon'
-        >)
+      | ({
+          useCreate: true;
+          createPlaceholder?: string;
+          type?: Exclude<TextFieldNS.Type, 'password' | 'search'>;
+          createInProgress?: boolean;
+        } & TextFieldInheritProps)
     ) &
     (
       | {
@@ -80,7 +87,7 @@ export namespace DropDown {
         ))
     );
 
-  export type Emits = {
-    (e: 'create', value: string): void;
-  }
+  export type Emits<T> = {
+    (e: 'create', value: string, onFinish: (option: T) => void, onError: () => void): void;
+  };
 }
