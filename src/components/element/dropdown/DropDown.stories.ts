@@ -5,6 +5,7 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 import DropDown from './DropDown.vue';
 
 import type { DropDown as DropDownNS } from './DropDown.model';
+import type { Callback } from '@/shared/types/callback';
 
 type GenericMeta<C> = Omit<Meta<C>, 'component'> & {
   component: Record<keyof C, unknown>;
@@ -199,8 +200,46 @@ export const DefaultDropDownWithDefaultSelected: DropDown$ = {
 };
 
 export const DefaultDropDownWithCreateAbility: DropDown$ = {
+  render: (args) => ({
+    components: { DropDown },
+    setup() {
+      const mockCreateBehavior = (option: typeof args['modelValue'], onFinish: Callback, onError: Callback) => {
+        console.log('Creating new option:', option);
+        setTimeout(() => {
+          if ((args.options as typeof args['modelValue'][]).includes(option)) {
+            if (args.useCreate) {
+              args.pattern = `^(?!${option}$).*$`;
+              args.invalidMessage = {
+                patternMismatch: 'Option already exists'
+              };
+            }
+            console.error('Option already exists');
+            onError();
+          } else {
+            if (args.useCreate) {
+              args.pattern = undefined;
+              args.invalidMessage = undefined;
+            }
+            (args.options as typeof args['modelValue'][]).push(option);
+            console.log('New option added:', option);
+            onFinish(option);
+          }
+        }, 1000);
+      }
+      return { args, mockCreateBehavior };
+    },
+    template: `
+      <DropDown
+        v-bind="args"
+        @create="(option, onFinish, onError) => {
+          mockCreateBehavior(option, onFinish, onError);
+        }"
+      />
+    `
+  }),
   args: {
     ...DefaultDropDown.args,
+    options: ['Option 1', 'Option 2', 'Option 3'],
     useCreate: true,
     createPlaceholder: 'Enter New Option...'
   }
@@ -251,8 +290,46 @@ export const TertiaryRectDropDown: DropDown$ = {
 };
 
 export const RectDropDownWithCreateAbility: DropDown$ = {
+  render: (args) => ({
+    components: { DropDown },
+    setup() {
+      const mockCreateBehavior = (option: typeof args['modelValue'], onFinish: Callback, onError: Callback) => {
+        console.log('Creating new option:', option);
+        setTimeout(() => {
+          if ((args.options as typeof args['modelValue'][]).includes(option)) {
+            if (args.useCreate) {
+              args.pattern = `^(?!${option}$).*$`;
+              args.invalidMessage = {
+                patternMismatch: 'Option already exists'
+              };
+            }
+            console.error('Option already exists');
+            onError();
+          } else {
+            if (args.useCreate) {
+              args.pattern = undefined;
+              args.invalidMessage = undefined;
+            }
+            (args.options as typeof args['modelValue'][]).push(option);
+            console.log('New option added:', option);
+            onFinish(option);
+          }
+        }, 1000);
+      }
+      return { args, mockCreateBehavior };
+    },
+    template: `
+      <DropDown
+        v-bind="args"
+        @create="(option, onFinish, onError) => {
+          mockCreateBehavior(option, onFinish, onError);
+        }"
+      />
+    `
+  }),
   args: {
     ...DefaultDropDown.args,
+    options: ['Option 1', 'Option 2', 'Option 3'],
     variant: 'rect',
     level: 'tertiary',
     useCreate: true,
