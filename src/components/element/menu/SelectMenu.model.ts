@@ -8,7 +8,7 @@ export namespace SelectMenu {
   export type ValuesGetter<T extends AcceptableValue, R> = GetterFn<R, [T], true> | string;
 
   export type Fields<T extends AcceptableValue = ObjectLike> = {
-    key: GetterFn<string, [T]> | string;
+    key?: GetterFn<string, [T]> | string;
     searchKeys?: ValuesGetter<T, string>[];
     title?: ValuesGetter<T, string>;
     content?: ValuesGetter<T, string>;
@@ -33,10 +33,11 @@ export namespace SelectMenu {
   export type AlterStr = {
     clearSelection?: string;
     noData?: string;
+    noMatched?: string;
   }
 
   export type Props<T extends AcceptableValue = ObjectLike> = {
-    fields: Fields<T>;
+    fields?: Fields<T>;
     groupBy?: ValuesGetter<T, string>;
     label?: string;
     alterStr?: AlterStr;
