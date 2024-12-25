@@ -7,8 +7,8 @@ export declare namespace SearchBar {
     type AcceptableValue = SelectMenuNS.AcceptableValue;
     type ValuesGetter<T extends AcceptableValue, R> = GetterFn<R, [T], true> | string;
     type Fields<T extends AcceptableValue = ObjectLike> = {
-        key: GetterFn<string, [T]> | string;
-        searchKeys: ValuesGetter<T, string>[];
+        key?: GetterFn<string, [T]> | string;
+        searchKeys?: ValuesGetter<T, string>[];
         title?: ValuesGetter<T, string>;
         content?: ValuesGetter<T, string>;
         icon?: ValuesGetter<T, string>;
@@ -16,7 +16,7 @@ export declare namespace SearchBar {
     };
     type Option<T extends AcceptableValue = ObjectLike> = SelectMenuNS.Option<T>;
     type Props<T extends AcceptableValue = ObjectLike> = Pick<TextFieldNS.Props, 'autofocus' | 'disabled' | 'readonly' | 'placeholder' | 'spellcheck' | 'eventSignalOptions' | 'icon' | 'iconAlign' | 'tabindex'> & Search.Options & {
-        fields: Fields<T>;
+        fields?: Fields<T>;
         groupBy?: ValuesGetter<T, string>;
         modelValue?: string;
     } & ({

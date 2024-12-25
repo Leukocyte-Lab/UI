@@ -18,18 +18,72 @@ declare const _default: <T extends SelectMenu.AcceptableValue>(__VLS_props: NonN
     }>): void;
     attrs: any;
     slots: ReturnType<() => Readonly<{
+        default?: (props: {
+            index: string | number;
+            multiple: boolean;
+            option: SelectMenu.Option<T>;
+            clearSelection: () => void;
+        }) => VNode;
+        header?: (props: {
+            selection: SelectMenu.Props<T>["modelValue"];
+            multiple: boolean;
+            useSearch?: boolean;
+            searchQuery?: string;
+            result?: Map<string | number, T>;
+            label?: string;
+            clearSelection: () => void;
+        }) => VNode;
+        footer?: (props: {
+            selection: SelectMenu.Props<T>["modelValue"];
+            multiple: boolean;
+            useSearch?: boolean;
+            searchQuery?: string;
+            result?: Map<string | number, T>;
+            label?: string;
+            clearSelection: () => void;
+        }) => VNode;
         'clear-selection'?: (props: {
             clearSelection: () => void;
         }) => VNode;
         'empty-placeholder'?: (props: {
-            groupName: string | number;
+            groupName?: string | number;
+        }) => VNode;
+        'no-match-placeholder'?: (props: {
+            groupName?: string | number;
         }) => VNode;
     }> & {
+        default?: (props: {
+            index: string | number;
+            multiple: boolean;
+            option: SelectMenu.Option<T>;
+            clearSelection: () => void;
+        }) => VNode;
+        header?: (props: {
+            selection: SelectMenu.Props<T>["modelValue"];
+            multiple: boolean;
+            useSearch?: boolean;
+            searchQuery?: string;
+            result?: Map<string | number, T>;
+            label?: string;
+            clearSelection: () => void;
+        }) => VNode;
+        footer?: (props: {
+            selection: SelectMenu.Props<T>["modelValue"];
+            multiple: boolean;
+            useSearch?: boolean;
+            searchQuery?: string;
+            result?: Map<string | number, T>;
+            label?: string;
+            clearSelection: () => void;
+        }) => VNode;
         'clear-selection'?: (props: {
             clearSelection: () => void;
         }) => VNode;
         'empty-placeholder'?: (props: {
-            groupName: string | number;
+            groupName?: string | number;
+        }) => VNode;
+        'no-match-placeholder'?: (props: {
+            groupName?: string | number;
         }) => VNode;
     }>;
     emit: ((evt: "update:modelValue", modelValue: T | Map<string | number, T> | T[] | undefined) => void) & ((evt: "update:query", query: string) => void);

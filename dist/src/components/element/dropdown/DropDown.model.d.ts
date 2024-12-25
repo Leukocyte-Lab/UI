@@ -1,5 +1,6 @@
 import type { ButtonBox as ButtonBoxNS } from '../../../components/element/button/ButtonBox.model';
 import type { SelectMenu as SelectMenuNS } from '../../../components/element/menu/SelectMenu.model';
+import type { TextField as TextFieldNS } from '../../../components/element/textfield/TextField.model';
 import type { Search } from '../../../shared/libs/search';
 import type { GetterFn } from '../../../shared/types/fn';
 import type { ObjectLike } from '../../../shared/types/object';
@@ -7,13 +8,17 @@ export declare namespace DropDown {
     type AcceptableValue = SelectMenuNS.AcceptableValue;
     type ValuesGetter<T extends AcceptableValue, R> = GetterFn<R, [T], true> | string;
     type Fields<T extends AcceptableValue = ObjectLike> = {
-        key: GetterFn<string, [T]> | string;
+        key?: GetterFn<string, [T]> | string;
         searchKeys?: ValuesGetter<T, string>[];
         title?: ValuesGetter<T, string>;
         content?: ValuesGetter<T, string>;
         icon?: ValuesGetter<T, string>;
         disabled?: ValuesGetter<T, boolean>;
     };
+    type AlterStr = {
+        create?: string;
+    };
+    type TextFieldInheritProps = Omit<TextFieldNS.Props, 'type' | 'modelValue' | 'label' | 'placeholder' | 'disabled' | 'readonly' | 'required' | 'name' | 'size' | 'icon'>;
     type Option<T extends AcceptableValue = ObjectLike> = SelectMenuNS.Option<T>;
     type Props<T extends AcceptableValue = ObjectLike> = {
         level?: keyof typeof ButtonBoxNS.Level;
@@ -21,11 +26,11 @@ export declare namespace DropDown {
         variant?: keyof typeof ButtonBoxNS.Variant;
         placeholder?: string;
         disabled?: boolean;
-        fields: Fields<T>;
+        fields?: Fields<T>;
         groupBy?: ValuesGetter<T, string>;
         label?: string;
         persist?: boolean;
-        alterStr?: SelectMenuNS.AlterStr;
+        alterStr?: SelectMenuNS.AlterStr & AlterStr;
         labelShowAs?: 'auto' | 'label' | 'placeholder' | 'icon';
         menuPosition?: `${'top' | 'bottom'}-${'left' | 'right'}`;
     } & ({
@@ -35,6 +40,13 @@ export declare namespace DropDown {
         showAll?: boolean;
         query?: string;
     } & Search.Options)) & ({
+        useCreate?: false;
+    } | ({
+        useCreate: true;
+        createPlaceholder?: string;
+        type?: Exclude<TextFieldNS.Type, 'password' | 'search'>;
+        createInProgress?: boolean;
+    } & TextFieldInheritProps)) & ({
         options: T[] | Map<string | number, T>;
         modelValue?: T | T[] | Map<string | number, T>;
         multiple?: boolean;
@@ -51,4 +63,7 @@ export declare namespace DropDown {
         options: Map<string | number, T>;
         modelValue: Map<string | number, T>;
     })));
+    type Emits<T> = {
+        (e: 'create', value: string, onFinish: (option: T) => void, onError: () => void): void;
+    };
 }

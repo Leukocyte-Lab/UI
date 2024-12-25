@@ -8,6 +8,9 @@ declare const meta: GenericMeta<typeof SelectMenu<SelectMenuNS.AcceptableValue>>
 export default meta;
 type DefaultMenu$ = StoryObj<typeof SelectMenu>;
 export declare const DefaultSelectMenu: DefaultMenu$;
+export declare const SimpleArrayMenu: DefaultMenu$;
+export declare const SimpleArrayWithMultiSelectMenu: DefaultMenu$;
+export declare const SimpleArrayWithSearchMenu: DefaultMenu$;
 export declare const SingleSelectMenu: DefaultMenu$;
 export declare const SingleSelectMenuWithSearch: DefaultMenu$;
 export declare const SingleSelectMenuWithSearchWithPredefinedQuery: DefaultMenu$;
@@ -22,5 +25,6 @@ export declare const GroupWithSubtitleMultiSelectMenu: DefaultMenu$;
 export declare const GroupOverflowWithSubtitleMultiSelectMenu: DefaultMenu$;
 export declare const GroupOverflowWithSubtitleMultiSelectWithSearchMenu: DefaultMenu$;
 export declare const SelectMenuWithCustomText: DefaultMenu$;
-export declare const SelectMenuWithCustomSlots: DefaultMenu$;
+export declare const SelectMenuWithCustomGadgetSlots: DefaultMenu$;
+export declare const SelectMenuWithCustomLayoutSlots: DefaultMenu$;
 export declare const IconWithSubtitleSelectMenu: DefaultMenu$;
