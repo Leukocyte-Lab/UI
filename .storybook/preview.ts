@@ -33,6 +33,7 @@ const preview: Preview = {
       defaultTheme: 'Light Theme'
     },
     docs: {
+      toc: true,
       argTypes: {
         sort: 'requiredFirst'
       }
