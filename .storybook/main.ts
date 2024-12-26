@@ -8,6 +8,7 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
     '@etchteam/storybook-addon-css-variables-theme',
+    'storybook-addon-vue-slots',
     '@chromatic-com/storybook'
   ],
   framework: {
