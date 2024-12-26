@@ -56,6 +56,19 @@ const meta: Meta<typeof CardBox> = {
       description: 'Is card active (optional)',
       defaultValue: false
     }
+  },
+  parameters: {
+    slots: {
+      default: {
+        template: `
+          <div style="padding: 1em;">
+            <h1>This is a CardBox</h1>
+            <br />
+            <p>Put something inside the slot to see it !</p>
+          </div>
+        `
+      }
+    }
   }
 };
 
@@ -63,24 +76,7 @@ export default meta;
 
 type CardBox$ = StoryObj<typeof CardBox>;
 
-const Template: StoryFn<typeof CardBox> = (args) => ({
-  components: { CardBox },
-  setup() {
-    return { args };
-  },
-  template: `
-  <CardBox ${bindArgs(args)}>
-    <div style="padding: 1em;">
-      <h1>This is a CardBox</h1>
-      <br />
-      <p>Put something inside the slot to see it !</p>
-    </div>
-  </CardBox>
-  `
-})
-
 export const DefaultCardBox: CardBox$ = {
-  render: Template,
   args: {
     variant: 'metallic',
     purpose: 'box',
@@ -92,14 +88,12 @@ export const DefaultCardBox: CardBox$ = {
 };
 
 export const MetallicDefaultCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...DefaultCardBox.args
   }
 };
 
 export const FlatDefaultCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...DefaultCardBox.args,
     variant: 'flat'
@@ -107,7 +101,6 @@ export const FlatDefaultCardBox: CardBox$ = {
 };
 
 export const DashDefaultCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...DefaultCardBox.args,
     variant: 'dash'
@@ -115,7 +108,6 @@ export const DashDefaultCardBox: CardBox$ = {
 };
 
 export const MetallicCyanCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...MetallicDefaultCardBox.args,
     color: 'cyan'
@@ -123,7 +115,6 @@ export const MetallicCyanCardBox: CardBox$ = {
 };
 
 export const FlatCyanCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...FlatDefaultCardBox.args,
     color: 'cyan'
@@ -131,7 +122,6 @@ export const FlatCyanCardBox: CardBox$ = {
 };
 
 export const DashCyanCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...DashDefaultCardBox.args,
     color: 'cyan'
@@ -139,7 +129,6 @@ export const DashCyanCardBox: CardBox$ = {
 };
 
 export const MetallicBlueCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...MetallicDefaultCardBox.args,
     color: 'blue'
@@ -147,7 +136,6 @@ export const MetallicBlueCardBox: CardBox$ = {
 };
 
 export const FlatBlueCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...FlatDefaultCardBox.args,
     color: 'blue'
@@ -155,7 +143,6 @@ export const FlatBlueCardBox: CardBox$ = {
 };
 
 export const DashBlueCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...DashDefaultCardBox.args,
     color: 'blue'
@@ -163,7 +150,6 @@ export const DashBlueCardBox: CardBox$ = {
 };
 
 export const MetallicGreenCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...MetallicDefaultCardBox.args,
     color: 'green'
@@ -171,7 +157,6 @@ export const MetallicGreenCardBox: CardBox$ = {
 };
 
 export const FlatGreenCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...FlatDefaultCardBox.args,
     color: 'green'
@@ -179,7 +164,6 @@ export const FlatGreenCardBox: CardBox$ = {
 };
 
 export const DashGreenCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...DashDefaultCardBox.args,
     color: 'green'
@@ -187,7 +171,6 @@ export const DashGreenCardBox: CardBox$ = {
 };
 
 export const MetallicOrangeCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...MetallicDefaultCardBox.args,
     color: 'orange'
@@ -195,7 +178,6 @@ export const MetallicOrangeCardBox: CardBox$ = {
 };
 
 export const FlatOrangeCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...FlatDefaultCardBox.args,
     color: 'orange'
@@ -203,7 +185,6 @@ export const FlatOrangeCardBox: CardBox$ = {
 };
 
 export const DashOrangeCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...DashDefaultCardBox.args,
     color: 'orange'
@@ -211,7 +192,6 @@ export const DashOrangeCardBox: CardBox$ = {
 };
 
 export const MetallicRedCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...MetallicDefaultCardBox.args,
     color: 'red'
@@ -219,7 +199,6 @@ export const MetallicRedCardBox: CardBox$ = {
 };
 
 export const FlatRedCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...FlatDefaultCardBox.args,
     color: 'red'
@@ -227,7 +206,6 @@ export const FlatRedCardBox: CardBox$ = {
 };
 
 export const DashRedCardBox: CardBox$ = {
-  render: Template,
   args: {
     ...DashDefaultCardBox.args,
     color: 'red'
