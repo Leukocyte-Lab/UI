@@ -41,6 +41,7 @@ export namespace SelectMenu {
     groupBy?: ValuesGetter<T, string>;
     label?: string;
     alterStr?: AlterStr;
+    clearable?: boolean;
   } & (
     | { useSearch?: false }
     | ({ useSearch: true; showAll?: boolean; query?: string; } & Search.Options)

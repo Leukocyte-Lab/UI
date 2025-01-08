@@ -51,6 +51,7 @@ export namespace DropDown {
     alterStr?: SelectMenuNS.AlterStr & AlterStr;
     labelShowAs?: 'auto' | 'label' | 'placeholder' | 'icon';
     menuPosition?: `${'top' | 'bottom'}-${'left' | 'right'}`;
+    clearable?: boolean;
   } & (
     | { useSearch?: false }
     | ({ useSearch: true; showAll?: boolean; query?: string } & Search.Options)
