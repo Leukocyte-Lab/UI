@@ -331,6 +331,7 @@ defineExpose({
         :alter-str="props.alterStr"
         :case-sensitive="props.caseSensitive"
         :class="[$style['dropdown-menu'], $style[props.menuPosition]]"
+        :clearable="props.clearable"
         :fields="props.fields"
         :group-by="props.groupBy"
         :label="props.label"

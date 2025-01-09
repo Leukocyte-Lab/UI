@@ -252,7 +252,7 @@ defineExpose({
             <h1 :class="$style['title']">
               {{ props.label }}
             </h1>
-            <template v-if="props.multiple">
+            <template v-if="props.multiple || props.clearable">
               <slot :clear-selection="clearSelection" name="clear-selection">
                 <ButtonBox
                   @click="clearSelection"
