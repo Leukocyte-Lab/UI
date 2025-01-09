@@ -33,6 +33,7 @@ export declare namespace DropDown {
         alterStr?: SelectMenuNS.AlterStr & AlterStr;
         labelShowAs?: 'auto' | 'label' | 'placeholder' | 'icon';
         menuPosition?: `${'top' | 'bottom'}-${'left' | 'right'}`;
+        clearable?: boolean;
     } & ({
         useSearch?: false;
     } | ({

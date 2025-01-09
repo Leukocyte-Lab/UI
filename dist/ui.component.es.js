@@ -2271,6 +2271,7 @@ const Cr = ["onClick"], Mr = /* @__PURE__ */ W({
     groupBy: {},
     label: {},
     alterStr: {},
+    clearable: { type: Boolean },
     useSearch: { type: Boolean },
     showAll: { type: Boolean },
     query: {},
@@ -2414,7 +2415,7 @@ const Cr = ["onClick"], Mr = /* @__PURE__ */ W({
               d("h1", {
                 class: r(z.$style.title)
               }, T(a.label), 3),
-              a.multiple ? x(z.$slots, "clear-selection", {
+              a.multiple || a.clearable ? x(z.$slots, "clear-selection", {
                 key: 0,
                 clearSelection: w
               }, () => {
@@ -2612,7 +2613,7 @@ const Cr = ["onClick"], Mr = /* @__PURE__ */ W({
   "menu-group-label": "_menu-group-label_1mayu_245"
 }, Gr = {
   $style: Yr
-}, Fe = /* @__PURE__ */ X(Mr, [["__cssModules", Gr], ["__scopeId", "data-v-19d7604b"]]), Xr = /* @__PURE__ */ W({
+}, Fe = /* @__PURE__ */ X(Mr, [["__cssModules", Gr], ["__scopeId", "data-v-a9c2a45d"]]), Xr = /* @__PURE__ */ W({
   __name: "DropDown",
   props: /* @__PURE__ */ be({
     level: { default: "primary" },
@@ -2627,6 +2628,7 @@ const Cr = ["onClick"], Mr = /* @__PURE__ */ W({
     alterStr: {},
     labelShowAs: { default: "auto" },
     menuPosition: { default: "bottom-right" },
+    clearable: { type: Boolean },
     useSearch: { type: Boolean },
     showAll: { type: Boolean },
     query: {},
@@ -2858,6 +2860,7 @@ const Cr = ["onClick"], Mr = /* @__PURE__ */ W({
           "alter-str": s.alterStr,
           "case-sensitive": s.caseSensitive,
           class: r([M.$style["dropdown-menu"], M.$style[s.menuPosition]]),
+          clearable: s.clearable,
           fields: s.fields,
           "group-by": s.groupBy,
           label: s.label,
@@ -2952,7 +2955,7 @@ const Cr = ["onClick"], Mr = /* @__PURE__ */ W({
             }),
             key: "5"
           } : void 0
-        ]), 1032, ["modelValue", "query", "alter-str", "case-sensitive", "class", "fields", "group-by", "label", "limit", "multiple", "options", "phrase-search", "relevant-search", "segment-pattern", "show-all", "sort-by", "strict", "threshold", "use-search"])) : L("", !0)
+        ]), 1032, ["modelValue", "query", "alter-str", "case-sensitive", "class", "clearable", "fields", "group-by", "label", "limit", "multiple", "options", "phrase-search", "relevant-search", "segment-pattern", "show-all", "sort-by", "strict", "threshold", "use-search"])) : L("", !0)
       ], 2)), [
         [u(tt), Z]
       ]);
@@ -2999,7 +3002,7 @@ const Cr = ["onClick"], Mr = /* @__PURE__ */ W({
   active: _n
 }, vn = {
   $style: fn
-}, Ec = /* @__PURE__ */ X(Xr, [["__cssModules", vn], ["__scopeId", "data-v-552ff46f"]]), yn = /* @__PURE__ */ W({
+}, Ec = /* @__PURE__ */ X(Xr, [["__cssModules", vn], ["__scopeId", "data-v-fc51c985"]]), yn = /* @__PURE__ */ W({
   __name: "ProgressBar",
   props: {
     value: { default: 0 },

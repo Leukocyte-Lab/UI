@@ -35,6 +35,7 @@ export declare namespace SelectMenu {
         groupBy?: ValuesGetter<T, string>;
         label?: string;
         alterStr?: AlterStr;
+        clearable?: boolean;
     } & ({
         useSearch?: false;
     } | ({
