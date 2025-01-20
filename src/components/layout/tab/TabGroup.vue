@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
-import { useElementBounding, useElementSize } from '@vueuse/core';
+import { useElementBounding } from '@vueuse/core';
 
 import type { VNode } from 'vue';
 
