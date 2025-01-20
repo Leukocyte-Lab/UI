@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
-import { useElementSize } from '@vueuse/core';
+import { useElementBounding, useElementSize } from '@vueuse/core';
 
 import type { VNode } from 'vue';
 
@@ -36,6 +36,7 @@ const selected = defineModel<TabGroup.Tab.Model>({
   }
 });
 
+const tabWrapperRef$ = ref<HTMLElement>();
 const tabRefs$ = ref<HTMLElement[]>([]);
 
 const _selected = ref<TabGroup.Tab.Model | undefined>(undefined);
@@ -50,16 +51,8 @@ const animateDirection = computed(() =>
 const tabs = computed(() =>
   Array.isArray(props.tabs) ? new Map(props.tabs.map((tab) => [tab.id, tab])) : props.tabs
 );
-const decoBarWidth = computed(() =>
-  tabRefs$.value[selectedIndex.value]
-    ? useElementSize(tabRefs$.value[selectedIndex.value]).width.value
-    : 0
-);
-const decoBarOffset = computed(() =>
-  tabRefs$.value
-    .slice(0, selectedIndex.value)
-    .reduce((acc, tab) => acc + useElementSize(tab).width.value, 0)
-);
+const { left: wrapperOffset } = useElementBounding(tabWrapperRef$);
+const { width: decoBarWidth, left: decoBarOffset } = useElementBounding(() => tabRefs$.value[selectedIndex.value])
 
 const selectTab = (tab: TabGroup.Tab.Model) => {
   selected.value = tab;
@@ -69,6 +62,7 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
 <template>
   <div :class="[$style['tab-group-container'], $style.wrapper, $style.flex, $style.vertical]">
     <div
+      ref="tabWrapperRef$"
       :class="[
         $style['tab-group-wrapper'],
         $style.wrapper,
@@ -161,7 +155,7 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
       content: '';
       position: absolute;
       bottom: 0;
-      left: calc(v-bind('decoBarOffset') * 1px);
+      left: calc((v-bind('decoBarOffset') - v-bind('wrapperOffset')) * 1px);
       width: calc(v-bind('decoBarWidth') * 1px);
       height: var(--agh-ref-border-width-100);
       background-color: var(--highlight-border-color);
