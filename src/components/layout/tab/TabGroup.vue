@@ -42,11 +42,12 @@ const tabRefs$ = ref<HTMLElement[]>([]);
 
 const _selected = ref<TabGroup.Tab.Model | undefined>(undefined);
 const oldIndex = ref<number | null>(null);
+const tabUuid = ref(uuid());
 
 const selectedIndex = computed(() =>
   selected.value ? [...tabs.value.keys()].indexOf(selected.value.id) ?? 0 : 0
 );
-const anchorName = computed(() => `--tab-anchor--${uuid()}--${selectedIndex.value}`);
+const anchorName = computed(() => `--tab-anchor--${tabUuid.value}--${selectedIndex.value}`);
 const animateDirection = computed(() =>
   (oldIndex.value ?? selectedIndex.value) <= selectedIndex.value ? 'left' : 'right'
 );
