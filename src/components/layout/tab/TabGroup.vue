@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { Icon } from '@iconify/vue/offline';
-import { useElementBounding } from '@vueuse/core';
 
 import type { VNode } from 'vue';
+
+import { uuid } from '@/shared/libs/uuid';
 
 import type { TabGroup } from '@/components/layout/tab/TabGroup.model';
 
@@ -45,14 +46,13 @@ const oldIndex = ref<number | null>(null);
 const selectedIndex = computed(() =>
   selected.value ? [...tabs.value.keys()].indexOf(selected.value.id) ?? 0 : 0
 );
+const anchorName = computed(() => `--tab-anchor--${uuid()}--${selectedIndex.value}`);
 const animateDirection = computed(() =>
   (oldIndex.value ?? selectedIndex.value) <= selectedIndex.value ? 'left' : 'right'
 );
 const tabs = computed(() =>
   Array.isArray(props.tabs) ? new Map(props.tabs.map((tab) => [tab.id, tab])) : props.tabs
 );
-const { left: wrapperOffset } = useElementBounding(tabWrapperRef$);
-const { width: decoBarWidth, left: decoBarOffset } = useElementBounding(() => tabRefs$.value[selectedIndex.value])
 
 const selectTab = (tab: TabGroup.Tab.Model) => {
   selected.value = tab;
@@ -154,9 +154,10 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
     &::before {
       content: '';
       position: absolute;
+      position-anchor: v-bind('anchorName');
       bottom: 0;
-      left: calc((v-bind('decoBarOffset') - v-bind('wrapperOffset')) * 1px);
-      width: calc(v-bind('decoBarWidth') * 1px);
+      left: anchor(left);
+      width: anchor-size(width);
       height: var(--agh-ref-border-width-100);
       background-color: var(--highlight-border-color);
       z-index: 1;
@@ -180,6 +181,10 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
   place-items: center;
 
   &.active {
+    anchor-name: v-bind('anchorName');
+
+    border-color: var(--highlight-border-color);
+
     &,
     p,
     .icon {
