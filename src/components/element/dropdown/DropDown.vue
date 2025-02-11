@@ -321,7 +321,7 @@ defineExpose({
         :variant="props.variant"
       />
     </template>
-    <template v-if="optionsCount > 0 && onShowMenu()">
+    <template v-if="onShowMenu()">
       <!-- @vue-ignore // ? NOTE: SelectMenu will handle generic type ? // -->
       <SelectMenu
         ref="selectMenuRef$"
