@@ -1,5 +1,5 @@
 @mixin typography {
-  * {
+  :root {
     font-family: Lato, 'Noto Sans TC', sans-serif;
     text-rendering: geometricprecision;
     -moz-osx-font-smoothing: grayscale;
