@@ -44,6 +44,7 @@ export namespace TextField {
     max?: number;
     pattern?: string;
     size?: number;
+    step?: number | string;
     spellcheck?: boolean;
     tabindex?: number;
     inputmode?: InputMode;
