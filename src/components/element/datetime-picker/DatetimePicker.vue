@@ -286,7 +286,14 @@ const handleClickDayButton = (
 ) => {
   if (props.type === 'single') {
     selectDate.value.start = day;
-    emits('update:modelValue', day.date);
+    const [hours, minutes] = selectTime.value.split(':').map(Number);
+    if (props.enableTime && !isNaN(hours) && !isNaN(minutes)) {
+      const datetime = day.date;
+      datetime.setHours(hours, minutes, 0, 0);
+      emits('update:modelValue', datetime);
+    } else {
+      emits('update:modelValue', day.date);
+    }
     emits('update:start', new Date(day.year, day.monthNumber - 1, day.currentDate, 0, 0));
     emits('update:end', new Date(day.year, day.monthNumber - 1, day.currentDate, 23, 59));
   } else if (enableHoverRange.end) {
@@ -385,6 +392,20 @@ watch(
     immediate: true
   }
 );
+
+watch(
+  selectTime,
+  (newTime) => {
+    if (newTime && /([01]?[0-9]|2[0-3]):[0-5][0-9]/.test(newTime)) {
+      const [hours, minutes] = newTime.split(':').map(Number);
+      if (!isNaN(hours) && !isNaN(minutes)) {
+        const date = selectDate.value.start?.date ? new Date(selectDate.value.start.date) : new Date();
+        date.setHours(hours, minutes, 0, 0);
+        emits('update:modelValue', date);
+      }
+    }
+  }
+)
 </script>
 
 <template>
@@ -505,6 +526,9 @@ watch(
         <TextField
           v-model="selectTime"
           :class="$style['input']"
+          :invalid-message="{
+            patternMismatch: 'Invalid time format. Use HH:MM (24-hour format).'
+          }"
           pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
           placeholder="Enter Time"
         />

@@ -1,3 +1,5 @@
+import { fn } from '@storybook/test';
+
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import DatetimePicker from './DatetimePicker.vue';
@@ -5,7 +7,52 @@ import DatetimePicker from './DatetimePicker.vue';
 const meta: Meta<typeof DatetimePicker> = {
   title: 'Components / Element / DatetimePicker',
   component: DatetimePicker,
-  tags: ['autodocs']
+  tags: ['autodocs'],
+  argTypes: {
+    minYear: {
+      control: 'number',
+      description: 'Minimum year for the date picker'
+    },
+    maxYear: {
+      control: 'number',
+      description: 'Maximum year for the date picker'
+    },
+    weekStart: {
+      control: 'select',
+      description: 'Day to start the week',
+      options: ['Sunday', 'Monday'],
+      defaultValue: 'Sunday'
+    },
+    enableTime: {
+      control: 'boolean',
+      description: 'Enable time selection in the date picker',
+      defaultValue: false
+    },
+    type: {
+      control: 'select',
+      description: 'Type of date selection',
+      options: ['single', 'multiple'],
+      defaultValue: 'single'
+    },
+    start: {
+      control: 'date',
+      description: 'Start date for the date range (for multiple selection)'
+    },
+    end: {
+      control: 'date',
+      description: 'End date for the date range (for multiple selection)'
+    },
+    modelValue: {
+      control: 'date',
+      description: 'DatetimePicker value, use by `v-model`.'
+    },
+  },
+  args: {
+    'onUpdate:modelValue': fn(),
+    'onUpdate:start': fn(),
+    'onUpdate:end': fn(),
+    'onConfirm': fn()
+  }
 };
 
 export default meta;
