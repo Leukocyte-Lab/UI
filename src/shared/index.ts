@@ -4,6 +4,7 @@ import { useEventDebounceSignal } from './libs/event';
 import Map$ from './libs/map';
 import Math$ from './libs/math';
 import { parser } from './libs/parser';
+import { useSearch } from './libs/search';
 import { selector } from './libs/selector';
 import { computed, debug,signal, toggleSignal } from './libs/signal';
 import String$ from './libs/string';
@@ -33,6 +34,7 @@ import type {
 } from './types/optional';
 import type { MaybeArray, MustDefined, MustHas, Writeable } from './types/utils';
 import type { Vec2, Vec3, Vec4, Vector } from './types/vector';
+import type { Search } from '@/shared/libs/search';
 
 export {
   computed,
@@ -49,6 +51,7 @@ export {
   toggleSignal,
   useEventDebounceSignal,
   useFallback,
+  useSearch,
   uuid,
   UUID2Hex
 };
@@ -78,6 +81,7 @@ export type {
   Optional,
   OptionalObject,
   PromiseCallback,
+  Search,
   Signal,
   UUID,
   ValueOf,
@@ -85,5 +89,4 @@ export type {
   Vec3,
   Vec4,
   Vector,
-  Writeable
-};
+  Writeable};
