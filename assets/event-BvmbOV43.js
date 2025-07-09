@@ -1,0 +1,1 @@
+import{s as n}from"./signal-ChsrobDd.js";const T=(e,{debounce:i=300,flush:o="pre"}={})=>{const r=n(!1);let t;return{triggered:r,onTrigger:s=>{!r()&&o==="pre"||o==="sync"?e==null||e.call({},s):(s.preventDefault(),s.stopPropagation()),r.set(!0),globalThis.clearTimeout(t),t=globalThis.setTimeout(()=>{r.set(!1),(o==="post"||o==="sync")&&(e==null||e.call({},s))},i)}}};export{T as u};
