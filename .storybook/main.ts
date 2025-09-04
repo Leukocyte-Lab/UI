@@ -4,12 +4,11 @@ const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
     '@storybook/addon-a11y',
-    '@etchteam/storybook-addon-css-variables-theme',
-    'storybook-addon-vue-slots',
-    '@chromatic-com/storybook'
+    '@chromatic-com/storybook',
+    '@storybook/addon-docs',
+    '@storybook/addon-themes',
+    'storybook-addon-vue-slots'
   ],
   framework: {
     name: '@storybook/vue3-vite',

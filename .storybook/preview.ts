@@ -1,13 +1,13 @@
 import '@/assets/styles/main.scss';
 
-import cssVariablesTheme from '@etchteam/storybook-addon-css-variables-theme';
 import { addCollection } from '@iconify/vue/offline';
 import * as FontAwesomeBrands from '@iconify-json/fa6-brands';
 import * as FontAwesomeRegular from '@iconify-json/fa6-regular';
 import * as FontAwesomeSolid from '@iconify-json/fa6-solid';
 
-import type { Preview } from '@storybook/vue3';
+import type { Preview } from '@storybook/vue3-vite';
 
+import { themeVariablesLoader } from './decorators/theme-variables-loader.decorator';
 import { fixVModel } from './decorators/vmodel.decorator';
 import { cssVariables } from './helpers/css-variables';
 
@@ -19,19 +19,16 @@ const MetallicLightTheme = cssVariables(
   () => import('@leukocyte-lab/theme/metallic/bright/variables.css?inline')
 );
 const MetallicDarkTheme = cssVariables(
-  () => import('@leukocyte-lab/theme/metallic/dark/variables.css?inline')
+  () => import('@leukocyte-lab/theme/metallic/dark/variables.css?inline'),
+  {
+    'background-color': '#000',
+    'color': '#fff'
+  }
 );
 
 const preview: Preview = {
   parameters: {
     layout: 'centered',
-    cssVariables: {
-      files: {
-        'Light Theme': MetallicLightTheme,
-        'Dark Theme': MetallicDarkTheme
-      },
-      defaultTheme: 'Light Theme'
-    },
     docs: {
       toc: true,
       argTypes: {
@@ -40,7 +37,13 @@ const preview: Preview = {
     }
   },
   decorators: [
-    cssVariablesTheme,
+    themeVariablesLoader({
+      themes: {
+        Light: MetallicLightTheme,
+        Dark: MetallicDarkTheme
+      },
+      defaultTheme: 'Light'
+    }),
     fixVModel
   ]
 };
