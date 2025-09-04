@@ -1,7 +1,7 @@
 import { omit } from 'lodash-es';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
-import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryFn, StoryObj } from '@storybook/vue3-vite';
 
 import TextField from './TextField.vue';
 

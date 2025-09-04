@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from '@storybook/vue3';
+import type { Meta, StoryFn } from '@storybook/vue3-vite';
 
 import CardBox from '../../components/element/card/CardBox.vue';
 import { FlowKit } from '.';

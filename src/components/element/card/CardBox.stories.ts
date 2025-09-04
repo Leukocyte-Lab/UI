@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryFn, StoryObj } from '@storybook/vue3-vite';
 
 import CardBox from './CardBox.vue';
 
