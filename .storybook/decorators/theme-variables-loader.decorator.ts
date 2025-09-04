@@ -26,7 +26,7 @@ export const themeVariablesLoader = ({
       setup() {
         themes[selected]?.use();
       },
-      template: `<v-app><story /></v-app>`
+      template: `<story />`
     };
   };
 };

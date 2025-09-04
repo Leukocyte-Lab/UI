@@ -25,14 +25,12 @@ export const cssVariables = (
 
       const stylesheet = `${this.innerStyles}${
         additionalStyles
-          ? `.sbdocs-preview {${Object.entries(additionalStyles).reduce(
+          ? `.sbdocs-preview, .sb-show-main, body, :root {${Object.entries(additionalStyles).reduce(
               (acc, [key, value]) => `${acc}\n  ${key}: ${value};`,
               ''
             )}}`
           : ''
       }`;
-
-      console.log(stylesheet);
 
       if (this.styleTag?.innerHTML !== stylesheet) {
         this.styleTag.innerHTML = stylesheet;
