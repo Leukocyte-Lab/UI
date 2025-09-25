@@ -4,6 +4,21 @@ import { selector } from '@/shared/libs/selector';
 import type { GetterFn } from '@/shared/types/fn';
 import type { ObjectLike } from '@/shared/types/object';
 
+export const simpleGetter = <
+  T,
+  Options,
+  Getter extends GetterFn<T, [Options]> | unknown
+>(
+  options: Options,
+  getter: Getter
+) => {
+  if (typeof getter === 'function') {
+    return getter(options);
+  } else {
+    return getter;
+  }
+};
+
 export const valuesGetter = <
   Options extends ObjectLike | string | number,
   Getter extends GetterFn<string, [Options], Nullable> | string,
@@ -50,9 +65,7 @@ export const booleanGetter = <
     }
   } else {
     if (typeof options === 'object' && options !== null) {
-      return (
-        Boolean(selector(options, getter))
-      );
+      return Boolean(selector(options, getter));
     } else {
       return Boolean(options);
     }
