@@ -24,6 +24,18 @@ const meta: GenericMeta<typeof LargeDataTableWrapper> = {
       control: 'boolean',
       description: 'Whether to enable the search functionality.'
     },
+    totalItems: {
+      control: 'number',
+      description: 'Total number of items in the data set. Optional, if not provided, it will be derived from the items prop.'
+    },
+    defaultRowHeight: {
+      control: 'number',
+      description: 'Default height for each row in pixels. Used when the actual row height cannot be determined.'
+    },
+    visibleSize: {
+      control: 'number',
+      description: 'Number of rows to render in the viewport. Adjust based on performance needs. Default is 50.'
+    },
 
     // Slots
     row: {
