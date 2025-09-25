@@ -7,7 +7,7 @@ import type { ObjectLike } from '@/shared/types/object';
 export const simpleGetter = <
   T,
   Options,
-  Getter extends GetterFn<T, [Options]> | unknown
+  Getter extends GetterFn<T, [Options]>
 >(
   options: Options,
   getter: Getter
