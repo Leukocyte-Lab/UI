@@ -32,7 +32,7 @@ const visualItemHeight = computed(() => {
   const value = Math.min(...itemHeightSet.value);
   return Number.isFinite(value) ? value : (props.defaultRowHeight ?? 32);
 });
-const threshold = computed(() => props.visibleSize ?? 20);
+const threshold = computed(() => props.visibleSize ?? 50);
 const items = computed(() =>
   new Map$(
     props.items instanceof Map
