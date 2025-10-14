@@ -112,6 +112,22 @@ class MapProxyInstance<K extends string | number | symbol, V>
     return result;
   }
 
+  public mapWithIndex<U extends string | number | symbol, S>(
+    callbackfn: (value: V, key: K, index: number, map: Map<K, V>) => [U, S],
+    thisArg?: any
+  ): MapProxy<U, S> {
+    const result = new MapProxyInstance<U, S>();
+
+    let index = 0;
+    for (const [key, value] of this) {
+      const [newKey, newValue] = callbackfn.call(thisArg, value, key, index, this);
+      result.set(newKey, newValue);
+      index++;
+    }
+
+    return result;
+  }
+
   public filter(
     predicate: (value: V, key: K, map: Map<K, V>) => unknown,
     thisArg?: any
