@@ -8,7 +8,8 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-docs',
     '@storybook/addon-themes',
-    'storybook-addon-vue-slots'
+    'storybook-addon-vue-slots',
+    '@storybook/addon-vitest'
   ],
   framework: {
     name: '@storybook/vue3-vite',

@@ -22,18 +22,26 @@ const MetallicDarkTheme = cssVariables(
   () => import('@leukocyte-lab/theme/metallic/dark/variables.css?inline'),
   {
     'background-color': '#000',
-    'color': '#fff'
+    color: '#fff'
   }
 );
 
 const preview: Preview = {
   parameters: {
     layout: 'centered',
+
     docs: {
       toc: true,
       argTypes: {
         sort: 'requiredFirst'
       }
+    },
+
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: 'todo'
     }
   },
   decorators: [
