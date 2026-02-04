@@ -47,8 +47,19 @@ const items = computed(() =>
     }
   ])
 );
-const visibleItems = computed(() =>
-  items.value.filter(({ index }) => index >= cursor.value && index < cursor.value + threshold.value)
+
+// Precompute a stable, index-addressable view of items so that cursor/threshold
+// changes only touch the sliced window instead of walking the whole Map.
+const itemEntries = computed(() => Array.from(items.value.entries()));
+
+const visibleItems = computed(
+  () =>
+    new Map(
+      itemEntries.value.slice(
+        cursor.value,
+        cursor.value + threshold.value
+      )
+    )
 );
 const totalItems = computed(() => props.totalItems ?? items.value.size);
 const visualPrefixHeight = computed(() => {
@@ -133,7 +144,7 @@ watch(overflowed, (value) => emits('overflowed', value), {
       overflowed() && $style.overflowed
     ]"
   >
-    <template v-for="[key, { item, index }] in visibleItems" :key>
+    <template v-for="[key, { item, index }] in visibleItems" :key="key">
       <slot :columns="props.columns" :item="item" :row-index="index" :row-key="key" name="row">
         <DataTableRow
           @select:row="(event) => emits('select:row', event)"

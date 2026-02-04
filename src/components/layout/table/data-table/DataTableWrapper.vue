@@ -61,7 +61,7 @@ watch(overflowed, (value) => emits('overflowed', value), {
       overflowed() && $style.overflowed
     ]"
   >
-    <template v-for="[key, { item, index }] in items" :key>
+    <template v-for="[key, { item, index }] in items" :key="key">
       <slot :columns="props.columns" :item="item" :row-index="index" :row-key="key" name="row">
         <DataTableRow @select:row="(event) => emits('select:row', event)" :columns="props.columns" :item="item" :row-index="index" :row-key="key">
           <template #default="cellProps">
