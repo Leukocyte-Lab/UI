@@ -71,7 +71,7 @@ defineExpose({
   <div
     :class="[
       $style['textfield-container'],
-      props.icon || type === 'search' && [$style[`icon-align--${props.iconAlign}`]],
+      (props.icon || type === 'search') && [$style[`icon-align--${props.iconAlign}`]],
       !props.label && [$style['no-label']]
     ]"
   >
