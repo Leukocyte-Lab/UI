@@ -32,8 +32,8 @@ export const cssVariables = (
           : ''
       }`;
 
-      if (this.styleTag?.innerHTML !== stylesheet) {
-        this.styleTag.innerHTML = stylesheet;
+      if (this.styleTag?.textContent !== stylesheet) {
+        this.styleTag.textContent = stylesheet;
       }
     },
     unuse: async function () {
