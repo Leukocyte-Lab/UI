@@ -19,6 +19,7 @@ declare class MapProxyInstance<K extends string | number | symbol, V> extends Ma
     findValue<T extends V>(predicate: (value: V, key: K, map: Map<K, V>) => value is T, thisArg?: any): T | undefined;
     findValue(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): V | undefined;
     map<U extends string | number | symbol, S>(callbackfn: (value: V, key: K, map: Map<K, V>) => [U, S], thisArg?: any): MapProxy<U, S>;
+    mapWithIndex<U extends string | number | symbol, S>(callbackfn: (value: V, key: K, index: number, map: Map<K, V>) => [U, S], thisArg?: any): MapProxy<U, S>;
     filter(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): MapProxy<K, V>;
     groupBy<K extends string | number | symbol, T>(items: Iterable<T>, keySelector: (item: T, index: number) => K): MapProxy<K, T[]>;
     toArray<R extends 'entries'>(returnType?: R): [K, V][];

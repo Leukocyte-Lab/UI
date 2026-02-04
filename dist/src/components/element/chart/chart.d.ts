@@ -18,6 +18,10 @@ export declare const useChart: ({ type, axises, data }: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             };
+            a?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            } | undefined;
             P?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -42,11 +46,7 @@ export declare const useChart: ({ type, axises, data }: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             } | undefined;
-            a?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            } | undefined;
-            h?: {
+            0?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             } | undefined;
@@ -75,42 +75,6 @@ export declare const useChart: ({ type, axises, data }: {
                 value?: Chart.DataType | undefined;
             } | undefined;
             g?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            } | undefined;
-            0?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            } | undefined;
-            1?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            } | undefined;
-            2?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            } | undefined;
-            3?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            } | undefined;
-            4?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            } | undefined;
-            5?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            } | undefined;
-            6?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            } | undefined;
-            7?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            } | undefined;
-            8?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             } | undefined;
@@ -183,6 +147,38 @@ export declare const useChart: ({ type, axises, data }: {
                 value?: Chart.DataType | undefined;
             } | undefined;
             "/"?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            } | undefined;
+            1?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            } | undefined;
+            2?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            } | undefined;
+            3?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            } | undefined;
+            4?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            } | undefined;
+            5?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            } | undefined;
+            6?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            } | undefined;
+            7?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            } | undefined;
+            8?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             } | undefined;
@@ -334,6 +330,10 @@ export declare const useChart: ({ type, axises, data }: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             } | undefined;
+            h?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            } | undefined;
             j?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -391,8 +391,8 @@ export declare const useChart: ({ type, axises, data }: {
     axises: import("vue").ComputedRef<{
         x: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -403,14 +403,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -418,8 +418,8 @@ export declare const useChart: ({ type, axises, data }: {
         };
         y: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -430,23 +430,23 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             }[] | undefined;
         };
-        P?: {
+        a?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -457,14 +457,41 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
+            metrics?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            }[] | undefined;
+        } | undefined;
+        P?: {
+            label: string;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
+            step?: number | undefined;
+            type: Chart.DataTypeSet;
+            accessor?: string | undefined;
+            selector?: string | undefined;
+            options?: {
+                offset: {
+                    x: number;
+                    y: number;
+                };
+                title?: string | undefined;
+                curve?: "smooth" | "straight" | undefined;
+                round?: boolean | undefined;
+                radius?: number | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
+                color?: string | undefined;
+                gap?: number | undefined;
+            } | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -472,8 +499,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         B?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -484,14 +511,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -499,8 +526,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         D?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -511,14 +538,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -526,8 +553,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         C?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -538,14 +565,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -553,8 +580,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         M?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -565,14 +592,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -580,8 +607,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         $?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -592,257 +619,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
-            metrics?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            }[] | undefined;
-        } | undefined;
-        a?: {
-            label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
-            step?: number | undefined;
-            type: Chart.DataTypeSet;
-            accessor?: string | undefined;
-            selector?: string | undefined;
-            options?: {
-                offset: {
-                    x: number;
-                    y: number;
-                };
-                title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
-                round?: boolean | undefined;
-                radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
-                color?: string | undefined;
-                gap?: number | undefined;
-            } | undefined;
-            sort?: ("asc" | "desc") | undefined;
-            metrics?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            }[] | undefined;
-        } | undefined;
-        h?: {
-            label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
-            step?: number | undefined;
-            type: Chart.DataTypeSet;
-            accessor?: string | undefined;
-            selector?: string | undefined;
-            options?: {
-                offset: {
-                    x: number;
-                    y: number;
-                };
-                title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
-                round?: boolean | undefined;
-                radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
-                color?: string | undefined;
-                gap?: number | undefined;
-            } | undefined;
-            sort?: ("asc" | "desc") | undefined;
-            metrics?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            }[] | undefined;
-        } | undefined;
-        b?: {
-            label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
-            step?: number | undefined;
-            type: Chart.DataTypeSet;
-            accessor?: string | undefined;
-            selector?: string | undefined;
-            options?: {
-                offset: {
-                    x: number;
-                    y: number;
-                };
-                title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
-                round?: boolean | undefined;
-                radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
-                color?: string | undefined;
-                gap?: number | undefined;
-            } | undefined;
-            sort?: ("asc" | "desc") | undefined;
-            metrics?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            }[] | undefined;
-        } | undefined;
-        i?: {
-            label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
-            step?: number | undefined;
-            type: Chart.DataTypeSet;
-            accessor?: string | undefined;
-            selector?: string | undefined;
-            options?: {
-                offset: {
-                    x: number;
-                    y: number;
-                };
-                title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
-                round?: boolean | undefined;
-                radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
-                color?: string | undefined;
-                gap?: number | undefined;
-            } | undefined;
-            sort?: ("asc" | "desc") | undefined;
-            metrics?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            }[] | undefined;
-        } | undefined;
-        p?: {
-            label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
-            step?: number | undefined;
-            type: Chart.DataTypeSet;
-            accessor?: string | undefined;
-            selector?: string | undefined;
-            options?: {
-                offset: {
-                    x: number;
-                    y: number;
-                };
-                title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
-                round?: boolean | undefined;
-                radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
-                color?: string | undefined;
-                gap?: number | undefined;
-            } | undefined;
-            sort?: ("asc" | "desc") | undefined;
-            metrics?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            }[] | undefined;
-        } | undefined;
-        q?: {
-            label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
-            step?: number | undefined;
-            type: Chart.DataTypeSet;
-            accessor?: string | undefined;
-            selector?: string | undefined;
-            options?: {
-                offset: {
-                    x: number;
-                    y: number;
-                };
-                title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
-                round?: boolean | undefined;
-                radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
-                color?: string | undefined;
-                gap?: number | undefined;
-            } | undefined;
-            sort?: ("asc" | "desc") | undefined;
-            metrics?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            }[] | undefined;
-        } | undefined;
-        s?: {
-            label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
-            step?: number | undefined;
-            type: Chart.DataTypeSet;
-            accessor?: string | undefined;
-            selector?: string | undefined;
-            options?: {
-                offset: {
-                    x: number;
-                    y: number;
-                };
-                title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
-                round?: boolean | undefined;
-                radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
-                color?: string | undefined;
-                gap?: number | undefined;
-            } | undefined;
-            sort?: ("asc" | "desc") | undefined;
-            metrics?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            }[] | undefined;
-        } | undefined;
-        u?: {
-            label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
-            step?: number | undefined;
-            type: Chart.DataTypeSet;
-            accessor?: string | undefined;
-            selector?: string | undefined;
-            options?: {
-                offset: {
-                    x: number;
-                    y: number;
-                };
-                title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
-                round?: boolean | undefined;
-                radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
-                color?: string | undefined;
-                gap?: number | undefined;
-            } | undefined;
-            sort?: ("asc" | "desc") | undefined;
-            metrics?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            }[] | undefined;
-        } | undefined;
-        g?: {
-            label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
-            step?: number | undefined;
-            type: Chart.DataTypeSet;
-            accessor?: string | undefined;
-            selector?: string | undefined;
-            options?: {
-                offset: {
-                    x: number;
-                    y: number;
-                };
-                title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
-                round?: boolean | undefined;
-                radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
-                color?: string | undefined;
-                gap?: number | undefined;
-            } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -850,8 +634,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         0?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -862,23 +646,23 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             }[] | undefined;
         } | undefined;
-        1?: {
+        b?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -889,23 +673,23 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             }[] | undefined;
         } | undefined;
-        2?: {
+        i?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -916,23 +700,23 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             }[] | undefined;
         } | undefined;
-        3?: {
+        p?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -943,23 +727,23 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             }[] | undefined;
         } | undefined;
-        4?: {
+        q?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -970,23 +754,23 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             }[] | undefined;
         } | undefined;
-        5?: {
+        s?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -997,23 +781,23 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             }[] | undefined;
         } | undefined;
-        6?: {
+        u?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1024,23 +808,23 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
             }[] | undefined;
         } | undefined;
-        7?: {
+        g?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1051,41 +835,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
-            metrics?: {
-                normalized: number;
-                value?: Chart.DataType | undefined;
-            }[] | undefined;
-        } | undefined;
-        8?: {
-            label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
-            step?: number | undefined;
-            type: Chart.DataTypeSet;
-            accessor?: string | undefined;
-            selector?: string | undefined;
-            options?: {
-                offset: {
-                    x: number;
-                    y: number;
-                };
-                title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
-                round?: boolean | undefined;
-                radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
-                color?: string | undefined;
-                gap?: number | undefined;
-            } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1093,8 +850,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         d?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1105,14 +862,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1120,8 +877,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         z?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1132,14 +889,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1147,8 +904,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         w?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1159,14 +916,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1174,8 +931,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         E?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1186,14 +943,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1201,8 +958,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "-"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1213,14 +970,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1228,8 +985,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "!"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1240,14 +997,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1255,8 +1012,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "\""?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1267,14 +1024,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1282,8 +1039,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "#"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1294,14 +1051,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1309,8 +1066,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "%"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1321,14 +1078,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1336,8 +1093,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "&"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1348,14 +1105,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1363,8 +1120,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "'"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1375,14 +1132,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1390,8 +1147,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "("?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1402,14 +1159,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1417,8 +1174,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         ")"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1429,14 +1186,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1444,8 +1201,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "*"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1456,14 +1213,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1471,8 +1228,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "+"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1483,14 +1240,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1498,8 +1255,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         ","?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1510,14 +1267,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1525,8 +1282,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "."?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1537,14 +1294,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1552,8 +1309,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "/"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1564,14 +1321,230 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
+            metrics?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            }[] | undefined;
+        } | undefined;
+        1?: {
+            label: string;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
+            step?: number | undefined;
+            type: Chart.DataTypeSet;
+            accessor?: string | undefined;
+            selector?: string | undefined;
+            options?: {
+                offset: {
+                    x: number;
+                    y: number;
+                };
+                title?: string | undefined;
+                curve?: "smooth" | "straight" | undefined;
+                round?: boolean | undefined;
+                radius?: number | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
+                color?: string | undefined;
+                gap?: number | undefined;
+            } | undefined;
+            sort?: "asc" | "desc" | undefined;
+            metrics?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            }[] | undefined;
+        } | undefined;
+        2?: {
+            label: string;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
+            step?: number | undefined;
+            type: Chart.DataTypeSet;
+            accessor?: string | undefined;
+            selector?: string | undefined;
+            options?: {
+                offset: {
+                    x: number;
+                    y: number;
+                };
+                title?: string | undefined;
+                curve?: "smooth" | "straight" | undefined;
+                round?: boolean | undefined;
+                radius?: number | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
+                color?: string | undefined;
+                gap?: number | undefined;
+            } | undefined;
+            sort?: "asc" | "desc" | undefined;
+            metrics?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            }[] | undefined;
+        } | undefined;
+        3?: {
+            label: string;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
+            step?: number | undefined;
+            type: Chart.DataTypeSet;
+            accessor?: string | undefined;
+            selector?: string | undefined;
+            options?: {
+                offset: {
+                    x: number;
+                    y: number;
+                };
+                title?: string | undefined;
+                curve?: "smooth" | "straight" | undefined;
+                round?: boolean | undefined;
+                radius?: number | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
+                color?: string | undefined;
+                gap?: number | undefined;
+            } | undefined;
+            sort?: "asc" | "desc" | undefined;
+            metrics?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            }[] | undefined;
+        } | undefined;
+        4?: {
+            label: string;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
+            step?: number | undefined;
+            type: Chart.DataTypeSet;
+            accessor?: string | undefined;
+            selector?: string | undefined;
+            options?: {
+                offset: {
+                    x: number;
+                    y: number;
+                };
+                title?: string | undefined;
+                curve?: "smooth" | "straight" | undefined;
+                round?: boolean | undefined;
+                radius?: number | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
+                color?: string | undefined;
+                gap?: number | undefined;
+            } | undefined;
+            sort?: "asc" | "desc" | undefined;
+            metrics?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            }[] | undefined;
+        } | undefined;
+        5?: {
+            label: string;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
+            step?: number | undefined;
+            type: Chart.DataTypeSet;
+            accessor?: string | undefined;
+            selector?: string | undefined;
+            options?: {
+                offset: {
+                    x: number;
+                    y: number;
+                };
+                title?: string | undefined;
+                curve?: "smooth" | "straight" | undefined;
+                round?: boolean | undefined;
+                radius?: number | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
+                color?: string | undefined;
+                gap?: number | undefined;
+            } | undefined;
+            sort?: "asc" | "desc" | undefined;
+            metrics?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            }[] | undefined;
+        } | undefined;
+        6?: {
+            label: string;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
+            step?: number | undefined;
+            type: Chart.DataTypeSet;
+            accessor?: string | undefined;
+            selector?: string | undefined;
+            options?: {
+                offset: {
+                    x: number;
+                    y: number;
+                };
+                title?: string | undefined;
+                curve?: "smooth" | "straight" | undefined;
+                round?: boolean | undefined;
+                radius?: number | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
+                color?: string | undefined;
+                gap?: number | undefined;
+            } | undefined;
+            sort?: "asc" | "desc" | undefined;
+            metrics?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            }[] | undefined;
+        } | undefined;
+        7?: {
+            label: string;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
+            step?: number | undefined;
+            type: Chart.DataTypeSet;
+            accessor?: string | undefined;
+            selector?: string | undefined;
+            options?: {
+                offset: {
+                    x: number;
+                    y: number;
+                };
+                title?: string | undefined;
+                curve?: "smooth" | "straight" | undefined;
+                round?: boolean | undefined;
+                radius?: number | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
+                color?: string | undefined;
+                gap?: number | undefined;
+            } | undefined;
+            sort?: "asc" | "desc" | undefined;
+            metrics?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            }[] | undefined;
+        } | undefined;
+        8?: {
+            label: string;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
+            step?: number | undefined;
+            type: Chart.DataTypeSet;
+            accessor?: string | undefined;
+            selector?: string | undefined;
+            options?: {
+                offset: {
+                    x: number;
+                    y: number;
+                };
+                title?: string | undefined;
+                curve?: "smooth" | "straight" | undefined;
+                round?: boolean | undefined;
+                radius?: number | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
+                color?: string | undefined;
+                gap?: number | undefined;
+            } | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1579,8 +1552,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         9?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1591,14 +1564,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1606,8 +1579,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         ":"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1618,14 +1591,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1633,8 +1606,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         ";"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1645,14 +1618,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1660,8 +1633,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "<"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1672,14 +1645,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1687,8 +1660,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "="?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1699,14 +1672,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1714,8 +1687,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         ">"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1726,14 +1699,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1741,8 +1714,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "?"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1753,14 +1726,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1768,8 +1741,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "@"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1780,14 +1753,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1795,8 +1768,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         A?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1807,14 +1780,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1822,8 +1795,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         F?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1834,14 +1807,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1849,8 +1822,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         G?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1861,14 +1834,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1876,8 +1849,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         H?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1888,14 +1861,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1903,8 +1876,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         I?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1915,14 +1888,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1930,8 +1903,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         J?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1942,14 +1915,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1957,8 +1930,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         K?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1969,14 +1942,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -1984,8 +1957,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         L?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -1996,14 +1969,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2011,8 +1984,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         N?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2023,14 +1996,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2038,8 +2011,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         O?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2050,14 +2023,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2065,8 +2038,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         Q?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2077,14 +2050,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2092,8 +2065,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         R?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2104,14 +2077,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2119,8 +2092,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         S?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2131,14 +2104,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2146,8 +2119,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         T?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2158,14 +2131,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2173,8 +2146,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         U?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2185,14 +2158,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2200,8 +2173,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         V?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2212,14 +2185,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2227,8 +2200,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         W?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2239,14 +2212,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2254,8 +2227,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         X?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2266,14 +2239,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2281,8 +2254,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         Y?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2293,14 +2266,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2308,8 +2281,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         Z?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2320,14 +2293,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2335,8 +2308,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "["?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2347,14 +2320,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2362,8 +2335,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "\\"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2374,14 +2347,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2389,8 +2362,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "]"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2401,14 +2374,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2416,8 +2389,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "^"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2428,14 +2401,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2443,8 +2416,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         _?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2455,14 +2428,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2470,8 +2443,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "`"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2482,14 +2455,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2497,8 +2470,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         c?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2509,14 +2482,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2524,8 +2497,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         e?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2536,14 +2509,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2551,8 +2524,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         f?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2563,14 +2536,41 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
+            metrics?: {
+                normalized: number;
+                value?: Chart.DataType | undefined;
+            }[] | undefined;
+        } | undefined;
+        h?: {
+            label: string;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
+            step?: number | undefined;
+            type: Chart.DataTypeSet;
+            accessor?: string | undefined;
+            selector?: string | undefined;
+            options?: {
+                offset: {
+                    x: number;
+                    y: number;
+                };
+                title?: string | undefined;
+                curve?: "smooth" | "straight" | undefined;
+                round?: boolean | undefined;
+                radius?: number | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
+                color?: string | undefined;
+                gap?: number | undefined;
+            } | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2578,8 +2578,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         j?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2590,14 +2590,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2605,8 +2605,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         k?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2617,14 +2617,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2632,8 +2632,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         l?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2644,14 +2644,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2659,8 +2659,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         m?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2671,14 +2671,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2686,8 +2686,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         n?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2698,14 +2698,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2713,8 +2713,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         o?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2725,14 +2725,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2740,8 +2740,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         r?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2752,14 +2752,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2767,8 +2767,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         t?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2779,14 +2779,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2794,8 +2794,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         v?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2806,14 +2806,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2821,8 +2821,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "{"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2833,14 +2833,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2848,8 +2848,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "|"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2860,14 +2860,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2875,8 +2875,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "}"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2887,14 +2887,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;
@@ -2902,8 +2902,8 @@ export declare const useChart: ({ type, axises, data }: {
         } | undefined;
         "~"?: {
             label: string;
-            min?: (number | "auto") | undefined;
-            max?: (number | "auto") | undefined;
+            min?: number | "auto" | undefined;
+            max?: number | "auto" | undefined;
             step?: number | undefined;
             type: Chart.DataTypeSet;
             accessor?: string | undefined;
@@ -2914,14 +2914,14 @@ export declare const useChart: ({ type, axises, data }: {
                     y: number;
                 };
                 title?: string | undefined;
-                curve?: ("smooth" | "straight") | undefined;
+                curve?: "smooth" | "straight" | undefined;
                 round?: boolean | undefined;
                 radius?: number | undefined;
-                grid?: ("x" | "y" | "xy") | undefined;
+                grid?: "x" | "y" | "xy" | undefined;
                 color?: string | undefined;
                 gap?: number | undefined;
             } | undefined;
-            sort?: ("asc" | "desc") | undefined;
+            sort?: "asc" | "desc" | undefined;
             metrics?: {
                 normalized: number;
                 value?: Chart.DataType | undefined;

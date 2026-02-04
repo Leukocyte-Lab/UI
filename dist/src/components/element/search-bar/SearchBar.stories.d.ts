@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import SearchBar from './SearchBar.vue';
 import type { SearchBar as SearchBarNS } from './SearchBar.model';
 type GenericMeta<C> = Omit<Meta<C>, 'component'> & {

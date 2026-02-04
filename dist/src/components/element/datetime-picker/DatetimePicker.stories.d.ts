@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import DatetimePicker from './DatetimePicker.vue';
 declare const meta: Meta<typeof DatetimePicker>;
 export default meta;

@@ -1,202 +1,61 @@
-import type { StoryFn } from '@storybook/vue3';
+import type { StoryFn } from '@storybook/vue3-vite';
 declare const _default: {
     title: string;
     component: {
-        new (...args: any[]): import("vue").CreateComponentPublicInstance<Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
+        new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
             "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-            "update:modelValue": (option: string) => void;
-            "update:sort": (option: import("./CardList.model.js").CardList.SortOption) => void;
-            "update:filter": (option: import("./CardList.model.js").CardList.FilterOption[]) => void;
-            "update:selected": (option: import("../../../shared/index.js").ObjectLike) => void;
-        }, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
-            "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {
-            items: import("../../../shared/index.js").ObjectLike[];
+            "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+            "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+            "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+        }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {} & {
+            "update:modelValue": (option: string) => any;
+            "update:sort": (option: import("./CardList.model.ts").CardList.SortOption) => any;
+            "update:filter": (option: import("./CardList.model.ts").CardList.FilterOption[]) => any;
+            "update:selected": (option: import("../../../shared/index.ts").ObjectLike) => any;
+        }, import("vue").PublicProps, {
+            items: import("../../../shared/index.ts").ObjectLike[];
             modelValue: string;
-        }, true, {}, {}, {
+        }, false, {}, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, {}, any, import("vue").ComponentProvideOptions, {
             P: {};
             B: {};
             D: {};
             C: {};
             M: {};
             Defaults: {};
-        }, Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
+        }, Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
             "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {}, {}, {}, {}, {
-            items: import("../../../shared/index.js").ObjectLike[];
+            "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+            "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+            "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+        }>, {}, {}, {}, {}, {
+            items: import("../../../shared/index.ts").ObjectLike[];
             modelValue: string;
         }>;
         __isFragment?: never;
         __isTeleport?: never;
         __isSuspense?: never;
-    } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
-        sort: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-        };
-        filter: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-        };
-        items: {
-            type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-            required: true;
-            default: () => never[];
-        };
-        groupBy: {
-            type: import("vue").PropType<string>;
-        };
-        modelValue: {
-            type: import("vue").PropType<string>;
-            default: string;
-        };
-        selected: {
-            type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-        };
-        fields: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-            required: true;
-        };
-        sortOptions: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-        };
-        filterOptions: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-        };
-    }>> & {
+    } & import("vue").ComponentOptionsBase<Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
         "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-        "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-        "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-        "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-    }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-        "update:modelValue": (option: string) => void;
-        "update:sort": (option: import("./CardList.model.js").CardList.SortOption) => void;
-        "update:filter": (option: import("./CardList.model.js").CardList.FilterOption[]) => void;
-        "update:selected": (option: import("../../../shared/index.js").ObjectLike) => void;
+        "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+        "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+        "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+    }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {} & {
+        "update:modelValue": (option: string) => any;
+        "update:sort": (option: import("./CardList.model.ts").CardList.SortOption) => any;
+        "update:filter": (option: import("./CardList.model.ts").CardList.FilterOption[]) => any;
+        "update:selected": (option: import("../../../shared/index.ts").ObjectLike) => any;
     }, string, {
-        items: import("../../../shared/index.js").ObjectLike[];
+        items: import("../../../shared/index.ts").ObjectLike[];
         modelValue: string;
-    }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
-        $slots: Readonly<{
+    }, {}, string, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, import("vue").ComponentProvideOptions> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
+        $slots: {
             default: (props: {
-                item: import("./CardList.model.js").CardList.Props["items"][number];
+                item: import("./CardList.model.ts").CardList.Props["items"][number];
                 index: number;
                 selected: boolean;
             }) => import("vue").VNode;
-            footer?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-            placeholder?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-        }> & {
-            default: (props: {
-                item: import("./CardList.model.js").CardList.Props["items"][number];
-                index: number;
-                selected: boolean;
-            }) => import("vue").VNode;
-            footer?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-            placeholder?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
+            footer?: (props: import("../../../shared/types/object.ts").EmptyObject) => import("vue").VNode;
+            placeholder?: (props: import("../../../shared/types/object.ts").EmptyObject) => import("vue").VNode;
         };
     });
     tags: string[];
@@ -254,201 +113,60 @@ declare const _default: {
 export default _default;
 export declare const DefaultCardList: {
     render: StoryFn<{
-        new (...args: any[]): import("vue").CreateComponentPublicInstance<Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
+        new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
             "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-            "update:modelValue": (option: string) => void;
-            "update:sort": (option: import("./CardList.model.js").CardList.SortOption) => void;
-            "update:filter": (option: import("./CardList.model.js").CardList.FilterOption[]) => void;
-            "update:selected": (option: import("../../../shared/index.js").ObjectLike) => void;
-        }, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
-            "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {
-            items: import("../../../shared/index.js").ObjectLike[];
+            "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+            "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+            "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+        }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {} & {
+            "update:modelValue": (option: string) => any;
+            "update:sort": (option: import("./CardList.model.ts").CardList.SortOption) => any;
+            "update:filter": (option: import("./CardList.model.ts").CardList.FilterOption[]) => any;
+            "update:selected": (option: import("../../../shared/index.ts").ObjectLike) => any;
+        }, import("vue").PublicProps, {
+            items: import("../../../shared/index.ts").ObjectLike[];
             modelValue: string;
-        }, true, {}, {}, {
+        }, false, {}, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, {}, any, import("vue").ComponentProvideOptions, {
             P: {};
             B: {};
             D: {};
             C: {};
             M: {};
             Defaults: {};
-        }, Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
+        }, Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
             "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {}, {}, {}, {}, {
-            items: import("../../../shared/index.js").ObjectLike[];
+            "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+            "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+            "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+        }>, {}, {}, {}, {}, {
+            items: import("../../../shared/index.ts").ObjectLike[];
             modelValue: string;
         }>;
         __isFragment?: never;
         __isTeleport?: never;
         __isSuspense?: never;
-    } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
-        sort: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-        };
-        filter: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-        };
-        items: {
-            type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-            required: true;
-            default: () => never[];
-        };
-        groupBy: {
-            type: import("vue").PropType<string>;
-        };
-        modelValue: {
-            type: import("vue").PropType<string>;
-            default: string;
-        };
-        selected: {
-            type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-        };
-        fields: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-            required: true;
-        };
-        sortOptions: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-        };
-        filterOptions: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-        };
-    }>> & {
+    } & import("vue").ComponentOptionsBase<Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
         "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-        "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-        "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-        "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-    }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-        "update:modelValue": (option: string) => void;
-        "update:sort": (option: import("./CardList.model.js").CardList.SortOption) => void;
-        "update:filter": (option: import("./CardList.model.js").CardList.FilterOption[]) => void;
-        "update:selected": (option: import("../../../shared/index.js").ObjectLike) => void;
+        "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+        "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+        "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+    }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {} & {
+        "update:modelValue": (option: string) => any;
+        "update:sort": (option: import("./CardList.model.ts").CardList.SortOption) => any;
+        "update:filter": (option: import("./CardList.model.ts").CardList.FilterOption[]) => any;
+        "update:selected": (option: import("../../../shared/index.ts").ObjectLike) => any;
     }, string, {
-        items: import("../../../shared/index.js").ObjectLike[];
+        items: import("../../../shared/index.ts").ObjectLike[];
         modelValue: string;
-    }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
-        $slots: Readonly<{
+    }, {}, string, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, import("vue").ComponentProvideOptions> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
+        $slots: {
             default: (props: {
-                item: import("./CardList.model.js").CardList.Props["items"][number];
+                item: import("./CardList.model.ts").CardList.Props["items"][number];
                 index: number;
                 selected: boolean;
             }) => import("vue").VNode;
-            footer?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-            placeholder?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-        }> & {
-            default: (props: {
-                item: import("./CardList.model.js").CardList.Props["items"][number];
-                index: number;
-                selected: boolean;
-            }) => import("vue").VNode;
-            footer?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-            placeholder?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
+            footer?: (props: import("../../../shared/types/object.ts").EmptyObject) => import("vue").VNode;
+            placeholder?: (props: import("../../../shared/types/object.ts").EmptyObject) => import("vue").VNode;
         };
     })>;
     args: {
@@ -480,201 +198,60 @@ export declare const DefaultCardList: {
 };
 export declare const SimpleCardList: {
     render: StoryFn<{
-        new (...args: any[]): import("vue").CreateComponentPublicInstance<Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
+        new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
             "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-            "update:modelValue": (option: string) => void;
-            "update:sort": (option: import("./CardList.model.js").CardList.SortOption) => void;
-            "update:filter": (option: import("./CardList.model.js").CardList.FilterOption[]) => void;
-            "update:selected": (option: import("../../../shared/index.js").ObjectLike) => void;
-        }, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
-            "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {
-            items: import("../../../shared/index.js").ObjectLike[];
+            "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+            "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+            "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+        }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {} & {
+            "update:modelValue": (option: string) => any;
+            "update:sort": (option: import("./CardList.model.ts").CardList.SortOption) => any;
+            "update:filter": (option: import("./CardList.model.ts").CardList.FilterOption[]) => any;
+            "update:selected": (option: import("../../../shared/index.ts").ObjectLike) => any;
+        }, import("vue").PublicProps, {
+            items: import("../../../shared/index.ts").ObjectLike[];
             modelValue: string;
-        }, true, {}, {}, {
+        }, false, {}, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, {}, any, import("vue").ComponentProvideOptions, {
             P: {};
             B: {};
             D: {};
             C: {};
             M: {};
             Defaults: {};
-        }, Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
+        }, Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
             "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {}, {}, {}, {}, {
-            items: import("../../../shared/index.js").ObjectLike[];
+            "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+            "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+            "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+        }>, {}, {}, {}, {}, {
+            items: import("../../../shared/index.ts").ObjectLike[];
             modelValue: string;
         }>;
         __isFragment?: never;
         __isTeleport?: never;
         __isSuspense?: never;
-    } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
-        sort: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-        };
-        filter: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-        };
-        items: {
-            type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-            required: true;
-            default: () => never[];
-        };
-        groupBy: {
-            type: import("vue").PropType<string>;
-        };
-        modelValue: {
-            type: import("vue").PropType<string>;
-            default: string;
-        };
-        selected: {
-            type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-        };
-        fields: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-            required: true;
-        };
-        sortOptions: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-        };
-        filterOptions: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-        };
-    }>> & {
+    } & import("vue").ComponentOptionsBase<Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
         "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-        "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-        "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-        "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-    }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-        "update:modelValue": (option: string) => void;
-        "update:sort": (option: import("./CardList.model.js").CardList.SortOption) => void;
-        "update:filter": (option: import("./CardList.model.js").CardList.FilterOption[]) => void;
-        "update:selected": (option: import("../../../shared/index.js").ObjectLike) => void;
+        "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+        "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+        "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+    }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {} & {
+        "update:modelValue": (option: string) => any;
+        "update:sort": (option: import("./CardList.model.ts").CardList.SortOption) => any;
+        "update:filter": (option: import("./CardList.model.ts").CardList.FilterOption[]) => any;
+        "update:selected": (option: import("../../../shared/index.ts").ObjectLike) => any;
     }, string, {
-        items: import("../../../shared/index.js").ObjectLike[];
+        items: import("../../../shared/index.ts").ObjectLike[];
         modelValue: string;
-    }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
-        $slots: Readonly<{
+    }, {}, string, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, import("vue").ComponentProvideOptions> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
+        $slots: {
             default: (props: {
-                item: import("./CardList.model.js").CardList.Props["items"][number];
+                item: import("./CardList.model.ts").CardList.Props["items"][number];
                 index: number;
                 selected: boolean;
             }) => import("vue").VNode;
-            footer?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-            placeholder?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-        }> & {
-            default: (props: {
-                item: import("./CardList.model.js").CardList.Props["items"][number];
-                index: number;
-                selected: boolean;
-            }) => import("vue").VNode;
-            footer?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-            placeholder?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
+            footer?: (props: import("../../../shared/types/object.ts").EmptyObject) => import("vue").VNode;
+            placeholder?: (props: import("../../../shared/types/object.ts").EmptyObject) => import("vue").VNode;
         };
     })>;
     args: {
@@ -706,201 +283,60 @@ export declare const SimpleCardList: {
 };
 export declare const MultiFilterCardList: {
     render: StoryFn<{
-        new (...args: any[]): import("vue").CreateComponentPublicInstance<Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
+        new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
             "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-            "update:modelValue": (option: string) => void;
-            "update:sort": (option: import("./CardList.model.js").CardList.SortOption) => void;
-            "update:filter": (option: import("./CardList.model.js").CardList.FilterOption[]) => void;
-            "update:selected": (option: import("../../../shared/index.js").ObjectLike) => void;
-        }, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
-            "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {
-            items: import("../../../shared/index.js").ObjectLike[];
+            "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+            "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+            "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+        }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {} & {
+            "update:modelValue": (option: string) => any;
+            "update:sort": (option: import("./CardList.model.ts").CardList.SortOption) => any;
+            "update:filter": (option: import("./CardList.model.ts").CardList.FilterOption[]) => any;
+            "update:selected": (option: import("../../../shared/index.ts").ObjectLike) => any;
+        }, import("vue").PublicProps, {
+            items: import("../../../shared/index.ts").ObjectLike[];
             modelValue: string;
-        }, true, {}, {}, {
+        }, false, {}, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, {}, any, import("vue").ComponentProvideOptions, {
             P: {};
             B: {};
             D: {};
             C: {};
             M: {};
             Defaults: {};
-        }, Readonly<import("vue").ExtractPropTypes<{
-            sort: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-            };
-            filter: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-            items: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-                required: true;
-                default: () => never[];
-            };
-            groupBy: {
-                type: import("vue").PropType<string>;
-            };
-            modelValue: {
-                type: import("vue").PropType<string>;
-                default: string;
-            };
-            selected: {
-                type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-            };
-            fields: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-                required: true;
-            };
-            sortOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-            };
-            filterOptions: {
-                type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-            };
-        }>> & {
+        }, Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
             "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-            "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-            "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-            "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-        }, {}, {}, {}, {}, {
-            items: import("../../../shared/index.js").ObjectLike[];
+            "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+            "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+            "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+        }>, {}, {}, {}, {}, {
+            items: import("../../../shared/index.ts").ObjectLike[];
             modelValue: string;
         }>;
         __isFragment?: never;
         __isTeleport?: never;
         __isSuspense?: never;
-    } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
-        sort: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption>;
-        };
-        filter: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-        };
-        items: {
-            type: import("vue").PropType<import("../../../shared/index.js").ObjectLike[]>;
-            required: true;
-            default: () => never[];
-        };
-        groupBy: {
-            type: import("vue").PropType<string>;
-        };
-        modelValue: {
-            type: import("vue").PropType<string>;
-            default: string;
-        };
-        selected: {
-            type: import("vue").PropType<import("../../../shared/index.js").ObjectLike | null>;
-        };
-        fields: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.Fields>;
-            required: true;
-        };
-        sortOptions: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.SortOption[]>;
-        };
-        filterOptions: {
-            type: import("vue").PropType<import("./CardList.model.js").CardList.FilterOption[]>;
-        };
-    }>> & {
+    } & import("vue").ComponentOptionsBase<Readonly<import("./CardList.model.ts").CardList.Props> & Readonly<{
         "onUpdate:modelValue"?: ((option: string) => any) | undefined;
-        "onUpdate:sort"?: ((option: import("./CardList.model.js").CardList.SortOption) => any) | undefined;
-        "onUpdate:filter"?: ((option: import("./CardList.model.js").CardList.FilterOption[]) => any) | undefined;
-        "onUpdate:selected"?: ((option: import("../../../shared/index.js").ObjectLike) => any) | undefined;
-    }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-        "update:modelValue": (option: string) => void;
-        "update:sort": (option: import("./CardList.model.js").CardList.SortOption) => void;
-        "update:filter": (option: import("./CardList.model.js").CardList.FilterOption[]) => void;
-        "update:selected": (option: import("../../../shared/index.js").ObjectLike) => void;
+        "onUpdate:sort"?: ((option: import("./CardList.model.ts").CardList.SortOption) => any) | undefined;
+        "onUpdate:filter"?: ((option: import("./CardList.model.ts").CardList.FilterOption[]) => any) | undefined;
+        "onUpdate:selected"?: ((option: import("../../../shared/index.ts").ObjectLike) => any) | undefined;
+    }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {} & {
+        "update:modelValue": (option: string) => any;
+        "update:sort": (option: import("./CardList.model.ts").CardList.SortOption) => any;
+        "update:filter": (option: import("./CardList.model.ts").CardList.FilterOption[]) => any;
+        "update:selected": (option: import("../../../shared/index.ts").ObjectLike) => any;
     }, string, {
-        items: import("../../../shared/index.js").ObjectLike[];
+        items: import("../../../shared/index.ts").ObjectLike[];
         modelValue: string;
-    }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
-        $slots: Readonly<{
+    }, {}, string, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, import("vue").ComponentProvideOptions> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
+        $slots: {
             default: (props: {
-                item: import("./CardList.model.js").CardList.Props["items"][number];
+                item: import("./CardList.model.ts").CardList.Props["items"][number];
                 index: number;
                 selected: boolean;
             }) => import("vue").VNode;
-            footer?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-            placeholder?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-        }> & {
-            default: (props: {
-                item: import("./CardList.model.js").CardList.Props["items"][number];
-                index: number;
-                selected: boolean;
-            }) => import("vue").VNode;
-            footer?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
-            placeholder?: (props: import("../../../shared/types/object.js").EmptyObject) => import("vue").VNode;
+            footer?: (props: import("../../../shared/types/object.ts").EmptyObject) => import("vue").VNode;
+            placeholder?: (props: import("../../../shared/types/object.ts").EmptyObject) => import("vue").VNode;
         };
     })>;
     args: {

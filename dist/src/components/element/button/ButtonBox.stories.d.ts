@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ButtonBox from './ButtonBox.vue';
 declare const meta: Meta<typeof ButtonBox>;
 export default meta;

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import DropDown from './DropDown.vue';
 import type { DropDown as DropDownNS } from './DropDown.model';
 type GenericMeta<C> = Omit<Meta<C>, 'component'> & {

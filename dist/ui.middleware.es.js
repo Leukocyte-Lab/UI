@@ -1,4 +1,4 @@
-import { u as r } from "./i18n.service-BLFX03nS.js";
+import { u as r } from "./i18n.service-JsWnUUar.js";
 export {
   r as useI18n
 };

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import SelectMenu from './SelectMenu.vue';
 import type { SelectMenu as SelectMenuNS } from './SelectMenu.model';
 type GenericMeta<C> = Omit<Meta<C>, 'component'> & {

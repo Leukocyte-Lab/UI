@@ -1,0 +1,10 @@
+import type { StoryObj } from '@storybook/vue3-vite';
+import LargeDataTableWrapper from './LargeDataTableWrapper.vue';
+import type { GenericMeta } from '.storybook/types/GenericMeta';
+declare const meta: GenericMeta<typeof LargeDataTableWrapper>;
+export default meta;
+type LargeDataTableWrapper$ = StoryObj<typeof LargeDataTableWrapper>;
+export declare const Default: LargeDataTableWrapper$;
+export declare const HalfMillion: LargeDataTableWrapper$;
+export declare const OneMillion: LargeDataTableWrapper$;
+export declare const FiveMillion: LargeDataTableWrapper$;

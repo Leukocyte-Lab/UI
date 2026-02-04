@@ -1,55 +1,23 @@
 import type { TextField } from '../../../components/element/textfield/TextField.model';
-declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToOption<TextField.Props>, {
-    type: string;
-    required: boolean;
-    disabled: boolean;
-    readonly: boolean;
-    spellcheck: boolean;
-    autocomplete: string;
-    iconAlign: string;
-}>, {
+declare const __VLS_export: import("vue").DefineComponent<TextField.Props, {
     checkValidity: () => void;
     focused: import("../../../shared/libs/signal").Signal<boolean>;
     errMsg: import("../../../shared/libs/signal").Signal<string>;
-    inputRef$: import("vue").Ref<HTMLInputElement | undefined>;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    "update:modelValue": (value: string) => void;
-    validation: (value: ValidityState) => void;
-}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToOption<TextField.Props>, {
-    type: string;
-    required: boolean;
-    disabled: boolean;
-    readonly: boolean;
-    spellcheck: boolean;
-    autocomplete: string;
-    iconAlign: string;
-}>>> & {
+    inputRef$: import("vue").Ref<HTMLInputElement | undefined, HTMLInputElement | undefined>;
+}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {} & {
+    "update:modelValue": (value: string) => any;
+    validation: (value: ValidityState) => any;
+}, string, import("vue").PublicProps, Readonly<TextField.Props> & Readonly<{
     "onUpdate:modelValue"?: ((value: string) => any) | undefined;
     onValidation?: ((value: ValidityState) => any) | undefined;
-}, {
+}>, {
     type: TextField.Type;
-    readonly: boolean;
     required: boolean;
     disabled: boolean;
+    readonly: boolean;
     autocomplete: string;
     spellcheck: boolean;
     iconAlign: "left" | "right";
-}, {}>;
+}, {}, {}, {}, string, import("vue").ComponentProvideOptions, false, {}, any>;
+declare const _default: typeof __VLS_export;
 export default _default;
-type __VLS_WithDefaults<P, D> = {
-    [K in keyof Pick<P, keyof P>]: K extends keyof D ? __VLS_Prettify<P[K] & {
-        default: D[K];
-    }> : P[K];
-};
-type __VLS_Prettify<T> = {
-    [K in keyof T]: T[K];
-} & {};
-type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
-type __VLS_TypePropsToOption<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
-    } : {
-        type: import('vue').PropType<T[K]>;
-        required: true;
-    };
-};

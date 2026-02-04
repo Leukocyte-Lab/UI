@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from '@storybook/vue3';
+import type { Meta, StoryFn } from '@storybook/vue3-vite';
 import TabGroup from './TabGroup.vue';
 declare const meta: Meta<typeof TabGroup>;
 export default meta;
@@ -60,94 +60,44 @@ export declare const SecondaryTabGroup: {
 };
 export declare const DefaultTabGroupWithSlot: {
     render: StoryFn<{
-        new (...args: any[]): import("vue").CreateComponentPublicInstance<Readonly<import("vue").ExtractPropTypes<{
-            level: {
-                type: import("vue").PropType<"primary" | "secondary">;
-                default: string;
-            };
-            modelValue: {
-                type: import("vue").PropType<import("./TabGroup.model.js").TabGroup.Tab.Model>;
-            };
-            tabs: {
-                type: import("vue").PropType<Map<string, import("./TabGroup.model.js").TabGroup.Tab.Model> | import("./TabGroup.model.js").TabGroup.Tab.Model[]>;
-                required: true;
-            };
-        }>> & {
-            "onUpdate:modelValue"?: ((modelValue: import("./TabGroup.model.js").TabGroup.Tab.Model) => any) | undefined;
-        }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-            "update:modelValue": (modelValue: import("./TabGroup.model.js").TabGroup.Tab.Model) => void;
-        }, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Readonly<import("vue").ExtractPropTypes<{
-            level: {
-                type: import("vue").PropType<"primary" | "secondary">;
-                default: string;
-            };
-            modelValue: {
-                type: import("vue").PropType<import("./TabGroup.model.js").TabGroup.Tab.Model>;
-            };
-            tabs: {
-                type: import("vue").PropType<Map<string, import("./TabGroup.model.js").TabGroup.Tab.Model> | import("./TabGroup.model.js").TabGroup.Tab.Model[]>;
-                required: true;
-            };
-        }>> & {
-            "onUpdate:modelValue"?: ((modelValue: import("./TabGroup.model.js").TabGroup.Tab.Model) => any) | undefined;
-        }, {
-            level: import("./TabGroup.model.js").TabGroup.Level & {};
-        }, true, {}, {}, {
+        new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<import("./TabGroup.model.ts").TabGroup.Props & {
+            modelValue?: import("./TabGroup.model.ts").TabGroup.Tab.Model;
+        }> & Readonly<{
+            "onUpdate:modelValue"?: ((value: import("./TabGroup.model.ts").TabGroup.Tab.Model | undefined) => any) | undefined;
+        }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+            "update:modelValue": (value: import("./TabGroup.model.ts").TabGroup.Tab.Model | undefined) => any;
+        }, import("vue").PublicProps, {
+            level: import("./TabGroup.model.ts").TabGroup.Level & {};
+        }, false, {}, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, {}, any, import("vue").ComponentProvideOptions, {
             P: {};
             B: {};
             D: {};
             C: {};
             M: {};
             Defaults: {};
-        }, Readonly<import("vue").ExtractPropTypes<{
-            level: {
-                type: import("vue").PropType<"primary" | "secondary">;
-                default: string;
-            };
-            modelValue: {
-                type: import("vue").PropType<import("./TabGroup.model.js").TabGroup.Tab.Model>;
-            };
-            tabs: {
-                type: import("vue").PropType<Map<string, import("./TabGroup.model.js").TabGroup.Tab.Model> | import("./TabGroup.model.js").TabGroup.Tab.Model[]>;
-                required: true;
-            };
-        }>> & {
-            "onUpdate:modelValue"?: ((modelValue: import("./TabGroup.model.js").TabGroup.Tab.Model) => any) | undefined;
-        }, {}, {}, {}, {}, {
-            level: import("./TabGroup.model.js").TabGroup.Level & {};
+        }, Readonly<import("./TabGroup.model.ts").TabGroup.Props & {
+            modelValue?: import("./TabGroup.model.ts").TabGroup.Tab.Model;
+        }> & Readonly<{
+            "onUpdate:modelValue"?: ((value: import("./TabGroup.model.ts").TabGroup.Tab.Model | undefined) => any) | undefined;
+        }>, {}, {}, {}, {}, {
+            level: import("./TabGroup.model.ts").TabGroup.Level & {};
         }>;
         __isFragment?: never;
         __isTeleport?: never;
         __isSuspense?: never;
-    } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
-        level: {
-            type: import("vue").PropType<"primary" | "secondary">;
-            default: string;
-        };
-        modelValue: {
-            type: import("vue").PropType<import("./TabGroup.model.js").TabGroup.Tab.Model>;
-        };
-        tabs: {
-            type: import("vue").PropType<Map<string, import("./TabGroup.model.js").TabGroup.Tab.Model> | import("./TabGroup.model.js").TabGroup.Tab.Model[]>;
-            required: true;
-        };
-    }>> & {
-        "onUpdate:modelValue"?: ((modelValue: import("./TabGroup.model.js").TabGroup.Tab.Model) => any) | undefined;
-    }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-        "update:modelValue": (modelValue: import("./TabGroup.model.js").TabGroup.Tab.Model) => void;
+    } & import("vue").ComponentOptionsBase<Readonly<import("./TabGroup.model.ts").TabGroup.Props & {
+        modelValue?: import("./TabGroup.model.ts").TabGroup.Tab.Model;
+    }> & Readonly<{
+        "onUpdate:modelValue"?: ((value: import("./TabGroup.model.ts").TabGroup.Tab.Model | undefined) => any) | undefined;
+    }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+        "update:modelValue": (value: import("./TabGroup.model.ts").TabGroup.Tab.Model | undefined) => any;
     }, string, {
-        level: import("./TabGroup.model.js").TabGroup.Level & {};
-    }, {}, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
-        $slots: Readonly<{
+        level: import("./TabGroup.model.ts").TabGroup.Level & {};
+    }, {}, string, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, import("vue").ComponentProvideOptions> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
+        $slots: {
             [key: string]: (props: {
-                tab: import("./TabGroup.model.js").TabGroup.Tab.Model;
-                id: import("./TabGroup.model.js").TabGroup.Tab.Model["id"];
-                index: number;
-            }) => import("vue").VNode;
-        }> & {
-            [key: string]: (props: {
-                tab: import("./TabGroup.model.js").TabGroup.Tab.Model;
-                id: import("./TabGroup.model.js").TabGroup.Tab.Model["id"];
+                tab: import("./TabGroup.model.ts").TabGroup.Tab.Model;
+                id: import("./TabGroup.model.ts").TabGroup.Tab.Model["id"];
                 index: number;
             }) => import("vue").VNode;
         };

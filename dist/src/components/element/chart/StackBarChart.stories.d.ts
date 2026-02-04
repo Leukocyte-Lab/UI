@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import StackBarChart from './StackBarChart.vue';
 declare const meta: Meta<typeof StackBarChart>;
 export default meta;

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import TextField from './TextField.vue';
 declare const meta: Meta<typeof TextField>;
 export default meta;

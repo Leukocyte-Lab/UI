@@ -1,4 +1,4 @@
-import { shallowRef as R, watchEffect as C, readonly as D, getCurrentScope as W, onScopeDispose as k, unref as A, onMounted as Z, nextTick as E, ref as p, isRef as j, watch as I, getCurrentInstance as M, toRef as _, customRef as L, reactive as V } from "vue";
+import { shallowRef as R, watchEffect as C, readonly as D, getCurrentScope as W, onScopeDispose as k, onMounted as A, nextTick as Z, ref as p, isRef as j, watch as I, unref as E, getCurrentInstance as M, toRef as _, customRef as L, reactive as V } from "vue";
 function F(e, t) {
   var n;
   const o = R();
@@ -29,7 +29,7 @@ function J() {
   };
 }
 function w(e) {
-  return typeof e == "function" ? e() : A(e);
+  return typeof e == "function" ? e() : E(e);
 }
 const v = typeof window < "u" && typeof document < "u";
 typeof WorkerGlobalScope < "u" && globalThis instanceof WorkerGlobalScope;
@@ -37,7 +37,7 @@ const K = (e) => e != null, G = Object.prototype.toString, Q = (e) => G.call(e) 
 }, X = (e, t) => Object.prototype.hasOwnProperty.call(e, t), Y = /* @__PURE__ */ H();
 function H() {
   var e, t;
-  return v && ((e = window == null ? void 0 : window.navigator) == null ? void 0 : e.userAgent) && (/iP(?:ad|hone|od)/.test(window.navigator.userAgent) || ((t = window == null ? void 0 : window.navigator) == null ? void 0 : t.maxTouchPoints) > 2 && /iPad|Macintosh/.test(window == null ? void 0 : window.navigator.userAgent));
+  return v && ((e = window?.navigator) == null ? void 0 : e.userAgent) && (/iP(?:ad|hone|od)/.test(window.navigator.userAgent) || ((t = window?.navigator) == null ? void 0 : t.maxTouchPoints) > 2 && /iPad|Macintosh/.test(window?.navigator.userAgent));
 }
 function y(e, t) {
   function n(...o) {
@@ -81,7 +81,6 @@ function $(...e) {
 }
 const ee = {
   mounted: "mounted",
-  updated: "updated",
   unmounted: "unmounted"
 };
 function q(e) {
@@ -120,7 +119,7 @@ function z(e, t, n = {}) {
   );
 }
 function ie(e, t = !0, n) {
-  q() ? Z(e, n) : t ? e() : E(e);
+  q() ? A(e, n) : t ? e() : Z(e);
 }
 function re(e, t = 1e3, n = {}) {
   const {
@@ -185,16 +184,16 @@ const m = V({
 });
 export {
   ie as a,
-  w as b,
-  ne as c,
-  oe as d,
-  U as e,
-  re as f,
-  Q as g,
-  K as h,
+  U as b,
+  re as c,
+  w as d,
+  oe as e,
+  K as f,
+  J as g,
+  X as h,
   v as i,
-  J as j,
-  X as k,
+  Q as j,
+  ne as k,
   F as l,
   ee as m,
   f as n,
@@ -204,4 +203,4 @@ export {
   se as u,
   ae as w
 };
-//# sourceMappingURL=i18n.service-BLFX03nS.js.map
+//# sourceMappingURL=i18n.service-JsWnUUar.js.map
