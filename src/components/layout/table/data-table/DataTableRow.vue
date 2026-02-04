@@ -1,4 +1,6 @@
 <script setup lang="ts" generic="T extends DataTable.ItemType<DataTable.AcceptedTypes>">
+import { computed } from 'vue';
+
 import DataTableCell from './DataTableCell.vue';
 
 import { simpleGetter } from '@/shared/libs/fn';
@@ -10,6 +12,11 @@ const slots = defineSlots<DataTable.Component.Row.Slots<T>>();
 const props = defineProps<DataTable.Component.Row.Props<T>>();
 
 const emits = defineEmits<DataTable.Component.Row.Emits<T>>();
+
+// Precompute cell values for all columns to avoid redundant getter calls
+const rowValues = computed(() =>
+  props.columns.map((column) => simpleGetter(props.item as T, column.valuesGetter))
+);
 
 const clickHandler = () => {
   if (!props.isHeader) {
@@ -47,7 +54,7 @@ const clickHandler = () => {
           :item="props.item"
           :row-index="props.rowIndex"
           :row-key="props.rowKey"
-          :value="simpleGetter(props.item, column.valuesGetter)"
+          :value="rowValues[index]"
         >
           <DataTableCell
             :column="column"
@@ -55,7 +62,7 @@ const clickHandler = () => {
             :item="props.item"
             :row-index="props.rowIndex"
             :row-key="props.rowKey"
-            :value="simpleGetter(props.item, column.valuesGetter)"
+            :value="rowValues[index]"
           />
         </slot>
       </template>
