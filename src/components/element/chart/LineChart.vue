@@ -89,12 +89,12 @@ const plotPolyPaths = computed(() =>
                   : props.options.curve === 'smooth'
                     ? index === 1
                       ? `C ${
-                          dataset.series[index - 1].x.normalized *
+                          (dataset.series[index - 1]?.x.normalized ?? 0) *
                             (width.value - props.options.offset.x) +
                           props.options.offset.x +
                           (width.value / dataset.series.length) * props.options.radius!
                         } ${
-                          (1 - dataset.series[index - 1].y.normalized) *
+                          (1 - (dataset.series[index - 1]?.y.normalized ?? 0)) *
                           (height.value - props.options.offset.y)
                         } ${
                           plot.x.normalized * (width.value - props.options.offset.x) +

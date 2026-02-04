@@ -1,4 +1,7 @@
-export const cssVariables = (initializer: () => Promise<any>) => {
+export const cssVariables = (
+  initializer: () => Promise<any>,
+  additionalStyles?: Record<string, string>
+) => {
   return {
     get styleTag() {
       return document.head.querySelector('style[data-id="theme-variables"]');
@@ -20,8 +23,17 @@ export const cssVariables = (initializer: () => Promise<any>) => {
         this.styleTag = document.createElement('style');
       }
 
-      if (this.styleTag?.innerHTML !== this.innerStyles) {
-        this.styleTag.innerHTML = this.innerStyles;
+      const stylesheet = `${this.innerStyles}${
+        additionalStyles
+          ? `.sbdocs-preview, .sb-show-main, body, :root {${Object.entries(additionalStyles).reduce(
+              (acc, [key, value]) => `${acc}\n  ${key}: ${value};`,
+              ''
+            )}}`
+          : ''
+      }`;
+
+      if (this.styleTag?.textContent !== stylesheet) {
+        this.styleTag.textContent = stylesheet;
       }
     },
     unuse: async function () {
@@ -31,3 +43,5 @@ export const cssVariables = (initializer: () => Promise<any>) => {
     }
   };
 };
+
+export type CssVariables = ReturnType<typeof cssVariables>;

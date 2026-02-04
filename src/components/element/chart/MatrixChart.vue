@@ -23,7 +23,7 @@ const { axises, datasets } = useChart({
 const TotalCells = computed(() => axises.value.y.step as number);
 
 const formatDatasets = computed(() =>
-  datasets.value[0].series.map((item) => {
+  datasets.value[0]?.series.map((item) => {
     return {
       ...item,
       y: {

@@ -38,11 +38,9 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>((event) => {
       $style[`color-${props.color}`],
       $style[`stroke-${props.strokeWeight}`],
       $style[`purpose-${props.purpose}`],
-      {
-        [$style['clickable']]: props.link || props.clickable,
-        [$style['has-stroke']]: props.hasStroke,
-        [$style['clicked']]: (triggered() && props.clickable) || props.active
-      }
+      (props.link || props.clickable) && $style['clickable'],
+      props.hasStroke && $style['has-stroke'],
+      ((triggered() && props.clickable) || props.active) && $style['clicked']
     ]"
     :link="props.link"
   >

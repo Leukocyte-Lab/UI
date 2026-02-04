@@ -245,10 +245,8 @@ defineExpose({
       $style.behavior,
       $style.flex,
       $style[size],
-      {
-        [$style.extend]: props.useCreate,
-        [$style.loading]: props.useCreate && onCreateInProgress()
-      },
+      props.useCreate && $style.extend,
+      (props.useCreate && onCreateInProgress()) && $style.loading,
       onCreate() ? $style.horizontal : $style.vertical
     ]"
   >
@@ -401,9 +399,7 @@ defineExpose({
               @click="onCreate.set(true)"
               :class="[
                 $style.button,
-                {
-                  [$style.active]: onCreate()
-                }
+                onCreate() && $style.active
               ]"
               :label="props.alterStr?.create || 'Add New'"
               icon="fa6-solid:plus"

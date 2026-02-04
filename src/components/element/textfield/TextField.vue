@@ -71,10 +71,8 @@ defineExpose({
   <div
     :class="[
       $style['textfield-container'],
-      {
-        [$style[`icon-align--${props.iconAlign}`]]: props.icon || type === 'search',
-        [$style['no-label']]: !props.label
-      }
+      (props.icon || type === 'search') && [$style[`icon-align--${props.iconAlign}`]],
+      !props.label && [$style['no-label']]
     ]"
   >
     <template v-if="props.label || props.required">
@@ -95,9 +93,7 @@ defineExpose({
       @input="onTrigger"
       :class="[
         $style['textfield-input'],
-        {
-          [$style['focused']]: focused()
-        }
+        focused() && $style['focused']
       ]"
       v-bind="props"
       :value="props.modelValue"

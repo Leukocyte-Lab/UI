@@ -7,18 +7,24 @@ import type { EventCallback } from '@/shared/types/callback';
 export type EventSignalOptions = {
   debounce?: number;
   flush?: WatchOptionsBase['flush'];
+  syncWithDebounce?: boolean;
 }
 
 export const useEventDebounceSignal = <E extends Event>(
   callback?: EventCallback<E>,
-  { debounce = 300, flush = 'pre' }: EventSignalOptions = {}
+  { debounce = 300, flush = 'pre', syncWithDebounce }: EventSignalOptions = {}
 ) => {
   const triggered = signal(false);
   let clickDebounceTimer: ReturnType<typeof setTimeout> | undefined = undefined;
 
   const onTrigger = (event: E) => {
-    if (!triggered() && flush === 'pre' || flush === 'sync') {
+    if (!triggered() && flush === 'pre') {
       callback?.call({}, event);
+    } else if (flush === 'sync') {
+      callback?.call({}, event);
+      if (!syncWithDebounce) {
+        return;
+      }
     } else {
       event.preventDefault();
       event.stopPropagation();

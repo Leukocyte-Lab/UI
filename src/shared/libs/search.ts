@@ -92,7 +92,7 @@ function useSearch<T extends ObjectLike, K extends string | number | symbol>(
 ): {
   result: ComputedRef<Map<K, T>>;
 } & Search.BaseExpose;
-function useSearch<T extends Search.AcceptableValue, K extends string | number | symbol>(
+function useSearch<T extends Search.AcceptableValue>(
   datasets: MaybeRef<T[]>,
   args?: {
     query?: MaybeRef<string>;

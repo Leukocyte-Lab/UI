@@ -274,9 +274,7 @@ watch([sort, filters, search, selected], () => {
       ref="wrapperRef$"
       :class="[
         $style['list-wrapper'],
-        {
-          [$style['overflowed']]: overflowed()
-        }
+        overflowed() && $style['overflowed']
       ]"
     >
       <BaseList :group-by="props.groupBy" :items="items">

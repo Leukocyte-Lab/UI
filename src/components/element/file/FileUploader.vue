@@ -259,9 +259,7 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
           $style.vertical,
           $style.behavior,
           $style.clickable,
-          {
-            [$style.active]: isOverDropZone
-          }
+          isOverDropZone && $style.active
         ]"
         radius="var(--agh-ref-border-radius-300)"
         variant="dash"
@@ -279,9 +277,7 @@ useResizeObserver(wrapperRef$, computeOverflowed, {
           $style.wrapper,
           $style.flex,
           $style.vertical,
-          {
-            [$style.overflowed]: overflowed()
-          }
+          overflowed() && $style.overflowed
         ]"
       >
         <template v-for="[filename, payload] in files" :key="`file-${filename}`">

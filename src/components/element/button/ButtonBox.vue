@@ -55,9 +55,7 @@ const { triggered, onTrigger } = useEventDebounceSignal<MouseEvent>(
       $style[props.mode],
       $style[color],
       props.disabled ? [$style['disabled']] : [$style['clickable']],
-      {
-        [$style['clicked']]: props.clicked || triggered()
-      }
+      (props.clicked || triggered()) && $style['clicked']
     ]"
     :link="props.link"
     v-bind="props.disabled ? { disabled: '', ...$attrs } : $attrs"

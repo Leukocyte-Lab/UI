@@ -1,6 +1,6 @@
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
-import type { Decorator } from '@storybook/vue3';
+import type { Decorator } from '@storybook/vue3-vite';
 
 
 export const fixVModel: Decorator = (story, ctx) => {

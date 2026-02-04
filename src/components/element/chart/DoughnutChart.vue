@@ -55,7 +55,7 @@ const normalizedDatasets = computed(() =>
         y: {
           ...plot.y,
           normalized: Math$.clamp(
-            plot.y.normalized / totals.value[index] - gap.value / radiant.value,
+            plot.y.normalized / (totals.value[index] ?? 1) - gap.value / radiant.value,
             0,
             1
           )
@@ -128,9 +128,7 @@ const normalizedDatasets = computed(() =>
                     $style['doughnut'],
                     $style['plot'],
                     $style['clickable'],
-                    {
-                      [$style['round']]: props.options.round
-                    }
+                    props.options.round && $style['round']
                   ]"
                   :cx="center.x"
                   :cy="center.y"

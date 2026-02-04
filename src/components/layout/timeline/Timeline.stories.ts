@@ -1,8 +1,6 @@
-import type { Meta, StoryFn } from '@storybook/vue3';
-
 import Timeline from './Timeline.vue';
 
-const meta: Meta<typeof Timeline> = {
+const meta = {
   title: 'Components / Layout / Timeline',
   component: Timeline,
   tags: ['autodocs'],
