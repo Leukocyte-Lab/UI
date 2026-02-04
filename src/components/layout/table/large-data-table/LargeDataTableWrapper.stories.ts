@@ -137,3 +137,27 @@ export const OneMillion: LargeDataTableWrapper$ = {
     style: { width: '100%', minWidth: '640px', height: '480px' }
   }
 };
+
+export const FiveMillion: LargeDataTableWrapper$ = {
+  args: {
+    items: new Map(
+      Array(5_000_000)
+        .fill(null)
+        .map((_, index, { length }) => ({
+          id: `item-${String(index + 1).padStart(Math.log10(length) + 1, '0')}`,
+          name: `Item ${String(index + 1).padStart(Math.log10(length) + 1, '0')}`,
+          value: {
+            prop1: `Value ${String(index + 1).padStart(Math.log10(length) + 1, '0')} - Prop 1`,
+            prop2: `Value ${String(index + 1).padStart(Math.log10(length) + 1, '0')} - Prop 2`
+          }
+        }))
+        .map((item) => [item.id, item])
+    ),
+    columns: [
+      { key: 'name', label: 'Name', width: 1, valuesGetter: (item: any) => item.name },
+      { key: 'prop-1', label: 'Prop 1', width: 2, valuesGetter: (item: any) => item.value.prop1 },
+      { key: 'prop-2', label: 'Prop 2', width: 2, valuesGetter: (item: any) => item.value.prop2 }
+    ],
+    style: { width: '100%', minWidth: '640px', height: '480px' }
+  }
+};
