@@ -67,7 +67,8 @@ export const DefaultTabGroup = {
     tabs: [
       { id: 'tab-1', name: 'Tab 1', content: 'Tab 1 content' },
       { id: 'tab-2', name: 'Tab 2', content: 'Tab 2 content' },
-      { id: 'tab-3', name: 'Tab 3', content: 'Tab 3 content' }
+      { id: 'tab-3', name: 'Tab 3', content: 'Tab 3 content' },
+      { id: 'tab-4', name: 'Tab 4', content: 'Tab 4 content', disabled: true }
     ],
     modelValue: { id: 'tab-1', name: 'Tab 1', content: 'Tab 1 content' }
   }
