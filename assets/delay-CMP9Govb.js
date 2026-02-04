@@ -1,0 +1,1 @@
+import{b as o}from"./_baseRest-DfEXCklN.js";import{t as n}from"./toNumber-Bryb-nJS.js";var a="Expected a function";function i(e,t,r){if(typeof e!="function")throw new TypeError(a);return setTimeout(function(){e.apply(void 0,r)},t)}var p=o(function(e,t,r){return i(e,n(t)||0,r)});export{p as d};
