@@ -138,9 +138,9 @@ const scrollHandler = (event: Event) => {
   const target = event.target as HTMLElement;
   const scrollTop = target.scrollTop;
 
-  // Update height measurements for rendered items (skip spacer divs at start and end)
+  // Update height measurements for rendered items (select only actual row elements, not spacers)
   const startIndex = renderStartIndex.value;
-  const children = Array.from(target.children).slice(1, -1); // Skip spacer divs
+  const children = Array.from(target.querySelectorAll(':scope > [data-table-row]'));
   children.forEach((element, index) => {
     const itemIndex = startIndex + index;
     const height = (element as HTMLElement).getBoundingClientRect().height;
@@ -229,7 +229,7 @@ watch(overflowed, (value) => emits('overflowed', value), {
   >
     <template v-if="visualPrefixHeight">
       <!-- Virtual spacer for items before render window -->
-      <div :style="{ height: `${visualPrefixHeight}px`, flexShrink: 0 }" aria-hidden="true" />
+      <div :style="{ height: `${visualPrefixHeight}px`, flexShrink: 0 }" aria-hidden="true" data-table-spacer />
     </template>
     <template v-for="[key, { item, index }] in visibleItems" :key="key">
       <slot :columns="props.columns" :item="item" :row-index="index" :row-key="key" name="row">
@@ -239,6 +239,7 @@ watch(overflowed, (value) => emits('overflowed', value), {
           :item="item"
           :row-index="index"
           :row-key="key"
+          data-table-row
         >
           <template #default="cellProps">
             <slot v-bind="cellProps" name="cell">
@@ -250,7 +251,7 @@ watch(overflowed, (value) => emits('overflowed', value), {
     </template>
     <template v-if="visualSuffixHeight">
       <!-- Virtual spacer for items after render window -->
-      <div :style="{ height: `${visualSuffixHeight}px`, flexShrink: 0 }" aria-hidden="true" />
+      <div :style="{ height: `${visualSuffixHeight}px`, flexShrink: 0 }" aria-hidden="true" data-table-spacer />
     </template>
   </div>
 </template>
