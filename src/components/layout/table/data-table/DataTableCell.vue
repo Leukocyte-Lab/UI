@@ -12,8 +12,13 @@ const emits = defineEmits<DataTable.Component.Cell.Emits<T>>();
 const width = computed(() => props.column.width || 'auto');
 
 const clickHandler = () => {
-  if (!props.isHeader) {
-    emits('select:column', props.column);
+  emits('select:column', props.column);
+  if (!props.isHeader && !props.isSelected) {
+    emits('select:row', {
+      item: props.item,
+      rowIndex: props.rowIndex,
+      rowKey: props.rowKey
+    });
   }
 };
 </script>

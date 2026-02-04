@@ -63,7 +63,7 @@ const overflowHandler = (value: boolean) => {
             <DataTableRow @select:row="rowSelectionHandler" v-bind="rowProps">
               <template #default="cellProps">
                 <slot v-bind="cellProps" name="cell">
-                  <DataTableCell v-bind="cellProps" />
+                  <DataTableCell @select:column="columnSelectionHandler" v-bind="cellProps" />
                 </slot>
               </template>
             </DataTableRow>
