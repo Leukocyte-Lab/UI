@@ -4,11 +4,17 @@ declare const meta: Meta<typeof TabGroup>;
 export default meta;
 export declare const DefaultTabGroup: {
     args: {
-        tabs: {
+        tabs: ({
             id: string;
             name: string;
             content: string;
-        }[];
+            disabled?: undefined;
+        } | {
+            id: string;
+            name: string;
+            content: string;
+            disabled: boolean;
+        })[];
         modelValue: {
             id: string;
             name: string;

@@ -6,6 +6,7 @@ export declare namespace TabGroup {
             name: string;
             icon?: string;
             content?: string;
+            disabled?: boolean;
         }
     }
     type Level = 'primary' | 'secondary';
