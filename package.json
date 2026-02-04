@@ -49,7 +49,7 @@
       "types": "./dist/src/middleware/index.d.ts"
     },
     "./styles/": "./dist/styles/",
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/ui.css"
   },
   "files": [
     "dist/*"
