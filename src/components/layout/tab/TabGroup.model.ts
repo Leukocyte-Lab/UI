@@ -7,6 +7,7 @@ export namespace TabGroup {
       name: string;
       icon?: string;
       content?: string;
+      disabled?: boolean;
     }
   }
 

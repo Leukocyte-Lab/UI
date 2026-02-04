@@ -56,7 +56,9 @@ const tabs = computed(() =>
 );
 
 const selectTab = (tab: TabGroup.Tab.Model) => {
-  selected.value = tab;
+  if (!tab.disabled) {
+    selected.value = tab;
+  }
 };
 </script>
 
@@ -82,7 +84,7 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
             $style.flex,
             $style.horizontal,
             $style.behavior,
-            $style.clickable,
+            tab.disabled ? $style.disabled : $style.clickable,
             (selected?.id === id) && $style.active
           ]"
         >
@@ -178,6 +180,10 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
   padding: var(--agh-ref-spacing-100) var(--agh-ref-spacing-400);
   border-bottom: var(--agh-ref-border-width-100) solid var(--default-border-color);
   place-items: center;
+
+  &.disabled {
+    opacity: var(--agh-ref-opacity-400);
+  }
 
   &.active {
     anchor-name: v-bind('anchorName');
