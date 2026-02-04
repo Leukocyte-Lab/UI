@@ -222,9 +222,7 @@ defineExpose({
       $style.wrapper,
       $style.flex,
       $style.vertical,
-      {
-        [$style['classify']]: props.groupBy
-      }
+      props.groupBy && $style['classify']
     ]"
     :radius="'var(--agh-ref-border-radius-500)'"
   >
@@ -282,21 +280,17 @@ defineExpose({
         $style.wrapper,
         $style.flex,
         $style.vertical,
-        {
-          [$style['overflowed']]: overflowed()
-        }
+        overflowed() && $style['overflowed']
       ]"
     >
-      <template v-for="(group, name) in groups" :key="group">
+      <template v-for="(group, name) in groups" :key="name">
         <div
           :class="[
             $style['menu-group'],
             $style.wrapper,
             $style.flex,
             $style.vertical,
-            {
-              [$style['classify']]: props.groupBy
-            }
+            props.groupBy && $style['classify']
           ]"
         >
           <template v-if="props.groupBy && name">
@@ -316,10 +310,8 @@ defineExpose({
                   $style.horizontal,
                   $style['behavior'],
                   field.disabled ? [$style['disabled']] : $style['clickable'],
-                  {
-                    [$style['selected']]: selected,
-                    [$style['multiple']]: props.multiple
-                  }
+                  selected && $style['selected'],
+                  props.multiple && $style['multiple']
                 ]"
               >
                 <slot

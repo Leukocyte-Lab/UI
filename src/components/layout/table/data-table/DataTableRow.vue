@@ -30,10 +30,8 @@ const clickHandler = () => {
       $style.wrapper,
       $style.flex,
       $style.horizontal,
-      {
-        [$style.selected]: props.isSelected,
-        [$style.header]: props.isHeader
-      }
+      props.isSelected && $style.selected,
+      props.isHeader && $style.header
     ]"
   >
     <template v-for="(column, index) in columns" :key="`table-column-${index}`">

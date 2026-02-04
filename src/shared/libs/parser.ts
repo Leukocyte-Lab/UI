@@ -129,7 +129,7 @@ export const parser = <T extends ObjectLike = ObjectLike>(
                   break;
                 case 'wrap':
                   if (!params?.[0]) break;
-                  result = data.map((data: any) => ({ [params[0]]: data }));
+                  result = data.map((data: any) => ({ [String(params[0])]: data }));
                   break;
                 default:
                   break;

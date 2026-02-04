@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<TabGroup.Props>(), {
 
 const selected = defineModel<TabGroup.Tab.Model>({
   get() {
-    return props.modelValue ?? _selected.value ?? tabs.value.values().next().value;
+    return props.modelValue ?? _selected.value ?? tabs.value.values().next().value!;
   },
   set(value) {
     if (!props.modelValue) {
@@ -83,9 +83,7 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
             $style.horizontal,
             $style.behavior,
             $style.clickable,
-            {
-              [$style.active]: selected?.id === id
-            }
+            (selected?.id === id) && $style.active
           ]"
         >
           <template v-if="tab.icon">
@@ -183,7 +181,6 @@ const selectTab = (tab: TabGroup.Tab.Model) => {
 
   &.active {
     anchor-name: v-bind('anchorName');
-
     border-color: var(--highlight-border-color);
 
     &,

@@ -161,10 +161,8 @@ onMounted(() => {
         $style.wrapper,
         $style.flex,
         $style.vertical,
-        {
-          [$style.panning]: node?.isPanning,
-          [$style['debugger--show-bounding-box']]: debugOptions?.showBoundingBox
-        }
+        node?.isPanning && $style.panning,
+        debugOptions?.showBoundingBox && $style['debugger--show-bounding-box']
       ]"
       :style="{
         transform: `translate3d(${(node?.position.x ?? 0) + (node?.offset.x ?? 0)}px, ${(node?.position.y ?? 0) + (node?.offset.y ?? 0)}px, 0.000001px)`

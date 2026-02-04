@@ -126,7 +126,7 @@ const initMonth = (date: Date = new Date()) => {
 
   const { monthNumber, year, monthShort, month } = day;
 
-  let numberOfDays = monthsSize[monthNumber - 1];
+  let numberOfDays = monthsSize[monthNumber - 1] ?? 0;
 
   if (monthNumber === 2) {
     numberOfDays += isLeapYear(year) ? 1 : 0;
@@ -286,7 +286,7 @@ const handleClickDayButton = (
 ) => {
   if (props.type === 'single') {
     selectDate.value.start = day;
-    const [hours, minutes] = selectTime.value.split(':').map(Number);
+    const [hours = 0, minutes = 0] = selectTime.value.split(':').map(Number);
     if (props.enableTime && !isNaN(hours) && !isNaN(minutes)) {
       const datetime = day.date;
       datetime.setHours(hours, minutes, 0, 0);
@@ -397,7 +397,7 @@ watch(
   selectTime,
   (newTime) => {
     if (newTime && /([01]?[0-9]|2[0-3]):[0-5][0-9]/.test(newTime)) {
-      const [hours, minutes] = newTime.split(':').map(Number);
+      const [hours = 0, minutes = 0] = newTime.split(':').map(Number);
       if (!isNaN(hours) && !isNaN(minutes)) {
         const date = selectDate.value.start?.date ? new Date(selectDate.value.start.date) : new Date();
         date.setHours(hours, minutes, 0, 0);

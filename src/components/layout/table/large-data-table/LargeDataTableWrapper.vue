@@ -130,9 +130,7 @@ watch(overflowed, (value) => emits('overflowed', value), {
       $style.wrapper,
       $style.flex,
       $style.vertical,
-      {
-        [$style.overflowed]: overflowed()
-      }
+      overflowed() && $style.overflowed
     ]"
   >
     <template v-for="[key, { item, index }] in visibleItems" :key>

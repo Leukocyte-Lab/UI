@@ -31,10 +31,8 @@ const clickHandler = () => {
       $style.wrapper,
       $style.flex,
       $style.vertical,
-      {
-        [$style.selected]: props.isSelected,
-        [$style.header]: props.isHeader
-      }
+      props.isSelected && $style.selected,
+      props.isHeader && $style.header
     ]"
   >
     <p>{{ props.value }}</p>

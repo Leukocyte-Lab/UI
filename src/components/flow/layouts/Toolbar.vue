@@ -18,9 +18,7 @@ const props = withDefaults(defineProps<Flow.UI.Layout.Toolbar.Props>(), {
       $style.flex,
       $style[props.direction],
       $style[props.position],
-      {
-        [$style.disabled]: props.disabled
-      }
+      props.disabled && $style.disabled
     ]"
   >
     <ButtonBox icon="fa6-solid:arrows-up-down-left-right" level="secondary" variant="square" />

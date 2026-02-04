@@ -137,9 +137,7 @@ onMounted(() => {
               $style['chart-area'],
               $style['radar'],
               $style['bg'],
-              {
-                [$style['round']]: props.options.round
-              }
+              props.options.round && $style['round']
             ]"
             :d="bgPolyPath"
             fill="#fff"
@@ -152,9 +150,7 @@ onMounted(() => {
             $style['chart-area'],
             $style['radar'],
             $style['bg'],
-            {
-              [$style['round']]: props.options.round
-            }
+            props.options.round && $style['round']
           ]"
           :d="bgPolyPath"
         />
@@ -167,7 +163,7 @@ onMounted(() => {
         </g>
         <template v-if="axises">
           <g :class="[$style['chart-group-axises-label']]">
-            <template v-for="metric in axises.x.metrics" :key="metric.value">
+            <template v-for="metric in axises.x.metrics" :key="String(metric.value)">
               <foreignObject
                 :class="[$style['chart-axis'], $style['radar'], $style['label-wrapper']]"
                 :height="radius / 3"
@@ -215,11 +211,7 @@ onMounted(() => {
           <template v-for="plot in plotPolyPaths" :key="plot.label">
             <g :class="[$style['chart-area'], $style['radar'], $style['plot']]">
               <path
-                :class="[
-                  {
-                    [$style['round']]: props.options.round
-                  }
-                ]"
+                :class="[props.options.round && $style['round']]"
                 :d="plot.path"
               />
             </g>

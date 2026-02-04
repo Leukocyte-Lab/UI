@@ -3,8 +3,9 @@
 import DataTableCell from './DataTableCell.vue';
 import DataTableRow from './DataTableRow.vue';
 
-import type { DataTable } from './DataTable.model';
 import SearchBar from '@/components/element/search-bar/SearchBar.vue';
+
+import type { DataTable } from './DataTable.model';
 
 const slots = defineSlots<DataTable.Component.Header.Slots<T>>();
 
@@ -24,9 +25,7 @@ const columnSelectionHandler = (column: DataTable.Column<DataTable.ItemType<T>>)
       $style.wrapper,
       $style.flex,
       $style.vertical,
-      {
-        [$style.overflowed]: overflowed
-      }
+      overflowed && $style.overflowed
     ]"
   >
     <slot name="toolbar">

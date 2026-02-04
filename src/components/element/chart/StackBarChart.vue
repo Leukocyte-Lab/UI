@@ -189,7 +189,7 @@ hr {
       z-index: 1;
       left: anchor(left);
       top: calc(anchor(bottom) + var(--agh-ref-spacing-200));
-      position-try-options: flip-block, flip-inline;
+      position-try-fallbacks: flip-block, flip-inline;
       position-try: flip-block, flip-inline;
       padding: var(--agh-ref-spacing-200) var(--agh-ref-spacing-300);
 

@@ -56,7 +56,7 @@ const events = computed(
       ])
     )
 );
-const startTime = computed<number>(() => Number(props.start) || events.value.keys().next().value);
+const startTime = computed<number>(() => Number(props.start) || events.value.keys().next().value || 0);
 const endTime = computed<number>(
   () =>
     Number(props.end) ||
