@@ -48,6 +48,15 @@ import AttackMatrix from './exclusive/AttackMatrix.vue';
 import CardList from './layout/list/CardList.vue';
 // tab-group
 import TabGroup from './layout/tab/TabGroup.vue';
+// table
+// data-table
+import DataTable from './layout/table/data-table/DataTable.vue';
+import DataTableCell from './layout/table/data-table/DataTableCell.vue';
+import DataTableHeader from './layout/table/data-table/DataTableHeader.vue';
+import DataTableRow from './layout/table/data-table/DataTableRow.vue';
+import DataTableWrapper from './layout/table/data-table/DataTableWrapper.vue';
+// large-data-table
+import LargeDataTableWrapper from './layout/table/large-data-table/LargeDataTableWrapper.vue';
 // timeline
 import Timeline from './layout/timeline/Timeline.vue';
 
@@ -63,12 +72,18 @@ export {
   ButtonBox,
   CardBox,
   CardList,
+  DataTable,
+  DataTableCell,
+  DataTableHeader,
+  DataTableRow,
+  DataTableWrapper,
   DatetimePicker,
   DoughnutChart,
   DropDown,
   FileUploader,
   InnerShadowDeco,
   InputRange,
+  LargeDataTableWrapper,
   LineChart,
   LoadingIcon,
   MatrixChart,
