@@ -4,10 +4,10 @@ type __VLS_Slots = {
     default: () => VNode;
 };
 declare const __VLS_base: import("vue").DefineComponent<Flow.UI.Screen.Window.Props, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<Flow.UI.Screen.Window.Props> & Readonly<{}>, {
+    toolbar: boolean;
     initialScale: number | "cover" | "contain";
     autoLayout: boolean;
     devtools: boolean;
-    toolbar: boolean;
     zoomable: boolean;
     toolbarPosition: Flow.UI.Layout.Toolbar.Position;
     toolbarDirection: "horizontal" | "vertical";

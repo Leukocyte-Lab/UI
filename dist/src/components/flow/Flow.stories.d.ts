@@ -3,10 +3,10 @@ declare const _default: {
     title: string;
     component: {
         new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<import("./Flow.model.ts").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, import("vue").PublicProps, {
+            toolbar: boolean;
             initialScale: number | "cover" | "contain";
             autoLayout: boolean;
             devtools: boolean;
-            toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.ts").Flow.UI.Layout.Toolbar.Position;
             toolbarDirection: "horizontal" | "vertical";
@@ -19,10 +19,10 @@ declare const _default: {
             M: {};
             Defaults: {};
         }, Readonly<import("./Flow.model.ts").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, {
+            toolbar: boolean;
             initialScale: number | "cover" | "contain";
             autoLayout: boolean;
             devtools: boolean;
-            toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.ts").Flow.UI.Layout.Toolbar.Position;
             toolbarDirection: "horizontal" | "vertical";
@@ -32,10 +32,10 @@ declare const _default: {
         __isTeleport?: never;
         __isSuspense?: never;
     } & import("vue").ComponentOptionsBase<Readonly<import("./Flow.model.ts").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
+        toolbar: boolean;
         initialScale: number | "cover" | "contain";
         autoLayout: boolean;
         devtools: boolean;
-        toolbar: boolean;
         zoomable: boolean;
         toolbarPosition: import("./Flow.model.ts").Flow.UI.Layout.Toolbar.Position;
         toolbarDirection: "horizontal" | "vertical";
@@ -110,10 +110,10 @@ export default _default;
 export declare const Flow: {
     render: StoryFn<{
         new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<import("./Flow.model.ts").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, import("vue").PublicProps, {
+            toolbar: boolean;
             initialScale: number | "cover" | "contain";
             autoLayout: boolean;
             devtools: boolean;
-            toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.ts").Flow.UI.Layout.Toolbar.Position;
             toolbarDirection: "horizontal" | "vertical";
@@ -126,10 +126,10 @@ export declare const Flow: {
             M: {};
             Defaults: {};
         }, Readonly<import("./Flow.model.ts").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, {
+            toolbar: boolean;
             initialScale: number | "cover" | "contain";
             autoLayout: boolean;
             devtools: boolean;
-            toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.ts").Flow.UI.Layout.Toolbar.Position;
             toolbarDirection: "horizontal" | "vertical";
@@ -139,10 +139,10 @@ export declare const Flow: {
         __isTeleport?: never;
         __isSuspense?: never;
     } & import("vue").ComponentOptionsBase<Readonly<import("./Flow.model.ts").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
+        toolbar: boolean;
         initialScale: number | "cover" | "contain";
         autoLayout: boolean;
         devtools: boolean;
-        toolbar: boolean;
         zoomable: boolean;
         toolbarPosition: import("./Flow.model.ts").Flow.UI.Layout.Toolbar.Position;
         toolbarDirection: "horizontal" | "vertical";
@@ -189,10 +189,10 @@ export declare const Flow: {
 export declare const ActiveFlow: {
     render: StoryFn<{
         new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<import("./Flow.model.ts").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, import("vue").PublicProps, {
+            toolbar: boolean;
             initialScale: number | "cover" | "contain";
             autoLayout: boolean;
             devtools: boolean;
-            toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.ts").Flow.UI.Layout.Toolbar.Position;
             toolbarDirection: "horizontal" | "vertical";
@@ -205,10 +205,10 @@ export declare const ActiveFlow: {
             M: {};
             Defaults: {};
         }, Readonly<import("./Flow.model.ts").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, {
+            toolbar: boolean;
             initialScale: number | "cover" | "contain";
             autoLayout: boolean;
             devtools: boolean;
-            toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("./Flow.model.ts").Flow.UI.Layout.Toolbar.Position;
             toolbarDirection: "horizontal" | "vertical";
@@ -218,10 +218,10 @@ export declare const ActiveFlow: {
         __isTeleport?: never;
         __isSuspense?: never;
     } & import("vue").ComponentOptionsBase<Readonly<import("./Flow.model.ts").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
+        toolbar: boolean;
         initialScale: number | "cover" | "contain";
         autoLayout: boolean;
         devtools: boolean;
-        toolbar: boolean;
         zoomable: boolean;
         toolbarPosition: import("./Flow.model.ts").Flow.UI.Layout.Toolbar.Position;
         toolbarDirection: "horizontal" | "vertical";

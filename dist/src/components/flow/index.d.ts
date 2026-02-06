@@ -3,10 +3,10 @@ export declare const FlowKit: {
     Screen: {
         Window: {
             new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<import("../../components/flow/Flow.model").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, import("vue").PublicProps, {
+                toolbar: boolean;
                 initialScale: number | "cover" | "contain";
                 autoLayout: boolean;
                 devtools: boolean;
-                toolbar: boolean;
                 zoomable: boolean;
                 toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
                 toolbarDirection: "horizontal" | "vertical";
@@ -19,10 +19,10 @@ export declare const FlowKit: {
                 M: {};
                 Defaults: {};
             }, Readonly<import("../../components/flow/Flow.model").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, {
+                toolbar: boolean;
                 initialScale: number | "cover" | "contain";
                 autoLayout: boolean;
                 devtools: boolean;
-                toolbar: boolean;
                 zoomable: boolean;
                 toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
                 toolbarDirection: "horizontal" | "vertical";
@@ -32,10 +32,10 @@ export declare const FlowKit: {
             __isTeleport?: never;
             __isSuspense?: never;
         } & import("vue").ComponentOptionsBase<Readonly<import("../../components/flow/Flow.model").Flow.UI.Screen.Window.Props> & Readonly<{}>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {
+            toolbar: boolean;
             initialScale: number | "cover" | "contain";
             autoLayout: boolean;
             devtools: boolean;
-            toolbar: boolean;
             zoomable: boolean;
             toolbarPosition: import("../../components/flow/Flow.model").Flow.UI.Layout.Toolbar.Position;
             toolbarDirection: "horizontal" | "vertical";
