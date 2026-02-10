@@ -12,11 +12,35 @@ export interface MapProxy<K extends string | number | symbol, V> extends Map<K, 
     thisArg?: any
   ): T | undefined;
   findValue(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): V | undefined;
+  
+  findLast<T extends V>(
+    predicate: (value: V, key: K, map: Map<K, V>) => value is T,
+    thisArg?: any
+  ): [K, T] | undefined;
+  findLast(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): [K, V] | undefined;
+  findLastKey(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): K | undefined;
+  findLastValue<T extends V>(
+    predicate: (value: V, key: K, map: Map<K, V>) => value is T,
+    thisArg?: any
+  ): T | undefined;
+  findLastValue(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): V | undefined;
 
   map<U extends string | number | symbol, S>(
     callbackfn: (value: V, key: K, map: Map<K, V>) => [U, S],
     thisArg?: any
   ): MapProxy<U, S>;
+  
+  reduce<U>(
+    callbackfn: (previousValue: U, currentValue: V, currentKey: K, map: Map<K, V>) => U,
+    initialValue: U,
+    thisArg?: any
+  ): U;
+
+  reduceRight<U>(
+    callbackfn: (previousValue: U, currentValue: V, currentKey: K, map: Map<K, V>) => U,
+    initialValue: U,
+    thisArg?: any
+  ): U;
 
   filter(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): MapProxy<K, V>;
 
@@ -98,6 +122,71 @@ class MapProxyInstance<K extends string | number | symbol, V>
     return undefined;
   }
 
+  public findLast<T extends V>(
+    predicate: (value: V, key: K, map: Map<K, V>) => value is T,
+    thisArg?: any
+  ): [K, T] | undefined;
+
+  public findLast(
+    predicate: (value: V, key: K, map: Map<K, V>) => unknown,
+    thisArg?: any
+  ): [K, V] | undefined;
+
+  public findLast(
+    predicate: (value: V, key: K, map: Map<K, V>) => unknown,
+    thisArg?: any
+  ): [K, V] | undefined {
+    let lastMatch: [K, V] | undefined;
+
+    for (const [key, value] of this) {
+      if (predicate.call(thisArg, value, key, this)) {
+        lastMatch = [key, value];
+      }
+    }
+
+    return lastMatch;
+  }
+
+  public findLastKey(
+    predicate: (value: V, key: K, map: Map<K, V>) => unknown,
+    thisArg?: any
+  ): K | undefined {
+    let lastKey: K | undefined;
+
+    for (const [key, value] of this) {
+      if (predicate.call(thisArg, value, key, this)) {
+        lastKey = key;
+      }
+    }
+
+    return lastKey;
+  }
+
+  public findLastValue<T extends V>(
+    predicate: (value: V, key: K, map: Map<K, V>) => value is T,
+    thisArg?: any
+  ): T | undefined;
+
+  public findLastValue(
+    predicate: (value: V, key: K, map: Map<K, V>) => unknown,
+    thisArg?: any
+  ): V | undefined;
+
+  public findLastValue(
+    predicate: (value: V, key: K, map: Map<K, V>) => unknown,
+    thisArg?: any
+  ): V | undefined {
+    let lastValue: V | undefined;
+
+    for (const [key, value] of this) {
+      if (predicate.call(thisArg, value, key, this)) {
+        lastValue = value;
+      }
+    }
+
+    return lastValue;
+  }
+
   public map<U extends string | number | symbol, S>(
     callbackfn: (value: V, key: K, map: Map<K, V>) => [U, S],
     thisArg?: any
@@ -159,6 +248,35 @@ class MapProxyInstance<K extends string | number | symbol, V>
     }
 
     return dictionary;
+  }
+
+  public reduce<U>(
+    callbackfn: (previousValue: U, currentValue: V, currentKey: K, map: Map<K, V>) => U,
+    initialValue: U,
+    thisArg?: any
+  ): U {
+    let accumulator = initialValue;
+
+    for (const [key, value] of this) {
+      accumulator = callbackfn.call(thisArg, accumulator, value, key, this);
+    }
+
+    return accumulator;
+  }
+
+  public reduceRight<U>(
+    callbackfn: (previousValue: U, currentValue: V, currentKey: K, map: Map<K, V>) => U,
+    initialValue: U,
+    thisArg?: any
+  ): U {
+    let accumulator = initialValue;
+    const entries = Array.from(this.entries()).reverse();
+
+    for (const [key, value] of entries) {
+      accumulator = callbackfn.call(thisArg, accumulator, value, key, this);
+    }
+
+    return accumulator;
   }
 
   public toArray<R extends 'entries'>(returnType?: R): [K, V][];
