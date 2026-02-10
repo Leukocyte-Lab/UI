@@ -129,6 +129,14 @@ export namespace DataTable {
       : T extends Map<infer K, infer W>
         ? W
         : unknown;
+        
+  export type KeyType<T extends DataTable.AcceptedTypes> = T extends (infer U)[]
+    ? number
+    : T extends Set<infer V>
+      ? number
+      : T extends Map<infer K, infer W>
+        ? K
+        : unknown;
 
   export type Column<T extends ItemType<DataTable.AcceptedTypes>> = {
     key: T extends unknown ? string | number : keyof T | string | number;
