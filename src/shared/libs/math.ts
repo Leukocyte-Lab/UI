@@ -30,6 +30,8 @@ export type MathProxy = Math & {
   lcm: (a: number, b: number) => number;
   clamp: (value: number, min: number, max: number) => number;
   round: (min: number, max: number) => number;
+  avg: (...values: number[]) => number;
+  geoavg: (...values: number[]) => number;
 };
 
 /*
@@ -156,6 +158,8 @@ const Math$: MathProxy = new Proxy<MathProxy>(Math as MathProxy, {
     if (prop === 'cot') return (x: number): number => 1 / Math.tan(x);
     if (prop === 'sec') return (x: number): number => 1 / Math.cos(x);
     if (prop === 'csc') return (x: number): number => 1 / Math.sin(x);
+    if (prop === 'avg') return (...values: number[]): number => values.reduce((a, b) => a + b, 0) / values.length;
+    if (prop === 'geoavg') return (...values: number[]): number => Math.pow(values.reduce((a, b) => a * b, 1), 1 / values.length);
     return Reflect.get(target, prop, receiver);
   }
 });
