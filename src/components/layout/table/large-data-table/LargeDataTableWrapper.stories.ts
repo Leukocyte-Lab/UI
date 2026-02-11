@@ -45,7 +45,7 @@ const meta: GenericMeta<typeof LargeDataTableWrapper> = {
     },
     variantHeightMode: {
       control: 'boolean',
-      description: 'Whether to enable variant height mode, which allows rows to have different heights. When enabled, the component will measure the height of each row and adjust the layout accordingly. This mode may have a performance impact during initial rendering and rapid scroll events due to the need for measuring each row, so it is recommended to use it only when necessary. The default value is `false`.'
+      description: 'Whether to enable variant height mode, which allows rows to have different heights. When enabled, the component will measure the height of each row and adjust the layout accordingly. This mode may have a performance impact during initial rendering and rapid scroll events due to the need for measuring each row, so it is recommended to use it only when necessary. If not explicitly set, this mode is automatically enabled when multiple distinct row heights are detected (`itemHeightSet.size > 1`).'
     },
 
     // Inherited Props from DataTable
