@@ -104,11 +104,11 @@ const visualHeight = computed(() => {
     );
   } else {
     // Faster calculation when all items have the same height
+    const itemsAfterActive = Math.max(0, totalItems.value - cursor.value - threshold.value);
     return {
       prefix: (visualItemHeight.value + gapSize.value) * cursor.value,
       subfix:
-        (visualItemHeight.value + gapSize.value) *
-        (totalItems.value - cursor.value - threshold.value),
+        (visualItemHeight.value + gapSize.value) * itemsAfterActive,
       active: visualItemHeight.value * threshold.value,
       total: (visualItemHeight.value + gapSize.value) * totalItems.value
     };
@@ -257,9 +257,13 @@ const calcItemStatus = (
   const { visible, measured } = itemCarrier.value.getStatus(itemIndex);
 
   if (!measured) {
-    throw new Error(
-      `Item at index ${itemIndex} has not been measured yet. Cannot calculate status.`
-    );
+    // Guard against unmeasured items during rapid scroll/resize
+    if (import.meta.env.DEV) {
+      console.warn(
+        `Item at index ${itemIndex} has not been measured yet. Skipping status calculation.`
+      );
+    }
+    return false;
   }
 
   const { top, bottom } = itemCarrier.value.getAttrs(itemIndex);
@@ -319,9 +323,10 @@ const calcCursorByScrollTop = (visualScrollTop: number, visibleHeight: number): 
     // Faster calculation when all items have the same height
     const itemFullHeight = visualItemHeight.value + gapSize.value;
     const approxIndex = Math.floor(visualScrollTop / itemFullHeight);
+    const maxCursor = Math.max(0, totalItems.value - threshold.value);
     const newCursor = Math$.clamp(
       approxIndex - bufferSize.value,
-      0, totalItems.value - threshold.value
+      0, maxCursor
     );
 
     if (newCursor !== cursor.value) {
