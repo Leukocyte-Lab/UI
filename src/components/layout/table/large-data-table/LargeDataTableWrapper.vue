@@ -15,7 +15,7 @@ import { ItemCarrier } from './LargeDataTable.helpers';
 
 import DataTableCell from '@/components/layout/table/data-table/DataTableCell.vue';
 import DataTableRow from '@/components/layout/table/data-table/DataTableRow.vue';
-import { useEventDebounceSignal } from '@/shared/libs/event';
+import { useDebounceSignal, useEventDebounceSignal } from '@/shared/libs/event';
 import Map$ from '@/shared/libs/map';
 import Math$ from '@/shared/libs/math';
 import { signal } from '@/shared/libs/signal';
@@ -107,8 +107,7 @@ const visualHeight = computed(() => {
     const itemsAfterActive = Math.max(0, totalItems.value - cursor.value - threshold.value);
     return {
       prefix: (visualItemHeight.value + gapSize.value) * cursor.value,
-      subfix:
-        (visualItemHeight.value + gapSize.value) * itemsAfterActive,
+      subfix: (visualItemHeight.value + gapSize.value) * itemsAfterActive,
       active: visualItemHeight.value * threshold.value,
       total: (visualItemHeight.value + gapSize.value) * totalItems.value
     };
@@ -300,8 +299,12 @@ const calcCursorByScrollTop = (visualScrollTop: number, visibleHeight: number): 
         ({ height, index }, { status, attrs, index: itemIndex }) => {
           const itemHeight = status.measured ? attrs.height : visualItemHeight.value;
           height += itemHeight + gapSize.value;
-  
-          if (index === 0 && height >= visualScrollTop && height < visualScrollTop + visibleHeight) {
+
+          if (
+            index === 0 &&
+            height >= visualScrollTop &&
+            height < visualScrollTop + visibleHeight
+          ) {
             return { height, index: itemIndex };
           } else {
             return { height, index };
@@ -309,11 +312,17 @@ const calcCursorByScrollTop = (visualScrollTop: number, visibleHeight: number): 
         },
         { height: 0, index: 0 }
       ).index;
-  
+
       const newCursor = Math.max(0, firstVisibleItemIndex - bufferSize.value);
-  
+
       if (newCursor !== cursor.value) {
+        onRequestItems({
+          cursor: cursor.value,
+          direction: newCursor < cursor.value ? 'before' : 'after'
+        });
+
         cursor.value = newCursor;
+
         return true;
       } else {
         return false;
@@ -324,12 +333,14 @@ const calcCursorByScrollTop = (visualScrollTop: number, visibleHeight: number): 
     const itemFullHeight = visualItemHeight.value + gapSize.value;
     const approxIndex = Math.floor(visualScrollTop / itemFullHeight);
     const maxCursor = Math.max(0, totalItems.value - threshold.value);
-    const newCursor = Math$.clamp(
-      approxIndex - bufferSize.value,
-      0, maxCursor
-    );
+    const newCursor = Math$.clamp(approxIndex - bufferSize.value, 0, maxCursor);
 
     if (newCursor !== cursor.value) {
+      onRequestItems({
+        cursor: cursor.value,
+        direction: newCursor < cursor.value ? 'before' : 'after'
+      });
+
       cursor.value = newCursor;
       return true;
     }
@@ -349,15 +360,48 @@ const triggerScroll = (el: HTMLElement, startPos: number = 0) => {
   });
 };
 
+const requestItemHandler = ({
+  cursor,
+  direction
+}: {
+  cursor: number;
+  direction: 'before' | 'after';
+}) => {
+  const itemIndex = Math$.clamp(
+    direction === 'before' ? cursor + threshold.value - 1 : cursor,
+    0,
+    totalItems.value - 1
+  );
+
+  emits('request:items', {
+    [direction]: {
+      index: itemIndex,
+      key: items.value.get(itemIndex)?.key
+    },
+    size: threshold.value
+  } as unknown as LargeDataTable.ItemCursorPayload<T>);
+};
+
 const { onTrigger: onTriggerScroll } = useEventDebounceSignal(scrollHandler, {
   debounce: 10,
-  flush: 'post',
-  syncWithDebounce: true
+  flush: 'post'
 });
 
 const { onTrigger: onTriggerScrollEnd } = useEventDebounceSignal(scrollEndHandler, {
   debounce: 10,
-  flush: 'post',
+  flush: 'post'
+});
+
+const { onTrigger: onRequestItems } = useDebounceSignal<
+  [
+    {
+      cursor: number;
+      direction: 'before' | 'after';
+    }
+  ]
+>(requestItemHandler, {
+  debounce: 1000,
+  flush: 'sync',
   syncWithDebounce: true
 });
 
