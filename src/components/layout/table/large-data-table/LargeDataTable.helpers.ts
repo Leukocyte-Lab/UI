@@ -8,15 +8,17 @@ type Props = {
 
 export class ItemCarrier {
   /**
-   * The bitmap layout for each item is as follows:
-   * - bits 0-3: status flags (inited, loaded, measured, visible), each boolean represented by a single bit
-   * - bits 4-27: height (24 bits, max 16777215), stored as an float value multiplied by 100 to preserve two decimal places
-   * - bits 28-63: top (36 bits, max 68719476735), stored as an float value multiplied by 100 to preserve two decimal places
+   * The bitmap layout for each item uses TWO consecutive Uint32 values (64 bits total):
+   * 
+   * Lower 32 bits (index * 2):
+   * - bits 0-3: status flags (inited, loaded, measured, visible)
+   * - bits 4-31: height (28 bits, max 268435455), stored as a value multiplied by 100 to preserve two decimal places
+   * 
+   * Upper 32 bits (index * 2 + 1):
+   * - bits 0-31: top position (32 bits, max 4294967295), stored as a value multiplied by 100 to preserve two decimal places
    *
-   * This layout allows us to store all necessary information for each item in a single 64-bit integer, optimizing memory usage and access speed.
-   * The use of BigInt ensures that we can handle the full range of values without overflow issues.
-   *
-   * Note: The actual item data (key and item) will be stored separately in a Map for quick access, while the bitmap will be used for status and layout information.
+   * This layout uses Uint32Array instead of BigUint64Array for significantly faster bitwise operations,
+   * while maintaining the same bitmap concept to optimize memory usage and access speed.
    *
    * The status flags are defined as follows:
    * - inited: indicates whether the item has been initialized
@@ -24,31 +26,30 @@ export class ItemCarrier {
    * - measured: indicates whether the item height has been measured
    * - visible: indicates whether the item is currently visible in the viewport
    *
-   * Layout of the bitmap:
-   * | 63 ... 28 | 27 ... 04 |  03 .... 00  |
-   * | --------- | --------- | ------------ |
-   * |    top    |   height  | status flags |
+   * Layout visualization:
+   * | Upper 32 bits (idx*2+1) | Lower 32 bits (idx*2)           |
+   * | ----------------------- | ------------------------------- |
+   * | top (32 bits)           | height (28 bits) | flags (4)    |
    *
    */
   private static readonly PRECISION = 100;
-  private static readonly HEIGHT_SHIFT = 4n;
-  private static readonly TOP_SHIFT = 28n;
-  private static readonly MAX_INT_24_BITS = Number((1n << 24n) - 1n);
-  private static readonly MAX_INT_36_BITS = Number((1n << 36n) - 1n);
+  private static readonly HEIGHT_SHIFT = 4;
+  private static readonly MAX_INT_28_BITS = (1 << 28) - 1;
+  private static readonly MAX_INT_32_BITS = 0xFFFFFFFF;
 
   private STATUS_MASK = {
-    inited: 1n << 0n,
-    loaded: 1n << 1n,
-    measured: 1n << 2n,
-    visible: 1n << 3n
+    inited: 1 << 0,
+    loaded: 1 << 1,
+    measured: 1 << 2,
+    visible: 1 << 3
   };
 
   private ATTRS_MASK = {
-    height: 0xffffffn << ItemCarrier.HEIGHT_SHIFT,
-    top: 0xfffffffffn << ItemCarrier.TOP_SHIFT
+    height: 0xFFFFFFF0, // 28 bits for height (bits 4-31)
+    top: 0xFFFFFFFF     // 32 bits for top
   };
 
-  private itemDataBitmap: BigUint64Array;
+  private itemDataBitmap: Uint32Array;
   private visibleSize: number = 0;
 
   /**
@@ -69,80 +70,96 @@ export class ItemCarrier {
       ? explicitBufferSize
       : Math.max(totalItems, 1_000);
     
-    this.itemDataBitmap = new BigUint64Array(bufferSize);
+    // Allocate 2 Uint32 values per item (64 bits total)
+    this.itemDataBitmap = new Uint32Array(bufferSize * 2);
     this.visibleSize = props?.visibleSize ?? 50; // Default visible size is 50
 
     this.initialize();
   }
 
   private initialize() {
-    this.itemDataBitmap.fill(0n);
+    this.itemDataBitmap.fill(0);
     
     for (let i = 0; i < this.visibleSize; i++) {
       this.setStatus(i, { visible: true });
     }
   }
 
-  private getBitmapOrThrow(index: number): bigint {
-    const bitmap = this.itemDataBitmap[index];
+  private getLowerBitsOrThrow(index: number): number {
+    const lowerIdx = index * 2;
+    const bitmap = this.itemDataBitmap[lowerIdx];
     if (bitmap === undefined) {
       throw new Error(
-        `Item at index ${index} is out of range. Buffer size: ${this.itemDataBitmap.length}`
+        `Item at index ${index} is out of range. Buffer size: ${this.itemDataBitmap.length / 2}`
       );
     }
     return bitmap;
   }
 
-  private setBitmap(index: number, bitmap: bigint): void {
-    this.itemDataBitmap[index] = bitmap;
+  private getUpperBitsOrThrow(index: number): number {
+    const upperIdx = index * 2 + 1;
+    const bitmap = this.itemDataBitmap[upperIdx];
+    if (bitmap === undefined) {
+      throw new Error(
+        `Item at index ${index} is out of range. Buffer size: ${this.itemDataBitmap.length / 2}`
+      );
+    }
+    return bitmap;
   }
 
-  private encodeHeight(height: number): bigint {
+  private setLowerBits(index: number, bitmap: number): void {
+    this.itemDataBitmap[index * 2] = bitmap >>> 0; // Ensure unsigned 32-bit
+  }
+
+  private setUpperBits(index: number, bitmap: number): void {
+    this.itemDataBitmap[index * 2 + 1] = bitmap >>> 0; // Ensure unsigned 32-bit
+  }
+
+  private encodeHeight(height: number): number {
     const scaled = Math.round(height * ItemCarrier.PRECISION);
 
-    if (scaled > ItemCarrier.MAX_INT_24_BITS || scaled < 0) {
+    if (scaled > ItemCarrier.MAX_INT_28_BITS || scaled < 0) {
       if (process.env.NODE_ENV !== 'production') {
         throw new Error(
           `LargeDataTable.ItemCarrier height=${height} is out of range (0 - ${
-            ItemCarrier.MAX_INT_24_BITS / ItemCarrier.PRECISION
-          }) for 24-bit fixed-point field`
+            ItemCarrier.MAX_INT_28_BITS / ItemCarrier.PRECISION
+          }) for 28-bit fixed-point field`
         );
       }
 
-      const clamped = Math.min(Math.max(scaled, 0), ItemCarrier.MAX_INT_24_BITS);
-      return BigInt(clamped) << ItemCarrier.HEIGHT_SHIFT;
+      const clamped = Math.min(Math.max(scaled, 0), ItemCarrier.MAX_INT_28_BITS);
+      return (clamped << ItemCarrier.HEIGHT_SHIFT) >>> 0;
     }
 
-    return BigInt(scaled) << ItemCarrier.HEIGHT_SHIFT;
+    return (scaled << ItemCarrier.HEIGHT_SHIFT) >>> 0;
   }
 
-  private encodeTop(top: number): bigint {
+  private encodeTop(top: number): number {
     const scaled = Math.round(top * ItemCarrier.PRECISION);
 
-    if (scaled > ItemCarrier.MAX_INT_36_BITS || scaled < 0) {
+    if (scaled > ItemCarrier.MAX_INT_32_BITS || scaled < 0) {
       if (process.env.NODE_ENV !== 'production') {
         throw new Error(
           `LargeDataTable.ItemCarrier top=${top} is out of range (0 - ${
-            ItemCarrier.MAX_INT_36_BITS / ItemCarrier.PRECISION
-          }) for 36-bit fixed-point field`
+            ItemCarrier.MAX_INT_32_BITS / ItemCarrier.PRECISION
+          }) for 32-bit fixed-point field`
         );
       }
 
-      const clamped = Math.min(Math.max(scaled, 0), ItemCarrier.MAX_INT_36_BITS);
-      return BigInt(clamped) << ItemCarrier.TOP_SHIFT;
+      const clamped = Math.min(Math.max(scaled, 0), ItemCarrier.MAX_INT_32_BITS);
+      return clamped >>> 0;
     }
 
-    return BigInt(scaled) << ItemCarrier.TOP_SHIFT;
+    return scaled >>> 0;
   }
 
-  private decodeHeight(bitmap: bigint): number {
-    const value = (bitmap & this.ATTRS_MASK.height) >> ItemCarrier.HEIGHT_SHIFT;
-    return Number(value) / ItemCarrier.PRECISION;
+  private decodeHeight(lowerBits: number): number {
+    const value = (lowerBits & this.ATTRS_MASK.height) >>> ItemCarrier.HEIGHT_SHIFT;
+    return value / ItemCarrier.PRECISION;
   }
 
-  private decodeTop(bitmap: bigint): number {
-    const value = (bitmap & this.ATTRS_MASK.top) >> ItemCarrier.TOP_SHIFT;
-    return Number(value) / ItemCarrier.PRECISION;
+  private decodeTop(upperBits: number): number {
+    return upperBits / ItemCarrier.PRECISION;
   }
 
   private updateStatusBit(
@@ -150,29 +167,30 @@ export class ItemCarrier {
     key: keyof LargeDataTable.ItemCarrier.Status,
     updater: (current: boolean) => boolean
   ): void {
-    let bitmap = this.getBitmapOrThrow(index);
+    let lowerBits = this.getLowerBitsOrThrow(index);
     const mask = this.STATUS_MASK[key];
-    const current = (bitmap & mask) !== 0n;
+    const current = (lowerBits & mask) !== 0;
     const next = updater(current);
-    bitmap = next ? (bitmap | mask) : (bitmap & ~mask);
-    this.setBitmap(index, bitmap);
+    lowerBits = next ? (lowerBits | mask) : (lowerBits & ~mask);
+    this.setLowerBits(index, lowerBits);
   }
 
   public getStatus(index: number): LargeDataTable.ItemCarrier.Status {
-    const bitmap = this.getBitmapOrThrow(index);
+    const lowerBits = this.getLowerBitsOrThrow(index);
 
     return {
-      inited: (bitmap & this.STATUS_MASK.inited) !== 0n,
-      loaded: (bitmap & this.STATUS_MASK.loaded) !== 0n,
-      measured: (bitmap & this.STATUS_MASK.measured) !== 0n,
-      visible: (bitmap & this.STATUS_MASK.visible) !== 0n
+      inited: (lowerBits & this.STATUS_MASK.inited) !== 0,
+      loaded: (lowerBits & this.STATUS_MASK.loaded) !== 0,
+      measured: (lowerBits & this.STATUS_MASK.measured) !== 0,
+      visible: (lowerBits & this.STATUS_MASK.visible) !== 0
     };
   }
 
   public getAttrs(index: number): LargeDataTable.ItemCarrier.Attrs {
-    const bitmap = this.getBitmapOrThrow(index);
-    const height = this.decodeHeight(bitmap);
-    const top = this.decodeTop(bitmap);
+    const lowerBits = this.getLowerBitsOrThrow(index);
+    const upperBits = this.getUpperBitsOrThrow(index);
+    const height = this.decodeHeight(lowerBits);
+    const top = this.decodeTop(upperBits);
 
     return {
       height,
@@ -202,16 +220,16 @@ export class ItemCarrier {
   }
 
   public setAttrs(index: number, attrs: Partial<Omit<LargeDataTable.ItemCarrier.Attrs, 'bottom'>>) {
-    let bitmap = this.getBitmapOrThrow(index);
-
     if (attrs.height !== undefined) {
-      bitmap = (bitmap & ~this.ATTRS_MASK.height) | (this.encodeHeight(attrs.height) & this.ATTRS_MASK.height);
+      let lowerBits = this.getLowerBitsOrThrow(index);
+      const encodedHeight = this.encodeHeight(attrs.height);
+      lowerBits = (lowerBits & ~this.ATTRS_MASK.height) | (encodedHeight & this.ATTRS_MASK.height);
+      this.setLowerBits(index, lowerBits);
     }
     if (attrs.top !== undefined) {
-      bitmap = (bitmap & ~this.ATTRS_MASK.top) | (this.encodeTop(attrs.top) & this.ATTRS_MASK.top);
+      const encodedTop = this.encodeTop(attrs.top);
+      this.setUpperBits(index, encodedTop);
     }
-
-    this.setBitmap(index, bitmap);
   }
 
   public toggleStatus(index: number, statusKey: keyof LargeDataTable.ItemCarrier.Status) {
@@ -227,7 +245,8 @@ export class ItemCarrier {
   }
 
   public resetItem(index: number) {
-    this.itemDataBitmap[index] = 0n; // Reset all bits to 0
+    this.itemDataBitmap[index * 2] = 0; // Reset lower bits
+    this.itemDataBitmap[index * 2 + 1] = 0; // Reset upper bits
   }
 
   // Utility method to convert a number to a fixed precision (2 decimal places)
