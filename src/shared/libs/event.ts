@@ -21,8 +21,12 @@ export const useEventDebounceSignal = <E extends Event>(
     if (!triggered() && flush === 'pre') {
       callback?.call({}, event);
     } else if (flush === 'sync') {
-      callback?.call({}, event);
-      if (!syncWithDebounce) {
+      if (syncWithDebounce) {
+        if (!triggered()) {
+          callback?.call({}, event);
+        }
+      } else {
+        callback?.call({}, event);
         return;
       }
     } else {
