@@ -41,7 +41,6 @@ export namespace LargeDataTable {
       export type Props<T extends DataTable.AcceptedTypes> = {
         totalItems?: number;
         visibleSize?: number;
-        nested?: boolean;
         defaultRowHeight?: number;
         bufferSize?: number;
         lazyUpdate?: boolean;
