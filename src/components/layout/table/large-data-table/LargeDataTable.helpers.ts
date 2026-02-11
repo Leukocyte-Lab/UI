@@ -10,8 +10,8 @@ export class ItemCarrier {
   /**
    * The bitmap layout for each item is as follows:
    * - bits 0-3: status flags (inited, loaded, measured, visible), each boolean represented by a single bit
-   * - bits 4-33: height (30 bits, max 1073741823), stored as an float value multiplied by 100 to preserve two decimal places
-   * - bits 34-63: top (30 bits, max 1073741823), stored as an float value multiplied by 100 to preserve two decimal places
+   * - bits 4-27: height (24 bits, max 16777215), stored as an float value multiplied by 100 to preserve two decimal places
+   * - bits 28-63: top (36 bits, max 68719476735), stored as an float value multiplied by 100 to preserve two decimal places
    *
    * This layout allows us to store all necessary information for each item in a single 64-bit integer, optimizing memory usage and access speed.
    * The use of BigInt ensures that we can handle the full range of values without overflow issues.
@@ -25,15 +25,16 @@ export class ItemCarrier {
    * - visible: indicates whether the item is currently visible in the viewport
    *
    * Layout of the bitmap:
-   * | 63 ... 34 | 33 ... 04 |  03 .... 00  |
+   * | 63 ... 28 | 27 ... 04 |  03 .... 00  |
    * | --------- | --------- | ------------ |
    * |    top    |   height  | status flags |
    *
    */
   private static readonly PRECISION = 100;
   private static readonly HEIGHT_SHIFT = 4n;
-  private static readonly TOP_SHIFT = 34n;
-  private static readonly MAX_INT_30_BITS = Number((1n << 30n) - 1n);
+  private static readonly TOP_SHIFT = 28n;
+  private static readonly MAX_INT_24_BITS = Number((1n << 24n) - 1n);
+  private static readonly MAX_INT_36_BITS = Number((1n << 36n) - 1n);
 
   private STATUS_MASK = {
     inited: 1n << 0n,
@@ -43,8 +44,8 @@ export class ItemCarrier {
   };
 
   private ATTRS_MASK = {
-    height: 0x3fffffffn << ItemCarrier.HEIGHT_SHIFT,
-    top: 0x3fffffffn << ItemCarrier.TOP_SHIFT
+    height: 0xffffffn << ItemCarrier.HEIGHT_SHIFT,
+    top: 0xfffffffffn << ItemCarrier.TOP_SHIFT
   };
 
   private itemDataBitmap: BigUint64Array;
@@ -99,16 +100,16 @@ export class ItemCarrier {
   private encodeHeight(height: number): bigint {
     const scaled = Math.round(height * ItemCarrier.PRECISION);
 
-    if (scaled > ItemCarrier.MAX_INT_30_BITS || scaled < 0) {
+    if (scaled > ItemCarrier.MAX_INT_24_BITS || scaled < 0) {
       if (process.env.NODE_ENV !== 'production') {
         throw new Error(
           `LargeDataTable.ItemCarrier height=${height} is out of range (0 - ${
-            ItemCarrier.MAX_INT_30_BITS / ItemCarrier.PRECISION
-          }) for 30-bit fixed-point field`
+            ItemCarrier.MAX_INT_24_BITS / ItemCarrier.PRECISION
+          }) for 24-bit fixed-point field`
         );
       }
 
-      const clamped = Math.min(Math.max(scaled, 0), ItemCarrier.MAX_INT_30_BITS);
+      const clamped = Math.min(Math.max(scaled, 0), ItemCarrier.MAX_INT_24_BITS);
       return BigInt(clamped) << ItemCarrier.HEIGHT_SHIFT;
     }
 
@@ -118,16 +119,16 @@ export class ItemCarrier {
   private encodeTop(top: number): bigint {
     const scaled = Math.round(top * ItemCarrier.PRECISION);
 
-    if (scaled > ItemCarrier.MAX_INT_30_BITS || scaled < 0) {
+    if (scaled > ItemCarrier.MAX_INT_36_BITS || scaled < 0) {
       if (process.env.NODE_ENV !== 'production') {
         throw new Error(
           `LargeDataTable.ItemCarrier top=${top} is out of range (0 - ${
-            ItemCarrier.MAX_INT_30_BITS / ItemCarrier.PRECISION
-          }) for 30-bit fixed-point field`
+            ItemCarrier.MAX_INT_36_BITS / ItemCarrier.PRECISION
+          }) for 36-bit fixed-point field`
         );
       }
 
-      const clamped = Math.min(Math.max(scaled, 0), ItemCarrier.MAX_INT_30_BITS);
+      const clamped = Math.min(Math.max(scaled, 0), ItemCarrier.MAX_INT_36_BITS);
       return BigInt(clamped) << ItemCarrier.TOP_SHIFT;
     }
 
