@@ -1,43 +1,51 @@
-<script setup lang="ts" generic="T extends DataTable.AcceptedTypes">
-import { computed, ref, useTemplateRef, watch } from 'vue';
+<script setup lang="ts" generic="T extends LargeDataTable.AcceptedTypes">
+import {
+  computed,
+  markRaw,
+  nextTick,
+  ref,
+  shallowRef,
+  triggerRef,
+  useTemplateRef,
+  watch
+} from 'vue';
 import { useResizeObserver } from '@vueuse/core';
+
+import { ItemCarrier } from './LargeDataTable.helpers';
 
 import DataTableCell from '@/components/layout/table/data-table/DataTableCell.vue';
 import DataTableRow from '@/components/layout/table/data-table/DataTableRow.vue';
-import { Map$, Math$, signal } from '@/shared';
-import { useEventDebounceSignal } from '@/shared/libs/event';
+import { useDebounceSignal, useEventDebounceSignal } from '@/shared/libs/event';
+import Map$ from '@/shared/libs/map';
+import Math$ from '@/shared/libs/math';
+import { signal } from '@/shared/libs/signal';
 
-import type { DataTable } from '@/components/layout/table/data-table/DataTable.model';
+import type { LargeDataTable } from '@/components/layout/table/large-data-table/LargeDataTable.model';
+import type { Callback } from '@/shared/types/callback';
 
-type LargeDataTableWrapperProps = {
-  totalItems?: number;
-  visibleSize?: number;
-  nested?: boolean;
-  defaultRowHeight?: number;
-  bufferSize?: number;
-};
+const slots = defineSlots<LargeDataTable.Component.Wrapper.Slots<T>>();
 
-const slots = defineSlots<DataTable.Component.Wrapper.Slots<T>>();
+const props = defineProps<LargeDataTable.Component.Wrapper.Props<T>>();
 
-const props = defineProps<DataTable.Component.Wrapper.Props<T> & LargeDataTableWrapperProps>();
-
-const emits = defineEmits<DataTable.Component.Wrapper.Emits<T>>();
+const emits = defineEmits<LargeDataTable.Component.Wrapper.Emits<T>>();
 
 // Chrome's max element height is ~33,554,432px (2^25). Use a safe limit.
-const MAX_SCROLL_HEIGHT = 16_777_216; // 2^24, safe margin under browser limit
+const MAX_SCROLL_HEIGHT = 8_388_608; // 2^23, safe margin under browser limit
 
 const wrapperRef$ = useTemplateRef('wrapperRef$');
-// Track the first rendered item index directly
-const renderStartIndex = ref(0);
+const cursor = ref(0);
 const gapSize = ref(0);
 const itemHeightSet = ref(new Set<number>());
-const itemHeightMap = ref(new Map$<number, number>(new Map$()));
+const itemCarrier = shallowRef<ItemCarrier>(new ItemCarrier());
+const firstSizeChangedItemIndex = ref<number>(-1);
 
 const visualItemHeight = computed(() => {
-  const value = Math.min(...itemHeightSet.value);
+  if (itemHeightSet.value.size === 0) {
+    return props.defaultRowHeight ?? 32;
+  }
+  const value = Math$.geoavg(...itemHeightSet.value);
   return Number.isFinite(value) ? value : (props.defaultRowHeight ?? 32);
 });
-const itemHeightWithGap = computed(() => visualItemHeight.value + gapSize.value);
 const threshold = computed(() => props.visibleSize ?? 50);
 const bufferSize = computed(() => props.bufferSize ?? 10);
 const items = computed(() =>
@@ -46,77 +54,79 @@ const items = computed(() =>
       ? props.items
       : new Map([...props.items].map((item, index) => [index, item]))
   ).mapWithIndex((item, key, index) => [
-    key,
-    {
-      item: item as DataTable.ItemType<T>,
+    index,
+    markRaw({
       index,
-      key
-    }
+      item: item as LargeDataTable.ItemType<T>,
+      key: key as LargeDataTable.KeyType<T>,
+      get attrs() {
+        return itemCarrier.value.getAttrs(index);
+      },
+      get status() {
+        return itemCarrier.value.getStatus(index);
+      }
+    })
   ])
 );
-
-// Precompute a stable, index-addressable view of items so that cursor/threshold
-// changes only touch the sliced window instead of walking the whole Map.
-const itemEntries = computed(() => Array.from(items.value.entries()));
-
 const totalItems = computed(() => props.totalItems ?? items.value.size);
-
-// Calculate the theoretical total height if we rendered all items
-const theoreticalTotalHeight = computed(() => totalItems.value * itemHeightWithGap.value);
-
-// Determine if we need to use scroll ratio mode (when total height exceeds browser limit)
-const useScrollRatio = computed(() => theoreticalTotalHeight.value > MAX_SCROLL_HEIGHT);
-
-// The effective max scrollable height (capped at browser limit)
-const effectiveMaxHeight = computed(() =>
-  useScrollRatio.value ? MAX_SCROLL_HEIGHT : theoreticalTotalHeight.value
-);
-
-// Total render window size (visible + buffers on both ends)
-const renderWindowSize = computed(() => threshold.value + bufferSize.value * 2);
-
-// End index for rendering
-const renderEndIndex = computed(() => 
-  Math.min(renderStartIndex.value + renderWindowSize.value, totalItems.value)
-);
-
-// Actual number of items to render
-const totalRenderCount = computed(() => renderEndIndex.value - renderStartIndex.value);
-
-const visibleItems = computed(
-  () =>
-    new Map(
-      itemEntries.value.slice(renderStartIndex.value, renderEndIndex.value)
-    )
-);
-
-// Prefix height: virtual space for items BEFORE renderStartIndex
-const visualPrefixHeight = computed(() => {
-  if (useScrollRatio.value) {
-    // In scroll ratio mode, map position proportionally within max height
-    const ratio = renderStartIndex.value / Math.max(totalItems.value, 1);
-    const renderedHeight = totalRenderCount.value * itemHeightWithGap.value;
-    const virtualSpace = Math.max(0, effectiveMaxHeight.value - renderedHeight);
-    return Math.floor(ratio * virtualSpace);
+const visibleItems = computed(() => items.value.filter(({ status }) => status.visible));
+const activeItems = computed(() => {
+  const result = new Map$<number, LargeDataTable.ItemCarrier.Model<T>>();
+  for (let i = cursor.value; i < Math.min(cursor.value + threshold.value, items.value.size); i++) {
+    const item = items.value.get(i);
+    if (item) result.set(i, item);
   }
-  // Normal mode: exact pixel calculation for items not rendered
-  return renderStartIndex.value * itemHeightWithGap.value;
+  return markRaw(result);
 });
+const visualHeight = computed(() => {
+  if (itemHeightSet.value.size > 1) {
+    return items.value.reduce(
+      ({ prefix, subfix, active }, { status, attrs, index }) => {
+        if (index < cursor.value) {
+          if (status.measured) {
+            prefix += attrs.height + gapSize.value;
+          } else {
+            prefix += visualItemHeight.value + gapSize.value;
+          }
+        } else if (index >= cursor.value + threshold.value) {
+          if (status.measured) {
+            subfix += attrs.height + gapSize.value;
+          } else {
+            subfix += visualItemHeight.value + gapSize.value;
+          }
+        } else {
+          active += status.measured ? attrs.height : visualItemHeight.value;
+        }
 
-// Suffix height: virtual space for items AFTER renderEndIndex
-const visualSuffixHeight = computed(() => {
-  const remainingItems = totalItems.value - renderEndIndex.value;
-  
-  if (useScrollRatio.value) {
-    // In scroll ratio mode, map position proportionally within max height
-    const ratio = remainingItems / Math.max(totalItems.value, 1);
-    const renderedHeight = totalRenderCount.value * itemHeightWithGap.value;
-    const virtualSpace = Math.max(0, effectiveMaxHeight.value - renderedHeight);
-    return Math.floor(ratio * virtualSpace);
+        return { prefix, subfix, active, total: prefix + subfix + active };
+      },
+      { prefix: 0, subfix: 0, active: 0, total: 0 }
+    );
+  } else {
+    // Faster calculation when all items have the same height
+    const itemsAfterActive = Math.max(0, totalItems.value - cursor.value - threshold.value);
+    return {
+      prefix: (visualItemHeight.value + gapSize.value) * cursor.value,
+      subfix: (visualItemHeight.value + gapSize.value) * itemsAfterActive,
+      active: visualItemHeight.value * threshold.value,
+      total: (visualItemHeight.value + gapSize.value) * totalItems.value
+    };
   }
-  // Normal mode: exact pixel calculation
-  return remainingItems * itemHeightWithGap.value;
 });
+const scrollRatio = computed(() => {
+  if (visualHeight.value.total > MAX_SCROLL_HEIGHT) {
+    return MAX_SCROLL_HEIGHT / (visualHeight.value.total - visualHeight.value.active);
+  } else {
+    return 1;
+  }
+});
+const visualPrefixHeight = computed(() => visualHeight.value.prefix * scrollRatio.value);
+const visualSuffixHeight = computed(() => visualHeight.value.subfix * scrollRatio.value);
+const updateFunction = computed(() =>
+  props.lazyUpdate && 'requestIdleCallback' in globalThis
+    ? (cb: Callback) => globalThis.requestIdleCallback(cb)
+    : (cb: Callback) => globalThis.requestAnimationFrame(cb)
+);
 
 const overflowed = signal(false);
 
@@ -134,67 +144,263 @@ const computeGapSize = () => {
   }
 };
 
+// Feature detection for scrollend event
+const supportsScrollEnd = 'onscrollend' in globalThis;
+
 const scrollHandler = (event: Event) => {
   const target = event.target as HTMLElement;
+  const visibleHeight = target.clientHeight;
   const scrollTop = target.scrollTop;
+  const realScrollTop = scrollTop - visualPrefixHeight.value;
+  const visualScrollTop = realScrollTop + visualPrefixHeight.value / scrollRatio.value;
 
-  // Update height measurements for rendered items (select only actual row elements, not spacers)
-  const startIndex = renderStartIndex.value;
-  const children = Array.from(target.querySelectorAll(':scope > [data-table-row]'));
-  children.forEach((element, index) => {
-    const itemIndex = startIndex + index;
-    const height = (element as HTMLElement).getBoundingClientRect().height;
-    itemHeightMap.value.set(itemIndex, height);
-    itemHeightSet.value.add(height);
-  });
+  const needUpdate = Array.prototype.reduce.call(
+    target.querySelectorAll(':scope > [data-table-row]'),
+    (needUpdate, element: HTMLElement, index, { length }) => {
+      const itemIndex = index + cursor.value;
 
-  // Calculate the scroll position relative to the rendered items
-  // scrollTop = prefixHeight + offset within rendered items
-  const prefixHeight = visualPrefixHeight.value;
-  const suffixHeight = visualSuffixHeight.value;
-  const renderedHeight = totalRenderCount.value * itemHeightWithGap.value;
-  const scrollWithinRendered = scrollTop - prefixHeight;
-  
-  // Check if scroll position is completely outside the rendered area
-  // This happens when user jumps via scrollbar to a distant position
-  const isOutsideRenderedArea = scrollWithinRendered < 0 || scrollWithinRendered > renderedHeight;
-  
-  let visibleStartIndex: number;
-  
-  if (isOutsideRenderedArea) {
-    // User jumped to a position outside rendered area - calculate from global position
-    // Use ratio-based calculation to find approximate position
-    const totalScrollableHeight = prefixHeight + renderedHeight + suffixHeight;
-    const scrollRatio = totalScrollableHeight > 0 ? scrollTop / totalScrollableHeight : 0;
-    visibleStartIndex = Math.floor(scrollRatio * totalItems.value);
-  } else {
-    // Normal case: calculate which item index corresponds to this scroll position
-    // The rendered items start at renderStartIndex, so we add that offset
-    const renderedItemHeight = itemHeightWithGap.value;
-    const offsetWithinRendered = Math.floor(scrollWithinRendered / renderedItemHeight);
-    visibleStartIndex = renderStartIndex.value + offsetWithinRendered;
+      const dimensionChanged = calcItemDimension(element, itemIndex, index, length);
+      const statusChanged = calcItemStatus(itemIndex, visualScrollTop, visibleHeight);
+      return needUpdate || dimensionChanged || statusChanged;
+    },
+    false
+  );
+
+  if (needUpdate || visibleItems.value.size <= bufferSize.value) {
+    updateFunction.value(() => {
+      calcCursorByScrollTop(visualScrollTop, visibleHeight);
+    });
   }
 
-  // Calculate desired render start (visible start minus buffer)
-  const desiredRenderStart = Math.max(0, visibleStartIndex - bufferSize.value);
-  
-  // Use hysteresis: only update if we've scrolled past the buffer zone
-  // This prevents jittery updates when scrolling within the buffer
-  // But always update immediately if we jumped outside the rendered area
-  const scrolledPastTop = visibleStartIndex < renderStartIndex.value + Math.floor(bufferSize.value / 2);
-  const scrolledPastBottom = visibleStartIndex > renderStartIndex.value + bufferSize.value + Math.floor(bufferSize.value / 2);
-  
-  if (isOutsideRenderedArea || scrolledPastTop || scrolledPastBottom) {
-    renderStartIndex.value = Math$.clamp(
-      desiredRenderStart,
-      0,
-      Math.max(0, totalItems.value - renderWindowSize.value)
-    );
+  if (needUpdate) {
+    updateFunction.value(() => {
+      triggerRef(items);
+    });
+  }
+
+  // Fallback for browsers without scrollend support
+  if (!supportsScrollEnd && visibleItems.value.size <= bufferSize.value) {
+    triggerScroll(target, scrollTop);
   }
 };
 
-const { onTrigger } = useEventDebounceSignal(scrollHandler, {
+const scrollEndHandler = (event: Event) => {
+  const target = event.target as HTMLElement;
+  const scrollTop = target.scrollTop;
+
+  if (visibleItems.value.size <= bufferSize.value) {
+    triggerScroll(target, scrollTop);
+  }
+};
+
+// Calc Dimension and position of item, and determine if it needs to update the dimension and position of the item and the following items. Return true if the item or any of the following items need to update, otherwise return false.
+const calcItemDimension = (
+  element: HTMLElement,
+  itemIndex: number,
+  index: number,
+  length: number
+): boolean => {
+  const elementRect = element.getBoundingClientRect();
+  const { measured } = itemCarrier.value.getStatus(itemIndex);
+  const { height } = itemCarrier.value.getAttrs(itemIndex);
+
+  const elHeight = ItemCarrier.convertToSamePrecision(elementRect.height);
+
+  const heightChanged = measured && elHeight !== height;
+  const dimensionChanged =
+    itemIndex > 0 &&
+    measured &&
+    firstSizeChangedItemIndex.value !== -1 &&
+    itemIndex >= firstSizeChangedItemIndex.value;
+
+  if (!measured || heightChanged || dimensionChanged) {
+    itemCarrier.value.setAttrs(itemIndex, {
+      height: elHeight
+    });
+
+    itemHeightSet.value.add(Math.round(elHeight));
+
+    if (itemIndex > 0) {
+      const { measured } = itemCarrier.value.getStatus(itemIndex - 1);
+      const { bottom } = itemCarrier.value.getAttrs(itemIndex - 1);
+
+      itemCarrier.value.setAttrs(itemIndex, {
+        top: measured
+          ? bottom
+          : (visualItemHeight.value + gapSize.value) * itemIndex * scrollRatio.value
+      });
+    }
+
+    itemCarrier.value.setStatus(itemIndex, {
+      measured: true
+    });
+
+    if (heightChanged && firstSizeChangedItemIndex.value === -1) {
+      firstSizeChangedItemIndex.value = itemIndex;
+    }
+  }
+
+  if (firstSizeChangedItemIndex.value !== -1 && index === length - 1) {
+    firstSizeChangedItemIndex.value = -1;
+  }
+
+  return !measured || heightChanged || dimensionChanged;
+};
+
+// Calc visibility status of item, and determine if it needs to update the visibility status of the item. Return true if the visibility status of the item needs to update, otherwise return false.
+const calcItemStatus = (
+  itemIndex: number,
+  visualScrollTop: number,
+  visibleHeight: number
+): boolean => {
+  const { visible, measured } = itemCarrier.value.getStatus(itemIndex);
+
+  if (!measured) {
+    // Guard against unmeasured items during rapid scroll/resize
+    if (import.meta.env.DEV) {
+      console.warn(
+        `Item at index ${itemIndex} has not been measured yet. Skipping status calculation.`
+      );
+    }
+    return false;
+  }
+
+  const { top, bottom } = itemCarrier.value.getAttrs(itemIndex);
+
+  if (bottom < visualScrollTop) {
+    if (visible) {
+      itemCarrier.value.setStatus(itemIndex, { visible: false });
+      return true;
+    }
+  } else if (top > visualScrollTop + visibleHeight) {
+    if (visible) {
+      itemCarrier.value.setStatus(itemIndex, { visible: false });
+      return true;
+    }
+  } else if (bottom > visualScrollTop && top < visualScrollTop + visibleHeight) {
+    if (!visible) {
+      itemCarrier.value.setStatus(itemIndex, { visible: true });
+      return true;
+    }
+  } else {
+    if (!visible) {
+      itemCarrier.value.setStatus(itemIndex, { visible: true });
+      return true;
+    }
+  }
+
+  return false;
+};
+
+const calcCursorByScrollTop = (visualScrollTop: number, visibleHeight: number): boolean => {
+  if (itemHeightSet.value.size > 1) {
+    if (visibleItems.value.size <= threshold.value - bufferSize.value) {
+      const firstVisibleItemIndex = items.value.reduce(
+        ({ height, index }, { status, attrs, index: itemIndex }) => {
+          const itemHeight = status.measured ? attrs.height : visualItemHeight.value;
+          height += itemHeight + gapSize.value;
+
+          if (
+            index === 0 &&
+            height >= visualScrollTop &&
+            height < visualScrollTop + visibleHeight
+          ) {
+            return { height, index: itemIndex };
+          } else {
+            return { height, index };
+          }
+        },
+        { height: 0, index: 0 }
+      ).index;
+
+      const newCursor = Math.max(0, firstVisibleItemIndex - bufferSize.value);
+
+      if (newCursor !== cursor.value) {
+        onRequestItems({
+          cursor: cursor.value,
+          direction: newCursor < cursor.value ? 'before' : 'after'
+        });
+
+        cursor.value = newCursor;
+
+        return true;
+      } else {
+        return false;
+      }
+    }
+  } else {
+    // Faster calculation when all items have the same height
+    const itemFullHeight = visualItemHeight.value + gapSize.value;
+    const approxIndex = Math.floor(visualScrollTop / itemFullHeight);
+    const maxCursor = Math.max(0, totalItems.value - threshold.value);
+    const newCursor = Math$.clamp(approxIndex - bufferSize.value, 0, maxCursor);
+
+    if (newCursor !== cursor.value) {
+      onRequestItems({
+        cursor: cursor.value,
+        direction: newCursor < cursor.value ? 'before' : 'after'
+      });
+
+      cursor.value = newCursor;
+      return true;
+    }
+  }
+
+  return false;
+};
+
+const triggerScroll = (el: HTMLElement, startPos: number = 0) => {
+  nextTick(() => {
+    if (startPos - el.scrollHeight < 10) {
+      el.scrollTo({ top: startPos - 1 });
+    } else {
+      el.scrollTo({ top: startPos + 1 });
+    }
+    el.scrollTo({ top: startPos });
+  });
+};
+
+const requestItemHandler = ({
+  cursor,
+  direction
+}: {
+  cursor: number;
+  direction: 'before' | 'after';
+}) => {
+  const itemIndex = Math$.clamp(
+    direction === 'before' ? cursor + threshold.value - 1 : cursor,
+    0,
+    totalItems.value - 1
+  );
+
+  emits('request:items', {
+    [direction]: {
+      index: itemIndex,
+      key: items.value.get(itemIndex)?.key
+    },
+    size: threshold.value
+  } as unknown as LargeDataTable.ItemCursorPayload<T>);
+};
+
+const { onTrigger: onTriggerScroll } = useEventDebounceSignal(scrollHandler, {
   debounce: 10,
+  flush: 'post'
+});
+
+const { onTrigger: onTriggerScrollEnd } = useEventDebounceSignal(scrollEndHandler, {
+  debounce: 10,
+  flush: 'post'
+});
+
+const { onTrigger: onRequestItems } = useDebounceSignal<
+  [
+    {
+      cursor: number;
+      direction: 'before' | 'after';
+    }
+  ]
+>(requestItemHandler, {
+  debounce: 1000,
   flush: 'sync',
   syncWithDebounce: true
 });
@@ -210,15 +416,44 @@ useResizeObserver(
   }
 );
 
+watch(
+  [threshold, totalItems],
+  ([threshold, totalItems]) => {
+    itemCarrier.value = new ItemCarrier({
+      visibleSize: threshold,
+      totalItems,
+      bufferSize: props.bufferSize
+    });
+  },
+  {
+    immediate: true
+  }
+);
+
 watch(overflowed, (value) => emits('overflowed', value), {
   immediate: true
 });
+
+const resetScroll = watch(
+  wrapperRef$,
+  (el) => {
+    if (el) {
+      triggerScroll(el);
+      resetScroll.stop();
+    }
+  },
+  {
+    immediate: true,
+    flush: 'post'
+  }
+);
 </script>
 
 <template>
   <div
     ref="wrapperRef$"
-    @scroll.capture="onTrigger"
+    @scroll.capture="onTriggerScroll"
+    @scrollend.capture="onTriggerScrollEnd"
     :class="[
       $style['table-wrapper'],
       $style.wrapper,
@@ -227,11 +462,7 @@ watch(overflowed, (value) => emits('overflowed', value), {
       overflowed() && $style.overflowed
     ]"
   >
-    <template v-if="visualPrefixHeight">
-      <!-- Virtual spacer for items before render window -->
-      <div :style="{ height: `${visualPrefixHeight}px`, flexShrink: 0 }" aria-hidden="true" data-table-spacer />
-    </template>
-    <template v-for="[key, { item, index }] in visibleItems" :key="key">
+    <template v-for="[key, { item, index }] in activeItems" :key="key">
       <slot :columns="props.columns" :item="item" :row-index="index" :row-key="key" name="row">
         <DataTableRow
           @select:row="(event) => emits('select:row', event)"
@@ -248,10 +479,6 @@ watch(overflowed, (value) => emits('overflowed', value), {
           </template>
         </DataTableRow>
       </slot>
-    </template>
-    <template v-if="visualSuffixHeight">
-      <!-- Virtual spacer for items after render window -->
-      <div :style="{ height: `${visualSuffixHeight}px`, flexShrink: 0 }" aria-hidden="true" data-table-spacer />
     </template>
   </div>
 </template>
@@ -276,6 +503,14 @@ watch(overflowed, (value) => emits('overflowed', value), {
 
     &.overflowed {
       padding-right: var(--scrollbar-padding);
+    }
+
+    > :first-child {
+      margin-top: calc(v-bind('visualPrefixHeight') * 1px);
+    }
+
+    > :last-child {
+      margin-bottom: calc(v-bind('visualSuffixHeight') * 1px);
     }
   }
 }

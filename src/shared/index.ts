@@ -1,12 +1,12 @@
 
 import { useFallback } from './common/fallback';
-import { useEventDebounceSignal } from './libs/event';
+import { useDebounceSignal, useEventDebounceSignal } from './libs/event';
 import Map$ from './libs/map';
 import Math$ from './libs/math';
 import { parser } from './libs/parser';
 import { useSearch } from './libs/search';
 import { selector } from './libs/selector';
-import { computed, debug,signal, toggleSignal } from './libs/signal';
+import { computed, debug, signal, toggleSignal } from './libs/signal';
 import String$ from './libs/string';
 import uuid, { Hex2UUID, NilUUID, UUID2Hex } from './libs/uuid';
 import { promoteInvalidMessage } from './libs/validation';
@@ -49,6 +49,7 @@ export {
   signal,
   String$,
   toggleSignal,
+  useDebounceSignal,
   useEventDebounceSignal,
   useFallback,
   useSearch,

@@ -1,8 +1,11 @@
 import { fn } from 'storybook/test';
 
-import type { StoryFn, StoryObj } from '@storybook/vue3-vite';
+import type { StoryObj } from '@storybook/vue3-vite';
 
 import LargeDataTableWrapper from './LargeDataTableWrapper.vue';
+import { logs } from './logs.json';
+
+import { parser } from '@/shared/libs/parser';
 
 import type { GenericMeta } from '.storybook/types/GenericMeta';
 
@@ -20,6 +23,28 @@ const meta: GenericMeta<typeof LargeDataTableWrapper> = {
       control: 'object',
       description: 'Columns to control LargeDataTableWrapper behavior.'
     },
+    totalItems: {
+      control: 'number',
+      description: 'Total number of items to be managed by the LargeDataTableWrapper. If not provided, it will be inferred from the items prop. Must be provided for precise behavior if using with pagination or infinite scrolling.'
+    },
+    visibleSize: {
+      control: 'number',
+      description: 'Number of items visible in the viewport at any given time. The default value is `50`.'
+    },
+    bufferSize: {
+      control: 'number',
+      description: 'Number of items to buffer on either side of the visible items for smoother scrolling experience. The default value is `10`.'
+    },
+    defaultRowHeight: {
+      control: 'number',
+      description: 'Default height (in pixels) for each row in the table. This is used for initial layout calculations before actual measurements are taken. The default value is `32`.'
+    },
+    lazyUpdate: {
+      control: 'boolean',
+      description: 'Whether to enable lazy updates for item measurements and visibility status. When enabled, updates will be deferred until the next available frame (using `requestIdleCallback` if available, otherwise fallback to `requestAnimationFrame`), improving performance during rapid scroll or resize events. The default value is `false`.'
+    },
+
+    // Inherited Props from DataTable
     useSearch: {
       control: 'boolean',
       description: 'Whether to enable the search functionality.'
@@ -38,6 +63,12 @@ const meta: GenericMeta<typeof LargeDataTableWrapper> = {
         type: { summary: 'DataTable.Component.Cell.Props<T>' }
       }
     },
+    placeholder: {
+      description: 'Slot to render a placeholder when there are no items to display in the DataTable.',
+      table: {
+        type: { summary: '(props: Placeholder.Props) => VNode' }
+      }
+    },
 
     // Emits
     'onSelect:row': {
@@ -53,12 +84,20 @@ const meta: GenericMeta<typeof LargeDataTableWrapper> = {
       table: {
         type: { summary: '($event: boolean) => void' }
       }
+    },
+    'onRequest:items': {
+      action: 'onRequest:items',
+      description: 'Emitted when the LargeDataTableWrapper requests more items to be loaded, typically during scrolling.',
+      table: {
+        type: { summary: `($event: OnlyOneOf<{ before: ItemCursor<T>; after: ItemCursor<T>; size: number }, 'before' | 'after'>) => void` }
+      }
     }
   },
   args: {
     useSearch: false,
     'onSelect:row': fn(),
-    onOverflowed: fn()
+    onOverflowed: fn(),
+    'onRequest:items': fn()
   }
 };
 
@@ -138,26 +177,49 @@ export const OneMillion: LargeDataTableWrapper$ = {
   }
 };
 
-export const FiveMillion: LargeDataTableWrapper$ = {
+export const RealData: LargeDataTableWrapper$ = {
   args: {
-    items: new Map(
-      Array(5_000_000)
-        .fill(null)
-        .map((_, index, { length }) => ({
-          id: `item-${String(index + 1).padStart(Math.log10(length) + 1, '0')}`,
-          name: `Item ${String(index + 1).padStart(Math.log10(length) + 1, '0')}`,
-          value: {
-            prop1: `Value ${String(index + 1).padStart(Math.log10(length) + 1, '0')} - Prop 1`,
-            prop2: `Value ${String(index + 1).padStart(Math.log10(length) + 1, '0')} - Prop 2`
-          }
-        }))
-        .map((item) => [item.id, item])
+    items: logs.reduce(
+      (map, log, index) =>
+        map.set(index, {
+          id: `#${String(index).padStart(4, '0')}`,
+          ...log
+        }),
+      new Map()
     ),
     columns: [
-      { key: 'name', label: 'Name', width: 1, valuesGetter: (item: any) => item.name },
-      { key: 'prop-1', label: 'Prop 1', width: 2, valuesGetter: (item: any) => item.value.prop1 },
-      { key: 'prop-2', label: 'Prop 2', width: 2, valuesGetter: (item: any) => item.value.prop2 }
+      {
+        key: 'id',
+        label: 'ID',
+        width: 1,
+        valuesGetter: (log: any) => log.id
+      },
+      {
+        key: 'timestamp',
+        label: 'Timestamp',
+        width: 3,
+        valuesGetter: (log: any) => parser(log, `{{ timestamp | date : yyyy-MM-dd HH:mm:ss }}`)
+      },
+      {
+        key: 'service',
+        label: 'Service',
+        width: 2,
+        valuesGetter: (log: any) => `[${log.level}] ${log.service}`
+      },
+      {
+        key: 'message',
+        label: 'Message',
+        width: 9,
+        valuesGetter: (log: any) => log.message
+      }
     ],
-    style: { width: '100%', minWidth: '640px', height: '480px' }
+    style: {
+      width: '800px',
+      minWidth: '640px',
+      height: '480px',
+      'white-space': 'pre-wrap',
+      'word-break': 'break-all',
+      'font-family': 'monospace'
+    }
   }
 };
