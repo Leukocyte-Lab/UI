@@ -16,6 +16,32 @@ export const useEventDebounceSignal = <E extends Event>(
 ) => {
   const triggered = signal(false);
   let clickDebounceTimer: ReturnType<typeof setTimeout> | undefined = undefined;
+  let pendingEvent: E | undefined = undefined;
+  let hasPending = false;
+
+  const scheduleReset = () => {
+    globalThis.clearTimeout(clickDebounceTimer);
+    clickDebounceTimer = globalThis.setTimeout(() => {
+      triggered.set(false);
+
+      if (flush === 'post' || (flush === 'sync' && !syncWithDebounce)) {
+        callback?.call({}, pendingEvent as E);
+        pendingEvent = undefined;
+        return;
+      }
+
+      if (flush === 'sync' && syncWithDebounce && hasPending) {
+        const event = pendingEvent as E;
+        pendingEvent = undefined;
+        hasPending = false;
+        callback?.call({}, event);
+
+        // Start a new debounce window for subsequent events.
+        triggered.set(true);
+        scheduleReset();
+      }
+    }, debounce);
+  };
 
   const onTrigger = (event: E) => {
     if (!triggered() && flush === 'pre') {
@@ -25,6 +51,8 @@ export const useEventDebounceSignal = <E extends Event>(
         if (!triggered()) {
           callback?.call({}, event);
         } else {
+          pendingEvent = event;
+          hasPending = true;
           return;
         }
       } else {
@@ -38,19 +66,9 @@ export const useEventDebounceSignal = <E extends Event>(
 
     if (flush !== 'sync' || syncWithDebounce) {
       triggered.set(true);
-
-      if (flush === 'sync' ? syncWithDebounce && !triggered() : true) {
-        globalThis.clearTimeout(clickDebounceTimer);
-      }
+      pendingEvent = event;
+      scheduleReset();
     }
-
-    clickDebounceTimer = globalThis.setTimeout(() => {
-      triggered.set(false);
-
-      if (flush === 'post' || flush === 'sync') {
-        callback?.call({}, event);
-      }
-    }, debounce);
   };
 
   return {
@@ -65,6 +83,32 @@ export const useDebounceSignal = <T extends unknown[]>(
 ) => {
   const triggered = signal(false);
   let clickDebounceTimer: ReturnType<typeof setTimeout> | undefined = undefined;
+  let pendingArgs: T | undefined = undefined;
+  let hasPending = false;
+
+  const scheduleReset = () => {
+    globalThis.clearTimeout(clickDebounceTimer);
+    clickDebounceTimer = globalThis.setTimeout(() => {
+      triggered.set(false);
+
+      if (flush === 'post' || (flush === 'sync' && !syncWithDebounce)) {
+        callback?.call({}, ...(pendingArgs as T));
+        pendingArgs = undefined;
+        return;
+      }
+
+      if (flush === 'sync' && syncWithDebounce && hasPending) {
+        const args = pendingArgs as T;
+        pendingArgs = undefined;
+        hasPending = false;
+        callback?.call({}, ...args);
+
+        // Start a new debounce window for subsequent events.
+        triggered.set(true);
+        scheduleReset();
+      }
+    }, debounce);
+  };
 
   const onTrigger = (...args: T) => {
     if (!triggered() && flush === 'pre') {
@@ -74,6 +118,8 @@ export const useDebounceSignal = <T extends unknown[]>(
         if (!triggered()) {
           callback?.call({}, ...args);
         } else {
+          pendingArgs = args;
+          hasPending = true;
           return;
         }
       } else {
@@ -84,16 +130,9 @@ export const useDebounceSignal = <T extends unknown[]>(
 
     if (flush !== 'sync' || syncWithDebounce) {
       triggered.set(true);
-      globalThis.clearTimeout(clickDebounceTimer);
+      pendingArgs = args;
+      scheduleReset();
     }
-
-    clickDebounceTimer = globalThis.setTimeout(() => {
-      triggered.set(false);
-
-      if (flush === 'post' || flush === 'sync') {
-        callback?.call({}, ...args);
-      }
-    }, debounce);
   };
 
   return {
