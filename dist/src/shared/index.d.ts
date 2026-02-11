@@ -1,5 +1,5 @@
 import { useFallback } from './common/fallback';
-import { useEventDebounceSignal } from './libs/event';
+import { useDebounceSignal, useEventDebounceSignal } from './libs/event';
 import Map$ from './libs/map';
 import Math$ from './libs/math';
 import { parser } from './libs/parser';
@@ -22,5 +22,5 @@ import type { AtLeastOne, AtLeastOneOptional, Nullable, OneOf, OnlyOne, OnlyOneB
 import type { MaybeArray, MustDefined, MustHas, Writeable } from './types/utils';
 import type { Vec2, Vec3, Vec4, Vector } from './types/vector';
 import type { Search } from '../shared/libs/search';
-export { computed, debug, Hex2UUID, Map$, Math$, NilUUID, parser, promoteInvalidMessage, selector, signal, String$, toggleSignal, useEventDebounceSignal, useFallback, useSearch, uuid, UUID2Hex };
+export { computed, debug, Hex2UUID, Map$, Math$, NilUUID, parser, promoteInvalidMessage, selector, signal, String$, toggleSignal, useDebounceSignal, useEventDebounceSignal, useFallback, useSearch, uuid, UUID2Hex };
 export type { AtLeastOne, AtLeastOneOptional, Callback, Dictionary, EventCallback, EventSignalOptions, HasHexUUID, HasID, HasUUID, HexUUID, InvalidMessage, MapProxy, MaybeArray, MustDefined, MustHas, Nullable, ObjectLike, OneOf, OnlyOne, OnlyOneByKey, OnlyOneOf, Optional, OptionalObject, PromiseCallback, Search, Signal, UUID, ValueOf, Vec2, Vec3, Vec4, Vector, Writeable };

@@ -7,4 +7,4 @@ type LargeDataTableWrapper$ = StoryObj<typeof LargeDataTableWrapper>;
 export declare const Default: LargeDataTableWrapper$;
 export declare const HalfMillion: LargeDataTableWrapper$;
 export declare const OneMillion: LargeDataTableWrapper$;
-export declare const FiveMillion: LargeDataTableWrapper$;
+export declare const RealData: LargeDataTableWrapper$;

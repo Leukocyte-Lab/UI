@@ -108,6 +108,7 @@ export declare namespace DataTable {
     type AcceptedTypes = Iterable<AcceptedValue>;
     type Getter<T extends ItemType<DataTable.AcceptedTypes>> = GetterFn<any, [T], true>;
     type ItemType<T extends DataTable.AcceptedTypes> = T extends (infer U)[] ? U : T extends Set<infer V> ? V : T extends Map<infer K, infer W> ? W : unknown;
+    type KeyType<T extends DataTable.AcceptedTypes> = T extends (infer U)[] ? number : T extends Set<infer V> ? number : T extends Map<infer K, infer W> ? K : unknown;
     type Column<T extends ItemType<DataTable.AcceptedTypes>> = {
         key: T extends unknown ? string | number : keyof T | string | number;
         label: string;

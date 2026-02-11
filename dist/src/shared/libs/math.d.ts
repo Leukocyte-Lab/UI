@@ -22,6 +22,8 @@ export type MathProxy = Math & {
     lcm: (a: number, b: number) => number;
     clamp: (value: number, min: number, max: number) => number;
     round: (min: number, max: number) => number;
+    avg: (...values: number[]) => number;
+    geoavg: (...values: number[]) => number;
 };
 export declare const ARC_BASE: number;
 declare const Math$: MathProxy;
