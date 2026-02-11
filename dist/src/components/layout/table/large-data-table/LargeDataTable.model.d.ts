@@ -43,6 +43,7 @@ export declare namespace LargeDataTable {
                 defaultRowHeight?: number;
                 bufferSize?: number;
                 lazyUpdate?: boolean;
+                variantHeightMode?: boolean;
             } & DataTable.Component.Wrapper.Props<T>;
             type Emits<T extends DataTable.AcceptedTypes> = {
                 (e: 'request:items', payload: LargeDataTable.ItemCursorPayload<T>): void;
