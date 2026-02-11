@@ -183,7 +183,7 @@ export const RealData: LargeDataTableWrapper$ = {
       height: '480px',
       'white-space': 'pre-wrap',
       'word-break': 'break-all',
-      'font-family': 'monospaces'
+      'font-family': 'monospace'
     }
   }
 };

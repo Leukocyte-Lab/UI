@@ -158,8 +158,14 @@ const Math$: MathProxy = new Proxy<MathProxy>(Math as MathProxy, {
     if (prop === 'cot') return (x: number): number => 1 / Math.tan(x);
     if (prop === 'sec') return (x: number): number => 1 / Math.cos(x);
     if (prop === 'csc') return (x: number): number => 1 / Math.sin(x);
-    if (prop === 'avg') return (...values: number[]): number => values.reduce((a, b) => a + b, 0) / values.length;
-    if (prop === 'geoavg') return (...values: number[]): number => Math.pow(values.reduce((a, b) => a * b, 1), 1 / values.length);
+    if (prop === 'avg') return (...values: number[]): number => {
+      if (values.length === 0) return NaN;
+      return values.reduce((a, b) => a + b, 0) / values.length;
+    };
+    if (prop === 'geoavg') return (...values: number[]): number => {
+      if (values.length === 0) return NaN;
+      return Math.pow(values.reduce((a, b) => a * b, 1), 1 / values.length);
+    };
     return Reflect.get(target, prop, receiver);
   }
 });
