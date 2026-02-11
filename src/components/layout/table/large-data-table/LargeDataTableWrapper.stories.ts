@@ -23,6 +23,28 @@ const meta: GenericMeta<typeof LargeDataTableWrapper> = {
       control: 'object',
       description: 'Columns to control LargeDataTableWrapper behavior.'
     },
+    totalItems: {
+      control: 'number',
+      description: 'Total number of items to be managed by the LargeDataTableWrapper. If not provided, it will be inferred from the items prop. Must be provided for precise behavior if using with pagination or infinite scrolling.'
+    },
+    visibleSize: {
+      control: 'number',
+      description: 'Number of items visible in the viewport at any given time. The default value is `50`.'
+    },
+    bufferSize: {
+      control: 'number',
+      description: 'Number of items to buffer on either side of the visible items for smoother scrolling experience. The default value is `10`.'
+    },
+    defaultRowHeight: {
+      control: 'number',
+      description: 'Default height (in pixels) for each row in the table. This is used for initial layout calculations before actual measurements are taken. The default value is `32`.'
+    },
+    lazyUpdate: {
+      control: 'boolean',
+      description: 'Whether to enable lazy updates for item measurements and visibility status. When enabled, updates will be deferred until the next available frame (using `requestIdleCallback` if available, otherwise fallback to `requestAnimationFrame`), improving performance during rapid scroll or resize events. The default value is `false`.'
+    },
+
+    // Inherited Props from DataTable
     useSearch: {
       control: 'boolean',
       description: 'Whether to enable the search functionality.'
@@ -41,6 +63,12 @@ const meta: GenericMeta<typeof LargeDataTableWrapper> = {
         type: { summary: 'DataTable.Component.Cell.Props<T>' }
       }
     },
+    placeholder: {
+      description: 'Slot to render a placeholder when there are no items to display in the DataTable.',
+      table: {
+        type: { summary: '(props: Placeholder.Props) => VNode' }
+      }
+    },
 
     // Emits
     'onSelect:row': {
@@ -56,12 +84,20 @@ const meta: GenericMeta<typeof LargeDataTableWrapper> = {
       table: {
         type: { summary: '($event: boolean) => void' }
       }
+    },
+    'onRequest:items': {
+      action: 'onRequest:items',
+      description: 'Emitted when the LargeDataTableWrapper requests more items to be loaded, typically during scrolling.',
+      table: {
+        type: { summary: `($event: OnlyOneOf<{ before: ItemCursor<T>; after: ItemCursor<T>; size: number }, 'before' | 'after'>) => void` }
+      }
     }
   },
   args: {
     useSearch: false,
     'onSelect:row': fn(),
-    onOverflowed: fn()
+    onOverflowed: fn(),
+    'onRequest:items': fn()
   }
 };
 
