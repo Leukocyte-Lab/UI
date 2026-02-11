@@ -1,5 +1,14 @@
 <script setup lang="ts" generic="T extends LargeDataTable.AcceptedTypes">
-import { computed, markRaw, nextTick, ref, shallowRef, triggerRef, useTemplateRef, watch } from 'vue';
+import {
+  computed,
+  markRaw,
+  nextTick,
+  ref,
+  shallowRef,
+  triggerRef,
+  useTemplateRef,
+  watch
+} from 'vue';
 import { useResizeObserver } from '@vueuse/core';
 
 import { ItemCarrier } from './LargeDataTable.helpers';
@@ -69,30 +78,42 @@ const activeItems = computed(() => {
   }
   return markRaw(result);
 });
-const visualHeight = computed(() =>
-  items.value.reduce(
-    ({ prefix, subfix, active }, { status, attrs, index }) => {
-      if (index < cursor.value) {
-        if (status.measured) {
-          prefix += attrs.height + gapSize.value;
+const visualHeight = computed(() => {
+  if (itemHeightSet.value.size > 1) {
+    return items.value.reduce(
+      ({ prefix, subfix, active }, { status, attrs, index }) => {
+        if (index < cursor.value) {
+          if (status.measured) {
+            prefix += attrs.height + gapSize.value;
+          } else {
+            prefix += visualItemHeight.value + gapSize.value;
+          }
+        } else if (index >= cursor.value + threshold.value) {
+          if (status.measured) {
+            subfix += attrs.height + gapSize.value;
+          } else {
+            subfix += visualItemHeight.value + gapSize.value;
+          }
         } else {
-          prefix += visualItemHeight.value + gapSize.value;
+          active += status.measured ? attrs.height : visualItemHeight.value;
         }
-      } else if (index >= cursor.value + threshold.value) {
-        if (status.measured) {
-          subfix += attrs.height + gapSize.value;
-        } else {
-          subfix += visualItemHeight.value + gapSize.value;
-        }
-      } else {
-        active += status.measured ? attrs.height : visualItemHeight.value;
-      }
 
-      return { prefix, subfix, active, total: prefix + subfix + active };
-    },
-    { prefix: 0, subfix: 0, active: 0, total: 0 }
-  )
-);
+        return { prefix, subfix, active, total: prefix + subfix + active };
+      },
+      { prefix: 0, subfix: 0, active: 0, total: 0 }
+    );
+  } else {
+    // Faster calculation when all items have the same height
+    return {
+      prefix: (visualItemHeight.value + gapSize.value) * cursor.value,
+      subfix:
+        (visualItemHeight.value + gapSize.value) *
+        (totalItems.value - cursor.value - threshold.value),
+      active: visualItemHeight.value * threshold.value,
+      total: (visualItemHeight.value + gapSize.value) * totalItems.value
+    };
+  }
+});
 const scrollRatio = computed(() => {
   if (visualHeight.value.total > MAX_SCROLL_HEIGHT) {
     return MAX_SCROLL_HEIGHT / (visualHeight.value.total - visualHeight.value.active);
@@ -157,7 +178,7 @@ const scrollHandler = (event: Event) => {
       triggerRef(items);
     });
   }
-  
+
   // Fallback for browsers without scrollend support
   if (!supportsScrollEnd && visibleItems.value.size <= bufferSize.value) {
     triggerScroll(target, scrollTop);
@@ -171,7 +192,7 @@ const scrollEndHandler = (event: Event) => {
   if (visibleItems.value.size <= bufferSize.value) {
     triggerScroll(target, scrollTop);
   }
-}
+};
 
 // Calc Dimension and position of item, and determine if it needs to update the dimension and position of the item and the following items. Return true if the item or any of the following items need to update, otherwise return false.
 const calcItemDimension = (
@@ -198,14 +219,16 @@ const calcItemDimension = (
       height: elHeight
     });
 
-    itemHeightSet.value.add(elHeight);
+    itemHeightSet.value.add(Math.round(elHeight));
 
     if (itemIndex > 0) {
       const { measured } = itemCarrier.value.getStatus(itemIndex - 1);
       const { bottom } = itemCarrier.value.getAttrs(itemIndex - 1);
 
       itemCarrier.value.setAttrs(itemIndex, {
-        top: (measured ? bottom : (visualItemHeight.value + gapSize.value) * itemIndex * scrollRatio.value)
+        top: measured
+          ? bottom
+          : (visualItemHeight.value + gapSize.value) * itemIndex * scrollRatio.value
       });
     }
 
@@ -267,28 +290,43 @@ const calcItemStatus = (
 };
 
 const calcCursorByScrollTop = (visualScrollTop: number, visibleHeight: number): boolean => {
-  if (visibleItems.value.size <= threshold.value - bufferSize.value) {
-    const firstVisibleItemIndex = items.value.reduce(
-      ({ height, index }, { status, attrs, index: itemIndex }) => {
-        const itemHeight = status.measured ? attrs.height : visualItemHeight.value;
-        height += itemHeight + gapSize.value;
-
-        if (index === 0 && height >= visualScrollTop && height < visualScrollTop + visibleHeight) {
-          return { height, index: itemIndex };
-        } else {
-          return { height, index };
-        }
-      },
-      { height: 0, index: 0 }
-    ).index;
-
-    const newCursor = Math.max(0, firstVisibleItemIndex - bufferSize.value);
+  if (itemHeightSet.value.size > 1) {
+    if (visibleItems.value.size <= threshold.value - bufferSize.value) {
+      const firstVisibleItemIndex = items.value.reduce(
+        ({ height, index }, { status, attrs, index: itemIndex }) => {
+          const itemHeight = status.measured ? attrs.height : visualItemHeight.value;
+          height += itemHeight + gapSize.value;
+  
+          if (index === 0 && height >= visualScrollTop && height < visualScrollTop + visibleHeight) {
+            return { height, index: itemIndex };
+          } else {
+            return { height, index };
+          }
+        },
+        { height: 0, index: 0 }
+      ).index;
+  
+      const newCursor = Math.max(0, firstVisibleItemIndex - bufferSize.value);
+  
+      if (newCursor !== cursor.value) {
+        cursor.value = newCursor;
+        return true;
+      } else {
+        return false;
+      }
+    }
+  } else {
+    // Faster calculation when all items have the same height
+    const itemFullHeight = visualItemHeight.value + gapSize.value;
+    const approxIndex = Math.floor(visualScrollTop / itemFullHeight);
+    const newCursor = Math$.clamp(
+      approxIndex - bufferSize.value,
+      0, totalItems.value - threshold.value
+    );
 
     if (newCursor !== cursor.value) {
       cursor.value = newCursor;
       return true;
-    } else {
-      return false;
     }
   }
 
@@ -297,21 +335,24 @@ const calcCursorByScrollTop = (visualScrollTop: number, visibleHeight: number): 
 
 const triggerScroll = (el: HTMLElement, startPos: number = 0) => {
   nextTick(() => {
-    el.scrollTo({ top: startPos + 1 });
-    el.scrollTo({ top: startPos - 1 });
+    if (startPos - el.scrollHeight < 10) {
+      el.scrollTo({ top: startPos - 1 });
+    } else {
+      el.scrollTo({ top: startPos + 1 });
+    }
     el.scrollTo({ top: startPos });
   });
-}
+};
 
 const { onTrigger: onTriggerScroll } = useEventDebounceSignal(scrollHandler, {
   debounce: 10,
-  flush: 'sync',
+  flush: 'post',
   syncWithDebounce: true
 });
 
 const { onTrigger: onTriggerScrollEnd } = useEventDebounceSignal(scrollEndHandler, {
   debounce: 10,
-  flush: 'sync',
+  flush: 'post',
   syncWithDebounce: true
 });
 
@@ -329,8 +370,8 @@ useResizeObserver(
 watch(
   [threshold, totalItems],
   ([threshold, totalItems]) => {
-    itemCarrier.value = new ItemCarrier({ 
-      visibleSize: threshold, 
+    itemCarrier.value = new ItemCarrier({
+      visibleSize: threshold,
       totalItems,
       bufferSize: props.bufferSize
     });
