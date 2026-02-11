@@ -2,7 +2,7 @@ import type { WatchOptionsBase } from 'vue';
 
 import { signal } from '@/shared/libs/signal';
 
-import type { EventCallback } from '@/shared/types/callback';
+import type { Callback, EventCallback } from '@/shared/types/callback';
 
 export type EventSignalOptions = {
   debounce?: number;
@@ -42,6 +42,45 @@ export const useEventDebounceSignal = <E extends Event>(
 
       if (flush === 'post' || flush === 'sync') {
         callback?.call({}, event);
+      }
+    }, debounce);
+  };
+
+  return {
+    triggered,
+    onTrigger
+  };
+};
+
+export const useDebounceSignal = <T extends unknown[]>(
+  callback?: Callback<T>,
+  { debounce = 300, flush = 'pre', syncWithDebounce }: EventSignalOptions = {}
+) => {
+  const triggered = signal(false);
+  let clickDebounceTimer: ReturnType<typeof setTimeout> | undefined = undefined;
+
+  const onTrigger = (...args: T) => {
+    if (!triggered() && flush === 'pre') {
+      callback?.call({}, ...args);
+    } else if (flush === 'sync') {
+      if (syncWithDebounce) {
+        if (!triggered()) {
+          callback?.call({}, ...args);
+        }
+      } else {
+        callback?.call({}, ...args);
+        return;
+      }
+    }
+
+    triggered.set(true);
+    globalThis.clearTimeout(clickDebounceTimer);
+
+    clickDebounceTimer = globalThis.setTimeout(() => {
+      triggered.set(false);
+
+      if (flush === 'post' || flush === 'sync') {
+        callback?.call({}, ...args);
       }
     }, debounce);
   };
