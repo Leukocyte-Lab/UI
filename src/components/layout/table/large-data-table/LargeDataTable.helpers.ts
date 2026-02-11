@@ -37,17 +37,17 @@ export class ItemCarrier {
   private static readonly MAX_INT_28_BITS = (1 << 28) - 1;
   private static readonly MAX_INT_32_BITS = 0xFFFFFFFF;
 
-  private STATUS_MASK = {
+  private static readonly STATUS_MASK = {
     inited: 1 << 0,
     loaded: 1 << 1,
     measured: 1 << 2,
     visible: 1 << 3
-  };
+  } as const;
 
-  private ATTRS_MASK = {
+  private static readonly ATTRS_MASK = {
     height: 0xFFFFFFF0, // 28 bits for height (bits 4-31)
     top: 0xFFFFFFFF     // 32 bits for top
-  };
+  } as const;
 
   private itemDataBitmap: Uint32Array;
   private visibleSize: number = 0;
@@ -85,76 +85,69 @@ export class ItemCarrier {
     }
   }
 
-  private getLowerBitsOrThrow(index: number): number {
-    const lowerIdx = index * 2;
-    const bitmap = this.itemDataBitmap[lowerIdx];
-    if (bitmap === undefined) {
+  private getBaseSlotOrThrow(index: number): number {
+    const base = index * 2;
+    if (base + 1 >= this.itemDataBitmap.length) {
       throw new Error(
         `Item at index ${index} is out of range. Buffer size: ${this.itemDataBitmap.length / 2}`
       );
     }
-    return bitmap;
+    return base;
+  }
+
+  private getLowerBitsOrThrow(index: number): number {
+    const base = this.getBaseSlotOrThrow(index);
+    return this.itemDataBitmap[base]!;
   }
 
   private getUpperBitsOrThrow(index: number): number {
-    const upperIdx = index * 2 + 1;
-    const bitmap = this.itemDataBitmap[upperIdx];
-    if (bitmap === undefined) {
-      throw new Error(
-        `Item at index ${index} is out of range. Buffer size: ${this.itemDataBitmap.length / 2}`
-      );
-    }
-    return bitmap;
+    const base = this.getBaseSlotOrThrow(index);
+    return this.itemDataBitmap[base + 1]!;
   }
 
   private setLowerBits(index: number, bitmap: number): void {
-    this.itemDataBitmap[index * 2] = bitmap >>> 0; // Ensure unsigned 32-bit
+    const base = this.getBaseSlotOrThrow(index);
+    this.itemDataBitmap[base] = bitmap >>> 0;
   }
 
   private setUpperBits(index: number, bitmap: number): void {
-    this.itemDataBitmap[index * 2 + 1] = bitmap >>> 0; // Ensure unsigned 32-bit
+    const base = this.getBaseSlotOrThrow(index);
+    this.itemDataBitmap[base + 1] = bitmap >>> 0;
   }
 
-  private encodeHeight(height: number): number {
-    const scaled = Math.round(height * ItemCarrier.PRECISION);
+  private encodeFixed(
+    value: number,
+    maxInt: number,
+    fieldName: 'height' | 'top'
+  ): number {
+    const scaled = Math.round(value * ItemCarrier.PRECISION);
 
-    if (scaled > ItemCarrier.MAX_INT_28_BITS || scaled < 0) {
+    if (scaled > maxInt || scaled < 0) {
       if (process.env.NODE_ENV !== 'production') {
         throw new Error(
-          `LargeDataTable.ItemCarrier height=${height} is out of range (0 - ${
-            ItemCarrier.MAX_INT_28_BITS / ItemCarrier.PRECISION
-          }) for 28-bit fixed-point field`
+          `LargeDataTable.ItemCarrier ${fieldName}=${value} is out of range (0 - ${
+            maxInt / ItemCarrier.PRECISION
+          }) for ${maxInt === ItemCarrier.MAX_INT_32_BITS ? '32' : '28'}-bit fixed-point field`
         );
       }
-
-      const clamped = Math.min(Math.max(scaled, 0), ItemCarrier.MAX_INT_28_BITS);
-      return (clamped << ItemCarrier.HEIGHT_SHIFT) >>> 0;
-    }
-
-    return (scaled << ItemCarrier.HEIGHT_SHIFT) >>> 0;
-  }
-
-  private encodeTop(top: number): number {
-    const scaled = Math.round(top * ItemCarrier.PRECISION);
-
-    if (scaled > ItemCarrier.MAX_INT_32_BITS || scaled < 0) {
-      if (process.env.NODE_ENV !== 'production') {
-        throw new Error(
-          `LargeDataTable.ItemCarrier top=${top} is out of range (0 - ${
-            ItemCarrier.MAX_INT_32_BITS / ItemCarrier.PRECISION
-          }) for 32-bit fixed-point field`
-        );
-      }
-
-      const clamped = Math.min(Math.max(scaled, 0), ItemCarrier.MAX_INT_32_BITS);
+      const clamped = Math.min(Math.max(scaled, 0), maxInt);
       return clamped >>> 0;
     }
 
     return scaled >>> 0;
   }
 
+  private encodeHeight(height: number): number {
+    const scaled = this.encodeFixed(height, ItemCarrier.MAX_INT_28_BITS, 'height');
+    return (scaled << ItemCarrier.HEIGHT_SHIFT) >>> 0;
+  }
+
+  private encodeTop(top: number): number {
+    return this.encodeFixed(top, ItemCarrier.MAX_INT_32_BITS, 'top');
+  }
+
   private decodeHeight(lowerBits: number): number {
-    const value = (lowerBits & this.ATTRS_MASK.height) >>> ItemCarrier.HEIGHT_SHIFT;
+    const value = (lowerBits & ItemCarrier.ATTRS_MASK.height) >>> ItemCarrier.HEIGHT_SHIFT;
     return value / ItemCarrier.PRECISION;
   }
 
@@ -168,7 +161,7 @@ export class ItemCarrier {
     updater: (current: boolean) => boolean
   ): void {
     let lowerBits = this.getLowerBitsOrThrow(index);
-    const mask = this.STATUS_MASK[key];
+    const mask = ItemCarrier.STATUS_MASK[key];
     const current = (lowerBits & mask) !== 0;
     const next = updater(current);
     lowerBits = next ? (lowerBits | mask) : (lowerBits & ~mask);
@@ -179,10 +172,10 @@ export class ItemCarrier {
     const lowerBits = this.getLowerBitsOrThrow(index);
 
     return {
-      inited: (lowerBits & this.STATUS_MASK.inited) !== 0,
-      loaded: (lowerBits & this.STATUS_MASK.loaded) !== 0,
-      measured: (lowerBits & this.STATUS_MASK.measured) !== 0,
-      visible: (lowerBits & this.STATUS_MASK.visible) !== 0
+      inited: (lowerBits & ItemCarrier.STATUS_MASK.inited) !== 0,
+      loaded: (lowerBits & ItemCarrier.STATUS_MASK.loaded) !== 0,
+      measured: (lowerBits & ItemCarrier.STATUS_MASK.measured) !== 0,
+      visible: (lowerBits & ItemCarrier.STATUS_MASK.visible) !== 0
     };
   }
 
@@ -223,7 +216,7 @@ export class ItemCarrier {
     if (attrs.height !== undefined) {
       let lowerBits = this.getLowerBitsOrThrow(index);
       const encodedHeight = this.encodeHeight(attrs.height);
-      lowerBits = (lowerBits & ~this.ATTRS_MASK.height) | (encodedHeight & this.ATTRS_MASK.height);
+      lowerBits = (lowerBits & ~ItemCarrier.ATTRS_MASK.height) | (encodedHeight & ItemCarrier.ATTRS_MASK.height);
       this.setLowerBits(index, lowerBits);
     }
     if (attrs.top !== undefined) {
@@ -245,8 +238,9 @@ export class ItemCarrier {
   }
 
   public resetItem(index: number) {
-    this.itemDataBitmap[index * 2] = 0; // Reset lower bits
-    this.itemDataBitmap[index * 2 + 1] = 0; // Reset upper bits
+    const base = this.getBaseSlotOrThrow(index);
+    this.itemDataBitmap[base] = 0;
+    this.itemDataBitmap[base + 1] = 0;
   }
 
   // Utility method to convert a number to a fixed precision (2 decimal places)
