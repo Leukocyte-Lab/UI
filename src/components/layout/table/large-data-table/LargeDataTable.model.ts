@@ -49,6 +49,7 @@ export namespace LargeDataTable {
         defaultRowHeight?: number;
         bufferSize?: number;
         lazyUpdate?: boolean;
+        variantHeightMode?: boolean;
       } & DataTable.Component.Wrapper.Props<T>;
 
   
