@@ -164,7 +164,9 @@ const Math$: MathProxy = new Proxy<MathProxy>(Math as MathProxy, {
     };
     if (prop === 'geoavg') return (...values: number[]): number => {
       if (values.length === 0) return NaN;
-      return Math.pow(values.reduce((a, b) => a * b, 1), 1 / values.length);
+      if (values.some(v => v <= 0)) return NaN;
+      const sumLog = values.reduce((acc, v) => acc + Math.log(v), 0);
+      return Math.exp(sumLog / values.length);
     };
     return Reflect.get(target, prop, receiver);
   }
