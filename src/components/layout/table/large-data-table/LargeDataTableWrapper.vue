@@ -21,7 +21,7 @@ const props = defineProps<LargeDataTable.Component.Wrapper.Props<T>>();
 const emits = defineEmits<LargeDataTable.Component.Wrapper.Emits<T>>();
 
 // Chrome's max element height is ~33,554,432px (2^25). Use a safe limit.
-const MAX_SCROLL_HEIGHT = 16_777_216; // 2^24, safe margin under browser limit
+const MAX_SCROLL_HEIGHT = 8_388_608; // 2^23, safe margin under browser limit
 
 const wrapperRef$ = useTemplateRef('wrapperRef$');
 const cursor = ref(0);
@@ -125,7 +125,7 @@ const computeGapSize = () => {
 };
 
 // Feature detection for scrollend event
-const supportsScrollEnd = 'onscrollend' in document.createElement('div');
+const supportsScrollEnd = 'onscrollend' in globalThis;
 
 const scrollHandler = (event: Event) => {
   const target = event.target as HTMLElement;
@@ -363,7 +363,7 @@ const resetScroll = watch(
   <div
     ref="wrapperRef$"
     @scroll.capture="onTriggerScroll"
-    @scrollend.capture="supportsScrollEnd ? onTriggerScrollEnd : undefined"
+    @scrollend.capture="onTriggerScrollEnd"
     :class="[
       $style['table-wrapper'],
       $style.wrapper,
