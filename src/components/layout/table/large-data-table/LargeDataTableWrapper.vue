@@ -39,11 +39,12 @@ const itemHeightSet = ref(new Set<number>());
 const itemCarrier = shallowRef<ItemCarrier>(new ItemCarrier());
 const firstSizeChangedItemIndex = ref<number>(-1);
 
+const variantHeightMode = computed(() => props.variantHeightMode ?? itemHeightSet.value.size > 1);
 const visualItemHeight = computed(() => {
   if (itemHeightSet.value.size === 0) {
     return props.defaultRowHeight ?? 32;
   }
-  const value = Math$.geoavg(...itemHeightSet.value);
+  const value = ItemCarrier.convertToSamePrecision(Math$.geoavg(...itemHeightSet.value));
   return Number.isFinite(value) ? value : (props.defaultRowHeight ?? 32);
 });
 const threshold = computed(() => props.visibleSize ?? 50);
@@ -79,7 +80,7 @@ const activeItems = computed(() => {
   return markRaw(result);
 });
 const visualHeight = computed(() => {
-  if (itemHeightSet.value.size > 1) {
+  if (variantHeightMode.value) {
     return items.value.reduce(
       ({ prefix, subfix, active }, { status, attrs, index }) => {
         if (index < cursor.value) {
@@ -144,53 +145,29 @@ const computeGapSize = () => {
   }
 };
 
-// Feature detection for scrollend event
-const supportsScrollEnd = 'onscrollend' in globalThis;
-
 const scrollHandler = (event: Event) => {
   const target = event.target as HTMLElement;
-  const visibleHeight = target.clientHeight;
-  const scrollTop = target.scrollTop;
-  const realScrollTop = scrollTop - visualPrefixHeight.value;
-  const visualScrollTop = realScrollTop + visualPrefixHeight.value / scrollRatio.value;
-
-  const needUpdate = Array.prototype.reduce.call(
-    target.querySelectorAll(':scope > [data-table-row]'),
-    (needUpdate, element: HTMLElement, index, { length }) => {
-      const itemIndex = index + cursor.value;
-
-      const dimensionChanged = calcItemDimension(element, itemIndex, index, length);
-      const statusChanged = calcItemStatus(itemIndex, visualScrollTop, visibleHeight);
-      return needUpdate || dimensionChanged || statusChanged;
-    },
-    false
-  );
-
-  if (needUpdate || visibleItems.value.size <= bufferSize.value) {
-    updateFunction.value(() => {
-      calcCursorByScrollTop(visualScrollTop, visibleHeight);
-    });
-  }
+  const needUpdate = computeItems(target);
 
   if (needUpdate) {
     updateFunction.value(() => {
       triggerRef(items);
     });
   }
-
-  // Fallback for browsers without scrollend support
-  if (!supportsScrollEnd && visibleItems.value.size <= bufferSize.value) {
-    triggerScroll(target, scrollTop);
-  }
 };
 
 const scrollEndHandler = (event: Event) => {
-  const target = event.target as HTMLElement;
-  const scrollTop = target.scrollTop;
+  nextTick(() => {
+    const target = event.target as HTMLElement;
+    const needUpdate = computeItems(target);
 
-  if (visibleItems.value.size <= bufferSize.value) {
-    triggerScroll(target, scrollTop);
-  }
+    if (needUpdate) {
+      updateFunction.value(() => {
+        triggerRef(items);
+        onRequestItems('after');
+      });
+    }
+  });
 };
 
 // Calc Dimension and position of item, and determine if it needs to update the dimension and position of the item and the following items. Return true if the item or any of the following items need to update, otherwise return false.
@@ -225,9 +202,7 @@ const calcItemDimension = (
       const { bottom } = itemCarrier.value.getAttrs(itemIndex - 1);
 
       itemCarrier.value.setAttrs(itemIndex, {
-        top: measured
-          ? bottom
-          : (visualItemHeight.value + gapSize.value) * itemIndex * scrollRatio.value
+        top: measured ? bottom : (visualItemHeight.value + gapSize.value) * itemIndex
       });
     }
 
@@ -267,19 +242,14 @@ const calcItemStatus = (
 
   const { top, bottom } = itemCarrier.value.getAttrs(itemIndex);
 
-  if (bottom < visualScrollTop) {
+  if (bottom < visualScrollTop && top < visualScrollTop) {
     if (visible) {
       itemCarrier.value.setStatus(itemIndex, { visible: false });
       return true;
     }
-  } else if (top > visualScrollTop + visibleHeight) {
+  } else if (top > visualScrollTop + visibleHeight && bottom > visualScrollTop + visibleHeight) {
     if (visible) {
       itemCarrier.value.setStatus(itemIndex, { visible: false });
-      return true;
-    }
-  } else if (bottom > visualScrollTop && top < visualScrollTop + visibleHeight) {
-    if (!visible) {
-      itemCarrier.value.setStatus(itemIndex, { visible: true });
       return true;
     }
   } else {
@@ -293,8 +263,8 @@ const calcItemStatus = (
 };
 
 const calcCursorByScrollTop = (visualScrollTop: number, visibleHeight: number): boolean => {
-  if (itemHeightSet.value.size > 1) {
-    if (visibleItems.value.size <= threshold.value - bufferSize.value) {
+  if (variantHeightMode.value) {
+    if (visibleItems.value.size <= threshold.value) {
       const firstVisibleItemIndex = items.value.reduce(
         ({ height, index }, { status, attrs, index: itemIndex }) => {
           const itemHeight = status.measured ? attrs.height : visualItemHeight.value;
@@ -313,13 +283,10 @@ const calcCursorByScrollTop = (visualScrollTop: number, visibleHeight: number): 
         { height: 0, index: 0 }
       ).index;
 
-      const newCursor = Math.max(0, firstVisibleItemIndex - bufferSize.value);
+      const newCursor = Math.max(0, firstVisibleItemIndex);
 
       if (newCursor !== cursor.value) {
-        onRequestItems({
-          cursor: cursor.value,
-          direction: newCursor < cursor.value ? 'before' : 'after'
-        });
+        onRequestItems(newCursor < cursor.value ? 'before' : 'after');
 
         cursor.value = newCursor;
 
@@ -336,10 +303,7 @@ const calcCursorByScrollTop = (visualScrollTop: number, visibleHeight: number): 
     const newCursor = Math$.clamp(approxIndex - bufferSize.value, 0, maxCursor);
 
     if (newCursor !== cursor.value) {
-      onRequestItems({
-        cursor: cursor.value,
-        direction: newCursor < cursor.value ? 'before' : 'after'
-      });
+      onRequestItems(newCursor < cursor.value ? 'before' : 'after');
 
       cursor.value = newCursor;
       return true;
@@ -360,50 +324,94 @@ const triggerScroll = (el: HTMLElement, startPos: number = 0) => {
   });
 };
 
-const requestItemHandler = ({
-  cursor,
-  direction
-}: {
-  cursor: number;
-  direction: 'before' | 'after';
-}) => {
-  const itemIndex = Math$.clamp(
-    direction === 'before' ? cursor + threshold.value - 1 : cursor,
-    0,
-    totalItems.value - 1
-  );
+const getVirtualOffset = (offset: number): number => {
+  const ratio = scrollRatio.value;
+  if (ratio === 1) return offset;
 
-  emits('request:items', {
-    [direction]: {
-      index: itemIndex,
-      key: items.value.get(itemIndex)?.key
-    },
-    size: threshold.value
-  } as unknown as LargeDataTable.ItemCursorPayload<T>);
+  const prefixScaled = visualPrefixHeight.value;
+  const activeHeight = visualHeight.value.active;
+  const activeStart = prefixScaled;
+  const activeEnd = prefixScaled + activeHeight;
+
+  if (offset <= activeStart) {
+    return offset / ratio;
+  }
+
+  if (offset <= activeEnd) {
+    return visualHeight.value.prefix + (offset - activeStart);
+  }
+
+  return visualHeight.value.prefix + activeHeight + (offset - activeEnd) / ratio;
+};
+
+const computeItems = (target?: HTMLElement): boolean => {
+  if (target) {
+    const visibleHeight = target.clientHeight;
+    const scrollTop = target.scrollTop;
+    const visualScrollTop = getVirtualOffset(scrollTop);
+    const visualScrollBottom = getVirtualOffset(scrollTop + visibleHeight);
+    const visualVisibleHeight = Math.max(0, visualScrollBottom - visualScrollTop);
+
+    const needUpdate = Array.from(target.querySelectorAll(':scope > [data-table-row]')).reduce(
+      (needUpdate, element, index, { length }) => {
+        const itemIndex = index + cursor.value;
+
+        const dimensionChanged = calcItemDimension(
+          element as HTMLElement,
+          itemIndex,
+          index,
+          length
+        );
+        const statusChanged = calcItemStatus(itemIndex, visualScrollTop, visualVisibleHeight);
+        return needUpdate || dimensionChanged || statusChanged;
+      },
+      false
+    );
+
+    if (needUpdate || visibleItems.value.size <= bufferSize.value) {
+      updateFunction.value(() => {
+        calcCursorByScrollTop(visualScrollTop, visualVisibleHeight);
+      });
+    }
+
+    return needUpdate;
+  }
+
+  return false;
+};
+
+const requestItemHandler = (direction: 'before' | 'after') => {
+  nextTick(() => {
+    const itemIndex = Math$.clamp(
+      direction === 'before' ? cursor.value + threshold.value - 1 : cursor.value + bufferSize.value,
+      0,
+      totalItems.value - 1
+    );
+
+    emits('request:items', {
+      [direction]: {
+        index: itemIndex,
+        key: items.value.get(itemIndex)?.key
+      },
+      size: threshold.value
+    } as unknown as LargeDataTable.ItemCursorPayload<T>);
+  });
 };
 
 const { onTrigger: onTriggerScroll } = useEventDebounceSignal(scrollHandler, {
-  debounce: 10,
-  flush: 'post'
-});
-
-const { onTrigger: onTriggerScrollEnd } = useEventDebounceSignal(scrollEndHandler, {
-  debounce: 10,
-  flush: 'post'
-});
-
-const { onTrigger: onRequestItems } = useDebounceSignal<
-  [
-    {
-      cursor: number;
-      direction: 'before' | 'after';
-    }
-  ]
->(requestItemHandler, {
-  debounce: 1000,
+  debounce: 100,
   flush: 'sync',
   syncWithDebounce: true
 });
+
+const { onTrigger: onRequestItems } = useDebounceSignal<[direction: 'before' | 'after']>(
+  requestItemHandler,
+  {
+    debounce: 1000,
+    flush: 'sync',
+    syncWithDebounce: true
+  }
+);
 
 useResizeObserver(
   wrapperRef$,
@@ -453,7 +461,7 @@ const resetScroll = watch(
   <div
     ref="wrapperRef$"
     @scroll.capture="onTriggerScroll"
-    @scrollend.capture="onTriggerScrollEnd"
+    @scrollend.capture="scrollEndHandler"
     :class="[
       $style['table-wrapper'],
       $style.wrapper,
