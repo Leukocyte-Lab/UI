@@ -8,7 +8,7 @@ export type EventSignalOptions = {
   debounce?: number;
   flush?: WatchOptionsBase['flush'];
   syncWithDebounce?: boolean;
-}
+};
 
 export const useEventDebounceSignal = <E extends Event>(
   callback?: EventCallback<E>,
@@ -24,6 +24,8 @@ export const useEventDebounceSignal = <E extends Event>(
       if (syncWithDebounce) {
         if (!triggered()) {
           callback?.call({}, event);
+        } else {
+          return;
         }
       } else {
         callback?.call({}, event);
@@ -34,8 +36,13 @@ export const useEventDebounceSignal = <E extends Event>(
       event.stopPropagation();
     }
 
-    triggered.set(true);
-    globalThis.clearTimeout(clickDebounceTimer);
+    if (flush !== 'sync' || syncWithDebounce) {
+      triggered.set(true);
+
+      if (flush === 'sync' ? syncWithDebounce && !triggered() : true) {
+        globalThis.clearTimeout(clickDebounceTimer);
+      }
+    }
 
     clickDebounceTimer = globalThis.setTimeout(() => {
       triggered.set(false);
@@ -66,6 +73,8 @@ export const useDebounceSignal = <T extends unknown[]>(
       if (syncWithDebounce) {
         if (!triggered()) {
           callback?.call({}, ...args);
+        } else {
+          return;
         }
       } else {
         callback?.call({}, ...args);
@@ -73,8 +82,10 @@ export const useDebounceSignal = <T extends unknown[]>(
       }
     }
 
-    triggered.set(true);
-    globalThis.clearTimeout(clickDebounceTimer);
+    if (flush !== 'sync' || syncWithDebounce) {
+      triggered.set(true);
+      globalThis.clearTimeout(clickDebounceTimer);
+    }
 
     clickDebounceTimer = globalThis.setTimeout(() => {
       triggered.set(false);
