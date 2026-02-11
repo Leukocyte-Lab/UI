@@ -31,6 +31,9 @@ const itemCarrier = shallowRef<ItemCarrier>(new ItemCarrier());
 const firstSizeChangedItemIndex = ref<number>(-1);
 
 const visualItemHeight = computed(() => {
+  if (itemHeightSet.value.size === 0) {
+    return props.defaultRowHeight ?? 32;
+  }
   const value = Math$.geoavg(...itemHeightSet.value);
   return Number.isFinite(value) ? value : (props.defaultRowHeight ?? 32);
 });
@@ -121,6 +124,9 @@ const computeGapSize = () => {
   }
 };
 
+// Feature detection for scrollend event
+const supportsScrollEnd = 'onscrollend' in document.createElement('div');
+
 const scrollHandler = (event: Event) => {
   const target = event.target as HTMLElement;
   const visibleHeight = target.clientHeight;
@@ -150,6 +156,11 @@ const scrollHandler = (event: Event) => {
     updateFunction.value(() => {
       triggerRef(items);
     });
+  }
+  
+  // Fallback for browsers without scrollend support
+  if (!supportsScrollEnd && visibleItems.value.size <= bufferSize.value) {
+    triggerScroll(target, scrollTop);
   }
 };
 
@@ -318,7 +329,11 @@ useResizeObserver(
 watch(
   [threshold, totalItems],
   ([threshold, totalItems]) => {
-    itemCarrier.value = new ItemCarrier({ visibleSize: threshold, totalItems });
+    itemCarrier.value = new ItemCarrier({ 
+      visibleSize: threshold, 
+      totalItems,
+      bufferSize: props.bufferSize
+    });
   },
   {
     immediate: true
@@ -348,7 +363,7 @@ const resetScroll = watch(
   <div
     ref="wrapperRef$"
     @scroll.capture="onTriggerScroll"
-    @scrollend.capture="onTriggerScrollEnd"
+    @scrollend.capture="supportsScrollEnd ? onTriggerScrollEnd : undefined"
     :class="[
       $style['table-wrapper'],
       $style.wrapper,
