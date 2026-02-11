@@ -10,8 +10,8 @@ export class ItemCarrier {
   /**
    * The bitmap layout for each item is as follows:
    * - bits 0-3: status flags (inited, loaded, measured, visible), each boolean represented by a single bit
-   * - bits 4-33: height (30 bits, max 1073741823), stored as an float value multiplied by 1000 to preserve three decimal places
-   * - bits 34-63: top (30 bits, max 1073741823), stored as an float value multiplied by 1000 to preserve three decimal places
+   * - bits 4-33: height (30 bits, max 1073741823), stored as an float value multiplied by 100 to preserve two decimal places
+   * - bits 34-63: top (30 bits, max 1073741823), stored as an float value multiplied by 100 to preserve two decimal places
    *
    * This layout allows us to store all necessary information for each item in a single 64-bit integer, optimizing memory usage and access speed.
    * The use of BigInt ensures that we can handle the full range of values without overflow issues.
@@ -30,7 +30,7 @@ export class ItemCarrier {
    * |    top    |   height  | status flags |
    *
    */
-  private static readonly PRECISION = 1000;
+  private static readonly PRECISION = 100;
   private static readonly HEIGHT_SHIFT = 4n;
   private static readonly TOP_SHIFT = 34n;
   private static readonly MAX_INT_30_BITS = Number((1n << 30n) - 1n);
@@ -229,7 +229,7 @@ export class ItemCarrier {
     this.itemDataBitmap[index] = 0n; // Reset all bits to 0
   }
 
-  // Utility method to convert a number to a fixed precision (3 decimal places)
+  // Utility method to convert a number to a fixed precision (2 decimal places)
   // Used externally for comparing measured heights with stored heights
   static convertToSamePrecision(value: number): number {
     return Math.round(value * ItemCarrier.PRECISION) / ItemCarrier.PRECISION;
