@@ -77,7 +77,7 @@ const activeItems = computed(() => {
     const item = items.value.get(i);
     if (item) result.set(i, item);
   }
-  return result;
+  return markRaw(result);
 });
 const visualHeight = computed(() => {
   if (variantHeightMode.value) {
@@ -494,13 +494,6 @@ const resetScroll = watch(
 <style module scoped lang="scss">
 @use '@/assets/styles/modules/wrapper.module' as wrapper;
 @use '@/assets/styles/modules/scrollbar.module' as scrollbar;
-
-button {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
 
 .table {
   &-wrapper {
