@@ -158,13 +158,8 @@ const scrollHandler = (event: Event) => {
 
 const scrollEndHandler = (event: Event) => {
   nextTick(() => {
-    console.log('Scroll Ended');
     const target = event.target as HTMLElement;
     const needUpdate = computeItems(target);
-
-    console.log('After Scroll End Update:', { needUpdate });
-
-    inspectVisibleItems();
 
     if (needUpdate) {
       updateFunction.value(() => {
@@ -417,10 +412,6 @@ const { onTrigger: onRequestItems } = useDebounceSignal<[direction: 'before' | '
     syncWithDebounce: true
   }
 );
-
-const inspectVisibleItems = () => {
-  console.log('Visible Items:', visibleItems.value);
-};
 
 useResizeObserver(
   wrapperRef$,
