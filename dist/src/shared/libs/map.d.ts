@@ -11,6 +11,7 @@ export interface MapProxy<K extends string | number | symbol, V> extends Map<K, 
     findLastValue<T extends V>(predicate: (value: V, key: K, map: Map<K, V>) => value is T, thisArg?: any): T | undefined;
     findLastValue(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): V | undefined;
     map<U extends string | number | symbol, S>(callbackfn: (value: V, key: K, map: Map<K, V>) => [U, S], thisArg?: any): MapProxy<U, S>;
+    mapWithIndex<U extends string | number | symbol, S>(callbackfn: (value: V, key: K, index: number, map: Map<K, V>) => [U, S], thisArg?: any): MapProxy<U, S>;
     reduce<U>(callbackfn: (previousValue: U, currentValue: V, currentKey: K, map: Map<K, V>) => U, initialValue: U, thisArg?: any): U;
     reduceRight<U>(callbackfn: (previousValue: U, currentValue: V, currentKey: K, map: Map<K, V>) => U, initialValue: U, thisArg?: any): U;
     filter(predicate: (value: V, key: K, map: Map<K, V>) => unknown, thisArg?: any): MapProxy<K, V>;
