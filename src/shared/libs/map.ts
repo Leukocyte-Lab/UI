@@ -29,6 +29,10 @@ export interface MapProxy<K extends string | number | symbol, V> extends Map<K, 
     callbackfn: (value: V, key: K, map: Map<K, V>) => [U, S],
     thisArg?: any
   ): MapProxy<U, S>;
+  mapWithIndex<U extends string | number | symbol, S>(
+    callbackfn: (value: V, key: K, index: number, map: Map<K, V>) => [U, S],
+    thisArg?: any
+  ): MapProxy<U, S>;
   
   reduce<U>(
     callbackfn: (previousValue: U, currentValue: V, currentKey: K, map: Map<K, V>) => U,
