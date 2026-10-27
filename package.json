@@ -99,7 +99,7 @@
     "pixi.js": "^7.4.3",
     "prettier": "^3.8.1",
     "sass": "^1.97.3",
-    "storybook": "^10.2.4",
+    "storybook": "^10.6.2",
     "storybook-addon-vue-slots": "0.9.30-next.2",
     "stylelint": "^16.26.1",
     "stylelint-config-recommended-vue": "^1.6.1",
